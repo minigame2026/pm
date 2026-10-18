@@ -1,6 +1,7 @@
 import { _decorator, Component, Node, Canvas, Camera, UITransform, Graphics, Color, Label, LabelOutline, Sprite,
   SpriteFrame, Texture2D, Rect, Size, resources, Layers, view, ResolutionPolicy, EventTouch, tween, Tween, Vec3, UIOpacity, sys, game, Game, profiler } from 'cc';
 import { BATTLE_RECTS, PET_FEET } from './BattleArt';
+import { partyChoices, rankForStage, continueAdventure } from './PMModel';
 import { State, PetId, Action, Egg, PETS, PET_IDS, TOTAL_STAGES, fresh, act, hp, maxHP, enemyName, enemyAttackFaces, restore, equipReserve, selectActive, healAmount, attackAmount, guardDamage, rewardOptions, canManageParty, restartRun } from './PMModel';
 const { ccclass } = _decorator;
 const KEY='pm.creature-dice.v1';
@@ -40,7 +41,7 @@ export class PMGame extends Component {
       }));
       this.ready=true;this.render();this.save();
       game.on(Game.EVENT_HIDE,this.onHide,this);
-      (globalThis as any).__pm={snapshot:()=>JSON.parse(JSON.stringify(this.state)),controls:()=>({...this.controls}),animating:()=>this.busy||this.pressPending,version:'0.5.0',ready:true};
+      (globalThis as any).__pm={snapshot:()=>JSON.parse(JSON.stringify(this.state)),controls:()=>({...this.controls}),animating:()=>this.busy||this.pressPending,version:'0.6.0',ready:true};
     }catch(e){this.loading!.string='资源加载失败，请刷新重试';console.error('PM asset loading',e);}
   }
   onDestroy(){game.off(Game.EVENT_HIDE,this.onHide,this);}
@@ -196,10 +197,10 @@ export class PMGame extends Component {
       this.encounterNameAttack(status,enemyName(s),enemyAttackFaces(s),30);
       this.bar(status,30,5,272,1,s.enemyMax+' / '+s.enemyMax);
       const r=s.reward,pointReward=r.kind==='attack'||r.kind==='heal';
-      const contentWidth=s.step===TOTAL_STAGES?28:r.kind==='hp'?80:pointReward?35+r.values.length*36-6:54;
+      const contentWidth=rankForStage(s.step)==='boss'?28:r.kind==='hp'?80:pointReward?35+r.values.length*36-6:54;
       const rewardLeft=-(40+12+contentWidth)/2,contentLeft=rewardLeft+52;
       this.text(status,'奖励',rewardLeft+20,-29,15,C.muted,40,24);
-      if(s.step===TOTAL_STAGES){this.text(status,'★',contentLeft+14,-29,24,'#e49424',28,26);}
+      if(rankForStage(s.step)==='boss'){this.text(status,'★',contentLeft+14,-29,24,'#e49424',28,26);}
       else {
         if(r.kind==='hp')this.text(status,'HP +'+r.values[0],contentLeft+40,-29,17,C.ink,80,24);
         else {
@@ -227,10 +228,11 @@ export class PMGame extends Component {
     if(phase==='won'||phase==='lost'){
       this.text(sheet,phase==='won'?'收藏与通关记录已保留':'收藏的伙伴会陪你再次启程',0,73,16);
       this.text(sheet,'已收集 '+s.owned.length+' / '+PET_IDS.length+'   ·   通关 '+s.wins+' 次',0,37,15,C.muted);
-      this.button(sheet,'restart','再来一局',0,-17,340,58,()=>this.restart(),C.orange,true,22);
+      if(phase==='won'&&s.step===10)this.button(sheet,'continueAdventure','继续第 11 关  ›',0,-17,340,58,()=>{this.state=continueAdventure(this.state);this.save();this.render();},C.orange,true,22);
+      else this.button(sheet,'restart','再来一局',0,-17,340,58,()=>this.restart(),C.orange,true,22);
       this.button(sheet,'collection','查看伙伴',0,-77,340,42,()=>this.collection(),C.paper,true,15);
     }
-    this.text(this.root,this.saveError?'保存失败，请勿关闭页面':'PM v0.5  ·  18 只伙伴 · 自动续玩',0,b+8,10,this.saveError?'#c44141':C.muted,350,14);
+    this.text(this.root,this.saveError?'保存失败，请勿关闭页面':'PM v0.6  ·  20 关 · 自动续玩',0,b+8,10,this.saveError?'#c44141':C.muted,350,14);
     this.fx=this.makeNode(this.root,'battle-effects',0,0,390,H);
     if(phase==='reward'||phase==='won'){const n=this.enemyNode!;const pos=n.position.clone();tween(n).by(.18,{position:new Vec3(0,15,0)},{easing:'quadOut'}).to(.2,{position:pos},{easing:'quadIn'}).start();}
   }
@@ -263,7 +265,7 @@ export class PMGame extends Component {
     const title=this.text(this.root,claimed?'带着惊喜回家':'巢穴寻蛋',0,H/2-36,26,'#fff9df',280,42);title.isBold=true;const out=title.node.addComponent(LabelOutline);out.color=color('#365543');out.width=2;
     this.button(this.root,'menu','···',161,H/2-32,44,42,()=>this.menu(),C.paper,true,24);
     const info=this.panel(this.root,0,H/2-80,claimed?170:224,30,'#294c3f',15,210);
-    this.text(info,claimed?'已存入蛋袋 ✓':(s.step===10?'BOSS 巢穴':'精英巢穴')+'  ·  '+(hunt.limit-hunt.candidates.length)+' 次翻找',0,0,14,'#fff8d9',216,26);
+    this.text(info,claimed?'已存入蛋袋 ✓':(rankForStage(s.step)==='boss'?'BOSS 巢穴':'精英巢穴')+'  ·  '+(hunt.limit-hunt.candidates.length)+' 次翻找',0,0,14,'#fff8d9',216,26);
     const nestY=panelHeight/2+.035*os.height*k,eggSize=Math.min(158,sceneHeight*.32),eggY=nestY+eggSize*.2;
     const chosen=hunt.candidates[hunt.selected];
     if(chosen){
@@ -279,7 +281,7 @@ export class PMGame extends Component {
     if(claimed){
       this.text(sheet,this.eggName(chosen)+' 蛋',0,79,22,this.eggTint(chosen),330,34).isBold=true;
       this.text(sheet,'已保存  ·  蛋袋共 '+(s.eggs||[]).length+' 枚',0,42,15,C.muted,330,27);
-      this.button(sheet,'eggContinue',s.step===10?'完成冒险  ›':'继续冒险  ›',0,-13,338,56,()=>this.command('eggContinue'),'#dba441',true,22);
+      this.button(sheet,'eggContinue',s.step===TOTAL_STAGES?'完成冒险  ›':'继续冒险  ›',0,-13,338,56,()=>this.command('eggContinue'),'#dba441',true,22);
       this.button(sheet,'eggBag','查看蛋袋',0,-73,338,36,()=>this.eggBag(),C.paper,true,14);
     }else{
       this.text(sheet,'挑一枚，带回家',0,111,20,'#735b32',280,30).isBold=true;
@@ -295,14 +297,14 @@ export class PMGame extends Component {
       this.button(sheet,'eggTake','带走这枚  ›',88,-72,166,53,()=>this.command('eggTake'),'#dba441',!!chosen,18);
       this.text(sheet,'每次翻找：普通 80% · SR 17% · SSR 3%',0,-119,11,C.muted,350,20);
     }
-    this.text(this.root,this.saveError?'保存失败，请勿关闭页面':'PM v0.5  ·  自动保存',0,b+8,10,this.saveError?'#c44141':C.muted,350,14);
+    this.text(this.root,this.saveError?'保存失败，请勿关闭页面':'PM v0.6  ·  自动保存',0,b+8,10,this.saveError?'#c44141':C.muted,350,14);
     this.fx=this.makeNode(this.root,'nest-effects',0,0,390,H);
   }
   private eggBag(page=0){
     const eggs=(this.state.eggs||[]).slice().reverse(),pages=Math.max(1,Math.ceil(eggs.length/4));page=Math.max(0,Math.min(pages-1,page));
     const c=this.overlay('蛋袋 · '+eggs.length+' 枚',470);
     if(!eggs.length){this.text(c,'击败精英或 BOSS 后\n到巢穴挑选一枚宠物蛋',0,50,18,C.muted,310,75);}
-    eggs.slice(page*4,page*4+4).forEach((egg,i)=>{const y=124-i*68;this.panel(c,0,y,310,61,'#f2f5ec',12);this.eggArt(c,egg,-116,y,52);this.text(c,this.eggName(egg)+' 蛋',20,y+10,17,this.eggTint(egg),200,25).isBold=true;this.text(c,egg.stage===10?'BOSS 巢穴':'精英巢穴',20,y-14,12,C.muted,200,20);});
+    eggs.slice(page*4,page*4+4).forEach((egg,i)=>{const y=124-i*68;this.panel(c,0,y,310,61,'#f2f5ec',12);this.eggArt(c,egg,-116,y,52);this.text(c,this.eggName(egg)+' 蛋',20,y+10,17,this.eggTint(egg),200,25).isBold=true;this.text(c,(rankForStage(egg.stage)==='boss'?'BOSS 巢穴':'精英巢穴')+' · 第 '+egg.stage+' 关',20,y-14,12,C.muted,200,20);});
     this.button(c,'eggs-prev','‹',-110,-122,58,33,()=>this.eggBag(page-1),C.blue,page>0,23);this.text(c,(page+1)+' / '+pages,0,-122,14,C.muted,100,26);this.button(c,'eggs-next','›',110,-122,58,33,()=>this.eggBag(page+1),C.blue,page<pages-1,23);
     this.text(c,'蛋已保存，孵化功能等待后续开放',0,-160,12,C.muted,320,24);
     this.button(c,'closeEggBag','返回',0,-200,302,40,()=>this.render(),C.orange);
@@ -334,7 +336,7 @@ export class PMGame extends Component {
     const healingFaces=this.panel(p,-13,82,156,26,'#e5f5ed',8);this.text(healingFaces,'+',-61,0,20,'#278665',25,24);
     this.text(healingFaces,s.healFaces.join(' · '),15,0,16,'#278665',120,24);
     const powerStock=this.panel(p,133,82,78,26,'#fcebe7',8);this.image(powerStock,'power-potion',-22,0,28,28);this.text(powerStock,'× '+s.boosts,8,0,17,'#be5148',42,24);
-    const choices=Array.from(new Set([s.active.id,...(s.reserve?[s.reserve.id]:[]),...s.owned,...(['fox','bud','turtle'] as PetId[])])).slice(0,3);
+    const choices=partyChoices(s);
     choices.forEach((id,i)=>{
       const selected=s.active.id===id,owned=s.owned.includes(id),tint=selected?'#fff2cf':owned?'#fbfeff':'#e7edf0',x=(i-1)*118;
       this.panel(p,x,-1,108,113,selected?'#c5933d':'#b9ced9',17);
@@ -555,7 +557,7 @@ export class PMGame extends Component {
     this.button(c,'confirmGuard','仍然防御',82,-49,145,52,()=>this.command('guard'),C.blue);
   }
   private menu(){const c=this.overlay('伙伴骰子冒险',390);
-    this.text(c,'18 种属性 · 18 只伙伴 · 10 场冒险',0,112,14,C.muted);
+    this.text(c,'18 种属性 · 18 只伙伴 · 20 场冒险',0,112,14,C.muted);
     this.button(c,'resume','继续冒险',0,58,300,50,()=>this.render(),C.orange);
     this.button(c,'collection','伙伴收藏  '+this.state.owned.length+' / '+PET_IDS.length,0,-3,300,48,()=>this.collection(),C.blue);
     this.button(c,'eggBag','蛋袋  '+(this.state.eggs||[]).length+' 枚',0,-61,300,46,()=>this.eggBag(),'#46976e');
