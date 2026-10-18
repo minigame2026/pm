@@ -20,8 +20,8 @@ export interface State {
 export type Action = 'challenge' | 'reroll' | 'switch' | 'attack' | 'guard' | 'heal' | 'boost' |
   'take' | 'keep' | 'reward0' | 'invite' | 'skip' | 'replace' | 'collect';
 const ids: PetId[] = ['fox', 'bud', 'turtle'];
-// Ten equally likely slots: x1 50%, x2 40%, x3 10%; drawn separately each turn.
-export const ITEM_MULTIPLIERS = { heal: [1,1,1,1,1,2,2,2,2,3], boost: [1,1,1,1,1,2,2,2,2,3] };
+// Independent per-turn rolls: heal x1/x2/x3, boost x2/x3/x4, both 50%/40%/10%.
+export const ITEM_MULTIPLIERS = { heal: [1,1,1,1,1,2,2,2,2,3], boost: [2,2,2,2,2,3,3,3,3,4] };
 export const healAmount = (s: State) => s.heal * s.healMultiplier;
 export const attackAmount = (s: State) => s.attack * (s.doubled ? s.boostMultiplier : 1);
 export const guardDamage = (incoming: number) => Math.max(1, Math.round(incoming / 100));
@@ -160,7 +160,7 @@ export function restore(raw: string | null): State | null {
     // Preserve effects already committed in older saves; new turns roll multipliers.
     if(s.healMultiplier===undefined)s.healMultiplier=1;
     if(s.boostMultiplier===undefined)s.boostMultiplier=2;
-    // Accept a previous version's already-rolled x4; the next turn uses the new pool.
+    // Preserve a previous version's already-rolled x1; new turns use the current pool.
     if(!ITEM_MULTIPLIERS.heal.includes(s.healMultiplier)||![1,2,3,4].includes(s.boostMultiplier))return null;
     return s;
   } catch {return null;}

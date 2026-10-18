@@ -21,7 +21,7 @@ const m={exports:{}};vm.runInNewContext(ts.transpileModule(fs.readFileSync(__dir
   before=await state();await tap('guard');assert.ok((await page.evaluate(()=>__pm.controls())).confirmGuard);await tap('confirmGuard');after=await state();
   assert.equal(m.exports.hp(before)-m.exports.hp(after),3,'250 damage must become 3 after guard');
   assert.equal(after.usedHeal,false);assert.equal(after.doubled,false);await shot('next-turn');
-  const expected=m.exports.act(before,'guard');assert.equal(after.healMultiplier,expected.healMultiplier);assert.equal(after.boostMultiplier,expected.boostMultiplier);assert.ok([1,2,3].includes(after.healMultiplier));assert.ok([1,2,3].includes(after.boostMultiplier));
+  const expected=m.exports.act(before,'guard');assert.equal(after.healMultiplier,expected.healMultiplier);assert.equal(after.boostMultiplier,expected.boostMultiplier);assert.ok([1,2,3].includes(after.healMultiplier));assert.ok([2,3,4].includes(after.boostMultiplier));
   const saved=await state();await page.reload();await page.waitForFunction(()=>globalThis.__pm?.ready);assert.deepEqual(await state(),saved);
   await page.setViewportSize({width:320,height:568});await page.waitForTimeout(400);await shot('small');
   await tap('menu');assert.ok((await page.evaluate(()=>__pm.controls())).resume);await tap('resume');assert.deepEqual(await state(),saved);

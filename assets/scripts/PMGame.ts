@@ -97,7 +97,7 @@ export class PMGame extends Component {
   }
   private petImage(parent:Node,id:PetId,x:number,y:number,size:number,role:'player'|'enemy'|'card'='card'){
     const key=role==='player'?id+'-back':role==='enemy'?id+'-front':id;
-    return this.image(parent,key,x,y,size,size);
+    return this.image(parent,key,x,y,size,size,role==='card'&&id==='fox');
   }
   private actionIcon(parent:Node,kind:'attack'|'heal'|'guard'|'boost',x:number,y:number,size:number,ink:string){
     const n=this.makeNode(parent,kind+'-icon',x,y,size,size),g=n.addComponent(Graphics);
