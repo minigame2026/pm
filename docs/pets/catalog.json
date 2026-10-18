@@ -1,0 +1,400 @@
+[
+  {
+    "id": "fox",
+    "name": "闪尾狐",
+    "type": "火",
+    "typeId": "fire",
+    "rank": "normal",
+    "description": "复用已验收闪尾狐，橙红毛色与蓬松火焰形尾巴。",
+    "hp": 22,
+    "faces": [
+      1,
+      3,
+      7
+    ],
+    "enemyFaces": [
+      1,
+      1,
+      7
+    ],
+    "color": "#ffb24e",
+    "trait": "火 · 普通",
+    "design": "橙红毛色、蓬松火焰形尾巴；复用已验收图片。"
+  },
+  {
+    "id": "bud",
+    "name": "芽芽龙",
+    "type": "草",
+    "typeId": "grass",
+    "rank": "normal",
+    "description": "复用已验收芽芽龙，叶冠与花朵辨识草属性。",
+    "hp": 24,
+    "faces": [
+      3,
+      3,
+      4
+    ],
+    "enemyFaces": [
+      2,
+      2,
+      3
+    ],
+    "color": "#8bd6a0",
+    "trait": "草 · 普通",
+    "design": "叶片大耳与花朵尾端；复用已验收图片。"
+  },
+  {
+    "id": "turtle",
+    "name": "岩背龟",
+    "type": "岩石",
+    "typeId": "rock",
+    "rank": "normal",
+    "description": "复用已验收岩背龟，厚重岩甲与短肢。",
+    "hp": 30,
+    "faces": [
+      2,
+      2,
+      4
+    ],
+    "enemyFaces": [
+      1,
+      3,
+      5
+    ],
+    "color": "#7fc9f4",
+    "trait": "岩石 · 普通",
+    "design": "岩石甲壳与短粗四肢；复用已验收图片。"
+  },
+  {
+    "id": "cotton",
+    "name": "绒团兔",
+    "type": "一般",
+    "typeId": "normal",
+    "rank": "normal",
+    "description": "Small compact cream rabbit, round pear body, short folded ears, a huge fluffy cotton tail, soft peach belly. Tiny companion, no armor.",
+    "hp": 24,
+    "faces": [
+      2,
+      3,
+      4
+    ],
+    "enemyFaces": [
+      1,
+      2,
+      3
+    ],
+    "color": "#ebd6b0",
+    "trait": "一般 · 普通",
+    "design": "奶油白垂耳、圆滚身体与巨大棉球尾，温和小伙伴。"
+  },
+  {
+    "id": "otter",
+    "name": "潮泡獭",
+    "type": "水",
+    "typeId": "water",
+    "rank": "normal",
+    "description": "Small aqua otter pup, round cream muzzle, translucent blue bubble collar, broad paddle tail and tiny webbed feet, playful and compact.",
+    "hp": 25,
+    "faces": [
+      2,
+      4,
+      5
+    ],
+    "enemyFaces": [
+      1,
+      3,
+      4
+    ],
+    "color": "#66c5e5",
+    "trait": "水 · 普通",
+    "design": "浅蓝毛色、泡泡项圈与桨状尾巴，一眼识别水属性。"
+  },
+  {
+    "id": "spark",
+    "name": "蓄电貂",
+    "type": "电",
+    "typeId": "electric",
+    "rank": "normal",
+    "description": "Small slim golden marten with teal capacitor-like ear tufts, black zigzag back stripe and a short curled cable-like tail ending in two golden prongs. No red cheek circles.",
+    "hp": 21,
+    "faces": [
+      1,
+      4,
+      7
+    ],
+    "enemyFaces": [
+      1,
+      2,
+      6
+    ],
+    "color": "#f1cd4f",
+    "trait": "电 · 普通",
+    "design": "金黄毛色、青色耳尖、闪电纹与卷尾，轻快机灵。"
+  },
+  {
+    "id": "seal",
+    "name": "霜团海豹",
+    "type": "冰",
+    "typeId": "ice",
+    "rank": "normal",
+    "description": "Small plump pale-blue seal pup, white snowball belly, tiny icy flipper fins, three clear ice crystals like a little crown, very round cute body.",
+    "hp": 27,
+    "faces": [
+      2,
+      3,
+      5
+    ],
+    "enemyFaces": [
+      2,
+      2,
+      4
+    ],
+    "color": "#9fdfea",
+    "trait": "冰 · 普通",
+    "design": "圆润海豹、晶冰头冠与冰晶鳍足，冷色清透。"
+  },
+  {
+    "id": "ape",
+    "name": "拳铠猿",
+    "type": "格斗",
+    "typeId": "fighting",
+    "rank": "elite",
+    "description": "Large muscular but cute upright copper-red gorilla, broad shoulders, heavy stone-like ivory forearm gauntlets organically grown, deep navy chest and red crest, thick limbs, clear elite silhouette. No weapon.",
+    "hp": 32,
+    "faces": [
+      3,
+      5,
+      7
+    ],
+    "enemyFaces": [
+      3,
+      4,
+      7
+    ],
+    "color": "#cc7652",
+    "trait": "格斗 · 精英",
+    "design": "宽肩厚臂、岩质拳铠与赤红鬃毛，成熟强壮的精英。"
+  },
+  {
+    "id": "slug",
+    "name": "毒泡蜗",
+    "type": "毒",
+    "typeId": "poison",
+    "rank": "normal",
+    "description": "Small violet sea slug with lime-green translucent bubble shell, two short curled feelers, stubby body, cute sleepy eyes, three small poison-green spots.",
+    "hp": 23,
+    "faces": [
+      2,
+      4,
+      5
+    ],
+    "enemyFaces": [
+      1,
+      3,
+      5
+    ],
+    "color": "#ae79cc",
+    "trait": "毒 · 普通",
+    "design": "紫色软体与荧绿泡泡蜗壳，毒属性色彩鲜明。"
+  },
+  {
+    "id": "mole",
+    "name": "铲角鼹",
+    "type": "地面",
+    "typeId": "ground",
+    "rank": "normal",
+    "description": "Small sandy tan mole pup with rounded shovel-shaped nose horn, broad dark-brown digging paws, terracotta back plates, compact squat body.",
+    "hp": 28,
+    "faces": [
+      2,
+      3,
+      5
+    ],
+    "enemyFaces": [
+      2,
+      2,
+      5
+    ],
+    "color": "#c79363",
+    "trait": "地面 · 普通",
+    "design": "沙棕短身、铲形鼻端、大挖掘爪与赤陶背甲。"
+  },
+  {
+    "id": "bird",
+    "name": "云翎雀",
+    "type": "飞行",
+    "typeId": "flying",
+    "rank": "normal",
+    "description": "Small sky-blue songbird with fluffy white cloud wing tips and a curled breeze-shaped crest, tiny feet, pale gold beak, simple round body.",
+    "hp": 21,
+    "faces": [
+      1,
+      4,
+      6
+    ],
+    "enemyFaces": [
+      1,
+      2,
+      5
+    ],
+    "color": "#81cce5",
+    "trait": "飞行 · 普通",
+    "design": "浅蓝圆鸟、云朵翅尖与卷风头羽，轻盈可爱。"
+  },
+  {
+    "id": "owl",
+    "name": "星环鸮",
+    "type": "超能力",
+    "typeId": "psychic",
+    "rank": "elite",
+    "description": "Large regal violet owl mage creature, broad wing mantle, two floating golden orbital rings behind shoulders, lilac chest diamond, bright turquoise eyes, imposing wide silhouette, visible short talons. Not humanoid.",
+    "hp": 28,
+    "faces": [
+      2,
+      6,
+      8
+    ],
+    "enemyFaces": [
+      2,
+      5,
+      8
+    ],
+    "color": "#a17ddd",
+    "trait": "超能力 · 精英",
+    "design": "深紫宽翼羽披风、金色星环与胸前晶石，神秘精英。"
+  },
+  {
+    "id": "beetle",
+    "name": "芽角甲虫",
+    "type": "虫",
+    "typeId": "bug",
+    "rank": "normal",
+    "description": "Small emerald beetle with two broad rounded elytra, ivory forked sprout-shaped horn, six short friendly legs, amber eyes, peach underside, round compact beetle.",
+    "hp": 26,
+    "faces": [
+      2,
+      3,
+      5
+    ],
+    "enemyFaces": [
+      1,
+      3,
+      4
+    ],
+    "color": "#8ac35a",
+    "trait": "虫 · 普通",
+    "design": "圆润绿甲、芽形分叉大角与六足，昆虫轮廓清晰。"
+  },
+  {
+    "id": "ghost",
+    "name": "灯芯幽灵",
+    "type": "幽灵",
+    "typeId": "ghost",
+    "rank": "normal",
+    "description": "Small lavender ghost resembling a soft floating lantern, cream glowing face, two droopy little wispy arms, short curled ghost tail instead of feet, tiny blue flame tuft. Cute rather than scary.",
+    "hp": 22,
+    "faces": [
+      1,
+      5,
+      6
+    ],
+    "enemyFaces": [
+      1,
+      1,
+      6
+    ],
+    "color": "#aa9adf",
+    "trait": "幽灵 · 普通",
+    "design": "幽紫灯笼软体、蓝焰头顶与卷曲尾，友善小幽灵。"
+  },
+  {
+    "id": "dragon",
+    "name": "霆冠龙",
+    "type": "龙",
+    "typeId": "dragon",
+    "rank": "boss",
+    "description": "Huge majestic quadrupedal indigo dragon, broad chest and powerful legs, enormous swept-back ivory crown horns, large layered turquoise bat wings, glowing gold chest diamond, thick armored tail. Epic king silhouette unmistakably a BOSS, not a baby, still appealing collectible monster. Entire wings contained.",
+    "hp": 36,
+    "faces": [
+      4,
+      6,
+      9
+    ],
+    "enemyFaces": [
+      4,
+      6,
+      8,
+      11
+    ],
+    "color": "#6479cf",
+    "trait": "龙 · BOSS",
+    "design": "巨大角冠、宽翼、厚尾与金色胸甲；威严龙属性 BOSS。"
+  },
+  {
+    "id": "lynx",
+    "name": "暮影猞猁",
+    "type": "恶",
+    "typeId": "dark",
+    "rank": "normal",
+    "description": "Small charcoal-purple lynx kitten, huge pointed ears with crescent tufts, dark plum fluffy tail, cream eye mask and tiny golden eyes, mischievous appealing short-legged body.",
+    "hp": 23,
+    "faces": [
+      1,
+      4,
+      7
+    ],
+    "enemyFaces": [
+      1,
+      2,
+      6
+    ],
+    "color": "#75658c",
+    "trait": "恶 · 普通",
+    "design": "暗紫猞猁、长耳簇与蓬松卷尾，狡黠而讨喜。"
+  },
+  {
+    "id": "rhino",
+    "name": "铁垒犀",
+    "type": "钢",
+    "typeId": "steel",
+    "rank": "boss",
+    "description": "Huge powerful quadrupedal steel rhinoceros fortress creature, oversized silver shoulder plates and broad navy chest, large smooth bronze nose horn, stepped shield-like back armor, thick solid legs with bronze hooves, turquoise glowing seams. Epic armored BOSS silhouette, no guns or buildings.",
+    "hp": 40,
+    "faces": [
+      3,
+      6,
+      8
+    ],
+    "enemyFaces": [
+      3,
+      5,
+      8,
+      10
+    ],
+    "color": "#8ba6b5",
+    "trait": "钢 · BOSS",
+    "design": "重叠钢铁装甲、巨大金属鼻角和粗壮四足；钢属性 BOSS。"
+  },
+  {
+    "id": "deer",
+    "name": "铃芽鹿",
+    "type": "妖精",
+    "typeId": "fairy",
+    "rank": "normal",
+    "description": "Small pastel pink fawn with cream face and tiny golden bell-shaped antlers, mint bow-shaped ear fur, one star-shaped tail tuft, delicate short legs and round baby body.",
+    "hp": 24,
+    "faces": [
+      2,
+      4,
+      5
+    ],
+    "enemyFaces": [
+      2,
+      3,
+      3
+    ],
+    "color": "#e9accf",
+    "trait": "妖精 · 普通",
+    "design": "粉色幼鹿、铃兰花角、薄荷耳朵与星形尾，梦幻妖精。"
+  }
+]

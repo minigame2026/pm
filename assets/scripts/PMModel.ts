@@ -1,15 +1,339 @@
 /** Engine-independent rules. Every action returns a committed, serializable state. */
-export type PetId = 'fox' | 'bud' | 'turtle';
-export const PETS = {
-  fox: { name: '闪尾狐', trait: '爆发型', hp: 22, faces: [1, 3, 7], color: '#ffb24e' },
-  bud: { name: '芽芽龙', trait: '稳定型', hp: 24, faces: [3, 3, 4], color: '#8bd6a0' },
-  turtle: { name: '岩背龟', trait: '耐打型', hp: 30, faces: [2, 2, 4], color: '#7fc9f4' },
+export type PetRank = 'normal' | 'elite' | 'boss';
+export type PetId = 'fox' | 'bud' | 'turtle' | 'cotton' | 'otter' | 'spark' | 'seal' | 'ape' | 'slug' | 'mole' | 'bird' | 'owl' | 'beetle' | 'ghost' | 'dragon' | 'lynx' | 'rhino' | 'deer';
+export const PETS: Record<PetId,{name:string;trait:string;type:string;rank:PetRank;hp:number;faces:number[];enemyFaces:number[];color:string}> = {
+  "fox": {
+    "name": "闪尾狐",
+    "trait": "火 · 普通",
+    "type": "火",
+    "rank": "normal",
+    "hp": 22,
+    "faces": [
+      1,
+      3,
+      7
+    ],
+    "enemyFaces": [
+      1,
+      1,
+      7
+    ],
+    "color": "#ffb24e"
+  },
+  "bud": {
+    "name": "芽芽龙",
+    "trait": "草 · 普通",
+    "type": "草",
+    "rank": "normal",
+    "hp": 24,
+    "faces": [
+      3,
+      3,
+      4
+    ],
+    "enemyFaces": [
+      2,
+      2,
+      3
+    ],
+    "color": "#8bd6a0"
+  },
+  "turtle": {
+    "name": "岩背龟",
+    "trait": "岩石 · 普通",
+    "type": "岩石",
+    "rank": "normal",
+    "hp": 30,
+    "faces": [
+      2,
+      2,
+      4
+    ],
+    "enemyFaces": [
+      1,
+      3,
+      5
+    ],
+    "color": "#7fc9f4"
+  },
+  "cotton": {
+    "name": "绒团兔",
+    "trait": "一般 · 普通",
+    "type": "一般",
+    "rank": "normal",
+    "hp": 24,
+    "faces": [
+      2,
+      3,
+      4
+    ],
+    "enemyFaces": [
+      1,
+      2,
+      3
+    ],
+    "color": "#ebd6b0"
+  },
+  "otter": {
+    "name": "潮泡獭",
+    "trait": "水 · 普通",
+    "type": "水",
+    "rank": "normal",
+    "hp": 25,
+    "faces": [
+      2,
+      4,
+      5
+    ],
+    "enemyFaces": [
+      1,
+      3,
+      4
+    ],
+    "color": "#66c5e5"
+  },
+  "spark": {
+    "name": "蓄电貂",
+    "trait": "电 · 普通",
+    "type": "电",
+    "rank": "normal",
+    "hp": 21,
+    "faces": [
+      1,
+      4,
+      7
+    ],
+    "enemyFaces": [
+      1,
+      2,
+      6
+    ],
+    "color": "#f1cd4f"
+  },
+  "seal": {
+    "name": "霜团海豹",
+    "trait": "冰 · 普通",
+    "type": "冰",
+    "rank": "normal",
+    "hp": 27,
+    "faces": [
+      2,
+      3,
+      5
+    ],
+    "enemyFaces": [
+      2,
+      2,
+      4
+    ],
+    "color": "#9fdfea"
+  },
+  "ape": {
+    "name": "拳铠猿",
+    "trait": "格斗 · 精英",
+    "type": "格斗",
+    "rank": "elite",
+    "hp": 32,
+    "faces": [
+      3,
+      5,
+      7
+    ],
+    "enemyFaces": [
+      3,
+      4,
+      7
+    ],
+    "color": "#cc7652"
+  },
+  "slug": {
+    "name": "毒泡蜗",
+    "trait": "毒 · 普通",
+    "type": "毒",
+    "rank": "normal",
+    "hp": 23,
+    "faces": [
+      2,
+      4,
+      5
+    ],
+    "enemyFaces": [
+      1,
+      3,
+      5
+    ],
+    "color": "#ae79cc"
+  },
+  "mole": {
+    "name": "铲角鼹",
+    "trait": "地面 · 普通",
+    "type": "地面",
+    "rank": "normal",
+    "hp": 28,
+    "faces": [
+      2,
+      3,
+      5
+    ],
+    "enemyFaces": [
+      2,
+      2,
+      5
+    ],
+    "color": "#c79363"
+  },
+  "bird": {
+    "name": "云翎雀",
+    "trait": "飞行 · 普通",
+    "type": "飞行",
+    "rank": "normal",
+    "hp": 21,
+    "faces": [
+      1,
+      4,
+      6
+    ],
+    "enemyFaces": [
+      1,
+      2,
+      5
+    ],
+    "color": "#81cce5"
+  },
+  "owl": {
+    "name": "星环鸮",
+    "trait": "超能力 · 精英",
+    "type": "超能力",
+    "rank": "elite",
+    "hp": 28,
+    "faces": [
+      2,
+      6,
+      8
+    ],
+    "enemyFaces": [
+      2,
+      5,
+      8
+    ],
+    "color": "#a17ddd"
+  },
+  "beetle": {
+    "name": "芽角甲虫",
+    "trait": "虫 · 普通",
+    "type": "虫",
+    "rank": "normal",
+    "hp": 26,
+    "faces": [
+      2,
+      3,
+      5
+    ],
+    "enemyFaces": [
+      1,
+      3,
+      4
+    ],
+    "color": "#8ac35a"
+  },
+  "ghost": {
+    "name": "灯芯幽灵",
+    "trait": "幽灵 · 普通",
+    "type": "幽灵",
+    "rank": "normal",
+    "hp": 22,
+    "faces": [
+      1,
+      5,
+      6
+    ],
+    "enemyFaces": [
+      1,
+      1,
+      6
+    ],
+    "color": "#aa9adf"
+  },
+  "dragon": {
+    "name": "霆冠龙",
+    "trait": "龙 · BOSS",
+    "type": "龙",
+    "rank": "boss",
+    "hp": 36,
+    "faces": [
+      4,
+      6,
+      9
+    ],
+    "enemyFaces": [
+      4,
+      6,
+      8,
+      11
+    ],
+    "color": "#6479cf"
+  },
+  "lynx": {
+    "name": "暮影猞猁",
+    "trait": "恶 · 普通",
+    "type": "恶",
+    "rank": "normal",
+    "hp": 23,
+    "faces": [
+      1,
+      4,
+      7
+    ],
+    "enemyFaces": [
+      1,
+      2,
+      6
+    ],
+    "color": "#75658c"
+  },
+  "rhino": {
+    "name": "铁垒犀",
+    "trait": "钢 · BOSS",
+    "type": "钢",
+    "rank": "boss",
+    "hp": 40,
+    "faces": [
+      3,
+      6,
+      8
+    ],
+    "enemyFaces": [
+      3,
+      5,
+      8,
+      10
+    ],
+    "color": "#8ba6b5"
+  },
+  "deer": {
+    "name": "铃芽鹿",
+    "trait": "妖精 · 普通",
+    "type": "妖精",
+    "rank": "normal",
+    "hp": 24,
+    "faces": [
+      2,
+      4,
+      5
+    ],
+    "enemyFaces": [
+      2,
+      3,
+      3
+    ],
+    "color": "#e9accf"
+  }
 };
 export type Phase = 'encounter' | 'battle' | 'reward' | 'recruit' | 'team' | 'won' | 'lost';
 export interface Pet { id: PetId; faces: number[] }
 export interface Reward { kind: 'hp' | 'attack' | 'heal' | 'potion' | 'boost'; values: number[]; title: string }
 export interface State {
-  version: 1; seed: number; step: number; phase: Phase; active: Pet; reserve: Pet | null;
+  contentVersion?: 2; version: 1; seed: number; step: number; phase: Phase; active: Pet; reserve: Pet | null;
   owned: PetId[]; hpRatio: number; hpBonus: number; potions: number; boosts: number;
   healFaces: number[]; healMultiplier: number; boostMultiplier: number; usedHeal: boolean; doubled: boolean; swaps: number;
   enemy: PetId; enemyHP: number; enemyMax: number; attack: number; heal: number; enemyAttack: number;
@@ -19,7 +343,11 @@ export interface State {
 }
 export type Action = 'challenge' | 'reroll' | 'switch' | 'attack' | 'guard' | 'heal' | 'boost' |
   'take' | 'keep' | 'reward0' | 'invite' | 'skip' | 'replace' | 'collect';
-const ids: PetId[] = ['fox', 'bud', 'turtle'];
+export const PET_IDS=Object.keys(PETS) as PetId[];
+const ids=PET_IDS;
+export const TOTAL_STAGES=10;
+export const rankForStage=(step:number):PetRank=>step===10?'boss':step===5?'elite':'normal';
+export const encounterPool=(step:number)=>ids.filter(id=>PETS[id].rank===rankForStage(step));
 // Independent per-turn rolls: heal x1/x2/x3, boost x2/x3/x4, both 50%/40%/10%.
 export const ITEM_MULTIPLIERS = { heal: [1,1,1,1,1,2,2,2,2,3], boost: [2,2,2,2,2,3,3,3,3,4] };
 export const healAmount = (s: State) => s.heal * s.healMultiplier;
@@ -30,14 +358,13 @@ const pick = <T>(s: State, a: T[]): T => a[Math.floor(rand(s) * a.length)];
 export const maxHP = (s: State) => PETS[s.active.id].hp + s.hpBonus;
 export const hp = (s: State) => Math.max(0, Math.ceil(s.hpRatio * maxHP(s) - 1e-8));
 export const pet = (id: PetId): Pet => ({ id, faces: [...PETS[id].faces] });
-export const enemyName = (s: State) => s.step === 9 ? '花冠守护者' : PETS[s.enemy].name;
+export const enemyName = (s: State) => PETS[s.enemy].name;
 export const enemyAttackFaces = (s: State): number[] => {
-  if(s.step===9)return [3,5,7,10];
-  const tier=s.step<=3?0:s.step<=6?1:2;
-  return ({fox:[1,1,7],bud:[2,2,3],turtle:[1,3,5]})[s.enemy].map(v=>v+tier);
+  const tier=PETS[s.enemy].rank==='normal'?(s.step<=3?0:s.step<=6?1:2):0;
+  return PETS[s.enemy].enemyFaces.map(v=>v+tier);
 };
 export function fresh(seed = Date.now(), owned: PetId[] = ['fox', 'turtle'], wins = 0): State {
-  const s: State = {version:1, seed:seed >>> 0, step:1, phase:'encounter', active:pet('fox'), reserve:pet('turtle'),
+  const s: State = {contentVersion:2,version:1, seed:seed >>> 0, step:1, phase:'encounter', active:pet('fox'), reserve:pet('turtle'),
     owned:ids.filter(id=>id==='fox'||id==='turtle'||owned.indexOf(id)>=0), hpRatio:1, hpBonus:0, potions:3, boosts:2,
     healFaces:[3,5,7], healMultiplier:1, boostMultiplier:2, usedHeal:false, doubled:false, swaps:2, enemy:'bud', enemyHP:7, enemyMax:7,
     attack:0, heal:0, enemyAttack:0, turn:0, reward:{kind:'hp',values:[3],title:'生命上限 +3'},
@@ -62,10 +389,10 @@ export function rewardOptions(s: State): Reward[] {
 }
 function encounter(s: State, reroll: boolean) {
   s.phase='encounter'; s.attack=s.heal=s.enemyAttack=0; s.turn=0; s.usedHeal=s.doubled=false;
-  s.enemy=s.step===9?'bud':s.step===1&&!reroll?'bud':pick(s,reroll?ids.filter(x=>x!==s.enemy):ids);
-  s.enemyMax=[7,9,11,14,17,20,23,26,45][s.step-1]; s.enemyHP=s.enemyMax;
+  const pool=encounterPool(s.step);s.enemy=pick(s,reroll?pool.filter(id=>id!==s.enemy):pool);
+  s.enemyMax=[7,9,11,14,24,20,23,26,29,48][s.step-1];s.enemyHP=s.enemyMax;
   s.reward=reward(s); s.recruit=null;
-  if(!reroll) s.swaps=s.step===9?0:2;
+  if(!reroll) s.swaps=s.step===TOTAL_STAGES?0:2;
 }
 function roll(s: State) {
   s.attack=pick(s,s.active.faces); s.heal=pick(s,s.healFaces);
@@ -84,7 +411,7 @@ export function act(before: State, a: Action): State {
   const s: State = JSON.parse(JSON.stringify(before)); let valid=false;
   if(s.phase==='encounter') {
     if(a==='switch' && s.reserve) { [s.active,s.reserve]=[s.reserve,s.active]; s.message='已切换伙伴 · 生命比例保持'; valid=true; }
-    if(a==='reroll' && s.swaps>0 && s.step!==9) { s.swaps--; encounter(s,true); s.message='换了一个对手'; valid=true; }
+    if(a==='reroll' && s.swaps>0 && s.step!==TOTAL_STAGES) { s.swaps--; encounter(s,true); s.message='换了一个对手'; valid=true; }
     if(a==='challenge') { s.phase='battle'; roll(s); s.message='点数已确定，选择你的行动'; valid=true; }
   } else if(s.phase==='battle') {
     if(a==='heal' && !s.usedHeal && s.potions>0 && s.hpRatio<1) {
@@ -96,7 +423,7 @@ export function act(before: State, a: Action): State {
       valid=true;
       if(a==='attack')s.enemyHP=Math.max(0,s.enemyHP-attackAmount(s));
       if(s.enemyHP===0) {
-        if(s.step===9){s.phase='won';s.wins++;s.message='这一程，伙伴们做到了！';}
+        if(s.step===TOTAL_STAGES){s.phase='won';s.wins++;if(!s.owned.includes(s.enemy))s.owned.push(s.enemy);s.message='冒险完成，BOSS 已加入收藏！';}
         else {s.phase='reward';s.message='战斗胜利！领取战利品';}
       } else {
         const damage=a==='guard'?guardDamage(s.enemyAttack):s.enemyAttack;
@@ -148,7 +475,7 @@ export function restore(raw: string | null): State | null {
     if(s.roster!==undefined&&(!s.roster||typeof s.roster!=='object'||Array.isArray(s.roster)||Object.keys(s.roster).some(id=>!ids.includes(id as PetId)||!validPet(s.roster![id])||s.roster![id].id!==id)))return null;
     if(!['encounter','battle','reward','recruit','team','won','lost'].includes(s.phase))return null;
     if(![s.seed,s.step,s.hpRatio,s.hpBonus,s.potions,s.boosts,s.swaps,s.enemyHP,s.enemyMax,s.revision,s.wins,s.attack,s.heal,s.enemyAttack,s.turn].every(finite))return null;
-    if(s.step<1||s.step>9||!Number.isInteger(s.step)||s.hpRatio<0||s.hpRatio>1||s.hpBonus<0||s.hpBonus>100)return null;
+    if(s.step<1||s.step>TOTAL_STAGES||!Number.isInteger(s.step)||s.hpRatio<0||s.hpRatio>1||s.hpBonus<0||s.hpBonus>100)return null;
     if(s.potions<0||s.potions>9||s.boosts<0||s.boosts>9||s.swaps<0||s.swaps>2)return null;
     if(!ids.includes(s.enemy)||!Array.isArray(s.owned)||!faces(s.healFaces))return null;
     // Recover the early preview's Set-serialization anomaly without dropping its run.
@@ -162,6 +489,7 @@ export function restore(raw: string | null): State | null {
     if(s.boostMultiplier===undefined)s.boostMultiplier=2;
     // Preserve a previous version's already-rolled x1; new turns use the current pool.
     if(!ITEM_MULTIPLIERS.heal.includes(s.healMultiplier)||![1,2,3,4].includes(s.boostMultiplier))return null;
+    if(s.contentVersion!==2){if(s.phase==='encounter'){const swaps=s.swaps;encounter(s,false);s.swaps=s.step===TOTAL_STAGES?0:swaps;}s.contentVersion=2;}
     return s;
   } catch {return null;}
 }

@@ -1,0 +1,165 @@
+{
+  "reference": "https://sg.portal-pokemon.com/game/type-chart/",
+  "existing": [
+    {
+      "id": "fox",
+      "name": "闪尾狐",
+      "type": "火",
+      "rank": "normal"
+    },
+    {
+      "id": "bud",
+      "name": "芽芽龙",
+      "type": "草",
+      "rank": "normal"
+    },
+    {
+      "id": "turtle",
+      "name": "岩背龟",
+      "type": "岩石",
+      "rank": "normal"
+    }
+  ],
+  "pets": [
+    {
+      "id": "cotton",
+      "name": "绒团兔",
+      "type": "一般",
+      "typeId": "normal",
+      "rank": "normal",
+      "description": "Small compact cream rabbit, round pear body, short folded ears, a huge fluffy cotton tail, soft peach belly. Tiny companion, no armor."
+    },
+    {
+      "id": "otter",
+      "name": "潮泡獭",
+      "type": "水",
+      "typeId": "water",
+      "rank": "normal",
+      "description": "Small aqua otter pup, round cream muzzle, translucent blue bubble collar, broad paddle tail and tiny webbed feet, playful and compact."
+    },
+    {
+      "id": "spark",
+      "name": "蓄电貂",
+      "type": "电",
+      "typeId": "electric",
+      "rank": "normal",
+      "description": "Small slim golden marten with teal capacitor-like ear tufts, black zigzag back stripe and a short curled cable-like tail ending in two golden prongs. No red cheek circles."
+    },
+    {
+      "id": "seal",
+      "name": "霜团海豹",
+      "type": "冰",
+      "typeId": "ice",
+      "rank": "normal",
+      "description": "Small plump pale-blue seal pup, white snowball belly, tiny icy flipper fins, three clear ice crystals like a little crown, very round cute body."
+    },
+    {
+      "id": "ape",
+      "name": "拳铠猿",
+      "type": "格斗",
+      "typeId": "fighting",
+      "rank": "elite",
+      "description": "Large muscular but cute upright copper-red gorilla, broad shoulders, heavy stone-like ivory forearm gauntlets organically grown, deep navy chest and red crest, thick limbs, clear elite silhouette. No weapon."
+    },
+    {
+      "id": "slug",
+      "name": "毒泡蜗",
+      "type": "毒",
+      "typeId": "poison",
+      "rank": "normal",
+      "description": "Small violet sea slug with lime-green translucent bubble shell, two short curled feelers, stubby body, cute sleepy eyes, three small poison-green spots."
+    },
+    {
+      "id": "mole",
+      "name": "铲角鼹",
+      "type": "地面",
+      "typeId": "ground",
+      "rank": "normal",
+      "description": "Small sandy tan mole pup with rounded shovel-shaped nose horn, broad dark-brown digging paws, terracotta back plates, compact squat body."
+    },
+    {
+      "id": "bird",
+      "name": "云翎雀",
+      "type": "飞行",
+      "typeId": "flying",
+      "rank": "normal",
+      "description": "Small sky-blue songbird with fluffy white cloud wing tips and a curled breeze-shaped crest, tiny feet, pale gold beak, simple round body."
+    },
+    {
+      "id": "owl",
+      "name": "星环鸮",
+      "type": "超能力",
+      "typeId": "psychic",
+      "rank": "elite",
+      "description": "Large regal violet owl mage creature, broad wing mantle, two floating golden orbital rings behind shoulders, lilac chest diamond, bright turquoise eyes, imposing wide silhouette, visible short talons. Not humanoid."
+    },
+    {
+      "id": "beetle",
+      "name": "芽角甲虫",
+      "type": "虫",
+      "typeId": "bug",
+      "rank": "normal",
+      "description": "Small emerald beetle with two broad rounded elytra, ivory forked sprout-shaped horn, six short friendly legs, amber eyes, peach underside, round compact beetle."
+    },
+    {
+      "id": "ghost",
+      "name": "灯芯幽灵",
+      "type": "幽灵",
+      "typeId": "ghost",
+      "rank": "normal",
+      "description": "Small lavender ghost resembling a soft floating lantern, cream glowing face, two droopy little wispy arms, short curled ghost tail instead of feet, tiny blue flame tuft. Cute rather than scary."
+    },
+    {
+      "id": "dragon",
+      "name": "霆冠龙",
+      "type": "龙",
+      "typeId": "dragon",
+      "rank": "boss",
+      "description": "Huge majestic quadrupedal indigo dragon, broad chest and powerful legs, enormous swept-back ivory crown horns, large layered turquoise bat wings, glowing gold chest diamond, thick armored tail. Epic king silhouette unmistakably a BOSS, not a baby, still appealing collectible monster. Entire wings contained."
+    },
+    {
+      "id": "lynx",
+      "name": "暮影猞猁",
+      "type": "恶",
+      "typeId": "dark",
+      "rank": "normal",
+      "description": "Small charcoal-purple lynx kitten, huge pointed ears with crescent tufts, dark plum fluffy tail, cream eye mask and tiny golden eyes, mischievous appealing short-legged body."
+    },
+    {
+      "id": "rhino",
+      "name": "铁垒犀",
+      "type": "钢",
+      "typeId": "steel",
+      "rank": "boss",
+      "description": "Huge powerful quadrupedal steel rhinoceros fortress creature, oversized silver shoulder plates and broad navy chest, large smooth bronze nose horn, stepped shield-like back armor, thick solid legs with bronze hooves, turquoise glowing seams. Epic armored BOSS silhouette, no guns or buildings."
+    },
+    {
+      "id": "deer",
+      "name": "铃芽鹿",
+      "type": "妖精",
+      "typeId": "fairy",
+      "rank": "normal",
+      "description": "Small pastel pink fawn with cream face and tiny golden bell-shaped antlers, mint bow-shaped ear fur, one star-shaped tail tuft, delicate short legs and round baby body."
+    }
+  ],
+  "spec": {
+    "views": [
+      "back: faces upper-right, rear three-quarter",
+      "front: faces lower-left, front three-quarter"
+    ],
+    "background": "transparent",
+    "style": "original cute collectible monsters, clean dark outlines, cel-shaded color, same design and proportions in both views",
+    "runtimeFrame": 512,
+    "rankScale": {
+      "normal": 0.8,
+      "elite": 1.15,
+      "boss": 1.5
+    },
+    "stageRules": {
+      "5": "elite",
+      "10": "boss",
+      "1-4": "normal",
+      "6-9": "normal, stats increase by stage"
+    }
+  }
+}
