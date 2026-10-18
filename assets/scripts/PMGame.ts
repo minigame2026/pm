@@ -41,7 +41,7 @@ export class PMGame extends Component {
       }));
       this.ready=true;this.render();this.save();
       game.on(Game.EVENT_HIDE,this.onHide,this);
-      (globalThis as any).__pm={snapshot:()=>JSON.parse(JSON.stringify(this.state)),controls:()=>({...this.controls}),animating:()=>this.busy||this.pressPending,version:'0.6.0',ready:true};
+      (globalThis as any).__pm={snapshot:()=>JSON.parse(JSON.stringify(this.state)),controls:()=>({...this.controls}),animating:()=>this.busy||this.pressPending,version:'0.6.1',ready:true};
     }catch(e){this.loading!.string='资源加载失败，请刷新重试';console.error('PM asset loading',e);}
   }
   onDestroy(){game.off(Game.EVENT_HIDE,this.onHide,this);}
@@ -64,7 +64,9 @@ export class PMGame extends Component {
   private text(parent:Node,value:string,x:number,y:number,size=16,fill=C.ink,w=350,h=size+12){
     const n=this.makeNode(parent,value,x,y,w,h),l=n.addComponent(Label);l.string=value;l.fontSize=size;l.lineHeight=size+7;
     l.color=color(fill);l.horizontalAlign=Label.HorizontalAlign.CENTER;l.verticalAlign=Label.VerticalAlign.CENTER;
-    l.cacheMode=Label.CacheMode.CHAR;l.overflow=Label.Overflow.SHRINK;return l;
+    // Dynamic text uses per-label textures: the shared CHAR atlas fills up across rounds,
+    // silently dropping new glyphs (damage, rewards and end-screen labels).
+    l.cacheMode=Label.CacheMode.NONE;l.overflow=Label.Overflow.SHRINK;return l;
   }
   private button(parent:Node,id:string,value:string,x:number,y:number,w:number,h:number,callback:()=>void,fill=C.blue,enabled=true,size=17,inactiveFill='#c9d8e2'){
     const n=this.panel(parent,x,y,w,h,enabled?fill:inactiveFill,14);n.name=id;
@@ -232,7 +234,7 @@ export class PMGame extends Component {
       else this.button(sheet,'restart','再来一局',0,-17,340,58,()=>this.restart(),C.orange,true,22);
       this.button(sheet,'collection','查看伙伴',0,-77,340,42,()=>this.collection(),C.paper,true,15);
     }
-    this.text(this.root,this.saveError?'保存失败，请勿关闭页面':'PM v0.6  ·  20 关 · 自动续玩',0,b+8,10,this.saveError?'#c44141':C.muted,350,14);
+    this.text(this.root,this.saveError?'保存失败，请勿关闭页面':'PM v0.6.1  ·  20 关 · 自动续玩',0,b+8,10,this.saveError?'#c44141':C.muted,350,14);
     this.fx=this.makeNode(this.root,'battle-effects',0,0,390,H);
     if(phase==='reward'||phase==='won'){const n=this.enemyNode!;const pos=n.position.clone();tween(n).by(.18,{position:new Vec3(0,15,0)},{easing:'quadOut'}).to(.2,{position:pos},{easing:'quadIn'}).start();}
   }
@@ -297,7 +299,7 @@ export class PMGame extends Component {
       this.button(sheet,'eggTake','带走这枚  ›',88,-72,166,53,()=>this.command('eggTake'),'#dba441',!!chosen,18);
       this.text(sheet,'每次翻找：普通 80% · SR 17% · SSR 3%',0,-119,11,C.muted,350,20);
     }
-    this.text(this.root,this.saveError?'保存失败，请勿关闭页面':'PM v0.6  ·  自动保存',0,b+8,10,this.saveError?'#c44141':C.muted,350,14);
+    this.text(this.root,this.saveError?'保存失败，请勿关闭页面':'PM v0.6.1  ·  自动保存',0,b+8,10,this.saveError?'#c44141':C.muted,350,14);
     this.fx=this.makeNode(this.root,'nest-effects',0,0,390,H);
   }
   private eggBag(page=0){
