@@ -329,7 +329,11 @@ export const PETS: Record<PetId,{name:string;trait:string;type:string;rank:PetRa
     "color": "#e9accf"
   }
 };
-export type Phase = 'encounter' | 'battle' | 'reward' | 'recruit' | 'team' | 'won' | 'lost';
+export type Phase = 'encounter' | 'battle' | 'reward' | 'recruit' | 'team' | 'won' | 'lost' | 'nest' | 'eggClaimed';
+export type EggRarity = 'normal' | 'SR' | 'SSR';
+export interface Egg { id:string; rarity:EggRarity; affinity:PetId; stage:number }
+export interface EggHunt { limit:number; candidates:Egg[]; selected:number }
+export const EGG_RATES={normal:80,SR:17,SSR:3};
 export interface Pet { id: PetId; faces: number[] }
 export interface Reward { kind: 'hp' | 'attack' | 'heal' | 'potion' | 'boost'; values: number[]; title: string }
 export interface State {
@@ -340,9 +344,11 @@ export interface State {
   turn: number; reward: Reward; previousReward: string; recruit: PetId | null; revision: number;
   wins: number; message: string;
   roster?: Partial<Record<PetId,Pet>>;
+  eggs?: Egg[]; eggHunt?: EggHunt;
 }
 export type Action = 'challenge' | 'reroll' | 'switch' | 'attack' | 'guard' | 'heal' | 'boost' |
-  'take' | 'keep' | 'reward0' | 'invite' | 'skip' | 'replace' | 'collect';
+  'take' | 'keep' | 'reward0' | 'invite' | 'skip' | 'replace' | 'collect' |
+  'eggSearch' | 'eggSelect0' | 'eggSelect1' | 'eggSelect2' | 'eggTake' | 'eggContinue';
 export const PET_IDS=Object.keys(PETS) as PetId[];
 const ids=PET_IDS;
 export const TOTAL_STAGES=10;
@@ -368,7 +374,7 @@ export function fresh(seed = Date.now(), owned: PetId[] = ['fox', 'turtle'], win
     owned:ids.filter(id=>id==='fox'||id==='turtle'||owned.indexOf(id)>=0), hpRatio:1, hpBonus:0, potions:3, boosts:2,
     healFaces:[3,5,7], healMultiplier:1, boostMultiplier:2, usedHeal:false, doubled:false, swaps:2, enemy:'bud', enemyHP:7, enemyMax:7,
     attack:0, heal:0, enemyAttack:0, turn:0, reward:{kind:'hp',values:[3],title:'生命上限 +3'},
-    previousReward:'', recruit:null, revision:0, wins, message:'先选伙伴，再开始挑战'};
+    previousReward:'', recruit:null, revision:0, wins, eggs:[], message:'先选伙伴，再开始挑战'};
   encounter(s, false); return s;
 }
 function reward(s: State, excluded: string[] = []): Reward {
@@ -404,8 +410,16 @@ function next(s: State) { s.step++; encounter(s,false); s.message='新的对手�
 function afterReward(s: State) {
   s.previousReward=s.reward.kind;
   s.hpRatio=Math.min(1,s.hpRatio+Math.max(1,Math.floor(maxHP(s)*.2))/maxHP(s));
+  if(s.step===5){beginEggHunt(s);return;}
+  finishReward(s);
+}
+function finishReward(s: State) {
   if(!s.owned.includes(s.enemy)) { s.recruit=s.enemy; s.phase='recruit'; s.message='它想和你一起冒险！'; }
   else { next(s); }
+}
+function beginEggHunt(s: State) {
+  s.phase='nest';s.eggHunt={limit:s.step===10?3:2,candidates:[],selected:-1};
+  s.message='草丛后藏着一个巢穴，找找看！';
 }
 export function act(before: State, a: Action): State {
   const s: State = JSON.parse(JSON.stringify(before)); let valid=false;
@@ -423,7 +437,7 @@ export function act(before: State, a: Action): State {
       valid=true;
       if(a==='attack')s.enemyHP=Math.max(0,s.enemyHP-attackAmount(s));
       if(s.enemyHP===0) {
-        if(s.step===TOTAL_STAGES){s.phase='won';s.wins++;if(!s.owned.includes(s.enemy))s.owned.push(s.enemy);s.message='冒险完成，BOSS 已加入收藏！';}
+        if(s.step===TOTAL_STAGES){s.wins++;if(!s.owned.includes(s.enemy))s.owned.push(s.enemy);beginEggHunt(s);}
         else {s.phase='reward';s.message='战斗胜利！领取战利品';}
       } else {
         const damage=a==='guard'?guardDamage(s.enemyAttack):s.enemyAttack;
@@ -433,6 +447,23 @@ export function act(before: State, a: Action): State {
         else roll(s);
       }
     }
+  } else if(s.phase==='nest' && s.eggHunt) {
+    const hunt=s.eggHunt;
+    if(a==='eggSearch' && hunt.candidates.length<hunt.limit){
+      const roll=rand(s)*100,rarity:EggRarity=roll<EGG_RATES.normal?'normal':roll<EGG_RATES.normal+EGG_RATES.SR?'SR':'SSR';
+      const affinity=pick(s,ids);
+      hunt.candidates.push({id:s.wins+'-'+s.step+'-'+s.revision+'-'+s.seed,rarity,affinity,stage:s.step});
+      hunt.selected=hunt.candidates.length-1;s.message=rarity==='normal'?'找到一枚宠物蛋！':'发现 '+rarity+' 宠物蛋！';valid=true;
+    }
+    const index=['eggSelect0','eggSelect1','eggSelect2'].indexOf(a);
+    if(index>=0 && index<hunt.candidates.length && index!==hunt.selected){hunt.selected=index;valid=true;}
+    if(a==='eggTake' && hunt.candidates[hunt.selected]){
+      const chosen=hunt.candidates[hunt.selected];s.eggs=s.eggs||[];
+      if(!s.eggs.some(e=>e.id===chosen.id))s.eggs.push({...chosen});
+      s.phase='eggClaimed';s.message='宠物蛋已存入蛋袋';valid=true;
+    }
+  } else if(s.phase==='eggClaimed' && a==='eggContinue') {
+    delete s.eggHunt;if(s.step===10){s.phase='won';s.message='冒险完成！';}else finishReward(s);valid=true;
   } else if(s.phase==='reward') {
     const choice=a==='reward0'?0:-1;
     if(a==='take'||a==='keep'||choice>=0) {
@@ -473,7 +504,7 @@ export function restore(raw: string | null): State | null {
     const validPet=(p: any)=>p&&ids.includes(p.id)&&faces(p.faces);
     if(!s||s.version!==1||!validPet(s.active)||(s.reserve!==null&&!validPet(s.reserve)))return null;
     if(s.roster!==undefined&&(!s.roster||typeof s.roster!=='object'||Array.isArray(s.roster)||Object.keys(s.roster).some(id=>!ids.includes(id as PetId)||!validPet(s.roster![id])||s.roster![id].id!==id)))return null;
-    if(!['encounter','battle','reward','recruit','team','won','lost'].includes(s.phase))return null;
+    if(!['encounter','battle','reward','recruit','team','won','lost','nest','eggClaimed'].includes(s.phase))return null;
     if(![s.seed,s.step,s.hpRatio,s.hpBonus,s.potions,s.boosts,s.swaps,s.enemyHP,s.enemyMax,s.revision,s.wins,s.attack,s.heal,s.enemyAttack,s.turn].every(finite))return null;
     if(s.step<1||s.step>TOTAL_STAGES||!Number.isInteger(s.step)||s.hpRatio<0||s.hpRatio>1||s.hpBonus<0||s.hpBonus>100)return null;
     if(s.potions<0||s.potions>9||s.boosts<0||s.boosts>9||s.swaps<0||s.swaps>2)return null;
@@ -489,6 +520,14 @@ export function restore(raw: string | null): State | null {
     if(s.boostMultiplier===undefined)s.boostMultiplier=2;
     // Preserve a previous version's already-rolled x1; new turns use the current pool.
     if(!ITEM_MULTIPLIERS.heal.includes(s.healMultiplier)||![1,2,3,4].includes(s.boostMultiplier))return null;
+    const validEgg=(e:any)=>e&&typeof e.id==='string'&&['normal','SR','SSR'].includes(e.rarity)&&ids.includes(e.affinity)&&[5,10].includes(e.stage);
+    if(s.eggs===undefined)s.eggs=[];
+    if(!Array.isArray(s.eggs)||!s.eggs.every(validEgg)||s.eggs.some((e,i)=>s.eggs!.findIndex(v=>v.id===e.id)!==i))return null;
+    if(s.phase==='nest'||s.phase==='eggClaimed'){
+      const h=s.eggHunt;if(![5,10].includes(s.step)||!h||h.limit!==(s.step===10?3:2)||!Array.isArray(h.candidates)||h.candidates.length>h.limit||!h.candidates.every(e=>validEgg(e)&&e.stage===s.step)||!Number.isInteger(h.selected)||h.selected<(h.candidates.length?-0:-1)||h.selected>=h.candidates.length)return null;
+      if(h.candidates.some((e,i)=>h.candidates.findIndex(v=>v.id===e.id)!==i))return null;
+      if(s.phase==='eggClaimed'&&(!h.candidates[h.selected]||!s.eggs.some(e=>e.id===h.candidates[h.selected].id)))return null;
+    }else delete s.eggHunt;
     if(s.contentVersion!==2){if(s.phase==='encounter'){const swaps=s.swaps;encounter(s,false);s.swaps=s.step===TOTAL_STAGES?0:swaps;}s.contentVersion=2;}
     return s;
   } catch {return null;}
@@ -506,6 +545,7 @@ export function selectActive(before:State,id:PetId):State {
 export const canManageParty = (s: State) => s.phase !== 'battle';
 export function restartRun(before: State, seed=Date.now()): State {
   const s=fresh(seed,before.owned,before.wins);
+  s.eggs=JSON.parse(JSON.stringify(before.eggs||[]));
   s.active=pet(before.active.id);s.reserve=before.reserve?pet(before.reserve.id):null;
   return s;
 }

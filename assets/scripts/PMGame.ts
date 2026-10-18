@@ -1,7 +1,7 @@
 import { _decorator, Component, Node, Canvas, Camera, UITransform, Graphics, Color, Label, LabelOutline, Sprite,
   SpriteFrame, Texture2D, Rect, Size, resources, Layers, view, ResolutionPolicy, EventTouch, tween, Tween, Vec3, UIOpacity, sys, game, Game, profiler } from 'cc';
 import { BATTLE_RECTS, PET_FEET } from './BattleArt';
-import { State, PetId, Action, PETS, PET_IDS, TOTAL_STAGES, fresh, act, hp, maxHP, enemyName, enemyAttackFaces, restore, equipReserve, selectActive, healAmount, attackAmount, guardDamage, rewardOptions, canManageParty, restartRun } from './PMModel';
+import { State, PetId, Action, Egg, PETS, PET_IDS, TOTAL_STAGES, fresh, act, hp, maxHP, enemyName, enemyAttackFaces, restore, equipReserve, selectActive, healAmount, attackAmount, guardDamage, rewardOptions, canManageParty, restartRun } from './PMModel';
 const { ccclass } = _decorator;
 const KEY='pm.creature-dice.v1';
 const C={ink:'#183852',muted:'#647f95',paper:'#f7fcff',blue:'#168cdd',orange:'#f99b28',green:'#38b98c',line:'#d7e8f2'};
@@ -29,7 +29,7 @@ export class PMGame extends Component {
     try{stored=restore(sys.localStorage.getItem(KEY));if(!stored)stored=restore(sys.localStorage.getItem(KEY+'.backup'));}catch{}
     this.state=stored||fresh();
     try{
-      await Promise.all(['fox','bud','turtle','battle-arena','attack-die-a','heal-potion','power-potion','guard-shield','loot-chest','refresh-enemy','battle-start'].map(async key=>{
+      await Promise.all(['fox','bud','turtle','battle-arena','egg-nest-v1','attack-die-a','heal-potion','power-potion','guard-shield','loot-chest','refresh-enemy','battle-start'].map(async key=>{
         this.art[key]=await new Promise<SpriteFrame>((resolve,reject)=>resources.load('art/'+key+'/spriteFrame',SpriteFrame,(e,r)=>e?reject(e):resolve(r)));
       }));
       await Promise.all(PET_IDS.map(async id=>{
@@ -40,7 +40,7 @@ export class PMGame extends Component {
       }));
       this.ready=true;this.render();this.save();
       game.on(Game.EVENT_HIDE,this.onHide,this);
-      (globalThis as any).__pm={snapshot:()=>JSON.parse(JSON.stringify(this.state)),controls:()=>({...this.controls}),animating:()=>this.busy||this.pressPending,version:'0.4.0',ready:true};
+      (globalThis as any).__pm={snapshot:()=>JSON.parse(JSON.stringify(this.state)),controls:()=>({...this.controls}),animating:()=>this.busy||this.pressPending,version:'0.5.0',ready:true};
     }catch(e){this.loading!.string='资源加载失败，请刷新重试';console.error('PM asset loading',e);}
   }
   onDestroy(){game.off(Game.EVENT_HIDE,this.onHide,this);}
@@ -155,6 +155,7 @@ export class PMGame extends Component {
   private clear(){const stop=(n:Node)=>{Tween.stopAllByTarget(n);const opacity=n.getComponent(UIOpacity);if(opacity)Tween.stopAllByTarget(opacity);for(const child of n.children)stop(child);};for(const n of [...this.root.children]){stop(n);n.destroy();}this.root.removeAllChildren();this.controls={};this.modal=null;this.enemyNode=null;this.playerNode=null;this.diceNode=null;this.meters={};this.availableGlows=[];}
   private render(){
     this.clear();this.layout();const s=this.state,H=this.h,b=-H/2;
+    if(s.phase==='nest'||s.phase==='eggClaimed'){this.nestUI();return;}
     const phase=s.phase;const panelHeight=phase==='battle'?246:phase==='team'?300:phase==='reward'?350:phase==='encounter'?308:230;
     const sceneHeight=H-panelHeight;
     const bg=this.makeNode(this.root,'background',0,panelHeight/2,390,sceneHeight);const sp=bg.addComponent(Sprite);sp.spriteFrame=this.art['battle-arena'];sp.sizeMode=Sprite.SizeMode.CUSTOM;
@@ -229,9 +230,82 @@ export class PMGame extends Component {
       this.button(sheet,'restart','再来一局',0,-17,340,58,()=>this.restart(),C.orange,true,22);
       this.button(sheet,'collection','查看伙伴',0,-77,340,42,()=>this.collection(),C.paper,true,15);
     }
-    this.text(this.root,this.saveError?'保存失败，请勿关闭页面':'PM v0.4  ·  自动续玩',0,b+8,10,this.saveError?'#c44141':C.muted,350,14);
+    this.text(this.root,this.saveError?'保存失败，请勿关闭页面':'PM v0.5  ·  18 只伙伴 · 自动续玩',0,b+8,10,this.saveError?'#c44141':C.muted,350,14);
     this.fx=this.makeNode(this.root,'battle-effects',0,0,390,H);
     if(phase==='reward'||phase==='won'){const n=this.enemyNode!;const pos=n.position.clone();tween(n).by(.18,{position:new Vec3(0,15,0)},{easing:'quadOut'}).to(.2,{position:pos},{easing:'quadIn'}).start();}
+  }
+  private eggTint(egg:Egg){return egg.rarity==='SSR'?'#d79428':egg.rarity==='SR'?'#9062cf':'#5b9a80';}
+  private eggName(egg:Egg){return (egg.rarity==='normal'?'普通':egg.rarity)+' · '+PETS[egg.affinity].type;}
+  private eggArt(parent:Node,egg:Egg,x:number,y:number,size:number){
+    const n=this.makeNode(parent,'egg-'+egg.id,x,y,size,size),g=n.addComponent(Graphics),k=size/100;
+    const shape=()=>{g.moveTo(0,48*k);g.bezierCurveTo(-18*k,48*k,-39*k,10*k,-36*k,-15*k);g.bezierCurveTo(-34*k,-53*k,34*k,-53*k,36*k,-15*k);g.bezierCurveTo(39*k,10*k,18*k,48*k,0,48*k);g.close();};
+    const tint=this.eggTint(egg),shell=egg.rarity==='SSR'?'#fff1be':egg.rarity==='SR'?'#efe4ff':'#fffae9';
+    if(egg.rarity!=='normal'){g.fillColor=color(tint,28);g.ellipse(0,0,49*k,53*k);g.fill();}
+    g.fillColor=color(shell);g.strokeColor=color('#6c6349');g.lineWidth=2*k;shape();g.fill();g.stroke();
+    g.fillColor=color(tint,100);g.moveTo(24*k,27*k);g.bezierCurveTo(53*k,-28*k,13*k,-47*k,-23*k,-32*k);g.bezierCurveTo(9*k,-58*k,51*k,-32*k,24*k,27*k);g.close();g.fill();
+    const pattern=color(PETS[egg.affinity].color);g.fillColor=pattern;g.strokeColor=pattern;g.lineWidth=6*k;
+    const motif=PET_IDS.indexOf(egg.affinity)%6;
+    if(motif===0){for(const [px,py,r] of [[-15,12,8],[13,23,6],[16,-13,9],[-14,-24,5]]){g.ellipse(px*k,py*k,r*k,r*.85*k);g.fill();}}
+    if(motif===1){for(const sy of [-16,7]){g.moveTo(-26*k,sy*k);g.bezierCurveTo(-8*k,(sy+15)*k,8*k,(sy-15)*k,26*k,sy*k);g.stroke();}}
+    if(motif===2){g.moveTo(6*k,30*k);g.lineTo(-16*k,0);g.lineTo(-2*k,0);g.lineTo(-8*k,-27*k);g.lineTo(18*k,8*k);g.lineTo(2*k,8*k);g.close();g.fill();}
+    if(motif===3){for(const [px,py] of [[-12,11],[12,-13]]){g.moveTo(px*k,(py+13)*k);g.quadraticCurveTo((px+18)*k,py*k,px*k,(py-13)*k);g.quadraticCurveTo((px-18)*k,py*k,px*k,(py+13)*k);g.fill();}}
+    if(motif===4){for(const [px,py] of [[-12,15],[13,-10]]){g.moveTo(px*k,(py+11)*k);g.lineTo((px+7)*k,py*k);g.lineTo(px*k,(py-11)*k);g.lineTo((px-7)*k,py*k);g.close();g.fill();}}
+    if(motif===5){g.moveTo(-23*k,11*k);g.lineTo(0,-3*k);g.lineTo(23*k,11*k);g.stroke();g.moveTo(-23*k,-10*k);g.lineTo(0,-24*k);g.lineTo(23*k,-10*k);g.stroke();}
+    g.fillColor=color('#ffffff',170);g.ellipse(-12*k,28*k,7*k,12*k);g.fill();
+    if(egg.rarity==='SSR'){for(let i=0;i<3;i++){const p=this.text(n,'✦',(-34+i*35)*k,(i===1?55:30)*k,19*k,['#e4a525','#7c83e9','#e48caf'][i],30*k,30*k);p.isBold=true;}}
+    return n;
+  }
+  private nestUI(){
+    const s=this.state,H=this.h,b=-H/2,hunt=s.eggHunt!,claimed=s.phase==='eggClaimed',panelHeight=claimed?230:280,sceneHeight=H-panelHeight;
+    const bg=this.makeNode(this.root,'egg-nest',0,panelHeight/2,390,sceneHeight),sp=bg.addComponent(Sprite),os=this.art['egg-nest-v1'].originalSize;
+    sp.spriteFrame=this.art['egg-nest-v1'];sp.sizeMode=Sprite.SizeMode.CUSTOM;const k=Math.max(390/os.width,sceneHeight/os.height);bg.getComponent(UITransform)!.setContentSize(os.width*k,os.height*k);
+    this.stage=this.makeNode(this.root,'nest-stage',0,0,390,H);
+    const title=this.text(this.root,claimed?'带着惊喜回家':'巢穴寻蛋',0,H/2-36,26,'#fff9df',280,42);title.isBold=true;const out=title.node.addComponent(LabelOutline);out.color=color('#365543');out.width=2;
+    this.button(this.root,'menu','···',161,H/2-32,44,42,()=>this.menu(),C.paper,true,24);
+    const info=this.panel(this.root,0,H/2-80,claimed?170:224,30,'#294c3f',15,210);
+    this.text(info,claimed?'已存入蛋袋 ✓':(s.step===10?'BOSS 巢穴':'精英巢穴')+'  ·  '+(hunt.limit-hunt.candidates.length)+' 次翻找',0,0,14,'#fff8d9',216,26);
+    const nestY=panelHeight/2+.035*os.height*k,eggSize=Math.min(158,sceneHeight*.32),eggY=nestY+eggSize*.2;
+    const chosen=hunt.candidates[hunt.selected];
+    if(chosen){
+      const halo=this.makeNode(this.stage,'egg-glow',0,eggY,230,230),g=halo.addComponent(Graphics);g.fillColor=color(this.eggTint(chosen),chosen.rarity==='normal'?15:35);g.circle(0,0,eggSize*.76);g.fill();
+      this.enemyNode=this.eggArt(this.stage,chosen,0,eggY,eggSize);this.breathe(this.enemyNode);
+      const label=this.panel(this.stage,0,nestY-eggSize*.48,156,30,'#fff9e9',14,245);this.text(label,this.eggName(chosen),0,0,16,this.eggTint(chosen),148,26).isBold=true;
+    }else{
+      const hint=this.text(this.stage,'?',0,eggY,58,'#fff6cc',90,80);hint.isBold=true;this.breathe(hint.node);
+      this.text(this.stage,'草丛里好像藏着什么…',0,nestY-58,16,'#fff9df',270,28).node.addComponent(LabelOutline).color=color('#526143');
+    }
+    const companionSize=Math.min(94,sceneHeight*.19);this.playerNode=this.petImage(this.stage,s.active.id,-130,b+panelHeight+companionSize*.52+8,companionSize);this.breathe(this.playerNode);
+    const sheet=this.panel(this.root,0,b+panelHeight/2,390,panelHeight,'#fffbed',24,253);
+    if(claimed){
+      this.text(sheet,this.eggName(chosen)+' 蛋',0,79,22,this.eggTint(chosen),330,34).isBold=true;
+      this.text(sheet,'已保存  ·  蛋袋共 '+(s.eggs||[]).length+' 枚',0,42,15,C.muted,330,27);
+      this.button(sheet,'eggContinue',s.step===10?'完成冒险  ›':'继续冒险  ›',0,-13,338,56,()=>this.command('eggContinue'),'#dba441',true,22);
+      this.button(sheet,'eggBag','查看蛋袋',0,-73,338,36,()=>this.eggBag(),C.paper,true,14);
+    }else{
+      this.text(sheet,'挑一枚，带回家',0,111,20,'#735b32',280,30).isBold=true;
+      for(let i=0;i<hunt.limit;i++){
+        const x=(i-(hunt.limit-1)/2)*116,e=hunt.candidates[i],selected=i===hunt.selected;
+        const card=this.button(sheet,'eggSelect'+i,'',x,29,106,116,()=>this.command(('eggSelect'+i) as Action),selected?'#fff0c6':'#f2f0e6',!!e,16,'#edece1');
+        if(e){this.eggArt(card,e,0,15,66);this.text(card,this.eggName(e),0,-34,13,this.eggTint(e),100,22).isBold=true;
+          if(selected){const frame=card.getComponent(Graphics)!;frame.strokeColor=color('#d8a43c');frame.lineWidth=3;frame.roundRect(-51,-56,102,112,13);frame.stroke();this.text(card,'✓',38,43,18,'#b77c20',25,25);}
+        }else this.text(card,'?',0,8,34,'#b8b7a5',66,55);
+      }
+      const remaining=hunt.limit-hunt.candidates.length;
+      this.button(sheet,'eggSearch',hunt.candidates.length?'再找一次  '+remaining:'翻找草丛  '+remaining,-88,-72,166,53,()=>this.command('eggSearch'),'#46976e',remaining>0,18);
+      this.button(sheet,'eggTake','带走这枚  ›',88,-72,166,53,()=>this.command('eggTake'),'#dba441',!!chosen,18);
+      this.text(sheet,'每次翻找：普通 80% · SR 17% · SSR 3%',0,-119,11,C.muted,350,20);
+    }
+    this.text(this.root,this.saveError?'保存失败，请勿关闭页面':'PM v0.5  ·  自动保存',0,b+8,10,this.saveError?'#c44141':C.muted,350,14);
+    this.fx=this.makeNode(this.root,'nest-effects',0,0,390,H);
+  }
+  private eggBag(page=0){
+    const eggs=(this.state.eggs||[]).slice().reverse(),pages=Math.max(1,Math.ceil(eggs.length/4));page=Math.max(0,Math.min(pages-1,page));
+    const c=this.overlay('蛋袋 · '+eggs.length+' 枚',470);
+    if(!eggs.length){this.text(c,'击败精英或 BOSS 后\n到巢穴挑选一枚宠物蛋',0,50,18,C.muted,310,75);}
+    eggs.slice(page*4,page*4+4).forEach((egg,i)=>{const y=124-i*68;this.panel(c,0,y,310,61,'#f2f5ec',12);this.eggArt(c,egg,-116,y,52);this.text(c,this.eggName(egg)+' 蛋',20,y+10,17,this.eggTint(egg),200,25).isBold=true;this.text(c,egg.stage===10?'BOSS 巢穴':'精英巢穴',20,y-14,12,C.muted,200,20);});
+    this.button(c,'eggs-prev','‹',-110,-122,58,33,()=>this.eggBag(page-1),C.blue,page>0,23);this.text(c,(page+1)+' / '+pages,0,-122,14,C.muted,100,26);this.button(c,'eggs-next','›',110,-122,58,33,()=>this.eggBag(page+1),C.blue,page<pages-1,23);
+    this.text(c,'蛋已保存，孵化功能等待后续开放',0,-160,12,C.muted,320,24);
+    this.button(c,'closeEggBag','返回',0,-200,302,40,()=>this.render(),C.orange);
   }
   private attackDie(parent:Node,x:number,y:number,size:number){
     // Approved A: four pips in the side plane. Damage remains an independent number.
@@ -440,6 +514,11 @@ export class PMGame extends Component {
     if(this.busy)return;const old=this.state,next=act(old,a);if(next===old)return;
     this.state=next;this.save();
     if(this.modal){this.modal.removeFromParent();this.modal.destroy();this.modal=null;}
+    if(a==='eggSearch'){
+      this.busy=true;const companion=this.playerNode;if(companion){Tween.stopAllByTarget(companion);tween(companion).by(.12,{position:new Vec3(30,14,0)}).by(.13,{position:new Vec3(8,-9,0)}).by(.12,{position:new Vec3(-7,7,0)}).start();}
+      this.popup('沙沙…',new Vec3(0,115,0),'#fff6d5');
+      this.scheduleOnce(()=>{this.render();const n=this.enemyNode;if(n){Tween.stopAllByTarget(n);n.setScale(.15,.15,1);tween(n).to(.32,{scale:new Vec3(1.1,1.1,1)},{easing:'backOut'}).to(.16,{scale:Vec3.ONE}).call(()=>this.breathe(n)).start();const e=next.eggHunt!.candidates[next.eggHunt!.selected];this.spark(n.position,this.eggTint(e),e.rarity!=='normal');if(e.rarity!=='normal')this.popup(e.rarity+' !',new Vec3(0,n.position.y+100,0),this.eggTint(e));}this.scheduleOnce(()=>{this.busy=false;},.55);},.48);return;
+    }
     const animate=['attack','guard','challenge','heal','boost','invite'].includes(a);
     if(!animate){this.render();return;}
     this.busy=true;
@@ -479,8 +558,9 @@ export class PMGame extends Component {
     this.text(c,'18 种属性 · 18 只伙伴 · 10 场冒险',0,112,14,C.muted);
     this.button(c,'resume','继续冒险',0,58,300,50,()=>this.render(),C.orange);
     this.button(c,'collection','伙伴收藏  '+this.state.owned.length+' / '+PET_IDS.length,0,-3,300,48,()=>this.collection(),C.blue);
-    this.button(c,'restartConfirm','重新开始本局',0,-64,300,46,()=>this.confirmRestart(),'#e8f3fa');
-    this.text(c,'每回合随机：治疗 ×1/2/3，强化 ×2/3/4\n道具每回合各一次，攻击 / 防御推进回合\n退出后自动续玩，换宠不回血',0,-132,12,C.muted,320,65);
+    this.button(c,'eggBag','蛋袋  '+(this.state.eggs||[]).length+' 枚',0,-61,300,46,()=>this.eggBag(),'#46976e');
+    this.button(c,'restartConfirm','重新开始本局',0,-115,300,42,()=>this.confirmRestart(),'#e8f3fa');
+    this.text(c,'退出自动续玩 · 收藏与宠物蛋永久保留',0,-163,12,C.muted,320,28);
   }
   private collection(page=0){const c=this.overlay('伙伴收藏 '+this.state.owned.length+' / '+PET_IDS.length,470),s=this.state;const pages=Math.ceil(PET_IDS.length/3);page=Math.max(0,Math.min(pages-1,page));const ids=PET_IDS.slice(page*3,page*3+3);
     for(let i=0;i<3;i++){const id=ids[i],y=125-i*101;this.petImage(c,id,-117,y,78);const owned=s.owned.includes(id);
@@ -494,7 +574,7 @@ export class PMGame extends Component {
     this.button(c,'collection-next','›',110,-135,60,34,()=>this.collection(page+1),C.blue,page<pages-1,23);
     this.button(c,'closeCollection','返回冒险',0,-188,302,46,()=>this.render(),C.orange);
   }
-  private confirmRestart(){const c=this.overlay('重新出发？',250);this.text(c,'本局进度重置，收藏与通关记录保留',0,35,14,C.muted,320);
+  private confirmRestart(){const c=this.overlay('重新出发？',250);this.text(c,'本局进度重置，收藏与已带走的宠物蛋保留',0,35,14,C.muted,320);
     this.button(c,'cancel','继续当前',-82,-49,145,52,()=>this.render(),'#e8f3fa');this.button(c,'restart','重新出发',82,-49,145,52,()=>this.restart(),C.orange);}
   private restart(){this.state=restartRun(this.state);this.save();this.render();}
 }
