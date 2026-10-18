@@ -1,0 +1,11 @@
+{
+  "name": "pm-creature-dice",
+  "uuid": "bdcf62fa-9f44-499f-bbc0-c5131a0483dd",
+  "creator": {
+    "version": "3.8.7"
+  },
+  "version": "0.1.0",
+  "scripts": {
+    "test": "node checks/model.test.cjs"
+  }
+}

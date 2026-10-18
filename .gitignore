@@ -1,0 +1,21 @@
+# Cocos generated files and local editor state
+/library/
+/temp/
+/build/
+/profiles/
+/node_modules/
+
+# Keep test scripts; exclude generated checks and screenshots
+/checks/*
+!/checks/*.cjs
+
+# Local credentials and machine-only files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.log
+Thumbs.db
+.DS_Store

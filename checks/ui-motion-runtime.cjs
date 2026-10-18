@@ -1,0 +1,31 @@
+const {chromium}=require('C:/Users/k/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
+const ts=require('C:/Users/k/Documents/Codex/Tools/art-production/cocos-creator/resources/app.asar.unpacked/node_modules/typescript/lib/typescript.js');
+const m={exports:{}};vm.runInNewContext(ts.transpileModule(fs.readFileSync(__dirname+'/../assets/scripts/PMModel.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2017}}).outputText,{exports:m.exports,Math,Date,JSON});
+(async()=>{
+ const browser=await chromium.launch({channel:'msedge',headless:true});const page=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+ const errors=[];page.on('pageerror',e=>errors.push(String(e)));
+ await page.addInitScript(()=>{const fixture=localStorage.getItem('pm.check.fixture');if(fixture){localStorage.setItem('pm.creature-dice.v1',fixture);localStorage.removeItem('pm.check.fixture');}});
+ await page.goto('http://127.0.0.1:8780/');await page.waitForFunction(()=>globalThis.__pm?.ready);
+ const state=()=>page.evaluate(()=>__pm.snapshot());
+ const tap=async id=>{const c=await page.evaluate(id=>__pm.controls()[id],id);assert.ok(c,id);await page.touchscreen.tap(c.x*page.viewportSize().width/390,c.y*page.viewportSize().width/390);};
+ const idle=async()=>{await page.waitForFunction(()=>!__pm.animating());await page.waitForTimeout(200);};
+ const shot=async name=>page.screenshot({path:__dirname+'/motion-'+name+'.png'});
+ const inject=async s=>{await page.evaluate(s=>localStorage.setItem('pm.check.fixture',JSON.stringify(s)),s);await page.reload();await page.waitForFunction(()=>globalThis.__pm?.ready);};
+ await tap('challenge');await idle();
+ let fixture=await state();fixture.attack=2;fixture.enemyHP=fixture.enemyMax=20;fixture.enemyAttack=3;fixture.hpRatio=.5;fixture.heal=3;fixture.healMultiplier=2;fixture.boostMultiplier=3;
+ await inject(fixture);await shot('layout');
+ let before=await state();await tap('heal');await page.waitForTimeout(180);await shot('heal');await idle();assert.deepEqual(await state(),JSON.parse(JSON.stringify(m.exports.act(before,'heal'))));
+ before=await state();await tap('boost');await page.waitForTimeout(180);await shot('boost');await idle();assert.deepEqual(await state(),JSON.parse(JSON.stringify(m.exports.act(before,'boost'))));
+ before=await state();await tap('attack');await page.waitForTimeout(200);await tap('attack');await shot('hit');await page.waitForTimeout(250);await shot('counter');await idle();assert.deepEqual(await state(),JSON.parse(JSON.stringify(m.exports.act(before,'attack'))));
+ before=await state();await tap('guard');await page.waitForTimeout(190);await shot('guard');await idle();assert.deepEqual(await state(),JSON.parse(JSON.stringify(m.exports.act(before,'guard'))));
+ await tap('boost');await idle();before=await state();await tap('guard');await shot('guard-confirm');await page.waitForTimeout(210);await tap('confirmGuard');await idle();assert.deepEqual(await state(),JSON.parse(JSON.stringify(m.exports.act(before,'guard'))));
+ // Reload mid-animation must restore the committed result rather than replay damage.
+ before=await state();await tap('attack');await page.waitForTimeout(110);await page.reload();await page.waitForFunction(()=>globalThis.__pm?.ready);assert.deepEqual(await state(),JSON.parse(JSON.stringify(m.exports.act(before,'attack'))));
+ await page.setViewportSize({width:320,height:568});await page.waitForTimeout(500);await shot('small');
+ await tap('guard');await idle();
+ const lethal=m.exports.act(m.exports.fresh(9),'challenge');lethal.enemyHP=1;await inject(lethal);await tap('attack');await idle();assert.equal((await state()).phase,'reward');await shot('victory');
+ await tap('take');await idle();assert.equal((await state()).phase,'recruit');await tap('invite');await page.waitForTimeout(160);await shot('invite');await idle();assert.equal((await state()).phase,'team');
+ assert.equal(errors.length,0);const result={passed:true,screens:['390x844','320x568'],actions:['heal','boost','attack','retaliation','guard','guard-confirm','victory','invite'],doubleTapBlocked:true,reloadDuringAnimation:true,errors};
+ fs.writeFileSync(__dirname+'/ui-motion-result.json',JSON.stringify(result,null,2));console.log(result);await browser.close();
+})().catch(e=>{console.error(e);process.exit(1)});

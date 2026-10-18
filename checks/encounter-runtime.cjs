@@ -1,0 +1,26 @@
+const {chromium}=require('C:/Users/k/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
+const ts=require('C:/Users/k/Documents/Codex/Tools/art-production/cocos-creator/resources/app.asar.unpacked/node_modules/typescript/lib/typescript.js');
+const m={exports:{}};vm.runInNewContext(ts.transpileModule(fs.readFileSync(__dirname+'/../assets/scripts/PMModel.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2017}}).outputText,{exports:m.exports,Math,Date,JSON});
+(async()=>{const browser=await chromium.launch({channel:'msedge',headless:true});try{
+ const page=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true}),errors=[];page.on('pageerror',e=>errors.push(String(e)));
+ await page.addInitScript(()=>{const f=localStorage.getItem('pm.check.fixture');if(f){localStorage.setItem('pm.creature-dice.v1',f);localStorage.removeItem('pm.check.fixture');}});
+ const ready=()=>page.waitForFunction(()=>globalThis.__pm?.ready),state=()=>page.evaluate(()=>__pm.snapshot());
+ await page.goto('http://127.0.0.1:8780/');await ready();
+ const load=async f=>{await page.evaluate(f=>localStorage.setItem('pm.check.fixture',JSON.stringify(f)),f);await page.reload();await ready();await page.waitForTimeout(250);};
+ const tap=async id=>{const p=await page.evaluate(id=>__pm.controls()[id],id),k=page.viewportSize().width/390;assert.ok(p,id);await page.touchscreen.tap(p.x*k,p.y*k);await page.waitForTimeout(180);await page.waitForFunction(()=>!__pm.animating());await page.waitForTimeout(200);};
+ let f=m.exports.fresh(47);f.hpRatio=.4;f.reward={kind:'hp',values:[3],title:'生命上限 +3'};await load(f);await page.screenshot({path:__dirname+'/encounter-locked-390.png'});await tap('pet-bud');assert.equal((await state()).active.id,'fox');
+ f.owned.push('bud');f.active.faces=[8,9,10];await load(f);await page.screenshot({path:__dirname+'/encounter-390.png'});
+ const stableNodes=()=>page.evaluate(async()=>{const cc=await System.import('cc');const all=[];const walk=n=>{all.push(n);n.children.forEach(walk);};walk(cc.director.getScene());const game=all.flatMap(n=>n.components).find(c=>c.encounterPartyUI);if(!game)throw Error('PMGame missing');return [game.enemyNode.uuid,...['reroll','challenge'].map(name=>all.find(n=>n.name===name).uuid)];});
+ const originalNodes=await stableNodes();
+ const alignedRows=await page.evaluate(async()=>{const cc=await System.import('cc'),all=[];const walk=n=>{all.push(n);n.children.forEach(walk);};walk(cc.director.getScene());const row=(name,y)=>all.find(n=>n.name===name).children.filter(n=>n.position.y===y).map(n=>{const t=n.getComponent(cc.UITransform);return {x:n.worldPosition.x,w:t.width,h:t.height};}).sort((a,b)=>a.x-b.x);return [row('encounter-enemy-hud',30),row('encounter-party',135)];});assert.equal(alignedRows[0].length,5);assert.deepEqual(alignedRows[0],alignedRows[1],'enemy and player name/attack columns must align exactly');
+ await page.evaluate(async()=>{const cc=await System.import('cc'),all=[];const walk=n=>{all.push(n);n.children.forEach(walk);};walk(cc.director.getScene());const buttons=['reroll','challenge'].map(name=>all.find(n=>n.name===name));globalThis.__glowProbe={running:true,hiddenFrames:0,frames:0};const sample=()=>{const p=globalThis.__glowProbe;if(!p.running)return;p.frames++;if(buttons.some(n=>!n.activeInHierarchy||!n.getChildByName('available-glow').activeInHierarchy))p.hiddenFrames++;requestAnimationFrame(sample);};requestAnimationFrame(sample);});
+ for(const id of ['bud','turtle','fox']){await tap('pet-'+id);const s=await state();assert.equal(s.active.id,id);assert.equal(s.hpRatio,.4);assert.deepEqual(await stableNodes(),originalNodes,'enemy and action nodes must remain unchanged');}
+ const probe=await page.evaluate(()=>{__glowProbe.running=false;return __glowProbe;});assert.ok(probe.frames>0);assert.equal(probe.hiddenFrames,0,'action highlights must not blink off during pet switching');
+ assert.deepEqual((await state()).active.faces,[8,9,10]);const saved=await state();await page.reload();await ready();assert.deepEqual(await state(),saved);
+ await tap('reroll');assert.equal((await state()).swaps,1);await tap('reroll');const exhausted=await state();assert.equal(exhausted.swaps,0);await tap('reroll');assert.deepEqual(await state(),exhausted);
+ await page.setViewportSize({width:320,height:568});await page.waitForTimeout(350);await page.screenshot({path:__dirname+'/encounter-320.png'});
+ const offer=m.exports.rewardOptions(await state());await tap('challenge');let battle=await state();assert.equal(battle.phase,'battle');assert.ok(m.exports.enemyAttackFaces(battle).includes(battle.enemyAttack));assert.equal(JSON.stringify(m.exports.rewardOptions(battle)),JSON.stringify(offer));
+ f=m.exports.fresh(47);f.step=9;f.swaps=0;f.enemy='bud';f.enemyHP=f.enemyMax=45;await load(f);await page.screenshot({path:__dirname+'/encounter-boss-320.png'});
+ assert.equal(errors.length,0);console.log({passed:true,threePetSwitch:true,enemyAndButtonsNotRebuilt:true,lockedPetBlocked:true,hpAndUpgradesPreserved:true,rerollLimits:true,challenge:true,offerStable:true,reload:true,errors});
+ }finally{await browser.close();}})().catch(e=>{console.error(e);process.exit(1)});

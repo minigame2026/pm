@@ -1,0 +1,21 @@
+{
+  "platform": "web-mobile",
+  "debug": true,
+  "name": "PM Creature Dice",
+  "outputName": "web-mobile",
+  "startScene": "badfb9c8-daec-44ba-b1a5-c763f12e9dce",
+  "scenes": [
+    {
+      "url": "db://assets/scenes/PMGame.scene",
+      "uuid": "badfb9c8-daec-44ba-b1a5-c763f12e9dce"
+    }
+  ],
+  "buildPath": "project://build",
+  "logDest": "D:\\game\\PM\\checks\\build.log",
+  "packages": {
+    "web-mobile": {
+      "orientation": "portrait",
+      "embedWebDebugger": false
+    }
+  }
+}
