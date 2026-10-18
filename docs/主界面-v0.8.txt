@@ -1,0 +1,10 @@
+主界面：海岸训练家营地，红白导航、图鉴与区域地图意象，复用原创宠物。
+探险：草叶海岸现有20关可玩；熔岩山径30关、霜月雪原40关是下一地图的界面规划示意，暂未开放，也未改变当前敌人/蛋/孵化池。未来地区需分别配置普通、精英、BOSS和蛋属性池。
+伙伴：上方固定出战/候补1/候补2，六张图鉴卡每页，可切换仅已拥有/全部。点伙伴再指定队伍位置；已在队伍中则交换位置。保持生命比例、攻击点数升级、当前敌人与掉落。战斗中只能查看，不能改队。
+孵化屋：直接接入现有双槽孵化；营地显示孵化数量与到时提示。3个灰色预留入口不承诺新功能。
+进入游戏先到营地；继续探险恢复原对局，返回营地不重置进度。未来地图没有可启动按钮。
+背景：内置 image_gen 生成；保存于 assets/resources/art/home-camp-v1.png。
+最终生成提示词：
+Create a polished original monster-collecting JRPG mobile game home-screen BACKGROUND illustration, portrait 2:3. Nostalgic Pokemon handheld-adventure feeling with crisp anime outlines, cel shading, cheerful inviting colors, high production quality. No text, no letters, no logos, no UI, no buttons, no creatures or people. A beautiful seaside trainer field camp: warm red-roof research cottage at upper left, small mint-green glass egg nursery at upper right, central winding ivory stone path opening into broad empty grassy plaza across middle foreground, wooden signpost to coast, low white fences, rounded green trees, distant turquoise ocean and layered green islands, fluffy white clouds in clear pale cyan sky. Composition: top 20 percent quiet sky for a title, buildings around upper middle 20-42 percent, middle 42-68 percent empty open grass plaza to overlay a large existing pet character, bottom 32 percent simplified cream path and soft green lawn to overlay menu controls. Warm morning lighting, clear uncluttered silhouettes, charming miniature diorama, professionally painted game background, avoid photorealism, no bloom, no embedded typography. Fill canvas edge to edge.
+
+验证完成：Cocos构建成功码36，类型检查通过。队伍槽位/升级点数/品质/存档保护专用测试通过，原29项模型与11组孵化品质回归通过。390×844、390×694、320×568触控浏览器检查通过，入口、未来地图禁用、换队、战斗锁定、返回续战、孵化入口均通过，页面错误0。平台真机未测试。
