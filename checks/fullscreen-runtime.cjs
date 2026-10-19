@@ -1,0 +1,25 @@
+const {chromium}=require('C:/Users/k/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');
+const ts=require('C:/Users/k/Documents/Codex/Tools/art-production/cocos-creator/resources/app.asar.unpacked/node_modules/typescript/lib/typescript.js');
+const mod={exports:{}};vm.runInNewContext(ts.transpileModule(fs.readFileSync(__dirname+'/../assets/scripts/PMModel.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2017}}).outputText,{exports:mod.exports,Math,Date,JSON,Set});const M=mod.exports,copy=s=>JSON.parse(JSON.stringify(s));
+(async()=>{const browser=await chromium.launch({channel:'msedge',headless:true});try{
+ const page=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true}),errors=[];
+ page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error'&&!m.location().url.endsWith('/favicon.ico'))errors.push(m.text());});
+ await page.goto('http://127.0.0.1:8780/');await page.waitForFunction(()=>globalThis.__pm?.ready,null,{timeout:60000});
+ await page.evaluate(async()=>{const cc=await System.import('cc');function walk(n){const c=n.components.find(c=>typeof c.fullPage==='function');if(c)return c;for(const child of n.children){const f=walk(child);if(f)return f;}}globalThis.__testGame=walk(cc.director.getScene());});
+ const state=()=>page.evaluate(()=>__pm.snapshot());
+ const set=async s=>{await page.evaluate(s=>{__testGame.state=s;__testGame.screen='home';__testGame.save();__testGame.render();},copy(s));await page.waitForTimeout(200);};
+ const tap=async id=>{await page.waitForFunction(()=>!__pm.animating());const p=await page.evaluate(id=>__pm.controls()[id],id),k=page.viewportSize().width/390;assert.ok(p,id);await page.touchscreen.tap(p.x*k,p.y*k);await page.waitForTimeout(210);await page.waitForFunction(()=>!__pm.animating());};
+ const shot=async name=>{await page.waitForTimeout(200);assert.equal(await page.evaluate(()=>__testGame.screen),'utility');await page.screenshot({path:__dirname+'/fullscreen-'+name+'.png'});};
+ let s=M.fresh(888);s.pets[0].sex='female';s.pets[1].sex='male';s.active=copy(s.pets[0]);s.reserve=copy(s.pets[1]);s.warmth=2;
+ for(let i=0;i<7;i++)s.eggs.push({id:'ui-egg-'+i,rarity:i%3===2?'SR':'normal',affinity:'bud',stage:5,mapId:0});await set(s);
+ await tap('home-hatch');await shot('hatch-empty');const before=await state();await tap('page-help');await tap('help-close');assert.deepEqual(await state(),before);
+ await tap('hatch-slot-0');await shot('egg-picker');await tap('incubate-ui-egg-0');assert.equal((await state()).incubators[0].eggId,'ui-egg-0');const readyAt=(await state()).incubators[0].readyAt;
+ await tap('hatch-slot-0');assert.equal((await state()).incubators[0].readyAt,readyAt-300000);await shot('hatch-running');
+ await tap('hatch-bag');await shot('egg-bag');await tap('eggs-next');assert.ok(await page.evaluate(()=>__pm.controls()['egg-ui-egg-0']));await tap('incubate-ui-egg-0');assert.ok(await page.evaluate(()=>__pm.controls()['hatch-slot-0']));await tap('hatch-close');
+ await tap('home-breed');await tap('breed-female');await shot('parent-picker');await tap('breed-pick-'+s.pets[0].uid);await tap('breed-male');await tap('breed-pick-'+s.pets[1].uid);await shot('breeding-selected');await tap('breed-start');assert.ok((await state()).breeding);await shot('breeding-running');
+ await page.setViewportSize({width:320,height:568});await page.waitForTimeout(350);await shot('small-breeding');await tap('page-help');await tap('help-close');await tap('breed-hatch');await shot('small-hatch');await tap('hatch-bag');await shot('small-eggs');await tap('nav-home');await tap('hatch-close');
+ await tap('home-social');await shot('small-visit');await tap('social-tab-share');await shot('small-share');await tap('social-tab-bonds');await shot('small-bonds');await tap('social-close');
+ await tap('home-breed');await page.evaluate(()=>{globalThis.__realNow=Date.now;Date.now=()=>__realNow()+31*60*1000;});await page.waitForTimeout(1400);await tap('breed-claim');assert.equal((await state()).pets.length,0);await tap('hatch-slot-0');assert.equal((await state()).pets.length,1);await shot('small-reveal');await tap('hatch-ack');assert.ok(M.restore(JSON.stringify(await state())));
+ assert.deepEqual(errors,[]);console.log(JSON.stringify({passed:true,fullScreen:true,helpReturn:true,eggPagination:true,incubation:true,acceleration:true,parentSelection:true,breedingClaim:true,hatchClaim:true,resizePreservesPage:true,saveValid:true,errors}));
+}finally{await browser.close();}})().catch(e=>{console.error(e);process.exit(1)});

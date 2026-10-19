@@ -1,0 +1,17 @@
+{
+  "editor": "C:/Users/k/Documents/Codex/Tools/art-production/cocos-creator/CocosCreator.exe",
+  "typescript": "C:/Users/k/Documents/Codex/Tools/art-production/cocos-creator/resources/app.asar.unpacked/node_modules/typescript/lib/tsc.js",
+  "playwright": "C:/Users/k/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright",
+  "url": "http://127.0.0.1:8780/",
+  "buildConfig": "build-config.json",
+  "buildIndex": "build/web-mobile/index.html",
+  "server": "tools/serve.cjs",
+  "scopes": {
+    "ui": { "tests": [], "runtime": ["checks/fullscreen-runtime.cjs"] },
+    "battle": { "tests": [], "runtime": ["checks/workflow-smoke.cjs"] },
+    "social": { "tests": ["checks/friend-visit.test.cjs"], "runtime": ["checks/friend-visit-runtime.cjs"] },
+    "rules": { "tests": ["checks/model.test.cjs", "checks/maps-breeding.test.cjs", "checks/individuals-breeding.test.cjs", "checks/friend-visit.test.cjs"], "runtime": ["checks/workflow-smoke.cjs"] },
+    "save": { "tests": ["checks/maps-breeding.test.cjs", "checks/individuals-breeding.test.cjs", "checks/friend-visit.test.cjs"], "runtime": ["checks/workflow-smoke.cjs"] },
+    "preview": { "tests": [], "runtime": ["checks/workflow-smoke.cjs"] }
+  }
+}

@@ -1,0 +1,7040 @@
+{
+  "schemaVersion": 1,
+  "sourceHashes": {
+    "assets/scripts/PMModel.ts": "0fd2690f250f9f45332d6d96098ae077a95c66ddc6bf5abddb61a1491888e87f",
+    "assets/scripts/PMGame.ts": "2a3bbda79fb2d900bcc62209705a984d55161fa9727a95e3d5ed4f06c78ca01e",
+    "assets/scripts/BattleArt.ts": "4f2192b12c12616b9b029b0e3f9665c1533426c70809b295486afe4911b1aefc",
+    "assets/scripts/EvolutionArt.ts": "4b71b04ffc00be36e5ef7ec73354ab901f7ab291f61980b6dc1d2e7e48e8a717"
+  },
+  "notes": [
+    "Read-only snapshot; edit PMModel and regenerate.",
+    "normal is displayed as R. Natural skills differ from inherited individuals.",
+    "artRank is not encounterRole. RGBA8 estimates are not measured runtime memory."
+  ],
+  "counts": {
+    "species": 18,
+    "forms": 54,
+    "stages": 60,
+    "skills": 16
+  },
+  "initial": {
+    "sampleSeed": 20261019,
+    "note": "Deterministic example only; actual fresh games use Date.now() and random sex.",
+    "pets": [
+      {
+        "id": "fox",
+        "rarity": "normal",
+        "uid": "legacy-fox-normal",
+        "sex": "female",
+        "baseHP": 22,
+        "baseFaces": [
+          1,
+          3,
+          7
+        ],
+        "faces": [
+          1,
+          3,
+          7
+        ],
+        "skills": [
+          "opening"
+        ]
+      },
+      {
+        "id": "turtle",
+        "rarity": "normal",
+        "uid": "legacy-turtle-normal",
+        "sex": "male",
+        "baseHP": 30,
+        "baseFaces": [
+          2,
+          2,
+          4
+        ],
+        "faces": [
+          2,
+          2,
+          4
+        ],
+        "skills": [
+          "armor"
+        ]
+      }
+    ],
+    "team": [
+      "legacy-fox-normal",
+      "legacy-turtle-normal",
+      ""
+    ],
+    "potions": 3,
+    "boosts": 2,
+    "healFaces": [
+      3,
+      5,
+      7
+    ],
+    "hpRatio": 1,
+    "hpBonus": 0
+  },
+  "maps": [
+    {
+      "id": 0,
+      "name": "草叶海岸",
+      "stages": 10,
+      "tint": "#589c80",
+      "pets": [
+        "cotton",
+        "bud",
+        "otter",
+        "bird",
+        "beetle",
+        "turtle"
+      ],
+      "types": "一般 · 草 · 水 · 飞行 · 虫 · 岩石",
+      "eggs": "R 为主 · 终点 SSR 蛋 5%",
+      "note": "6 个系列 · 18 种形态 · R → SR → SSR"
+    },
+    {
+      "id": 1,
+      "name": "熔岩山径",
+      "stages": 20,
+      "tint": "#b67e60",
+      "pets": [
+        "fox",
+        "spark",
+        "slug",
+        "mole",
+        "ape",
+        "rhino"
+      ],
+      "types": "火 · 电 · 毒 · 地面 · 格斗 · 钢",
+      "eggs": "SR 更多 · 终点 SSR 蛋 35%",
+      "note": "6 个系列 · 18 种形态 · 难度提升"
+    },
+    {
+      "id": 2,
+      "name": "霜月雪原",
+      "stages": 30,
+      "tint": "#759bb3",
+      "pets": [
+        "seal",
+        "ghost",
+        "owl",
+        "lynx",
+        "deer",
+        "dragon"
+      ],
+      "types": "冰 · 幽灵 · 超能力 · 恶 · 妖精 · 龙",
+      "eggs": "SR / SSR 为主 · 终点必得 SSR 蛋",
+      "note": "6 个系列 · 18 种形态 · 高阶挑战"
+    }
+  ],
+  "forms": [
+    {
+      "key": "fox-normal",
+      "id": "fox",
+      "rarity": "normal",
+      "displayRarity": "R",
+      "name": "闪尾狐",
+      "type": "火",
+      "mapId": 1,
+      "map": "熔岩山径",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 22,
+      "naturalFaces": [
+        1,
+        3,
+        7
+      ],
+      "baseEnemyFaces": [
+        1,
+        1,
+        7
+      ],
+      "naturalSkills": [
+        "opening"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/fox-battle-ref.png",
+          "rect": [
+            30,
+            28,
+            776,
+            805
+          ],
+          "feet": [
+            0.647,
+            0.945
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/fox-battle-ref.png",
+          "rect": [
+            989,
+            31,
+            761,
+            802
+          ],
+          "feet": [
+            0.381,
+            0.941
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/fox.png",
+        "mirror": true
+      }
+    },
+    {
+      "key": "fox-SR",
+      "id": "fox",
+      "rarity": "SR",
+      "displayRarity": "SR",
+      "name": "焰鬃狐",
+      "type": "火",
+      "mapId": 1,
+      "map": "熔岩山径",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 24,
+      "naturalFaces": [
+        1,
+        3,
+        7
+      ],
+      "baseEnemyFaces": [
+        1,
+        1,
+        7
+      ],
+      "naturalSkills": [
+        "steady"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/fox-evolution-v1.png",
+          "rect": [
+            26,
+            32,
+            594,
+            532
+          ],
+          "feet": [
+            0.7155,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/fox-evolution-v1.png",
+          "rect": [
+            684,
+            26,
+            551,
+            550
+          ],
+          "feet": [
+            0.324,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/fox-evolution-v1.png",
+        "rect": [
+          684,
+          26,
+          551,
+          550
+        ],
+        "feet": [
+          0.324,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "fox-SSR",
+      "id": "fox",
+      "rarity": "SSR",
+      "displayRarity": "SSR",
+      "name": "曜焰灵狐",
+      "type": "火",
+      "mapId": 1,
+      "map": "熔岩山径",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 26,
+      "naturalFaces": [
+        1,
+        3,
+        7
+      ],
+      "baseEnemyFaces": [
+        1,
+        1,
+        7
+      ],
+      "naturalSkills": [
+        "charged"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/fox-evolution-v1.png",
+          "rect": [
+            15,
+            590,
+            637,
+            606
+          ],
+          "feet": [
+            0.5942,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/fox-evolution-v1.png",
+          "rect": [
+            670,
+            597,
+            570,
+            618
+          ],
+          "feet": [
+            0.4456,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/fox-evolution-v1.png",
+        "rect": [
+          670,
+          597,
+          570,
+          618
+        ],
+        "feet": [
+          0.4456,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "bud-normal",
+      "id": "bud",
+      "rarity": "normal",
+      "displayRarity": "R",
+      "name": "芽芽龙",
+      "type": "草",
+      "mapId": 0,
+      "map": "草叶海岸",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 24,
+      "naturalFaces": [
+        3,
+        3,
+        4
+      ],
+      "baseEnemyFaces": [
+        2,
+        2,
+        3
+      ],
+      "naturalSkills": [
+        "healing"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/bud-battle-ref.png",
+          "rect": [
+            0,
+            1,
+            801,
+            872
+          ],
+          "feet": [
+            0.644,
+            0.951
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/bud-battle-ref.png",
+          "rect": [
+            1009,
+            0,
+            765,
+            886
+          ],
+          "feet": [
+            0.431,
+            0.944
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/bud.png",
+        "mirror": false
+      }
+    },
+    {
+      "key": "bud-SR",
+      "id": "bud",
+      "rarity": "SR",
+      "displayRarity": "SR",
+      "name": "蕨翼龙",
+      "type": "草",
+      "mapId": 0,
+      "map": "草叶海岸",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 26,
+      "naturalFaces": [
+        3,
+        3,
+        4
+      ],
+      "baseEnemyFaces": [
+        2,
+        2,
+        3
+      ],
+      "naturalSkills": [
+        "refund"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/bud-evolution-v1.png",
+          "rect": [
+            62,
+            14,
+            501,
+            568
+          ],
+          "feet": [
+            0.6178,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/bud-evolution-v1.png",
+          "rect": [
+            713,
+            8,
+            501,
+            584
+          ],
+          "feet": [
+            0.3902,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/bud-evolution-v1.png",
+        "rect": [
+          713,
+          8,
+          501,
+          584
+        ],
+        "feet": [
+          0.3902,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "bud-SSR",
+      "id": "bud",
+      "rarity": "SSR",
+      "displayRarity": "SSR",
+      "name": "花冠森龙",
+      "type": "草",
+      "mapId": 0,
+      "map": "草叶海岸",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 28,
+      "naturalFaces": [
+        3,
+        3,
+        4
+      ],
+      "baseEnemyFaces": [
+        2,
+        2,
+        3
+      ],
+      "naturalSkills": [
+        "emergency"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/bud-evolution-v1.png",
+          "rect": [
+            7,
+            602,
+            641,
+            616
+          ],
+          "feet": [
+            0.5998,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/bud-evolution-v1.png",
+          "rect": [
+            699,
+            605,
+            548,
+            631
+          ],
+          "feet": [
+            0.3887,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/bud-evolution-v1.png",
+        "rect": [
+          699,
+          605,
+          548,
+          631
+        ],
+        "feet": [
+          0.3887,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "turtle-normal",
+      "id": "turtle",
+      "rarity": "normal",
+      "displayRarity": "R",
+      "name": "岩背龟",
+      "type": "岩石",
+      "mapId": 0,
+      "map": "草叶海岸",
+      "encounterRole": "boss",
+      "artRank": "normal",
+      "naturalHP": 30,
+      "naturalFaces": [
+        2,
+        2,
+        4
+      ],
+      "baseEnemyFaces": [
+        1,
+        3,
+        5
+      ],
+      "naturalSkills": [
+        "armor"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/turtle-battle-ref.png",
+          "rect": [
+            44,
+            94,
+            729,
+            721
+          ],
+          "feet": [
+            0.498,
+            0.931
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/turtle-battle-ref.png",
+          "rect": [
+            1013,
+            101,
+            732,
+            708
+          ],
+          "feet": [
+            0.488,
+            0.921
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/turtle.png",
+        "mirror": false
+      }
+    },
+    {
+      "key": "turtle-SR",
+      "id": "turtle",
+      "rarity": "SR",
+      "displayRarity": "SR",
+      "name": "峭甲龟",
+      "type": "岩石",
+      "mapId": 0,
+      "map": "草叶海岸",
+      "encounterRole": "boss",
+      "artRank": "normal",
+      "naturalHP": 32,
+      "naturalFaces": [
+        2,
+        2,
+        4
+      ],
+      "baseEnemyFaces": [
+        1,
+        3,
+        5
+      ],
+      "naturalSkills": [
+        "focus"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/turtle-evolution-v1.png",
+          "rect": [
+            49,
+            81,
+            539,
+            484
+          ],
+          "feet": [
+            0.4991,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/turtle-evolution-v1.png",
+          "rect": [
+            701,
+            88,
+            525,
+            475
+          ],
+          "feet": [
+            0.4857,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/turtle-evolution-v1.png",
+        "rect": [
+          701,
+          88,
+          525,
+          475
+        ],
+        "feet": [
+          0.4857,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "turtle-SSR",
+      "id": "turtle",
+      "rarity": "SSR",
+      "displayRarity": "SSR",
+      "name": "山垒巨龟",
+      "type": "岩石",
+      "mapId": 0,
+      "map": "草叶海岸",
+      "encounterRole": "boss",
+      "artRank": "normal",
+      "naturalHP": 34,
+      "naturalFaces": [
+        2,
+        2,
+        4
+      ],
+      "baseEnemyFaces": [
+        1,
+        3,
+        5
+      ],
+      "naturalSkills": [
+        "barrier"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/turtle-evolution-v1.png",
+          "rect": [
+            27,
+            593,
+            631,
+            616
+          ],
+          "feet": [
+            0.4992,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/turtle-evolution-v1.png",
+          "rect": [
+            664,
+            596,
+            572,
+            614
+          ],
+          "feet": [
+            0.4991,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/turtle-evolution-v1.png",
+        "rect": [
+          664,
+          596,
+          572,
+          614
+        ],
+        "feet": [
+          0.4991,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "cotton-normal",
+      "id": "cotton",
+      "rarity": "normal",
+      "displayRarity": "R",
+      "name": "绒团兔",
+      "type": "一般",
+      "mapId": 0,
+      "map": "草叶海岸",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 24,
+      "naturalFaces": [
+        2,
+        3,
+        4
+      ],
+      "baseEnemyFaces": [
+        1,
+        2,
+        3
+      ],
+      "naturalSkills": [
+        "opening"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/cotton-battle-v1.png",
+          "rect": [
+            19,
+            136,
+            642,
+            778
+          ],
+          "feet": [
+            0.5171,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/cotton-battle-v1.png",
+          "rect": [
+            837,
+            128,
+            680,
+            789
+          ],
+          "feet": [
+            0.4897,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/cotton-battle-v1.png",
+        "rect": [
+          837,
+          128,
+          680,
+          789
+        ],
+        "feet": [
+          0.4897,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "cotton-SR",
+      "id": "cotton",
+      "rarity": "SR",
+      "displayRarity": "SR",
+      "name": "绒领兔",
+      "type": "一般",
+      "mapId": 0,
+      "map": "草叶海岸",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 26,
+      "naturalFaces": [
+        2,
+        3,
+        4
+      ],
+      "baseEnemyFaces": [
+        1,
+        2,
+        3
+      ],
+      "naturalSkills": [
+        "steady"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/cotton-evolution-v1.png",
+          "rect": [
+            114,
+            17,
+            436,
+            592
+          ],
+          "feet": [
+            0.5516,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/cotton-evolution-v1.png",
+          "rect": [
+            705,
+            27,
+            457,
+            586
+          ],
+          "feet": [
+            0.4551,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/cotton-evolution-v1.png",
+        "rect": [
+          705,
+          27,
+          457,
+          586
+        ],
+        "feet": [
+          0.4551,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "cotton-SSR",
+      "id": "cotton",
+      "rarity": "SSR",
+      "displayRarity": "SSR",
+      "name": "云绒王兔",
+      "type": "一般",
+      "mapId": 0,
+      "map": "草叶海岸",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 28,
+      "naturalFaces": [
+        2,
+        3,
+        4
+      ],
+      "baseEnemyFaces": [
+        1,
+        2,
+        3
+      ],
+      "naturalSkills": [
+        "emergency"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/cotton-evolution-v1.png",
+          "rect": [
+            10,
+            621,
+            609,
+            599
+          ],
+          "feet": [
+            0.4392,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/cotton-evolution-v1.png",
+          "rect": [
+            635,
+            620,
+            615,
+            616
+          ],
+          "feet": [
+            0.5252,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/cotton-evolution-v1.png",
+        "rect": [
+          635,
+          620,
+          615,
+          616
+        ],
+        "feet": [
+          0.5252,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "otter-normal",
+      "id": "otter",
+      "rarity": "normal",
+      "displayRarity": "R",
+      "name": "潮泡獭",
+      "type": "水",
+      "mapId": 0,
+      "map": "草叶海岸",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 25,
+      "naturalFaces": [
+        2,
+        4,
+        5
+      ],
+      "baseEnemyFaces": [
+        1,
+        3,
+        4
+      ],
+      "naturalSkills": [
+        "healing"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/otter-battle-v1.png",
+          "rect": [
+            17,
+            118,
+            703,
+            765
+          ],
+          "feet": [
+            0.5953,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/otter-battle-v1.png",
+          "rect": [
+            780,
+            132,
+            744,
+            784
+          ],
+          "feet": [
+            0.4785,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/otter-battle-v1.png",
+        "rect": [
+          780,
+          132,
+          744,
+          784
+        ],
+        "feet": [
+          0.4785,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "otter-SR",
+      "id": "otter",
+      "rarity": "SR",
+      "displayRarity": "SR",
+      "name": "涌浪獭",
+      "type": "水",
+      "mapId": 0,
+      "map": "草叶海岸",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 27,
+      "naturalFaces": [
+        2,
+        4,
+        5
+      ],
+      "baseEnemyFaces": [
+        1,
+        3,
+        4
+      ],
+      "naturalSkills": [
+        "overflow"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/otter-evolution-v1.png",
+          "rect": [
+            29,
+            39,
+            570,
+            552
+          ],
+          "feet": [
+            0.6333,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/otter-evolution-v1.png",
+          "rect": [
+            628,
+            66,
+            596,
+            534
+          ],
+          "feet": [
+            0.4295,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/otter-evolution-v1.png",
+        "rect": [
+          628,
+          66,
+          596,
+          534
+        ],
+        "feet": [
+          0.4295,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "otter-SSR",
+      "id": "otter",
+      "rarity": "SSR",
+      "displayRarity": "SSR",
+      "name": "沧澜海獭",
+      "type": "水",
+      "mapId": 0,
+      "map": "草叶海岸",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 29,
+      "naturalFaces": [
+        2,
+        4,
+        5
+      ],
+      "baseEnemyFaces": [
+        1,
+        3,
+        4
+      ],
+      "naturalSkills": [
+        "refund"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/otter-evolution-v1.png",
+          "rect": [
+            27,
+            614,
+            610,
+            591
+          ],
+          "feet": [
+            0.5828,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/otter-evolution-v1.png",
+          "rect": [
+            656,
+            628,
+            581,
+            586
+          ],
+          "feet": [
+            0.4423,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/otter-evolution-v1.png",
+        "rect": [
+          656,
+          628,
+          581,
+          586
+        ],
+        "feet": [
+          0.4423,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "spark-normal",
+      "id": "spark",
+      "rarity": "normal",
+      "displayRarity": "R",
+      "name": "蓄电貂",
+      "type": "电",
+      "mapId": 1,
+      "map": "熔岩山径",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 21,
+      "naturalFaces": [
+        1,
+        4,
+        7
+      ],
+      "baseEnemyFaces": [
+        1,
+        2,
+        6
+      ],
+      "naturalSkills": [
+        "opening"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/spark-battle-v1.png",
+          "rect": [
+            22,
+            186,
+            662,
+            611
+          ],
+          "feet": [
+            0.6156,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/spark-battle-v1.png",
+          "rect": [
+            854,
+            221,
+            676,
+            590
+          ],
+          "feet": [
+            0.4075,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/spark-battle-v1.png",
+        "rect": [
+          854,
+          221,
+          676,
+          590
+        ],
+        "feet": [
+          0.4075,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "spark-SR",
+      "id": "spark",
+      "rarity": "SR",
+      "displayRarity": "SR",
+      "name": "电弧貂",
+      "type": "电",
+      "mapId": 1,
+      "map": "熔岩山径",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 23,
+      "naturalFaces": [
+        1,
+        4,
+        7
+      ],
+      "baseEnemyFaces": [
+        1,
+        2,
+        6
+      ],
+      "naturalSkills": [
+        "repeat"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/spark-evolution-v1.png",
+          "rect": [
+            34,
+            39,
+            591,
+            530
+          ],
+          "feet": [
+            0.6303,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/spark-evolution-v1.png",
+          "rect": [
+            677,
+            52,
+            554,
+            520
+          ],
+          "feet": [
+            0.3836,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/spark-evolution-v1.png",
+        "rect": [
+          677,
+          52,
+          554,
+          520
+        ],
+        "feet": [
+          0.3836,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "spark-SSR",
+      "id": "spark",
+      "rarity": "SSR",
+      "displayRarity": "SSR",
+      "name": "雷冠灵貂",
+      "type": "电",
+      "mapId": 1,
+      "map": "熔岩山径",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 25,
+      "naturalFaces": [
+        1,
+        4,
+        7
+      ],
+      "baseEnemyFaces": [
+        1,
+        2,
+        6
+      ],
+      "naturalSkills": [
+        "charged"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/spark-evolution-v1.png",
+          "rect": [
+            17,
+            584,
+            628,
+            615
+          ],
+          "feet": [
+            0.6107,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/spark-evolution-v1.png",
+          "rect": [
+            659,
+            603,
+            580,
+            604
+          ],
+          "feet": [
+            0.3897,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/spark-evolution-v1.png",
+        "rect": [
+          659,
+          603,
+          580,
+          604
+        ],
+        "feet": [
+          0.3897,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "seal-normal",
+      "id": "seal",
+      "rarity": "normal",
+      "displayRarity": "R",
+      "name": "霜团海豹",
+      "type": "冰",
+      "mapId": 2,
+      "map": "霜月雪原",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 27,
+      "naturalFaces": [
+        2,
+        3,
+        5
+      ],
+      "baseEnemyFaces": [
+        2,
+        2,
+        4
+      ],
+      "naturalSkills": [
+        "armor"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/seal-battle-v1.png",
+          "rect": [
+            15,
+            178,
+            658,
+            657
+          ],
+          "feet": [
+            0.5137,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/seal-battle-v1.png",
+          "rect": [
+            830,
+            182,
+            691,
+            664
+          ],
+          "feet": [
+            0.4819,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/seal-battle-v1.png",
+        "rect": [
+          830,
+          182,
+          691,
+          664
+        ],
+        "feet": [
+          0.4819,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "seal-SR",
+      "id": "seal",
+      "rarity": "SR",
+      "displayRarity": "SR",
+      "name": "霜鳍海豹",
+      "type": "冰",
+      "mapId": 2,
+      "map": "霜月雪原",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 29,
+      "naturalFaces": [
+        2,
+        3,
+        5
+      ],
+      "baseEnemyFaces": [
+        2,
+        2,
+        4
+      ],
+      "naturalSkills": [
+        "slow"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/seal-evolution-v1.png",
+          "rect": [
+            59,
+            154,
+            393,
+            350
+          ],
+          "feet": [
+            0.5293,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/seal-evolution-v1.png",
+          "rect": [
+            798,
+            168,
+            399,
+            333
+          ],
+          "feet": [
+            0.3258,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/seal-evolution-v1.png",
+        "rect": [
+          798,
+          168,
+          399,
+          333
+        ],
+        "feet": [
+          0.3258,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "seal-SSR",
+      "id": "seal",
+      "rarity": "SSR",
+      "displayRarity": "SSR",
+      "name": "冰冠海狮",
+      "type": "冰",
+      "mapId": 2,
+      "map": "霜月雪原",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 31,
+      "naturalFaces": [
+        2,
+        3,
+        5
+      ],
+      "baseEnemyFaces": [
+        2,
+        2,
+        4
+      ],
+      "naturalSkills": [
+        "focus"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/seal-evolution-v1.png",
+          "rect": [
+            40,
+            735,
+            416,
+            406
+          ],
+          "feet": [
+            0.5337,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/seal-evolution-v1.png",
+          "rect": [
+            795,
+            756,
+            403,
+            392
+          ],
+          "feet": [
+            0.4516,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/seal-evolution-v1.png",
+        "rect": [
+          795,
+          756,
+          403,
+          392
+        ],
+        "feet": [
+          0.4516,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "ape-normal",
+      "id": "ape",
+      "rarity": "normal",
+      "displayRarity": "R",
+      "name": "拳铠猿",
+      "type": "格斗",
+      "mapId": 1,
+      "map": "熔岩山径",
+      "encounterRole": "elite",
+      "artRank": "elite",
+      "naturalHP": 32,
+      "naturalFaces": [
+        3,
+        5,
+        7
+      ],
+      "baseEnemyFaces": [
+        3,
+        4,
+        7
+      ],
+      "naturalSkills": [
+        "opening"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/ape-battle-v1.png",
+          "rect": [
+            12,
+            10,
+            723,
+            980
+          ],
+          "feet": [
+            0.4544,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/ape-battle-v1.png",
+          "rect": [
+            778,
+            9,
+            756,
+            1002
+          ],
+          "feet": [
+            0.5403,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/ape-battle-v1.png",
+        "rect": [
+          778,
+          9,
+          756,
+          1002
+        ],
+        "feet": [
+          0.5403,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "ape-SR",
+      "id": "ape",
+      "rarity": "SR",
+      "displayRarity": "SR",
+      "name": "破岩拳猿",
+      "type": "格斗",
+      "mapId": 1,
+      "map": "熔岩山径",
+      "encounterRole": "elite",
+      "artRank": "elite",
+      "naturalHP": 34,
+      "naturalFaces": [
+        3,
+        5,
+        7
+      ],
+      "baseEnemyFaces": [
+        3,
+        4,
+        7
+      ],
+      "naturalSkills": [
+        "heavy"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/ape-evolution-v1.png",
+          "rect": [
+            74,
+            139,
+            331,
+            322
+          ],
+          "feet": [
+            0.4456,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/ape-evolution-v1.png",
+          "rect": [
+            809,
+            157,
+            336,
+            308
+          ],
+          "feet": [
+            0.4985,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/ape-evolution-v1.png",
+        "rect": [
+          809,
+          157,
+          336,
+          308
+        ],
+        "feet": [
+          0.4985,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "ape-SSR",
+      "id": "ape",
+      "rarity": "SSR",
+      "displayRarity": "SSR",
+      "name": "金刚斗猿",
+      "type": "格斗",
+      "mapId": 1,
+      "map": "熔岩山径",
+      "encounterRole": "elite",
+      "artRank": "elite",
+      "naturalHP": 36,
+      "naturalFaces": [
+        3,
+        5,
+        7
+      ],
+      "baseEnemyFaces": [
+        3,
+        4,
+        7
+      ],
+      "naturalSkills": [
+        "charged"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/ape-evolution-v1.png",
+          "rect": [
+            77,
+            784,
+            341,
+            339
+          ],
+          "feet": [
+            0.4941,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/ape-evolution-v1.png",
+          "rect": [
+            820,
+            788,
+            344,
+            351
+          ],
+          "feet": [
+            0.5203,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/ape-evolution-v1.png",
+        "rect": [
+          820,
+          788,
+          344,
+          351
+        ],
+        "feet": [
+          0.5203,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "slug-normal",
+      "id": "slug",
+      "rarity": "normal",
+      "displayRarity": "R",
+      "name": "毒泡蜗",
+      "type": "毒",
+      "mapId": 1,
+      "map": "熔岩山径",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 23,
+      "naturalFaces": [
+        2,
+        4,
+        5
+      ],
+      "baseEnemyFaces": [
+        1,
+        3,
+        5
+      ],
+      "naturalSkills": [
+        "opening"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/slug-battle-v1.png",
+          "rect": [
+            11,
+            209,
+            689,
+            642
+          ],
+          "feet": [
+            0.4695,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/slug-battle-v1.png",
+          "rect": [
+            832,
+            202,
+            695,
+            651
+          ],
+          "feet": [
+            0.5252,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/slug-battle-v1.png",
+        "rect": [
+          832,
+          202,
+          695,
+          651
+        ],
+        "feet": [
+          0.5252,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "slug-SR",
+      "id": "slug",
+      "rarity": "SR",
+      "displayRarity": "SR",
+      "name": "棘壳蜗",
+      "type": "毒",
+      "mapId": 1,
+      "map": "熔岩山径",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 25,
+      "naturalFaces": [
+        2,
+        4,
+        5
+      ],
+      "baseEnemyFaces": [
+        1,
+        3,
+        5
+      ],
+      "naturalSkills": [
+        "venom"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/slug-evolution-v1.png",
+          "rect": [
+            58,
+            39,
+            534,
+            503
+          ],
+          "feet": [
+            0.4663,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/slug-evolution-v1.png",
+          "rect": [
+            680,
+            66,
+            531,
+            487
+          ],
+          "feet": [
+            0.5245,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/slug-evolution-v1.png",
+        "rect": [
+          680,
+          66,
+          531,
+          487
+        ],
+        "feet": [
+          0.5245,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "slug-SSR",
+      "id": "slug",
+      "rarity": "SSR",
+      "displayRarity": "SSR",
+      "name": "毒冠巨蜗",
+      "type": "毒",
+      "mapId": 1,
+      "map": "熔岩山径",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 27,
+      "naturalFaces": [
+        2,
+        4,
+        5
+      ],
+      "baseEnemyFaces": [
+        1,
+        3,
+        5
+      ],
+      "naturalSkills": [
+        "leech"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/slug-evolution-v1.png",
+          "rect": [
+            12,
+            577,
+            593,
+            630
+          ],
+          "feet": [
+            0.4983,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/slug-evolution-v1.png",
+          "rect": [
+            671,
+            589,
+            570,
+            608
+          ],
+          "feet": [
+            0.4991,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/slug-evolution-v1.png",
+        "rect": [
+          671,
+          589,
+          570,
+          608
+        ],
+        "feet": [
+          0.4991,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "mole-normal",
+      "id": "mole",
+      "rarity": "normal",
+      "displayRarity": "R",
+      "name": "铲角鼹",
+      "type": "地面",
+      "mapId": 1,
+      "map": "熔岩山径",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 28,
+      "naturalFaces": [
+        2,
+        3,
+        5
+      ],
+      "baseEnemyFaces": [
+        2,
+        2,
+        5
+      ],
+      "naturalSkills": [
+        "armor"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/mole-battle-v1.png",
+          "rect": [
+            88,
+            234,
+            665,
+            530
+          ],
+          "feet": [
+            0.4459,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/mole-battle-v1.png",
+          "rect": [
+            856,
+            251,
+            631,
+            519
+          ],
+          "feet": [
+            0.4342,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/mole-battle-v1.png",
+        "rect": [
+          856,
+          251,
+          631,
+          519
+        ],
+        "feet": [
+          0.4342,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "mole-SR",
+      "id": "mole",
+      "rarity": "SR",
+      "displayRarity": "SR",
+      "name": "钻甲鼹",
+      "type": "地面",
+      "mapId": 1,
+      "map": "熔岩山径",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 30,
+      "naturalFaces": [
+        2,
+        3,
+        5
+      ],
+      "baseEnemyFaces": [
+        2,
+        2,
+        5
+      ],
+      "naturalSkills": [
+        "focus"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/mole-evolution-v1.png",
+          "rect": [
+            100,
+            150,
+            355,
+            283
+          ],
+          "feet": [
+            0.4606,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/mole-evolution-v1.png",
+          "rect": [
+            822,
+            161,
+            331,
+            271
+          ],
+          "feet": [
+            0.494,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/mole-evolution-v1.png",
+        "rect": [
+          822,
+          161,
+          331,
+          271
+        ],
+        "feet": [
+          0.494,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "mole-SSR",
+      "id": "mole",
+      "rarity": "SSR",
+      "displayRarity": "SSR",
+      "name": "地脉巨鼹",
+      "type": "地面",
+      "mapId": 1,
+      "map": "熔岩山径",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 32,
+      "naturalFaces": [
+        2,
+        3,
+        5
+      ],
+      "baseEnemyFaces": [
+        2,
+        2,
+        5
+      ],
+      "naturalSkills": [
+        "barrier"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/mole-evolution-v1.png",
+          "rect": [
+            84,
+            803,
+            399,
+            310
+          ],
+          "feet": [
+            0.4837,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/mole-evolution-v1.png",
+          "rect": [
+            823,
+            804,
+            359,
+            322
+          ],
+          "feet": [
+            0.4791,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/mole-evolution-v1.png",
+        "rect": [
+          823,
+          804,
+          359,
+          322
+        ],
+        "feet": [
+          0.4791,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "bird-normal",
+      "id": "bird",
+      "rarity": "normal",
+      "displayRarity": "R",
+      "name": "云翎雀",
+      "type": "飞行",
+      "mapId": 0,
+      "map": "草叶海岸",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 21,
+      "naturalFaces": [
+        1,
+        4,
+        6
+      ],
+      "baseEnemyFaces": [
+        1,
+        2,
+        5
+      ],
+      "naturalSkills": [
+        "opening"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/bird-battle-v1.png",
+          "rect": [
+            87,
+            123,
+            585,
+            748
+          ],
+          "feet": [
+            0.4538,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/bird-battle-v1.png",
+          "rect": [
+            864,
+            115,
+            646,
+            767
+          ],
+          "feet": [
+            0.524,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/bird-battle-v1.png",
+        "rect": [
+          864,
+          115,
+          646,
+          767
+        ],
+        "feet": [
+          0.524,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "bird-SR",
+      "id": "bird",
+      "rarity": "SR",
+      "displayRarity": "SR",
+      "name": "流云隼",
+      "type": "飞行",
+      "mapId": 0,
+      "map": "草叶海岸",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 23,
+      "naturalFaces": [
+        1,
+        4,
+        6
+      ],
+      "baseEnemyFaces": [
+        1,
+        2,
+        5
+      ],
+      "naturalSkills": [
+        "slow"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/bird-evolution-v1.png",
+          "rect": [
+            59,
+            21,
+            522,
+            558
+          ],
+          "feet": [
+            0.5153,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/bird-evolution-v1.png",
+          "rect": [
+            691,
+            14,
+            524,
+            560
+          ],
+          "feet": [
+            0.5582,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/bird-evolution-v1.png",
+        "rect": [
+          691,
+          14,
+          524,
+          560
+        ],
+        "feet": [
+          0.5582,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "bird-SSR",
+      "id": "bird",
+      "rarity": "SSR",
+      "displayRarity": "SSR",
+      "name": "天穹鹏",
+      "type": "飞行",
+      "mapId": 0,
+      "map": "草叶海岸",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 25,
+      "naturalFaces": [
+        1,
+        4,
+        6
+      ],
+      "baseEnemyFaces": [
+        1,
+        2,
+        5
+      ],
+      "naturalSkills": [
+        "evade"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/bird-evolution-v1.png",
+          "rect": [
+            10,
+            588,
+            631,
+            634
+          ],
+          "feet": [
+            0.5016,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/bird-evolution-v1.png",
+          "rect": [
+            652,
+            592,
+            594,
+            632
+          ],
+          "feet": [
+            0.5505,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/bird-evolution-v1.png",
+        "rect": [
+          652,
+          592,
+          594,
+          632
+        ],
+        "feet": [
+          0.5505,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "owl-normal",
+      "id": "owl",
+      "rarity": "normal",
+      "displayRarity": "R",
+      "name": "星环鸮",
+      "type": "超能力",
+      "mapId": 2,
+      "map": "霜月雪原",
+      "encounterRole": "normal",
+      "artRank": "elite",
+      "naturalHP": 28,
+      "naturalFaces": [
+        2,
+        6,
+        8
+      ],
+      "baseEnemyFaces": [
+        2,
+        5,
+        8
+      ],
+      "naturalSkills": [
+        "opening"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/owl-battle-v1.png",
+          "rect": [
+            8,
+            7,
+            736,
+            999
+          ],
+          "feet": [
+            0.5048,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/owl-battle-v1.png",
+          "rect": [
+            780,
+            7,
+            748,
+            998
+          ],
+          "feet": [
+            0.498,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/owl-battle-v1.png",
+        "rect": [
+          780,
+          7,
+          748,
+          998
+        ],
+        "feet": [
+          0.498,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "owl-SR",
+      "id": "owl",
+      "rarity": "SR",
+      "displayRarity": "SR",
+      "name": "月轮鸮",
+      "type": "超能力",
+      "mapId": 2,
+      "map": "霜月雪原",
+      "encounterRole": "normal",
+      "artRank": "elite",
+      "naturalHP": 30,
+      "naturalFaces": [
+        2,
+        6,
+        8
+      ],
+      "baseEnemyFaces": [
+        2,
+        5,
+        8
+      ],
+      "naturalSkills": [
+        "steady"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/owl-evolution-v1.png",
+          "rect": [
+            43,
+            113,
+            377,
+            371
+          ],
+          "feet": [
+            0.4907,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/owl-evolution-v1.png",
+          "rect": [
+            817,
+            112,
+            374,
+            383
+          ],
+          "feet": [
+            0.5053,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/owl-evolution-v1.png",
+        "rect": [
+          817,
+          112,
+          374,
+          383
+        ],
+        "feet": [
+          0.5053,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "owl-SSR",
+      "id": "owl",
+      "rarity": "SSR",
+      "displayRarity": "SSR",
+      "name": "星冕贤鸮",
+      "type": "超能力",
+      "mapId": 2,
+      "map": "霜月雪原",
+      "encounterRole": "normal",
+      "artRank": "elite",
+      "naturalHP": 32,
+      "naturalFaces": [
+        2,
+        6,
+        8
+      ],
+      "baseEnemyFaces": [
+        2,
+        5,
+        8
+      ],
+      "naturalSkills": [
+        "charged"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/owl-evolution-v1.png",
+          "rect": [
+            43,
+            737,
+            402,
+            426
+          ],
+          "feet": [
+            0.4925,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/owl-evolution-v1.png",
+          "rect": [
+            814,
+            741,
+            390,
+            428
+          ],
+          "feet": [
+            0.5026,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/owl-evolution-v1.png",
+        "rect": [
+          814,
+          741,
+          390,
+          428
+        ],
+        "feet": [
+          0.5026,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "beetle-normal",
+      "id": "beetle",
+      "rarity": "normal",
+      "displayRarity": "R",
+      "name": "芽角甲虫",
+      "type": "虫",
+      "mapId": 0,
+      "map": "草叶海岸",
+      "encounterRole": "elite",
+      "artRank": "normal",
+      "naturalHP": 26,
+      "naturalFaces": [
+        2,
+        3,
+        5
+      ],
+      "baseEnemyFaces": [
+        1,
+        3,
+        4
+      ],
+      "naturalSkills": [
+        "armor"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/beetle-battle-v1.png",
+          "rect": [
+            36,
+            105,
+            658,
+            823
+          ],
+          "feet": [
+            0.54,
+            0.9
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/beetle-battle-v1.png",
+          "rect": [
+            846,
+            168,
+            675,
+            735
+          ],
+          "feet": [
+            0.5,
+            0.9
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/beetle-battle-v1.png",
+        "rect": [
+          846,
+          168,
+          675,
+          735
+        ],
+        "feet": [
+          0.5,
+          0.9
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "beetle-SR",
+      "id": "beetle",
+      "rarity": "SR",
+      "displayRarity": "SR",
+      "name": "荆角甲虫",
+      "type": "虫",
+      "mapId": 0,
+      "map": "草叶海岸",
+      "encounterRole": "elite",
+      "artRank": "normal",
+      "naturalHP": 28,
+      "naturalFaces": [
+        2,
+        3,
+        5
+      ],
+      "baseEnemyFaces": [
+        1,
+        3,
+        4
+      ],
+      "naturalSkills": [
+        "venom"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/beetle-evolution-v1.png",
+          "rect": [
+            75,
+            116,
+            329,
+            347
+          ],
+          "feet": [
+            0.4985,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/beetle-evolution-v1.png",
+          "rect": [
+            841,
+            129,
+            303,
+            335
+          ],
+          "feet": [
+            0.4983,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/beetle-evolution-v1.png",
+        "rect": [
+          841,
+          129,
+          303,
+          335
+        ],
+        "feet": [
+          0.4983,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "beetle-SSR",
+      "id": "beetle",
+      "rarity": "SSR",
+      "displayRarity": "SSR",
+      "name": "翠刃甲皇",
+      "type": "虫",
+      "mapId": 0,
+      "map": "草叶海岸",
+      "encounterRole": "elite",
+      "artRank": "normal",
+      "naturalHP": 30,
+      "naturalFaces": [
+        2,
+        3,
+        5
+      ],
+      "baseEnemyFaces": [
+        1,
+        3,
+        4
+      ],
+      "naturalSkills": [
+        "refund"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/beetle-evolution-v1.png",
+          "rect": [
+            62,
+            779,
+            371,
+            372
+          ],
+          "feet": [
+            0.4164,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/beetle-evolution-v1.png",
+          "rect": [
+            823,
+            781,
+            362,
+            363
+          ],
+          "feet": [
+            0.5152,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/beetle-evolution-v1.png",
+        "rect": [
+          823,
+          781,
+          362,
+          363
+        ],
+        "feet": [
+          0.5152,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "ghost-normal",
+      "id": "ghost",
+      "rarity": "normal",
+      "displayRarity": "R",
+      "name": "灯芯幽灵",
+      "type": "幽灵",
+      "mapId": 2,
+      "map": "霜月雪原",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 22,
+      "naturalFaces": [
+        1,
+        5,
+        6
+      ],
+      "baseEnemyFaces": [
+        1,
+        1,
+        6
+      ],
+      "naturalSkills": [
+        "opening"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/ghost-battle-v1.png",
+          "rect": [
+            78,
+            25,
+            618,
+            944
+          ],
+          "feet": [
+            0.5,
+            0.94
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/ghost-battle-v1.png",
+          "rect": [
+            801,
+            22,
+            674,
+            932
+          ],
+          "feet": [
+            0.5,
+            0.94
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/ghost-battle-v1.png",
+        "rect": [
+          801,
+          22,
+          674,
+          932
+        ],
+        "feet": [
+          0.5,
+          0.94
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "ghost-SR",
+      "id": "ghost",
+      "rarity": "SR",
+      "displayRarity": "SR",
+      "name": "引魂灯灵",
+      "type": "幽灵",
+      "mapId": 2,
+      "map": "霜月雪原",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 24,
+      "naturalFaces": [
+        1,
+        5,
+        6
+      ],
+      "baseEnemyFaces": [
+        1,
+        1,
+        6
+      ],
+      "naturalSkills": [
+        "venom"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/ghost-evolution-v1.png",
+          "rect": [
+            134,
+            132,
+            308,
+            344
+          ],
+          "feet": [
+            0.3653,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/ghost-evolution-v1.png",
+          "rect": [
+            811,
+            137,
+            316,
+            336
+          ],
+          "feet": [
+            0.606,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/ghost-evolution-v1.png",
+        "rect": [
+          811,
+          137,
+          316,
+          336
+        ],
+        "feet": [
+          0.606,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "ghost-SSR",
+      "id": "ghost",
+      "rarity": "SSR",
+      "displayRarity": "SSR",
+      "name": "冥灯灵君",
+      "type": "幽灵",
+      "mapId": 2,
+      "map": "霜月雪原",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 26,
+      "naturalFaces": [
+        1,
+        5,
+        6
+      ],
+      "baseEnemyFaces": [
+        1,
+        1,
+        6
+      ],
+      "naturalSkills": [
+        "leech"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/ghost-evolution-v1.png",
+          "rect": [
+            102,
+            763,
+            339,
+            394
+          ],
+          "feet": [
+            0.559,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/ghost-evolution-v1.png",
+          "rect": [
+            808,
+            774,
+            343,
+            383
+          ],
+          "feet": [
+            0.5248,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/ghost-evolution-v1.png",
+        "rect": [
+          808,
+          774,
+          343,
+          383
+        ],
+        "feet": [
+          0.5248,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "dragon-normal",
+      "id": "dragon",
+      "rarity": "normal",
+      "displayRarity": "R",
+      "name": "霆冠龙",
+      "type": "龙",
+      "mapId": 2,
+      "map": "霜月雪原",
+      "encounterRole": "boss",
+      "artRank": "boss",
+      "naturalHP": 36,
+      "naturalFaces": [
+        4,
+        6,
+        9
+      ],
+      "baseEnemyFaces": [
+        4,
+        6,
+        8,
+        11
+      ],
+      "naturalSkills": [
+        "opening"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/dragon-battle-v1.png",
+          "rect": [
+            75,
+            159,
+            608,
+            712
+          ],
+          "feet": [
+            0.6,
+            0.88
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/dragon-battle-v1.png",
+          "rect": [
+            850,
+            150,
+            620,
+            712
+          ],
+          "feet": [
+            0.45,
+            0.95
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/dragon-battle-v1.png",
+        "rect": [
+          850,
+          150,
+          620,
+          712
+        ],
+        "feet": [
+          0.45,
+          0.95
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "dragon-SR",
+      "id": "dragon",
+      "rarity": "SR",
+      "displayRarity": "SR",
+      "name": "裂霆翼龙",
+      "type": "龙",
+      "mapId": 2,
+      "map": "霜月雪原",
+      "encounterRole": "boss",
+      "artRank": "boss",
+      "naturalHP": 38,
+      "naturalFaces": [
+        4,
+        6,
+        9
+      ],
+      "baseEnemyFaces": [
+        4,
+        6,
+        8,
+        11
+      ],
+      "naturalSkills": [
+        "heavy"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/dragon-evolution-v1.png",
+          "rect": [
+            69,
+            8,
+            519,
+            599
+          ],
+          "feet": [
+            0.4432,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/dragon-evolution-v1.png",
+          "rect": [
+            666,
+            14,
+            528,
+            595
+          ],
+          "feet": [
+            0.4943,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/dragon-evolution-v1.png",
+        "rect": [
+          666,
+          14,
+          528,
+          595
+        ],
+        "feet": [
+          0.4943,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "dragon-SSR",
+      "id": "dragon",
+      "rarity": "SSR",
+      "displayRarity": "SSR",
+      "name": "苍霆龙皇",
+      "type": "龙",
+      "mapId": 2,
+      "map": "霜月雪原",
+      "encounterRole": "boss",
+      "artRank": "boss",
+      "naturalHP": 40,
+      "naturalFaces": [
+        4,
+        6,
+        9
+      ],
+      "baseEnemyFaces": [
+        4,
+        6,
+        8,
+        11
+      ],
+      "naturalSkills": [
+        "charged"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/dragon-evolution-v1.png",
+          "rect": [
+            20,
+            620,
+            615,
+            618
+          ],
+          "feet": [
+            0.4537,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/dragon-evolution-v1.png",
+          "rect": [
+            646,
+            623,
+            589,
+            619
+          ],
+          "feet": [
+            0.4779,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/dragon-evolution-v1.png",
+        "rect": [
+          646,
+          623,
+          589,
+          619
+        ],
+        "feet": [
+          0.4779,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "lynx-normal",
+      "id": "lynx",
+      "rarity": "normal",
+      "displayRarity": "R",
+      "name": "暮影猞猁",
+      "type": "恶",
+      "mapId": 2,
+      "map": "霜月雪原",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 23,
+      "naturalFaces": [
+        1,
+        4,
+        7
+      ],
+      "baseEnemyFaces": [
+        1,
+        2,
+        6
+      ],
+      "naturalSkills": [
+        "opening"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/lynx-battle-v1.png",
+          "rect": [
+            31,
+            40,
+            678,
+            931
+          ],
+          "feet": [
+            0.5767,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/lynx-battle-v1.png",
+          "rect": [
+            842,
+            80,
+            677,
+            895
+          ],
+          "feet": [
+            0.4409,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/lynx-battle-v1.png",
+        "rect": [
+          842,
+          80,
+          677,
+          895
+        ],
+        "feet": [
+          0.4409,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "lynx-SR",
+      "id": "lynx",
+      "rarity": "SR",
+      "displayRarity": "SR",
+      "name": "夜刃猞猁",
+      "type": "恶",
+      "mapId": 2,
+      "map": "霜月雪原",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 25,
+      "naturalFaces": [
+        1,
+        4,
+        7
+      ],
+      "baseEnemyFaces": [
+        1,
+        2,
+        6
+      ],
+      "naturalSkills": [
+        "steady"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/lynx-evolution-v1.png",
+          "rect": [
+            41,
+            17,
+            507,
+            569
+          ],
+          "feet": [
+            0.643,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/lynx-evolution-v1.png",
+          "rect": [
+            746,
+            31,
+            484,
+            563
+          ],
+          "feet": [
+            0.4101,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/lynx-evolution-v1.png",
+        "rect": [
+          746,
+          31,
+          484,
+          563
+        ],
+        "feet": [
+          0.4101,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "lynx-SSR",
+      "id": "lynx",
+      "rarity": "SSR",
+      "displayRarity": "SSR",
+      "name": "蚀月影王",
+      "type": "恶",
+      "mapId": 2,
+      "map": "霜月雪原",
+      "encounterRole": "normal",
+      "artRank": "normal",
+      "naturalHP": 27,
+      "naturalFaces": [
+        1,
+        4,
+        7
+      ],
+      "baseEnemyFaces": [
+        1,
+        2,
+        6
+      ],
+      "naturalSkills": [
+        "leech"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/lynx-evolution-v1.png",
+          "rect": [
+            20,
+            634,
+            607,
+            589
+          ],
+          "feet": [
+            0.5824,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/lynx-evolution-v1.png",
+          "rect": [
+            679,
+            660,
+            556,
+            566
+          ],
+          "feet": [
+            0.4245,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/lynx-evolution-v1.png",
+        "rect": [
+          679,
+          660,
+          556,
+          566
+        ],
+        "feet": [
+          0.4245,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "rhino-normal",
+      "id": "rhino",
+      "rarity": "normal",
+      "displayRarity": "R",
+      "name": "铁垒犀",
+      "type": "钢",
+      "mapId": 1,
+      "map": "熔岩山径",
+      "encounterRole": "boss",
+      "artRank": "boss",
+      "naturalHP": 40,
+      "naturalFaces": [
+        3,
+        6,
+        8
+      ],
+      "baseEnemyFaces": [
+        3,
+        5,
+        8,
+        10
+      ],
+      "naturalSkills": [
+        "armor"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/rhino-battle-v1.png",
+          "rect": [
+            16,
+            96,
+            752,
+            812
+          ],
+          "feet": [
+            0.4834,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/rhino-battle-v1.png",
+          "rect": [
+            769,
+            108,
+            756,
+            807
+          ],
+          "feet": [
+            0.4921,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/rhino-battle-v1.png",
+        "rect": [
+          769,
+          108,
+          756,
+          807
+        ],
+        "feet": [
+          0.4921,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "rhino-SR",
+      "id": "rhino",
+      "rarity": "SR",
+      "displayRarity": "SR",
+      "name": "钢棘战犀",
+      "type": "钢",
+      "mapId": 1,
+      "map": "熔岩山径",
+      "encounterRole": "boss",
+      "artRank": "boss",
+      "naturalHP": 42,
+      "naturalFaces": [
+        3,
+        6,
+        8
+      ],
+      "baseEnemyFaces": [
+        3,
+        5,
+        8,
+        10
+      ],
+      "naturalSkills": [
+        "barrier"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/rhino-evolution-v1.png",
+          "rect": [
+            34,
+            73,
+            535,
+            492
+          ],
+          "feet": [
+            0.485,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/rhino-evolution-v1.png",
+          "rect": [
+            676,
+            64,
+            539,
+            512
+          ],
+          "feet": [
+            0.4675,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/rhino-evolution-v1.png",
+        "rect": [
+          676,
+          64,
+          539,
+          512
+        ],
+        "feet": [
+          0.4675,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "rhino-SSR",
+      "id": "rhino",
+      "rarity": "SSR",
+      "displayRarity": "SSR",
+      "name": "星钢巨犀",
+      "type": "钢",
+      "mapId": 1,
+      "map": "熔岩山径",
+      "encounterRole": "boss",
+      "artRank": "boss",
+      "naturalHP": 44,
+      "naturalFaces": [
+        3,
+        6,
+        8
+      ],
+      "baseEnemyFaces": [
+        3,
+        5,
+        8,
+        10
+      ],
+      "naturalSkills": [
+        "evade"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/rhino-evolution-v1.png",
+          "rect": [
+            21,
+            658,
+            593,
+            564
+          ],
+          "feet": [
+            0.4831,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/rhino-evolution-v1.png",
+          "rect": [
+            649,
+            663,
+            590,
+            565
+          ],
+          "feet": [
+            0.4992,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/rhino-evolution-v1.png",
+        "rect": [
+          649,
+          663,
+          590,
+          565
+        ],
+        "feet": [
+          0.4992,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "deer-normal",
+      "id": "deer",
+      "rarity": "normal",
+      "displayRarity": "R",
+      "name": "铃芽鹿",
+      "type": "妖精",
+      "mapId": 2,
+      "map": "霜月雪原",
+      "encounterRole": "elite",
+      "artRank": "normal",
+      "naturalHP": 24,
+      "naturalFaces": [
+        2,
+        4,
+        5
+      ],
+      "baseEnemyFaces": [
+        2,
+        3,
+        3
+      ],
+      "naturalSkills": [
+        "healing"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/deer-battle-v1.png",
+          "rect": [
+            101,
+            42,
+            550,
+            905
+          ],
+          "feet": [
+            0.4255,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/deer-battle-v1.png",
+          "rect": [
+            921,
+            55,
+            568,
+            912
+          ],
+          "feet": [
+            0.5431,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/deer-battle-v1.png",
+        "rect": [
+          921,
+          55,
+          568,
+          912
+        ],
+        "feet": [
+          0.5431,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "deer-SR",
+      "id": "deer",
+      "rarity": "SR",
+      "displayRarity": "SR",
+      "name": "花铃灵鹿",
+      "type": "妖精",
+      "mapId": 2,
+      "map": "霜月雪原",
+      "encounterRole": "elite",
+      "artRank": "normal",
+      "naturalHP": 26,
+      "naturalFaces": [
+        2,
+        4,
+        5
+      ],
+      "baseEnemyFaces": [
+        2,
+        3,
+        3
+      ],
+      "naturalSkills": [
+        "refund"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/deer-evolution-v1.png",
+          "rect": [
+            146,
+            16,
+            384,
+            555
+          ],
+          "feet": [
+            0.5664,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/deer-evolution-v1.png",
+          "rect": [
+            752,
+            23,
+            391,
+            556
+          ],
+          "feet": [
+            0.4783,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/deer-evolution-v1.png",
+        "rect": [
+          752,
+          23,
+          391,
+          556
+        ],
+        "feet": [
+          0.4783,
+          0.97
+        ],
+        "mirror": false
+      }
+    },
+    {
+      "key": "deer-SSR",
+      "id": "deer",
+      "rarity": "SSR",
+      "displayRarity": "SSR",
+      "name": "圣铃仙鹿",
+      "type": "妖精",
+      "mapId": 2,
+      "map": "霜月雪原",
+      "encounterRole": "elite",
+      "artRank": "normal",
+      "naturalHP": 28,
+      "naturalFaces": [
+        2,
+        4,
+        5
+      ],
+      "baseEnemyFaces": [
+        2,
+        3,
+        3
+      ],
+      "naturalSkills": [
+        "emergency"
+      ],
+      "views": {
+        "back": {
+          "file": "assets/resources/art/deer-evolution-v1.png",
+          "rect": [
+            26,
+            592,
+            579,
+            622
+          ],
+          "feet": [
+            0.4801,
+            0.97
+          ]
+        },
+        "front": {
+          "file": "assets/resources/art/deer-evolution-v1.png",
+          "rect": [
+            724,
+            584,
+            499,
+            635
+          ],
+          "feet": [
+            0.5641,
+            0.97
+          ]
+        }
+      },
+      "portrait": {
+        "file": "assets/resources/art/deer-evolution-v1.png",
+        "rect": [
+          724,
+          584,
+          499,
+          635
+        ],
+        "feet": [
+          0.5641,
+          0.97
+        ],
+        "mirror": false
+      }
+    }
+  ],
+  "skills": {
+    "opening": [
+      "抢先一击",
+      "首次攻击额外造成 2 点伤害。"
+    ],
+    "armor": [
+      "硬壳",
+      "首次受击减少 2 点伤害，至少受到 1 点。"
+    ],
+    "healing": [
+      "草木祝福",
+      "首次使用生命药水额外恢复 2 点生命。"
+    ],
+    "steady": [
+      "稳定发挥",
+      "首次掷出最低攻击点数，自动变为中间点数。"
+    ],
+    "repeat": [
+      "连锁电流",
+      "首次连续两回合攻击点数相同，后一次变为最高点数。"
+    ],
+    "charged": [
+      "力量共鸣",
+      "首次使用力量药水，攻击点数变为最高，再计算药水倍率。"
+    ],
+    "focus": [
+      "蓄势反击",
+      "首次防御后，下回合攻击必定为最高点数。"
+    ],
+    "barrier": [
+      "坚垒",
+      "首次防御获得 6 点护盾，可跨回合抵消伤害。"
+    ],
+    "overflow": [
+      "泡泡护盾",
+      "首次生命药水产生溢出治疗时，溢出部分变为护盾，最多 6 点。"
+    ],
+    "refund": [
+      "药水回响",
+      "首次生命药水不消耗库存；每回合仍只能使用一次。"
+    ],
+    "emergency": [
+      "生命绽放",
+      "首次受击后存活且生命不超过 30%，自动恢复最大生命的 25%。"
+    ],
+    "venom": [
+      "毒素印记",
+      "首次攻击施毒，本次及随后两次行动结束时各造成 2 点伤害。"
+    ],
+    "heavy": [
+      "三连重击",
+      "第三次攻击额外造成 4 点伤害。"
+    ],
+    "slow": [
+      "霜羽压制",
+      "首次攻击令本次反击伤害减少 2，至少受到 1 点。"
+    ],
+    "evade": [
+      "幻影守护",
+      "首次敌方反击完全免伤。"
+    ],
+    "leech": [
+      "生命汲取",
+      "首次攻击恢复其实际直接伤害的 20%（向上取整），不超过最大生命的 25%。"
+    ]
+  },
+  "stages": [
+    {
+      "mapId": 0,
+      "map": "草叶海岸",
+      "step": 1,
+      "rank": "normal",
+      "rarity": "normal",
+      "enemyHP": 7,
+      "rewardGrowth": 0,
+      "enemies": [
+        {
+          "id": "cotton",
+          "name": "绒团兔",
+          "faces": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "id": "bud",
+          "name": "芽芽龙",
+          "faces": [
+            2,
+            2,
+            3
+          ]
+        },
+        {
+          "id": "otter",
+          "name": "潮泡獭",
+          "faces": [
+            1,
+            3,
+            4
+          ]
+        },
+        {
+          "id": "bird",
+          "name": "云翎雀",
+          "faces": [
+            1,
+            2,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 0,
+      "map": "草叶海岸",
+      "step": 2,
+      "rank": "normal",
+      "rarity": "normal",
+      "enemyHP": 9,
+      "rewardGrowth": 0,
+      "enemies": [
+        {
+          "id": "cotton",
+          "name": "绒团兔",
+          "faces": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "id": "bud",
+          "name": "芽芽龙",
+          "faces": [
+            2,
+            2,
+            3
+          ]
+        },
+        {
+          "id": "otter",
+          "name": "潮泡獭",
+          "faces": [
+            1,
+            3,
+            4
+          ]
+        },
+        {
+          "id": "bird",
+          "name": "云翎雀",
+          "faces": [
+            1,
+            2,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 0,
+      "map": "草叶海岸",
+      "step": 3,
+      "rank": "normal",
+      "rarity": "normal",
+      "enemyHP": 11,
+      "rewardGrowth": 0,
+      "enemies": [
+        {
+          "id": "cotton",
+          "name": "绒团兔",
+          "faces": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "id": "bud",
+          "name": "芽芽龙",
+          "faces": [
+            2,
+            2,
+            3
+          ]
+        },
+        {
+          "id": "otter",
+          "name": "潮泡獭",
+          "faces": [
+            1,
+            3,
+            4
+          ]
+        },
+        {
+          "id": "bird",
+          "name": "云翎雀",
+          "faces": [
+            1,
+            2,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 0,
+      "map": "草叶海岸",
+      "step": 4,
+      "rank": "normal",
+      "rarity": "normal",
+      "enemyHP": 14,
+      "rewardGrowth": 2,
+      "enemies": [
+        {
+          "id": "cotton",
+          "name": "绒团兔",
+          "faces": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "id": "bud",
+          "name": "芽芽龙",
+          "faces": [
+            3,
+            3,
+            4
+          ]
+        },
+        {
+          "id": "otter",
+          "name": "潮泡獭",
+          "faces": [
+            2,
+            4,
+            5
+          ]
+        },
+        {
+          "id": "bird",
+          "name": "云翎雀",
+          "faces": [
+            2,
+            3,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 0,
+      "map": "草叶海岸",
+      "step": 5,
+      "rank": "elite",
+      "rarity": "SR",
+      "enemyHP": 26,
+      "rewardGrowth": 2,
+      "enemies": [
+        {
+          "id": "beetle",
+          "name": "荆角甲虫",
+          "faces": [
+            2,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 0,
+      "map": "草叶海岸",
+      "step": 6,
+      "rank": "normal",
+      "rarity": "SR",
+      "enemyHP": 22,
+      "rewardGrowth": 2,
+      "enemies": [
+        {
+          "id": "cotton",
+          "name": "绒领兔",
+          "faces": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "id": "bud",
+          "name": "蕨翼龙",
+          "faces": [
+            4,
+            4,
+            5
+          ]
+        },
+        {
+          "id": "otter",
+          "name": "涌浪獭",
+          "faces": [
+            3,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "bird",
+          "name": "流云隼",
+          "faces": [
+            3,
+            4,
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 0,
+      "map": "草叶海岸",
+      "step": 7,
+      "rank": "normal",
+      "rarity": "SR",
+      "enemyHP": 25,
+      "rewardGrowth": 4,
+      "enemies": [
+        {
+          "id": "cotton",
+          "name": "绒领兔",
+          "faces": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "bud",
+          "name": "蕨翼龙",
+          "faces": [
+            5,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "otter",
+          "name": "涌浪獭",
+          "faces": [
+            4,
+            6,
+            7
+          ]
+        },
+        {
+          "id": "bird",
+          "name": "流云隼",
+          "faces": [
+            4,
+            5,
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 0,
+      "map": "草叶海岸",
+      "step": 8,
+      "rank": "normal",
+      "rarity": "SR",
+      "enemyHP": 29,
+      "rewardGrowth": 4,
+      "enemies": [
+        {
+          "id": "cotton",
+          "name": "绒领兔",
+          "faces": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "bud",
+          "name": "蕨翼龙",
+          "faces": [
+            5,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "otter",
+          "name": "涌浪獭",
+          "faces": [
+            4,
+            6,
+            7
+          ]
+        },
+        {
+          "id": "bird",
+          "name": "流云隼",
+          "faces": [
+            4,
+            5,
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 0,
+      "map": "草叶海岸",
+      "step": 9,
+      "rank": "normal",
+      "rarity": "SR",
+      "enemyHP": 32,
+      "rewardGrowth": 4,
+      "enemies": [
+        {
+          "id": "cotton",
+          "name": "绒领兔",
+          "faces": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "bud",
+          "name": "蕨翼龙",
+          "faces": [
+            5,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "otter",
+          "name": "涌浪獭",
+          "faces": [
+            4,
+            6,
+            7
+          ]
+        },
+        {
+          "id": "bird",
+          "name": "流云隼",
+          "faces": [
+            4,
+            5,
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 0,
+      "map": "草叶海岸",
+      "step": 10,
+      "rank": "boss",
+      "rarity": "SSR",
+      "enemyHP": 58,
+      "rewardGrowth": 4,
+      "enemies": [
+        {
+          "id": "turtle",
+          "name": "山垒巨龟",
+          "faces": [
+            3,
+            5,
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 1,
+      "rank": "normal",
+      "rarity": "normal",
+      "enemyHP": 15,
+      "rewardGrowth": 2,
+      "enemies": [
+        {
+          "id": "fox",
+          "name": "闪尾狐",
+          "faces": [
+            3,
+            3,
+            9
+          ]
+        },
+        {
+          "id": "spark",
+          "name": "蓄电貂",
+          "faces": [
+            3,
+            4,
+            8
+          ]
+        },
+        {
+          "id": "slug",
+          "name": "毒泡蜗",
+          "faces": [
+            3,
+            5,
+            7
+          ]
+        },
+        {
+          "id": "mole",
+          "name": "铲角鼹",
+          "faces": [
+            4,
+            4,
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 2,
+      "rank": "normal",
+      "rarity": "normal",
+      "enemyHP": 18,
+      "rewardGrowth": 2,
+      "enemies": [
+        {
+          "id": "fox",
+          "name": "闪尾狐",
+          "faces": [
+            3,
+            3,
+            9
+          ]
+        },
+        {
+          "id": "spark",
+          "name": "蓄电貂",
+          "faces": [
+            3,
+            4,
+            8
+          ]
+        },
+        {
+          "id": "slug",
+          "name": "毒泡蜗",
+          "faces": [
+            3,
+            5,
+            7
+          ]
+        },
+        {
+          "id": "mole",
+          "name": "铲角鼹",
+          "faces": [
+            4,
+            4,
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 3,
+      "rank": "normal",
+      "rarity": "normal",
+      "enemyHP": 20,
+      "rewardGrowth": 2,
+      "enemies": [
+        {
+          "id": "fox",
+          "name": "闪尾狐",
+          "faces": [
+            3,
+            3,
+            9
+          ]
+        },
+        {
+          "id": "spark",
+          "name": "蓄电貂",
+          "faces": [
+            3,
+            4,
+            8
+          ]
+        },
+        {
+          "id": "slug",
+          "name": "毒泡蜗",
+          "faces": [
+            3,
+            5,
+            7
+          ]
+        },
+        {
+          "id": "mole",
+          "name": "铲角鼹",
+          "faces": [
+            4,
+            4,
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 4,
+      "rank": "normal",
+      "rarity": "normal",
+      "enemyHP": 24,
+      "rewardGrowth": 4,
+      "enemies": [
+        {
+          "id": "fox",
+          "name": "闪尾狐",
+          "faces": [
+            4,
+            4,
+            10
+          ]
+        },
+        {
+          "id": "spark",
+          "name": "蓄电貂",
+          "faces": [
+            4,
+            5,
+            9
+          ]
+        },
+        {
+          "id": "slug",
+          "name": "毒泡蜗",
+          "faces": [
+            4,
+            6,
+            8
+          ]
+        },
+        {
+          "id": "mole",
+          "name": "铲角鼹",
+          "faces": [
+            5,
+            5,
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 5,
+      "rank": "elite",
+      "rarity": "normal",
+      "enemyHP": 35,
+      "rewardGrowth": 4,
+      "enemies": [
+        {
+          "id": "ape",
+          "name": "拳铠猿",
+          "faces": [
+            5,
+            6,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 6,
+      "rank": "normal",
+      "rarity": "SR",
+      "enemyHP": 34,
+      "rewardGrowth": 4,
+      "enemies": [
+        {
+          "id": "fox",
+          "name": "焰鬃狐",
+          "faces": [
+            5,
+            5,
+            11
+          ]
+        },
+        {
+          "id": "spark",
+          "name": "电弧貂",
+          "faces": [
+            5,
+            6,
+            10
+          ]
+        },
+        {
+          "id": "slug",
+          "name": "棘壳蜗",
+          "faces": [
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "id": "mole",
+          "name": "钻甲鼹",
+          "faces": [
+            6,
+            6,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 7,
+      "rank": "normal",
+      "rarity": "SR",
+      "enemyHP": 39,
+      "rewardGrowth": 6,
+      "enemies": [
+        {
+          "id": "fox",
+          "name": "焰鬃狐",
+          "faces": [
+            6,
+            6,
+            12
+          ]
+        },
+        {
+          "id": "spark",
+          "name": "电弧貂",
+          "faces": [
+            6,
+            7,
+            11
+          ]
+        },
+        {
+          "id": "slug",
+          "name": "棘壳蜗",
+          "faces": [
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "id": "mole",
+          "name": "钻甲鼹",
+          "faces": [
+            7,
+            7,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 8,
+      "rank": "normal",
+      "rarity": "SR",
+      "enemyHP": 42,
+      "rewardGrowth": 6,
+      "enemies": [
+        {
+          "id": "fox",
+          "name": "焰鬃狐",
+          "faces": [
+            6,
+            6,
+            12
+          ]
+        },
+        {
+          "id": "spark",
+          "name": "电弧貂",
+          "faces": [
+            6,
+            7,
+            11
+          ]
+        },
+        {
+          "id": "slug",
+          "name": "棘壳蜗",
+          "faces": [
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "id": "mole",
+          "name": "钻甲鼹",
+          "faces": [
+            7,
+            7,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 9,
+      "rank": "normal",
+      "rarity": "SR",
+      "enemyHP": 46,
+      "rewardGrowth": 6,
+      "enemies": [
+        {
+          "id": "fox",
+          "name": "焰鬃狐",
+          "faces": [
+            6,
+            6,
+            12
+          ]
+        },
+        {
+          "id": "spark",
+          "name": "电弧貂",
+          "faces": [
+            6,
+            7,
+            11
+          ]
+        },
+        {
+          "id": "slug",
+          "name": "棘壳蜗",
+          "faces": [
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "id": "mole",
+          "name": "钻甲鼹",
+          "faces": [
+            7,
+            7,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 10,
+      "rank": "boss",
+      "rarity": "SR",
+      "enemyHP": 68,
+      "rewardGrowth": 6,
+      "enemies": [
+        {
+          "id": "rhino",
+          "name": "钢棘战犀",
+          "faces": [
+            6,
+            8,
+            11,
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 11,
+      "rank": "normal",
+      "rarity": "SR",
+      "enemyHP": 54,
+      "rewardGrowth": 8,
+      "enemies": [
+        {
+          "id": "fox",
+          "name": "焰鬃狐",
+          "faces": [
+            7,
+            7,
+            13
+          ]
+        },
+        {
+          "id": "spark",
+          "name": "电弧貂",
+          "faces": [
+            7,
+            8,
+            12
+          ]
+        },
+        {
+          "id": "slug",
+          "name": "棘壳蜗",
+          "faces": [
+            7,
+            9,
+            11
+          ]
+        },
+        {
+          "id": "mole",
+          "name": "钻甲鼹",
+          "faces": [
+            8,
+            8,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 12,
+      "rank": "normal",
+      "rarity": "SR",
+      "enemyHP": 59,
+      "rewardGrowth": 8,
+      "enemies": [
+        {
+          "id": "fox",
+          "name": "焰鬃狐",
+          "faces": [
+            7,
+            7,
+            13
+          ]
+        },
+        {
+          "id": "spark",
+          "name": "电弧貂",
+          "faces": [
+            7,
+            8,
+            12
+          ]
+        },
+        {
+          "id": "slug",
+          "name": "棘壳蜗",
+          "faces": [
+            7,
+            9,
+            11
+          ]
+        },
+        {
+          "id": "mole",
+          "name": "钻甲鼹",
+          "faces": [
+            8,
+            8,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 13,
+      "rank": "normal",
+      "rarity": "SR",
+      "enemyHP": 63,
+      "rewardGrowth": 10,
+      "enemies": [
+        {
+          "id": "fox",
+          "name": "焰鬃狐",
+          "faces": [
+            8,
+            8,
+            14
+          ]
+        },
+        {
+          "id": "spark",
+          "name": "电弧貂",
+          "faces": [
+            8,
+            9,
+            13
+          ]
+        },
+        {
+          "id": "slug",
+          "name": "棘壳蜗",
+          "faces": [
+            8,
+            10,
+            12
+          ]
+        },
+        {
+          "id": "mole",
+          "name": "钻甲鼹",
+          "faces": [
+            9,
+            9,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 14,
+      "rank": "normal",
+      "rarity": "SR",
+      "enemyHP": 67,
+      "rewardGrowth": 10,
+      "enemies": [
+        {
+          "id": "fox",
+          "name": "焰鬃狐",
+          "faces": [
+            8,
+            8,
+            14
+          ]
+        },
+        {
+          "id": "spark",
+          "name": "电弧貂",
+          "faces": [
+            8,
+            9,
+            13
+          ]
+        },
+        {
+          "id": "slug",
+          "name": "棘壳蜗",
+          "faces": [
+            8,
+            10,
+            12
+          ]
+        },
+        {
+          "id": "mole",
+          "name": "钻甲鼹",
+          "faces": [
+            9,
+            9,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 15,
+      "rank": "elite",
+      "rarity": "SSR",
+      "enemyHP": 107,
+      "rewardGrowth": 10,
+      "enemies": [
+        {
+          "id": "ape",
+          "name": "金刚斗猿",
+          "faces": [
+            11,
+            12,
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 16,
+      "rank": "normal",
+      "rarity": "SSR",
+      "enemyHP": 83,
+      "rewardGrowth": 12,
+      "enemies": [
+        {
+          "id": "fox",
+          "name": "曜焰灵狐",
+          "faces": [
+            10,
+            10,
+            16
+          ]
+        },
+        {
+          "id": "spark",
+          "name": "雷冠灵貂",
+          "faces": [
+            10,
+            11,
+            15
+          ]
+        },
+        {
+          "id": "slug",
+          "name": "毒冠巨蜗",
+          "faces": [
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "id": "mole",
+          "name": "地脉巨鼹",
+          "faces": [
+            11,
+            11,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 17,
+      "rank": "normal",
+      "rarity": "SSR",
+      "enemyHP": 88,
+      "rewardGrowth": 12,
+      "enemies": [
+        {
+          "id": "fox",
+          "name": "曜焰灵狐",
+          "faces": [
+            10,
+            10,
+            16
+          ]
+        },
+        {
+          "id": "spark",
+          "name": "雷冠灵貂",
+          "faces": [
+            10,
+            11,
+            15
+          ]
+        },
+        {
+          "id": "slug",
+          "name": "毒冠巨蜗",
+          "faces": [
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "id": "mole",
+          "name": "地脉巨鼹",
+          "faces": [
+            11,
+            11,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 18,
+      "rank": "normal",
+      "rarity": "SSR",
+      "enemyHP": 91,
+      "rewardGrowth": 12,
+      "enemies": [
+        {
+          "id": "fox",
+          "name": "曜焰灵狐",
+          "faces": [
+            10,
+            10,
+            16
+          ]
+        },
+        {
+          "id": "spark",
+          "name": "雷冠灵貂",
+          "faces": [
+            10,
+            11,
+            15
+          ]
+        },
+        {
+          "id": "slug",
+          "name": "毒冠巨蜗",
+          "faces": [
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "id": "mole",
+          "name": "地脉巨鼹",
+          "faces": [
+            11,
+            11,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 19,
+      "rank": "normal",
+      "rarity": "SSR",
+      "enemyHP": 96,
+      "rewardGrowth": 14,
+      "enemies": [
+        {
+          "id": "fox",
+          "name": "曜焰灵狐",
+          "faces": [
+            11,
+            11,
+            17
+          ]
+        },
+        {
+          "id": "spark",
+          "name": "雷冠灵貂",
+          "faces": [
+            11,
+            12,
+            16
+          ]
+        },
+        {
+          "id": "slug",
+          "name": "毒冠巨蜗",
+          "faces": [
+            11,
+            13,
+            15
+          ]
+        },
+        {
+          "id": "mole",
+          "name": "地脉巨鼹",
+          "faces": [
+            12,
+            12,
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 20,
+      "rank": "boss",
+      "rarity": "SSR",
+      "enemyHP": 139,
+      "rewardGrowth": 14,
+      "enemies": [
+        {
+          "id": "rhino",
+          "name": "星钢巨犀",
+          "faces": [
+            11,
+            13,
+            16,
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 1,
+      "rank": "normal",
+      "rarity": "SR",
+      "enemyHP": 25,
+      "rewardGrowth": 4,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "霜鳍海豹",
+          "faces": [
+            7,
+            7,
+            9
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "引魂灯灵",
+          "faces": [
+            6,
+            6,
+            11
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "月轮鸮",
+          "faces": [
+            7,
+            10,
+            13
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "夜刃猞猁",
+          "faces": [
+            6,
+            7,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 2,
+      "rank": "normal",
+      "rarity": "SR",
+      "enemyHP": 30,
+      "rewardGrowth": 4,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "霜鳍海豹",
+          "faces": [
+            7,
+            7,
+            9
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "引魂灯灵",
+          "faces": [
+            6,
+            6,
+            11
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "月轮鸮",
+          "faces": [
+            7,
+            10,
+            13
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "夜刃猞猁",
+          "faces": [
+            6,
+            7,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 3,
+      "rank": "normal",
+      "rarity": "SR",
+      "enemyHP": 32,
+      "rewardGrowth": 4,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "霜鳍海豹",
+          "faces": [
+            7,
+            7,
+            9
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "引魂灯灵",
+          "faces": [
+            6,
+            6,
+            11
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "月轮鸮",
+          "faces": [
+            7,
+            10,
+            13
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "夜刃猞猁",
+          "faces": [
+            6,
+            7,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 4,
+      "rank": "normal",
+      "rarity": "SR",
+      "enemyHP": 37,
+      "rewardGrowth": 6,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "霜鳍海豹",
+          "faces": [
+            8,
+            8,
+            10
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "引魂灯灵",
+          "faces": [
+            7,
+            7,
+            12
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "月轮鸮",
+          "faces": [
+            8,
+            11,
+            14
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "夜刃猞猁",
+          "faces": [
+            7,
+            8,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 5,
+      "rank": "elite",
+      "rarity": "SR",
+      "enemyHP": 51,
+      "rewardGrowth": 6,
+      "enemies": [
+        {
+          "id": "deer",
+          "name": "花铃灵鹿",
+          "faces": [
+            7,
+            8,
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 6,
+      "rank": "normal",
+      "rarity": "SR",
+      "enemyHP": 46,
+      "rewardGrowth": 6,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "霜鳍海豹",
+          "faces": [
+            8,
+            8,
+            10
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "引魂灯灵",
+          "faces": [
+            7,
+            7,
+            12
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "月轮鸮",
+          "faces": [
+            8,
+            11,
+            14
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "夜刃猞猁",
+          "faces": [
+            7,
+            8,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 7,
+      "rank": "normal",
+      "rarity": "SR",
+      "enemyHP": 52,
+      "rewardGrowth": 8,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "霜鳍海豹",
+          "faces": [
+            9,
+            9,
+            11
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "引魂灯灵",
+          "faces": [
+            8,
+            8,
+            13
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "月轮鸮",
+          "faces": [
+            9,
+            12,
+            15
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "夜刃猞猁",
+          "faces": [
+            8,
+            9,
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 8,
+      "rank": "normal",
+      "rarity": "SR",
+      "enemyHP": 55,
+      "rewardGrowth": 8,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "霜鳍海豹",
+          "faces": [
+            9,
+            9,
+            11
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "引魂灯灵",
+          "faces": [
+            8,
+            8,
+            13
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "月轮鸮",
+          "faces": [
+            9,
+            12,
+            15
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "夜刃猞猁",
+          "faces": [
+            8,
+            9,
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 9,
+      "rank": "normal",
+      "rarity": "SR",
+      "enemyHP": 61,
+      "rewardGrowth": 8,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "霜鳍海豹",
+          "faces": [
+            9,
+            9,
+            11
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "引魂灯灵",
+          "faces": [
+            8,
+            8,
+            13
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "月轮鸮",
+          "faces": [
+            9,
+            12,
+            15
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "夜刃猞猁",
+          "faces": [
+            8,
+            9,
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 10,
+      "rank": "boss",
+      "rarity": "SR",
+      "enemyHP": 84,
+      "rewardGrowth": 8,
+      "enemies": [
+        {
+          "id": "dragon",
+          "name": "裂霆翼龙",
+          "faces": [
+            9,
+            11,
+            13,
+            16
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 11,
+      "rank": "normal",
+      "rarity": "SSR",
+      "enemyHP": 76,
+      "rewardGrowth": 10,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "冰冠海狮",
+          "faces": [
+            11,
+            11,
+            13
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "冥灯灵君",
+          "faces": [
+            10,
+            10,
+            15
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "星冕贤鸮",
+          "faces": [
+            11,
+            14,
+            17
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "蚀月影王",
+          "faces": [
+            10,
+            11,
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 12,
+      "rank": "normal",
+      "rarity": "SSR",
+      "enemyHP": 83,
+      "rewardGrowth": 10,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "冰冠海狮",
+          "faces": [
+            11,
+            11,
+            13
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "冥灯灵君",
+          "faces": [
+            10,
+            10,
+            15
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "星冕贤鸮",
+          "faces": [
+            11,
+            14,
+            17
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "蚀月影王",
+          "faces": [
+            10,
+            11,
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 13,
+      "rank": "normal",
+      "rarity": "SSR",
+      "enemyHP": 86,
+      "rewardGrowth": 12,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "冰冠海狮",
+          "faces": [
+            12,
+            12,
+            14
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "冥灯灵君",
+          "faces": [
+            11,
+            11,
+            16
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "星冕贤鸮",
+          "faces": [
+            12,
+            15,
+            18
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "蚀月影王",
+          "faces": [
+            11,
+            12,
+            16
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 14,
+      "rank": "normal",
+      "rarity": "SSR",
+      "enemyHP": 92,
+      "rewardGrowth": 12,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "冰冠海狮",
+          "faces": [
+            12,
+            12,
+            14
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "冥灯灵君",
+          "faces": [
+            11,
+            11,
+            16
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "星冕贤鸮",
+          "faces": [
+            12,
+            15,
+            18
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "蚀月影王",
+          "faces": [
+            11,
+            12,
+            16
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 15,
+      "rank": "elite",
+      "rarity": "SSR",
+      "enemyHP": 127,
+      "rewardGrowth": 12,
+      "enemies": [
+        {
+          "id": "deer",
+          "name": "圣铃仙鹿",
+          "faces": [
+            12,
+            13,
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 16,
+      "rank": "normal",
+      "rarity": "SSR",
+      "enemyHP": 103,
+      "rewardGrowth": 14,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "冰冠海狮",
+          "faces": [
+            13,
+            13,
+            15
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "冥灯灵君",
+          "faces": [
+            12,
+            12,
+            17
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "星冕贤鸮",
+          "faces": [
+            13,
+            16,
+            19
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "蚀月影王",
+          "faces": [
+            12,
+            13,
+            17
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 17,
+      "rank": "normal",
+      "rarity": "SSR",
+      "enemyHP": 109,
+      "rewardGrowth": 14,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "冰冠海狮",
+          "faces": [
+            13,
+            13,
+            15
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "冥灯灵君",
+          "faces": [
+            12,
+            12,
+            17
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "星冕贤鸮",
+          "faces": [
+            13,
+            16,
+            19
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "蚀月影王",
+          "faces": [
+            12,
+            13,
+            17
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 18,
+      "rank": "normal",
+      "rarity": "SSR",
+      "enemyHP": 113,
+      "rewardGrowth": 14,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "冰冠海狮",
+          "faces": [
+            13,
+            13,
+            15
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "冥灯灵君",
+          "faces": [
+            12,
+            12,
+            17
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "星冕贤鸮",
+          "faces": [
+            13,
+            16,
+            19
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "蚀月影王",
+          "faces": [
+            12,
+            13,
+            17
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 19,
+      "rank": "normal",
+      "rarity": "SSR",
+      "enemyHP": 119,
+      "rewardGrowth": 16,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "冰冠海狮",
+          "faces": [
+            14,
+            14,
+            16
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "冥灯灵君",
+          "faces": [
+            13,
+            13,
+            18
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "星冕贤鸮",
+          "faces": [
+            14,
+            17,
+            20
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "蚀月影王",
+          "faces": [
+            13,
+            14,
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 20,
+      "rank": "boss",
+      "rarity": "SSR",
+      "enemyHP": 163,
+      "rewardGrowth": 16,
+      "enemies": [
+        {
+          "id": "dragon",
+          "name": "苍霆龙皇",
+          "faces": [
+            14,
+            16,
+            18,
+            21
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 21,
+      "rank": "normal",
+      "rarity": "SSR",
+      "enemyHP": 130,
+      "rewardGrowth": 16,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "冰冠海狮",
+          "faces": [
+            14,
+            14,
+            16
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "冥灯灵君",
+          "faces": [
+            13,
+            13,
+            18
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "星冕贤鸮",
+          "faces": [
+            14,
+            17,
+            20
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "蚀月影王",
+          "faces": [
+            13,
+            14,
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 22,
+      "rank": "normal",
+      "rarity": "SSR",
+      "enemyHP": 136,
+      "rewardGrowth": 18,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "冰冠海狮",
+          "faces": [
+            15,
+            15,
+            17
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "冥灯灵君",
+          "faces": [
+            14,
+            14,
+            19
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "星冕贤鸮",
+          "faces": [
+            15,
+            18,
+            21
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "蚀月影王",
+          "faces": [
+            14,
+            15,
+            19
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 23,
+      "rank": "normal",
+      "rarity": "SSR",
+      "enemyHP": 139,
+      "rewardGrowth": 18,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "冰冠海狮",
+          "faces": [
+            15,
+            15,
+            17
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "冥灯灵君",
+          "faces": [
+            14,
+            14,
+            19
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "星冕贤鸮",
+          "faces": [
+            15,
+            18,
+            21
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "蚀月影王",
+          "faces": [
+            14,
+            15,
+            19
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 24,
+      "rank": "normal",
+      "rarity": "SSR",
+      "enemyHP": 145,
+      "rewardGrowth": 18,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "冰冠海狮",
+          "faces": [
+            15,
+            15,
+            17
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "冥灯灵君",
+          "faces": [
+            14,
+            14,
+            19
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "星冕贤鸮",
+          "faces": [
+            15,
+            18,
+            21
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "蚀月影王",
+          "faces": [
+            14,
+            15,
+            19
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 25,
+      "rank": "elite",
+      "rarity": "SSR",
+      "enemyHP": 199,
+      "rewardGrowth": 20,
+      "enemies": [
+        {
+          "id": "deer",
+          "name": "圣铃仙鹿",
+          "faces": [
+            16,
+            17,
+            17
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 26,
+      "rank": "normal",
+      "rarity": "SSR",
+      "enemyHP": 156,
+      "rewardGrowth": 20,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "冰冠海狮",
+          "faces": [
+            16,
+            16,
+            18
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "冥灯灵君",
+          "faces": [
+            15,
+            15,
+            20
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "星冕贤鸮",
+          "faces": [
+            16,
+            19,
+            22
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "蚀月影王",
+          "faces": [
+            15,
+            16,
+            20
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 27,
+      "rank": "normal",
+      "rarity": "SSR",
+      "enemyHP": 162,
+      "rewardGrowth": 20,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "冰冠海狮",
+          "faces": [
+            16,
+            16,
+            18
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "冥灯灵君",
+          "faces": [
+            15,
+            15,
+            20
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "星冕贤鸮",
+          "faces": [
+            16,
+            19,
+            22
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "蚀月影王",
+          "faces": [
+            15,
+            16,
+            20
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 28,
+      "rank": "normal",
+      "rarity": "SSR",
+      "enemyHP": 166,
+      "rewardGrowth": 22,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "冰冠海狮",
+          "faces": [
+            17,
+            17,
+            19
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "冥灯灵君",
+          "faces": [
+            16,
+            16,
+            21
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "星冕贤鸮",
+          "faces": [
+            17,
+            20,
+            23
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "蚀月影王",
+          "faces": [
+            16,
+            17,
+            21
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 29,
+      "rank": "normal",
+      "rarity": "SSR",
+      "enemyHP": 172,
+      "rewardGrowth": 22,
+      "enemies": [
+        {
+          "id": "seal",
+          "name": "冰冠海狮",
+          "faces": [
+            17,
+            17,
+            19
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "冥灯灵君",
+          "faces": [
+            16,
+            16,
+            21
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "星冕贤鸮",
+          "faces": [
+            17,
+            20,
+            23
+          ]
+        },
+        {
+          "id": "lynx",
+          "name": "蚀月影王",
+          "faces": [
+            16,
+            17,
+            21
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 30,
+      "rank": "boss",
+      "rarity": "SSR",
+      "enemyHP": 235,
+      "rewardGrowth": 22,
+      "enemies": [
+        {
+          "id": "dragon",
+          "name": "苍霆龙皇",
+          "faces": [
+            18,
+            20,
+            22,
+            25
+          ]
+        }
+      ]
+    }
+  ],
+  "eggCheckpoints": [
+    {
+      "mapId": 0,
+      "map": "草叶海岸",
+      "step": 5,
+      "rank": "elite",
+      "searches": 2,
+      "rates": {
+        "normal": 85,
+        "SR": 14,
+        "SSR": 1
+      },
+      "atLeastOneSSRPercent": 1.99
+    },
+    {
+      "mapId": 0,
+      "map": "草叶海岸",
+      "step": 10,
+      "rank": "boss",
+      "searches": 3,
+      "rates": {
+        "normal": 70,
+        "SR": 25,
+        "SSR": 5
+      },
+      "atLeastOneSSRPercent": 14.2625
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 5,
+      "rank": "elite",
+      "searches": 2,
+      "rates": {
+        "normal": 55,
+        "SR": 35,
+        "SSR": 10
+      },
+      "atLeastOneSSRPercent": 19
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 10,
+      "rank": "boss",
+      "searches": 3,
+      "rates": {
+        "normal": 40,
+        "SR": 43,
+        "SSR": 17
+      },
+      "atLeastOneSSRPercent": 42.8213
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 15,
+      "rank": "elite",
+      "searches": 2,
+      "rates": {
+        "normal": 25,
+        "SR": 50,
+        "SSR": 25
+      },
+      "atLeastOneSSRPercent": 43.75
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 20,
+      "rank": "boss",
+      "searches": 3,
+      "rates": {
+        "normal": 10,
+        "SR": 55,
+        "SSR": 35
+      },
+      "atLeastOneSSRPercent": 72.5375
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 5,
+      "rank": "elite",
+      "searches": 2,
+      "rates": {
+        "normal": 5,
+        "SR": 55,
+        "SSR": 40
+      },
+      "atLeastOneSSRPercent": 64
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 10,
+      "rank": "boss",
+      "searches": 3,
+      "rates": {
+        "normal": 0,
+        "SR": 50,
+        "SSR": 50
+      },
+      "atLeastOneSSRPercent": 87.5
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 15,
+      "rank": "elite",
+      "searches": 2,
+      "rates": {
+        "normal": 0,
+        "SR": 40,
+        "SSR": 60
+      },
+      "atLeastOneSSRPercent": 84
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 20,
+      "rank": "boss",
+      "searches": 3,
+      "rates": {
+        "normal": 0,
+        "SR": 30,
+        "SSR": 70
+      },
+      "atLeastOneSSRPercent": 97.3
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 25,
+      "rank": "elite",
+      "searches": 2,
+      "rates": {
+        "normal": 0,
+        "SR": 20,
+        "SSR": 80
+      },
+      "atLeastOneSSRPercent": 96
+    },
+    {
+      "mapId": 2,
+      "map": "霜月雪原",
+      "step": 30,
+      "rank": "boss",
+      "searches": 3,
+      "rates": {
+        "normal": 0,
+        "SR": 0,
+        "SSR": 100
+      },
+      "atLeastOneSSRPercent": 100
+    }
+  ],
+  "hatching": {
+    "durationMs": 1800000,
+    "accelerationMs": 300000,
+    "rates": {
+      "normal": [
+        90,
+        9,
+        1
+      ],
+      "SR": [
+        0,
+        95,
+        5
+      ],
+      "SSR": [
+        0,
+        0,
+        100
+      ]
+    }
+  },
+  "breeding": {
+    "durationMs": 1800000
+  },
+  "visitActionMs": 2500,
+  "itemMultiplierArrays": {
+    "heal": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2,
+      3
+    ],
+    "boost": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      3,
+      3,
+      3,
+      3,
+      4
+    ]
+  },
+  "assets": [
+    {
+      "file": "assets/resources/art/ape-battle-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 2378613,
+      "sha256": "4507665850651fc32efa03e5cd0e07be8d1ef69ee623c47858bebf2c0ad9b0dd",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6291456
+    },
+    {
+      "file": "assets/resources/art/ape-evolution-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 866838,
+      "sha256": "44916fe52ef32f9bb06de7d2a30d6266627156874bc6ca39931cbf959b3b0c78",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/attack-die-a.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1286312,
+      "sha256": "82b921d4542b93139c37daa780f85c5a5d7a174f36a05c8d940c834c187eafc5",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/battle-arena.png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 2289453,
+      "sha256": "e2a6556f15ea7c34f0b6ca6d66072a611d838a776559098aaeb3efd10cee4810",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6291456
+    },
+    {
+      "file": "assets/resources/art/battle-start.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 993983,
+      "sha256": "c7bd09e10581853e0f53dbe89a88395d973706abe161b2d031bab485aa211069",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/beetle-battle-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 1766626,
+      "sha256": "623e2ceae6e2a69d3676481d8caef1c5a34dd70619f47da0a4aff8d963837df7",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6291456
+    },
+    {
+      "file": "assets/resources/art/beetle-evolution-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 797059,
+      "sha256": "c52ad769465ffae7abe02f2fcee4787c51120a0e83a0084c20a9ba4b67dd61bc",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/bird-battle-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 1660623,
+      "sha256": "071a34d1a11825965fe78810f7c19d6bd3452154182fdbdf0f1254aa150184fc",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6291456
+    },
+    {
+      "file": "assets/resources/art/bird-evolution-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1939422,
+      "sha256": "4a02e8ced983179b04f832053166876c8b9d4aab3fa9459e63f3531465dbf421",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/bud-battle-ref.png",
+      "width": 1774,
+      "height": 887,
+      "bytes": 1224941,
+      "sha256": "23e258978eb2379f4a30b3f3e7b9bbcd3b271d8e50776597e4a32d182d412891",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6294152
+    },
+    {
+      "file": "assets/resources/art/bud-battle.png",
+      "width": 1774,
+      "height": 887,
+      "bytes": 1170513,
+      "sha256": "f79da57a0efda59ef221c39759baab9087be9c81ff19a2406579b4dbf0ceddaa",
+      "loadedAtStartup": false,
+      "rgba8EstimateBytes": 6294152
+    },
+    {
+      "file": "assets/resources/art/bud-evolution-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2042067,
+      "sha256": "7f7d715875ecd4538990ca6fb6324b8a22be77a400a708ca2f1798f64dd0201b",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/bud.png",
+      "width": 506,
+      "height": 512,
+      "bytes": 252852,
+      "sha256": "5970fce7e45c70512f839d2e74186a624b150e3661e74f2541c42e9dc518c8bb",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 1036288
+    },
+    {
+      "file": "assets/resources/art/cotton-battle-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 1613163,
+      "sha256": "b2a888d73a623969ab89e029760a44980bdeda54436a247c1922d7f740281961",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6291456
+    },
+    {
+      "file": "assets/resources/art/cotton-evolution-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1660267,
+      "sha256": "1793f31012b999165805e64ef68ddd005ad592e26ae649d24fac98d8ed8cacda",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/deer-battle-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 1799570,
+      "sha256": "5580e838234662f188bd37485f3d01765c2c8ea09ec1ecf60451a9de915da210",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6291456
+    },
+    {
+      "file": "assets/resources/art/deer-evolution-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1841044,
+      "sha256": "d90f276b23edcb9be09d9139537ab41415411fee5b5d16740d1b026cb52d9d4a",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/dragon-battle-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 2075757,
+      "sha256": "595ee622fb2bbee419bdfe27634c5a50b49dbed58f39504a76b7ffa646361323",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6291456
+    },
+    {
+      "file": "assets/resources/art/dragon-evolution-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2571762,
+      "sha256": "df9b87974d25aefa2a1f7bfaf25fa7d2dfd68d90bad7b93b4fc47a1673db8993",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/egg-nest-v1.png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 2737885,
+      "sha256": "51adb99e2fb2cc959244ca3fb545e5ae0661c36b3fb6a5ab41277031e10a1454",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6291456
+    },
+    {
+      "file": "assets/resources/art/fox-battle-ref.png",
+      "width": 1774,
+      "height": 887,
+      "bytes": 1109577,
+      "sha256": "a59644536bd23ddaed455b13d2e574b061e43219ff19662ea8f4a760b8c91453",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6294152
+    },
+    {
+      "file": "assets/resources/art/fox-battle.png",
+      "width": 1774,
+      "height": 887,
+      "bytes": 1138718,
+      "sha256": "afd8ebc9cedc4f152842230aa382ee57b92f67b301e1ac01ec437721c0467a8a",
+      "loadedAtStartup": false,
+      "rgba8EstimateBytes": 6294152
+    },
+    {
+      "file": "assets/resources/art/fox-evolution-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1758397,
+      "sha256": "ca007def0e4796049c303607880be28bc18463222e5f24770ebabc5955424f68",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/fox.png",
+      "width": 512,
+      "height": 464,
+      "bytes": 271294,
+      "sha256": "ff8d8e6dc5c3ad0307aa68f2cf5735abf8f0b1ef97b630dca9d735c9ce665c5f",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 950272
+    },
+    {
+      "file": "assets/resources/art/ghost-battle-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 1661738,
+      "sha256": "05bdd88c5dd297937546733c8bbfeda500d50dd19f525ff95f848c3117130ce9",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6291456
+    },
+    {
+      "file": "assets/resources/art/ghost-evolution-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 683489,
+      "sha256": "940aa8337ec27546fac6f02ccaa7e4fa6e17b6365dbf5cde4372753e74b078ff",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/guard-shield.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1159417,
+      "sha256": "f41162d89b36a26ef5f60b6bc69f601520b6bfe29408689c833331716ca5fd49",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/heal-potion.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1084440,
+      "sha256": "f9008f4065e0a7cb6a7fff63a21c37d105c80b78a0fe69e039520f15bd705a7b",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/home-camp-v1.png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 2746606,
+      "sha256": "2ab36d2d98ec071a1e77dae7f02162b27324da41a1b09edc273e1920ef7d56f4",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6291456
+    },
+    {
+      "file": "assets/resources/art/loot-chest.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1403772,
+      "sha256": "a523ba4ba817dbc824da61c3643ff07252240c4f8180d5879675217122c165c2",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/lynx-battle-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 1940590,
+      "sha256": "26dab710c11a98d54e385e0bff5451ceb4e8247d933ed6ba6710b1e303734582",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6291456
+    },
+    {
+      "file": "assets/resources/art/lynx-evolution-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1814822,
+      "sha256": "bd8d72875a29008210c0dc50dc6d80762903053345cecbe4d7415dab9d096fc2",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/mole-battle-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 1547584,
+      "sha256": "dca2944addb37c4d2f0e38b154209eeede3af54d91dbd29407b9721318493f9f",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6291456
+    },
+    {
+      "file": "assets/resources/art/mole-evolution-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 810824,
+      "sha256": "22f36fe15ea1357f807c7e18c515986fbce121f6c9e7b61dee869c079df7a30e",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/otter-battle-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 1658699,
+      "sha256": "39e6fe9c2d8078fab42285b57791ac2b788d679916df5c6d55d2026d0478bc63",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6291456
+    },
+    {
+      "file": "assets/resources/art/otter-evolution-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1786531,
+      "sha256": "d07f0271bcbb44e80182a00e8290f5c23d8b1f445b9ebde18932cbec7990a258",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/owl-battle-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 2554345,
+      "sha256": "7a793c866b017f457c9a2f668664389179f8d63cf4a83d4ef8ff7d639c82e7fd",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6291456
+    },
+    {
+      "file": "assets/resources/art/owl-evolution-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1216450,
+      "sha256": "4de9ad69f16648bba226e3e88a3fe602dcae84de3ce7e53ffda984c709176973",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/power-potion.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1102756,
+      "sha256": "a85fd06fe54de79d1d1080966482f885929f3dbc09f80af3dfbfbd2b7cda76c8",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/refresh-enemy.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1015301,
+      "sha256": "5e685cfea9462d4a3177c19fcfdb43acc5311059bd0ced9f81493f4e8176ef26",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/rhino-battle-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 2176210,
+      "sha256": "d50e4865dd34c645fdd73cc06d2feb97ced2861bcf8fc44ce8f639317cc7ec72",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6291456
+    },
+    {
+      "file": "assets/resources/art/rhino-evolution-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2046229,
+      "sha256": "0367a886a3f4b773d1c50b21900b519ab800fa1cc0df27556fe2f961f15256f2",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/seal-battle-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 1396774,
+      "sha256": "39474e9a6f916a1b661e021df9d37441062863563477af52fcd6c590053436d8",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6291456
+    },
+    {
+      "file": "assets/resources/art/seal-evolution-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 862080,
+      "sha256": "85218a65dff730dfe40dc7fcf02a354c87c7e53fb3c6da90254d36eb76437bc3",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/settings-s2.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 870995,
+      "sha256": "8e10975fea2753ddca9185faf82d2ea47a1a535771c856f3c0ea2eb6b78f1c7a",
+      "loadedAtStartup": false,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/slug-battle-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 1861786,
+      "sha256": "afd8ae404df25111a58cf6d4412c0135dbb09dfceecb7b38d4d082d395f56bac",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6291456
+    },
+    {
+      "file": "assets/resources/art/slug-evolution-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2123686,
+      "sha256": "b49b3bbdecb864c6d27e1d8f725d95f3e47fd64de6823395ebb954f38e2a81d7",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/spark-battle-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 1517424,
+      "sha256": "f7804ddd0318781b3750d8a8b0af502dd4a8c7b8bc1d1fe6c2715134edbd8a5b",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6291456
+    },
+    {
+      "file": "assets/resources/art/spark-evolution-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1654593,
+      "sha256": "d787d1fe6c922d0f952b1e735f97f46e0590841c9e2e6230044b22d990c8bc31",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/turtle-battle-ref.png",
+      "width": 1774,
+      "height": 887,
+      "bytes": 1163584,
+      "sha256": "12f199a3cd3640752f79a83b6075ab7851c77e4c8ddcda5a74f8829d8590d34f",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6294152
+    },
+    {
+      "file": "assets/resources/art/turtle-battle.png",
+      "width": 1774,
+      "height": 887,
+      "bytes": 1003782,
+      "sha256": "95b78223d6b3d34659a6074f53a6ebdb923a1f91723d5fab941ed08c5655c67a",
+      "loadedAtStartup": false,
+      "rgba8EstimateBytes": 6294152
+    },
+    {
+      "file": "assets/resources/art/turtle-evolution-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1938276,
+      "sha256": "dd1ec0c09d7fe86a731ce2d1cf2f589bb3547b36e665df27cc2d21b7b6b23911",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 6290064
+    },
+    {
+      "file": "assets/resources/art/turtle.png",
+      "width": 512,
+      "height": 506,
+      "bytes": 227173,
+      "sha256": "a9459cd22fa0c50599d13ad01cb8ffd46ea3e7ec42b0f439cd1614c9bbe82928",
+      "loadedAtStartup": true,
+      "rgba8EstimateBytes": 1036288
+    }
+  ]
+}

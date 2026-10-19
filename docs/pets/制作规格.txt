@@ -1,3 +1,7 @@
+【历史版本，2026-10-19 已归档标注】
+当前资源规格与映射查 docs/ART-UI.md、docs/generated/design-data.json；当前54形态与地图身份查 docs/generated/TABLES.md。
+本文的14普通/2精英/2BOSS为旧系列美术分类，不是当前三图出怪身份。旧10关流程、胜利邀请/收服已过时。catalog.json保留基础系列资料，不能作为当前形态与地图数值配置。原记录保留如下。
+
 18 属性伙伴资源与接入规格 v0.4
 
 属性依据：宝可梦官方 18 属性分类，https://sg.portal-pokemon.com/game/type-chart/
