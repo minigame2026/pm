@@ -30,22 +30,22 @@ test('skill count exact interval boundaries for each pool size',()=>{
  const cases={1:[[0,1],[.999,1]],2:[[0,1],[.4999,1],[.5,2]],3:[[.49,2],[.5,3]],4:[[.29,2],[.3,3],[.699,3],[.7,4]],5:[[.19,2],[.2,3],[.49,3],[.5,4],[.79,4],[.8,5]],6:[[.19,3],[.2,4],[.49,4],[.5,5],[.79,5],[.8,6]],12:[[0,3],[.99,6]]};
  for(const [total,cs] of Object.entries(cases))for(const [roll,count] of cs)assert.equal(M.inheritedSkillCount(+total,roll),count);
 });
-function parents(){let s=M.fresh(47);s.pets[0].sex='female';s.pets[1].sex='male';s.pets[0].skills=['opening','charged','healing'];s.pets[1].skills=['armor','focus','barrier'];s.active=copy(s.pets[0]);s.reserve=copy(s.pets[1]);s.runRoster={};return s;}
+function parents(){let s=M.fresh(47,['fox','turtle','bud']);s.pets[0].sex='female';s.pets[1].sex='male';s.pets[0].skills=['opening','charged','healing'];s.pets[1].skills=['armor','focus','barrier'];s.active=copy(s.pets[0]);s.reserve=copy(s.pets[1]);s.runRoster={};s=M.assignPartySlot(s,s.pets[2].uid,0);return s;}
 test('breeding is timed, restart-safe, idempotent and produces an egg rather than a pet',()=>{
  let s=parents(),count=s.pets.length;s=M.startBreeding(s,s.pets[0].uid,s.pets[1].uid,2000);assert.ok(s.breeding);const genes=JSON.stringify(s.breeding.genes);assert.equal(M.startBreeding(s,s.pets[0].uid,s.pets[1].uid,3000),s);assert.equal(M.claimBreeding(s,2000+M.BREED_DURATION-1),s);
  s=roundtrip(s);s=M.restartRun(s,99);assert.equal(JSON.stringify(s.breeding.genes),genes);s=M.claimBreeding(s,2000+M.BREED_DURATION);assert.equal(s.pets.length,count-2);const egg=s.eggs.at(-1);assert.equal(JSON.stringify(egg.genes),genes);assert.equal(M.claimBreeding(s,99999999),s);s=roundtrip(s);
  s=M.startIncubation(s,egg.id,0,9000000);assert.equal(s.incubators[0].result,egg.rarity);s=M.claimHatch(s,0,9000000+M.HATCH_DURATION);const child=s.pets.at(-1);assert.equal(child.skills.join(),egg.genes.skills.join());assert.equal(child.baseHP,egg.genes.baseHP);assert.equal(child.rarity,egg.rarity);assert.equal(child.id,egg.affinity);assert.equal(child.faces.join(),egg.genes.baseFaces.join());assert.equal(s.pets.length,count-1);assert.equal(M.claimHatch(s,0,99999999),s);roundtrip(s);
 });
 test('independent inheritance is 50/50, ignores temporary upgrades, deduplicates max six skills',()=>{
- let s=parents();s.pets[0].rarity='SSR';s.pets[0].baseHP=41;s.active=copy(s.pets[0]);s.active.faces=[99,99,99];s.hpBonus=80;let motherForm=0,motherHP=0,motherAttack=0,mixed=0;
+ let s=parents();s.pets[0].rarity='SSR';s.pets[0].baseHP=41;s.runRoster[s.pets[0].uid]=copy(s.pets[0]);s.runRoster[s.pets[0].uid].faces=[99,99,99];s.hpBonus=80;let motherForm=0,motherHP=0,motherAttack=0,mixed=0;
  for(let i=0;i<3000;i++){s.breeding=null;s=M.startBreeding(s,s.pets[0].uid,s.pets[1].uid,i);const g=s.breeding.genes;motherForm+=g.id==='fox';motherHP+=g.baseHP===41;motherAttack+=g.baseFaces.join()==='1,3,7';mixed+=(g.id==='fox')!==(g.baseHP===41);assert.ok(g.skills.length>=3&&g.skills.length<=6);assert.equal(new Set(g.skills).size,g.skills.length);assert.ok(!g.baseFaces.includes(99));}
  for(const n of [motherForm,motherHP,motherAttack])assert.ok(n>1350&&n<1650,n);assert.ok(mixed>1000);
  const duplicate=parents();duplicate.pets[1].skills=['opening','charged','healing'];const n=M.startBreeding(duplicate,duplicate.pets[0].uid,duplicate.pets[1].uid,0);assert.ok(n.breeding.genes.skills.length<=3);
 });
 test('multiple attack, potion and defense skills trigger independently once',()=>{
- let s=parents();const p=s.pets[0];p.skills=['opening','venom','leech','healing','refund','charged'];s.active=copy(p);s=M.act(s,'challenge');s.hpRatio=.4;s.enemyHP=s.enemyMax=200;s.enemyAttack=2;s.attack=3;
+ let s=parents();const p=s.pets[0];p.skills=['opening','venom','leech','healing','refund','charged'];s.active=copy(p);s.runRoster={};s=M.act(s,'challenge');s.hpRatio=.4;s.enemyHP=s.enemyMax=200;s.enemyAttack=2;s.attack=3;
  s=M.act(s,'heal');assert.equal(s.potions,3);assert.ok(s.skill.usedCodes.includes('healing')&&s.skill.usedCodes.includes('refund'));s=M.act(s,'boost');assert.ok(s.skill.usedCodes.includes('charged'));s=M.act(s,'attack');assert.equal(new Set(s.skill.usedCodes).size,6);assert.equal(s.skill.used,true);s=M.act(s,'heal');assert.equal(s.potions,2);roundtrip(s);
- let d=parents();d.pets[0].skills=['focus','barrier','armor','evade','emergency'];d.active=copy(d.pets[0]);d=M.act(d,'challenge');d.enemyHP=d.enemyMax=200;d=M.act(d,'guard');for(const c of ['focus','barrier','armor','evade'])assert.ok(d.skill.usedCodes.includes(c));assert.equal(d.attack,Math.max(...d.active.faces));roundtrip(d);
+ let d=parents();d.pets[0].skills=['focus','barrier','armor','evade','emergency'];d.active=copy(d.pets[0]);d.runRoster={};d=M.act(d,'challenge');d.enemyHP=d.enemyMax=200;d=M.act(d,'guard');for(const c of ['focus','barrier','armor','evade'])assert.ok(d.skill.usedCodes.includes(c));assert.equal(d.attack,Math.max(...d.active.faces));roundtrip(d);
 });
 test('invalid sex pair and malformed inherited data rejected',()=>{
  const s=parents();assert.equal(M.startBreeding(s,s.pets[1].uid,s.pets[0].uid,0),s);assert.equal(M.startBreeding(s,s.pets[0].uid,s.pets[0].uid,0),s);

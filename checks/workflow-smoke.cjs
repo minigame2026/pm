@@ -6,6 +6,7 @@ const {chromium}=require(config.playwright),assert=require('node:assert/strict')
  await page.goto(config.url);await page.waitForFunction(()=>globalThis.__pm?.ready,null,{timeout:60000});
  const state=()=>page.evaluate(()=>__pm.snapshot());
  const tap=async id=>{await page.waitForFunction(()=>!__pm.animating());const p=await page.evaluate(id=>__pm.controls()[id],id),k=page.viewportSize().width/390;assert.ok(p,'missing control '+id);await page.touchscreen.tap(p.x*k,p.y*k);await page.waitForTimeout(220);await page.waitForFunction(()=>!__pm.animating());};
+ await tap('start-game');await tap('hero-confirm');await tap('starter-confirm');
  await tap('home-explore');await tap('adventure-go');await tap('challenge');assert.equal((await state()).phase,'battle');
  const before=await state();await tap('attack');const after=await state();assert.ok(after.enemyHP<before.enemyHP||after.phase!=='battle');
  await page.screenshot({path:__dirname+'/workflow-battle.png'});await page.reload();await page.waitForFunction(()=>globalThis.__pm?.ready);

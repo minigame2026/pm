@@ -1,0 +1,46 @@
+{
+  "generator": "built-in imagegen",
+  "afternoon": "assets/resources/art/home-camp-v1.png",
+  "images": [
+    {
+      "id": "dawn",
+      "name": "凌晨",
+      "desc": "predawn 5 AM, pale pink and lavender first light on eastern horizon, cool blue shadowed grass, wisps of sea mist, a few fading stars, cabin windows gently glowing warm amber. Quiet awakening",
+      "prompt": "Edit the reference image into 凌晨 time of day for the same mobile creature RPG home camp. Output portrait 1024x1536 opaque image. STRICT preserve EXACT camera framing, all architecture and positions: cottage left, greenhouse right, distant island ocean center, spacious empty grass center and foreground path. Do not add people, creatures, pets, UI, labels, text or logos. Change lighting, sky and atmosphere only: predawn 5 AM, pale pink and lavender first light on eastern horizon, cool blue shadowed grass, wisps of sea mist, a few fading stars, cabin windows gently glowing warm amber. Quiet awakening. Keep the original polished cel shaded hand-painted anime adventure game style, appealing color harmony. The central grassy space remains empty to overlay a pet. Do not alter the layout or building design. Full image, no frame.",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-cea7f6ba-6bc2-4766-b7f7-c4e62b6e769a.png",
+      "finalPath": "assets/resources/art/home-dawn-v1.png"
+    },
+    {
+      "id": "morning",
+      "name": "上午",
+      "desc": "9 AM clear fresh morning, pale luminous blue sky and delicate white clouds, angled golden sunlight from right, fresh dewy emerald grass and sparkly turquoise sea, longer soft shadows than midday",
+      "prompt": "Edit the reference image into 上午 time of day for the same mobile creature RPG home camp. Output portrait 1024x1536 opaque image. STRICT preserve EXACT camera framing, all architecture and positions: cottage left, greenhouse right, distant island ocean center, spacious empty grass center and foreground path. Do not add people, creatures, pets, UI, labels, text or logos. Change lighting, sky and atmosphere only: 9 AM clear fresh morning, pale luminous blue sky and delicate white clouds, angled golden sunlight from right, fresh dewy emerald grass and sparkly turquoise sea, longer soft shadows than midday. Keep the original polished cel shaded hand-painted anime adventure game style, appealing color harmony. The central grassy space remains empty to overlay a pet. Do not alter the layout or building design. Full image, no frame.",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-80969de8-3a92-4152-a7e0-8a85b4b9e902.png",
+      "finalPath": "assets/resources/art/home-morning-v1.png"
+    },
+    {
+      "id": "dusk",
+      "name": "傍晚",
+      "desc": "6 PM golden sunset, orange pink peach sky with softly glowing clouds, coral golden sea reflection, amber light on house walls and grass, violet shadows, cozy cabin windows just beginning to glow",
+      "prompt": "Edit the reference image into 傍晚 time of day for the same mobile creature RPG home camp. Output portrait 1024x1536 opaque image. STRICT preserve EXACT camera framing, all architecture and positions: cottage left, greenhouse right, distant island ocean center, spacious empty grass center and foreground path. Do not add people, creatures, pets, UI, labels, text or logos. Change lighting, sky and atmosphere only: 6 PM golden sunset, orange pink peach sky with softly glowing clouds, coral golden sea reflection, amber light on house walls and grass, violet shadows, cozy cabin windows just beginning to glow. Keep the original polished cel shaded hand-painted anime adventure game style, appealing color harmony. The central grassy space remains empty to overlay a pet. Do not alter the layout or building design. Full image, no frame.",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-0bde283f-9762-41d1-8e6f-ab7c41dd48ba.png",
+      "finalPath": "assets/resources/art/home-dusk-v1.png"
+    },
+    {
+      "id": "evening",
+      "name": "晚上",
+      "desc": "9 PM cozy night, rich readable blue sky with gentle crescent moon and stars, softly moonlit turquoise ocean, warm honey window lights and subtle garden lantern illumination, dark teal grass still clearly visible, luminous welcoming atmosphere",
+      "prompt": "Edit the reference image into 晚上 time of day for the same mobile creature RPG home camp. Output portrait 1024x1536 opaque image. STRICT preserve EXACT camera framing, all architecture and positions: cottage left, greenhouse right, distant island ocean center, spacious empty grass center and foreground path. Do not add people, creatures, pets, UI, labels, text or logos. Change lighting, sky and atmosphere only: 9 PM cozy night, rich readable blue sky with gentle crescent moon and stars, softly moonlit turquoise ocean, warm honey window lights and subtle garden lantern illumination, dark teal grass still clearly visible, luminous welcoming atmosphere. Keep the original polished cel shaded hand-painted anime adventure game style, appealing color harmony. The central grassy space remains empty to overlay a pet. Do not alter the layout or building design. Full image, no frame.",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-9169156a-ab8d-46b9-92da-249689181339.png",
+      "finalPath": "assets/resources/art/home-evening-v1.png"
+    },
+    {
+      "id": "midnight",
+      "name": "深夜",
+      "desc": "1 AM deep tranquil midnight, deep indigo star-filled sky and faint Milky Way, silver moon rim light on coast and greenhouse, cabin mostly asleep with just one low amber window, cool dark blue grass and deep cobalt sea. Distinctly darker than evening but retain readable scenery, not black",
+      "prompt": "Edit the reference image into 深夜 time of day for the same mobile creature RPG home camp. Output portrait 1024x1536 opaque image. STRICT preserve EXACT camera framing, all architecture and positions: cottage left, greenhouse right, distant island ocean center, spacious empty grass center and foreground path. Do not add people, creatures, pets, UI, labels, text or logos. Change lighting, sky and atmosphere only: 1 AM deep tranquil midnight, deep indigo star-filled sky and faint Milky Way, silver moon rim light on coast and greenhouse, cabin mostly asleep with just one low amber window, cool dark blue grass and deep cobalt sea. Distinctly darker than evening but retain readable scenery, not black. Keep the original polished cel shaded hand-painted anime adventure game style, appealing color harmony. The central grassy space remains empty to overlay a pet. Do not alter the layout or building design. Full image, no frame.",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-2e8766ed-98be-4224-b376-a4b92c163fb2.png",
+      "finalPath": "assets/resources/art/home-midnight-v1.png"
+    }
+  ]
+}

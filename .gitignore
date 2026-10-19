@@ -4,6 +4,7 @@
 /build/
 /profiles/
 /node_modules/
+/.serena/
 
 # Keep test scripts; exclude generated checks and screenshots
 /checks/*

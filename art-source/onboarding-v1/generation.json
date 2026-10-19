@@ -1,0 +1,21 @@
+{
+  "tool": "built-in image_gen",
+  "date": "2026-10-19",
+  "assets": [
+    {
+      "target": "assets/resources/art/login-cover-v1.png",
+      "source": "C:/Users/k/.codex/generated_images/01a13a87-2b39-78e2-95d0-45f08d572726/exec-9f5a0f7e-b48c-4a58-bdd0-41f36a419494.png",
+      "prompt": "Use case: stylized-concept. Asset: full-bleed portrait 2:3 mobile monster-collecting dice adventure title background, no interface. Reference images define the original pets: fluffy orange cream-tipped fox, tiny pale green leafy flower-backed dinosaur, round aqua otter with bubble necklace (otter reference contains two angles of ONE pet). Paint an exciting polished nostalgic handheld monster RPG anime cover, clean expressive outlines and cel-shading, lovable original creatures. Hero composition in center: a large ivory rounded dice with warm gold edges, correctly arranged dark pips, leaping orange fox on the left, small green dinosaur on right, blue otter near foreground, clearly recognizable from references. Several smaller colored dice floating in a gentle sweeping arc; sparkling hopeful adventure mood. Sunny seaside grassy route, distant blue mountains and azure ocean, soft white clouds. Keep upper 18 percent calm sky for title overlay; center pets and dice in middle 22-68 percent; lower 22 percent quiet cream grass-path for ONE game start button. Camera close enough for pets and dice to read on phone. No people, no text, no logos, no letters, no UI, no buttons, no watermark. High-quality production illustration."
+    },
+    {
+      "target": "assets/resources/art/trainer-trio-v1.png",
+      "source": "C:/Users/k/.codex/generated_images/01a13a87-2b39-78e2-95d0-45f08d572726/exec-7840e104-cb08-43d9-a851-d03b4e617179.png",
+      "prompt": "Use case: stylized-concept. Asset: a single transparent-background character SELECT sprite atlas, wide 3:2 canvas with exactly three original FULL-BODY teenage adventure trainers side-by-side, equal-size separate columns, generous transparent gutters, no touching, shoes and hats fully inside canvas. Three distinct figures at x=1/6, 1/2, 5/6, all front 3/4 facing viewer, charming friendly confident expressions, approximately 5-head-tall classic handheld anime monster-RPG protagonist proportions, clean dark linework, rich flat cel shading, same scale and light, production-quality polished illustration. LEFT male: black tousled hair, bright vermilion peaked cap with a tiny square dice emblem, red short jacket over cream tee, dark teal knee shorts, adventure sneakers, small tan explorer bag, one hand adjusting cap, other holds a tiny speckled egg safely. CENTER female: dark navy shoulder-length hair, soft ivory knit adventure cap, mint jacket and coral scarf, modest navy skirt over shorts, calf boots, small egg nursery pouch, cheerful open welcoming pose, evokes a caring energetic classic Sinnoh trainer without copying exact outfit. RIGHT female: warm chestnut long wavy hair, raspberry wide-brim travel hat, cream blouse and blue waistcoat, modest coral pleated skirt, dark ankle boots, small satchel with green medicine-bottle emblem, one hand on hip and the other waving, elegant upbeat traveling trainer. Nostalgic homage to Red, Dawn and Serena archetypes but original clothing, faces and accessories. No Pokemon logos, no Pokeballs, no pets, no text, no names, no panels, no circles, no shadows on ground. Real transparent alpha everywhere outside characters."
+    }
+  ],
+  "references": [
+    "https://diamondpearl.pokemon.com/en-ca/story/",
+    "https://www.pokemon.co.jp/ex/xy/character/02.html"
+  ],
+  "note": "Original homage designs; no claim of a verified popularity ranking. PNG pixels preserved unchanged."
+}

@@ -1,0 +1,123 @@
+{
+  "generator": "built-in imagegen",
+  "items": [
+    {
+      "n": 2,
+      "name": "熔岩山径",
+      "desc": "volcanic mountain trail, warm ochre basalt arena, red-orange lava streams only at far side edges, distant volcano plume, layered charcoal cliffs and amber light, welcoming colorful adventure not horror",
+      "kind": "battle",
+      "prompt": "Create a finished portrait 1024x1536 game background for a mobile creature collecting RPG. Use the attached battle image as composition and painted anime videogame style reference. Repaint ALL environment to fit this new region: 熔岩山径: volcanic mountain trail, warm ochre basalt arena, red-orange lava streams only at far side edges, distant volcano plume, layered charcoal cliffs and amber light, welcoming colorful adventure not horror. CRITICAL preserve the battle camera and layout: horizon about 33% from top, entire lower two thirds a broad clear smooth solid walkable flat arena ground receding toward horizon. Player will be placed bottom-left, enemy upper-right. No illustrated circles/platform markers, no characters or monsters. Large landmarks and decoration only distant upper third or extreme edges. Near/far perspective matches reference. Hand-painted polished classic Japanese monster-adventure game background, beautiful cel-shaded color shapes, controlled texture, appealing vivid palette, readable silhouettes, atmospheric depth. Entire image opaque. NO UI, NO text, NO logo, NO people, NO pets, NO eggs, NO baked shadows of characters. Not a collage.",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-56a103b7-8c9e-4d6d-83e2-53632a99334b.png",
+      "asset": "region-2-battle-v1",
+      "path": "assets/resources/art/region-2-battle-v1.png",
+      "bytes": 2454818
+    },
+    {
+      "n": 2,
+      "name": "熔岩山径",
+      "desc": "volcanic mountain trail, warm ochre basalt arena, red-orange lava streams only at far side edges, distant volcano plume, layered charcoal cliffs and amber light, welcoming colorful adventure not horror",
+      "kind": "nest",
+      "prompt": "Create a finished portrait 1024x1536 game background for a mobile creature collecting RPG. Use the attached egg nest image as composition and painted anime videogame style reference. Repaint ALL environment to fit this new region: 熔岩山径: volcanic mountain trail, warm ochre basalt arena, red-orange lava streams only at far side edges, distant volcano plume, layered charcoal cliffs and amber light, welcoming colorful adventure not horror. CRITICAL preserve composition: one EMPTY broad oval egg nest centered x=50%,y=47% from top, nest opening spanning roughly x=20%-80%,y=40%-55%. Empty dark soft lining, absolutely no eggs or creatures; gameplay overlays an egg at the nest center. Build nest from materials appropriate to the region: safe soft grass, reeds or magical fibers, with regional stones/plants at its outer edge. Keep lower-left open for a character portrait overlay and top center quiet for title. Upper half shows this region's recognizable landscape, lower area is approach ground. Hand-painted polished classic Japanese monster-adventure game background, beautiful cel-shaded color shapes, controlled texture, appealing vivid palette, readable silhouettes, atmospheric depth. Entire image opaque. NO UI, NO text, NO logo, NO people, NO pets, NO eggs, NO baked shadows of characters. Not a collage.",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-2311ac60-44a6-472b-9a50-5eab837c6301.png",
+      "asset": "region-2-nest-v1",
+      "path": "assets/resources/art/region-2-nest-v1.png",
+      "bytes": 2982826
+    },
+    {
+      "n": 3,
+      "name": "霜月雪原",
+      "desc": "moonlit snowy plateau, pale icy blue snow ground with lavender shadows, frosted pines, distant snowy mountains, gentle pale moon and soft aurora, readable bright cool fantasy",
+      "kind": "battle",
+      "prompt": "Create a finished portrait 1024x1536 game background for a mobile creature collecting RPG. Use the attached battle image as composition and painted anime videogame style reference. Repaint ALL environment to fit this new region: 霜月雪原: moonlit snowy plateau, pale icy blue snow ground with lavender shadows, frosted pines, distant snowy mountains, gentle pale moon and soft aurora, readable bright cool fantasy. CRITICAL preserve the battle camera and layout: horizon about 33% from top, entire lower two thirds a broad clear smooth solid walkable flat arena ground receding toward horizon. Player will be placed bottom-left, enemy upper-right. No illustrated circles/platform markers, no characters or monsters. Large landmarks and decoration only distant upper third or extreme edges. Near/far perspective matches reference. Hand-painted polished classic Japanese monster-adventure game background, beautiful cel-shaded color shapes, controlled texture, appealing vivid palette, readable silhouettes, atmospheric depth. Entire image opaque. NO UI, NO text, NO logo, NO people, NO pets, NO eggs, NO baked shadows of characters. Not a collage.",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-39bcdd0e-b7f5-4d1d-9900-4eae3d8ba574.png",
+      "asset": "region-3-battle-v1",
+      "path": "assets/resources/art/region-3-battle-v1.png",
+      "bytes": 2545935
+    },
+    {
+      "n": 3,
+      "name": "霜月雪原",
+      "desc": "moonlit snowy plateau, pale icy blue snow ground with lavender shadows, frosted pines, distant snowy mountains, gentle pale moon and soft aurora, readable bright cool fantasy",
+      "kind": "nest",
+      "prompt": "Create a finished portrait 1024x1536 game background for a mobile creature collecting RPG. Use the attached egg nest image as composition and painted anime videogame style reference. Repaint ALL environment to fit this new region: 霜月雪原: moonlit snowy plateau, pale icy blue snow ground with lavender shadows, frosted pines, distant snowy mountains, gentle pale moon and soft aurora, readable bright cool fantasy. CRITICAL preserve composition: one EMPTY broad oval egg nest centered x=50%,y=47% from top, nest opening spanning roughly x=20%-80%,y=40%-55%. Empty dark soft lining, absolutely no eggs or creatures; gameplay overlays an egg at the nest center. Build nest from materials appropriate to the region: safe soft grass, reeds or magical fibers, with regional stones/plants at its outer edge. Keep lower-left open for a character portrait overlay and top center quiet for title. Upper half shows this region's recognizable landscape, lower area is approach ground. Hand-painted polished classic Japanese monster-adventure game background, beautiful cel-shaded color shapes, controlled texture, appealing vivid palette, readable silhouettes, atmospheric depth. Entire image opaque. NO UI, NO text, NO logo, NO people, NO pets, NO eggs, NO baked shadows of characters. Not a collage.",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-ee686c87-48cf-4ebd-8a38-570eedbb8a3c.png",
+      "asset": "region-3-nest-v1",
+      "path": "assets/resources/art/region-3-nest-v1.png",
+      "bytes": 2996503
+    },
+    {
+      "n": 4,
+      "name": "翠风群岛",
+      "desc": "sunny wind-swept island chain, light sandy grassy plateau, turquoise ocean vista and distant lush emerald rocky islets, wind curved palm trees and white clouds, cheerful breezy tropical adventure",
+      "kind": "battle",
+      "prompt": "Create a finished portrait 1024x1536 game background for a mobile creature collecting RPG. Use the attached battle image as composition and painted anime videogame style reference. Repaint ALL environment to fit this new region: 翠风群岛: sunny wind-swept island chain, light sandy grassy plateau, turquoise ocean vista and distant lush emerald rocky islets, wind curved palm trees and white clouds, cheerful breezy tropical adventure. CRITICAL preserve the battle camera and layout: horizon about 33% from top, entire lower two thirds a broad clear smooth solid walkable flat arena ground receding toward horizon. Player will be placed bottom-left, enemy upper-right. No illustrated circles/platform markers, no characters or monsters. Large landmarks and decoration only distant upper third or extreme edges. Near/far perspective matches reference. Hand-painted polished classic Japanese monster-adventure game background, beautiful cel-shaded color shapes, controlled texture, appealing vivid palette, readable silhouettes, atmospheric depth. Entire image opaque. NO UI, NO text, NO logo, NO people, NO pets, NO eggs, NO baked shadows of characters. Not a collage.",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-95e06bb7-0ff7-4d41-82e4-30122067f699.png",
+      "asset": "region-4-battle-v1",
+      "path": "assets/resources/art/region-4-battle-v1.png",
+      "bytes": 2672441
+    },
+    {
+      "n": 4,
+      "name": "翠风群岛",
+      "desc": "sunny wind-swept island chain, light sandy grassy plateau, turquoise ocean vista and distant lush emerald rocky islets, wind curved palm trees and white clouds, cheerful breezy tropical adventure",
+      "kind": "nest",
+      "prompt": "Create a finished portrait 1024x1536 game background for a mobile creature collecting RPG. Use the attached egg nest image as composition and painted anime videogame style reference. Repaint ALL environment to fit this new region: 翠风群岛: sunny wind-swept island chain, light sandy grassy plateau, turquoise ocean vista and distant lush emerald rocky islets, wind curved palm trees and white clouds, cheerful breezy tropical adventure. CRITICAL preserve composition: one EMPTY broad oval egg nest centered x=50%,y=47% from top, nest opening spanning roughly x=20%-80%,y=40%-55%. Empty dark soft lining, absolutely no eggs or creatures; gameplay overlays an egg at the nest center. Build nest from materials appropriate to the region: safe soft grass, reeds or magical fibers, with regional stones/plants at its outer edge. Keep lower-left open for a character portrait overlay and top center quiet for title. Upper half shows this region's recognizable landscape, lower area is approach ground. Hand-painted polished classic Japanese monster-adventure game background, beautiful cel-shaded color shapes, controlled texture, appealing vivid palette, readable silhouettes, atmospheric depth. Entire image opaque. NO UI, NO text, NO logo, NO people, NO pets, NO eggs, NO baked shadows of characters. Not a collage.",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-2b0aec0a-105a-4b37-a6c7-b7951090d509.png",
+      "asset": "region-4-nest-v1",
+      "path": "assets/resources/art/region-4-nest-v1.png",
+      "bytes": 3102072
+    },
+    {
+      "n": 5,
+      "name": "赤雷荒原",
+      "desc": "dramatic red sandstone badlands, broad terracotta earth and amber grass, towering red mesas, dark violet distant thunderclouds and subtle gold lightning in sky, luminous warm readable foreground",
+      "kind": "battle",
+      "prompt": "Create a finished portrait 1024x1536 game background for a mobile creature collecting RPG. Use the attached battle image as composition and painted anime videogame style reference. Repaint ALL environment to fit this new region: 赤雷荒原: dramatic red sandstone badlands, broad terracotta earth and amber grass, towering red mesas, dark violet distant thunderclouds and subtle gold lightning in sky, luminous warm readable foreground. CRITICAL preserve the battle camera and layout: horizon about 33% from top, entire lower two thirds a broad clear smooth solid walkable flat arena ground receding toward horizon. Player will be placed bottom-left, enemy upper-right. No illustrated circles/platform markers, no characters or monsters. Large landmarks and decoration only distant upper third or extreme edges. Near/far perspective matches reference. Hand-painted polished classic Japanese monster-adventure game background, beautiful cel-shaded color shapes, controlled texture, appealing vivid palette, readable silhouettes, atmospheric depth. Entire image opaque. NO UI, NO text, NO logo, NO people, NO pets, NO eggs, NO baked shadows of characters. Not a collage.",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-1f688aad-fc71-41d4-8ceb-d9969d0bd65e.png",
+      "asset": "region-5-battle-v1",
+      "path": "assets/resources/art/region-5-battle-v1.png",
+      "bytes": 2545068
+    },
+    {
+      "n": 5,
+      "name": "赤雷荒原",
+      "desc": "dramatic red sandstone badlands, broad terracotta earth and amber grass, towering red mesas, dark violet distant thunderclouds and subtle gold lightning in sky, luminous warm readable foreground",
+      "kind": "nest",
+      "prompt": "Create a finished portrait 1024x1536 game background for a mobile creature collecting RPG. Use the attached egg nest image as composition and painted anime videogame style reference. Repaint ALL environment to fit this new region: 赤雷荒原: dramatic red sandstone badlands, broad terracotta earth and amber grass, towering red mesas, dark violet distant thunderclouds and subtle gold lightning in sky, luminous warm readable foreground. CRITICAL preserve composition: one EMPTY broad oval egg nest centered x=50%,y=47% from top, nest opening spanning roughly x=20%-80%,y=40%-55%. Empty dark soft lining, absolutely no eggs or creatures; gameplay overlays an egg at the nest center. Build nest from materials appropriate to the region: safe soft grass, reeds or magical fibers, with regional stones/plants at its outer edge. Keep lower-left open for a character portrait overlay and top center quiet for title. Upper half shows this region's recognizable landscape, lower area is approach ground. Hand-painted polished classic Japanese monster-adventure game background, beautiful cel-shaded color shapes, controlled texture, appealing vivid palette, readable silhouettes, atmospheric depth. Entire image opaque. NO UI, NO text, NO logo, NO people, NO pets, NO eggs, NO baked shadows of characters. Not a collage.",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-91bd39e9-aea1-46f5-b685-4c39122d4de4.png",
+      "asset": "region-5-nest-v1",
+      "path": "assets/resources/art/region-5-nest-v1.png",
+      "bytes": 2964342
+    },
+    {
+      "n": 6,
+      "name": "星渊圣域",
+      "desc": "celestial sanctuary, pale blue-violet ancient stone platform, distant floating crystalline islands and monumental softly glowing star arches, deep azure starry sky and teal nebula, majestic magical endgame atmosphere",
+      "kind": "battle",
+      "prompt": "Create a finished portrait 1024x1536 game background for a mobile creature collecting RPG. Use the attached battle image as composition and painted anime videogame style reference. Repaint ALL environment to fit this new region: 星渊圣域: celestial sanctuary, pale blue-violet ancient stone platform, distant floating crystalline islands and monumental softly glowing star arches, deep azure starry sky and teal nebula, majestic magical endgame atmosphere. CRITICAL preserve the battle camera and layout: horizon about 33% from top, entire lower two thirds a broad clear smooth solid walkable flat arena ground receding toward horizon. Player will be placed bottom-left, enemy upper-right. No illustrated circles/platform markers, no characters or monsters. Large landmarks and decoration only distant upper third or extreme edges. Near/far perspective matches reference. Hand-painted polished classic Japanese monster-adventure game background, beautiful cel-shaded color shapes, controlled texture, appealing vivid palette, readable silhouettes, atmospheric depth. Entire image opaque. NO UI, NO text, NO logo, NO people, NO pets, NO eggs, NO baked shadows of characters. Not a collage.",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-00bfea7c-ba05-46fc-8b62-80221dcd4efa.png",
+      "asset": "region-6-battle-v1",
+      "path": "assets/resources/art/region-6-battle-v1.png",
+      "bytes": 2715026
+    },
+    {
+      "n": 6,
+      "name": "星渊圣域",
+      "desc": "celestial sanctuary, pale blue-violet ancient stone platform, distant floating crystalline islands and monumental softly glowing star arches, deep azure starry sky and teal nebula, majestic magical endgame atmosphere",
+      "kind": "nest",
+      "prompt": "Create a finished portrait 1024x1536 game background for a mobile creature collecting RPG. Use the attached egg nest image as composition and painted anime videogame style reference. Repaint ALL environment to fit this new region: 星渊圣域: celestial sanctuary, pale blue-violet ancient stone platform, distant floating crystalline islands and monumental softly glowing star arches, deep azure starry sky and teal nebula, majestic magical endgame atmosphere. CRITICAL preserve composition: one EMPTY broad oval egg nest centered x=50%,y=47% from top, nest opening spanning roughly x=20%-80%,y=40%-55%. Empty dark soft lining, absolutely no eggs or creatures; gameplay overlays an egg at the nest center. Build nest from materials appropriate to the region: safe soft grass, reeds or magical fibers, with regional stones/plants at its outer edge. Keep lower-left open for a character portrait overlay and top center quiet for title. Upper half shows this region's recognizable landscape, lower area is approach ground. Hand-painted polished classic Japanese monster-adventure game background, beautiful cel-shaded color shapes, controlled texture, appealing vivid palette, readable silhouettes, atmospheric depth. Entire image opaque. NO UI, NO text, NO logo, NO people, NO pets, NO eggs, NO baked shadows of characters. Not a collage.",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-318dbf1d-51f7-4d52-b788-6c653e3f573c.png",
+      "asset": "region-6-nest-v1",
+      "path": "assets/resources/art/region-6-nest-v1.png",
+      "bytes": 3202437
+    },
+    {
+      "asset": "region-pads-v1",
+      "kind": "pads",
+      "prompt": "Game asset sprite sheet, transparent background, portrait canvas 1024x1536. Exactly FIVE separate flat elliptical battle ground pads arranged in ONE VERTICAL COLUMN, one per equal-height row, generous completely transparent gaps. ALL five pads same low camera angle and perspective, broad horizontal oval, about 4 to 1 width-to-height including small edge thickness, maximum pad width 850 pixels. Every pad fully contained. Empty center where a monster's feet will stand, very shallow terrain patch NOT floating tall pedestal, not a ring with an empty hole. Classic polished Japanese anime creature RPG handpainted cel-shaded style, fine but readable material strokes, soft subtle ground contact shadow only. Top to bottom in this exact order: 1 volcanic dark ochre basalt flat oval with a few subtle amber lava cracks near outer rim and safe smooth warm stone center, 2 frosty pale blue snowy flat oval with thin icy rim and small ice chips, 3 sunlit sandy grass oval with pale warm sand center, emerald grass edging and a couple tiny shells, 4 red sandstone badlands oval with thin terracotta crag rim, cracked ochre earth surface and sparse golden grass, 5 celestial pale lilac marble oval with delicate gold concentric engraving and tiny cyan crystalline edge highlights. NO pets, people, eggs, text, labels, scene backgrounds, borders or frames. Transparency around each separate oval is essential. Do not connect the five rows. These pads will sit under sprites on game backgrounds, so keep all protrusions short and center flat.",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-c7070d4c-d0fd-4633-a367-50a710d3fcab.png",
+      "path": "assets/resources/art/region-pads-v1.png",
+      "bytes": 2416948
+    }
+  ]
+}

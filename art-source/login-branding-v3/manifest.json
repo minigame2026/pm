@@ -1,0 +1,17 @@
+{
+  "generator": "built-in imagegen",
+  "images": [
+    {
+      "id": "title",
+      "prompt": "Create an ORIGINAL polished mobile monster-collecting adventure game title logo, transparent background PNG, landscape composition approx 1536x640. It evokes the cheerful classic Japanese pocket-creature RPG logo aesthetic: chunky playful custom Chinese lettering, sunny yellow-gold faces, thick cobalt blue outlines, crisp white outer keyline, restrained dimensional dark-blue extrusion and highlights, slightly arched energetic silhouette. Exact MAIN TEXT in one horizontal row: 骰子宠物精灵 . All six Chinese characters must be legible and correct. Below it a smaller integrated deep-blue ribbon with exact white Chinese subtitle: 掷出惊喜 · 遇见伙伴 . Maintain readable spacious lettering, main text dominant. Tiny restrained star highlights at ends only. No characters, no creatures, no dice (the cover already has exactly one), no Pokeball, no Pokemon words, no existing franchise emblem, no extra words. No scenery or solid backdrop. Tight but safe transparent margin around all art, beautifully balanced logo suitable for 350px-wide mobile display.",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-1a3d14ea-fc11-400a-bf20-d5820120d544.png",
+      "finalPath": "assets/resources/art/login-title-v3.png"
+    },
+    {
+      "id": "button",
+      "prompt": "Create one ORIGINAL premium mobile creature-adventure RPG START BUTTON sprite on transparent background, wide horizontal rounded capsule approx 1536x512. Matching cheerful Japanese pocket-creature RPG title branding: deep cobalt blue outer contour, clean white narrow outer keyline, bright golden-yellow rounded face, warm orange lower bevel, subtle upper gloss, simple clean confident silhouette. Exact centered big custom Chinese text: 开始游戏 . Text deep royal blue with cream edge, very readable at 260px-wide display. One small simple right-facing blue triangular play arrow to right of text, balanced padding. Full button standalone, no background, no scenery, no characters, no dice, no Pokeball, no extra icons or words, no large starbursts. Keep top-view frontal UI orthographic, symmetrical even corners, restrained dimensional depth, true transparent PNG, entire sprite with small safe margins.",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-f523c552-a5ed-4aee-950d-fdc41b9d569a.png",
+      "finalPath": "assets/resources/art/login-button-v3.png"
+    }
+  ]
+}

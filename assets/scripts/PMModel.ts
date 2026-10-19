@@ -1,6 +1,10 @@
 /** Engine-independent rules. Every action returns a committed, serializable state. */
+let timeProvider:()=>number=()=>Date.now();
+/** Runtime installs a trusted UTC provider; unavailable time is NaN, never wall-clock fallback. */
+export function setTimeProvider(provider:()=>number){timeProvider=provider;}
+export const gameNow=()=>timeProvider();
 export type PetRank = 'normal' | 'elite' | 'boss';
-export type PetId = 'fox' | 'bud' | 'turtle' | 'cotton' | 'otter' | 'spark' | 'seal' | 'ape' | 'slug' | 'mole' | 'bird' | 'owl' | 'beetle' | 'ghost' | 'dragon' | 'lynx' | 'rhino' | 'deer';
+export type PetId = 'fox' | 'bud' | 'turtle' | 'cotton' | 'otter' | 'spark' | 'seal' | 'ape' | 'slug' | 'mole' | 'bird' | 'owl' | 'beetle' | 'ghost' | 'dragon' | 'lynx' | 'rhino' | 'deer' | 'capy' | 'lotus' | 'manta' | 'crane' | 'mantis' | 'cragcrab' | 'cinder' | 'voltage' | 'venom' | 'dune' | 'monk' | 'ironboar' | 'frost' | 'spirit' | 'dream' | 'shade' | 'aurora' | 'starwyrm';
 export const PETS: Record<PetId,{name:string;trait:string;type:string;rank:PetRank;hp:number;faces:number[];enemyFaces:number[];color:string}> = {
   "fox": {
     "name": "闪尾狐",
@@ -327,7 +331,25 @@ export const PETS: Record<PetId,{name:string;trait:string;type:string;rank:PetRa
       3
     ],
     "color": "#e9accf"
-  }
+  },
+  capy: {"name":"绒果豚","trait":"一般 · 普通","type":"一般","rank":"normal","hp":34,"faces":[4,7,10],"enemyFaces":[2,5,8],"color":"#bca57a"},
+  lotus: {"name":"荷芽蛙","trait":"草 · 普通","type":"草","rank":"normal","hp":34,"faces":[4,7,10],"enemyFaces":[2,5,8],"color":"#71bd91"},
+  manta: {"name":"泡泡鳐","trait":"水 · 普通","type":"水","rank":"normal","hp":34,"faces":[4,7,10],"enemyFaces":[2,5,8],"color":"#63b9ca"},
+  crane: {"name":"风铃鹤","trait":"飞行 · 普通","type":"飞行","rank":"normal","hp":34,"faces":[4,7,10],"enemyFaces":[2,5,8],"color":"#88b9d6"},
+  mantis: {"name":"叶镰螳","trait":"虫 · 精英","type":"虫","rank":"elite","hp":38,"faces":[5,8,11],"enemyFaces":[3,6,9],"color":"#6da265"},
+  cragcrab: {"name":"砂晶蟹","trait":"岩石 · BOSS","type":"岩石","rank":"boss","hp":42,"faces":[6,9,12],"enemyFaces":[4,7,10],"color":"#b9a37c"},
+  cinder: {"name":"炭角羊","trait":"火 · 普通","type":"火","rank":"normal","hp":44,"faces":[6,10,14],"enemyFaces":[4,8,12],"color":"#df8258"},
+  voltage: {"name":"电绒鼠","trait":"电 · 普通","type":"电","rank":"normal","hp":44,"faces":[6,10,14],"enemyFaces":[4,8,12],"color":"#dbbd65"},
+  venom: {"name":"紫尾蝎","trait":"毒 · 普通","type":"毒","rank":"normal","hp":44,"faces":[6,10,14],"enemyFaces":[4,8,12],"color":"#a77ab7"},
+  dune: {"name":"沙鳞兽","trait":"地面 · 普通","type":"地面","rank":"normal","hp":44,"faces":[6,10,14],"enemyFaces":[4,8,12],"color":"#c2a26f"},
+  monk: {"name":"拳袋鼠","trait":"格斗 · 精英","type":"格斗","rank":"elite","hp":48,"faces":[7,11,15],"enemyFaces":[5,9,13],"color":"#b77c5e"},
+  ironboar: {"name":"铁鼻豕","trait":"钢 · BOSS","type":"钢","rank":"boss","hp":52,"faces":[8,12,16],"enemyFaces":[6,10,14],"color":"#8d9da5"},
+  frost: {"name":"雪耳兔","trait":"冰 · 普通","type":"冰","rank":"normal","hp":56,"faces":[9,13,18],"enemyFaces":[7,11,16],"color":"#93c9dc"},
+  spirit: {"name":"幽泡灵","trait":"幽灵 · 普通","type":"幽灵","rank":"normal","hp":56,"faces":[9,13,18],"enemyFaces":[7,11,16],"color":"#ac99cf"},
+  dream: {"name":"梦芽貘","trait":"超能力 · 普通","type":"超能力","rank":"normal","hp":56,"faces":[9,13,18],"enemyFaces":[7,11,16],"color":"#a58ec7"},
+  shade: {"name":"墨羽鸦","trait":"恶 · 普通","type":"恶","rank":"normal","hp":56,"faces":[9,13,18],"enemyFaces":[7,11,16],"color":"#817395"},
+  aurora: {"name":"彩翎雏","trait":"妖精 · 精英","type":"妖精","rank":"elite","hp":60,"faces":[10,14,19],"enemyFaces":[8,12,17],"color":"#dfabd0"},
+  starwyrm: {"name":"星鳞幼龙","trait":"龙 · BOSS","type":"龙","rank":"boss","hp":64,"faces":[11,15,20],"enemyFaces":[9,13,18],"color":"#7897c1"}
 };
 export type Phase = 'encounter' | 'battle' | 'reward' | 'recruit' | 'team' | 'won' | 'lost' | 'nest' | 'eggClaimed';
 export type EggRarity = 'normal' | 'SR' | 'SSR';
@@ -335,7 +357,7 @@ export interface Egg { id:string; rarity:EggRarity; affinity:PetId; stage:number
 export interface FriendCard { version:1; owner:string; petUid:string; species:PetId; rarity:EggRarity; sex:Sex; id:string }
 export interface FriendBond { species:PetId; owner:string; cardId:string }
 export interface FriendSocial { version:1; owner:string; visitor?:{card:FriendCard;progress:number;lastPlayedAt:number}; bonds:FriendBond[] }
-export interface EggHunt { limit:number; candidates:Egg[]; selected:number }
+export interface EggHunt { limit:number; candidates:Egg[]; selected:number; bonusEggId?:string }
 export const EGG_RATES={normal:80,SR:17,SSR:3};
 export type Sex='female'|'male';
 export interface Genes { id:PetId; rarity:EggRarity; baseHP:number; baseFaces:number[]; skills:SkillCode[] }
@@ -343,7 +365,16 @@ export interface Pet { id:PetId; faces:number[]; rarity?:EggRarity; uid?:string;
 export interface Breeding { id:string; mother:string; father:string; startedAt:number; readyAt:number; genes:Genes }
 export interface Incubation { eggId:string; startedAt:number; readyAt:number; result:EggRarity }
 export interface HatchResult { eggId:string; petId:PetId; rarity:EggRarity; duplicate:boolean; warmthGain:number; uid?:string }
-export interface SkillState { usedCodes?:SkillCode[]; used:boolean; attacks:number; shield:number; poison:number; nextMax:boolean; previousRoll:number; event:string; lastDamage:number; lastTaken:number }
+export interface SkillState { usedCodes?:SkillCode[]; used:boolean; attacks:number; shield:number; poison:number; nextMax:boolean; previousRoll:number; event:string; lastDamage:number; lastTaken:number; heroHealUsed?:boolean }
+export type HeroId='ranger'|'keeper'|'medic';
+export const HEROES:Record<HeroId,{name:string;sex:Sex;title:string;effect:string;color:string}>={
+  ranger:{name:'阿岚',sex:'male',title:'寻蛋好手',effect:'带走蛋时，20% 概率额外获得一枚',color:'#dc6651'},
+  keeper:{name:'小晴',sex:'female',title:'孵化专家',effect:'孵化时间 −20% · 每枚只需24分钟',color:'#439f99'},
+  medic:{name:'星遥',sex:'female',title:'贴心照护',effect:'每场首次使用生命药水，额外恢复3点',color:'#b8739e'}
+};
+export const HERO_IDS:HeroId[]=['ranger','keeper','medic'];
+export const STARTERS:PetId[]=['fox','bud','otter'];
+export interface Journey {version:1;stage:'hero'|'starter'|'done';hero:HeroId|null;starter:PetId|null;legacy:boolean}
 export interface Reward { kind: 'hp' | 'attack' | 'heal' | 'potion' | 'boost'; values: number[]; title: string }
 export interface State {
   contentVersion?: 2; version: 1; seed: number; step: number; phase: Phase; active: Pet; reserve: Pet | null;
@@ -361,22 +392,31 @@ export interface State {
   individualVersion?:1; pets?:Pet[]; team?:string[]; runRoster?:Record<string,Pet>; breeding?:Breeding|null; breedingSerial?:number;
   mapVersion?:1; mapId?:number; clearedMaps?:number[]; enemyRarity?:EggRarity;
   social?:FriendSocial;
+  journey?:Journey;
+  stamina?:{value:number;updatedAt:number}; expedition?:boolean;
+  trustedTime?:{version:1;lastMs:number}; pendingStaminaAd?:boolean;
+  pendingHatchAd?:{index:number;eggId:string};
+  rerollVersion?:1;
 }
 export type Action = 'challenge' | 'reroll' | 'switch' | 'attack' | 'guard' | 'heal' | 'boost' |
   'take' | 'keep' | 'reward0' | 'invite' | 'skip' | 'replace' | 'collect' |
   'eggSearch' | 'eggSelect0' | 'eggSelect1' | 'eggSelect2' | 'eggTake' | 'eggContinue';
 export const PET_IDS=Object.keys(PETS) as PetId[];
+export const NEW_PET_IDS:PetId[]=["capy","lotus","manta","crane","mantis","cragcrab","cinder","voltage","venom","dune","monk","ironboar","frost","spirit","dream","shade","aurora","starwyrm"];
 const ids=PET_IDS;
 export interface MapConfig { id:number; name:string; stages:number; tint:string; pets:PetId[]; types:string; eggs:string; note:string }
 export const MAPS:MapConfig[]=[
-  {id:0,name:'草叶海岸',stages:10,tint:'#589c80',pets:['cotton','bud','otter','bird','beetle','turtle'],types:'一般 · 草 · 水 · 飞行 · 虫 · 岩石',eggs:'R 为主 · 终点 SSR 蛋 5%',note:'6 个系列 · 18 种形态 · R → SR → SSR'},
-  {id:1,name:'熔岩山径',stages:20,tint:'#b67e60',pets:['fox','spark','slug','mole','ape','rhino'],types:'火 · 电 · 毒 · 地面 · 格斗 · 钢',eggs:'SR 更多 · 终点 SSR 蛋 35%',note:'6 个系列 · 18 种形态 · 难度提升'},
-  {id:2,name:'霜月雪原',stages:30,tint:'#759bb3',pets:['seal','ghost','owl','lynx','deer','dragon'],types:'冰 · 幽灵 · 超能力 · 恶 · 妖精 · 龙',eggs:'SR / SSR 为主 · 终点必得 SSR 蛋',note:'6 个系列 · 18 种形态 · 高阶挑战'}
+  {id:0,name:'草叶海岸',stages:10,tint:'#589c80',pets:['cotton','bud','otter','bird','beetle','turtle'],types:'一般 · 草 · 水 · 飞行 · 虫 · 岩石',eggs:'精英 SR 蛋 5% · BOSS SSR 蛋 1%',note:'6 个系列 · 18 种形态 · R → SR → SSR'},
+  {id:1,name:'熔岩山径',stages:20,tint:'#b67e60',pets:['fox','spark','slug','mole','ape','rhino'],types:'火 · 电 · 毒 · 地面 · 格斗 · 钢',eggs:'精英 SR 蛋 10% · BOSS SSR 蛋 5%',note:'6 个系列 · 18 种形态 · 难度提升'},
+  {id:2,name:'霜月雪原',stages:30,tint:'#759bb3',pets:['seal','ghost','owl','lynx','deer','dragon'],types:'冰 · 幽灵 · 超能力 · 恶 · 妖精 · 龙',eggs:'精英 SSR 蛋 1% · BOSS SSR 蛋 10%',note:'6 个系列 · 18 种形态 · 高阶挑战'},
+  {id:3,name:'翠风群岛',stages:40,tint:'#559d98',pets:['capy','lotus','manta','crane','mantis','cragcrab'],types:'一般 · 草 · 水 · 飞行 · 虫 · 岩石',eggs:'精英 SSR 蛋 2% · BOSS SSR 蛋 15%',note:'6 个新系列 · 18 种形态 · 进阶冒险'},
+  {id:4,name:'赤雷荒原',stages:50,tint:'#bd8660',pets:['cinder','voltage','venom','dune','monk','ironboar'],types:'火 · 电 · 毒 · 地面 · 格斗 · 钢',eggs:'精英 SSR 蛋 3% · BOSS SSR 蛋 20%',note:'6 个新系列 · 18 种形态 · 强敌试炼'},
+  {id:5,name:'星渊圣域',stages:60,tint:'#8b83bc',pets:['frost','spirit','dream','shade','aurora','starwyrm'],types:'冰 · 幽灵 · 超能力 · 恶 · 妖精 · 龙',eggs:'精英 SSR 蛋 4% · BOSS SSR 蛋 25%',note:'6 个新系列 · 18 种形态 · 最终挑战'}
 ];
-export const TOTAL_STAGES=30;
+export const TOTAL_STAGES=Math.max(...MAPS.map(m=>m.stages));
 export const mapFor=(s:Pick<State,'mapId'>)=>MAPS[s.mapId||0];
 export const mapStageCount=(s:Pick<State,'mapId'>)=>mapFor(s).stages;
-export const mapUnlocked=(s:State,id:number)=>Number.isInteger(id)&&id>=0&&id<MAPS.length&&(id===0||!!s.clearedMaps?.includes(id-1));
+export const mapUnlocked=(s:State,id:number)=>Number.isInteger(id)&&id>=0&&id<MAPS.length&&MAPS.slice(0,id).every(m=>!!s.clearedMaps?.includes(m.id));
 export const hasActivePet=(s:State)=>!!s.pets?.some(p=>p.uid===s.active.uid);
 export const rankForStage=(step:number):PetRank=>step%10===0?'boss':step%5===0?'elite':'normal';
 const growthTier=(step:number)=>step<=10?(step<=3?0:step<=6?2:4):Math.floor((step-1)/3)*2;
@@ -387,14 +427,42 @@ export const enemyHealthForStage=(step:number,mapId=0)=>{
 };
 export const encounterPool=(step:number,mapId=0)=>{const pool=MAPS[mapId].pets,rank=rankForStage(step);return rank==='boss'?pool.slice(5):rank==='elite'?pool.slice(4,5):pool.slice(0,4);};
 export function eggRates(s:Pick<State,'mapId'|'step'>){
-  const wave=Math.max(0,Math.min(Math.floor(s.step/5)-1,mapFor(s).stages/5-1));
-  const rates=[[[85,14,1],[70,25,5]],[[55,35,10],[40,43,17],[25,50,25],[10,55,35]],[[5,55,40],[0,50,50],[0,40,60],[0,30,70],[0,20,80],[0,0,100]]][s.mapId||0][wave];
+  const rates=[[[95,5,0],[90,9,1]],[[90,10,0],[75,20,5]],[[84,15,1],[70,20,10]],[[80,18,2],[60,25,15]],[[75,22,3],[50,30,20]],[[70,26,4],[40,35,25]]][s.mapId||0][rankForStage(s.step)==='boss'?1:0];
   return {normal:rates[0],SR:rates[1],SSR:rates[2]};
 }
 // Independent per-turn rolls: heal x1/x2/x3, boost x2/x3/x4, both 50%/40%/10%.
 export const ITEM_MULTIPLIERS = { heal: [1,1,1,1,1,2,2,2,2,3], boost: [2,2,2,2,2,3,3,3,3,4] };
 export const healAmount = (s: State) => s.heal * s.healMultiplier;
-export const attackAmount = (s: State) => s.attack * (s.doubled ? s.boostMultiplier : 1) + (skillReady(s,'opening')?2:0) + (skillReady(s,'heavy')&&s.skill!.attacks===2?4:0);
+// Gen VI+ single-type attack chart; immunities become strong resistance in this game.
+// Each row lists super effective, resisted, formerly immune defending types.
+export const TYPE_CHART:Record<string,[string[],string[],string[]]>={
+  '一般':[[],['岩石','钢'],['幽灵']],
+  '火':[['草','冰','虫','钢'],['火','水','岩石','龙'],[]],
+  '水':[['火','地面','岩石'],['水','草','龙'],[]],
+  '电':[['水','飞行'],['电','草','龙'],['地面']],
+  '草':[['水','地面','岩石'],['火','草','毒','飞行','虫','龙','钢'],[]],
+  '冰':[['草','地面','飞行','龙'],['火','水','冰','钢'],[]],
+  '格斗':[['一般','冰','岩石','恶','钢'],['毒','飞行','超能力','虫','妖精'],['幽灵']],
+  '毒':[['草','妖精'],['毒','地面','岩石','幽灵'],['钢']],
+  '地面':[['火','电','毒','岩石','钢'],['草','虫'],['飞行']],
+  '飞行':[['草','格斗','虫'],['电','岩石','钢'],[]],
+  '超能力':[['格斗','毒'],['超能力','钢'],['恶']],
+  '虫':[['草','超能力','恶'],['火','格斗','毒','飞行','幽灵','钢','妖精'],[]],
+  '岩石':[['火','冰','飞行','虫'],['格斗','地面','钢'],[]],
+  '幽灵':[['超能力','幽灵'],['恶'],['一般']],
+  '龙':[['龙'],['钢'],['妖精']],
+  '恶':[['超能力','幽灵'],['格斗','恶','妖精'],[]],
+  '钢':[['冰','岩石','妖精'],['火','水','电','钢'],[]],
+  '妖精':[['格斗','龙','恶'],['火','毒','钢'],[]]
+};
+export const TYPE_NAMES=Object.keys(TYPE_CHART);
+export function typeMultiplier(attacking:string,defending:string):number {
+  const row=TYPE_CHART[attacking];return !row?1:row[0].includes(defending)?1.5:row[1].includes(defending)?.75:row[2].includes(defending)?.5:1;
+}
+export const matchupMultiplier=(attacker:PetId,defender:PetId)=>typeMultiplier(PETS[attacker].type,PETS[defender].type);
+export const typedDamage=(base:number,multiplier:number)=>Math.max(1,Math.round(base*multiplier));
+export const attackAmount = (s: State) => typedDamage(s.attack * (s.doubled ? s.boostMultiplier : 1),matchupMultiplier(s.active.id,s.enemy)) + (skillReady(s,'opening')?2:0) + (skillReady(s,'heavy')&&s.skill!.attacks===2?4:0);
+export const enemyAttackAmount=(s:State,base=s.enemyAttack)=>typedDamage(base,matchupMultiplier(s.enemy,s.active.id));
 export const guardDamage = (incoming: number) => Math.max(1, Math.round(incoming / 100));
 const rand = (s: State) => { s.seed = (Math.imul(s.seed, 1664525) + 1013904223) >>> 0; return s.seed / 4294967296; };
 const pick = <T>(s: State, a: T[]): T => a[Math.floor(rand(s) * a.length)];
@@ -410,11 +478,34 @@ export const enemyAttackFaces = (s: State): number[] => {
 export function fresh(seed = Date.now(), owned: PetId[] = ['fox', 'turtle'], wins = 0): State {
   const s: State = {mapVersion:1,mapId:0,clearedMaps:[],contentVersion:2,version:1, seed:seed >>> 0, step:1, phase:'encounter', active:pet('fox'), reserve:pet('turtle'),
     owned:ids.filter(id=>id==='fox'||id==='turtle'||owned.indexOf(id)>=0), hpRatio:1, hpBonus:0, potions:3, boosts:2,
-    healFaces:[3,5,7], healMultiplier:1, boostMultiplier:2, usedHeal:false, doubled:false, swaps:2, enemy:'bud', enemyHP:7, enemyMax:7,
+    healFaces:[3,5,7], healMultiplier:1, boostMultiplier:2, usedHeal:false, doubled:false, swaps:1, rerollVersion:1, enemy:'bud', enemyHP:7, enemyMax:7,
     attack:0, heal:0, enemyAttack:0, turn:0, reward:{kind:'hp',values:[3],title:'生命上限 +3'},
     previousReward:'', recruit:null, revision:0, wins, eggs:[], incubators:[null,null],warmth:0,hatchSeed:(seed^0x9e3779b9)>>>0,hatchedEggIds:[],qualities:{},preferredRarities:{},message:'先选伙伴，再开始挑战'};
   encounter(s, false); migrateIndividuals(s); return s;
 }
+// fresh remains the old-save/rule-fixture factory; production entry uses newJourney.
+export function newJourney(seed=Date.now()):State {
+  const s=fresh(seed);s.pets=[];s.owned=[];s.qualities={};s.preferredRarities={};s.active=pet('fox');s.reserve=null;s.team=['','',''];s.runRoster={};
+  s.journey={version:1,stage:'hero',hero:null,starter:null,legacy:false};return s;
+}
+export function prepareJourney(before:State):State {
+  if(before.journey)return before;
+  const untouched=before.phase==='encounter'&&before.step===1&&(before.mapId||0)===0&&before.wins===0&&!before.clearedMaps?.length&&before.hpRatio===1&&before.hpBonus===0&&before.potions===3&&before.boosts===2&&before.swaps===1&&!before.eggs?.length&&!before.warmth&&!before.breeding&&!before.social&&before.pets?.length===2&&before.active.id==='fox'&&before.reserve?.id==='turtle'&&before.pets.every(p=>['fox','turtle'].includes(p.id)&&p.uid==='legacy-'+p.id+'-normal')&&JSON.stringify(before.healFaces)==='[3,5,7]'&&JSON.stringify(before.active.faces)===JSON.stringify(PETS.fox.faces);
+  if(untouched)return newJourney(before.seed);
+  const s=clone(before);s.journey={version:1,stage:'hero',hero:null,starter:null,legacy:true};s.revision++;return s;
+}
+export function chooseHero(before:State,id:HeroId):State {
+  if(before.journey?.stage!=='hero'||!HERO_IDS.includes(id))return before;
+  const s=clone(before);s.journey!.hero=id;s.journey!.stage=s.journey!.legacy?'done':'starter';s.revision++;return s;
+}
+export function chooseStarter(before:State,id:PetId):State {
+  if(before.journey?.stage!=='starter'||!STARTERS.includes(id))return before;
+  const s=clone(before),p=individual(s,'starter-'+id+'-'+s.hatchSeed,naturalGenes(id,'normal'));
+  s.pets=[p];s.owned=[id];s.qualities={[id]:['normal']};s.preferredRarities={};s.active=clonePet(p);s.reserve=null;s.team=[p.uid!,'',''];s.runRoster={};
+  s.journey!.starter=id;s.journey!.stage='done';s.revision++;return s;
+}
+export const heroFor=(s:State)=>s.journey?.hero?HEROES[s.journey.hero]:null;
+export const heroHealBonus=(s:State)=>s.journey?.hero==='medic'&&s.skill&&!s.skill.heroHealUsed?3:0;
 function reward(s: State, excluded: string[] = []): Reward {
   const tier = growthTier(s.step)+(s.mapId||0)*2;
   const kinds = ['hp','attack','heal','potion','boost'].filter(x => !excluded.includes(x) && (excluded.length>0 || x!==s.previousReward) && !(x==='potion'&&s.potions>=9) && !(x==='boost'&&s.boosts>=9));
@@ -437,7 +528,7 @@ function encounter(s: State, reroll: boolean) {
   const pool=encounterPool(s.step,s.mapId||0),others=pool.filter(id=>id!==s.enemy);s.enemy=pick(s,reroll&&others.length?others:pool);s.enemyRarity=encounterRarity(s.step,s.mapId||0);
   s.enemyMax=enemyHealthForStage(s.step,s.mapId||0);s.enemyHP=s.enemyMax;
   s.reward=reward(s); s.recruit=null;
-  if(!reroll) s.swaps=rankForStage(s.step)==='boss'?0:2;
+  if(!reroll) s.swaps=rankForStage(s.step)==='boss'?0:1;
 }
 function roll(s: State) {
   s.attack=pick(s,s.active.faces); s.heal=pick(s,s.healFaces);
@@ -464,18 +555,20 @@ function beginEggHunt(s: State) {
   s.message='草丛后藏着一个巢穴，找找看！';
 }
 export function act(before: State, a: Action): State {
+  if(before.journey&&before.journey.stage!=='done')return before;
   if(!hasActivePet(before)&&!['eggSearch','eggSelect0','eggSelect1','eggSelect2','eggTake','eggContinue'].includes(a))return before;
   const s: State = JSON.parse(JSON.stringify(before)); let valid=false;
   if(s.phase==='encounter') {
     if(a==='switch' && s.reserve) { [s.active,s.reserve]=[s.reserve,s.active]; s.message='已切换伙伴 · 生命比例保持'; valid=true; }
     if(a==='reroll' && s.swaps>0 && rankForStage(s.step)!=='boss') { s.swaps--; encounter(s,true); s.message='换了一个对手'; valid=true; }
-    if(a==='challenge') { s.active=preferredPet(s,s.active);s.phase='battle';s.skill={usedCodes:[],used:false,attacks:0,shield:0,poison:0,nextMax:false,previousRoll:0,event:'',lastDamage:0,lastTaken:0}; roll(s); s.message='点数已确定，选择你的行动'; valid=true; }
+    if(a==='challenge') { s.active=preferredPet(s,s.active);s.phase='battle';s.skill={usedCodes:[],used:false,attacks:0,shield:0,poison:0,nextMax:false,previousRoll:0,event:'',lastDamage:0,lastTaken:0,heroHealUsed:false}; roll(s); s.message='点数已确定，选择你的行动'; valid=true; }
   } else if(s.phase==='battle') {
     const k=s.skill;
     if(k){k.event='';k.lastDamage=0;k.lastTaken=0;}
     if(a==='heal' && !s.usedHeal && s.potions>0 && s.hpRatio<1) {
-      const amount=healAmount(s)+(skillReady(s,'healing')?2:0),recovered=Math.min(amount,maxHP(s)-hp(s));
+      const heroBonus=heroHealBonus(s),amount=healAmount(s)+(skillReady(s,'healing')?2:0)+heroBonus,recovered=Math.min(amount,maxHP(s)-hp(s));
       s.potions--;s.usedHeal=true;
+      if(heroBonus&&k){k.heroHealUsed=true;k.event='星遥 · 额外恢复3点';}
       if(k){if(skillReady(s,'healing'))trigger(s,'healing');if(skillReady(s,'refund')){s.potions++;trigger(s,'refund');}if(skillReady(s,'overflow')&&amount>maxHP(s)-hp(s)){k.shield+=Math.min(6,Math.floor(amount-(maxHP(s)-hp(s))));trigger(s,'overflow');}}
       s.hpRatio=Math.min(1,s.hpRatio+amount/maxHP(s));s.message='治疗 ×'+s.healMultiplier+' · 恢复 '+recovered+' 点生命';valid=true;
     }
@@ -500,7 +593,8 @@ export function act(before: State, a: Action): State {
         if(rankForStage(s.step)==='boss'){if(s.step===mapStageCount(s))s.wins++;beginEggHunt(s);}
         else {s.phase='reward';s.message='战斗胜利！领取战利品';}
       } else {
-        let damage=a==='guard'?guardDamage(s.enemyAttack):Math.max(1,s.enemyAttack-slow);
+        const incoming=enemyAttackAmount(s);
+        let damage=a==='guard'?guardDamage(incoming):Math.max(1,incoming-slow);
         if(k){if(skillReady(s,'armor')){damage=Math.max(1,damage-2);trigger(s,'armor');}if(skillReady(s,'evade')){damage=0;trigger(s,'evade');}const blocked=Math.min(k.shield,damage);damage-=blocked;k.shield-=blocked;k.lastTaken=damage;}
         s.hpRatio=Math.max(0,s.hpRatio-damage/maxHP(s));
         if(skillReady(s,'emergency')&&s.hpRatio>1e-8&&s.hpRatio<=.3){s.hpRatio=Math.min(1,s.hpRatio+Math.ceil(maxHP(s)*.25)/maxHP(s));trigger(s,'emergency');}
@@ -523,8 +617,14 @@ export function act(before: State, a: Action): State {
     if(index>=0 && index<hunt.candidates.length && index!==hunt.selected){hunt.selected=index;valid=true;}
     if(a==='eggTake' && hunt.candidates[hunt.selected]){
       const chosen=hunt.candidates[hunt.selected];s.eggs=s.eggs||[];
-      if(!s.eggs.some(e=>e.id===chosen.id))s.eggs.push({...chosen});
-      s.phase='eggClaimed';s.message='宠物蛋已存入蛋袋';valid=true;
+      if(!s.eggs.some(e=>e.id===chosen.id)){
+        s.eggs.push({...chosen});
+        if(s.journey?.hero==='ranger'&&rand(s)<.2){
+          const rates=eggRates(s),value=rand(s)*100,rarity:EggRarity=value<rates.normal?'normal':value<rates.normal+rates.SR?'SR':'SSR',affinity=pick(s,mapFor(s).pets);
+          const bonus:Egg={id:chosen.id+'-bonus-'+s.seed,rarity,affinity,stage:s.step,mapId:s.mapId||0};s.eggs.push(bonus);hunt.bonusEggId=bonus.id;
+        }
+      }
+      s.phase='eggClaimed';s.message=hunt.bonusEggId?'阿岚又找到一枚！两枚蛋已放入蛋袋':'宠物蛋已存入蛋袋';valid=true;
     }
   } else if(s.phase==='eggClaimed' && a==='eggContinue') {
     delete s.eggHunt;if(s.step===mapStageCount(s)){s.phase='won';s.clearedMaps=Array.from(new Set([...(s.clearedMaps||[]),s.mapId||0]));s.message=mapFor(s).name+'已通关！';}else if(rankForStage(s.step)==='boss')next(s);else finishReward(s);valid=true;
@@ -558,6 +658,11 @@ export function restore(raw: string | null): State | null {
     const faces=(a: any)=>Array.isArray(a)&&a.length>=1&&a.length<=5&&a.every((n:any)=>finite(n)&&n>=1&&n<=100);
     const validPet=(p: any)=>p&&ids.includes(p.id)&&faces(p.faces)&&(p.rarity===undefined||RARITIES.includes(p.rarity));
     if(!s||s.version!==1||!validPet(s.active)||(s.reserve!==null&&!validPet(s.reserve)))return null;
+    if(s.stamina&&(!Number.isInteger(s.stamina.value)||s.stamina.value<0||s.stamina.value>30||!finite(s.stamina.updatedAt)||s.stamina.updatedAt<0))return null;
+    if(s.expedition!==undefined&&typeof s.expedition!=='boolean')return null;
+    if(s.trustedTime&&(s.trustedTime.version!==1||!Number.isSafeInteger(s.trustedTime.lastMs)||s.trustedTime.lastMs<0))return null;
+    if(s.pendingStaminaAd!==undefined&&typeof s.pendingStaminaAd!=='boolean')return null;
+    if(s.pendingHatchAd&&(![0,1].includes(s.pendingHatchAd.index)||typeof s.pendingHatchAd.eggId!=='string'||!s.pendingHatchAd.eggId))return null;
     const legacyMaps=s.mapVersion===undefined;
     if(legacyMaps){s.mapId=s.step>10?1:0;s.clearedMaps=s.wins>0?[0,1]:s.step>10?[0]:[];if(s.phase==='won'&&!s.clearedMaps.includes(s.mapId))s.clearedMaps.push(s.mapId);s.mapVersion=1;s.enemyRarity='normal';}
     if(s.mapVersion!==1||!Number.isInteger(s.mapId)||s.mapId!<0||s.mapId!>=MAPS.length||!Array.isArray(s.clearedMaps)||s.clearedMaps.some((id,i,a)=>!Number.isInteger(id)||id<0||id>=MAPS.length||a.indexOf(id)!==i)||!mapUnlocked(s,s.mapId!)||!RARITIES.includes(s.enemyRarity!))return null;
@@ -579,7 +684,7 @@ export function restore(raw: string | null): State | null {
     if(s.boostMultiplier===undefined)s.boostMultiplier=2;
     // Preserve a previous version's already-rolled x1; new turns use the current pool.
     if(!ITEM_MULTIPLIERS.heal.includes(s.healMultiplier)||![1,2,3,4].includes(s.boostMultiplier))return null;
-    const validEgg=(e:any)=>e&&typeof e.id==='string'&&['normal','SR','SSR'].includes(e.rarity)&&ids.includes(e.affinity)&&(e.bond===undefined||validFriendBond(e.bond)&&ids.includes(e.bond.sourceAffinity)&&e.bond.species===e.affinity)&&((e.stage===0&&validGenes(e.genes)&&e.genes.id===e.affinity&&e.genes.rarity===e.rarity)||(Number.isInteger(e.stage)&&e.stage>=5&&e.stage<=30&&e.stage%5===0&&(e.mapId===undefined?e.stage<=20:Number.isInteger(e.mapId)&&e.mapId>=0&&e.mapId<MAPS.length&&e.stage<=MAPS[e.mapId].stages&&MAPS[e.mapId].pets.includes(e.bond?.sourceAffinity||e.affinity))));
+    const validEgg=(e:any)=>e&&typeof e.id==='string'&&['normal','SR','SSR'].includes(e.rarity)&&ids.includes(e.affinity)&&(e.bond===undefined||validFriendBond(e.bond)&&ids.includes(e.bond.sourceAffinity)&&e.bond.species===e.affinity)&&((e.stage===0&&validGenes(e.genes)&&e.genes.id===e.affinity&&e.genes.rarity===e.rarity)||(Number.isInteger(e.stage)&&e.stage>=5&&e.stage<=TOTAL_STAGES&&e.stage%5===0&&(e.mapId===undefined?e.stage<=20:Number.isInteger(e.mapId)&&e.mapId>=0&&e.mapId<MAPS.length&&e.stage<=MAPS[e.mapId].stages&&MAPS[e.mapId].pets.includes(e.bond?.sourceAffinity||e.affinity))));
     if(s.eggs===undefined)s.eggs=[];
     if(!Array.isArray(s.eggs)||!s.eggs.every(validEgg)||s.eggs.some((e,i)=>s.eggs!.findIndex(v=>v.id===e.id)!==i))return null;
     if(s.phase==='nest'||s.phase==='eggClaimed'){
@@ -588,16 +693,30 @@ export function restore(raw: string | null): State | null {
       if(s.phase==='eggClaimed'&&(!h.candidates[h.selected]||!s.eggs.some(e=>e.id===h.candidates[h.selected].id)))return null;
     }else delete s.eggHunt;
     if(!validHatching(s)||!validSocial(s))return null;
+    if(s.eggHunt?.bonusEggId&&(s.phase!=='eggClaimed'||!s.eggs.some(e=>e.id===s.eggHunt!.bonusEggId)||s.eggHunt.candidates.some(e=>e.id===s.eggHunt!.bonusEggId)))return null;
     if(s.contentVersion!==2){if(s.phase==='encounter'){const swaps=s.swaps;encounter(s,false);s.swaps=rankForStage(s.step)==='boss'?0:swaps;}s.contentVersion=2;}
     if(s.individualVersion===1&&!validIndividuals(s))return null;
     migrateIndividuals(s);
+    if(s.journey){const j=s.journey;
+      if(j.version!==1||!['hero','starter','done'].includes(j.stage)||typeof j.legacy!=='boolean'||(j.hero!==null&&!HERO_IDS.includes(j.hero))||(j.starter!==null&&!STARTERS.includes(j.starter)))return null;
+      if(j.stage==='hero'?(j.hero!==null||j.starter!==null):!j.hero)return null;
+      if(j.stage==='starter'&&(j.legacy||j.starter!==null||s.pets!.length!==0))return null;
+      if(j.stage==='done'&&!j.legacy&&!j.starter)return null;
+      if(j.stage!=='done'&&!j.legacy&&(s.pets!.length!==0||s.phase!=='encounter'||s.step!==1))return null;
+    }
     if(legacyMaps&&s.phase==='encounter'){const swaps=s.swaps;encounter(s,false);s.swaps=rankForStage(s.step)==='boss'?0:swaps;}
+    if(s.rerollVersion!==1){s.swaps=rankForStage(s.step)==='boss'?0:Math.max(0,s.swaps-1);s.rerollVersion=1;}
+    if(s.swaps>1||!Number.isInteger(s.swaps))return null;
     if(s.phase==='recruit'||s.phase==='team'){s.recruit=null;next(s);}
     return s;
   } catch {return null;}
 }
 export function equipReserve(before:State,key:string):State { return assignPartySlot(before,key,1); }
-export const canManageParty=(s:State)=>s.phase!=='battle';
+export function grantRerollAd(before:State,completed:boolean):State {
+  if(!completed||before.phase!=='encounter'||before.swaps!==0||rankForStage(before.step)==='boss'||!hasActivePet(before))return before;
+  return act({...before,swaps:1},'reroll');
+}
+export const canManageParty=(s:State)=>s.phase!=='battle'&&(!s.journey||s.journey.stage==='done');
 export function partyChoices(s:State):string[]{return homeParty(s);}
 export function homeParty(s:State):string[]{
   const slots=(s.team||[]).slice(0,3);while(slots.length<3)slots.push('');
@@ -615,6 +734,7 @@ export function assignPartySlot(before:State,key:string,index:number):State {
   const slots=homeParty(before);if(slots[index]===key)return before;
   const s=clone(before);rememberParty(s);const old=slots.indexOf(key);if(old>=0)slots[old]=slots[index];slots[index]=key;
   if(!slots[0]){const replacement=slots.findIndex((value,i)=>i!==index&&!!value);if(replacement<0)return before;slots[0]=slots[replacement];slots[replacement]='';}
+  if(before.breeding&&[before.breeding.mother,before.breeding.father].includes(slots[0]))return before;
   s.team=slots;s.active=runPet(s,slots[0]);s.reserve=slots[1]?runPet(s,slots[1]):null;delete s.partySlots;
   s.revision++;return s;
 }
@@ -625,7 +745,8 @@ export function continueAdventure(before:State):State {
 export function restartRun(before:State,seed=Date.now()):State {
   if(!hasActivePet(before))return before;
   const s=fresh(seed,before.owned,before.wins);
-  for(const key of ['eggs','incubators','warmth','hatchSeed','hatchedEggIds','qualities','preferredRarities','pendingHatch','pets','team','individualVersion','breeding','breedingSerial','mapId','mapVersion','clearedMaps','social'])if(before[key]!==undefined)s[key]=JSON.parse(JSON.stringify(before[key]));
+  s.owned=before.owned.slice();
+  for(const key of ['eggs','incubators','warmth','hatchSeed','hatchedEggIds','qualities','preferredRarities','pendingHatch','pets','team','individualVersion','breeding','breedingSerial','mapId','mapVersion','clearedMaps','social','journey','stamina','expedition','trustedTime','pendingStaminaAd','pendingHatchAd'])if(before[key]!==undefined)s[key]=JSON.parse(JSON.stringify(before[key]));
   s.active=clonePet(s.pets!.find(p=>p.uid===before.active.uid)!);s.reserve=before.reserve?clonePet(s.pets!.find(p=>p.uid===before.reserve!.uid)!):null;
   s.team=homeParty(before);s.runRoster={};encounter(s,false);return s;
 }
@@ -634,10 +755,40 @@ export function startMap(before:State,mapId:number,seed=Date.now()):State {
   const s=restartRun(before,seed);s.mapId=mapId;encounter(s,false);s.revision=before.revision+1;return s;
 }
 
+export const STAMINA_MAX=30,STAMINA_INTERVAL=120000,EXPEDITION_COST=5,STAMINA_AD_REWARD=10;
+export function syncStamina(before:State,now=gameNow()):State {
+  if(!Number.isFinite(now)||now<0)return before;
+  if(!before.stamina){const s=clone(before);s.stamina={value:STAMINA_MAX,updatedAt:now};s.expedition=false;return s;}
+  const energy=before.stamina;if(energy.value>=STAMINA_MAX||now<=energy.updatedAt)return before;
+  const gained=Math.floor((now-energy.updatedAt)/STAMINA_INTERVAL);if(gained<1)return before;
+  const s=clone(before),value=Math.min(STAMINA_MAX,energy.value+gained);
+  s.stamina={value,updatedAt:value===STAMINA_MAX?now:energy.updatedAt+gained*STAMINA_INTERVAL};return s;
+}
+export const staminaRemaining=(s:State,now=gameNow())=>!s.stamina||s.stamina.value>=STAMINA_MAX?0:Math.max(0,s.stamina.updatedAt+STAMINA_INTERVAL-now);
+export const staminaFullRemaining=(s:State,now=gameNow())=>!s.stamina||s.stamina.value>=STAMINA_MAX?0:!Number.isFinite(now)?Infinity:Math.max(0,s.stamina.updatedAt+(STAMINA_MAX-s.stamina.value)*STAMINA_INTERVAL-now);
+export function grantAdStamina(before:State,completed:boolean,now=gameNow()):State {
+  if(!Number.isFinite(now))return before;
+  const current=syncStamina(before,now);if(!completed||current.stamina!.value>=STAMINA_MAX)return current;
+  const s=clone(current);s.stamina!.value=Math.min(STAMINA_MAX,s.stamina!.value+STAMINA_AD_REWARD);if(s.stamina!.value===STAMINA_MAX)s.stamina!.updatedAt=now;s.revision++;return s;
+}
+export function enterExpedition(before:State,mapId:number,now=gameNow()):State {
+  if(!Number.isSafeInteger(now)||now<0)return before;
+  if(!mapUnlocked(before,mapId)||!hasActivePet(before)||(before.journey&&before.journey.stage!=='done')||before.expedition&&!['won','lost'].includes(before.phase))return before;
+  const current=syncStamina(before,now);if(current.stamina!.value<EXPEDITION_COST)return current;
+  const s=startMap(current,mapId,now);if(s===current)return before;
+  if(s.stamina!.value===STAMINA_MAX)s.stamina!.updatedAt=now;
+  s.stamina!.value-=EXPEDITION_COST;s.expedition=true;return s;
+}
+export function retreatExpedition(before:State,now=gameNow()):State {
+  const current=syncStamina(before,now);if(!current.expedition)return current;
+  const s=restartRun(current,Number.isFinite(now)?now:current.seed);s.expedition=false;s.revision=current.revision+1;return s;
+}
+
 export const RARITIES:EggRarity[]=['normal','SR','SSR'];
 export const rarityName=(r:EggRarity='normal')=>r==='normal'?'R':r;
 export const qualityHP=(r:EggRarity='normal')=>r==='SSR'?4:r==='SR'?2:0;
 export const HATCH_DURATION=30*60*1000, HATCH_ACCELERATION=5*60*1000;
+export const hatchDuration=(s:State)=>s.journey?.hero==='keeper'?HATCH_DURATION*.8:HATCH_DURATION;
 export const HATCH_RATES={normal:[90,9,1],SR:[0,95,5],SSR:[0,0,100]};
 export function unlockedRarities(s:State,id:PetId):EggRarity[]{return s.qualities?.[id]?.slice()||(s.owned.includes(id)?['normal']:[]);}
 export function preferredRarity(s:State,id:PetId):EggRarity {const unlocked=unlockedRarities(s,id);return s.preferredRarities?.[id]||RARITIES.filter(r=>unlocked.includes(r)).pop()||'normal';}
@@ -647,21 +798,26 @@ const clonePet=(p:Pet):Pet=>JSON.parse(JSON.stringify(p));
 // Forms are separate individuals and can no longer be toggled in place.
 export function setPetRarity(before:State,id:PetId,rarity:EggRarity):State {return before;}
 export const availableEggs=(s:State)=>(s.eggs||[]).filter(e=>!(s.hatchedEggIds||[]).includes(e.id)&&!(s.incubators||[]).some(slot=>slot?.eggId===e.id));
-export const hatchRemaining=(slot:Incubation,now=Date.now())=>Math.max(0,slot.readyAt-now);
-export function startIncubation(before:State,eggId:string,index:number,now=Date.now()):State {
+export const hatchRemaining=(slot:Incubation,now=gameNow())=>Number.isFinite(now)?Math.max(0,slot.readyAt-now):Infinity;
+export function startIncubation(before:State,eggId:string,index:number,now=gameNow()):State {
   if(![0,1].includes(index)||before.incubators?.[index]||!Number.isFinite(now)||now<0)return before;
   const egg=availableEggs(before).find(e=>e.id===eggId);if(!egg)return before;
   const s=clone(before);s.incubators=s.incubators||[null,null];
   s.hatchSeed=(Math.imul(s.hatchSeed===undefined?(s.seed^0x9e3779b9)>>>0:s.hatchSeed,1664525)+1013904223)>>>0;
   const roll=s.hatchSeed/4294967296*100,weights=HATCH_RATES[egg.rarity];
   const result:EggRarity=egg.genes||egg.bond?egg.rarity:roll<weights[0]?'normal':roll<weights[0]+weights[1]?'SR':'SSR';
-  s.incubators[index]={eggId,startedAt:now,readyAt:now+HATCH_DURATION,result};s.revision++;return s;
+  s.incubators[index]={eggId,startedAt:now,readyAt:now+hatchDuration(s),result};s.revision++;return s;
 }
-export function accelerateHatch(before:State,index:number,now=Date.now()):State {
+export function accelerateHatch(before:State,index:number,now=gameNow()):State {
   const slot=before.incubators?.[index];if(!slot||!Number.isFinite(now)||now<slot.startedAt||hatchRemaining(slot,now)===0||(before.warmth||0)<1)return before;
   const s=clone(before);s.warmth!--;s.incubators![index]!.readyAt=Math.max(now,slot.readyAt-HATCH_ACCELERATION);s.revision++;return s;
 }
-export function claimHatch(before:State,index:number,now=Date.now()):State {
+export function grantHatchAd(before:State,index:number,eggId:string,completed:boolean,now=gameNow()):State {
+  const slot=before.incubators?.[index];
+  if(!completed||!slot||slot.eggId!==eggId||!Number.isSafeInteger(now)||now<slot.startedAt||hatchRemaining(slot,now)===0)return before;
+  const s=clone(before);s.incubators![index]!.readyAt=Math.max(now,slot.readyAt-30*60000);s.revision++;return s;
+}
+export function claimHatch(before:State,index:number,now=gameNow()):State {
   const slot=before.incubators?.[index];if(!slot||before.pendingHatch||!Number.isFinite(now)||now<slot.startedAt||hatchRemaining(slot,now)>0)return before;
   const egg=before.eggs?.find(e=>e.id===slot.eggId);if(!egg||(before.hatchedEggIds||[]).includes(egg.id))return before;
   const s=clone(before),id=egg.affinity,genes=egg.genes||naturalGenes(id,slot.result);
@@ -687,6 +843,24 @@ export const SKILLS={
 } as const;
 export type SkillCode=keyof typeof SKILLS;
 const PET_SKILLS:Record<PetId,[SkillCode,SkillCode,SkillCode]>={
+  capy:["healing","refund","emergency"],
+  lotus:["healing","overflow","emergency"],
+  manta:["armor","overflow","refund"],
+  crane:["opening","slow","evade"],
+  mantis:["opening","heavy","charged"],
+  cragcrab:["armor","focus","barrier"],
+  cinder:["opening","heavy","charged"],
+  voltage:["opening","repeat","charged"],
+  venom:["opening","venom","leech"],
+  dune:["armor","focus","barrier"],
+  monk:["opening","heavy","charged"],
+  ironboar:["armor","barrier","evade"],
+  frost:["armor","slow","focus"],
+  spirit:["opening","venom","leech"],
+  dream:["opening","steady","charged"],
+  shade:["opening","steady","leech"],
+  aurora:["healing","refund","emergency"],
+  starwyrm:["opening","heavy","charged"],
   fox:['opening','steady','charged'],bud:['healing','refund','emergency'],turtle:['armor','focus','barrier'],
   cotton:['opening','steady','emergency'],otter:['healing','overflow','refund'],spark:['opening','repeat','charged'],
   seal:['armor','slow','focus'],ape:['opening','heavy','charged'],slug:['opening','venom','leech'],mole:['armor','focus','barrier'],
@@ -711,11 +885,30 @@ function validHatching(s:State):boolean {
   }
   if(s.pendingHatch){const r=s.pendingHatch,e=s.eggs!.find(e=>e.id===r.eggId);if(!e||e.affinity!==r.petId||!(s.hatchedEggIds||[]).includes(r.eggId)||!unlockedRarities(s,r.petId).includes(r.rarity)||typeof r.duplicate!=='boolean'||r.warmthGain!==(r.duplicate?{normal:3,SR:8,SSR:20}[r.rarity]:0))return false;}
   if(s.skill){const k=s.skill;if(!object(k)||typeof k.used!=='boolean'||typeof k.nextMax!=='boolean'||typeof k.event!=='string'||![k.attacks,k.shield,k.poison,k.previousRoll,k.lastDamage,k.lastTaken].every(uint)||k.poison>3||k.shield>12||(k.usedCodes!==undefined&&(!Array.isArray(k.usedCodes)||k.usedCodes.some(c=>!petSkills(s.active).includes(c))||new Set(k.usedCodes).size!==k.usedCodes.length)))return false;}
+  if(s.skill?.heroHealUsed!==undefined&&typeof s.skill.heroHealUsed!=='boolean')return false;
   return true;
 }
 
 // Species forms and individuals are separate: no quality selector and no duplicate conversion.
 export const FORM_NAMES:Record<PetId,[string,string,string]>={
+  capy:["绒果豚","果篮豚","丰收山豚"],
+  lotus:["荷芽蛙","莲蓬蛙","碧莲仙蛙"],
+  manta:["泡泡鳐","潮纹鳐","瀚海翼鳐"],
+  crane:["风铃鹤","逐风鹤","九霄灵鹤"],
+  mantis:["叶镰螳","双刃螳","翠甲刃皇"],
+  cragcrab:["砂晶蟹","晶簇蟹","磐晶蟹王"],
+  cinder:["炭角羊","炽鬃羊","熔冠炎羊"],
+  voltage:["电绒鼠","雷跃鼠","极电灵鼠"],
+  venom:["紫尾蝎","荆毒蝎","蚀毒蝎王"],
+  dune:["沙鳞兽","流砂穿山兽","地脉甲尊"],
+  monk:["拳袋鼠","斗篷袋鼠","震岳斗王"],
+  ironboar:["铁鼻豕","钢鬃战豕","陨铁巨牙"],
+  frost:["雪耳兔","冰棱兔","霜冠灵兔"],
+  spirit:["幽泡灵","夜灯水母","冥幕灯母"],
+  dream:["梦芽貘","星枕貘","梦境贤貘"],
+  shade:["墨羽鸦","暮刃鸦","蚀星鸦王"],
+  aurora:["彩翎雏","幻彩孔雀","极光仙凰"],
+  starwyrm:["星鳞幼龙","星环游龙","星渊龙君"],
   fox:['闪尾狐','焰鬃狐','曜焰灵狐'],bud:['芽芽龙','蕨翼龙','花冠森龙'],turtle:['岩背龟','峭甲龟','山垒巨龟'],
   cotton:['绒团兔','绒领兔','云绒王兔'],otter:['潮泡獭','涌浪獭','沧澜海獭'],spark:['蓄电貂','电弧貂','雷冠灵貂'],
   seal:['霜团海豹','霜鳍海豹','冰冠海狮'],ape:['拳铠猿','破岩拳猿','金刚斗猿'],slug:['毒泡蜗','棘壳蜗','毒冠巨蜗'],
@@ -725,14 +918,16 @@ export const FORM_NAMES:Record<PetId,[string,string,string]>={
 };
 export const petName=(p:Pick<Pet,'id'|'rarity'>)=>FORM_NAMES[p.id][RARITIES.indexOf(p.rarity||'normal')];
 export const formKey=(p:Pick<Pet,'id'|'rarity'>)=>p.id+'-'+(p.rarity||'normal');
-export const petBaseHP=(p:Pet)=>p.baseHP??PETS[p.id].hp+qualityHP(p.rarity);
+export const naturalPetHP=(id:PetId,rarity:EggRarity='normal')=>PETS[id].hp+(NEW_PET_IDS.includes(id)?RARITIES.indexOf(rarity)*6:qualityHP(rarity));
+export const naturalPetFaces=(id:PetId,rarity:EggRarity='normal')=>PETS[id].faces.map(v=>v+(NEW_PET_IDS.includes(id)?RARITIES.indexOf(rarity)*2:0));
+export const petBaseHP=(p:Pet)=>p.baseHP??naturalPetHP(p.id,p.rarity);
 export const sexSymbol=(sex?:Sex)=>sex==='female'?'♀':sex==='male'?'♂':'';
 export function petEntry(s:State,key:string):Pet {
   const p=s.pets?.find(p=>p.uid===key);if(p)return p;
-  const [id,r]=key.split(':') as [PetId,EggRarity];return {id:ids.includes(id)?id:'fox',rarity:RARITIES.includes(r)?r:'normal',faces:[...PETS[ids.includes(id)?id:'fox'].faces]};
+  const [id,r]=key.split(':') as [PetId,EggRarity];return {id:ids.includes(id)?id:'fox',rarity:RARITIES.includes(r)?r:'normal',faces:naturalPetFaces(ids.includes(id)?id:'fox',RARITIES.includes(r)?r:'normal')};
 }
 function hatchRandom(s:State):number {s.hatchSeed=(Math.imul(s.hatchSeed===undefined?(s.seed^0x9e3779b9)>>>0:s.hatchSeed,1664525)+1013904223)>>>0;return s.hatchSeed/4294967296;}
-function naturalGenes(id:PetId,rarity:EggRarity):Genes {return {id,rarity,baseHP:PETS[id].hp+qualityHP(rarity),baseFaces:[...PETS[id].faces],skills:[PET_SKILLS[id][RARITIES.indexOf(rarity)]]};}
+function naturalGenes(id:PetId,rarity:EggRarity):Genes {return {id,rarity,baseHP:naturalPetHP(id,rarity),baseFaces:naturalPetFaces(id,rarity),skills:[PET_SKILLS[id][RARITIES.indexOf(rarity)]]};}
 function individual(s:State,uid:string,g:Genes):Pet {return {id:g.id,rarity:g.rarity,uid,sex:hatchRandom(s)<.5?'female':'male',baseHP:g.baseHP,baseFaces:[...g.baseFaces],faces:[...g.baseFaces],skills:[...g.skills]};}
 function migrateIndividuals(s:State){
   if(s.individualVersion===1)return;
@@ -762,9 +957,9 @@ export function inheritedSkillCount(total:number,roll:number):number {
   if(total===5)return roll<.2?2:roll<.5?3:roll<.8?4:5;
   return roll<.2?3:roll<.5?4:roll<.8?5:6;
 }
-export function startBreeding(before:State,mother:string,father:string,now=Date.now()):State {
+export function startBreeding(before:State,mother:string,father:string,now=gameNow()):State {
   const m=before.pets?.find(p=>p.uid===mother),f=before.pets?.find(p=>p.uid===father);
-  if(before.breeding||!m||!f||m.sex!=='female'||f.sex!=='male'||mother===father||!Number.isSafeInteger(now)||now<0)return before;
+  if(before.breeding||!m||!f||m.sex!=='female'||f.sex!=='male'||mother===father||mother===before.active.uid||father===before.active.uid||!Number.isSafeInteger(now)||now<0)return before;
   const s=clone(before),form=hatchRandom(s)<.5?m:f,health=hatchRandom(s)<.5?m:f,attack=hatchRandom(s)<.5?m:f;
   const pool=Array.from(new Set([...petSkills(m),...petSkills(f)])),count=inheritedSkillCount(pool.length,hatchRandom(s)),skills:SkillCode[]=[];
   while(skills.length<count){const i=Math.floor(hatchRandom(s)*pool.length);skills.push(pool.splice(i,1)[0]);}
@@ -772,7 +967,7 @@ export function startBreeding(before:State,mother:string,father:string,now=Date.
   s.breedingSerial=(s.breedingSerial||0)+1;
   s.breeding={id:'breed-'+s.breedingSerial+'-'+s.hatchSeed,mother,father,startedAt:now,readyAt:now+BREED_DURATION,genes};s.revision++;return s;
 }
-export function claimBreeding(before:State,now=Date.now()):State {
+export function claimBreeding(before:State,now=gameNow()):State {
   const b=before.breeding;if(!b||before.phase==='battle'||before.pendingHatch||!Number.isSafeInteger(now)||now<b.readyAt)return before;
   const s=clone(before);s.eggs=s.eggs||[];
   if(!s.eggs.some(e=>e.id===b.id))s.eggs.push({id:b.id,rarity:b.genes.rarity,affinity:b.genes.id,stage:0,genes:JSON.parse(JSON.stringify(b.genes))});
@@ -829,13 +1024,13 @@ export function readVisitCode(input:string):FriendCard|null {
   const body=parts.slice(0,6).join('.');if(check!==visitChecksum(body))return null;
   return {version:1,owner,petUid,species:ids[Number(species)],rarity:RARITIES[Number(rarity)],sex:sex==='F'?'female':'male',id:'card-'+check};
 }
-export function receiveVisitor(before:State,code:string,now=Date.now()):State {
+export function receiveVisitor(before:State,code:string,now=gameNow()):State {
   const card=readVisitCode(code);if(!before.social||!card||card.owner===before.social.owner||!Number.isSafeInteger(now)||now<0||before.social.visitor?.card.id===card.id)return before;
   const s=clone(before);s.social!.visitor={card,progress:s.social!.bonds.some(b=>b.species===card.species)?3:0,lastPlayedAt:now};s.revision++;return s;
 }
 export function visitorPet(s:State):Pet|null {const c=s.social?.visitor?.card;return c?{id:c.species,rarity:c.rarity,sex:c.sex,faces:[]}:null;}
 export function friendBonds(s:State):FriendBond[] {return (s.social?.bonds||[]).map(b=>({...b}));}
-export function visitAction(before:State,now=Date.now()):State {
+export function visitAction(before:State,now=gameNow()):State {
   const v=before.social?.visitor;if(!v||v.progress>=3||!Number.isSafeInteger(now)||now-v.lastPlayedAt<VISIT_ACTION_MS)return before;
   const s=clone(before),visitor=s.social!.visitor!;visitor.progress++;visitor.lastPlayedAt=now;
   if(visitor.progress===3&&!s.social!.bonds.some(b=>b.species===visitor.card.species))s.social!.bonds.push({species:visitor.card.species,owner:visitor.card.owner,cardId:visitor.card.id});
@@ -850,7 +1045,7 @@ export function bondBlockReason(s:State,egg:Egg,target:PetId):string {
   return '';
 }
 export function bondEligibleEggs(s:State,target:PetId):Egg[] {return availableEggs(s).filter(e=>!bondBlockReason(s,e,target));}
-export function startBondIncubation(before:State,eggId:string,target:PetId,index:number,now=Date.now()):State {
+export function startBondIncubation(before:State,eggId:string,target:PetId,index:number,now=gameNow()):State {
   const egg=availableEggs(before).find(e=>e.id===eggId);
   if(!egg||bondBlockReason(before,egg,target)||![0,1].includes(index)||before.incubators?.[index]||!Number.isSafeInteger(now)||now<0)return before;
   const s=clone(before),bond=s.social!.bonds.find(b=>b.species===target)!,converted=s.eggs!.find(e=>e.id===eggId)!;
@@ -866,3 +1061,4 @@ function validSocial(s:State):boolean {
   if(s.eggs?.some(e=>e.bond&&!social.bonds.some(b=>b.species===e.bond!.species&&b.owner===e.bond!.owner&&b.cardId===e.bond!.cardId)))return false;
   return true;
 }
+

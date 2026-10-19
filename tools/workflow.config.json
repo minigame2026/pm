@@ -7,11 +7,156 @@
   "buildIndex": "build/web-mobile/index.html",
   "server": "tools/serve.cjs",
   "scopes": {
-    "ui": { "tests": [], "runtime": ["checks/fullscreen-runtime.cjs"] },
-    "battle": { "tests": [], "runtime": ["checks/workflow-smoke.cjs"] },
-    "social": { "tests": ["checks/friend-visit.test.cjs"], "runtime": ["checks/friend-visit-runtime.cjs"] },
-    "rules": { "tests": ["checks/model.test.cjs", "checks/maps-breeding.test.cjs", "checks/individuals-breeding.test.cjs", "checks/friend-visit.test.cjs"], "runtime": ["checks/workflow-smoke.cjs"] },
-    "save": { "tests": ["checks/maps-breeding.test.cjs", "checks/individuals-breeding.test.cjs", "checks/friend-visit.test.cjs"], "runtime": ["checks/workflow-smoke.cjs"] },
-    "preview": { "tests": [], "runtime": ["checks/workflow-smoke.cjs"] }
+    "onboarding": {
+      "tests": [
+        "checks/onboarding.test.cjs"
+      ],
+      "runtime": [
+        "checks/onboarding-runtime.cjs",
+        "checks/workflow-smoke.cjs"
+      ]
+    },
+    "ui": {
+      "tests": [],
+      "runtime": [
+        "checks/mobile-flow-runtime.cjs",
+        "checks/countdown-hatch-ad-runtime.cjs"
+      ]
+    },
+    "battle": {
+      "tests": [],
+      "runtime": [
+        "checks/workflow-smoke.cjs"
+      ]
+    },
+    "social": {
+      "tests": [
+        "checks/friend-visit.test.cjs"
+      ],
+      "runtime": [
+        "checks/friend-visit-runtime.cjs"
+      ]
+    },
+    "rules": {
+      "tests": [
+        "checks/model.test.cjs",
+        "checks/regions-expansion.test.cjs",
+        "checks/individuals-breeding.test.cjs",
+        "checks/friend-visit.test.cjs",
+        "checks/egg-rates.test.cjs",
+        "checks/type-matchups.test.cjs"
+      ],
+      "runtime": [
+        "checks/workflow-smoke.cjs"
+      ]
+    },
+    "save": {
+      "tests": [
+        "checks/individuals-breeding.test.cjs",
+        "checks/settlement-breeding.test.cjs"
+      ],
+      "runtime": [
+        "checks/battle-resume-runtime.cjs"
+      ]
+    },
+    "preview": {
+      "tests": [],
+      "runtime": [
+        "checks/workflow-smoke.cjs"
+      ]
+    },
+    "resume": {
+      "tests": [
+        "checks/settlement-breeding.test.cjs"
+      ],
+      "runtime": [
+        "checks/battle-resume-runtime.cjs"
+      ]
+    },
+    "types": {
+      "tests": [
+        "checks/type-matchups.test.cjs"
+      ],
+      "runtime": [
+        "checks/type-matchups-runtime.cjs"
+      ]
+    },
+    "maps": {
+      "tests": [
+        "checks/regions-expansion.test.cjs",
+        "checks/egg-rates.test.cjs"
+      ],
+      "runtime": [
+        "checks/regions-runtime.cjs"
+      ]
+    },
+    "party": {
+      "tests": [
+        "checks/individuals-breeding.test.cjs",
+        "checks/settlement-breeding.test.cjs"
+      ],
+      "runtime": [
+        "checks/cover-breeding-nest-runtime.cjs"
+      ]
+    },
+    "hatch": {
+      "tests": [
+        "checks/hatch-ad.test.cjs"
+      ],
+      "runtime": [
+        "checks/countdown-hatch-ad-runtime.cjs"
+      ]
+    },
+    "time": {
+      "tests": [
+        "checks/trusted-clock.test.cjs",
+        "checks/stamina.test.cjs"
+      ],
+      "runtime": [
+        "checks/trusted-time-runtime.cjs"
+      ]
+    },
+    "audio": {
+      "tests": [],
+      "runtime": [
+        "checks/audio-runtime.cjs"
+      ]
+    },
+    "dex": {
+      "tests": [],
+      "runtime": [
+        "checks/pokedex-runtime.cjs"
+      ]
+    },
+    "scenery": {
+      "tests": [
+        "checks/mobile-flow.test.cjs"
+      ],
+      "runtime": [
+        "checks/scenery-runtime.cjs"
+      ]
+    },
+    "touch": {
+      "tests": [
+        "checks/mobile-flow.test.cjs"
+      ],
+      "runtime": [
+        "checks/mobile-flow-runtime.cjs"
+      ]
+    },
+    "docs": {
+      "tests": [
+        "tools/audit-project.cjs"
+      ],
+      "runtime": [],
+      "build": false
+    },
+    "tools": {
+      "tests": [
+        "checks/workflow.test.cjs"
+      ],
+      "runtime": [],
+      "build": false
+    }
   }
 }

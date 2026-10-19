@@ -1,0 +1,18 @@
+{
+  "tool": "built-in image_gen",
+  "date": "2026-10-19",
+  "cover": {
+    "file": "assets/resources/art/login-cover-v2.png",
+    "prompt": "Edit the attached game cover illustration. Keep the landscape, sky, composition and single ivory die unchanged. Keep the die's visible pips exactly as they are: top 1, left 2, right 3. Replace only the three creatures with fresh original fantasy species in a coherent colorful hand-drawn anime adventure-poster style. Upper-center large creature: a turquoise azure-feather dragon, broad blue and coral feathered wings, three coral feather tufts on its head, ivory chest, friendly powerful rounded face, tail tipped with fan feathers. Lower-left cheerful small creature: an amber flying squirrel with large round fluffy ears, cream belly, teal eyebrow tufts, little paws and a curled broad fluffy leaf-shaped tail. Lower-right sweet small creature: a lavender-blue fox with ivory cheeks, short rounded triangular ears, crescent-shaped forelock, compact body and a tail with three rounded petal-shaped fluffy tips. Give each species a distinct original silhouette, expressive friendly face, crisp cel shading and polished character design. Match their positions and scale to the three existing creatures, replacing their old forms entirely. The top sky and bottom path must remain clear for existing game title and button. No text, logos, humans or extra objects. Portrait 1024x1536, opaque background.",
+    "characters": [
+      "雷电飞鼠",
+      "苍羽龙",
+      "铃尾狐"
+    ],
+    "dice": "one die; top1,left2,right3"
+  },
+  "hero": {
+    "file": "assets/resources/art/trainer-medic-v2.png",
+    "prompt": "Use case: stylized-concept. Create one full-body transparent-background character sprite for a vertical mobile creature-adventure RPG. Reference attached three-trainer sheet ONLY for consistent classic Pokémon-trainer anime illustration style, ink outline weight, cel shading and body proportions. Draw a REPLACEMENT for the third female trainer, Xingyao, as a SINGLE character alone, not a three-person sheet. Entire body including ponytail, fingers and shoe soles must fit with clear margin. New identity: spirited sporty optimistic young female adventurer, energetic big grin, auburn high ponytail with plain small coral hair tie, uncovered head absolutely NO hat, no cap, no headband. Outfit: short cobalt-blue sport jacket with rolled sleeves over opaque white T-shirt, sunny orange practical shorts, dark ankle socks and white/orange running sneakers, small compact belt pouch with subtle green potion charm. No skirt, no scarf, no long coat, no large shoulder bag, no dress, no tall boots. Pose clearly distinct from the reference center girl's gentle open-handed presentation: lively athletic forward step, weight on one leg, other foot lifted a little behind, one arm raised in an enthusiastic energetic wave with open palm beside her head, other hand on her hip; confident mischievous sunny personality. Hair swings with the movement. Keep silhouette narrow enough for a mobile selection card, no exaggerated wide arms. Friendly and readable from small size, polished clean Japanese anime trainer key art, flat cel-shaded colors with tasteful highlights, matching the reference art finish. Portrait 1024x1536. True transparent background, no painted background, no checkerboard, no floor, no shadow beneath feet, no text, no logos, no other character."
+  }
+}

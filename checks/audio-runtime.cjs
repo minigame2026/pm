@@ -1,0 +1,28 @@
+const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('node:assert/strict'),cfg=require('../tools/workflow.config.json'),{chromium}=require(cfg.playwright),ts=require(path.join(path.dirname(cfg.typescript),'typescript.js')),M={};
+vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/PMModel.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2017}}).outputText,{exports:M,Math,Date,JSON,Set});
+const T=Date.now();let s=M.syncStamina(M.chooseStarter(M.chooseHero(M.newJourney(17),'ranger'),'fox'),T);
+s.eggs=[{id:'audio-test-egg',rarity:'normal',affinity:'bud',stage:5,mapId:0}];s=M.startIncubation(s,'audio-test-egg',0,T-31*60000);
+(async()=>{const browser=await chromium.launch({channel:'msedge',headless:true});try{
+ const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true}),page=await context.newPage(),errors=[];
+ page.on('pageerror',e=>errors.push(String(e)));
+ await context.route('https://timeapi.io/**',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({timeZone:'UTC',dateTime:new Date().toISOString().slice(0,-1)})}));await context.route('https://worldtimeapi.org/**',r=>r.abort());
+ await page.addInitScript(s=>{if(!sessionStorage.getItem('seeded')){localStorage.setItem('pm.creature-dice.v1',JSON.stringify(s));sessionStorage.setItem('seeded','1');}},s);
+ async function ready(){await page.waitForFunction(()=>globalThis.__pm?.ready,null,{timeout:60000});await page.evaluate(async()=>{const cc=await System.import('cc');function walk(n){const c=n.components.find(c=>typeof c.hatchery==='function');if(c)return c;for(const ch of n.children){const found=walk(ch);if(found)return found;}}globalThis.g=walk(cc.director.getScene());});await page.waitForFunction(()=>Object.keys(g.audio.clips).length===5);}
+ async function tap(id){await page.waitForFunction(()=>!__pm.animating());const c=await page.evaluate(id=>__pm.controls()[id],id);assert.ok(c,id);await page.touchscreen.tap(c.x*page.viewportSize().width/390,c.y*page.viewportSize().width/390);await page.waitForTimeout(260);await page.waitForFunction(()=>!__pm.animating());}
+ const audio=()=>page.evaluate(()=>({playing:g.audio.music.playing,track:g.audio.music.clip?.name,music:g.audio.musicEnabled,effects:g.audio.effectsEnabled,time:g.audio.music.currentTime,paused:g.audio.suspended.size}));
+ await page.goto(cfg.url);await ready();assert.equal((await audio()).playing,false);
+ await tap('start-game');await page.waitForFunction(()=>g.audio.music.playing);assert.equal((await audio()).track,'camp');
+ await page.waitForTimeout(500);const before=(await audio()).time;await page.evaluate(()=>g.render());await page.waitForTimeout(200);assert.ok((await audio()).time>=before,'UI refresh must not restart music');
+ await tap('home-settings');await tap('audio-music');assert.equal((await audio()).playing,false);await tap('audio-effects');assert.equal((await audio()).effects,false);await page.screenshot({path:'checks/audio-settings-390.png'});
+ await page.reload();await ready();assert.equal((await audio()).music,false);assert.equal((await audio()).effects,false);await tap('start-game');assert.equal((await audio()).playing,false);
+ await tap('home-settings');await tap('audio-music');await tap('audio-effects');await tap('settings-close');await page.waitForFunction(()=>g.audio.music.playing);
+ await page.evaluate(()=>{globalThis.soundEvents=[];const original=g.audio.effect.bind(g.audio);g.audio.effect=id=>{original(id);setTimeout(()=>soundEvents.push({id,playing:g.audio.effects.some(s=>s.playing&&s.clip===g.audio.clips[id])}),100);};});
+ await tap('home-explore');await tap('adventure-go');await tap('challenge');assert.equal((await audio()).track,'battle');assert.ok((await page.evaluate(()=>soundEvents)).some(e=>e.id==='dice'&&e.playing));
+ await tap('attack');assert.ok((await page.evaluate(()=>soundEvents)).some(e=>e.id==='attack'&&e.playing));
+ await page.evaluate(()=>g.goHome());assert.equal((await audio()).track,'camp');await tap('home-hatch');await tap('hatch-slot-0');assert.ok((await page.evaluate(()=>soundEvents)).some(e=>e.id==='hatch'&&e.playing));await tap('hatch-ack');
+ await page.evaluate(()=>{g.onHide();});assert.equal((await audio()).playing,false);await page.evaluate(()=>g.onShow());await page.waitForFunction(()=>g.audio.music.playing);
+ await page.waitForFunction(()=>__pm.timeReady());await page.evaluate(()=>{g.goHome();g.state.stamina.value=20;globalThis.pmRewardedAd={show:()=>new Promise(resolve=>{globalThis.finishAudioAd=resolve;})};void g.watchStaminaAd();});
+ await page.waitForFunction(()=>typeof finishAudioAd==='function');assert.equal((await audio()).playing,false);await page.evaluate(()=>finishAudioAd({completed:false}));await page.waitForFunction(()=>!g.adPending&&g.audio.music.playing);
+ await page.evaluate(()=>g.render());await tap('home-settings');await page.setViewportSize({width:320,height:568});await page.waitForTimeout(350);await page.evaluate(()=>g.homeSettings());await page.screenshot({path:'checks/audio-settings-320.png'});
+ assert.deepEqual(errors,[]);console.log('PASS: 5 clips loaded; gesture playback; camp/battle transitions; no render restart; dice/hit/hatch effects played; saved independent toggles; background/ad pause and resume; no JS errors');
+ }finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

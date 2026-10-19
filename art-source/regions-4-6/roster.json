@@ -1,0 +1,236 @@
+[
+  {
+    "id": "capy",
+    "type": "一般",
+    "mapId": 3,
+    "rank": "normal",
+    "names": [
+      "绒果豚",
+      "果篮豚",
+      "丰收山豚"
+    ],
+    "design": "warm tan capybara with leaf shaped ears and berry seed cheek markings; R round baby with one leaf tuft; SR sturdy youth with thick leafy shoulder ruff and curled seed tail; SSR noble broad capybara guardian with golden grain crest, large layered leaf mantle and fruit shaped shoulder armor",
+    "prompt": "Create one production-ready TRANSPARENT PNG sprite atlas for an original creature collecting mobile JRPG. Clean charming classic Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth flat shading, expressive eyes, no existing copyrighted character. Exactly SIX complete isolated sprites in a STRICT 2 columns by 3 rows rectangular grid, portrait canvas. Row1 R baby form, Row2 SR developed form, Row3 SSR fully evolved form. Each row shows the SAME design twice: LEFT is three-quarter BACK view facing upper-right, mostly back visible; RIGHT is three-quarter FRONT view facing lower-left, face and chest visible. Not pure side views. Whole bodies visible including feet/tails. Sprites centered within their own equal grid cell, generous transparent gutter at cell edges, no overlaps. Increasing anatomical maturity and power from baby to final, same family identity. Character only, no ground shadow, no text, no labels, no backdrop, no decorative particles. The R sprite fills roughly 65% of its cell, SR 75%, SSR 85%. Transparent alpha background. Species design: warm tan capybara with leaf shaped ears and berry seed cheek markings; R round baby with one leaf tuft; SR sturdy youth with thick leafy shoulder ruff and curled seed tail; SSR noble broad capybara guardian with golden grain crest, large layered leaf mantle and fruit shaped shoulder armor"
+  },
+  {
+    "id": "lotus",
+    "type": "草",
+    "mapId": 3,
+    "rank": "normal",
+    "names": [
+      "荷芽蛙",
+      "莲蓬蛙",
+      "碧莲仙蛙"
+    ],
+    "design": "jade green lotus frog; R round tiny frog with single lotus leaf head cap; SR agile frog with pink lotus collar and lily pad back; SSR elegant tall frog sage with large blooming pink lotus crown, leaf cape and long powerful limbs",
+    "prompt": "Create one production-ready TRANSPARENT PNG sprite atlas for an original creature collecting mobile JRPG. Clean charming classic Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth flat shading, expressive eyes, no existing copyrighted character. Exactly SIX complete isolated sprites in a STRICT 2 columns by 3 rows rectangular grid, portrait canvas. Row1 R baby form, Row2 SR developed form, Row3 SSR fully evolved form. Each row shows the SAME design twice: LEFT is three-quarter BACK view facing upper-right, mostly back visible; RIGHT is three-quarter FRONT view facing lower-left, face and chest visible. Not pure side views. Whole bodies visible including feet/tails. Sprites centered within their own equal grid cell, generous transparent gutter at cell edges, no overlaps. Increasing anatomical maturity and power from baby to final, same family identity. Character only, no ground shadow, no text, no labels, no backdrop, no decorative particles. The R sprite fills roughly 65% of its cell, SR 75%, SSR 85%. Transparent alpha background. Species design: jade green lotus frog; R round tiny frog with single lotus leaf head cap; SR agile frog with pink lotus collar and lily pad back; SSR elegant tall frog sage with large blooming pink lotus crown, leaf cape and long powerful limbs"
+  },
+  {
+    "id": "manta",
+    "type": "水",
+    "mapId": 3,
+    "rank": "normal",
+    "names": [
+      "泡泡鳐",
+      "潮纹鳐",
+      "瀚海翼鳐"
+    ],
+    "design": "friendly aquatic sky manta ray hovering a little above ground, turquoise cream palette; R tiny round baby ray with bubble cheek spots and short fins; SR long graceful ray with layered wave edged fins and pearl forehead; SSR magnificent broad winged manta with flowing sapphire wave ribbons, white crest and pearl armor",
+    "prompt": "Create one production-ready TRANSPARENT PNG sprite atlas for an original creature collecting mobile JRPG. Clean charming classic Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth flat shading, expressive eyes, no existing copyrighted character. Exactly SIX complete isolated sprites in a STRICT 2 columns by 3 rows rectangular grid, portrait canvas. Row1 R baby form, Row2 SR developed form, Row3 SSR fully evolved form. Each row shows the SAME design twice: LEFT is three-quarter BACK view facing upper-right, mostly back visible; RIGHT is three-quarter FRONT view facing lower-left, face and chest visible. Not pure side views. Whole bodies visible including feet/tails. Sprites centered within their own equal grid cell, generous transparent gutter at cell edges, no overlaps. Increasing anatomical maturity and power from baby to final, same family identity. Character only, no ground shadow, no text, no labels, no backdrop, no decorative particles. The R sprite fills roughly 65% of its cell, SR 75%, SSR 85%. Transparent alpha background. Species design: friendly aquatic sky manta ray hovering a little above ground, turquoise cream palette; R tiny round baby ray with bubble cheek spots and short fins; SR long graceful ray with layered wave edged fins and pearl forehead; SSR magnificent broad winged manta with flowing sapphire wave ribbons, white crest and pearl armor"
+  },
+  {
+    "id": "crane",
+    "type": "飞行",
+    "mapId": 3,
+    "rank": "normal",
+    "names": [
+      "风铃鹤",
+      "逐风鹤",
+      "九霄灵鹤"
+    ],
+    "design": "ivory and sky blue crane bird, red coral beak, distinct long legs; R fluffy round chick with tiny wing tufts; SR slender crane with sweeping wind shaped wings and feather collar; SSR majestic crane guardian with long curling sky blue plumes and large elegant wings",
+    "prompt": "Create one production-ready TRANSPARENT PNG sprite atlas for an original creature collecting mobile JRPG. Clean charming classic Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth flat shading, expressive eyes, no existing copyrighted character. Exactly SIX complete isolated sprites in a STRICT 2 columns by 3 rows rectangular grid, portrait canvas. Row1 R baby form, Row2 SR developed form, Row3 SSR fully evolved form. Each row shows the SAME design twice: LEFT is three-quarter BACK view facing upper-right, mostly back visible; RIGHT is three-quarter FRONT view facing lower-left, face and chest visible. Not pure side views. Whole bodies visible including feet/tails. Sprites centered within their own equal grid cell, generous transparent gutter at cell edges, no overlaps. Increasing anatomical maturity and power from baby to final, same family identity. Character only, no ground shadow, no text, no labels, no backdrop, no decorative particles. The R sprite fills roughly 65% of its cell, SR 75%, SSR 85%. Transparent alpha background. Species design: ivory and sky blue crane bird, red coral beak, distinct long legs; R fluffy round chick with tiny wing tufts; SR slender crane with sweeping wind shaped wings and feather collar; SSR majestic crane guardian with long curling sky blue plumes and large elegant wings"
+  },
+  {
+    "id": "mantis",
+    "type": "虫",
+    "mapId": 3,
+    "rank": "elite",
+    "names": [
+      "叶镰螳",
+      "双刃螳",
+      "翠甲刃皇"
+    ],
+    "design": "leaf green armored praying mantis warrior, cute large eyes, emerald and ivory; R small squat mantis with leaf forearms; SR athletic mantis with two large curved leaf blade forearms and layered wing armor; SSR imposing armored mantis emperor with enormous elegant scythe arms, gold leaf crown and spread emerald wings",
+    "prompt": "Create one production-ready TRANSPARENT PNG sprite atlas for an original creature collecting mobile JRPG. Clean charming classic Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth flat shading, expressive eyes, no existing copyrighted character. Exactly SIX complete isolated sprites in a STRICT 2 columns by 3 rows rectangular grid, portrait canvas. Row1 R baby form, Row2 SR developed form, Row3 SSR fully evolved form. Each row shows the SAME design twice: LEFT is three-quarter BACK view facing upper-right, mostly back visible; RIGHT is three-quarter FRONT view facing lower-left, face and chest visible. Not pure side views. Whole bodies visible including feet/tails. Sprites centered within their own equal grid cell, generous transparent gutter at cell edges, no overlaps. Increasing anatomical maturity and power from baby to final, same family identity. Character only, no ground shadow, no text, no labels, no backdrop, no decorative particles. The R sprite fills roughly 65% of its cell, SR 75%, SSR 85%. Transparent alpha background. Species design: leaf green armored praying mantis warrior, cute large eyes, emerald and ivory; R small squat mantis with leaf forearms; SR athletic mantis with two large curved leaf blade forearms and layered wing armor; SSR imposing armored mantis emperor with enormous elegant scythe arms, gold leaf crown and spread emerald wings"
+  },
+  {
+    "id": "cragcrab",
+    "type": "岩石",
+    "mapId": 3,
+    "rank": "boss",
+    "names": [
+      "砂晶蟹",
+      "晶簇蟹",
+      "磐晶蟹王"
+    ],
+    "design": "sandstone crab with teal crystals, chunky readable silhouette; R cute tiny rock crab with small square claws and one crystal; SR heavily built crab with thick stone claws and crystal cluster carapace; SSR gigantic royal crab with monumental citrine stone gauntlet claws, blue crystal crown and fortress shell",
+    "prompt": "Create one production-ready TRANSPARENT PNG sprite atlas for an original creature collecting mobile JRPG. Clean charming classic Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth flat shading, expressive eyes, no existing copyrighted character. Exactly SIX complete isolated sprites in a STRICT 2 columns by 3 rows rectangular grid, portrait canvas. Row1 R baby form, Row2 SR developed form, Row3 SSR fully evolved form. Each row shows the SAME design twice: LEFT is three-quarter BACK view facing upper-right, mostly back visible; RIGHT is three-quarter FRONT view facing lower-left, face and chest visible. Not pure side views. Whole bodies visible including feet/tails. Sprites centered within their own equal grid cell, generous transparent gutter at cell edges, no overlaps. Increasing anatomical maturity and power from baby to final, same family identity. Character only, no ground shadow, no text, no labels, no backdrop, no decorative particles. The R sprite fills roughly 65% of its cell, SR 75%, SSR 85%. Transparent alpha background. Species design: sandstone crab with teal crystals, chunky readable silhouette; R cute tiny rock crab with small square claws and one crystal; SR heavily built crab with thick stone claws and crystal cluster carapace; SSR gigantic royal crab with monumental citrine stone gauntlet claws, blue crystal crown and fortress shell"
+  },
+  {
+    "id": "cinder",
+    "type": "火",
+    "mapId": 4,
+    "rank": "normal",
+    "names": [
+      "炭角羊",
+      "炽鬃羊",
+      "熔冠炎羊"
+    ],
+    "design": "charcoal gray and warm orange mountain ram with smoldering fleece, not a fox or lizard; R fluffy baby lamb with tiny ember horns; SR muscular ram with curved glowing copper horns and flame edged shoulder fleece; SSR mighty flame ram with huge lava spiral horns, golden mane and obsidian hooves",
+    "prompt": "Create one production-ready TRANSPARENT PNG sprite atlas for an original creature collecting mobile JRPG. Clean charming classic Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth flat shading, expressive eyes, no existing copyrighted character. Exactly SIX complete isolated sprites in a STRICT 2 columns by 3 rows rectangular grid, portrait canvas. Row1 R baby form, Row2 SR developed form, Row3 SSR fully evolved form. Each row shows the SAME design twice: LEFT is three-quarter BACK view facing upper-right, mostly back visible; RIGHT is three-quarter FRONT view facing lower-left, face and chest visible. Not pure side views. Whole bodies visible including feet/tails. Sprites centered within their own equal grid cell, generous transparent gutter at cell edges, no overlaps. Increasing anatomical maturity and power from baby to final, same family identity. Character only, no ground shadow, no text, no labels, no backdrop, no decorative particles. The R sprite fills roughly 65% of its cell, SR 75%, SSR 85%. Transparent alpha background. Species design: charcoal gray and warm orange mountain ram with smoldering fleece, not a fox or lizard; R fluffy baby lamb with tiny ember horns; SR muscular ram with curved glowing copper horns and flame edged shoulder fleece; SSR mighty flame ram with huge lava spiral horns, golden mane and obsidian hooves"
+  },
+  {
+    "id": "voltage",
+    "type": "电",
+    "mapId": 4,
+    "rank": "normal",
+    "names": [
+      "电绒鼠",
+      "雷跃鼠",
+      "极电灵鼠"
+    ],
+    "design": "cream and cobalt jerboa desert rodent, long thin legs and curled cable tail, no red cheeks or lightning shaped tail; R tiny soft long eared jerboa with blue ear tips; SR agile runner with zigzag cobalt shoulder fur and ringed tail; SSR elegant electric guardian with flowing blue antenna crest, charged loop tail and gold circuit markings",
+    "prompt": "Create one production-ready TRANSPARENT PNG sprite atlas for an original creature collecting mobile JRPG. Clean charming classic Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth flat shading, expressive eyes, no existing copyrighted character. Exactly SIX complete isolated sprites in a STRICT 2 columns by 3 rows rectangular grid, portrait canvas. Row1 R baby form, Row2 SR developed form, Row3 SSR fully evolved form. Each row shows the SAME design twice: LEFT is three-quarter BACK view facing upper-right, mostly back visible; RIGHT is three-quarter FRONT view facing lower-left, face and chest visible. Not pure side views. Whole bodies visible including feet/tails. Sprites centered within their own equal grid cell, generous transparent gutter at cell edges, no overlaps. Increasing anatomical maturity and power from baby to final, same family identity. Character only, no ground shadow, no text, no labels, no backdrop, no decorative particles. The R sprite fills roughly 65% of its cell, SR 75%, SSR 85%. Transparent alpha background. Species design: cream and cobalt jerboa desert rodent, long thin legs and curled cable tail, no red cheeks or lightning shaped tail; R tiny soft long eared jerboa with blue ear tips; SR agile runner with zigzag cobalt shoulder fur and ringed tail; SSR elegant electric guardian with flowing blue antenna crest, charged loop tail and gold circuit markings"
+  },
+  {
+    "id": "venom",
+    "type": "毒",
+    "mapId": 4,
+    "rank": "normal",
+    "names": [
+      "紫尾蝎",
+      "荆毒蝎",
+      "蚀毒蝎王"
+    ],
+    "design": "plum purple friendly scorpion with lime luminous venom droplets; R tiny rounded scorpion with short curled tail and pebble claws; SR armored scorpion with thorned purple tail and translucent lime stinger; SSR imposing glossy scorpion king with layered violet carapace, large pincer shields and jade venom crystal stinger",
+    "prompt": "Create one production-ready TRANSPARENT PNG sprite atlas for an original creature collecting mobile JRPG. Clean charming classic Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth flat shading, expressive eyes, no existing copyrighted character. Exactly SIX complete isolated sprites in a STRICT 2 columns by 3 rows rectangular grid, portrait canvas. Row1 R baby form, Row2 SR developed form, Row3 SSR fully evolved form. Each row shows the SAME design twice: LEFT is three-quarter BACK view facing upper-right, mostly back visible; RIGHT is three-quarter FRONT view facing lower-left, face and chest visible. Not pure side views. Whole bodies visible including feet/tails. Sprites centered within their own equal grid cell, generous transparent gutter at cell edges, no overlaps. Increasing anatomical maturity and power from baby to final, same family identity. Character only, no ground shadow, no text, no labels, no backdrop, no decorative particles. The R sprite fills roughly 65% of its cell, SR 75%, SSR 85%. Transparent alpha background. Species design: plum purple friendly scorpion with lime luminous venom droplets; R tiny rounded scorpion with short curled tail and pebble claws; SR armored scorpion with thorned purple tail and translucent lime stinger; SSR imposing glossy scorpion king with layered violet carapace, large pincer shields and jade venom crystal stinger"
+  },
+  {
+    "id": "dune",
+    "type": "地面",
+    "mapId": 4,
+    "rank": "normal",
+    "names": [
+      "沙鳞兽",
+      "流砂穿山兽",
+      "地脉甲尊"
+    ],
+    "design": "ochre sandy pangolin, warm gold scales, not a mole; R little curled-back pangolin with oversized nose and soft small scales; SR sturdy walking pangolin with layered sandy armor and shovel tail; SSR dignified earth guardian pangolin with massive flowing dune scale plates, rugged golden brow and long armored tail",
+    "prompt": "Create one production-ready TRANSPARENT PNG sprite atlas for an original creature collecting mobile JRPG. Clean charming classic Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth flat shading, expressive eyes, no existing copyrighted character. Exactly SIX complete isolated sprites in a STRICT 2 columns by 3 rows rectangular grid, portrait canvas. Row1 R baby form, Row2 SR developed form, Row3 SSR fully evolved form. Each row shows the SAME design twice: LEFT is three-quarter BACK view facing upper-right, mostly back visible; RIGHT is three-quarter FRONT view facing lower-left, face and chest visible. Not pure side views. Whole bodies visible including feet/tails. Sprites centered within their own equal grid cell, generous transparent gutter at cell edges, no overlaps. Increasing anatomical maturity and power from baby to final, same family identity. Character only, no ground shadow, no text, no labels, no backdrop, no decorative particles. The R sprite fills roughly 65% of its cell, SR 75%, SSR 85%. Transparent alpha background. Species design: ochre sandy pangolin, warm gold scales, not a mole; R little curled-back pangolin with oversized nose and soft small scales; SR sturdy walking pangolin with layered sandy armor and shovel tail; SSR dignified earth guardian pangolin with massive flowing dune scale plates, rugged golden brow and long armored tail"
+  },
+  {
+    "id": "monk",
+    "type": "格斗",
+    "mapId": 4,
+    "rank": "elite",
+    "names": [
+      "拳袋鼠",
+      "斗篷袋鼠",
+      "震岳斗王"
+    ],
+    "design": "russet kangaroo martial creature with cream torso and naturally glove shaped forepaws; R cute small joey with plump forepaws; SR athletic kangaroo with strong tail and red scarf like natural neck ruff; SSR powerful heroic kangaroo champion with huge wrapped looking forearms, long red mane and broad grounded fighting stance",
+    "prompt": "Create one production-ready TRANSPARENT PNG sprite atlas for an original creature collecting mobile JRPG. Clean charming classic Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth flat shading, expressive eyes, no existing copyrighted character. Exactly SIX complete isolated sprites in a STRICT 2 columns by 3 rows rectangular grid, portrait canvas. Row1 R baby form, Row2 SR developed form, Row3 SSR fully evolved form. Each row shows the SAME design twice: LEFT is three-quarter BACK view facing upper-right, mostly back visible; RIGHT is three-quarter FRONT view facing lower-left, face and chest visible. Not pure side views. Whole bodies visible including feet/tails. Sprites centered within their own equal grid cell, generous transparent gutter at cell edges, no overlaps. Increasing anatomical maturity and power from baby to final, same family identity. Character only, no ground shadow, no text, no labels, no backdrop, no decorative particles. The R sprite fills roughly 65% of its cell, SR 75%, SSR 85%. Transparent alpha background. Species design: russet kangaroo martial creature with cream torso and naturally glove shaped forepaws; R cute small joey with plump forepaws; SR athletic kangaroo with strong tail and red scarf like natural neck ruff; SSR powerful heroic kangaroo champion with huge wrapped looking forearms, long red mane and broad grounded fighting stance"
+  },
+  {
+    "id": "ironboar",
+    "type": "钢",
+    "mapId": 4,
+    "rank": "boss",
+    "names": [
+      "铁鼻豕",
+      "钢鬃战豕",
+      "陨铁巨牙"
+    ],
+    "design": "steel plated wild boar, gunmetal silver and brass palette; R tiny rounded piglet with steel snout and little brass tusks; SR large charging boar with overlapping steel back plates and twin long tusks; SSR monumental armored boar emperor with enormous curved metal tusks, riveted fortress shoulders and brass crown shaped dorsal crest",
+    "prompt": "Create one production-ready TRANSPARENT PNG sprite atlas for an original creature collecting mobile JRPG. Clean charming classic Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth flat shading, expressive eyes, no existing copyrighted character. Exactly SIX complete isolated sprites in a STRICT 2 columns by 3 rows rectangular grid, portrait canvas. Row1 R baby form, Row2 SR developed form, Row3 SSR fully evolved form. Each row shows the SAME design twice: LEFT is three-quarter BACK view facing upper-right, mostly back visible; RIGHT is three-quarter FRONT view facing lower-left, face and chest visible. Not pure side views. Whole bodies visible including feet/tails. Sprites centered within their own equal grid cell, generous transparent gutter at cell edges, no overlaps. Increasing anatomical maturity and power from baby to final, same family identity. Character only, no ground shadow, no text, no labels, no backdrop, no decorative particles. The R sprite fills roughly 65% of its cell, SR 75%, SSR 85%. Transparent alpha background. Species design: steel plated wild boar, gunmetal silver and brass palette; R tiny rounded piglet with steel snout and little brass tusks; SR large charging boar with overlapping steel back plates and twin long tusks; SSR monumental armored boar emperor with enormous curved metal tusks, riveted fortress shoulders and brass crown shaped dorsal crest"
+  },
+  {
+    "id": "frost",
+    "type": "冰",
+    "mapId": 5,
+    "rank": "normal",
+    "names": [
+      "雪耳兔",
+      "冰棱兔",
+      "霜冠灵兔"
+    ],
+    "design": "snow white arctic hare with translucent cyan ear tips, lavender eyes; R tiny round bunny with small crystal tuft; SR graceful long eared hare with ice shard shoulder collar and frosty tail; SSR elegant powerful arctic hare with crystalline antler like ear adornments, ice mantle and long strong legs",
+    "prompt": "Create one production-ready TRANSPARENT PNG sprite atlas for an original creature collecting mobile JRPG. Clean charming classic Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth flat shading, expressive eyes, no existing copyrighted character. Exactly SIX complete isolated sprites in a STRICT 2 columns by 3 rows rectangular grid, portrait canvas. Row1 R baby form, Row2 SR developed form, Row3 SSR fully evolved form. Each row shows the SAME design twice: LEFT is three-quarter BACK view facing upper-right, mostly back visible; RIGHT is three-quarter FRONT view facing lower-left, face and chest visible. Not pure side views. Whole bodies visible including feet/tails. Sprites centered within their own equal grid cell, generous transparent gutter at cell edges, no overlaps. Increasing anatomical maturity and power from baby to final, same family identity. Character only, no ground shadow, no text, no labels, no backdrop, no decorative particles. The R sprite fills roughly 65% of its cell, SR 75%, SSR 85%. Transparent alpha background. Species design: snow white arctic hare with translucent cyan ear tips, lavender eyes; R tiny round bunny with small crystal tuft; SR graceful long eared hare with ice shard shoulder collar and frosty tail; SSR elegant powerful arctic hare with crystalline antler like ear adornments, ice mantle and long strong legs"
+  },
+  {
+    "id": "spirit",
+    "type": "幽灵",
+    "mapId": 5,
+    "rank": "normal",
+    "names": [
+      "幽泡灵",
+      "夜灯水母",
+      "冥幕灯母"
+    ],
+    "design": "friendly lavender ghost jellyfish floating, face in bell, pale mint inner light; R little round translucent bell ghost with two stubby tentacles; SR graceful lamp shaped jellyfish with four flowing ribbon tentacles and petal bell; SSR magnificent spectral jellyfish queen with ornate layered lantern bell, silver crest and flowing star dotted veil tentacles",
+    "prompt": "Create one production-ready TRANSPARENT PNG sprite atlas for an original creature collecting mobile JRPG. Clean charming classic Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth flat shading, expressive eyes, no existing copyrighted character. Exactly SIX complete isolated sprites in a STRICT 2 columns by 3 rows rectangular grid, portrait canvas. Row1 R baby form, Row2 SR developed form, Row3 SSR fully evolved form. Each row shows the SAME design twice: LEFT is three-quarter BACK view facing upper-right, mostly back visible; RIGHT is three-quarter FRONT view facing lower-left, face and chest visible. Not pure side views. Whole bodies visible including feet/tails. Sprites centered within their own equal grid cell, generous transparent gutter at cell edges, no overlaps. Increasing anatomical maturity and power from baby to final, same family identity. Character only, no ground shadow, no text, no labels, no backdrop, no decorative particles. The R sprite fills roughly 65% of its cell, SR 75%, SSR 85%. Transparent alpha background. Species design: friendly lavender ghost jellyfish floating, face in bell, pale mint inner light; R little round translucent bell ghost with two stubby tentacles; SR graceful lamp shaped jellyfish with four flowing ribbon tentacles and petal bell; SSR magnificent spectral jellyfish queen with ornate layered lantern bell, silver crest and flowing star dotted veil tentacles"
+  },
+  {
+    "id": "dream",
+    "type": "超能力",
+    "mapId": 5,
+    "rank": "normal",
+    "names": [
+      "梦芽貘",
+      "星枕貘",
+      "梦境贤貘"
+    ],
+    "design": "indigo and lavender dream tapir with short curved trunk and sleepy intelligent eyes; R plump baby tapir with tiny star forehead spot; SR gentle tapir with crescent ear ornaments and layered cloud mane; SSR majestic psychic tapir sage with broad floating ring collar attached visually to neck, golden forehead gem and flowing cosmic mane",
+    "prompt": "Create one production-ready TRANSPARENT PNG sprite atlas for an original creature collecting mobile JRPG. Clean charming classic Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth flat shading, expressive eyes, no existing copyrighted character. Exactly SIX complete isolated sprites in a STRICT 2 columns by 3 rows rectangular grid, portrait canvas. Row1 R baby form, Row2 SR developed form, Row3 SSR fully evolved form. Each row shows the SAME design twice: LEFT is three-quarter BACK view facing upper-right, mostly back visible; RIGHT is three-quarter FRONT view facing lower-left, face and chest visible. Not pure side views. Whole bodies visible including feet/tails. Sprites centered within their own equal grid cell, generous transparent gutter at cell edges, no overlaps. Increasing anatomical maturity and power from baby to final, same family identity. Character only, no ground shadow, no text, no labels, no backdrop, no decorative particles. The R sprite fills roughly 65% of its cell, SR 75%, SSR 85%. Transparent alpha background. Species design: indigo and lavender dream tapir with short curved trunk and sleepy intelligent eyes; R plump baby tapir with tiny star forehead spot; SR gentle tapir with crescent ear ornaments and layered cloud mane; SSR majestic psychic tapir sage with broad floating ring collar attached visually to neck, golden forehead gem and flowing cosmic mane"
+  },
+  {
+    "id": "shade",
+    "type": "恶",
+    "mapId": 5,
+    "rank": "normal",
+    "names": [
+      "墨羽鸦",
+      "暮刃鸦",
+      "蚀星鸦王"
+    ],
+    "design": "charcoal and wine purple raven, clever mischievous face, no horror; R round raven chick with oversized beak and purple wing tips; SR lean raven with hooked feather collar and swept back blade shaped wing feathers; SSR regal raven sovereign with layered black cape wings, wine colored crown crest and long elegantly split tail",
+    "prompt": "Create one production-ready TRANSPARENT PNG sprite atlas for an original creature collecting mobile JRPG. Clean charming classic Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth flat shading, expressive eyes, no existing copyrighted character. Exactly SIX complete isolated sprites in a STRICT 2 columns by 3 rows rectangular grid, portrait canvas. Row1 R baby form, Row2 SR developed form, Row3 SSR fully evolved form. Each row shows the SAME design twice: LEFT is three-quarter BACK view facing upper-right, mostly back visible; RIGHT is three-quarter FRONT view facing lower-left, face and chest visible. Not pure side views. Whole bodies visible including feet/tails. Sprites centered within their own equal grid cell, generous transparent gutter at cell edges, no overlaps. Increasing anatomical maturity and power from baby to final, same family identity. Character only, no ground shadow, no text, no labels, no backdrop, no decorative particles. The R sprite fills roughly 65% of its cell, SR 75%, SSR 85%. Transparent alpha background. Species design: charcoal and wine purple raven, clever mischievous face, no horror; R round raven chick with oversized beak and purple wing tips; SR lean raven with hooked feather collar and swept back blade shaped wing feathers; SSR regal raven sovereign with layered black cape wings, wine colored crown crest and long elegantly split tail"
+  },
+  {
+    "id": "aurora",
+    "type": "妖精",
+    "mapId": 5,
+    "rank": "elite",
+    "names": [
+      "彩翎雏",
+      "幻彩孔雀",
+      "极光仙凰"
+    ],
+    "design": "pastel pink mint and lilac magical peacock, very cute but regal; R tiny pastel chick with three heart tipped tail feathers; SR graceful peacock with pearl head crest and half spread iridescent fan; SSR radiant fairy peacock queen with magnificent heart patterned fan tail, pearl crown and flowing aurora feather ribbons",
+    "prompt": "Create one production-ready TRANSPARENT PNG sprite atlas for an original creature collecting mobile JRPG. Clean charming classic Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth flat shading, expressive eyes, no existing copyrighted character. Exactly SIX complete isolated sprites in a STRICT 2 columns by 3 rows rectangular grid, portrait canvas. Row1 R baby form, Row2 SR developed form, Row3 SSR fully evolved form. Each row shows the SAME design twice: LEFT is three-quarter BACK view facing upper-right, mostly back visible; RIGHT is three-quarter FRONT view facing lower-left, face and chest visible. Not pure side views. Whole bodies visible including feet/tails. Sprites centered within their own equal grid cell, generous transparent gutter at cell edges, no overlaps. Increasing anatomical maturity and power from baby to final, same family identity. Character only, no ground shadow, no text, no labels, no backdrop, no decorative particles. The R sprite fills roughly 65% of its cell, SR 75%, SSR 85%. Transparent alpha background. Species design: pastel pink mint and lilac magical peacock, very cute but regal; R tiny pastel chick with three heart tipped tail feathers; SR graceful peacock with pearl head crest and half spread iridescent fan; SSR radiant fairy peacock queen with magnificent heart patterned fan tail, pearl crown and flowing aurora feather ribbons"
+  },
+  {
+    "id": "starwyrm",
+    "type": "龙",
+    "mapId": 5,
+    "rank": "boss",
+    "names": [
+      "星鳞幼龙",
+      "星环游龙",
+      "星渊龙君"
+    ],
+    "design": "deep sapphire and pale gold eastern celestial dragon with four limbs, rounded muzzle and flowing star shaped fins, no wings; R cute short chubby dragon cub with tiny gold horns; SR long athletic dragon with antler horns, mane and gold ring markings; SSR immense majestic celestial dragon emperor with flowing cosmic mane, sweeping gold antlers and long coiled powerful scaled body, imposing but friendly",
+    "prompt": "Create one production-ready TRANSPARENT PNG sprite atlas for an original creature collecting mobile JRPG. Clean charming classic Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth flat shading, expressive eyes, no existing copyrighted character. Exactly SIX complete isolated sprites in a STRICT 2 columns by 3 rows rectangular grid, portrait canvas. Row1 R baby form, Row2 SR developed form, Row3 SSR fully evolved form. Each row shows the SAME design twice: LEFT is three-quarter BACK view facing upper-right, mostly back visible; RIGHT is three-quarter FRONT view facing lower-left, face and chest visible. Not pure side views. Whole bodies visible including feet/tails. Sprites centered within their own equal grid cell, generous transparent gutter at cell edges, no overlaps. Increasing anatomical maturity and power from baby to final, same family identity. Character only, no ground shadow, no text, no labels, no backdrop, no decorative particles. The R sprite fills roughly 65% of its cell, SR 75%, SSR 85%. Transparent alpha background. Species design: deep sapphire and pale gold eastern celestial dragon with four limbs, rounded muzzle and flowing star shaped fins, no wings; R cute short chubby dragon cub with tiny gold horns; SR long athletic dragon with antler horns, mane and gold ring markings; SSR immense majestic celestial dragon emperor with flowing cosmic mane, sweeping gold antlers and long coiled powerful scaled body, imposing but friendly"
+  }
+]
