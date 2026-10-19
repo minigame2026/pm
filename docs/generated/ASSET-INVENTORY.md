@@ -2,11 +2,11 @@
 
 > 自动生成；不要手改。来源：PMModel、PMGame、BattleArt、EvolutionArt、RegionArt、HeroArt；精确 SHA-256 见 [design-data.json](design-data.json)。运行 `node tools/export-design-data.cjs` 更新，`--check` 检查过期。
 
-资源目录共 92 张 PNG，文件合计 167.63 MiB；当前启动加载 72 张，文件合计 120.94 MiB。
+资源目录共 92 张 PNG，文件合计 167.63 MiB；固定启动清单加载 72 张，文件合计 120.94 MiB。
 
 启动图片按每像素RGBA8四字节估算单份纹理为 416.85 MiB，未计mipmap、驱动副本、压缩格式、引擎和帧缓冲，不能当作实测峰值。裁切帧仍引用整张纹理。
 
-此表不包含JPG、引擎、音频或构建压缩结果，也不是平台主包/分包体积。资源SHA在JSON中，可用于复查资料版本。
+固定启动清单不含按当前地区和营地时段额外加载的背景及地台；表内“否”不代表永不加载。此表不包含JPG、引擎、音频或构建压缩结果，也不是平台主包/分包体积。资源SHA在JSON中，可用于复查资料版本。
 
 | 文件 | 像素尺寸 | 文件KiB | 启动加载 | RGBA8估算MiB |
 | --- | --- | --- | --- | --- |

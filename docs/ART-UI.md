@@ -6,14 +6,15 @@
 
 原创宠物收集冒险；清晰轮廓、明亮色块、较少细碎纹理。普通体态相对圆润，进阶形态通过角、翼、甲、尾、鬃和体量变化形成家族关系。形态外观与实际关卡类别是不同维度，不能凭图片推断关卡数值。
 
-资源分为无字场景底图、透明宠物图、独立图标、程序绘制的卡片/血条/蛋/地台。文字与动态数字由引擎绘制，不烘入整张界面图，方便换主题、换语言、更新数值。
+资源分为无字场景底图、透明宠物图、独立图标、程序绘制的卡片/血条/蛋以及独立地台图。文字与动态数字由引擎绘制，不烘入整张界面图，方便换主题、换语言、更新数值。
 
 ## 文件、视角与坐标
 
 | 内容 | 当前命名/来源 | 规则 |
 |---|---|---|
-| R 双视图 | `assets/resources/art/<id>-battle-v1.png`；fox/bud/turtle 用 `-battle-ref.png` | 一张图含 back/front，读取 BattleArt |
-| SR/SSR 四视图 | `assets/resources/art/<id>-evolution-v1.png` | SR背/正、SSR背/正四个矩形，读取 EvolutionArt |
+| 旧18系列 R 双视图 | `assets/resources/art/<id>-battle-v1.png`；fox/bud/turtle 用 `-battle-ref.png` | 一张图含 back/front，读取 BattleArt |
+| 旧18系列 SR/SSR 四视图 | `assets/resources/art/<id>-evolution-v1.png` | SR背/正、SSR背/正四个矩形，读取 EvolutionArt |
+| 新18系列六视图 | `assets/resources/art/<id>-forms-v1.png` | R/SR/SSR各背面与正面，读取 RegionArt |
 | 初始三只头像 | `fox.png / bud.png / turtle.png` | R 卡片使用独立旧头像；其余系列卡片用正面裁切 |
 | 战斗 / 营地 / 巢穴背景 | `battle-arena.png / home-camp-v1.png / egg-nest-v1.png` | 背景覆盖区域等比放大裁边，留出 UI 空间 |
 | 战斗图标 | `attack-die-a / heal-potion / power-potion / guard-shield / loot-chest / refresh-enemy / battle-start` | 同套立体卡通风格，数字另绘制 |
@@ -29,7 +30,7 @@ R源图并非全部相同像素尺寸；历史15张新双视图1536×1024，旧3
 
 ## 当前场景与封面资源
 
-六地区背景由 RegionArt 映射，战斗与巢穴按所选地图加载，地台由 RegionPads 绘制。营地由 HomeScenery 按手机本地时段选用六张底图；这是装饰时间，不用于体力或孵化结算。环境动态有数量上限并尊重减少动画偏好。封面使用 login-cover-v2、login-title-v3、login-button-v4，第三主角使用 trainer-medic-v2；完整现用文件以自动资源清单为准。
+六地区背景由 PMGame.loadRegionArt 按所选地图加载；第二至六图使用 region-<地图编号>-battle/nest-v1。地台来自 region-pads-v1 图集，裁切映射在 RegionPads。营地由 HomeScenery 按手机本地时段选用六张底图；这是装饰时间，不用于体力或孵化结算。环境动态有数量上限并尊重减少动画偏好。封面使用 login-cover-v2、login-title-v3、login-button-v4，第三主角使用 trainer-medic-v2；完整现用文件以自动资源清单为准。
 
 ## 当前战斗尺度
 
@@ -63,6 +64,6 @@ R源图并非全部相同像素尺寸；历史15张新双视图1536×1024，旧3
 
 ## 性能与平台边界
 
-当前启动加载全部36系列双视图与36张进化图，并非按地图懒加载；裁切帧引用原纹理，裁成小矩形不会使整张纹理内存同步变小。动态Label使用CacheMode.NONE，解决过往字符缺失，但内存和draw call仍需真实测量。
+当前固定启动加载旧18系列的18张双视图和18张进化图，以及新18系列的18张六视图合图，并非按地图懒加载；裁切帧引用原纹理，裁成小矩形不会使整张纹理内存同步变小。动态Label使用CacheMode.NONE，解决过往字符缺失，但内存和draw call仍需真实测量。
 
 资源表的PNG文件大小、RGBA估算与构建包压缩大小、平台主包/分包大小不是同一个概念。当前未接平台分包、远程资源、纹理压缩档位或真机预算验证；新项目发布前要单独实施并测量，不能将浏览器能跑写成小游戏已达标。本轮没有做资源降质或重新生成图片。
