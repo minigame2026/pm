@@ -1,0 +1,38 @@
+{
+  "fox": {
+    "file": "assets/resources/art/app-fox-poses-v1.png",
+    "source": "exec-d2197d68-33dc-4021-b441-676ebbf37c64.png",
+    "size": [
+      1774,
+      887
+    ],
+    "bytes": 1390825
+  },
+  "bud": {
+    "file": "assets/resources/art/app-bud-poses-v1.png",
+    "source": "exec-d0a66b22-5004-4803-a3a8-0b3ea201a5ee.png",
+    "size": [
+      1774,
+      887
+    ],
+    "bytes": 1029778
+  },
+  "otter": {
+    "file": "assets/resources/art/app-otter-poses-v1.png",
+    "source": "exec-741be422-f3ef-49d8-8b8d-32415fcaf5d6.png",
+    "size": [
+      1774,
+      887
+    ],
+    "bytes": 1356451
+  },
+  "scene": {
+    "file": "assets/resources/art/app-coast-v1.png",
+    "source": "exec-b796aa40-e037-4bc3-a3b7-491c930c829c.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "bytes": 2822644
+  }
+}

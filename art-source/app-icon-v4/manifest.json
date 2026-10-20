@@ -1,0 +1,18 @@
+{
+  "generator": "Built-in imagegen",
+  "prompt": "User reference pose: a cute original juvenile yellow fox pet sitting with splayed feet and short arms hugging one die. Large round head, small plump body, flopped ear, happy face; clean Japanese cartoon outlines, restrained yellow/red/white/black/gray palette. Die top 1, front 2, right 4 pips. White background and yellow circle, square app icon, no text.",
+  "outputs": [
+    {
+      "file": "D:\\game\\PM\\art-source\\app-icon-v4\\baby-pet-dice-1024.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 1022235
+    },
+    {
+      "file": "D:\\game\\PM\\art-source\\app-icon-v4\\baby-pet-dice-144.png",
+      "width": 144,
+      "height": 144,
+      "bytes": 30233
+    }
+  ]
+}

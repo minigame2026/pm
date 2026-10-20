@@ -5,16 +5,24 @@
 | 范围 | 用途 |
 |---|---|
 | onboarding | 开局、主角、初始伙伴 |
+| locale | 六语言、系统语言与英文回退、手动选择持久化、页面文字与存档不变 |
+| logos | 六语言封面LOGO、按需加载、比例与390/320宽、开始按钮 |
 | battle / types | 战斗基础 / 属性克制 |
-| maps / rules | 六地图内容 / 综合纯规则 |
+| app-battle | APP草叶海岸样板、三初始宠物姿态/攻防、两种屏幕、临时存档隔离 |
+| maps / rules | 九地图内容 / 综合纯规则 |
 | party | 个体、交配限制、候补、立绘裁切 |
+| party-combat | 独立生命/成长、阵亡替补、克制预览与查看、交配得蛋提示、战斗续存 |
 | hatch / time | 孵化广告 / 可信时间与体力 |
 | social / dex | 好友结缘 / 图鉴 |
 | scenery / touch | 地图与营地表现 / 横滑及移动操作 |
+| app-pages | APP有界缓存/邻页加载、原生短滑与网页按钮翻页 |
+| iteration-oct20 | 10层地图、初始技能、独立图鉴、扣血动画时机、倒计时与旧存档兼容 |
 | audio | 音乐、音效、开关及后台 |
 | resume / save | 崩溃续战 / 个体与崩溃存档 |
 | ui / preview | 全屏功能页 / 浏览器基本流程 |
 | docs / tools | 最新文档与资源引用 / 自动化工具自身；均不构建游戏 |
+| assets | 原图裁切换算、可见页加载、324视图、缓存回收、首屏测量和Trace |
+| release | 用户要求全面测试时使用：全部模块＋按当前配置遍历长流程＋首屏负担与Trace；不是手机平台验收 |
 
 ## 常用入口
 
@@ -24,11 +32,18 @@
 ./检查试玩.ps1 -Scope resume
 ./检查试玩.ps1 -Scope docs,tools
 ./检查试玩.ps1 -Scope preview -ForceBuild
+./检查试玩.ps1 -Scope release
 ~~~
+
+`release`是全量检查清单，日常小修改仍使用相关模块。模块清单变化后用`node tools/register-release-check.cjs`更新；最新测试结果与发布风险见[测试报告](TEST-REPORT.md)。
 
 auto仅根据本次明确提供的Files选择，不扫描所有未提交文件。PMGame承担多个模块，最好直接选择功能组；不能因改了一个文案跑全项目。
 
+`workflow.config.json` 的 `moduleRoutes` 提供新模块的精确路由：多语言文字→locale、语言LOGO→logos、APP表现→app-battle、加载缓存→assets。`--plan`可先查看范围；新模块补路由时同步检查`workflow.test.cjs`。
+
 多个组共享一次类型检查、一次构建，去重重复脚本。构建成功后保存源文件与产物内容指纹；完全匹配才复用，源文件/资产/meta/settings/构建配置/产物变化都重建。ForceBuild用于显式重建；构建中源码变化停止验收。文档/工具组不要求启动Creator。
+
+首次导入若仅为已有assets文件/目录新增.meta，自动再构建一次并单独保存`.import-retry.log`。已有文件改变/删除、已有.meta改变、无对应资产的新.meta均不走此重试；第二次仍变化或编译失败立即停止。不忽略UUID变化，也不无限重试。该分支已通过工具级模拟测试；后续真实新增资源时再核验实际命中。
 
 ## 文档与资源自动检查
 

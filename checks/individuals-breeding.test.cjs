@@ -22,13 +22,15 @@ test('two-pet teams preserve empty slots when dragging either pet to third slot'
  for(const index of [0,1]){let s=M.fresh(9);const key=s.pets[index].uid;s=M.assignPartySlot(s,key,2);assert.equal(M.homeParty(s)[2],key);assert.ok(s.active.uid);assert.equal(s.reserve,null);s=roundtrip(s);assert.equal(M.homeParty(s)[2],key);s=M.restartRun(s,90);assert.equal(M.homeParty(s)[2],key);s=M.assignPartySlot(s,key,0);assert.equal(s.active.uid,key);roundtrip(s);}
 });
 test('ordinary, elite and boss battles never add pets or enter recruitment',()=>{
- for(const step of [1,5,10,15,20]){let s=M.fresh(52);if(step>10){s.clearedMaps=[0];s=M.startMap(s,1,52);}s.step=step;s.enemy=M.encounterPool(step,s.mapId)[0];s=M.act(s,'challenge');s.enemyHP=1;s.enemyMax=100;const before=s.pets.length,owned=s.owned.join();s=M.act(s,'attack');assert.equal(s.pets.length,before);assert.equal(s.owned.join(),owned);
+ for(const [mapId,step] of [[0,1],[0,5],[0,10],[1,5],[1,10]]){let s=M.fresh(52);if(mapId){s.clearedMaps=[0];s=M.startMap(s,mapId,52);}s.step=step;s.enemy=M.encounterPool(step,s.mapId)[0];s=M.act(s,'challenge');s.enemyHP=1;s.enemyMax=100;const before=s.pets.length,owned=s.owned.join();s=M.act(s,'attack');assert.equal(s.pets.length,before);assert.equal(s.owned.join(),owned);
  if(s.phase==='reward')s=M.act(s,'take');if(s.phase==='nest'){s=M.act(s,'eggSearch');s=M.act(s,'eggTake');s=M.act(s,'eggContinue');}
  assert.ok(!['recruit','team'].includes(s.phase));assert.equal(s.pets.length,before);roundtrip(s);}
 });
 test('skill count exact interval boundaries for each pool size',()=>{
- const cases={1:[[0,1],[.999,1]],2:[[0,1],[.4999,1],[.5,2]],3:[[.49,2],[.5,3]],4:[[.29,2],[.3,3],[.699,3],[.7,4]],5:[[.19,2],[.2,3],[.49,3],[.5,4],[.79,4],[.8,5]],6:[[.19,3],[.2,4],[.49,4],[.5,5],[.79,5],[.8,6]],12:[[0,3],[.99,6]]};
+ const cases={1:[[0,1],[.999,1]],2:[[0,2],[.4999,2],[.999,2]],3:[[.4999,2],[.5,3]],4:[[.2499,2],[.25,3],[.7499,3],[.75,4]],5:[[.2499,3],[.25,4],[.7499,4],[.75,5]],6:[[.2499,4],[.25,5],[.7499,5],[.75,6]],12:[[0,4],[.99,6]]};
  for(const [total,cs] of Object.entries(cases))for(const [roll,count] of cs)assert.equal(M.inheritedSkillCount(+total,roll),count);
+ const expected={1:{1:10000},2:{2:10000},3:{2:5000,3:5000},4:{2:2500,3:5000,4:2500},5:{3:2500,4:5000,5:2500},6:{4:2500,5:5000,6:2500},12:{4:2500,5:5000,6:2500}};
+ for(const [total,wanted] of Object.entries(expected)){const actual={};for(let i=0;i<10000;i++){const n=M.inheritedSkillCount(+total,(i+.5)/10000);actual[n]=(actual[n]||0)+1;}assert.deepEqual(actual,wanted);}
 });
 function parents(){let s=M.fresh(47,['fox','turtle','bud']);s.pets[0].sex='female';s.pets[1].sex='male';s.pets[0].skills=['opening','charged','healing'];s.pets[1].skills=['armor','focus','barrier'];s.active=copy(s.pets[0]);s.reserve=copy(s.pets[1]);s.runRoster={};s=M.assignPartySlot(s,s.pets[2].uid,0);return s;}
 test('breeding is timed, restart-safe, idempotent and produces an egg rather than a pet',()=>{
@@ -41,6 +43,7 @@ test('independent inheritance is 50/50, ignores temporary upgrades, deduplicates
  for(let i=0;i<3000;i++){s.breeding=null;s=M.startBreeding(s,s.pets[0].uid,s.pets[1].uid,i);const g=s.breeding.genes;motherForm+=g.id==='fox';motherHP+=g.baseHP===41;motherAttack+=g.baseFaces.join()==='1,3,7';mixed+=(g.id==='fox')!==(g.baseHP===41);assert.ok(g.skills.length>=3&&g.skills.length<=6);assert.equal(new Set(g.skills).size,g.skills.length);assert.ok(!g.baseFaces.includes(99));}
  for(const n of [motherForm,motherHP,motherAttack])assert.ok(n>1350&&n<1650,n);assert.ok(mixed>1000);
  const duplicate=parents();duplicate.pets[1].skills=['opening','charged','healing'];const n=M.startBreeding(duplicate,duplicate.pets[0].uid,duplicate.pets[1].uid,0);assert.ok(n.breeding.genes.skills.length<=3);
+ for(const second of ['opening','armor']){const d=parents();d.pets[0].skills=['opening'];d.pets[1].skills=[second];const child=M.startBreeding(d,d.pets[0].uid,d.pets[1].uid,0).breeding.genes;assert.equal(child.skills.length,second==='opening'?1:2);assert.equal(new Set(child.skills).size,child.skills.length);}
 });
 test('multiple attack, potion and defense skills trigger independently once',()=>{
  let s=parents();const p=s.pets[0];p.skills=['opening','venom','leech','healing','refund','charged'];s.active=copy(p);s.runRoster={};s=M.act(s,'challenge');s.hpRatio=.4;s.enemyHP=s.enemyMax=200;s.enemyAttack=2;s.attack=3;

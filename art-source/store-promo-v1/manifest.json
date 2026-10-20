@@ -1,0 +1,16 @@
+{
+  "generator": "built-in imagegen",
+  "prompt": "Create ONE finished landscape mobile game store promotional key visual at 1920x1080 or larger, exact 16:9 aspect ratio. This is a newly drawn cohesive illustration, NOT a screenshot, NOT a collage, NOT an app icon.\nReference images 1-3 are actual in-game original pet designs. Preserve their recognizable shapes, colours, faces and accessible clean 2D cel-shaded cartoon rendering: orange juvenile fox with enormous cream-tipped fluffy tail, brown paws and cream chest; mint green baby long-neck leaf dinosaur with two leaf ears, green spots and a yellow flower on its back; cheerful round blue turtle with dark blue shell, cream belly and cheek patches. Redraw all three naturally in one shared perspective and lighting, with new appealing poses. Do not substitute famous franchise characters.\nReference 4 is the title lettering style ONLY. The ONLY writing anywhere in the entire image is exactly: 骰子宠物精灵 . Recreate that main title as bold playful golden-yellow Chinese logo lettering with cobalt blue outline and a clean white keyline, prominent across the upper centre. Omit the reference subtitle completely, omit the ribbon text, no slogan, no other words, no letters or numerals.\nScene: sunny grassy coastal woodland clearing, distant gentle blue sea, soft green hills, a few simple trees and cream wildflowers, consistent with a charming casual 2D pet-collecting game background. Foreground: the fox energetically plays beside ONE cream-coloured rounded six-sided die, roughly the size of its head, with visible top face one pip, front face three pips, right face two pips. All pips clean black circles, geometrically aligned in the plane of each face with correct perspective and sensible standard die construction. The leaf dinosaur on the left leans toward a modest straw nest containing two cream eggs with green markings; blue turtle on the right looks toward fox and die with an excited expression. Pets should be the dominant welcoming focus in the lower two-thirds, full bodies clearly readable and grounded, a little space between silhouettes, soft contact shadows. Logo has clear sky behind it and safe margins.\nUse the same level of detail and friendly clean anime/cel shaded 2D artwork as the reference pets and game; polished yet restrained. No photorealism, no elaborate cinematic effects, no giant invented monsters, no misleading spectacular combat, no complex 3D rendering. No app icon, no rounded-square icon badge, no capture balls, no UI, no health bars, no screenshots, no split panels, no stickers, no borders, no watermarks. Create balanced professional store artwork rather than pasted sprites.",
+  "source": "source.png",
+  "output": "build/releases/骰子宠物精灵-商店宣传图-1920x1080.jpg",
+  "outputWidth": 1920,
+  "outputHeight": 1080,
+  "bytes": 950722,
+  "processing": "Resized generated 1672x941 source to required 1920x1080; JPEG quality 94, 4:4:4.",
+  "references": [
+    "art-source/runtime-masters-v1/fox.png",
+    "art-source/runtime-masters-v1/bud.png",
+    "art-source/runtime-masters-v1/turtle.png",
+    "art-source/runtime-masters-v1/login-title-v3.png"
+  ]
+}

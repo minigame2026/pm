@@ -1,6 +1,6 @@
 """Copy generated six-view atlases unchanged and measure alpha, rectangles and feet."""
 from pathlib import Path
-import ast,json,shutil,uuid
+import ast,json,shutil,uuid,sys
 import numpy as np
 from PIL import Image
 root=Path(__file__).resolve().parent.parent
@@ -9,8 +9,11 @@ tree=ast.parse((root/'tools/register-evolution-art.py').read_text(encoding='utf-
 function=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='components')
 scope={'np':np};exec(compile(ast.Module(body=[function],type_ignores=[]),'<components>','exec'),scope)
 components=scope['components']
-manifest=json.loads((root/'art-source/regions-4-6/generation.json').read_text(encoding='utf-8'))
-out={};report=[]
+bundle=sys.argv[1] if len(sys.argv)>1 else 'regions-4-6'
+assert bundle in ['regions-4-6','regions-7-9']
+manifest=json.loads((root/f'art-source/{bundle}/generation.json').read_text(encoding='utf-8'))
+existing=(root/'assets/scripts/RegionArt.ts').read_text(encoding='utf-8')
+out=json.loads(existing[existing.index(' = ')+3:].strip().rstrip(';'));report=[]
 for item in manifest:
     pet_id=item['id'];dest=root/f'assets/resources/art/{pet_id}-forms-v1.png'
     shutil.copyfile(item['source'],dest)
@@ -35,5 +38,5 @@ for item in manifest:
         meta.write_text(json.dumps(template,indent=2),encoding='utf-8')
     report.append({'id':pet_id,'file':str(dest.relative_to(root)).replace('\\','/'),'size':img.size,'bytes':dest.stat().st_size,'transparentFraction':round(float((a==0).mean()),4),'views':out[pet_id]})
 (root/'assets/scripts/RegionArt.ts').write_text('// Geometry measured from original generated alpha; pixels are not edited.\nexport const REGION_ART:Record<string,Record<string,Record<string,{rect:number[];feet:number[]}>>> = '+json.dumps(out,separators=(',',':'))+';\n',encoding='utf-8')
-(root/'art-source/regions-4-6/art-index.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
-print(json.dumps({'sheets':len(out),'sprites':len(out)*6,'megabytes':round(sum(r['bytes'] for r in report)/1048576,2)}))
+(root/f'art-source/{bundle}/art-index.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+print(json.dumps({'sheets':len(report),'sprites':len(report)*6,'megabytes':round(sum(r['bytes'] for r in report)/1048576,2)}))

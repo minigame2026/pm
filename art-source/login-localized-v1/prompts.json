@@ -1,0 +1,36 @@
+{
+  "tool": "built-in image_gen",
+  "reference": "assets/resources/art/login-title-v3.png",
+  "versions": [
+    {
+      "locale": "en",
+      "title": "Dice Pet Spirits",
+      "subtitle": "Collect · Hatch · Explore",
+      "prompt": "Create a production ready transparent game title logo, localized English; title in two compact lines: Dice Pet / Spirits. Reference image is ONLY the visual brand style guide. Replace ALL its Chinese lettering with EXACT main title \"Dice Pet Spirits\" and EXACT smaller subtitle \"Collect · Hatch · Explore\". No other words or language labels. Match the reference's playful custom chunky golden yellow lettering, warm orange beveled lower edge, royal blue thick extruded outline, midnight-blue shadow, fine cream outer keyline, bright white small highlights. Design actual expressive custom lettering, not plain typeset text. Keep legibility of the correct native characters; do not substitute Latin characters. Subtitle is clearly legible white lettering inside a short curved royal-blue ribbon beneath the main title, with small golden star ends. Original friendly monster-collecting dice adventure identity. No monsters, no background, no extra symbols or fake text. Compact wide composition about 2.6:1, large lettering filling canvas with 5% transparent padding, all elements fully inside frame. True transparent background alpha. It must be readable when displayed 350 pixels wide on a phone."
+    },
+    {
+      "locale": "ja",
+      "title": "ダイスペット",
+      "subtitle": "集める · ふ化 · 冒険",
+      "prompt": "Create a production ready transparent game title logo, localized Japanese; title on one line. Reference image is ONLY the visual brand style guide. Replace ALL its Chinese lettering with EXACT main title \"ダイスペット\" and EXACT smaller subtitle \"集める · ふ化 · 冒険\". No other words or language labels. Match the reference's playful custom chunky golden yellow lettering, warm orange beveled lower edge, royal blue thick extruded outline, midnight-blue shadow, fine cream outer keyline, bright white small highlights. Design actual expressive custom lettering, not plain typeset text. Keep legibility of the correct native characters; do not substitute Latin characters. Subtitle is clearly legible white lettering inside a short curved royal-blue ribbon beneath the main title, with small golden star ends. Original friendly monster-collecting dice adventure identity. No monsters, no background, no extra symbols or fake text. Compact wide composition about 2.6:1, large lettering filling canvas with 5% transparent padding, all elements fully inside frame. True transparent background alpha. It must be readable when displayed 350 pixels wide on a phone."
+    },
+    {
+      "locale": "ko",
+      "title": "주사위 펫 스피릿",
+      "subtitle": "수집 · 부화 · 모험",
+      "prompt": "Create a production ready transparent game title logo, localized Korean Hangul; title on one line. Reference image is ONLY the visual brand style guide. Replace ALL its Chinese lettering with EXACT main title \"주사위 펫 스피릿\" and EXACT smaller subtitle \"수집 · 부화 · 모험\". No other words or language labels. Match the reference's playful custom chunky golden yellow lettering, warm orange beveled lower edge, royal blue thick extruded outline, midnight-blue shadow, fine cream outer keyline, bright white small highlights. Design actual expressive custom lettering, not plain typeset text. Keep legibility of the correct native characters; do not substitute Latin characters. Subtitle is clearly legible white lettering inside a short curved royal-blue ribbon beneath the main title, with small golden star ends. Original friendly monster-collecting dice adventure identity. No monsters, no background, no extra symbols or fake text. Compact wide composition about 2.6:1, large lettering filling canvas with 5% transparent padding, all elements fully inside frame. True transparent background alpha. It must be readable when displayed 350 pixels wide on a phone."
+    },
+    {
+      "locale": "zh-TW",
+      "title": "骰子寵物精靈",
+      "subtitle": "收集 · 孵化 · 冒險",
+      "prompt": "Create a production ready transparent game title logo, localized Traditional Chinese ONLY, exact traditional characters. Reference image is ONLY the visual brand style guide. Replace ALL its Chinese lettering with EXACT main title \"骰子寵物精靈\" and EXACT smaller subtitle \"收集 · 孵化 · 冒險\". No other words or language labels. Match the reference's playful custom chunky golden yellow lettering, warm orange beveled lower edge, royal blue thick extruded outline, midnight-blue shadow, fine cream outer keyline, bright white small highlights. Design actual expressive custom lettering, not plain typeset text. Keep legibility of the correct native characters; do not substitute Latin characters. Subtitle is clearly legible white lettering inside a short curved royal-blue ribbon beneath the main title, with small golden star ends. Original friendly monster-collecting dice adventure identity. No monsters, no background, no extra symbols or fake text. Compact wide composition about 2.6:1, large lettering filling canvas with 5% transparent padding, all elements fully inside frame. True transparent background alpha. It must be readable when displayed 350 pixels wide on a phone."
+    },
+    {
+      "locale": "th",
+      "title": "ลูกเต๋าเพื่อนภูต",
+      "subtitle": "สะสม · ฟัก · ผจญภัย",
+      "prompt": "Create a production ready transparent game title logo, localized Thai, preserve every vowel and tone mark; main title in two compact balanced lines if necessary. Reference image is ONLY the visual brand style guide. Replace ALL its Chinese lettering with EXACT main title \"ลูกเต๋าเพื่อนภูต\" and EXACT smaller subtitle \"สะสม · ฟัก · ผจญภัย\". No other words or language labels. Match the reference's playful custom chunky golden yellow lettering, warm orange beveled lower edge, royal blue thick extruded outline, midnight-blue shadow, fine cream outer keyline, bright white small highlights. Design actual expressive custom lettering, not plain typeset text. Keep legibility of the correct native characters; do not substitute Latin characters. Subtitle is clearly legible white lettering inside a short curved royal-blue ribbon beneath the main title, with small golden star ends. Original friendly monster-collecting dice adventure identity. No monsters, no background, no extra symbols or fake text. Compact wide composition about 2.6:1, large lettering filling canvas with 5% transparent padding, all elements fully inside frame. True transparent background alpha. It must be readable when displayed 350 pixels wide on a phone."
+    }
+  ]
+}

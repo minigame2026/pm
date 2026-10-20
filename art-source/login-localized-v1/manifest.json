@@ -1,0 +1,82 @@
+[
+  {
+    "locale": "en",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-b8f21e8d-fb3b-4f9a-8e9f-4451a3908f41.png",
+    "runtime": "assets\\resources\\art\\login-title-en-v1.png",
+    "bytes": 1471929,
+    "size": [
+      2020,
+      778
+    ],
+    "rect": [
+      0,
+      0,
+      1990,
+      778
+    ]
+  },
+  {
+    "locale": "ja",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-7410bb17-b3a8-49a4-9178-0ac63e8a0db6.png",
+    "runtime": "assets\\resources\\art\\login-title-ja-v1.png",
+    "bytes": 1733418,
+    "size": [
+      2021,
+      778
+    ],
+    "rect": [
+      16,
+      11,
+      2005,
+      753
+    ]
+  },
+  {
+    "locale": "ko",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-f071acde-07b4-441e-be8e-cab7616ea061.png",
+    "runtime": "assets\\resources\\art\\login-title-ko-v1.png",
+    "bytes": 1465479,
+    "size": [
+      2022,
+      778
+    ],
+    "rect": [
+      0,
+      80,
+      2022,
+      698
+    ]
+  },
+  {
+    "locale": "zh-TW",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-3ca0fa7e-bf9c-4854-96c3-ebfa40138923.png",
+    "runtime": "assets\\resources\\art\\login-title-zh-TW-v1.png",
+    "bytes": 1676452,
+    "size": [
+      2022,
+      778
+    ],
+    "rect": [
+      18,
+      19,
+      1990,
+      759
+    ]
+  },
+  {
+    "locale": "th",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-b494fdfc-9c7b-46e3-a576-eff46d7658c6.png",
+    "runtime": "assets\\resources\\art\\login-title-th-v1.png",
+    "bytes": 1572501,
+    "size": [
+      2022,
+      778
+    ],
+    "rect": [
+      0,
+      15,
+      2022,
+      743
+    ]
+  }
+]

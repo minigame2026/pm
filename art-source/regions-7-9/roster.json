@@ -1,0 +1,254 @@
+[
+  {
+    "id": "nectar",
+    "type": "一般",
+    "mapId": 6,
+    "rank": "normal",
+    "names": [
+      "蜜团睡鼠",
+      "蜜袋睡鼠",
+      "花蜜守望鼠"
+    ],
+    "color": "#c7a066",
+    "design": "honey-gold dormouse with cream belly, rounded ears, honeycomb-shaped cheek markings. R tiny round sleepy mouse holding its own fluffy curled tail; SR energetic standing mouse with flower-bud shoulder ruff and thick curled tail; SSR noble large woodland dormouse with a honey-gold mane and layered petal collar, no props.",
+    "prompt": "Create a production-ready transparent PNG sprite atlas, 1024x1536 portrait, for an original creature-collecting mobile JRPG. Charming Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth bright flat shading, expressive eyes. EXACTLY SIX complete isolated sprites in a strict 2 columns by 3 rows grid. Row1 R baby, Row2 SR adolescent, Row3 SSR fully evolved. Each row SAME creature design twice: LEFT three-quarter BACK facing upper-right, mostly back visible; RIGHT three-quarter FRONT facing lower-left, face and chest visible. Not side views. All feet, tails and wings complete. Center each sprite in its cell with generous transparent margins, NO overlap. Baby 65% cell, SR75%, SSR85%. Strong changes in silhouette and anatomy through evolution, maintain family identity. No ground shadows, no text, no labels, no backdrop, no floating particles or isolated decorative objects. Fully transparent background. Design: honey-gold dormouse with cream belly, rounded ears, honeycomb-shaped cheek markings. R tiny round sleepy mouse holding its own fluffy curled tail; SR energetic standing mouse with flower-bud shoulder ruff and thick curled tail; SSR noble large woodland dormouse with a honey-gold mane and layered petal collar, no props."
+  },
+  {
+    "id": "orchid",
+    "type": "草",
+    "mapId": 6,
+    "rank": "normal",
+    "names": [
+      "兰芽壁虎",
+      "花冠壁虎",
+      "翠兰花龙"
+    ],
+    "color": "#79b58a",
+    "design": "jade orchid gecko, sticky rounded toes and curling tail. R tiny mint gecko with one pink orchid bud on head; SR taller lizard with blooming orchid cheek fins and leaf spine; SSR regal large four-legged orchid reptile with an enormous pink orchid frill and long leaf-edged tail.",
+    "prompt": "Create a production-ready transparent PNG sprite atlas, 1024x1536 portrait, for an original creature-collecting mobile JRPG. Charming Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth bright flat shading, expressive eyes. EXACTLY SIX complete isolated sprites in a strict 2 columns by 3 rows grid. Row1 R baby, Row2 SR adolescent, Row3 SSR fully evolved. Each row SAME creature design twice: LEFT three-quarter BACK facing upper-right, mostly back visible; RIGHT three-quarter FRONT facing lower-left, face and chest visible. Not side views. All feet, tails and wings complete. Center each sprite in its cell with generous transparent margins, NO overlap. Baby 65% cell, SR75%, SSR85%. Strong changes in silhouette and anatomy through evolution, maintain family identity. No ground shadows, no text, no labels, no backdrop, no floating particles or isolated decorative objects. Fully transparent background. Design: jade orchid gecko, sticky rounded toes and curling tail. R tiny mint gecko with one pink orchid bud on head; SR taller lizard with blooming orchid cheek fins and leaf spine; SSR regal large four-legged orchid reptile with an enormous pink orchid frill and long leaf-edged tail."
+  },
+  {
+    "id": "axolotl",
+    "type": "水",
+    "mapId": 6,
+    "rank": "normal",
+    "names": [
+      "露鳃螈",
+      "涟波螈",
+      "瀑冠灵螈"
+    ],
+    "color": "#69b9d5",
+    "design": "sky-blue axolotl with coral-pink branching external gills and short sturdy legs. R adorable round aquatic baby; SR sleek amphibian with larger fin tail and wave patterned gills; SSR powerful water guardian with broad translucent turquoise sail fins and cascading crown-like gills. Grounded pose, no water effects.",
+    "prompt": "Create a production-ready transparent PNG sprite atlas, 1024x1536 portrait, for an original creature-collecting mobile JRPG. Charming Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth bright flat shading, expressive eyes. EXACTLY SIX complete isolated sprites in a strict 2 columns by 3 rows grid. Row1 R baby, Row2 SR adolescent, Row3 SSR fully evolved. Each row SAME creature design twice: LEFT three-quarter BACK facing upper-right, mostly back visible; RIGHT three-quarter FRONT facing lower-left, face and chest visible. Not side views. All feet, tails and wings complete. Center each sprite in its cell with generous transparent margins, NO overlap. Baby 65% cell, SR75%, SSR85%. Strong changes in silhouette and anatomy through evolution, maintain family identity. No ground shadows, no text, no labels, no backdrop, no floating particles or isolated decorative objects. Fully transparent background. Design: sky-blue axolotl with coral-pink branching external gills and short sturdy legs. R adorable round aquatic baby; SR sleek amphibian with larger fin tail and wave patterned gills; SSR powerful water guardian with broad translucent turquoise sail fins and cascading crown-like gills. Grounded pose, no water effects."
+  },
+  {
+    "id": "lantern",
+    "type": "虫",
+    "mapId": 6,
+    "rank": "normal",
+    "names": [
+      "灯豆萤",
+      "琥灯萤",
+      "曦灯萤后"
+    ],
+    "color": "#9bba68",
+    "design": "gold-and-lime firefly with amber luminous abdomen and leaf-shaped wing shells. R round cute six-legged beetle larva with little folded wings; SR slender upright firefly with longer antennae and patterned closed wing covers; SSR elegant armored firefly queen with big lantern abdomen, layered green-gold wing shields and swept antennae. Wings attached, no detached light effects.",
+    "prompt": "Create a production-ready transparent PNG sprite atlas, 1024x1536 portrait, for an original creature-collecting mobile JRPG. Charming Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth bright flat shading, expressive eyes. EXACTLY SIX complete isolated sprites in a strict 2 columns by 3 rows grid. Row1 R baby, Row2 SR adolescent, Row3 SSR fully evolved. Each row SAME creature design twice: LEFT three-quarter BACK facing upper-right, mostly back visible; RIGHT three-quarter FRONT facing lower-left, face and chest visible. Not side views. All feet, tails and wings complete. Center each sprite in its cell with generous transparent margins, NO overlap. Baby 65% cell, SR75%, SSR85%. Strong changes in silhouette and anatomy through evolution, maintain family identity. No ground shadows, no text, no labels, no backdrop, no floating particles or isolated decorative objects. Fully transparent background. Design: gold-and-lime firefly with amber luminous abdomen and leaf-shaped wing shells. R round cute six-legged beetle larva with little folded wings; SR slender upright firefly with longer antennae and patterned closed wing covers; SSR elegant armored firefly queen with big lantern abdomen, layered green-gold wing shields and swept antennae. Wings attached, no detached light effects."
+  },
+  {
+    "id": "cobra",
+    "type": "毒",
+    "mapId": 6,
+    "rank": "elite",
+    "names": [
+      "紫芽蛇",
+      "棘冠眼镜蛇",
+      "蚀花蛇君"
+    ],
+    "color": "#a26cb6",
+    "design": "violet-and-emerald cobra with thornlike scales and orchid shaped hood markings. R chunky cute coiled snake small hood; SR strong muscular coiled cobra with wide frilled hood; SSR imposing cobra monarch with enormous layered thorn hood, gold poison-gland jewels embedded in skin, broad coiled base. Elite visibly strong, no props or floating droplets.",
+    "prompt": "Create a production-ready transparent PNG sprite atlas, 1024x1536 portrait, for an original creature-collecting mobile JRPG. Charming Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth bright flat shading, expressive eyes. EXACTLY SIX complete isolated sprites in a strict 2 columns by 3 rows grid. Row1 R baby, Row2 SR adolescent, Row3 SSR fully evolved. Each row SAME creature design twice: LEFT three-quarter BACK facing upper-right, mostly back visible; RIGHT three-quarter FRONT facing lower-left, face and chest visible. Not side views. All feet, tails and wings complete. Center each sprite in its cell with generous transparent margins, NO overlap. Baby 65% cell, SR75%, SSR85%. Strong changes in silhouette and anatomy through evolution, maintain family identity. No ground shadows, no text, no labels, no backdrop, no floating particles or isolated decorative objects. Fully transparent background. Design: violet-and-emerald cobra with thornlike scales and orchid shaped hood markings. R chunky cute coiled snake small hood; SR strong muscular coiled cobra with wide frilled hood; SSR imposing cobra monarch with enormous layered thorn hood, gold poison-gland jewels embedded in skin, broad coiled base. Elite visibly strong, no props or floating droplets."
+  },
+  {
+    "id": "hornbill",
+    "type": "飞行",
+    "mapId": 6,
+    "rank": "boss",
+    "names": [
+      "冠喙雏",
+      "风冠犀鸟",
+      "苍穹冠皇"
+    ],
+    "color": "#73a9c2",
+    "design": "majestic turquoise and cream hornbill with amber curved beak and tall casque. R sturdy round chick with small casque; SR powerful standing bird with deep teal wing feathers and rising golden casque; SSR huge imposing avian sovereign with elaborate attached swept crown, layered storm-blue wings and cascading long tail, wings partly folded to fit. Boss silhouette, grounded feet.",
+    "prompt": "Create a production-ready transparent PNG sprite atlas, 1024x1536 portrait, for an original creature-collecting mobile JRPG. Charming Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth bright flat shading, expressive eyes. EXACTLY SIX complete isolated sprites in a strict 2 columns by 3 rows grid. Row1 R baby, Row2 SR adolescent, Row3 SSR fully evolved. Each row SAME creature design twice: LEFT three-quarter BACK facing upper-right, mostly back visible; RIGHT three-quarter FRONT facing lower-left, face and chest visible. Not side views. All feet, tails and wings complete. Center each sprite in its cell with generous transparent margins, NO overlap. Baby 65% cell, SR75%, SSR85%. Strong changes in silhouette and anatomy through evolution, maintain family identity. No ground shadows, no text, no labels, no backdrop, no floating particles or isolated decorative objects. Fully transparent background. Design: majestic turquoise and cream hornbill with amber curved beak and tall casque. R sturdy round chick with small casque; SR powerful standing bird with deep teal wing feathers and rising golden casque; SSR huge imposing avian sovereign with elaborate attached swept crown, layered storm-blue wings and cascading long tail, wings partly folded to fit. Boss silhouette, grounded feet."
+  },
+  {
+    "id": "embercamel",
+    "type": "火",
+    "mapId": 7,
+    "rank": "normal",
+    "names": [
+      "炭团驼",
+      "熔峰驼",
+      "赤曜焰驼"
+    ],
+    "color": "#df925e",
+    "design": "orange sandy camel with coal-black hooves and glowing furnace markings. R cute single-hump calf with short neck and ember tuft; SR sturdier long-neck camel with angular volcanic hump; SSR majestic two-hump camel guardian with molten-gold horns and layered red mane. Fire forms are attached tufts not floating particles.",
+    "prompt": "Create a production-ready transparent PNG sprite atlas, 1024x1536 portrait, for an original creature-collecting mobile JRPG. Charming Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth bright flat shading, expressive eyes. EXACTLY SIX complete isolated sprites in a strict 2 columns by 3 rows grid. Row1 R baby, Row2 SR adolescent, Row3 SSR fully evolved. Each row SAME creature design twice: LEFT three-quarter BACK facing upper-right, mostly back visible; RIGHT three-quarter FRONT facing lower-left, face and chest visible. Not side views. All feet, tails and wings complete. Center each sprite in its cell with generous transparent margins, NO overlap. Baby 65% cell, SR75%, SSR85%. Strong changes in silhouette and anatomy through evolution, maintain family identity. No ground shadows, no text, no labels, no backdrop, no floating particles or isolated decorative objects. Fully transparent background. Design: orange sandy camel with coal-black hooves and glowing furnace markings. R cute single-hump calf with short neck and ember tuft; SR sturdier long-neck camel with angular volcanic hump; SSR majestic two-hump camel guardian with molten-gold horns and layered red mane. Fire forms are attached tufts not floating particles."
+  },
+  {
+    "id": "frill",
+    "type": "电",
+    "mapId": 7,
+    "rank": "normal",
+    "names": [
+      "电扇蜥",
+      "雷冠蜥",
+      "霆环伞蜥"
+    ],
+    "color": "#ddc257",
+    "design": "golden yellow frilled lizard with navy lightning stripes. R round baby with tiny frill; SR agile upright lizard with semicircular segmented electric blue frill; SSR powerful wide-stance lizard with large radial gold-blue frill like thunder wheel and thick zigzag tail. No free lightning bolts.",
+    "prompt": "Create a production-ready transparent PNG sprite atlas, 1024x1536 portrait, for an original creature-collecting mobile JRPG. Charming Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth bright flat shading, expressive eyes. EXACTLY SIX complete isolated sprites in a strict 2 columns by 3 rows grid. Row1 R baby, Row2 SR adolescent, Row3 SSR fully evolved. Each row SAME creature design twice: LEFT three-quarter BACK facing upper-right, mostly back visible; RIGHT three-quarter FRONT facing lower-left, face and chest visible. Not side views. All feet, tails and wings complete. Center each sprite in its cell with generous transparent margins, NO overlap. Baby 65% cell, SR75%, SSR85%. Strong changes in silhouette and anatomy through evolution, maintain family identity. No ground shadows, no text, no labels, no backdrop, no floating particles or isolated decorative objects. Fully transparent background. Design: golden yellow frilled lizard with navy lightning stripes. R round baby with tiny frill; SR agile upright lizard with semicircular segmented electric blue frill; SSR powerful wide-stance lizard with large radial gold-blue frill like thunder wheel and thick zigzag tail. No free lightning bolts."
+  },
+  {
+    "id": "wombat",
+    "type": "地面",
+    "mapId": 7,
+    "rank": "normal",
+    "names": [
+      "砂团熊",
+      "掘岩袋熊",
+      "地脉堡熊"
+    ],
+    "color": "#b49a76",
+    "design": "ochre wombat with shovel-shaped paws, sandy fur and stone plate eyebrows. R tiny rounded digging wombat; SR muscular short-legged wombat with heavy clay forearm pads; SSR massive sturdy wombat with layered earth armor and rugged sandstone shoulder crest, paws firmly planted.",
+    "prompt": "Create a production-ready transparent PNG sprite atlas, 1024x1536 portrait, for an original creature-collecting mobile JRPG. Charming Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth bright flat shading, expressive eyes. EXACTLY SIX complete isolated sprites in a strict 2 columns by 3 rows grid. Row1 R baby, Row2 SR adolescent, Row3 SSR fully evolved. Each row SAME creature design twice: LEFT three-quarter BACK facing upper-right, mostly back visible; RIGHT three-quarter FRONT facing lower-left, face and chest visible. Not side views. All feet, tails and wings complete. Center each sprite in its cell with generous transparent margins, NO overlap. Baby 65% cell, SR75%, SSR85%. Strong changes in silhouette and anatomy through evolution, maintain family identity. No ground shadows, no text, no labels, no backdrop, no floating particles or isolated decorative objects. Fully transparent background. Design: ochre wombat with shovel-shaped paws, sandy fur and stone plate eyebrows. R tiny rounded digging wombat; SR muscular short-legged wombat with heavy clay forearm pads; SSR massive sturdy wombat with layered earth armor and rugged sandstone shoulder crest, paws firmly planted."
+  },
+  {
+    "id": "trilobite",
+    "type": "岩石",
+    "mapId": 7,
+    "rank": "normal",
+    "names": [
+      "砾甲虫",
+      "晶脊古虫",
+      "磐古甲尊"
+    ],
+    "color": "#99a4a8",
+    "design": "prehistoric trilobite creature made of slate and amber fossil stone, NOT a crab. R cute small rounded low trilobite with large eyes; SR broad segmented stony carapace and many short legs; SSR powerful long trilobite guardian with raised quartz ridge and layered fossil shield plates, dense continuous silhouette, small attached feelers.",
+    "prompt": "Create a production-ready transparent PNG sprite atlas, 1024x1536 portrait, for an original creature-collecting mobile JRPG. Charming Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth bright flat shading, expressive eyes. EXACTLY SIX complete isolated sprites in a strict 2 columns by 3 rows grid. Row1 R baby, Row2 SR adolescent, Row3 SSR fully evolved. Each row SAME creature design twice: LEFT three-quarter BACK facing upper-right, mostly back visible; RIGHT three-quarter FRONT facing lower-left, face and chest visible. Not side views. All feet, tails and wings complete. Center each sprite in its cell with generous transparent margins, NO overlap. Baby 65% cell, SR75%, SSR85%. Strong changes in silhouette and anatomy through evolution, maintain family identity. No ground shadows, no text, no labels, no backdrop, no floating particles or isolated decorative objects. Fully transparent background. Design: prehistoric trilobite creature made of slate and amber fossil stone, NOT a crab. R cute small rounded low trilobite with large eyes; SR broad segmented stony carapace and many short legs; SSR powerful long trilobite guardian with raised quartz ridge and layered fossil shield plates, dense continuous silhouette, small attached feelers."
+  },
+  {
+    "id": "wolverine",
+    "type": "格斗",
+    "mapId": 7,
+    "rank": "elite",
+    "names": [
+      "拳爪獾",
+      "赤拳战獾",
+      "震岳斗獾"
+    ],
+    "color": "#ad7e62",
+    "design": "rust brown wolverine martial-arts monster with cream face stripe, broad paws and dark natural wrist bands. R stocky playful cub; SR upright muscular fighter with large forearms and spiky fur shoulder pads; SSR imposing champion wolverine with huge gauntlet-like forearm fur, white mane and compact powerful legs, no weapons or clothes.",
+    "prompt": "Create a production-ready transparent PNG sprite atlas, 1024x1536 portrait, for an original creature-collecting mobile JRPG. Charming Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth bright flat shading, expressive eyes. EXACTLY SIX complete isolated sprites in a strict 2 columns by 3 rows grid. Row1 R baby, Row2 SR adolescent, Row3 SSR fully evolved. Each row SAME creature design twice: LEFT three-quarter BACK facing upper-right, mostly back visible; RIGHT three-quarter FRONT facing lower-left, face and chest visible. Not side views. All feet, tails and wings complete. Center each sprite in its cell with generous transparent margins, NO overlap. Baby 65% cell, SR75%, SSR85%. Strong changes in silhouette and anatomy through evolution, maintain family identity. No ground shadows, no text, no labels, no backdrop, no floating particles or isolated decorative objects. Fully transparent background. Design: rust brown wolverine martial-arts monster with cream face stripe, broad paws and dark natural wrist bands. R stocky playful cub; SR upright muscular fighter with large forearms and spiky fur shoulder pads; SSR imposing champion wolverine with huge gauntlet-like forearm fur, white mane and compact powerful legs, no weapons or clothes."
+  },
+  {
+    "id": "bison",
+    "type": "钢",
+    "mapId": 7,
+    "rank": "boss",
+    "names": [
+      "铁角犊",
+      "铠峰野牛",
+      "天铸钢牛"
+    ],
+    "color": "#8199ac",
+    "design": "steel-blue bison with dark fur belly and metallic armor plates. R small chunky calf with short silver horns; SR broad heavy bison with plated shoulder hump and forward curved horns; SSR colossal boss bison with towering anvil-like steel shoulder armor, huge polished crescent horns and gold joint accents, all four hooves visible.",
+    "prompt": "Create a production-ready transparent PNG sprite atlas, 1024x1536 portrait, for an original creature-collecting mobile JRPG. Charming Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth bright flat shading, expressive eyes. EXACTLY SIX complete isolated sprites in a strict 2 columns by 3 rows grid. Row1 R baby, Row2 SR adolescent, Row3 SSR fully evolved. Each row SAME creature design twice: LEFT three-quarter BACK facing upper-right, mostly back visible; RIGHT three-quarter FRONT facing lower-left, face and chest visible. Not side views. All feet, tails and wings complete. Center each sprite in its cell with generous transparent margins, NO overlap. Baby 65% cell, SR75%, SSR85%. Strong changes in silhouette and anatomy through evolution, maintain family identity. No ground shadows, no text, no labels, no backdrop, no floating particles or isolated decorative objects. Fully transparent background. Design: steel-blue bison with dark fur belly and metallic armor plates. R small chunky calf with short silver horns; SR broad heavy bison with plated shoulder hump and forward curved horns; SSR colossal boss bison with towering anvil-like steel shoulder armor, huge polished crescent horns and gold joint accents, all four hooves visible."
+  },
+  {
+    "id": "narwhal",
+    "type": "冰",
+    "mapId": 8,
+    "rank": "normal",
+    "names": [
+      "雪角鲸",
+      "冰帆鲸",
+      "霜冕角鲸"
+    ],
+    "color": "#9acde5",
+    "design": "pearl-white and ice-blue narwhal monster with short flipper-feet supporting a grounded upright seal-like pose. R round baby with small ice horn; SR sleek stronger narwhal with ice sail back fin; SSR noble large narwhal with long faceted spiral ice horn, crystalline shoulder fins and thick frost mane. No water, no floating ice shards.",
+    "prompt": "Create a production-ready transparent PNG sprite atlas, 1024x1536 portrait, for an original creature-collecting mobile JRPG. Charming Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth bright flat shading, expressive eyes. EXACTLY SIX complete isolated sprites in a strict 2 columns by 3 rows grid. Row1 R baby, Row2 SR adolescent, Row3 SSR fully evolved. Each row SAME creature design twice: LEFT three-quarter BACK facing upper-right, mostly back visible; RIGHT three-quarter FRONT facing lower-left, face and chest visible. Not side views. All feet, tails and wings complete. Center each sprite in its cell with generous transparent margins, NO overlap. Baby 65% cell, SR75%, SSR85%. Strong changes in silhouette and anatomy through evolution, maintain family identity. No ground shadows, no text, no labels, no backdrop, no floating particles or isolated decorative objects. Fully transparent background. Design: pearl-white and ice-blue narwhal monster with short flipper-feet supporting a grounded upright seal-like pose. R round baby with small ice horn; SR sleek stronger narwhal with ice sail back fin; SSR noble large narwhal with long faceted spiral ice horn, crystalline shoulder fins and thick frost mane. No water, no floating ice shards."
+  },
+  {
+    "id": "raccoon",
+    "type": "幽灵",
+    "mapId": 8,
+    "rank": "normal",
+    "names": [
+      "幽面狸",
+      "夜灯灵狸",
+      "冥面幻狸"
+    ],
+    "color": "#a397cb",
+    "design": "lavender ghost raccoon with a cream mask-like natural face pattern and dark ringed tail. R tiny cute raccoon with small will-o-wisp shaped attached ear tips; SR graceful raccoon with cloak-like continuous fur; SSR mysterious regal raccoon with wide spectral mane, long ringed double-curled tail and ivory face markings, solid opaque body not wispy detached pieces.",
+    "prompt": "Create a production-ready transparent PNG sprite atlas, 1024x1536 portrait, for an original creature-collecting mobile JRPG. Charming Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth bright flat shading, expressive eyes. EXACTLY SIX complete isolated sprites in a strict 2 columns by 3 rows grid. Row1 R baby, Row2 SR adolescent, Row3 SSR fully evolved. Each row SAME creature design twice: LEFT three-quarter BACK facing upper-right, mostly back visible; RIGHT three-quarter FRONT facing lower-left, face and chest visible. Not side views. All feet, tails and wings complete. Center each sprite in its cell with generous transparent margins, NO overlap. Baby 65% cell, SR75%, SSR85%. Strong changes in silhouette and anatomy through evolution, maintain family identity. No ground shadows, no text, no labels, no backdrop, no floating particles or isolated decorative objects. Fully transparent background. Design: lavender ghost raccoon with a cream mask-like natural face pattern and dark ringed tail. R tiny cute raccoon with small will-o-wisp shaped attached ear tips; SR graceful raccoon with cloak-like continuous fur; SSR mysterious regal raccoon with wide spectral mane, long ringed double-curled tail and ivory face markings, solid opaque body not wispy detached pieces."
+  },
+  {
+    "id": "octopus",
+    "type": "超能力",
+    "mapId": 8,
+    "rank": "normal",
+    "names": [
+      "念泡章",
+      "星瞳章",
+      "星轨贤章"
+    ],
+    "color": "#af8cc7",
+    "design": "violet psychic octopus with turquoise eyes and golden constellation spots. R adorable bulbous head and eight short rounded tentacles; SR taller intelligent octopus with curled tentacles and brow crest; SSR majestic psychic sage octopus with broad crown-like head crest and large gracefully curled eight tentacles, embedded glowing eye gem, no floating props.",
+    "prompt": "Create a production-ready transparent PNG sprite atlas, 1024x1536 portrait, for an original creature-collecting mobile JRPG. Charming Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth bright flat shading, expressive eyes. EXACTLY SIX complete isolated sprites in a strict 2 columns by 3 rows grid. Row1 R baby, Row2 SR adolescent, Row3 SSR fully evolved. Each row SAME creature design twice: LEFT three-quarter BACK facing upper-right, mostly back visible; RIGHT three-quarter FRONT facing lower-left, face and chest visible. Not side views. All feet, tails and wings complete. Center each sprite in its cell with generous transparent margins, NO overlap. Baby 65% cell, SR75%, SSR85%. Strong changes in silhouette and anatomy through evolution, maintain family identity. No ground shadows, no text, no labels, no backdrop, no floating particles or isolated decorative objects. Fully transparent background. Design: violet psychic octopus with turquoise eyes and golden constellation spots. R adorable bulbous head and eight short rounded tentacles; SR taller intelligent octopus with curled tentacles and brow crest; SSR majestic psychic sage octopus with broad crown-like head crest and large gracefully curled eight tentacles, embedded glowing eye gem, no floating props."
+  },
+  {
+    "id": "moonbat",
+    "type": "恶",
+    "mapId": 8,
+    "rank": "normal",
+    "names": [
+      "暮绒蝠",
+      "月刃蝠",
+      "蚀夜翼蝠"
+    ],
+    "color": "#817493",
+    "design": "charcoal and burgundy fruit bat with pale crescent chest marking. R tiny fluffy bat with oversized ears and short folded wings; SR angular stronger bat with scalloped burgundy wings and small feet; SSR fierce regal dark bat with tall crescent ears, broad attached blade-edged wings partially open and thick neck ruff. Grounded feet, not airborne.",
+    "prompt": "Create a production-ready transparent PNG sprite atlas, 1024x1536 portrait, for an original creature-collecting mobile JRPG. Charming Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth bright flat shading, expressive eyes. EXACTLY SIX complete isolated sprites in a strict 2 columns by 3 rows grid. Row1 R baby, Row2 SR adolescent, Row3 SSR fully evolved. Each row SAME creature design twice: LEFT three-quarter BACK facing upper-right, mostly back visible; RIGHT three-quarter FRONT facing lower-left, face and chest visible. Not side views. All feet, tails and wings complete. Center each sprite in its cell with generous transparent margins, NO overlap. Baby 65% cell, SR75%, SSR85%. Strong changes in silhouette and anatomy through evolution, maintain family identity. No ground shadows, no text, no labels, no backdrop, no floating particles or isolated decorative objects. Fully transparent background. Design: charcoal and burgundy fruit bat with pale crescent chest marking. R tiny fluffy bat with oversized ears and short folded wings; SR angular stronger bat with scalloped burgundy wings and small feet; SSR fierce regal dark bat with tall crescent ears, broad attached blade-edged wings partially open and thick neck ruff. Grounded feet, not airborne."
+  },
+  {
+    "id": "silkmoth",
+    "type": "妖精",
+    "mapId": 8,
+    "rank": "elite",
+    "names": [
+      "月绒蛾",
+      "绫月蝶蛾",
+      "月华织梦蛾"
+    ],
+    "color": "#d8b0cd",
+    "design": "cream and pastel pink silk moth fairy monster, rounded body and elegant wings attached to back. R small fuzzy moth with tiny folded moon-pattern wings; SR upright graceful moth with long feathery antennae and flowing ribbon-edged wings; SSR impressive fairy moth empress with large pearl-pink layered moon-pattern wings, elegant furry collar and attached ribbonlike tails, no human face.",
+    "prompt": "Create a production-ready transparent PNG sprite atlas, 1024x1536 portrait, for an original creature-collecting mobile JRPG. Charming Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth bright flat shading, expressive eyes. EXACTLY SIX complete isolated sprites in a strict 2 columns by 3 rows grid. Row1 R baby, Row2 SR adolescent, Row3 SSR fully evolved. Each row SAME creature design twice: LEFT three-quarter BACK facing upper-right, mostly back visible; RIGHT three-quarter FRONT facing lower-left, face and chest visible. Not side views. All feet, tails and wings complete. Center each sprite in its cell with generous transparent margins, NO overlap. Baby 65% cell, SR75%, SSR85%. Strong changes in silhouette and anatomy through evolution, maintain family identity. No ground shadows, no text, no labels, no backdrop, no floating particles or isolated decorative objects. Fully transparent background. Design: cream and pastel pink silk moth fairy monster, rounded body and elegant wings attached to back. R small fuzzy moth with tiny folded moon-pattern wings; SR upright graceful moth with long feathery antennae and flowing ribbon-edged wings; SSR impressive fairy moth empress with large pearl-pink layered moon-pattern wings, elegant furry collar and attached ribbonlike tails, no human face."
+  },
+  {
+    "id": "kirin",
+    "type": "龙",
+    "mapId": 8,
+    "rank": "boss",
+    "names": [
+      "曜角驹",
+      "星鬃麒麟",
+      "九曜龙麟"
+    ],
+    "color": "#6d9dae",
+    "design": "celestial dragon kirin, quadruped deer-horse anatomy with jade dragon scales, ivory antlers and gold mane. R cute sturdy scaled foal single short horn; SR tall athletic kirin with branched antlers, flowing mane and armored hooves; SSR huge majestic sovereign kirin with ornate branching gold antlers, layered sapphire-jade dragon armor, white flowing mane and long scaled tail. Clearly dragon guardian, four hooves grounded, no floating halo.",
+    "prompt": "Create a production-ready transparent PNG sprite atlas, 1024x1536 portrait, for an original creature-collecting mobile JRPG. Charming Japanese monster RPG cel-shaded illustration, crisp dark outlines, smooth bright flat shading, expressive eyes. EXACTLY SIX complete isolated sprites in a strict 2 columns by 3 rows grid. Row1 R baby, Row2 SR adolescent, Row3 SSR fully evolved. Each row SAME creature design twice: LEFT three-quarter BACK facing upper-right, mostly back visible; RIGHT three-quarter FRONT facing lower-left, face and chest visible. Not side views. All feet, tails and wings complete. Center each sprite in its cell with generous transparent margins, NO overlap. Baby 65% cell, SR75%, SSR85%. Strong changes in silhouette and anatomy through evolution, maintain family identity. No ground shadows, no text, no labels, no backdrop, no floating particles or isolated decorative objects. Fully transparent background. Design: celestial dragon kirin, quadruped deer-horse anatomy with jade dragon scales, ivory antlers and gold mane. R cute sturdy scaled foal single short horn; SR tall athletic kirin with branched antlers, flowing mane and armored hooves; SSR huge majestic sovereign kirin with ornate branching gold antlers, layered sapphire-jade dragon armor, white flowing mane and long scaled tail. Clearly dragon guardian, four hooves grounded, no floating halo."
+  }
+]

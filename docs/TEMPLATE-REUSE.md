@@ -25,6 +25,31 @@
 
 ## 变更联动表
 
+### 已有模块入口与检查路由
+
+| 模块 | 实现入口 | 检查范围 |
+|---|---|---|
+| 共用规则/队伍 | PMModel.ts | rules；只改队伍时可明确选择party-combat |
+| 保存与可信计时 | DurableCheckpoint.ts、TrustedClock.ts | resume、time |
+| 平台服务 | PMRewardedAds.ts、TapAdConfig.ts、原生广告桥 | 按实际平台选专门检查；不自动假定广告可用 |
+| 音频 | PMAudio.ts | audio |
+| 资源缓存 | PMArt.ts、ArtSourceSizes.ts | assets |
+| APP增强表现 | PMAppBattle.ts、AppBattleArt.ts | app-battle |
+| 文字本地化 | PMLocale.ts、PMTranslations.ts | locale |
+| 品牌本地化 | LocalizedLogoArt.ts、各语言标题图片 | logos |
+| 通用页面/动画 | PMGame.ts | 明确指定本次scope，避免整文件导致宽泛检查 |
+
+自动路由维护在 `tools/workflow.config.json` 的 `moduleRoutes`，只作用于显式传入的文件。例如：
+
+```powershell
+node tools/workflow.cjs --scope auto --file assets/scripts/LocalizedLogoArt.ts --plan
+node tools/workflow.cjs --scope app-battle,logos
+```
+
+APP与小游戏共享数值和存档；增强姿态、场景和粒子按表现能力启用。单个效果被批准复用时，不连带开启整个APP资源包。品牌标题使用独立语言图片，普通按钮/数值仍用翻译系统；首屏只载入当前语言LOGO。
+
+以下联动表仍须按实际改动检查，不代表每次都执行全部模块：
+
 | 变更 | 必须同时核对 |
 |---|---|
 | 增加/删除系列 | PETS、FORM_NAMES、PET_SKILLS、地图池、全部Art映射、加载器、图鉴、社交解析索引和旧档 |

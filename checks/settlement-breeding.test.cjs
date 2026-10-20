@@ -6,6 +6,13 @@ assert.equal(M.startBreeding(s,s.pets[0].uid,s.pets[1].uid,T),s,'active mother b
 s=M.assignPartySlot(s,s.pets[1].uid,0);assert.equal(M.startBreeding(s,s.pets[0].uid,s.pets[1].uid,T),s,'active father blocked');
 s=M.assignPartySlot(s,s.pets[2].uid,0);const active=s.active.uid;s=M.startBreeding(s,s.pets[0].uid,s.pets[1].uid,T);assert.ok(s.breeding);
 for(const key of [s.breeding.mother,s.breeding.father])assert.equal(M.assignPartySlot(s,key,0),s,'breeding parents cannot become active');
+for(const key of [s.breeding.mother,s.breeding.father]){
+ assert.equal(M.homeParty(s).includes(key),false,'breeding parents leave team immediately');
+ for(const slot of [0,1,2])assert.equal(M.assignPartySlot(s,key,slot),s,'breeding parents cannot fill any team slot');
+}
+assert.equal(s.reserve,null);assert.equal(s.pets.length,3,'parents retained until egg claim');
+const legacy=JSON.parse(JSON.stringify(s));legacy.team=[active,s.breeding.mother,s.breeding.father];legacy.reserve=legacy.pets.find(p=>p.uid===s.breeding.mother);
+const loaded=M.restore(JSON.stringify(legacy));assert.ok(loaded);assert.equal(loaded.reserve,null);assert.deepEqual([...M.homeParty(loaded)],[active,'','']);
 // Also prevent promoting a breeding parent by dragging the current active into its reserve slot.
 const slots=M.homeParty(s);for(let i=1;i<3;i++)if([s.breeding.mother,s.breeding.father].includes(slots[i]))assert.equal(M.assignPartySlot(s,active,i),s);
 s=M.claimBreeding(s,T+M.BREED_DURATION);assert.equal(s.active.uid,active);assert.equal(s.pets.length,1);assert.ok(M.restore(JSON.stringify(s)));

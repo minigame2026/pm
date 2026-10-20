@@ -1,0 +1,1542 @@
+[
+  {
+    "file": "ape-battle-v1.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "runtimeSize": [
+      1024,
+      683
+    ],
+    "sourceBytes": 2378613,
+    "runtimeBytes": 882136,
+    "sourceSha256": "4507665850651fc32efa03e5cd0e07be8d1ef69ee623c47858bebf2c0ad9b0dd"
+  },
+  {
+    "file": "ape-evolution-v1.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      1024,
+      1024
+    ],
+    "sourceBytes": 866838,
+    "runtimeBytes": 578172,
+    "sourceSha256": "44916fe52ef32f9bb06de7d2a30d6266627156874bc6ca39931cbf959b3b0c78"
+  },
+  {
+    "file": "attack-die-a.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      192,
+      192
+    ],
+    "sourceBytes": 1286312,
+    "runtimeBytes": 39578,
+    "sourceSha256": "82b921d4542b93139c37daa780f85c5a5d7a174f36a05c8d940c834c187eafc5"
+  },
+  {
+    "file": "aurora-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2516062,
+    "runtimeBytes": 1012758,
+    "sourceSha256": "d73cc376c5128345920e90a3fb9a6f97bb7c84db40f68cd7a48ef3bf2065be07"
+  },
+  {
+    "file": "axolotl-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2457872,
+    "runtimeBytes": 966663,
+    "sourceSha256": "e9979c7f92347c0875f1dff0604a48b75a0c3188b43fea7a7d3fee635665774d"
+  },
+  {
+    "file": "battle-arena.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 2289453,
+    "runtimeBytes": 1224656,
+    "sourceSha256": "e2a6556f15ea7c34f0b6ca6d66072a611d838a776559098aaeb3efd10cee4810"
+  },
+  {
+    "file": "battle-start.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      192,
+      192
+    ],
+    "sourceBytes": 993983,
+    "runtimeBytes": 42729,
+    "sourceSha256": "c7bd09e10581853e0f53dbe89a88395d973706abe161b2d031bab485aa211069"
+  },
+  {
+    "file": "beetle-battle-v1.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "runtimeSize": [
+      1024,
+      683
+    ],
+    "sourceBytes": 1766626,
+    "runtimeBytes": 493471,
+    "sourceSha256": "623e2ceae6e2a69d3676481d8caef1c5a34dd70619f47da0a4aff8d963837df7"
+  },
+  {
+    "file": "beetle-evolution-v1.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      1024,
+      1024
+    ],
+    "sourceBytes": 797059,
+    "runtimeBytes": 525784,
+    "sourceSha256": "c52ad769465ffae7abe02f2fcee4787c51120a0e83a0084c20a9ba4b67dd61bc"
+  },
+  {
+    "file": "bird-battle-v1.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "runtimeSize": [
+      1024,
+      683
+    ],
+    "sourceBytes": 1660623,
+    "runtimeBytes": 457480,
+    "sourceSha256": "071a34d1a11825965fe78810f7c19d6bd3452154182fdbdf0f1254aa150184fc"
+  },
+  {
+    "file": "bird-evolution-v1.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      1024,
+      1024
+    ],
+    "sourceBytes": 1939422,
+    "runtimeBytes": 1327304,
+    "sourceSha256": "4a02e8ced983179b04f832053166876c8b9d4aab3fa9459e63f3531465dbf421"
+  },
+  {
+    "file": "bison-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2510143,
+    "runtimeBytes": 909501,
+    "sourceSha256": "94748990ff313d919b4f174d68c7cb773a62114a47571d3d5d4af73fefad0c25"
+  },
+  {
+    "file": "bud-battle-ref.png",
+    "sourceSize": [
+      1774,
+      887
+    ],
+    "runtimeSize": [
+      1024,
+      512
+    ],
+    "sourceBytes": 1224941,
+    "runtimeBytes": 457182,
+    "sourceSha256": "23e258978eb2379f4a30b3f3e7b9bbcd3b271d8e50776597e4a32d182d412891"
+  },
+  {
+    "file": "bud-battle.png",
+    "sourceSize": [
+      1774,
+      887
+    ],
+    "runtimeSize": [
+      1024,
+      512
+    ],
+    "sourceBytes": 1170513,
+    "runtimeBytes": 441530,
+    "sourceSha256": "f79da57a0efda59ef221c39759baab9087be9c81ff19a2406579b4dbf0ceddaa"
+  },
+  {
+    "file": "bud-evolution-v1.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      1024,
+      1024
+    ],
+    "sourceBytes": 2042067,
+    "runtimeBytes": 1404515,
+    "sourceSha256": "7f7d715875ecd4538990ca6fb6324b8a22be77a400a708ca2f1798f64dd0201b"
+  },
+  {
+    "file": "bud.png",
+    "sourceSize": [
+      506,
+      512
+    ],
+    "runtimeSize": [
+      506,
+      512
+    ],
+    "sourceBytes": 252852,
+    "runtimeBytes": 252852,
+    "sourceSha256": "5970fce7e45c70512f839d2e74186a624b150e3661e74f2541c42e9dc518c8bb"
+  },
+  {
+    "file": "capy-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2281012,
+    "runtimeBytes": 770744,
+    "sourceSha256": "7b981d5fa069164dc29aac958d7aaffed9b027bfdc4556382ed282f537d0f5ec"
+  },
+  {
+    "file": "cinder-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2219826,
+    "runtimeBytes": 708465,
+    "sourceSha256": "fea5ae268865b1a76e65fa48f491383ca44b2ac0c19a958653f1c1c6e6b85b9a"
+  },
+  {
+    "file": "cobra-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2774106,
+    "runtimeBytes": 1058766,
+    "sourceSha256": "632811641cc809b4b285cba9fe40789f23959cc53560e16a940578638351c884"
+  },
+  {
+    "file": "cotton-battle-v1.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "runtimeSize": [
+      1024,
+      683
+    ],
+    "sourceBytes": 1613163,
+    "runtimeBytes": 512563,
+    "sourceSha256": "b2a888d73a623969ab89e029760a44980bdeda54436a247c1922d7f740281961"
+  },
+  {
+    "file": "cotton-evolution-v1.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      1024,
+      1024
+    ],
+    "sourceBytes": 1660267,
+    "runtimeBytes": 1133151,
+    "sourceSha256": "1793f31012b999165805e64ef68ddd005ad592e26ae649d24fac98d8ed8cacda"
+  },
+  {
+    "file": "cragcrab-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2384350,
+    "runtimeBytes": 835003,
+    "sourceSha256": "0c7bd7eeba749bc021f4c2ab4abc93759000ee4a9aa6470c1ffafc6468d650b8"
+  },
+  {
+    "file": "crane-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2298225,
+    "runtimeBytes": 848536,
+    "sourceSha256": "45355431462664a6f4645451022f7f866c7025f154ac3af8c25ed978d259a5ca"
+  },
+  {
+    "file": "deer-battle-v1.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "runtimeSize": [
+      1024,
+      683
+    ],
+    "sourceBytes": 1799570,
+    "runtimeBytes": 556123,
+    "sourceSha256": "5580e838234662f188bd37485f3d01765c2c8ea09ec1ecf60451a9de915da210"
+  },
+  {
+    "file": "deer-evolution-v1.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      1024,
+      1024
+    ],
+    "sourceBytes": 1841044,
+    "runtimeBytes": 1248739,
+    "sourceSha256": "d90f276b23edcb9be09d9139537ab41415411fee5b5d16740d1b026cb52d9d4a"
+  },
+  {
+    "file": "dragon-battle-v1.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "runtimeSize": [
+      1024,
+      683
+    ],
+    "sourceBytes": 2075757,
+    "runtimeBytes": 657542,
+    "sourceSha256": "595ee622fb2bbee419bdfe27634c5a50b49dbed58f39504a76b7ffa646361323"
+  },
+  {
+    "file": "dragon-evolution-v1.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      1024,
+      1024
+    ],
+    "sourceBytes": 2571762,
+    "runtimeBytes": 1755411,
+    "sourceSha256": "df9b87974d25aefa2a1f7bfaf25fa7d2dfd68d90bad7b93b4fc47a1673db8993"
+  },
+  {
+    "file": "dream-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2277042,
+    "runtimeBytes": 837513,
+    "sourceSha256": "a0efb5712e000755cb892439e8d81874d9d0d3ac66badc0c899eebff9d436693"
+  },
+  {
+    "file": "dune-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2383371,
+    "runtimeBytes": 830071,
+    "sourceSha256": "94a606170cb7524f392e06a8f4791fd7a872937876dc4d0ebfd16215ce804a9c"
+  },
+  {
+    "file": "egg-nest-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 2737885,
+    "runtimeBytes": 1576167,
+    "sourceSha256": "51adb99e2fb2cc959244ca3fb545e5ae0661c36b3fb6a5ab41277031e10a1454"
+  },
+  {
+    "file": "embercamel-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2268994,
+    "runtimeBytes": 777331,
+    "sourceSha256": "64a8bdfff7fa65a3e74dbea3b0653346e5a45a165ec12b469610dc9f4b4378b1"
+  },
+  {
+    "file": "fox-battle-ref.png",
+    "sourceSize": [
+      1774,
+      887
+    ],
+    "runtimeSize": [
+      1024,
+      512
+    ],
+    "sourceBytes": 1109577,
+    "runtimeBytes": 401586,
+    "sourceSha256": "a59644536bd23ddaed455b13d2e574b061e43219ff19662ea8f4a760b8c91453"
+  },
+  {
+    "file": "fox-battle.png",
+    "sourceSize": [
+      1774,
+      887
+    ],
+    "runtimeSize": [
+      1024,
+      512
+    ],
+    "sourceBytes": 1138718,
+    "runtimeBytes": 428688,
+    "sourceSha256": "afd8ebc9cedc4f152842230aa382ee57b92f67b301e1ac01ec437721c0467a8a"
+  },
+  {
+    "file": "fox-evolution-v1.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      1024,
+      1024
+    ],
+    "sourceBytes": 1758397,
+    "runtimeBytes": 1208376,
+    "sourceSha256": "ca007def0e4796049c303607880be28bc18463222e5f24770ebabc5955424f68"
+  },
+  {
+    "file": "fox.png",
+    "sourceSize": [
+      512,
+      464
+    ],
+    "runtimeSize": [
+      512,
+      464
+    ],
+    "sourceBytes": 271294,
+    "runtimeBytes": 271294,
+    "sourceSha256": "ff8d8e6dc5c3ad0307aa68f2cf5735abf8f0b1ef97b630dca9d735c9ce665c5f"
+  },
+  {
+    "file": "frill-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2308572,
+    "runtimeBytes": 845924,
+    "sourceSha256": "d77d3cc354a7c99c3a30b48f10cd0d7f2883d583c9e41595547fab4d7de6ca96"
+  },
+  {
+    "file": "frost-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2093139,
+    "runtimeBytes": 699936,
+    "sourceSha256": "cde007a5bf5d9162f20f43d6e188e5c08c5e4d3a8dafd3b264f5eb67a7a68a7c"
+  },
+  {
+    "file": "ghost-battle-v1.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "runtimeSize": [
+      1024,
+      683
+    ],
+    "sourceBytes": 1661738,
+    "runtimeBytes": 508122,
+    "sourceSha256": "05bdd88c5dd297937546733c8bbfeda500d50dd19f525ff95f848c3117130ce9"
+  },
+  {
+    "file": "ghost-evolution-v1.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      1024,
+      1024
+    ],
+    "sourceBytes": 683489,
+    "runtimeBytes": 456949,
+    "sourceSha256": "940aa8337ec27546fac6f02ccaa7e4fa6e17b6365dbf5cde4372753e74b078ff"
+  },
+  {
+    "file": "guard-shield.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      192,
+      192
+    ],
+    "sourceBytes": 1159417,
+    "runtimeBytes": 39750,
+    "sourceSha256": "f41162d89b36a26ef5f60b6bc69f601520b6bfe29408689c833331716ca5fd49"
+  },
+  {
+    "file": "heal-potion.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      192,
+      192
+    ],
+    "sourceBytes": 1084440,
+    "runtimeBytes": 43525,
+    "sourceSha256": "f9008f4065e0a7cb6a7fff63a21c37d105c80b78a0fe69e039520f15bd705a7b"
+  },
+  {
+    "file": "home-camp-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 2746606,
+    "runtimeBytes": 1545553,
+    "sourceSha256": "2ab36d2d98ec071a1e77dae7f02162b27324da41a1b09edc273e1920ef7d56f4"
+  },
+  {
+    "file": "home-dawn-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 2770599,
+    "runtimeBytes": 1559751,
+    "sourceSha256": "026e62025071b34f6ada8061d04ae6bd5bfc2e620c5569b2f9f0c859155a5855"
+  },
+  {
+    "file": "home-dusk-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 2853557,
+    "runtimeBytes": 1620401,
+    "sourceSha256": "052d02f02e036997844adc4ef8630290fc4e65bd476499b52fe2e53101960a2f"
+  },
+  {
+    "file": "home-evening-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 2791222,
+    "runtimeBytes": 1594425,
+    "sourceSha256": "2a16a7cd5f2b54666db45e865bd95bdffa28455badc823806691b4a7a16849ed"
+  },
+  {
+    "file": "home-midnight-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 2702642,
+    "runtimeBytes": 1542895,
+    "sourceSha256": "ccf083827e1963ae106e2ebc38e8a555cded7228a5084d6972f264fc5b490f64"
+  },
+  {
+    "file": "home-morning-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 3063735,
+    "runtimeBytes": 1724534,
+    "sourceSha256": "84eb6c6175841ef397e00e2c00ff942cc92481663e63b32947940b81dce5d685"
+  },
+  {
+    "file": "hornbill-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2470862,
+    "runtimeBytes": 869267,
+    "sourceSha256": "715496c654b0b192acbf5bc99a2b312298fd2a333a2660596867b727001a49ba"
+  },
+  {
+    "file": "ironboar-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2556595,
+    "runtimeBytes": 904124,
+    "sourceSha256": "cdb47fa37baba7e11709e1782a0030425c905bda5b3fb67be7f0e1376f229482"
+  },
+  {
+    "file": "kirin-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2779456,
+    "runtimeBytes": 1071166,
+    "sourceSha256": "d2048c18815e368432defd393f10417baf2d3cec12cf6df403c69ecda67cf3c5"
+  },
+  {
+    "file": "lantern-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2510953,
+    "runtimeBytes": 883871,
+    "sourceSha256": "3f68020c53400b69ab56dda9ed0d085200ef40d53809be8ac3a271a778ae76b6"
+  },
+  {
+    "file": "login-button-v4.png",
+    "sourceSize": [
+      2172,
+      724
+    ],
+    "runtimeSize": [
+      768,
+      256
+    ],
+    "sourceBytes": 1222010,
+    "runtimeBytes": 184193,
+    "sourceSha256": "4a7a149f95507f2c295b8a9b931616dfbf9814c2d1f1158cd9b6fcd1176776b9"
+  },
+  {
+    "file": "login-cover-v2.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 2505080,
+    "runtimeBytes": 1483251,
+    "sourceSha256": "0da0a9c9bddeb8c83df25d6020a7a64dfdb2a7028ec34ccf7914f89ee5ded209"
+  },
+  {
+    "file": "login-title-v3.png",
+    "sourceSize": [
+      1942,
+      809
+    ],
+    "runtimeSize": [
+      768,
+      320
+    ],
+    "sourceBytes": 1473242,
+    "runtimeBytes": 295737,
+    "sourceSha256": "1049b1f608f414a6c2af6fbd08df8c7c2d7a0631c0abbfdc10d0a32ec614f14f"
+  },
+  {
+    "file": "loot-chest.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      192,
+      192
+    ],
+    "sourceBytes": 1403772,
+    "runtimeBytes": 56177,
+    "sourceSha256": "a523ba4ba817dbc824da61c3643ff07252240c4f8180d5879675217122c165c2"
+  },
+  {
+    "file": "lotus-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2356835,
+    "runtimeBytes": 828303,
+    "sourceSha256": "774d03f95df5227f29d16d3603695e1b271a345697cdd27c3f1485f4e50d9c3b"
+  },
+  {
+    "file": "lynx-battle-v1.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "runtimeSize": [
+      1024,
+      683
+    ],
+    "sourceBytes": 1940590,
+    "runtimeBytes": 657681,
+    "sourceSha256": "26dab710c11a98d54e385e0bff5451ceb4e8247d933ed6ba6710b1e303734582"
+  },
+  {
+    "file": "lynx-evolution-v1.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      1024,
+      1024
+    ],
+    "sourceBytes": 1814822,
+    "runtimeBytes": 1235035,
+    "sourceSha256": "bd8d72875a29008210c0dc50dc6d80762903053345cecbe4d7415dab9d096fc2"
+  },
+  {
+    "file": "manta-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2208616,
+    "runtimeBytes": 787676,
+    "sourceSha256": "34e29a37ee672eb94b71b2159487c0cdc21ac2bd00daf5ecddee0a404453a011"
+  },
+  {
+    "file": "mantis-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2362308,
+    "runtimeBytes": 794998,
+    "sourceSha256": "a038a7c22a2ca0c7c950e5d7bac694d44ea138329208c6677ed219aef9d1edf3"
+  },
+  {
+    "file": "mole-battle-v1.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "runtimeSize": [
+      1024,
+      683
+    ],
+    "sourceBytes": 1547584,
+    "runtimeBytes": 408222,
+    "sourceSha256": "dca2944addb37c4d2f0e38b154209eeede3af54d91dbd29407b9721318493f9f"
+  },
+  {
+    "file": "mole-evolution-v1.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      1024,
+      1024
+    ],
+    "sourceBytes": 810824,
+    "runtimeBytes": 538714,
+    "sourceSha256": "22f36fe15ea1357f807c7e18c515986fbce121f6c9e7b61dee869c079df7a30e"
+  },
+  {
+    "file": "monk-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2071845,
+    "runtimeBytes": 704270,
+    "sourceSha256": "5a348c4369f69129824d5785b232964e3252cfbe7723471311451fa30fd65a27"
+  },
+  {
+    "file": "moonbat-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2004459,
+    "runtimeBytes": 668168,
+    "sourceSha256": "771db69b0fe5cdb7ced84f6513f94a4452fc02d9a01ef4e27a5c7bdc305dfcdc"
+  },
+  {
+    "file": "narwhal-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2202052,
+    "runtimeBytes": 788644,
+    "sourceSha256": "7d0622c6f0c129e42dbf6cfb1c5ff97c89d5a0ff587d27efaf5c8df2fd96276e"
+  },
+  {
+    "file": "nectar-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 1998823,
+    "runtimeBytes": 659032,
+    "sourceSha256": "f063dc77d917b0950391101d1dddbe3930f572dbc9ea09df48f9fddf3a77a074"
+  },
+  {
+    "file": "octopus-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2457648,
+    "runtimeBytes": 931494,
+    "sourceSha256": "5241a758a118b0f6d62de778ad78e84bb162567e15cd24894c0b03d6fb185de3"
+  },
+  {
+    "file": "orchid-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2661133,
+    "runtimeBytes": 1018148,
+    "sourceSha256": "61f339caefa38a3d6ae3af5612a7a2caf32fabf45cf10185549f16a8ab945572"
+  },
+  {
+    "file": "otter-battle-v1.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "runtimeSize": [
+      1024,
+      683
+    ],
+    "sourceBytes": 1658699,
+    "runtimeBytes": 524630,
+    "sourceSha256": "39e6fe9c2d8078fab42285b57791ac2b788d679916df5c6d55d2026d0478bc63"
+  },
+  {
+    "file": "otter-evolution-v1.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      1024,
+      1024
+    ],
+    "sourceBytes": 1786531,
+    "runtimeBytes": 1233900,
+    "sourceSha256": "d07f0271bcbb44e80182a00e8290f5c23d8b1f445b9ebde18932cbec7990a258"
+  },
+  {
+    "file": "owl-battle-v1.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "runtimeSize": [
+      1024,
+      683
+    ],
+    "sourceBytes": 2554345,
+    "runtimeBytes": 1024170,
+    "sourceSha256": "7a793c866b017f457c9a2f668664389179f8d63cf4a83d4ef8ff7d639c82e7fd"
+  },
+  {
+    "file": "owl-evolution-v1.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      1024,
+      1024
+    ],
+    "sourceBytes": 1216450,
+    "runtimeBytes": 792987,
+    "sourceSha256": "4de9ad69f16648bba226e3e88a3fe602dcae84de3ce7e53ffda984c709176973"
+  },
+  {
+    "file": "power-potion.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      192,
+      192
+    ],
+    "sourceBytes": 1102756,
+    "runtimeBytes": 42522,
+    "sourceSha256": "a85fd06fe54de79d1d1080966482f885929f3dbc09f80af3dfbfbd2b7cda76c8"
+  },
+  {
+    "file": "raccoon-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2134008,
+    "runtimeBytes": 771016,
+    "sourceSha256": "ad9032b74c66601f83a20ef1e7d04fee56be426482c2618ecd6ac3bedfdec80f"
+  },
+  {
+    "file": "refresh-enemy.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      192,
+      192
+    ],
+    "sourceBytes": 1015301,
+    "runtimeBytes": 41461,
+    "sourceSha256": "5e685cfea9462d4a3177c19fcfdb43acc5311059bd0ced9f81493f4e8176ef26"
+  },
+  {
+    "file": "region-2-battle-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 2454818,
+    "runtimeBytes": 1358912,
+    "sourceSha256": "2bd9eb6c4f93dedde5fe5a3c4596cfbee049ce128586f75cec516c5dee1f987d"
+  },
+  {
+    "file": "region-2-nest-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 2982826,
+    "runtimeBytes": 1706232,
+    "sourceSha256": "d03b530aa415dde9f3e03f7641a264bf3f81d6356a6894cd5b3aaa41dea5d70e"
+  },
+  {
+    "file": "region-3-battle-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 2545935,
+    "runtimeBytes": 1409862,
+    "sourceSha256": "91ab6f37bf7ab2efb3f1394cb1c0abc3dec8847451f2d82eb1844694211a537b"
+  },
+  {
+    "file": "region-3-nest-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 2996503,
+    "runtimeBytes": 1684457,
+    "sourceSha256": "e36eba9fa3aaec7d8e9d419b0d73555ecd4350e18ef5acaad3e56046e8689db3"
+  },
+  {
+    "file": "region-4-battle-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 2672441,
+    "runtimeBytes": 1501218,
+    "sourceSha256": "28be60a686068fbc7e2b00fb1f9e35f1f82577a19e24380fcc98ecc21cc7543d"
+  },
+  {
+    "file": "region-4-nest-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 3102072,
+    "runtimeBytes": 1763709,
+    "sourceSha256": "6b9f1cc6bebee4723d9f44d4997413217b1437d54f135e4089bb49ebb55cd5d7"
+  },
+  {
+    "file": "region-5-battle-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 2545068,
+    "runtimeBytes": 1418126,
+    "sourceSha256": "fd3de53f45a19d80173a8d2f1800bffca79e2a56ba018b8719bbb5b9033e1c6a"
+  },
+  {
+    "file": "region-5-nest-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 2964342,
+    "runtimeBytes": 1684530,
+    "sourceSha256": "9f9dda002104165fab62043fc0519a12c0e987074514c0a0df004c74c8e88ef9"
+  },
+  {
+    "file": "region-6-battle-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 2715026,
+    "runtimeBytes": 1454580,
+    "sourceSha256": "1dd21e282b621421e1e049f5658fc83a359b321551a967dad3e8594b6abb71ee"
+  },
+  {
+    "file": "region-6-nest-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 3202437,
+    "runtimeBytes": 1798623,
+    "sourceSha256": "b2c6cc145350d5af6c87b7900f00a67beb75277779dec30b462b0cc74f1714a4"
+  },
+  {
+    "file": "region-pads-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 2416948,
+    "runtimeBytes": 1120680,
+    "sourceSha256": "c488b80d6b0501ba8248ae19bcad64bd658b242580429606492bbf95b8ed9797"
+  },
+  {
+    "file": "rhino-battle-v1.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "runtimeSize": [
+      1024,
+      683
+    ],
+    "sourceBytes": 2176210,
+    "runtimeBytes": 794662,
+    "sourceSha256": "d50e4865dd34c645fdd73cc06d2feb97ced2861bcf8fc44ce8f639317cc7ec72"
+  },
+  {
+    "file": "rhino-evolution-v1.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      1024,
+      1024
+    ],
+    "sourceBytes": 2046229,
+    "runtimeBytes": 1391026,
+    "sourceSha256": "0367a886a3f4b773d1c50b21900b519ab800fa1cc0df27556fe2f961f15256f2"
+  },
+  {
+    "file": "seal-battle-v1.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "runtimeSize": [
+      1024,
+      683
+    ],
+    "sourceBytes": 1396774,
+    "runtimeBytes": 347489,
+    "sourceSha256": "39474e9a6f916a1b661e021df9d37441062863563477af52fcd6c590053436d8"
+  },
+  {
+    "file": "seal-evolution-v1.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      1024,
+      1024
+    ],
+    "sourceBytes": 862080,
+    "runtimeBytes": 579215,
+    "sourceSha256": "85218a65dff730dfe40dc7fcf02a354c87c7e53fb3c6da90254d36eb76437bc3"
+  },
+  {
+    "file": "settings-s2.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      1024,
+      1024
+    ],
+    "sourceBytes": 870995,
+    "runtimeBytes": 516379,
+    "sourceSha256": "8e10975fea2753ddca9185faf82d2ea47a1a535771c856f3c0ea2eb6b78f1c7a"
+  },
+  {
+    "file": "shade-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2104143,
+    "runtimeBytes": 642104,
+    "sourceSha256": "76b07bfe5f333f3ec35ba8fdde2aca8dae808fbb96e0bf2d4bfc459f577e56c9"
+  },
+  {
+    "file": "silkmoth-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2336605,
+    "runtimeBytes": 856767,
+    "sourceSha256": "f7a0af5d82d39250ddbe5f1ea0896f7a80edbd01fbb64f839633614cc7788bfb"
+  },
+  {
+    "file": "slug-battle-v1.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "runtimeSize": [
+      1024,
+      683
+    ],
+    "sourceBytes": 1861786,
+    "runtimeBytes": 609700,
+    "sourceSha256": "afd8ae404df25111a58cf6d4412c0135dbb09dfceecb7b38d4d082d395f56bac"
+  },
+  {
+    "file": "slug-evolution-v1.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      1024,
+      1024
+    ],
+    "sourceBytes": 2123686,
+    "runtimeBytes": 1491803,
+    "sourceSha256": "b49b3bbdecb864c6d27e1d8f725d95f3e47fd64de6823395ebb954f38e2a81d7"
+  },
+  {
+    "file": "spark-battle-v1.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "runtimeSize": [
+      1024,
+      683
+    ],
+    "sourceBytes": 1517424,
+    "runtimeBytes": 428993,
+    "sourceSha256": "f7804ddd0318781b3750d8a8b0af502dd4a8c7b8bc1d1fe6c2715134edbd8a5b"
+  },
+  {
+    "file": "spark-evolution-v1.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      1024,
+      1024
+    ],
+    "sourceBytes": 1654593,
+    "runtimeBytes": 1148706,
+    "sourceSha256": "d787d1fe6c922d0f952b1e735f97f46e0590841c9e2e6230044b22d990c8bc31"
+  },
+  {
+    "file": "spirit-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2308766,
+    "runtimeBytes": 851389,
+    "sourceSha256": "2e82afd26fdabbf86408c3626c636d12c91fafd516bf105aa53baf9e42d936fb"
+  },
+  {
+    "file": "starwyrm-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2874740,
+    "runtimeBytes": 1195442,
+    "sourceSha256": "19345287490f5194f97256a3fafdf67b10aa8e4704b4da8be00880a695b93955"
+  },
+  {
+    "file": "trainer-medic-v2.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      768,
+      1152
+    ],
+    "sourceBytes": 1612770,
+    "runtimeBytes": 562547,
+    "sourceSha256": "e87f431d9a81ab4e6252269ac2d8b6205512f363a9fd1975d4d57a476bd2575a"
+  },
+  {
+    "file": "trainer-trio-v1.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "runtimeSize": [
+      1152,
+      768
+    ],
+    "sourceBytes": 2142546,
+    "runtimeBytes": 874118,
+    "sourceSha256": "b0789d3bed9e731485d3c0ee2c431ea1c518db1338b4ac6b7e2fed213070aa91"
+  },
+  {
+    "file": "trilobite-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2852101,
+    "runtimeBytes": 1036021,
+    "sourceSha256": "7ec482c49844c5216651cc594498efdd5c68dbd1b15d99fd8d423ce67116a08a"
+  },
+  {
+    "file": "turtle-battle-ref.png",
+    "sourceSize": [
+      1774,
+      887
+    ],
+    "runtimeSize": [
+      1024,
+      512
+    ],
+    "sourceBytes": 1163584,
+    "runtimeBytes": 424546,
+    "sourceSha256": "12f199a3cd3640752f79a83b6075ab7851c77e4c8ddcda5a74f8829d8590d34f"
+  },
+  {
+    "file": "turtle-battle.png",
+    "sourceSize": [
+      1774,
+      887
+    ],
+    "runtimeSize": [
+      1024,
+      512
+    ],
+    "sourceBytes": 1003782,
+    "runtimeBytes": 375294,
+    "sourceSha256": "95b78223d6b3d34659a6074f53a6ebdb923a1f91723d5fab941ed08c5655c67a"
+  },
+  {
+    "file": "turtle-evolution-v1.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "runtimeSize": [
+      1024,
+      1024
+    ],
+    "sourceBytes": 1938276,
+    "runtimeBytes": 1318510,
+    "sourceSha256": "dd1ec0c09d7fe86a731ce2d1cf2f589bb3547b36e665df27cc2d21b7b6b23911"
+  },
+  {
+    "file": "turtle.png",
+    "sourceSize": [
+      512,
+      506
+    ],
+    "runtimeSize": [
+      512,
+      506
+    ],
+    "sourceBytes": 227173,
+    "runtimeBytes": 227173,
+    "sourceSha256": "a9459cd22fa0c50599d13ad01cb8ffd46ea3e7ec42b0f439cd1614c9bbe82928"
+  },
+  {
+    "file": "venom-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2300666,
+    "runtimeBytes": 790023,
+    "sourceSha256": "6a5870a68efb98379f8953dc7d55fc0742375ea594bf12187535be5fe4338f1c"
+  },
+  {
+    "file": "voltage-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2167500,
+    "runtimeBytes": 757605,
+    "sourceSha256": "c90f49059e2c5f34935a557e468fe41576114c9fd9ce530e4c8244ddf995998b"
+  },
+  {
+    "file": "wolverine-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2223726,
+    "runtimeBytes": 851066,
+    "sourceSha256": "c4f2ac1024ce530e78362d15622e0122e18b4318689de809789120de294951ee"
+  },
+  {
+    "file": "wombat-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2383157,
+    "runtimeBytes": 825159,
+    "sourceSha256": "2e3040bc4e905204e02c95362fbdfe2631ceb52844e113beeec8a8da56a513f6"
+  }
+]

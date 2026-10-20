@@ -1,0 +1,46 @@
+{
+  "title": "休闲音效 v2",
+  "method": "original deterministic synthesis, PCM 44.1kHz mono; MP3 96kbps",
+  "samples": [
+    {
+      "id": "click",
+      "description": "柔软低音水滴点击，无高频硬起音",
+      "duration": 0.16,
+      "peak": 0.1265,
+      "rms": 0.0449,
+      "bytes": 2865
+    },
+    {
+      "id": "attack",
+      "description": "轻快弹性命中",
+      "duration": 0.27,
+      "peak": 0.5313,
+      "rms": 0.1319,
+      "bytes": 4119
+    },
+    {
+      "id": "hurt",
+      "description": "柔和低音受击",
+      "duration": 0.3,
+      "peak": 0.4659,
+      "rms": 0.1153,
+      "bytes": 4432
+    },
+    {
+      "id": "heal",
+      "description": "气泡与清亮恢复音",
+      "duration": 0.64,
+      "peak": 0.2491,
+      "rms": 0.0604,
+      "bytes": 8507
+    },
+    {
+      "id": "boost",
+      "description": "温暖上扬强化音",
+      "duration": 0.62,
+      "peak": 0.2979,
+      "rms": 0.0751,
+      "bytes": 8194
+    }
+  ]
+}

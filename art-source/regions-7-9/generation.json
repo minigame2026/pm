@@ -1,0 +1,93 @@
+[
+  {
+    "id": "nectar",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-f8b59396-c823-488f-84fb-41c13e0c08cb.png",
+    "revision": "Atlas silhouettes separated through imagegen; preserve designs, reduce each sprite by 20%, at least 64px transparent gutters, no touching adults, no pixel edits by scripts.",
+    "asset": "assets/resources/art/nectar-forms-v1.png"
+  },
+  {
+    "id": "orchid",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-b3d08e66-b886-44e6-b98a-cb6a41182a7c.png",
+    "asset": "assets/resources/art/orchid-forms-v1.png"
+  },
+  {
+    "id": "axolotl",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-ed4d4dc5-d890-4b2b-9a34-c40cd68f6b6c.png",
+    "asset": "assets/resources/art/axolotl-forms-v1.png"
+  },
+  {
+    "id": "lantern",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-c47a099f-d53f-4a8d-a90c-4ead4593b36c.png",
+    "asset": "assets/resources/art/lantern-forms-v1.png"
+  },
+  {
+    "id": "cobra",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-05738277-4971-4f7b-9b1b-fbe9fca85b4a.png",
+    "asset": "assets/resources/art/cobra-forms-v1.png"
+  },
+  {
+    "id": "hornbill",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-dc69fcdf-e839-4119-aa50-4ac2f82f651a.png",
+    "asset": "assets/resources/art/hornbill-forms-v1.png"
+  },
+  {
+    "id": "embercamel",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-49f99064-0635-4e42-bfe6-306e7c5780a4.png",
+    "asset": "assets/resources/art/embercamel-forms-v1.png"
+  },
+  {
+    "id": "frill",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-96b925f5-0d92-4aa2-a37d-3e3fd31c17a6.png",
+    "asset": "assets/resources/art/frill-forms-v1.png"
+  },
+  {
+    "id": "wombat",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-b80e0318-9b3d-4ee6-bb8d-3d1a4a317bf3.png",
+    "asset": "assets/resources/art/wombat-forms-v1.png"
+  },
+  {
+    "id": "trilobite",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-2539f7ab-19a7-40c2-8337-a55d6fbf09e8.png",
+    "asset": "assets/resources/art/trilobite-forms-v1.png"
+  },
+  {
+    "id": "wolverine",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-22fa5dfe-2923-4731-8045-4c4cd1667d98.png",
+    "asset": "assets/resources/art/wolverine-forms-v1.png"
+  },
+  {
+    "id": "bison",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-b86d70cf-9e98-45f7-9166-5f9969ac9ab6.png",
+    "asset": "assets/resources/art/bison-forms-v1.png"
+  },
+  {
+    "id": "narwhal",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-4256736a-f748-4fdf-acb3-7847a6395c7a.png",
+    "asset": "assets/resources/art/narwhal-forms-v1.png"
+  },
+  {
+    "id": "raccoon",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-b9cf05d7-1cba-41c5-b73b-5b01964b21fa.png",
+    "asset": "assets/resources/art/raccoon-forms-v1.png"
+  },
+  {
+    "id": "octopus",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-65d1939a-f647-4ec0-859d-d193b399c942.png",
+    "asset": "assets/resources/art/octopus-forms-v1.png"
+  },
+  {
+    "id": "moonbat",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-2c8a5603-b14d-464a-85e8-e03c0b0490a6.png",
+    "asset": "assets/resources/art/moonbat-forms-v1.png"
+  },
+  {
+    "id": "silkmoth",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-0de1209e-7519-406e-bae6-748bbb242222.png",
+    "asset": "assets/resources/art/silkmoth-forms-v1.png"
+  },
+  {
+    "id": "kirin",
+    "source": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-88e29959-ee5a-49a4-b340-02b20c8c30bd.png",
+    "asset": "assets/resources/art/kirin-forms-v1.png"
+  }
+]

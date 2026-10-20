@@ -40,7 +40,7 @@
 
 见 [可信时间](TRUSTED-TIME.md)、[体力与探险](STAMINA.md)。本地时间只切营地画面；收益无可信时间时暂缓。广告完成后才发奖；校时失败保存待发标记，避免重复发放。接口预留不等于平台SDK已接通。
 
-来访码为PMV1.owner.speciesIndex.rarityIndex.F或M.petUid.checksum。系列索引使用PET_IDS顺序，当前36系列，扩展不重排旧ID。校验码只检测错误，不认证身份。
+来访码为PMV1.owner.speciesIndex.rarityIndex.F或M.petUid.checksum。系列索引使用PET_IDS顺序，当前54系列，扩展不重排旧ID。校验码只检测错误，不认证身份。
 
 ## 验收与来源
 

@@ -1,11 +1,13 @@
 const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('node:assert/strict'),cfg=require('../tools/workflow.config.json'),ts=require(path.join(path.dirname(cfg.typescript),'typescript.js')),M={};
 vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/PMModel.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2017}}).outputText,{exports:M,Math,Date,JSON,Set});
 const flat=x=>JSON.parse(JSON.stringify(x)),T=1780000000000;
-assert.equal(M.PET_IDS.length,36);assert.equal(M.NEW_PET_IDS.length,18);assert.equal(new Set(M.NEW_PET_IDS.map(id=>M.PETS[id].type)).size,18);
-assert.deepEqual(flat(M.MAPS.map(m=>m.stages)),[10,20,30,40,50,60]);assert.equal(new Set(M.MAPS.flatMap(m=>m.pets)).size,36);
+assert.equal(M.PET_IDS.length,54);assert.equal(M.NEW_PET_IDS.length,36);assert.equal(new Set(M.NEW_PET_IDS.map(id=>M.PETS[id].type)).size,18);
+assert.deepEqual(flat(M.MAPS.map(m=>m.stages)),[10,20,30,40,50,60,70,80,90]);assert.equal(new Set(M.MAPS.flatMap(m=>m.pets)).size,54);
+assert.equal(M.LATEST_PET_IDS.length,18);assert.equal(new Set(M.LATEST_PET_IDS.map(id=>M.PETS[id].type)).size,18);
 const old=JSON.parse(fs.readFileSync('docs/generated/design-data.json','utf8'));
-for(const p of old.forms.filter(p=>!M.NEW_PET_IDS.includes(p.id))){assert.equal(M.petBaseHP({id:p.id,rarity:p.rarity}),p.naturalHP);assert.deepEqual(flat(M.naturalPetFaces(p.id,p.rarity)),p.naturalFaces);assert.equal(M.petName(p),p.name);}
-for(let region=3;region<6;region++){
+assert.deepEqual(flat(M.PET_IDS.slice(0,36)),['fox','bud','turtle','cotton','otter','spark','seal','ape','slug','mole','bird','owl','beetle','ghost','dragon','lynx','rhino','deer','capy','lotus','manta','crane','mantis','cragcrab','cinder','voltage','venom','dune','monk','ironboar','frost','spirit','dream','shade','aurora','starwyrm'],'existing share-code species indexes unchanged');
+for(const p of old.forms.filter(p=>!M.LATEST_PET_IDS.includes(p.id))){assert.equal(M.petBaseHP({id:p.id,rarity:p.rarity}),p.naturalHP);assert.deepEqual(flat(M.naturalPetFaces(p.id,p.rarity)),p.naturalFaces);assert.equal(M.petName(p),p.name);}
+for(let region=3;region<9;region++){
  const map=M.MAPS[region];assert.ok(map.pets.every(id=>M.NEW_PET_IDS.includes(id)));
  for(let step=1;step<=map.stages;step++){
   const pool=M.encounterPool(step,region),rank=M.rankForStage(step);assert.ok(pool.every(id=>M.PETS[id].rank===rank));
@@ -25,10 +27,11 @@ for(const id of M.NEW_PET_IDS)for(const rarity of M.RARITIES){
  s.step=map.stages;s.phase='nest';s.eggHunt={limit:3,candidates:[],selected:-1};s=M.act(s,'eggSearch');assert.ok(M.restore(JSON.stringify(s)),id+' floor '+map.stages+' egg save');assert.ok(map.pets.includes(s.eggHunt.candidates[0].affinity));
  count++;
 }
+let deep=M.fresh(91);deep.clearedMaps=[0,1,2,3,4,5,6,7];deep=M.startMap(deep,8,91);deep.step=90;deep.hpBonus=225;assert.ok(M.restore(JSON.stringify(deep)),'long expedition HP upgrades persist');deep.hpBonus=451;assert.equal(M.restore(JSON.stringify(deep)),null);
 let oldSave=M.fresh(91);assert.ok(M.restore(JSON.stringify(oldSave)));assert.ok(!M.mapUnlocked(oldSave,3));
-for(let region=3;region<6;region++){
+for(let region=3;region<9;region++){
  let s=M.fresh(17);s.clearedMaps=Array.from({length:region},(_,i)=>i);s=M.startMap(s,region,17);s.step=M.MAPS[region].stages;s.enemy=M.MAPS[region].pets[5];s.enemyRarity='SSR';s=M.act(s,'challenge');s.enemyHP=1;
  s=M.act(s,'attack');assert.equal(s.phase,'nest');s=M.act(s,'eggSearch');s=M.act(s,'eggTake');assert.equal(s.phase,'eggClaimed');assert.ok(M.restore(JSON.stringify(s)));
- s=M.act(s,'eggContinue');assert.equal(s.phase,'won');assert.ok(s.clearedMaps.includes(region));assert.ok(M.restore(JSON.stringify(s)));if(region<5)assert.ok(M.mapUnlocked(s,region+1));
+ s=M.act(s,'eggContinue');assert.equal(s.phase,'won');assert.ok(s.clearedMaps.includes(region));assert.ok(M.restore(JSON.stringify(s)));if(region<8)assert.ok(M.mapUnlocked(s,region+1));
 }
-console.log(`PASS: 18 attributes, 54 new forms, six disjoint map pools, 40/50/60 floors, unlock chain, stronger regional stats, old pet data preserved, ${count} hatching/high-floor egg/save scenarios`);
+console.log(`PASS: 18 attributes per expansion, 162 total forms, nine disjoint map pools, 40 through 90 floors, unlock chain, stronger regional stats, old pet data preserved, ${count} hatching/high-floor egg/save scenarios`);

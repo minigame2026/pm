@@ -5,16 +5,21 @@ import { EVOLUTION_ART } from './EvolutionArt';
 import { REGION_ART } from './RegionArt';
 import { REGION_PAD_RECTS } from './RegionPads';
 import { HomePeriod, homePeriod, homeArtKey } from './HomeScenery';
-import { TYPE_NAMES, typeMultiplier, matchupMultiplier, typedDamage, enemyAttackAmount } from './PMModel';
+import { TYPE_NAMES, typeMultiplier, matchupMultiplier, typedDamage, enemyAttackAmount, petCombat, isBreedingPet } from './PMModel';
 import { HERO_RECTS } from './HeroArt';
 import { TrustedClock } from './TrustedClock';
 import { PMAudio } from './PMAudio';
+import { PMArt } from './PMArt';
+import { PMAppBattle } from './PMAppBattle';
+import { APP_BATTLE_IDS, APP_BATTLE_POSES, APP_BATTLE_ATLASES, appPoseKey, appPoseFeet } from './AppBattleArt';
 import { DurableCheckpoint } from './DurableCheckpoint';
-import { setTimeProvider, gameNow } from './PMModel';
-import { syncStamina, staminaRemaining, staminaFullRemaining, enterExpedition, retreatExpedition, grantAdStamina, STAMINA_MAX, EXPEDITION_COST } from './PMModel';
+import { installRewardedAds } from './PMRewardedAds';
+import { tr, currentLocale, selectLanguage, languageChoice, LANGUAGES, LANGUAGE_KEY } from './PMLocale';
+import { setTimeProvider, gameNow, BUILD_TEST_MODE } from './PMModel';
+import { syncStamina, staminaRemaining, enterExpedition, retreatExpedition, grantAdStamina, STAMINA_MAX, EXPEDITION_COST } from './PMModel';
 import { HeroId, HEROES, HERO_IDS, STARTERS, newJourney, prepareJourney, chooseHero, chooseStarter, heroFor, heroHealBonus, hatchDuration } from './PMModel';
-import { Pet, Sex, petEntry, petName, petBaseHP, formKey, sexSymbol, petSkills, SKILLS, startBreeding, claimBreeding, grantRerollAd } from './PMModel';
-import { partyChoices, rankForStage, homeParty, assignPartySlot, MAPS, mapFor, mapStageCount, mapUnlocked, startMap, enemyPet, eggRates, hasActivePet } from './PMModel';
+import { Pet, Sex, pet, petEntry, petName, petBaseHP, formKey, sexSymbol, petSkills, SKILLS, startBreeding, claimBreeding, grantRerollAd } from './PMModel';
+import { partyChoices, rankForStage, homeParty, assignPartySlot, MAPS, mapFor, mapStageCount, mapUnlocked, latestUnlockedMap, startMap, enemyPet, eggRates, hasActivePet } from './PMModel';
 import { RARITIES, EggRarity, rarityName, qualityHP, preferredRarity, unlockedRarities, setPetRarity, skillFor, skillStatus, availableEggs, hatchRemaining, startIncubation, grantHatchAd, claimHatch, acknowledgeHatch } from './PMModel';
 import { State, PetId, Action, Egg, PETS, PET_IDS, NEW_PET_IDS, fresh, act, hp, maxHP, enemyName, enemyAttackFaces, restore, equipReserve, selectActive, healAmount, attackAmount, guardDamage, rewardOptions, canManageParty, restartRun } from './PMModel';
 import { ensureSocial, makeVisitCode, readVisitCode, receiveVisitor, visitAction, visitorPet, friendBonds, bondEligibleEggs, bondBlockReason, startBondIncubation, VISIT_ACTION_MS } from './PMModel';
@@ -26,7 +31,14 @@ const color=(v:string,alpha=255)=>{const c=new Color();Color.fromHEX(c,v);c.a=al
 export class PMGame extends Component {
   private audio!:PMAudio;
   private state!:State;private root!:Node;private cam!:Camera;private stage!:Node;
-  private art:Record<string,SpriteFrame>={};private h=844;private lastSize='';private busy=false;
+  private nativeApp=sys.isNative;
+  private appPresentation=PMAppBattle.enabled();
+  private appBattle:PMAppBattle|null=null;
+  private sampleOriginal:State|null=null;
+  private sampleEnemy=0;
+  private appActors=new Map<Node,{id:string;side:'back'|'front';size:number;ground:Vec3;pose:string}>();
+  private pageFactories=new WeakMap<Node,(page:number)=>Node[]>();
+  private artCache=new PMArt();private art=this.artCache.frames;private h=844;private lastSize='';private busy=false;
   private regionLoads:Record<number,Promise<void>>={};
   private padLoad:Promise<void>|null=null;private homeLoads:Record<string,Promise<void>>={};
   private homeBackground:Node|null=null;private homeAmbient:Node|null=null;private homePeriod:HomePeriod='afternoon';
@@ -44,16 +56,20 @@ export class PMGame extends Component {
   private utilityOrigin:'home'|'adventure'|'partners'|'game'='home';
   private selectedEgg='';
   private partnerPage=0;private partnerSelected:string|null=null;private partnerOwnedOnly=true;private mapIndex=0;
+  private mapTabPage=0;private dexTabPage=0;
   private dexPage=0;private dexMap=-1;private dexType='';private dexOwnedOnly=false;
   private pageSwipeActive=false;
   private homeHatchStatus:Label|null=null;
   private staminaLabel:Label|null=null;private staminaCountdown:Label|null=null;private staminaFill:Graphics|null=null;private adPending=false;
   private trustedClock=new TrustedClock();private clockRetryAt=0;private clockSaveAt=0;private clockForeground=true;private clockUiRefresh=false;
   private partyDropNodes:Node[]=[];private partyDragHint:Label|null=null;
-  private partyDrag:{id:string;touch:number;source:Node;start:Vec3;origin:Vec3;moved:boolean;ghost:Node|null;guides:Node[];target:number}|null=null;
+  private partyDrag:{id:string;touch:number;source:Node;start:Vec3;origin:Vec3;moved:boolean;axis?:'horizontal'|'vertical';ghost:Node|null;guides:Node[];target:number}|null=null;
   private breedMother='';private breedFather='';private breedClock:Label|null=null;
   private socialTab:'visit'|'share'|'bonds'='visit';private visitCode='';private sharePetUid='';private socialNote='';private socialPage=0;
   async start(){
+    let savedLanguage:string|null=null;try{savedLanguage=sys.localStorage.getItem(LANGUAGE_KEY);}catch{}
+    selectLanguage(savedLanguage,sys.languageCode||sys.language||'en');
+    installRewardedAds();
     this.audio=new PMAudio(this.node);
     profiler.hideStats();view.setDesignResolutionSize(390,844,ResolutionPolicy.FIXED_WIDTH);
     this.root=new Node('PM UI');this.node.addChild(this.root);this.root.layer=Layers.Enum.UI_2D;
@@ -77,41 +93,21 @@ export class PMGame extends Component {
     setTimeProvider(()=>this.trustedClock.now()??NaN);
     const initialTime=this.synchronizeTime();
     try{
-      await Promise.all(['fox','bud','turtle','battle-arena','home-camp-v1','egg-nest-v1','attack-die-a','heal-potion','power-potion','guard-shield','loot-chest','refresh-enemy','battle-start','login-cover-v2','login-title-v3','login-button-v4','trainer-trio-v1','trainer-medic-v2'].map(async key=>{
-        this.art[key]=await new Promise<SpriteFrame>((resolve,reject)=>resources.load('art/'+key+'/spriteFrame',SpriteFrame,(e,r)=>e?reject(e):resolve(r)));
-      }));
-      for(const [key,rect] of Object.entries({'login-title-v3':[21,39,1906,732],'login-button-v4':[71,28,2031,602]})){
-        const [x,y,w,h]=rect,frame=new SpriteFrame();frame.reset({texture:this.art[key].texture,rect:new Rect(x,y,w,h),originalSize:new Size(w,h)});frame.packable=false;this.art[key]=frame;
+      await Promise.all(['login-cover-v2',this.loginLogoKey(),'login-button-v4'].map(key=>this.artCache.load(key)));
+      if(this.nativeApp){
+        await this.artCache.warm([homeArtKey(homePeriod()),'attack-die-a','heal-potion','power-potion','guard-shield',
+          ...HERO_IDS.map(id=>'hero-'+id),...HERO_IDS.map(id=>'avatar-'+id),
+          ...STARTERS,...(this.state.pets||[]).filter(p=>homeParty(this.state).includes(p.uid!))
+            .reduce((keys:string[],p)=>{const key=p.rarity==='normal'?p.id:formKey(p);return keys.concat(key+'-front',key+'-back');},[])]);
+        if(this.state.expedition)await this.loadRegionArt(this.state.mapId||0);
       }
-      for(const id of HERO_IDS){const [x,y,w,h]=HERO_RECTS[id],frame=new SpriteFrame();frame.reset({texture:this.art[id==='medic'?'trainer-medic-v2':'trainer-trio-v1'].texture,rect:new Rect(x,y,w,h),originalSize:new Size(w,h)});frame.packable=false;this.art['hero-'+id]=frame;}
-      const heads={ranger:[230,55,225,225],keeper:[688,57,234,234],medic:[370,150,360,360]};
-      for(const id of HERO_IDS){const [x,y,w,h]=heads[id],frame=new SpriteFrame();frame.reset({texture:this.art[id==='medic'?'trainer-medic-v2':'trainer-trio-v1'].texture,rect:new Rect(x,y,w,h),originalSize:new Size(w,h)});frame.packable=false;this.art['avatar-'+id]=frame;}
-      await Promise.all(PET_IDS.filter(id=>!NEW_PET_IDS.includes(id)).map(async id=>{
-        const texture=await new Promise<Texture2D>((resolve,reject)=>resources.load('art/'+id+(['fox','bud','turtle'].includes(id)?'-battle-ref':'-battle-v1')+'/texture',Texture2D,(e,r)=>e?reject(e):resolve(r)));
-        for(const side of ['back','front'] as const){const [x,y,w,h]=BATTLE_RECTS[id][side],frame=new SpriteFrame();
-          frame.reset({texture,rect:new Rect(x,y,w,h),originalSize:new Size(w,h)});frame.packable=false;this.art[id+'-'+side]=frame;if(side==='front'&&!['fox','bud','turtle'].includes(id))this.art[id]=frame;
-        }
-      }));
-      await Promise.all(PET_IDS.filter(id=>!NEW_PET_IDS.includes(id)).map(async id=>{
-        const texture=await new Promise<Texture2D>((resolve,reject)=>resources.load('art/'+id+'-evolution-v1/texture',Texture2D,(e,r)=>e?reject(e):resolve(r)));
-        for(const rarity of ['SR','SSR'])for(const side of ['back','front']){const [x,y,w,h]=EVOLUTION_ART[id][rarity][side].rect,frame=new SpriteFrame();frame.reset({texture,rect:new Rect(x,y,w,h),originalSize:new Size(w,h)});frame.packable=false;this.art[id+'-'+rarity+'-'+side]=frame;}
-      }));
-      await Promise.all(NEW_PET_IDS.map(async id=>{
-        const texture=await new Promise<Texture2D>((resolve,reject)=>resources.load('art/'+id+'-forms-v1/texture',Texture2D,(e,r)=>e?reject(e):resolve(r)));
-        for(const rarity of RARITIES)for(const side of ['back','front']){
-          const [x,y,w,h]=REGION_ART[id][rarity][side].rect,frame=new SpriteFrame();
-          frame.reset({texture,rect:new Rect(x,y,w,h),originalSize:new Size(w,h)});frame.packable=false;
-          this.art[(rarity==='normal'?id:formKey({id,rarity}))+'-'+side]=frame;
-          if(rarity==='normal'&&side==='front')this.art[id]=frame;
-        }
-      }));
-      await Promise.all([this.loadRegionArt(this.state.mapId||0),this.loadHomeArt(homePeriod())]);await initialTime;this.ready=true;this.render();this.save();
+      await initialTime;this.ready=true;this.render();this.save();
       game.on(Game.EVENT_HIDE,this.onHide,this);
       game.on(Game.EVENT_SHOW,this.onShow,this);
-      (globalThis as any).__pm={snapshot:()=>JSON.parse(JSON.stringify(this.state)),controls:()=>({...this.controls}),animating:()=>this.busy||this.pressPending,screen:()=>this.screen,timeReady:()=>this.trustedClock.now()!==null,version:'0.12.0',ready:true};
-    }catch(e){this.loading!.string='资源加载失败，请刷新重试';console.error('PM asset loading',e);}
+      (globalThis as any).__pm={snapshot:()=>JSON.parse(JSON.stringify(this.state)),controls:()=>({...this.controls}),animating:()=>this.busy||this.pressPending||this.artCache.pending>0,artStats:()=>this.artCache.stats(),screen:()=>this.screen,timeReady:()=>this.trustedClock.now()!==null,version:'0.12.0',ready:true};
+    }catch(e){this.loading!.string=tr('资源加载失败，请刷新重试');console.error('PM asset loading',e);}
   }
-  onDestroy(){this.audio?.dispose();this.durableCheckpoint.close();game.off(Game.EVENT_HIDE,this.onHide,this);game.off(Game.EVENT_SHOW,this.onShow,this);}
+  onDestroy(){this.appBattle?.dispose();this.artCache.dispose();this.audio?.dispose();this.durableCheckpoint.close();game.off(Game.EVENT_HIDE,this.onHide,this);game.off(Game.EVENT_SHOW,this.onShow,this);}
   private onHide(){this.audio?.pause('background');this.cancelPartyDrag();if(this.ready)this.save();this.clockForeground=false;this.trustedClock.suspend();}
   private onShow(){this.audio?.resume('background');this.clockForeground=true;this.trustedClock.resume();void this.synchronizeTime();}
   private async synchronizeTime(){
@@ -137,13 +133,14 @@ export class PMGame extends Component {
       if(mono>=this.clockSaveAt){this.clockSaveAt=mono+15000;this.save();}
       if(this.clockUiRefresh&&!this.busy&&!this.pressPending){this.clockUiRefresh=false;this.render();}
     }
-    const second=Math.floor(mono/1000);if(this.ready&&second!==this.hatchSecond&&this.screen==='home'&&this.clockForeground&&(!this.art[homeArtKey(homePeriod())]||homePeriod()!==this.homePeriod))void this.refreshHomeArt();if(this.ready&&second!==this.hatchSecond)this.refreshStaminaHUD();if(second!==this.hatchSecond){this.hatchSecond=second;if(this.breedClock?.isValid&&this.state.breeding){const now=gameNow(),left=Number.isFinite(now)?this.state.breeding.readyAt-now:Infinity;this.breedClock.string=left>0?this.hatchTime(left):'宠物蛋已准备好';if(left<=0&&!this.pressPending){this.breedClock=null;this.breedingUI();}}if(this.homeHatchStatus?.isValid){const slots=(this.state.incubators||[]).filter(Boolean),ready=slots.filter(slot=>hatchRemaining(slot!)===0).length;this.homeHatchStatus.string=ready?'有 '+ready+' 枚可以破壳':slots.length+' / 2 孵化中';}for(const c of this.hatchClock){if(!c.label.isValid)continue;const slot=this.state.incubators?.[c.index];if(slot){const left=hatchRemaining(slot);c.label.string=this.hatchTime(left);if(!left&&!c.ready&&!this.pressPending){this.hatchery();break;}}}}
+    const second=Math.floor(mono/1000);if(this.ready&&second!==this.hatchSecond)this.artCache.sweep();if(this.ready&&second!==this.hatchSecond&&this.screen==='home'&&this.clockForeground&&(!this.art[homeArtKey(homePeriod())]||homePeriod()!==this.homePeriod))void this.refreshHomeArt();if(this.ready&&second!==this.hatchSecond)this.refreshStaminaHUD();if(second!==this.hatchSecond){this.hatchSecond=second;if(this.breedClock?.isValid&&this.state.breeding){const now=gameNow(),left=Number.isFinite(now)?this.state.breeding.readyAt-now:Infinity;this.breedClock.string=tr(left>0?this.hatchTime(left):'宠物蛋已准备好');if(left<=0&&!this.pressPending){this.breedClock=null;this.breedingUI();}}if(this.homeHatchStatus?.isValid){const slots=(this.state.incubators||[]).filter(Boolean),ready=slots.filter(slot=>hatchRemaining(slot!)===0).length;this.homeHatchStatus.string=tr(ready?'有 '+ready+' 枚可以破壳':slots.length+' / 2 孵化中');}for(const c of this.hatchClock){if(!c.label.isValid)continue;const slot=this.state.incubators?.[c.index];if(slot){const left=hatchRemaining(slot);c.label.string=tr(this.hatchTime(left));if(!left&&!c.ready&&!this.pressPending){this.hatchery();break;}}}}
     for(let i=this.availableGlows.length-1;i>=0;i--){const glow=this.availableGlows[i];if(!glow.isValid)this.availableGlows.splice(i,1);else {const encounterAction=this.state.phase==='encounter'&&(glow.parent?.name==='reroll'||glow.parent?.name==='challenge');glow.active=!this.busy&&(!this.pressPending||encounterAction);}}
     const s=view.getVisibleSize();const key=s.width+':'+s.height;if(key!==this.lastSize){this.layout();if(this.ready&&!this.busy&&!this.pressPending)this.render();}}
   private layout(){const s=view.getVisibleSize();this.h=s.height;this.lastSize=s.width+':'+s.height;
     this.root.setPosition(s.width/2,s.height/2);this.root.getComponent(UITransform)!.setContentSize(s.width,s.height);
     this.cam.node.setPosition(s.width/2,s.height/2,1000);this.cam.orthoHeight=s.height/2;}
   private async save(){
+    if(this.sampleOriginal)return true;
     const checkpoint=this.trustedClock.checkpoint();if(checkpoint>0)this.state.trustedTime={version:1,lastMs:checkpoint};
     const sequence=++this.checkpointSequence,raw=JSON.stringify({...this.state,checkpointSequence:sequence});let localSaved=false;
     try{
@@ -163,7 +160,7 @@ export class PMGame extends Component {
     const n=this.makeNode(parent,'panel',x,y,w,h),g=n.addComponent(Graphics);g.fillColor=color(fill,alpha);g.roundRect(-w/2,-h/2,w,h,r);g.fill();return n;
   }
   private text(parent:Node,value:string,x:number,y:number,size=16,fill=C.ink,w=350,h=size+12){
-    const n=this.makeNode(parent,value,x,y,w,h),l=n.addComponent(Label);l.string=value;l.fontSize=size;l.lineHeight=size+7;
+    const n=this.makeNode(parent,value,x,y,w,h),l=n.addComponent(Label);l.string=tr(value);l.fontSize=size;l.lineHeight=size+(currentLocale()==='th'?11:7);l.fontFamily='sans-serif';
     l.color=color(fill);l.horizontalAlign=Label.HorizontalAlign.CENTER;l.verticalAlign=Label.VerticalAlign.CENTER;
     // Dynamic text uses per-label textures: the shared CHAR atlas fills up across rounds,
     // silently dropping new glyphs (damage, rewards and end-screen labels).
@@ -187,6 +184,7 @@ export class PMGame extends Component {
       n.on(Node.EventType.TOUCH_CANCEL,(e:EventTouch)=>{e.propagationStopped=true;release();});
       n.on(Node.EventType.TOUCH_END,(e:EventTouch)=>{e.propagationStopped=true;
         if(this.busy||this.pressPending||performance.now()-this.lastTap<180){release();return;}
+        this.audio?.unlock();this.audio?.effect('click');
         this.lastTap=performance.now();this.pressPending=true;Tween.stopAllByTarget(n);n.setScale(.94,.94,1);
         tween(n).to(.075,{scale:new Vec3(1.035,1.035,1)}).to(.055,{scale:new Vec3(1,1,1)}).start();
         this.scheduleOnce(()=>{this.pressPending=false;callback();},.14);
@@ -195,14 +193,18 @@ export class PMGame extends Component {
     return n;
   }
   private image(parent:Node,key:string,x:number,y:number,w:number,h:number,mirror=false){
-    const n=this.makeNode(parent,key,x,y,w,h);const sp=n.addComponent(Sprite);sp.spriteFrame=this.art[key];sp.sizeMode=Sprite.SizeMode.CUSTOM;
-    const rect=this.art[key].originalSize;const k=Math.min(w/rect.width,h/rect.height);n.getComponent(UITransform)!.setContentSize(rect.width*k,rect.height*k);
+    const n=this.makeNode(parent,key,x,y,w,h);n.addComponent(Sprite);const rect=this.artCache.size(key),k=Math.min(w/rect.width,h/rect.height);
+    n.getComponent(UITransform)!.setContentSize(rect.width*k,rect.height*k);this.artCache.bind(n,key);
     if(mirror)n.setScale(-1,1,1);return n;
   }
   private petScale(id:PetId){return {normal:.80,elite:1.15,boss:1.50}[PETS[id].rank];}
   private resolvePet(value:string|Pet):Pet {return typeof value==='string'?petEntry(this.state,value):value;}
   private petImage(parent:Node,value:string|Pet,x:number,y:number,size:number,role:'player'|'enemy'|'card'='card'){
     const p=this.resolvePet(value),id=p.id,side=role==='player'?'back':'front',evolved=p.rarity&&p.rarity!=='normal';
+    if(this.appPresentation&&(this.state.mapId||0)===0&&this.state.phase==='battle'&&role!=='card'&&!evolved&&APP_BATTLE_IDS.includes(id)){
+      const n=this.image(parent,appPoseKey(id,side),x,y,size,size);
+      this.appActors.set(n,{id,side,size,ground:new Vec3(x,y,0),pose:'idle'});return n;
+    }
     const key=evolved?formKey(p)+'-'+side:role==='card'?id:id+'-'+side;
     return this.image(parent,key,x,y,size,size,!evolved&&role==='card'&&id==='fox');
   }
@@ -228,9 +230,17 @@ export class PMGame extends Component {
   }
   private shadow(x:number,y:number,w:number,depth=1){const n=this.makeNode(this.stage,'shadow',x,y,w,18*depth),g=n.addComponent(Graphics);g.fillColor=color('#21495b',35);g.ellipse(0,0,w/2,9*depth);g.fill();}
   private battlePad(x:number,y:number,w:number){
-    const key='region-pad-'+(this.state.mapId||0);
-    if(this.art[key]){const n=this.image(this.stage,key,x,y-4,w,w*.27);n.name='battle-ground';return;}
+    const key='region-pad-'+this.sceneRegion(this.state.mapId||0);
+    if(this.sceneRegion(this.state.mapId||0)>0){const n=this.image(this.stage,key,x,y-4,w,w*.27);n.name='battle-ground';return;}
     const n=this.makeNode(this.stage,'battle-ground',x,y-4,w,w*.27),g=n.addComponent(Graphics),ry=w*.12;
+    if(this.appPresentation){
+      for(let i=4;i>=0;i--){g.fillColor=color('#51774d',12);g.ellipse(0,-1,w/2+i*2,ry+i);g.fill();}
+      g.fillColor=color('#a7bd71',135);g.ellipse(0,1,w*.47,ry*.9);g.fill();
+      g.fillColor=color('#d6d99a',85);g.ellipse(-w*.04,4,w*.39,ry*.64);g.fill();
+      g.strokeColor=color('#e2e5b6',170);g.lineWidth=1;g.ellipse(0,2,w*.46,ry*.8);g.stroke();
+      for(let i=0;i<18;i++){const a=i*2.4,px=Math.cos(a)*w*.43,py=Math.sin(a)*ry*.78;g.strokeColor=color(i%2?'#5a894c':'#b6d484',210);g.moveTo(px,py);g.quadraticCurveTo(px-2,py+5,px+(i%2?4:-4),py+7);g.stroke();}
+      return;
+    }
     g.fillColor=color('#305e58');g.ellipse(0,-3,w/2,ry+3);g.fill();
     g.fillColor=color('#5a9d80');g.ellipse(0,1,w/2-3,ry);g.fill();
     g.fillColor=color('#70b191');g.ellipse(-w*.05,4,w*.42,ry*.69);g.fill();
@@ -255,14 +265,15 @@ export class PMGame extends Component {
   }
   private groundX(value:string|Pet,side:'back'|'front',size:number,preferred:number){
     const p=this.resolvePet(value),id=p.id,key=p.rarity&&p.rarity!=='normal'?formKey(p)+'-'+side:id+'-'+side;
-    const frame=this.art[key].originalSize,w=size*frame.width/Math.max(frame.width,frame.height),u=this.petFeet(value,side)[0];
+    const frame=this.artCache.size(key),w=size*frame.width/Math.max(frame.width,frame.height),u=this.petFeet(value,side)[0];
     return Math.max(-187+u*w*1.025,Math.min(187-(1-u)*w*1.025,preferred));
   }
   private groundPet(n:Node,id:string|Pet,side:'back'|'front',x:number,y:number){
+    if(this.appActors.has(n)){this.appPose(n,'idle');this.breathe(n);return;}
     const [u,v]=this.petFeet(id,side),ui=n.getComponent(UITransform)!;
     ui.setAnchorPoint(u,.5);n.setPosition(x,y+(v-.5)*ui.height);this.breathe(n,y);
   }
-  private clear(){this.cancelPartyDrag();this.partyDropNodes=[];this.partyDragHint=null;const stop=(n:Node)=>{Tween.stopAllByTarget(n);const opacity=n.getComponent(UIOpacity);if(opacity)Tween.stopAllByTarget(opacity);for(const child of n.children)stop(child);};for(const n of [...this.root.children]){stop(n);n.destroy();}this.root.removeAllChildren();this.controls={};this.modal=null;this.enemyNode=null;this.playerNode=null;this.diceNode=null;this.meters={};this.availableGlows=[];}
+  private clear(){this.appBattle?.dispose();this.appBattle=null;this.appActors.clear();this.cancelPartyDrag();this.partyDropNodes=[];this.partyDragHint=null;const stop=(n:Node)=>{Tween.stopAllByTarget(n);const opacity=n.getComponent(UIOpacity);if(opacity)Tween.stopAllByTarget(opacity);for(const child of n.children)stop(child);};for(const n of [...this.root.children]){stop(n);n.destroy();}this.root.removeAllChildren();this.controls={};this.modal=null;this.enemyNode=null;this.playerNode=null;this.diceNode=null;this.meters={};this.availableGlows=[];}
   private render(){
     this.audio?.select((this.screen==='game'||this.screen==='utility'&&this.utilityOrigin==='game')&&this.state.phase==='battle'?'battle':'camp');
     if(this.screen==='utility'&&this.utilityDraw){this.utilityDraw();return;}
@@ -275,11 +286,10 @@ export class PMGame extends Component {
     if(this.screen==='adventure'){this.adventureUI();return;}
     if(this.screen==='partners'){this.partnersUI();return;}
     if(s.phase==='nest'||s.phase==='eggClaimed'){this.nestUI();return;}
-    const phase=s.phase;const panelHeight=phase==='battle'?246:phase==='team'?300:phase==='reward'?350:phase==='encounter'?308:230;
+    const phase=s.phase;const panelHeight=phase==='battle'?246:phase==='team'?300:phase==='reward'?350:phase==='encounter'?328:230;
     const sceneHeight=H-panelHeight;
-    const background=this.regionFrame('battle');
-    const bg=this.makeNode(this.root,'background',0,panelHeight/2,390,sceneHeight);const sp=bg.addComponent(Sprite);sp.spriteFrame=background;sp.sizeMode=Sprite.SizeMode.CUSTOM;
-    const os=background.originalSize,k=Math.max(390/os.width,sceneHeight/os.height);bg.getComponent(UITransform)!.setContentSize(os.width*k,os.height*k);
+    const bg=this.image(this.root,this.regionKey('battle'),0,panelHeight/2,390,sceneHeight);bg.name='background';
+    const os=this.artCache.size(this.regionKey('battle')),k=Math.max(390/os.width,sceneHeight/os.height);bg.getComponent(UITransform)!.setContentSize(os.width*k,os.height*k);
     this.stage=this.makeNode(this.root,'actors',0,0,390,H);
     // Navigation stays at the edge; combat data belongs to the creature in the scene.
     const title=this.text(this.root,mapFor(s).name+' '+s.step+'/'+mapStageCount(s),0,H/2-30,18,'#ffffff',280,36);
@@ -290,12 +300,13 @@ export class PMGame extends Component {
     if(phase==='battle'){
       // Low camera composition from the approved reference: two distinct diagonal battle pads.
       const playerGround=H/2-sceneHeight*.92,enemyGround=H/2-sceneHeight*.62;
-      const baseSize=Math.min(230,sceneHeight*.38),playerSize=baseSize*1.2*Math.min(1.15,this.petScale(s.active.id)),enemySize=baseSize*.65*.8*this.petScale(s.enemy);
+      const baseSize=Math.min(230,sceneHeight*.38),playerSize=baseSize*1.2*Math.min(1.15,this.petScale(s.active.id)),enemySize=baseSize*.65*(this.appPresentation&&(s.mapId||0)===0?1:.8)*this.petScale(s.enemy);
       const enemyX=this.groundX(enemyPet(s),'front',enemySize*1.1,82),playerX=this.groundX(s.active,'back',playerSize*.9,-92);
       this.battlePad(enemyX,enemyGround,enemySize*1.25*1.2*1.15);
       this.shadow(enemyX,enemyGround,enemySize*.55,.82);this.enemyNode=this.petImage(this.stage,enemyPet(s),enemyX,enemyGround,enemySize*1.1,'enemy');
       this.groundPet(this.enemyNode,enemyPet(s),'front',enemyX,enemyGround);
       const status=this.panel(this.enemyNode,0,this.enemyNode.getComponent(UITransform)!.height/2+32,176,54,C.paper,10,246);status.name='enemy-hud';
+      if(this.appPresentation){const statusY=Math.min(H/2-100,enemyGround+this.enemyNode.getComponent(UITransform)!.height*.75+26);status.setParent(this.root);status.setPosition(Math.min(103,enemyX),statusY);}
       const pointer=status.getComponent(Graphics)!;pointer.moveTo(-6,-26);pointer.lineTo(0,-34);pointer.lineTo(6,-26);pointer.close();pointer.fill();
       this.typeIcon(status,PETS[s.enemy].type,-73,14,17);this.text(status,enemyName(s),-20,14,12,C.ink,82,20);
       this.bar(status,-31,-10,104,s.enemyHP/s.enemyMax,s.enemyHP+' / '+s.enemyMax,'enemy');
@@ -310,7 +321,8 @@ export class PMGame extends Component {
     }else if(phase==='encounter'){
       const statusY=H/2-144,room=statusY-70-stageBottom-22,petSize=Math.min(200,room*.90/1.5)*this.petScale(s.enemy),petY=stageBottom+room*.5;
       this.shadow(0,petY-petSize*.4,145);this.enemyNode=this.petImage(this.stage,enemyPet(s),0,petY,petSize,'enemy');this.breathe(this.enemyNode);
-      const status=this.panel(this.root,0,statusY,350,94,C.paper,14,246);status.name='encounter-enemy-hud';
+      this.button(this.root,'encounter-types','?',-164,H/2-30,36,36,()=>this.encounterTypesUI(),'#f7fcff',true,21);
+      const status=this.panel(this.root,0,statusY,350,114,C.paper,14,246);status.name='encounter-enemy-hud';
       const pointer=status.getComponent(Graphics)!;pointer.moveTo(-6,-45);pointer.lineTo(0,-55);pointer.lineTo(6,-45);pointer.close();pointer.fill();
       this.petImage(status,enemyPet(s),-142,17,52);
       const rank=rankForStage(s.step);this.text(status,rank==='boss'?'BOSS':rank==='elite'?'精英':'普通',-142,-22,10,rank==='boss'?'#ad6e15':rank==='elite'?'#8656b0':C.muted,62,18);
@@ -350,8 +362,10 @@ export class PMGame extends Component {
       this.text(sheet,phase==='won'?'通关已记录 · 获得的宠物蛋已保留':'本次探险结束 · 已获得的宠物蛋保留',0,22,14,C.muted,350,32);
       this.button(sheet,'result-home','返回营地',0,-49,340,58,()=>this.goHome(),'#519b81',true,22);
     }
-    this.text(this.root,this.saveError?'保存失败，请勿关闭页面':'PM v0.12.0  ·  '+mapStageCount(s)+' 关 · 自动续玩',0,b+8,10,this.saveError?'#c44141':C.muted,350,14);
+    if(!this.appPresentation)this.text(this.root,this.saveError?'保存失败，请勿关闭页面':'PM v0.12.0  ·  '+mapStageCount(s)+' 关 · 自动续玩',0,b+8,10,this.saveError?'#c44141':C.muted,350,14);
     this.fx=this.makeNode(this.root,'battle-effects',0,0,390,H);
+    if(this.appPresentation&&(s.mapId||0)===0){this.appBattle=new PMAppBattle(this.stage,this.fx,sceneHeight,H,!!(globalThis as any).matchMedia?.('(prefers-reduced-motion: reduce)').matches);this.appBattle.ambience();this.appBattleSkin(sheet,phase==='battle');}
+    if(this.sampleOriginal&&(phase==='reward'||phase==='won'||phase==='lost'))this.sampleResult(sheet);
     if(phase==='reward'||phase==='won'){const n=this.enemyNode!;const pos=n.position.clone();tween(n).by(.18,{position:new Vec3(0,15,0)},{easing:'quadOut'}).to(.2,{position:pos},{easing:'quadIn'}).start();}
   }
   private startFromCover(){
@@ -361,14 +375,20 @@ export class PMGame extends Component {
     this.render();
     if(this.screen==='home'&&this.state.pendingHatch)this.hatchReveal();
   }
+  private loginLogoKey(){return currentLocale()==='zh-CN'?'login-title-v3':'login-title-'+currentLocale()+'-v1';}
   private loginUI(){
     const H=this.h,top=H/2;this.fillArt('login-cover-v2');
-    this.image(this.root,'login-title-v3',0,top-86,368,148);
-    const button=this.button(this.root,'start-game','',0,-H*.2,216,64,()=>this.startFromCover(),'#ffd45c',true,26);
-    button.getComponent(Graphics)!.clear();this.image(button,'login-button-v4',0,0,216,64);
+    const chinese=currentLocale()==='zh-CN';
+    const logoKey=this.loginLogoKey(),logoSize=this.artCache.size(logoKey);
+    const logoScale=Math.min(368/logoSize.width,148/logoSize.height);
+    this.image(this.root,logoKey,0,top-86,logoSize.width*logoScale,logoSize.height*logoScale);
+    const button=this.button(this.root,'start-game',chinese?'':'开始游戏',0,-H*.2,216,64,()=>this.startFromCover(),'#ffd45c',true,24);
+    if(chinese){button.getComponent(Graphics)!.clear();this.image(button,'login-button-v4',0,0,216,64);}
+    else{const label=button.getComponentInChildren(Label)!;label.color=color('#234c73');label.isBold=true;}
     const glowNode=button.getChildByName('available-glow')!,glow=glowNode.getComponent(Graphics)!;glowNode.setSiblingIndex(button.children.length-1);
     glow.clear();glow.strokeColor=color('#fff7cb');glow.lineWidth=1.2;glow.roundRect(-101.6,-26.4,203.2,52.8,26.4);glow.stroke();
     this.fx=this.makeNode(this.root,'login-effects',0,0,390,H);
+    if(this.appPresentation)this.button(this.root,'app-battle-sample','战斗样板',0,-H*.2-72,174,40,()=>void this.startBattleSample(),'#286d7b',true,17);
   }
   private choiceHeader(title:string,step:string){
     const top=this.h/2;this.panel(this.root,0,0,390,this.h,'#eef4f1',0);
@@ -396,7 +416,7 @@ export class PMGame extends Component {
   }
   private starterChoiceUI(){
     this.choiceHeader('选择第一位伙伴','01  主角 ✓     ·     02  初始伙伴');
-    const H=this.h,top=H/2,b=-H/2,petInfo={fox:{color:'#d86d49',tag:'火',note:'抢先一击 · 首次攻击伤害 +2'},bud:{color:'#55a06a',tag:'草',note:'草木祝福 · 首次治疗恢复 +2'},otter:{color:'#479fbd',tag:'水',note:'草木祝福 · 首次治疗恢复 +2'}},selected=this.selectedStarter,entry=petInfo[selected];
+    const H=this.h,top=H/2,b=-H/2,petInfo={fox:{color:'#d86d49',tag:'火',note:'抢先一击 · 首次攻击伤害 +2'},bud:{color:'#55a06a',tag:'草',note:'草木祝福 · 首次治疗恢复 +2'},otter:{color:'#479fbd',tag:'水',note:'硬壳 · 首次受击伤害 −2'}},selected=this.selectedStarter,entry=petInfo[selected];
     const hero=this.state.journey?.hero;this.text(this.root,(hero?HEROES[hero].name+'，':'')+'谁陪你踏上旅途？',0,top-115,18,C.ink,350,30);
     const cardH=114,cardY=b+265,artBottom=cardY+cardH/2+16,artTop=top-144,artSize=Math.max(105,Math.min(226,artTop-artBottom));
     const lead=this.petImage(this.root,{id:selected,rarity:'normal',faces:[]},0,(artTop+artBottom)/2,artSize);this.breathe(lead);
@@ -435,9 +455,8 @@ export class PMGame extends Component {
   }
   private nestUI(){
     const s=this.state,H=this.h,b=-H/2,hunt=s.eggHunt!,claimed=s.phase==='eggClaimed',panelHeight=claimed?230:280,sceneHeight=H-panelHeight;
-    const background=this.regionFrame('nest');
-    const bg=this.makeNode(this.root,'egg-nest',0,panelHeight/2,390,sceneHeight),sp=bg.addComponent(Sprite),os=background.originalSize;
-    sp.spriteFrame=background;sp.sizeMode=Sprite.SizeMode.CUSTOM;const k=Math.max(390/os.width,sceneHeight/os.height);bg.getComponent(UITransform)!.setContentSize(os.width*k,os.height*k);
+    const bg=this.image(this.root,this.regionKey('nest'),0,panelHeight/2,390,sceneHeight);bg.name='egg-nest';
+    const os=this.artCache.size(this.regionKey('nest')),k=Math.max(390/os.width,sceneHeight/os.height);bg.getComponent(UITransform)!.setContentSize(os.width*k,os.height*k);
     this.stage=this.makeNode(this.root,'nest-stage',0,0,390,H);
     const title=this.text(this.root,claimed?'带着惊喜回家':'巢穴寻蛋',0,H/2-36,26,'#fff9df',280,42);title.isBold=true;const out=title.node.addComponent(LabelOutline);out.color=color('#365543');out.width=2;
     this.retreatButton(H/2-32);
@@ -458,6 +477,7 @@ export class PMGame extends Component {
     const sheet=this.panel(this.root,0,b+panelHeight/2,390,panelHeight,'#fffbed',24,253);
     if(claimed){
       const bonus=hunt.bonusEggId?s.eggs!.find(e=>e.id===hunt.bonusEggId):null;
+      if(bonus)this.eggArt(this.stage,bonus,105,eggY-18,eggSize*.65);
       this.text(sheet,bonus?'寻蛋好手 · 额外带回一枚！':this.eggName(chosen)+' 蛋',0,79,bonus?20:22,this.eggTint(chosen),330,34).isBold=true;
       this.text(sheet,bonus?this.eggName(chosen)+' + '+this.eggName(bonus)+' · 已存入':('已保存  ·  蛋袋共 '+(s.eggs||[]).length+' 枚'),0,42,15,C.muted,350,27);
       this.button(sheet,'eggContinue',s.step===mapStageCount(s)?'完成冒险  ›':'继续冒险  ›',0,-13,338,56,()=>this.command('eggContinue'),'#dba441',true,22);
@@ -488,12 +508,12 @@ export class PMGame extends Component {
     const c=this.fullPage(slot===null?'蛋袋':'选择宠物蛋',eggs.length+' 枚',()=>this.eggShelf(slot,page),()=>this.hatchery()),{top,bottom,height}=this.pageBounds(c);
     const visible=eggs.slice(page*6,page*6+6),selected=visible.find(e=>e.id===this.selectedEgg)||visible[0];this.selectedEgg=selected?.id||'';
     const cardH=Math.min(170,(height-236)/2),first=top-24-cardH/2;
-    eggs.forEach((egg,itemIndex)=>{const i=itemIndex%6;const chosen=egg.id===this.selectedEgg,incubating=this.state.incubators?.some(s=>s?.eggId===egg.id),row=this.button(c,'egg-'+egg.id,'',(i%3-1)*120,first-Math.floor(i/3)*(cardH+12),112,cardH,()=>{this.selectedEgg=egg.id;this.eggShelf(slot,page);},chosen?'#fff1d6':'#ffffff');
+    this.listPages(c,eggs,6,page,(egg,itemIndex)=>{const i=itemIndex%6;const chosen=egg.id===this.selectedEgg,incubating=this.state.incubators?.some(s=>s?.eggId===egg.id),row=this.button(c,'egg-'+egg.id,'',(i%3-1)*120,first-Math.floor(i/3)*(cardH+12),112,cardH,()=>{this.selectedEgg=egg.id;this.eggShelf(slot,page);},chosen?'#fff1d6':'#ffffff');
       this.listItem(row,itemIndex,6);this.eggArt(row,egg,0,6,Math.min(86,cardH-48));this.text(row,rarityName(egg.rarity),32,cardH/2-17,12,this.eggTint(egg),45,24).isBold=true;
       this.text(row,incubating?'孵化中':this.eggName(egg),0,-cardH/2+19,12,C.ink,104,25);
     });
     if(!eggs.length)this.text(c,'还没有宠物蛋',0,40,21,C.muted,330,50);
-    this.pagePager(c,bottom+191,page,pages,p=>this.eggShelf(slot,p),slot===null?'eggs':'picker');
+    this.pagePager(c,bottom+191,page,pages,(p,redraw)=>{page=p;if(redraw)this.eggShelf(slot,p);},slot===null?'eggs':'picker');
     const foot=this.panel(c,0,bottom+82,390,164,'#fffdf5',22),busy=selected&&this.state.incubators?.some(s=>s?.eggId===selected.id),free=slot===null?[0,1].find(i=>!this.state.incubators?.[i]):slot;
     this.text(foot,selected?this.eggName(selected):'探险 · 交配获得',0,54,20,selected?this.eggTint(selected):C.muted,350,31).isBold=true;
     this.text(foot,selected?(selected.bond?'♡ 已结缘':selected.genes?'♥ 父母遗传':mapFor(selected).name)+' · '+hatchDuration(this.state)/60000+' 分钟':'',0,20,13,C.muted,340,27);
@@ -511,13 +531,13 @@ export class PMGame extends Component {
   private refreshEncounterThreat(){
     const n=this.root.getChildByName('encounter-enemy-hud')?.getChildByName('enemy-attack-values');if(!n)return;
     for(const child of [...n.children])child.destroy();n.removeAllChildren();
-    this.encounterNameAttack(n,enemyName(this.state),enemyAttackFaces(this.state).map(v=>enemyAttackAmount(this.state,v)),30,PETS[this.state.enemy].type);
+    this.encounterNameAttack(n,enemyName(this.state),enemyAttackFaces(this.state).map(v=>enemyAttackAmount(this.state,v)),30,PETS[this.state.enemy].type,matchupMultiplier(this.state.enemy,this.state.active.id));
   }
-  private matchupBadge(parent:Node,multiplier:number,x:number,y:number,w=60){
-    if(multiplier===1)return;
-    const n=this.panel(parent,x,y,w,16,multiplier>1?'#fff0c2':'#e0edf8',6);
+  private matchupBadge(parent:Node,multiplier:number,x:number,y:number,w=60,showNeutral=false){
+    if(multiplier===1&&!showNeutral)return;
+    const n=this.panel(parent,x,y,w,18,multiplier>1?'#fff0eb':multiplier<1?'#e0edf8':'#edf0f2',6);
     n.name='matchup-'+multiplier;
-    this.text(n,(multiplier>1?'↑':'↓')+' ×'+multiplier,0,0,10,multiplier>1?'#a9610c':'#35638f',w-2,16).isBold=true;
+    this.text(n,'×'+multiplier,0,0,multiplier>1?14:12,multiplier>1?'#d63737':multiplier<1?'#256cc1':'#202020',w-2,18).isBold=true;
   }
   private typeIcon(parent:Node,type:string,x:number,y:number,size:number){
     const colors:Record<string,string>={'一般':'#959b9d','火':'#e87640','水':'#418ec5','草':'#62a94a','电':'#d5ae26','冰':'#63b7c7','格斗':'#bf704c','毒':'#a466ba','地面':'#bb9358','飞行':'#8d9fce','超能力':'#d879a0','虫':'#92a53e','岩石':'#aa9b64','幽灵':'#7774ad','龙':'#6862bd','恶':'#656073','钢':'#79989f','妖精':'#d794bf'};
@@ -546,14 +566,15 @@ export class PMGame extends Component {
       default:circle(0,0,8);circle(0,0,3,true);
     }return n;
   }
-  private encounterNameAttack(p:Node,name:string,faces:number[],top:number,type:string){
+  private encounterNameAttack(p:Node,name:string,faces:number[],top:number,type:string,multiplier=1){
     this.typeIcon(p,type,-108,top,18);this.text(p,name,-52,top,16,C.ink,90);
     this.attackDie(p,25,top,23);const gap=Math.min(35,130/faces.length);
     faces.forEach((v,i)=>{const chip=this.panel(p,62+i*gap,top,29,24,'#fff0d9',6);this.text(chip,''+v,0,0,17,'#b94c0a',27,22);});
+    this.matchupBadge(p,multiplier,25,top+19,52,true);
   }
   private playerHUD(p:Node,top:number,preview=false){const s=this.state;
     this.petImage(p,s.active,preview?-142:-150,top-13,52);
-    if(preview)this.encounterNameAttack(p,petName(s.active),s.active.faces.map(v=>typedDamage(v,matchupMultiplier(s.active.id,s.enemy))),top,PETS[s.active.id].type);
+    if(preview)this.encounterNameAttack(p,petName(s.active),s.active.faces.map(v=>typedDamage(v,matchupMultiplier(s.active.id,s.enemy))),top,PETS[s.active.id].type,matchupMultiplier(s.active.id,s.enemy));
     else {this.typeIcon(p,PETS[s.active.id].type,-109,top,20);this.text(p,petName(s.active),-42,top,17,C.ink,112);}
     this.bar(p,30,top-25,272,s.hpRatio,hp(s)+' / '+maxHP(s),'player');
   }
@@ -568,15 +589,17 @@ export class PMGame extends Component {
     const choices=partyChoices(s);
     choices.forEach((id,i)=>{
       const selected=s.active.uid===id,owned=!!id&&s.pets!.some(p=>p.uid===id),breeding=owned&&!!s.breeding&&[s.breeding.mother,s.breeding.father].includes(id),tint=selected?'#fff2cf':owned&&!breeding?'#fbfeff':'#e7edf0',x=(i-1)*118;
+      const info=owned?petCombat(s,id):null,dead=info?.hp===0;
       this.panel(p,x,-1,108,113,selected?'#c5933d':'#b9ced9',17);
-      const card=this.button(p,'pet-'+id,'',x,4,108,110,()=>{const next=selectActive(this.state,id);if(next!==this.state){this.state=next;this.save();this.encounterPartyUI(p);this.refreshEncounterThreat();}},tint,owned&&!selected&&!breeding,16,tint);
+      const card=this.button(p,'pet-'+id,'',x,4,108,110,()=>{const next=selectActive(this.state,id);if(next!==this.state){this.state=next;this.save();this.encounterPartyUI(p);this.refreshEncounterThreat();}},tint,owned&&!selected&&!breeding&&!dead,16,tint);
       const rim=card.getComponent(Graphics)!;rim.lineWidth=selected?3:1.5;rim.strokeColor=color(selected?'#e4ae48':'#bdd6e2');rim.roundRect(-52,-53,104,106,14);rim.stroke();
       const disc=this.makeNode(card,'portrait-disc',0,14,78,78).addComponent(Graphics);disc.fillColor=color(selected?'#ffe2a1':owned?'#e1f3f7':'#d7e1e6');disc.circle(0,0,37);disc.fill();
-      if(owned)this.petImage(card,id,0,15,78).getComponent(Sprite)!.grayscale=breeding;else this.menuIcon(card,'lock',0,15,30,'#9aacb0');
+      if(owned)this.petImage(card,id,0,18,58).getComponent(Sprite)!.grayscale=breeding||dead;else this.menuIcon(card,'lock',0,15,30,'#9aacb0');
+      if(info){const health=this.panel(card,0,-14,76,18,dead?'#f5dfe2':'#f7fcff',6);this.text(health,dead?'阵亡':info.hp+'/'+info.max,0,0,11,dead?'#a34a53':C.ink,74,17);}
       this.panel(card,0,-36,96,25,selected?'#f8d993':owned?'#eaf3f7':'#d4e0e6',8);
       this.text(card,owned?petName(petEntry(s,id)):'空位',0,-36,14,owned?C.ink:C.muted,94,23).isBold=selected;
       if(selected){const mark=this.panel(card,39,40,24,24,'#43a986',12);this.text(mark,'✓',0,0,17,'#ffffff',24,24);}
-      if(owned&&!breeding)this.matchupBadge(card,matchupMultiplier(petEntry(s,id).id,s.enemy),-21,40,60);
+      if(owned&&!breeding&&!dead)this.matchupBadge(card,matchupMultiplier(petEntry(s,id).id,s.enemy),-21,40,60);
       if(breeding){const badge=this.panel(card,-6,40,80,19,'#947d90',7);this.text(badge,gameNow()>=s.breeding!.readyAt?'待领蛋':'交配中',0,0,11,'#ffffff',76,19);}
       if(!owned){const lock=this.makeNode(card,'locked',39,39,20,23),g=lock.addComponent(Graphics);g.strokeColor=color(C.muted);g.fillColor=color(C.muted);g.lineWidth=2;g.roundRect(-5,0,10,11,5);g.stroke();g.roundRect(-8,-8,16,13,3);g.fill();}
     });
@@ -622,6 +645,50 @@ export class PMGame extends Component {
     const rolled=this.panel(attack,-44,-23,35,17,'#fff2ca',6);this.text(rolled,''+s.attack,0,0,12,'#915415',33,17);
     this.text(attack,''+attackAmount(s),32,4,36,'#ffffff',76,45);
     this.matchupBadge(attack,matchupMultiplier(s.active.id,s.enemy),32,-23,72);
+  }
+  /** Native presentation stays outside the model: frames and FX never decide damage. */
+  private appPose(n:Node,pose:string){
+    const actor=this.appActors.get(n);if(!actor||!n.isValid)return;
+    actor.pose=pose;const key=appPoseKey(actor.id,actor.side,pose),size=this.artCache.size(key);
+    const atlas=APP_BATTLE_ATLASES[actor.id],k=actor.size/(atlas.size[0]/4)*atlas.scale,ui=n.getComponent(UITransform)!;
+    ui.setContentSize(size.width*k,size.height*k);const [u,v]=appPoseFeet(actor.id,actor.side,pose);
+    ui.setAnchorPoint(u,1-v);this.artCache.bind(n,key);
+  }
+  private appPoint(n:Node){const p=n.position.clone();if(this.appActors.has(n))p.y+=n.getComponent(UITransform)!.height*.43;return p;}
+  private appBattleSkin(sheet:Node,battle:boolean){
+    const ui=sheet.getComponent(UITransform)!,g=sheet.getComponent(Graphics)!;
+    g.clear();g.fillColor=color('#163b50');g.roundRect(-195,-ui.height/2,390,ui.height,25);g.fill();
+    g.fillColor=color('#f2f5ee');g.roundRect(-191,-ui.height/2+4,382,ui.height-8,22);g.fill();
+    g.strokeColor=color('#d6b877');g.lineWidth=2;g.moveTo(-165,ui.height/2-2);g.lineTo(165,ui.height/2-2);g.stroke();
+    if(!battle)return;
+    for(const id of ['heal','boost','guard','attack']){
+      const button=sheet.getChildByName(id);if(!button)continue;
+      const frame=button.getComponent(Graphics)!;frame.strokeColor=color('#183c50',95);frame.lineWidth=2;
+      frame.roundRect(-82,-35,164,70,14);frame.stroke();
+      frame.fillColor=color('#ffffff',28);frame.roundRect(-78,12,156,20,10);frame.fill();
+      frame.strokeColor=color('#ffffff',105);frame.lineWidth=1;frame.moveTo(-65,30);frame.lineTo(65,30);frame.stroke();
+    }
+  }
+  private async startBattleSample(){
+    if(this.busy)return;this.busy=true;
+    try{
+      await this.loadRegionArt(0);
+      const original=this.sampleOriginal||this.state;
+      let sample=chooseStarter(chooseHero(newJourney(417),'ranger'),'fox');
+      for(const id of ['bud','otter'] as PetId[]){const p={...pet(id),uid:'app-sample-'+id,rarity:'normal' as EggRarity,sex:'female' as Sex};sample.pets!.push(p);sample.owned.push(id);sample.qualities![id]=['normal'];}
+      sample.team=sample.pets!.map(p=>p.uid!).slice(0,3);sample.reserve=sample.pets![1];
+      sample.mapId=0;sample.step=1;sample.expedition=true;sample.phase='encounter';
+      sample.enemy=(['bud','otter','fox'] as PetId[])[this.sampleEnemy%3];sample.enemyHP=sample.enemyMax=32;
+      sample.potions=3;sample.boosts=3;sample.swaps=1;
+      this.sampleOriginal=original;this.state=sample;this.screen='game';this.busy=false;this.render();
+    }catch(e){this.busy=false;console.error('APP sample assets',e);}
+  }
+  private sampleResult(sheet:Node){
+    for(const child of [...sheet.children])child.destroy();sheet.removeAllChildren();
+    for(const id of Object.keys(this.controls))if(id!=='retreat')delete this.controls[id];
+    this.text(sheet,this.state.phase==='lost'?'再试一次':'胜利',0,70,32,'#b77d24',320,48).isBold=true;
+    this.button(sheet,'sample-again','再试一次',0,-5,280,54,()=>{this.sampleEnemy++;void this.startBattleSample();},'#e5a13b',true,21);
+    this.button(sheet,'sample-exit','返回',0,-73,180,40,()=>this.goHome(),'#387483',true,17);
   }
   private heartIcon(parent:Node,x:number,y:number,size:number,tint:string){
     const n=this.makeNode(parent,'heart-icon',x,y,size,size),g=n.addComponent(Graphics);n.setScale(size/48,size/48,1);
@@ -691,9 +758,18 @@ export class PMGame extends Component {
     }}).start();
   }
   private popup(value:string,pos:Vec3,fill:string,impact:'normal'|'strong'|'resist'='normal'){
+    if(/^−\d+$/.test(value)){
+      const n=this.makeNode(this.fx,'app-damage',Math.max(-126,Math.min(126,pos.x)),pos.y+52,144,60);
+      const label=this.text(n,value,0,0,impact==='strong'?42:34,fill,140,58);label.isBold=true;
+      const outline=label.node.addComponent(LabelOutline);outline.color=color('#fffdf0');outline.width=3;
+      const opacity=n.addComponent(UIOpacity);n.setScale(.65,.65,1);
+      tween(n).to(.12,{scale:new Vec3(1.12,1.12,1)},{easing:'backOut'}).to(.12,{scale:Vec3.ONE})
+        .by(.4,{position:new Vec3(0,23,0)},{easing:'quadOut'}).start();
+      tween(opacity).delay(.38).to(.26,{opacity:0}).call(()=>n.destroy()).start();return;
+    }
     const n=this.panel(this.fx,pos.x,pos.y+48,impact==='normal'?154:176,impact==='strong'?48:42,C.paper,21,245);
     if(impact==='resist')this.actionIcon(n,'guard',-70,0,19,fill);
-    this.text(n,value,impact==='resist'?9:0,0,impact==='strong'?26:22,fill,impact==='resist'?140:166,38);const opacity=n.addComponent(UIOpacity);
+    this.text(n,value,impact==='resist'?9:0,0,impact==='strong'?30:22,fill,impact==='resist'?140:166,38);const opacity=n.addComponent(UIOpacity);
     tween(n).by(.55,{position:new Vec3(0,30,0)},{easing:'quadOut'}).start();
     tween(opacity).delay(.32).to(.25,{opacity:0}).call(()=>n.destroy()).start();
   }
@@ -706,21 +782,46 @@ export class PMGame extends Component {
     tween(opacity).to(.34,{opacity:0}).call(()=>n.destroy()).start();
   }
   private hurt(n:Node,damage:number,guard=false,multiplier=1){
-    this.audio.effect('attack');
+    this.audio.effect(n===this.playerNode?'hurt':'attack');
     const pos=n.position.clone(),sprite=n.getComponent(Sprite)!;Tween.stopAllByTarget(n);
+    if(this.appBattle){const attacker=n===this.playerNode?this.enemyNode:this.playerNode,attackerId=attacker&&this.appActors.get(attacker)?.id;
+      this.appPose(n,'hurt');this.appBattle.impact(this.appPoint(n),PETS[attackerId||(n===this.playerNode?this.state.enemy:this.state.active.id)].type,multiplier>1);this.appBattle.shake(multiplier>1);
+      this.scheduleOnce(()=>{if(n.isValid)this.appPose(n,'idle');},.3);}
     sprite.color=color(guard?'#c4efff':'#ffc4b0');
     tween(sprite).to(.2,{color:color('#ffffff')}).start();
     tween(n).by(.065,{position:new Vec3(n===this.playerNode?-12:12,0,0),eulerAngles:new Vec3(0,0,n===this.playerNode?6:-6)})
       .to(.18,{position:pos,eulerAngles:Vec3.ZERO},{easing:'backOut'}).start();
-    this.spark(pos,guard||multiplier<1?'#62ccfa':'#ffd35a',!guard&&multiplier>1||this.state.doubled);
-    this.popup(guard?'格挡  −'+damage:(damage>0&&multiplier>1?'克制 ':damage>0&&multiplier<1?'抵抗 ':'')+'−'+damage,pos,guard||multiplier<1?C.blue:'#bf5427',guard||damage===0?'normal':multiplier>1?'strong':multiplier<1?'resist':'normal');
+    if(!this.appBattle)this.spark(pos,guard||multiplier<1?'#62ccfa':'#ffd35a',!guard&&multiplier>1||this.state.doubled);
+    this.popup('−'+damage,this.appBattle?this.appPoint(n):pos,guard||multiplier<1?'#256cc1':multiplier>1?'#d63737':'#202020',guard||damage===0?'normal':multiplier>1?'strong':multiplier<1?'resist':'normal');
   }
   private strike(n:Node,target:Node,hit:()=>void){
+    if(this.appBattle){this.appStrike(n,target,hit);return;}
     Tween.stopAllByTarget(n);const pos=n.position.clone(),base=n.scale.clone(),dx=target.position.x-pos.x,dy=target.position.y-pos.y;
     const approach=new Vec3(pos.x+dx*.58,pos.y+dy*.58,0);
     tween(n).to(.09,{scale:new Vec3(base.x*1.09,base.y*.9,1),position:new Vec3(pos.x-dx*.06,pos.y-5,0)})
       .to(.13,{position:approach,scale:new Vec3(base.x*.96,base.y*1.04,1),eulerAngles:new Vec3(0,0,dx>0?-9:9)},{easing:'quadIn'})
       .call(hit).delay(.045).to(.18,{position:pos,scale:base,eulerAngles:Vec3.ZERO},{easing:'quadOut'}).start();
+  }
+  private appStrike(n:Node,target:Node,hit:()=>void){
+    const effect=this.appBattle!;Tween.stopAllByTarget(n);
+    const pos=n.position.clone(),scale=n.scale.clone(),type=PETS[this.appActors.get(n)?.id||(n===this.playerNode?this.state.active.id:this.state.enemy)].type;
+    const direction=target.position.x>pos.x?1:-1,close=type==='火';
+    this.appPose(n,'charge');
+    tween(n).to(.16,{scale:new Vec3(scale.x*1.05,scale.y*.94,1),position:new Vec3(pos.x-direction*8,pos.y-3,0)},{easing:'quadOut'})
+      .call(()=>{
+        if(!n.isValid)return;this.appPose(n,'attack');
+        if(close){
+          const contact=new Vec3(pos.x+(target.position.x-pos.x)*.68,pos.y+(target.position.y-pos.y)*.68+18,0);
+          const perspective=n===this.playerNode ? .68 : 1.12;
+          tween(n).to(.22,{position:contact,scale:new Vec3(scale.x*perspective,scale.y*perspective,1)},{easing:'quadIn'})
+            .call(hit).delay(.08).to(.26,{position:pos,scale},{easing:'quadOut'})
+            .call(()=>{if(n.isValid){this.appPose(n,'idle');this.breathe(n);}}).start();
+        }else{
+          tween(n).to(.11,{position:new Vec3(pos.x+direction*7,pos.y+4,0),scale:new Vec3(scale.x*.97,scale.y*1.04,1)}).start();
+          effect.projectile(this.appPoint(n),this.appPoint(target),type,hit);
+          this.scheduleOnce(()=>{if(n.isValid){tween(n).to(.16,{position:pos,scale}).call(()=>{this.appPose(n,'idle');this.breathe(n);}).start();}},.4);
+        }
+      }).start();
   }
   private shield(n:Node){
     const pos=n.position.clone(),shield=this.makeNode(this.fx,'shield',pos.x+30,pos.y,100,120),g=shield.addComponent(Graphics);
@@ -730,6 +831,7 @@ export class PMGame extends Component {
     const opacity=shield.addComponent(UIOpacity);tween(opacity).delay(.5).to(.2,{opacity:0}).call(()=>shield.destroy()).start();
   }
   private itemEffect(n:Node,heal:boolean){
+    this.audio.effect(heal?'heal':'boost');
     const pos=n.position.clone();Tween.stopAllByTarget(n);
     tween(n).by(.18,{position:new Vec3(0,18,0)},{easing:'quadOut'}).to(.22,{position:pos},{easing:'quadIn'}).start();
     for(let i=0;i<6;i++){
@@ -743,15 +845,16 @@ export class PMGame extends Component {
   }
   private settle(){
     this.render();
+    if(this.state.lastRelay&&this.state.phase==='battle')this.popup(petName(this.state.active)+'接替出战',new Vec3(0,35,0),C.blue);
     if(this.state.skill?.event&&this.state.phase==='battle')this.popup(this.state.skill.event,new Vec3(0,35,0),'#9565b7');
     if(this.state.phase==='battle'&&this.diceNode){const n=this.diceNode,base=n.scale.clone();
-      this.audio.effect('dice');
       tween(n).to(.07,{eulerAngles:new Vec3(0,0,20),scale:new Vec3(base.x*1.13,base.y*1.13,1)})
         .to(.07,{eulerAngles:new Vec3(0,0,-15)}).to(.1,{eulerAngles:Vec3.ZERO,scale:base}).start();
       this.scheduleOnce(()=>{this.busy=false;},.25);
     }else this.busy=false;
   }
   private async command(a:Action){
+    if(this.sampleOriginal&&a==='reroll'){this.sampleEnemy++;this.state.enemy=(['bud','otter','fox'] as PetId[])[this.sampleEnemy%3];this.state.enemyHP=this.state.enemyMax=32;this.render();return;}
     if(this.busy)return;const old=this.state,next=act(old,a);if(next===old)return;
     // Commit the entire action before animation; a killed process resumes after this action, never halfway through it.
     this.busy=true;this.state=next;await this.save();
@@ -762,12 +865,12 @@ export class PMGame extends Component {
       this.scheduleOnce(()=>{this.render();const n=this.enemyNode;if(n){Tween.stopAllByTarget(n);n.setScale(.15,.15,1);tween(n).to(.32,{scale:new Vec3(1.1,1.1,1)},{easing:'backOut'}).to(.16,{scale:Vec3.ONE}).call(()=>this.breathe(n)).start();const e=next.eggHunt!.candidates[next.eggHunt!.selected];this.spark(n.position,this.eggTint(e),e.rarity!=='normal');if(e.rarity!=='normal')this.popup(e.rarity+' !',new Vec3(0,n.position.y+100,0),this.eggTint(e));}this.scheduleOnce(()=>{this.busy=false;},.55);},.48);return;
     }
     const animate=['attack','guard','challenge','heal','boost','invite'].includes(a);
-    if(!animate){this.busy=false;this.render();return;}
+    if(!animate){this.busy=false;this.render();if(a==='eggTake'&&next.eggHunt?.bonusEggId)this.popup('寻蛋好手 · 额外 +1',new Vec3(0,25,0),'#bc8134');return;}
     this.busy=true;
     if(a==='challenge'){this.settle();return;}
     if(a==='invite'&&this.enemyNode){this.itemEffect(this.enemyNode,false);this.popup('成为伙伴！',this.enemyNode.position,C.green);this.scheduleOnce(()=>this.settle(),.7);return;}
     if(!this.playerNode||!this.enemyNode){this.settle();return;}
-    const player=this.playerNode,enemy=this.enemyNode;
+    const player=this.playerNode,enemy=this.enemyNode,combat=next.lastRelay?.combat||next.skill;
     if(a==='heal'||a==='boost'){
       this.itemEffect(player,a==='heal');
       if(a==='heal'){this.lifeTo('player',next.hpRatio,maxHP(next));this.popup('恢复 +'+(hp(next)-hp(old)),player.position,'#218461');}
@@ -775,14 +878,16 @@ export class PMGame extends Component {
       this.scheduleOnce(()=>{this.render();if(next.skill?.event)this.popup(next.skill.event,new Vec3(0,35,0),'#9565b7');this.busy=false;},.68);return;
     }
     const retaliation=()=>{this.strike(enemy,player,()=>{
-      const damage=next.skill?.lastTaken??(a==='guard'?guardDamage(enemyAttackAmount(old)):enemyAttackAmount(old));
-      this.hurt(player,damage,a==='guard',matchupMultiplier(old.enemy,old.active.id));this.lifeTo('player',next.hpRatio,maxHP(next));
+      const damage=combat?.lastTaken??(a==='guard'?guardDamage(enemyAttackAmount(old)):enemyAttackAmount(old));
+      this.hurt(player,damage,a==='guard',matchupMultiplier(old.enemy,old.active.id));this.lifeTo('player',next.lastRelay?0:next.hpRatio,maxHP(old));
     });};
     if(a==='attack'){
-      this.strike(player,enemy,()=>{this.hurt(enemy,next.skill?.lastDamage??attackAmount(old),false,matchupMultiplier(old.active.id,old.enemy));this.lifeTo('enemy',next.enemyHP/old.enemyMax,old.enemyMax);this.lifeTo('player',next.hpRatio,maxHP(next));});
-      if(next.enemyHP>0){this.scheduleOnce(retaliation,.48);this.scheduleOnce(()=>this.settle(),1.04);}
-      else this.scheduleOnce(()=>this.settle(),.76);
-    }else{this.shield(player);if(next.skill?.lastDamage)this.lifeTo('enemy',next.enemyHP/old.enemyMax,old.enemyMax);if(next.enemyHP>0)this.scheduleOnce(retaliation,.12);this.scheduleOnce(()=>this.settle(),.74);}
+      this.strike(player,enemy,()=>{this.hurt(enemy,combat?.lastDamage??attackAmount(old),false,matchupMultiplier(old.active.id,old.enemy));this.lifeTo('enemy',next.enemyHP/old.enemyMax,old.enemyMax);
+        const afterAttack=combat?.attackHPRatio??old.hpRatio;if(afterAttack!==old.hpRatio)this.lifeTo('player',afterAttack,maxHP(old));
+        if(combat?.usedCodes?.includes('opening')&&!old.skill?.usedCodes?.includes('opening'))this.popup('抢先一击 +2',new Vec3(0,35,0),'#cc713e');});
+      if(next.enemyHP>0){this.scheduleOnce(retaliation,this.appBattle ? .74 : .48);this.scheduleOnce(()=>this.settle(),this.appBattle?1.6:1.04);}
+      else this.scheduleOnce(()=>this.settle(),this.appBattle ? .9 : .76);
+    }else{this.shield(player);if(combat?.lastDamage)this.lifeTo('enemy',next.enemyHP/old.enemyMax,old.enemyMax);if(next.enemyHP>0)this.scheduleOnce(retaliation,.12);this.scheduleOnce(()=>this.settle(),this.appBattle ? .98 : .74);}
   }
   private overlay(title:string,h=350){
     this.hatchClock=[];
@@ -803,31 +908,75 @@ export class PMGame extends Component {
   private pageBounds(c:Node){const h=c.getComponent(UITransform)!.height;return {top:h/2,bottom:-h/2,height:h};}
   private pageHelp(text:string){const c=this.overlay('玩法说明',330);this.text(c,text,0,10,16,C.muted,310,190);this.button(c,'help-close','知道了',0,-119,310,44,()=>this.render(),'#519b81');}
   private helpButton(c:Node,text:string){this.button(this.root,'page-help','?',163,this.h/2-42,36,36,()=>this.pageHelp(text),'#c94a49',true,19);}
-  private pagePager(c:Node,y:number,page:number,pages:number,change:(page:number)=>void,prefix:string){
-    this.text(c,(pages>1?'左右滑动 · ':'')+(page+1)+' / '+pages,0,y,13,C.muted,220,26);
+  /** Build only the current page on web; the native pager owns a three-page window. */
+  private listPages<T>(c:Node,items:T[],size:number,page:number,draw:(item:T,index:number)=>void){
+    const build=(p:number)=>{const before=new Set(c.children);items.slice(p*size,(p+1)*size).forEach((item,i)=>draw(item,p*size+i));return c.children.filter(n=>!before.has(n));};
+    this.pageFactories.set(c,build);build(page);
+  }
+  private pagePager(c:Node,y:number,page:number,pages:number,change:(page:number,redraw?:boolean)=>void,prefix:string){
+    const label=this.text(c,(page+1)+' / '+pages,0,y,13,C.muted,100,26);
     if(pages<=1)return;
-    const items=c.children.filter(n=>(n as any).listPage!==undefined);if(!items.length)return;
+    if(!this.nativeApp){
+      this.button(c,prefix+'-prev','‹',-78,y,52,28,()=>change(page-1,true),C.paper,page>0,23);
+      this.button(c,prefix+'-next','›',78,y,52,28,()=>change(page+1,true),C.paper,page<pages-1,23);return;
+    }
+    const items=c.children.filter(n=>(n as any).listPage!==undefined),build=this.pageFactories.get(c);if(!items.length||!build)return;
     const upper=Math.max(...items.map(n=>n.position.y+n.getComponent(UITransform)!.height/2))+6;
     const lower=Math.min(...items.map(n=>n.position.y-n.getComponent(UITransform)!.height/2))-6,cy=(upper+lower)/2,h=upper-lower;
     const viewport=this.makeNode(c,prefix+'-swipe',0,cy,390,h);viewport.active=false;viewport.addComponent(Mask).type=Mask.Type.GRAPHICS_RECT;
     const content=this.makeNode(viewport,'pages',-195,0,390*pages,h);content.getComponent(UITransform)!.setAnchorPoint(0,.5);
     const layout=content.addComponent(Layout);layout.type=Layout.Type.HORIZONTAL;layout.resizeMode=Layout.ResizeMode.CONTAINER;
     const sheets=Array.from({length:pages},(_,i)=>this.makeNode(content,'page-'+i,0,0,390,h));
-    for(const item of items){const index=(item as any).listPage,pos=item.position.clone();item.setParent(sheets[index]);item.setPosition(pos.x,pos.y-cy);
-      if(index!==page){const remove=(n:Node)=>{delete this.controls[n.name];n.children.forEach(remove);};remove(item);}}
-    let pv:PageView,vertical=false;
-    if(prefix==='collection'){
-      viewport.on(Node.EventType.TOUCH_START,()=>{vertical=false;this.pageSwipeActive=false;},this,true);
-      viewport.on(Node.EventType.TOUCH_MOVE,(e:EventTouch)=>{const a=e.getUILocation(),b=e.touch!.getUIStartLocation(),dx=Math.abs(a.x-b.x),dy=Math.abs(a.y-b.y);
-        if(!vertical&&!this.pageSwipeActive&&Math.max(dx,dy)>7){if(dy>dx){vertical=true;pv.enabled=false;}else{this.pageSwipeActive=true;this.cancelPartyDrag();}}},this,true);
-      const finish=()=>{if(vertical)this.scheduleOnce(()=>{if(viewport.isValid)pv.enabled=true;},0);};
-      viewport.on(Node.EventType.TOUCH_END,finish,this,true);viewport.on(Node.EventType.TOUCH_CANCEL,finish,this,true);
-    }
-    pv=viewport.addComponent(PageView);pv.content=content;pv.direction=PageView.Direction.HORIZONTAL;pv.scrollThreshold=.18;pv.pageTurningSpeed=.22;pv.pageTurningEventTiming=1;pv.cancelInnerEvents=true;
-    viewport.active=true;layout.updateLayout();pv.scrollToPage(page,0);
-    viewport.on(PageView.EventType.PAGE_TURNING,()=>{const next=pv.getCurrentPageIndex();if(next!==page){this.pageSwipeActive=false;this.pressPending=false;change(next);}});
+    const pv=viewport.addComponent(PageView);pv.content=content;pv.direction=PageView.Direction.HORIZONTAL;
+    pv.scrollThreshold=.08;pv.autoPageTurningThreshold=100;pv.elastic=false;pv.inertia=false;
+    pv.pageTurningSpeed=.22;pv.pageTurningEventTiming=1;pv.cancelInnerEvents=true;
+    // Native Graphics must remain active while moving between parents.
+    viewport.active=true;
+    const records=new Map<Node,{id:string,value:{x:number,y:number,w:number,h:number}}[]>();
+    const mount=(index:number,nodes:Node[])=>{for(const item of nodes){
+      const entries:{id:string,value:{x:number,y:number,w:number,h:number}}[]=[];
+      const collect=(n:Node)=>{if(this.controls[n.name]){entries.push({id:n.name,value:this.controls[n.name]});delete this.controls[n.name];}n.children.forEach(collect);};collect(item);records.set(item,entries);
+      const pos=item.position.clone();item.setParent(sheets[index]);item.setPosition(pos.x,pos.y-cy);
+    }};
+    mount(page,items);
+    const window=()=>{
+      for(let i=0;i<pages;i++){
+        const sheet=sheets[i],near=Math.abs(i-page)<=1;
+        if(near&&!sheet.children.length)mount(i,build(i));
+        if(!near)for(const n of [...sheet.children]){for(const r of records.get(n)||[])delete this.controls[r.id];records.delete(n);n.destroy();n.removeFromParent();}
+      }
+      // Neighbor images are resident before dragging; no visibility scans or loads per frame.
+      for(const [node,entries] of records)for(const r of entries){if(node.parent===sheets[page])this.controls[r.id]=r.value;else delete this.controls[r.id];}
+    };
+    window();layout.updateLayout();pv.scrollToPage(page,0);
+    let vertical=false;
+    const owns=(e:EventTouch)=>{for(let n=e.target as Node|null;n;n=n.parent)if(n===viewport)return true;return false;};
+    // The parent capture phase must lock the axis BEFORE PageView cancels child touches.
+    c.on(Node.EventType.TOUCH_START,(e:EventTouch)=>{if(owns(e)){vertical=false;this.pageSwipeActive=false;}},this,true);
+    c.on(Node.EventType.TOUCH_MOVE,(e:EventTouch)=>{if(!owns(e))return;const a=e.getUILocation(),b=e.touch!.getUIStartLocation(),dx=Math.abs(a.x-b.x),dy=Math.abs(a.y-b.y);
+      if(!vertical&&!this.pageSwipeActive&&Math.max(dx,dy)>7){if(dy>dx){vertical=true;pv.enabled=false;}else{this.pageSwipeActive=true;this.cancelPartyDrag();}}},this,true);
+    const finish=(e:EventTouch)=>{if(owns(e)&&vertical)this.scheduleOnce(()=>{if(viewport.isValid)pv.enabled=true;this.pageSwipeActive=false;},0);};
+    c.on(Node.EventType.TOUCH_END,finish,this,true);c.on(Node.EventType.TOUCH_CANCEL,finish,this,true);
+    viewport.on(PageView.EventType.SCROLL_ENDED,()=>{
+      const next=pv.getCurrentPageIndex();this.pageSwipeActive=false;this.pressPending=false;if(next===page)return;
+      page=next;label.string=(page+1)+' / '+pages;change(page,false);
+      // Build the next neighbor only after snapping has completed, keeping the live page intact.
+      window();
+    });
   }
-  private listItem(n:Node,index:number,size:number){(n as any).listPage=Math.floor(index/size);return n;}
+  private regionTabs(parent:Node,y:number,options:{id:number;label:string;tint:string}[],selected:number,page:number,onPage:(n:number,redraw?:boolean)=>void,onSelect:(id:number)=>void,prefix:string){
+    const strip=this.makeNode(parent,prefix+'-tabs',0,y,354,82);
+    options.forEach((option,i)=>{
+      const row=Math.floor(i/5),count=Math.min(5,options.length-row*5);
+      this.button(strip,prefix+'-'+(option.id<0?'all':option.id),option.label,(i%5-(count-1)/2)*72,-row*44,66,38,()=>onSelect(option.id),selected===option.id?option.tint:'#dbe9ef',true,16);
+    });
+  }
+  private listItem(n:Node,index:number,size:number){
+    (n as any).listPage=Math.floor(index/size);
+    // Static card outlines; retain press/drag feedback without dozens of perpetual opacity tweens.
+    const glow=n.getChildByName('available-glow'),opacity=glow?.getComponent(UIOpacity);if(opacity){Tween.stopAllByTarget(opacity);opacity.opacity=45;this.availableGlows=this.availableGlows.filter(v=>v!==glow);}
+    return n;
+  }
   private confirmGuard(){const c=this.overlay('放弃这次攻击强化？',245);
     this.text(c,'防御会放弃已使用的 ×'+this.state.boostMultiplier+' 强化',0,34,14,C.muted,320);
     this.button(c,'cancel','返回',-82,-49,145,52,()=>this.render(),'#e8f3fa');
@@ -844,13 +993,13 @@ export class PMGame extends Component {
   private collection(page=0){this.screen='partners';this.partnerOwnedOnly=true;this.partnerPage=page;this.partnerSelected=this.partnerSelected||(hasActivePet(this.state)?this.state.active.uid!:null);this.render();}
   private confirmRestart(){const c=this.overlay('重新出发？',250);this.text(c,'本局进度重置，收藏与已带走的宠物蛋保留',0,35,14,C.muted,320);
     this.button(c,'cancel','继续当前',-82,-49,145,52,()=>this.render(),'#e8f3fa');this.button(c,'restart','重新出发',82,-49,145,52,()=>this.restart(),C.orange);}
-  private restart(){const id=mapFor(this.state).id;this.state=retreatExpedition(this.state);this.save();this.mapIndex=id;this.screen='adventure';this.render();}
+  private restart(){this.state=retreatExpedition(this.state);this.save();this.mapIndex=latestUnlockedMap(this.state);this.mapTabPage=Math.floor(this.mapIndex/6);this.screen='adventure';this.render();}
 
   private hatchTime(ms:number){if(!Number.isFinite(ms))return '等待联网';if(ms<=0)return '可以破壳啦！';const sec=Math.ceil(ms/1000);return Math.floor(sec/60).toString().padStart(2,'0')+':'+(sec%60).toString().padStart(2,'0');}
   private hatchery(){
     if(this.state.pendingHatch){this.hatchReveal();return;}
     const c=this.fullPage('孵化屋','离线成长',()=>this.hatchery()),s=this.state,{top,bottom,height}=this.pageBounds(c);
-    this.helpButton(c,'新放入的蛋孵化 '+hatchDuration(s)/60000+' 分钟，离线继续。\n完整观看视频，孵化时间减少 30 分钟。\nSR 蛋至少孵出 SR；SSR 蛋必出 SSR。');
+    this.helpButton(c,'新放入的蛋孵化 '+(BUILD_TEST_MODE?hatchDuration(s)/1000+' 秒':hatchDuration(s)/60000+' 分钟')+'，离线继续。\n完整观看视频，孵化时间减少 30 分钟。\nSR 蛋至少孵出 SR；SSR 蛋必出 SSR。');
     const cardH=height-174,cardY=top-24-cardH/2;
     for(let index=0;index<2;index++){
       const x=index===0?-91:91,slot=s.incubators?.[index],egg=slot?s.eggs!.find(e=>e.id===slot.eggId):null;
@@ -922,7 +1071,7 @@ export class PMGame extends Component {
 
   private breedingUI(){
     const s=this.state,b=s.breeding,c=this.fullPage('交配屋',b?'交配中':'选择一雌一雄',()=>this.breedingUI()),{top,bottom,height}=this.pageBounds(c);
-    this.helpButton(c,'形态、HP、攻击各有 50% 随父或随母。\n技能从父母技能池随机继承，最多 6 个。\n交配需 30 分钟，离线继续。\n领取蛋后父母消失，蛋需再孵化。');
+    this.helpButton(c,'形态、HP、攻击各有 50% 随父或随母。\n技能从父母技能池随机继承，最多 6 个。\n交配需 '+(BUILD_TEST_MODE?'3 秒':'30 分钟')+'，离线继续。\n领取蛋后父母消失，蛋需再孵化。');
     if(!b){if(this.breedMother===s.active.uid||!s.pets!.some(p=>p.uid===this.breedMother))this.breedMother='';if(this.breedFather===s.active.uid||!s.pets!.some(p=>p.uid===this.breedFather))this.breedFather='';}
     const mother=b?.mother||this.breedMother,father=b?.father||this.breedFather;
     this.breedClock=null;
@@ -937,30 +1086,39 @@ export class PMGame extends Component {
     const foot=this.panel(c,0,bottom+105,390,210,'#fffdf5',22);
     this.text(foot,'领取蛋后，父母消失',0,80,15,'#b45f62',350,28).isBold=true;
     if(b){const now=gameNow(),left=Number.isFinite(now)?Math.max(0,b.readyAt-now):Infinity,locked=s.phase==='battle'||!!s.pendingHatch,clock=this.text(foot,left?this.hatchTime(left):'可以领蛋',0,43,25,'#a66f91',350,36);this.breedClock=left?clock:null;
-      this.button(foot,'breed-claim',s.phase==='battle'?'战斗中':s.pendingHatch?'先领取新伙伴':left?'交配中…':'领取宠物蛋',0,-9,350,48,()=>{if(!this.requireTime())return;const next=claimBreeding(this.state);if(next!==this.state){this.state=next;this.breedMother='';this.breedFather='';this.partnerSelected=null;this.screen='home';this.save();this.render();this.hatchery();}},'#b57b9b',!left&&!locked,19);
+      this.button(foot,'breed-claim',s.phase==='battle'?'战斗中':s.pendingHatch?'先领取新伙伴':left?'交配中…':'领取宠物蛋',0,-9,350,48,()=>{if(!this.requireTime())return;const next=claimBreeding(this.state);if(next!==this.state){const egg=next.eggs!.find(e=>e.id===b.id)!;this.state=next;this.breedMother='';this.breedFather='';this.partnerSelected=null;this.screen='home';this.save();this.render();this.breedingEggResult(egg);}},'#b57b9b',!left&&!locked,19);
     }else{this.text(foot,'30:00',0,43,25,'#a66f91',350,36);
       this.button(foot,'breed-start','开始交配',0,-9,350,48,()=>{if(!this.requireTime())return;const next=startBreeding(this.state,this.breedMother,this.breedFather);if(next!==this.state){this.state=next;this.save();this.breedingUI();}},'#b57b9b',!!mother&&!!father,20);
     }
     this.button(foot,'breed-hatch','孵化屋 ›',0,-67,350,38,()=>this.hatchery(),'#dbe9ef',true,16);this.controls['breed-back']=this.controls['nav-home'];
   }
+  private breedingEggResult(egg:Egg){
+    const c=this.overlay('获得宠物蛋',340);
+    this.eggArt(c,egg,0,27,112);
+    this.text(c,this.eggName(egg)+'蛋',0,-48,22,this.eggTint(egg),310,34).isBold=true;
+    this.text(c,petName({id:egg.affinity,rarity:egg.rarity})+' · 已放入蛋袋',0,-80,13,C.muted,300,22);
+    this.button(c,'breed-egg-confirm','去孵化',0,-125,300,44,()=>this.hatchery(),'#519b81',true,18);
+  }
   private breedingPicker(sex:Sex,page=0){
     const pets=this.state.pets!.filter(p=>p.sex===sex&&p.uid!==this.state.active.uid),pages=Math.max(1,Math.ceil(pets.length/4));page=Math.max(0,Math.min(page,pages-1));
     const c=this.fullPage(sex==='female'?'选择雌性 ♀':'选择雄性 ♂',pets.length+' 只',()=>this.breedingPicker(sex,page),()=>this.breedingUI()),{top,bottom,height}=this.pageBounds(c),rowH=Math.min(120,(height-130)/4);
-    pets.forEach((p,itemIndex)=>{const i=itemIndex%4;const y=top-24-rowH/2-i*(rowH+12),row=this.button(c,'breed-pick-'+p.uid,'',0,y,354,rowH,()=>{if(sex==='female')this.breedMother=p.uid!;else this.breedFather=p.uid!;this.breedingUI();},'#ffffff');
+    this.listPages(c,pets,4,page,(p,itemIndex)=>{const i=itemIndex%4;const y=top-24-rowH/2-i*(rowH+12),row=this.button(c,'breed-pick-'+p.uid,'',0,y,354,rowH,()=>{if(sex==='female')this.breedMother=p.uid!;else this.breedFather=p.uid!;this.breedingUI();},'#ffffff');
       this.listItem(row,itemIndex,4);this.petImage(row,p,-119,0,64);this.text(row,petName(p)+' '+sexSymbol(p.sex),-3,19,17,C.ink,160,27).isBold=true;
       this.text(row,rarityName(p.rarity),132,19,14,p.rarity==='SSR'?'#b78022':'#8b61bb',50,25);
       this.text(row,'HP '+petBaseHP(p)+' · ⚔ '+(p.baseFaces||p.faces).join('/'),22,-6,12,C.muted,240,24);
     });
     if(!pets.length)this.text(c,'暂无可交配的'+(sex==='female'?'雌性':'雄性')+'伙伴',0,36,20,C.muted,330,60);
-    this.pagePager(c,bottom+42,page,pages,p=>this.breedingPicker(sex,p),'breed-picker');this.controls['breed-picker-back']=this.controls['nav-home'];
+    this.pagePager(c,bottom+42,page,pages,(p,redraw)=>{page=p;if(redraw)this.breedingPicker(sex,p);},'breed-picker');this.controls['breed-picker-back']=this.controls['nav-home'];
   }
   private socialInput(parent:Node,id:string,value:string,y:number,placeholder:string,onChange:(value:string)=>void){
-    const n=this.panel(parent,0,y,316,48,'#e8f3fa',12);n.name=id;n.active=false;
+    // EditBox creates its own Sprite; Graphics must live on a separate child render node.
+    const n=this.makeNode(parent,id,0,y,316,48);n.active=false;
+    this.panel(n,0,0,316,48,'#e8f3fa',12);
     const label=this.text(n,'',0,0,14,C.ink,296,38),hint=this.text(n,placeholder,0,0,14,C.muted,296,38);
     label.node.getComponent(UITransform)!.setAnchorPoint(0,1);hint.node.getComponent(UITransform)!.setAnchorPoint(0,1);
     label.horizontalAlign=hint.horizontalAlign=Label.HorizontalAlign.LEFT;
     const edit=n.addComponent(EditBox);edit.textLabel=label;edit.placeholderLabel=hint;edit.inputMode=EditBox.InputMode.SINGLE_LINE;
-    edit.inputFlag=EditBox.InputFlag.DEFAULT;edit.returnType=EditBox.KeyboardReturnType.DONE;edit.maxLength=320;edit.string=value;edit.placeholder=placeholder;
+    edit.inputFlag=EditBox.InputFlag.DEFAULT;edit.returnType=EditBox.KeyboardReturnType.DONE;edit.maxLength=320;edit.string=value;edit.placeholder=tr(placeholder);
     n.on('text-changed',(box:EditBox)=>onChange(box.string));
     n.active=true;
     const world=n.worldPosition;this.controls[id]={x:world.x,y:this.h-world.y,w:316,h:48};return edit;
@@ -1008,7 +1166,7 @@ export class PMGame extends Component {
   private playVisitor(c:Node,own:Node|null,guest:Node){
     const visitor=this.state.social?.visitor;if(!visitor||visitor.progress>=3||this.busy)return;
     const id=visitor.card.id,progress=visitor.progress;this.busy=true;
-    const action=c.children.find(n=>n.name==='visit-play');if(action){const label=action.getComponentsInChildren(Label)[0];if(label)label.string=['正在招手…','一起吃点心…','开心地玩耍…'][progress];}
+    const action=c.children.find(n=>n.name==='visit-play');if(action){const label=action.getComponentsInChildren(Label)[0];if(label)label.string=tr(['正在招手…','一起吃点心…','开心地玩耍…'][progress]);}
     [own,guest].filter(Boolean).forEach((n:Node,i)=>{Tween.stopAllByTarget(n);const p=n.position.clone(),direction=own?(i===0?1:-1):1;
       tween(n).to(.18,{scale:new Vec3(1.06,.94,1)}).by(.28,{position:new Vec3(direction*10,17,0)},{easing:'quadOut'}).by(.28,{position:new Vec3(-direction*10,-17,0)},{easing:'quadIn'}).to(.16,{scale:Vec3.ONE}).delay(.15).by(.28,{position:new Vec3(direction*7,12,0)},{easing:'quadOut'}).by(.28,{position:new Vec3(-direction*7,-12,0)},{easing:'quadIn'}).to(.16,{scale:new Vec3(1.04,.97,1)}).to(.18,{scale:Vec3.ONE}).to(.18,{position:p}).start();
     });
@@ -1040,28 +1198,28 @@ export class PMGame extends Component {
   private sharePicker(page=0){
     const pets=this.state.pets||[],pages=Math.max(1,Math.ceil(pets.length/4));page=Math.max(0,Math.min(page,pages-1));
     const c=this.fullPage('选择伙伴',pets.length+' 只',()=>this.sharePicker(page),()=>this.socialUI('share')),{top,bottom,height}=this.pageBounds(c),rowH=Math.min(120,(height-130)/4);
-    pets.forEach((p,itemIndex)=>{const i=itemIndex%4;const y=top-24-rowH/2-i*(rowH+12),row=this.button(c,'share-pick-'+p.uid,'',0,y,354,rowH,()=>{this.sharePetUid=p.uid!;this.socialNote='';this.socialUI('share');},'#ffffff');this.listItem(row,itemIndex,4);this.petImage(row,p,-116,0,Math.min(84,rowH-16));this.text(row,petName(p)+' '+sexSymbol(p.sex),29,16,18,C.ink,208,30);this.text(row,rarityName(p.rarity)+' · '+PETS[p.id].type,29,-18,14,C.muted,208,26);});
-    this.pagePager(c,bottom+42,page,pages,p=>this.sharePicker(p),'share');this.controls['share-picker-back']=this.controls['nav-home'];
+    this.listPages(c,pets,4,page,(p,itemIndex)=>{const i=itemIndex%4;const y=top-24-rowH/2-i*(rowH+12),row=this.button(c,'share-pick-'+p.uid,'',0,y,354,rowH,()=>{this.sharePetUid=p.uid!;this.socialNote='';this.socialUI('share');},'#ffffff');this.listItem(row,itemIndex,4);this.petImage(row,p,-116,0,Math.min(84,rowH-16));this.text(row,petName(p)+' '+sexSymbol(p.sex),29,16,18,C.ink,208,30);this.text(row,rarityName(p.rarity)+' · '+PETS[p.id].type,29,-18,14,C.muted,208,26);});
+    this.pagePager(c,bottom+42,page,pages,(p,redraw)=>{page=p;if(redraw)this.sharePicker(p);},'share');this.controls['share-picker-back']=this.controls['nav-home'];
   }
   private bondsUI(c:Node){
     const {top,bottom,height}=this.pageBounds(c),bonds=friendBonds(this.state),pages=Math.max(1,Math.ceil(bonds.length/6));this.socialPage=Math.max(0,Math.min(this.socialPage,pages-1));
     const cardH=Math.min(170,(height-222)/2);
-    bonds.forEach((bond,itemIndex)=>{const i=itemIndex%6;const row=this.button(c,'bond-select-'+bond.species,'',(i%3-1)*120,top-80-cardH/2-Math.floor(i/3)*(cardH+12),112,cardH,()=>this.bondEggPicker(bond.species),'#ffffff'),p:Pet={id:bond.species,rarity:'normal',faces:[...PETS[bond.species].faces]};
+    this.listPages(c,bonds,6,this.socialPage,(bond,itemIndex)=>{const i=itemIndex%6;const row=this.button(c,'bond-select-'+bond.species,'',(i%3-1)*120,top-80-cardH/2-Math.floor(i/3)*(cardH+12),112,cardH,()=>this.bondEggPicker(bond.species),'#ffffff'),p:Pet={id:bond.species,rarity:'normal',faces:[...PETS[bond.species].faces]};
       this.listItem(row,itemIndex,6);this.petImage(row,p,0,12,Math.min(96,cardH-48));this.text(row,PETS[bond.species].name,0,-cardH/2+23,13,C.ink,106,27).isBold=true;
     });
     if(!bonds.length)this.text(c,'与好友互动 3 次即可结缘',0,27,20,C.muted,350,60);
-    this.pagePager(c,bottom+88,this.socialPage,pages,p=>{this.socialPage=p;this.socialUI('bonds');},'bonds');
+    this.pagePager(c,bottom+88,this.socialPage,pages,(p,redraw)=>{this.socialPage=p;if(redraw)this.socialUI('bonds');},'bonds');
     this.text(c,'选择伙伴系列，再选自己的蛋',0,bottom+34,14,C.muted,350,28);
   }
   private bondEggPicker(target:PetId,page=0){
     const eggs=availableEggs(this.state),eligible=new Set(bondEligibleEggs(this.state,target).map(e=>e.id)),pages=Math.max(1,Math.ceil(eggs.length/4));page=Math.max(0,Math.min(page,pages-1));
     const c=this.fullPage('选择结缘蛋',PETS[target].name+'系列',()=>this.bondEggPicker(target,page),()=>this.socialUI('bonds')),free=[0,1].find(i=>!this.state.incubators?.[i]),{top,bottom,height}=this.pageBounds(c),rowH=Math.min(120,(height-176)/4);
-    eggs.forEach((egg,itemIndex)=>{const i=itemIndex%4;const y=top-24-rowH/2-i*(rowH+12),reason=bondBlockReason(this.state,egg,target),enabled=eligible.has(egg.id)&&free!==undefined,row=this.panel(c,0,y,354,rowH,enabled?'#ffffff':'#e3e9eb',14);
+    this.listPages(c,eggs,4,page,(egg,itemIndex)=>{const i=itemIndex%4;const y=top-24-rowH/2-i*(rowH+12),reason=bondBlockReason(this.state,egg,target),enabled=eligible.has(egg.id)&&free!==undefined,row=this.panel(c,0,y,354,rowH,enabled?'#ffffff':'#e3e9eb',14);
       this.listItem(row,itemIndex,4);this.eggArt(row,egg,-130,0,Math.min(72,rowH-20));this.text(row,this.eggName(egg),-24,16,16,this.eggTint(egg),136,27);this.text(row,reason?(egg.bond?'已结缘':'地区未解锁'):free===undefined?'孵化位已满':egg.genes?'保留遗传':rarityName(egg.rarity)+' · '+hatchDuration(this.state)/60000+'分',-24,-17,12,C.muted,136,28);
       this.button(row,'bond-egg-'+egg.id,'选择',112,0,72,42,()=>this.bondConfirm(target,egg.id,page),'#b57b9b',enabled,16);
     });
     if(!eggs.length)this.text(c,'暂无可用的蛋',0,41,21,C.muted,350,60);
-    this.pagePager(c,bottom+109,page,pages,p=>this.bondEggPicker(target,p),'bond-eggs');
+    this.pagePager(c,bottom+109,page,pages,(p,redraw)=>{page=p;if(redraw)this.bondEggPicker(target,p);},'bond-eggs');
     this.button(c,'bond-eggs-hatch',free===undefined?'孵化位已满 · 去查看':'孵化屋 ›',0,bottom+44,350,46,()=>this.hatchery(),'#dbe9ef',true,17);this.controls['bond-eggs-back']=this.controls['nav-home'];
   }
   private bondConfirm(target:PetId,eggId:string,page:number){
@@ -1080,32 +1238,29 @@ export class PMGame extends Component {
     },'#b57b9b',!reason&&slot!==undefined,18);
     this.controls['bond-cancel']=this.controls['nav-home'];
   }
-  private goHome(){this.state=retreatExpedition(this.state);this.screen='home';this.save();this.render();}
-  private retreatButton(y:number){const n=this.button(this.root,'retreat','',161,y,44,42,()=>this.goHome(),C.paper);this.menuIcon(n,'home',0,0,28,'#397c80');}
-  private fillArt(key:string){const n=this.image(this.root,key,0,0,390,this.h),os=this.art[key].originalSize,k=Math.max(390/os.width,this.h/os.height);n.getComponent(UITransform)!.setContentSize(os.width*k,os.height*k);return n;}
-  private regionFrame(kind:'battle'|'nest'){return this.art['region-'+((this.state.mapId||0)+1)+'-'+kind+'-v1']||this.art[kind==='battle'?'battle-arena':'egg-nest-v1'];}
+  private goHome(){if(this.sampleOriginal){this.state=this.sampleOriginal;this.sampleOriginal=null;this.screen='login';this.render();return;}this.state=retreatExpedition(this.state);this.screen='home';this.save();this.render();}
+  private retreatButton(y:number){const n=this.button(this.root,'retreat','',164,y,36,36,()=>this.goHome(),C.paper);this.menuIcon(n,'retreat',0,0,25,'#286579');}
+  private fillArt(key:string){const n=this.image(this.root,key,0,0,390,this.h),os=this.artCache.size(key),k=Math.max(390/os.width,this.h/os.height);n.getComponent(UITransform)!.setContentSize(os.width*k,os.height*k);return n;}
+  private sceneRegion(mapId:number){return mapId>=6?mapId-3:mapId;}
+  private regionKey(kind:'battle'|'nest'){const map=this.sceneRegion(this.state.mapId||0);return map?'region-'+(map+1)+'-'+kind+'-v1':kind==='battle'?(this.appPresentation?'app-coast-v1':'battle-arena'):'egg-nest-v1';}
+  private regionFrame(kind:'battle'|'nest'){return this.art[this.regionKey(kind)];}
   private async loadRegionArt(mapId:number){
-    if(mapId===0)return;
-    if(!this.regionLoads[mapId])this.regionLoads[mapId]=Promise.all(['battle','nest'].map(async kind=>{
-      const key='region-'+(mapId+1)+'-'+kind+'-v1';if(this.art[key])return;
-      this.art[key]=await new Promise<SpriteFrame>((resolve,reject)=>resources.load('art/'+key+'/spriteFrame',SpriteFrame,(error,frame)=>error?reject(error):resolve(frame)));
-    })).then(()=>{}).catch(error=>{delete this.regionLoads[mapId];throw error;});
-    if(!this.padLoad)this.padLoad=new Promise<Texture2D>((resolve,reject)=>resources.load('art/region-pads-v1/texture',Texture2D,(error,texture)=>error?reject(error):resolve(texture))).then(texture=>{
-      for(const [map,rect] of Object.entries(REGION_PAD_RECTS)){const [x,y,w,h]=rect,frame=new SpriteFrame();frame.reset({texture,rect:new Rect(x,y,w,h),originalSize:new Size(w,h)});frame.packable=false;this.art['region-pad-'+map]=frame;}
-    }).catch(error=>{this.padLoad=null;throw error;});
-    await Promise.all([this.regionLoads[mapId],this.padLoad]);
+    const map=this.sceneRegion(mapId);await this.artCache.load(map?'region-'+(map+1)+'-battle-v1':this.appPresentation?'app-coast-v1':'battle-arena');
+    if(this.appPresentation&&mapId===0){const keys:string[]=[];for(const id of APP_BATTLE_IDS)for(const side of ['back','front'] as const)for(const pose of APP_BATTLE_POSES)keys.push(appPoseKey(id,side,pose));await this.artCache.warm(keys);}
+    if(map)await this.artCache.load('region-pad-'+map);
+    if(this.nativeApp)await this.artCache.warm([
+      map?'region-'+(map+1)+'-nest-v1':'egg-nest-v1',
+      ...MAPS[mapId].pets.reduce((keys:string[],id)=>keys.concat(RARITIES.map(r=>(r==='normal'?id:id+'-'+r)+'-front')),[]),
+      ...(this.state.pets||[]).filter(p=>homeParty(this.state).includes(p.uid!)).map(p=>(p.rarity==='normal'?p.id:formKey(p))+'-back')
+    ]);
   }
-  private async loadHomeArt(period:HomePeriod){
-    const key=homeArtKey(period);if(this.art[key])return;
-    if(!this.homeLoads[key])this.homeLoads[key]=new Promise<SpriteFrame>((resolve,reject)=>resources.load('art/'+key+'/spriteFrame',SpriteFrame,(error,frame)=>error?reject(error):resolve(frame))).then(frame=>{this.art[key]=frame;}).catch(error=>{delete this.homeLoads[key];throw error;});
-    await this.homeLoads[key];
-  }
+  private async loadHomeArt(period:HomePeriod){await this.artCache.load(homeArtKey(period));}
   private async refreshHomeArt(){
     if(this.screen!=='home'||!this.homeBackground?.isValid)return;
     const period=homePeriod(),target=this.homeBackground;this.homePeriod=period;
     try{await this.loadHomeArt(period);if(this.screen!=='home'||target!==this.homeBackground||!target.isValid||homePeriod()!==period)return;
       const frame=this.art[homeArtKey(period)],sp=target.getComponent(Sprite)!;
-      if(sp.spriteFrame!==frame){sp.spriteFrame=frame;const os=frame.originalSize,k=Math.max(390/os.width,this.h/os.height);target.getComponent(UITransform)!.setContentSize(os.width*k,os.height*k);this.homeAtmosphere();}
+      if(sp.spriteFrame!==frame){this.artCache.bind(target,homeArtKey(period));const os=this.artCache.size(homeArtKey(period)),k=Math.max(390/os.width,this.h/os.height);target.getComponent(UITransform)!.setContentSize(os.width*k,os.height*k);this.homeAtmosphere();}
     }catch{/* Keep the last valid scene; the next cosmetic clock check retries. */}
   }
   private homeAtmosphere(){
@@ -1126,7 +1281,7 @@ export class PMGame extends Component {
       }
     }
   }
-  private menuIcon(parent:Node,kind:'map'|'dex'|'paw'|'gear'|'lock'|'home'|'energy'|'video',x:number,y:number,size:number,ink='#ffffff'){
+  private menuIcon(parent:Node,kind:'map'|'dex'|'paw'|'gear'|'lock'|'home'|'retreat'|'energy'|'video',x:number,y:number,size:number,ink='#ffffff'){
     const n=this.makeNode(parent,kind,x,y,size,size),g=n.addComponent(Graphics);n.setScale(size/48,size/48,1);g.lineWidth=3;g.strokeColor=color(ink);g.fillColor=color(ink);
     if(kind==='map'){g.moveTo(-20,-16);g.lineTo(-20,17);g.lineTo(-7,12);g.lineTo(7,18);g.lineTo(20,13);g.lineTo(20,-19);g.lineTo(7,-14);g.lineTo(-7,-20);g.close();g.stroke();for(const dx of [-7,7]){g.moveTo(dx,-12);g.lineTo(dx,9);g.stroke();}g.fillColor=color('#ffe297');g.circle(8,4,6);g.fill();}
     if(kind==='dex'){g.roundRect(-19,-22,38,44,8);g.fill();g.fillColor=color('#f4fbff');g.roundRect(-14,-7,28,24,4);g.fill();g.fillColor=color('#df655b');g.circle(0,5,8);g.fill();g.strokeColor=color('#304d5a');g.moveTo(-8,5);g.lineTo(8,5);g.stroke();g.fillColor=color('#ffffff');g.circle(0,5,3);g.fill();g.fillColor=color('#304d5a');g.circle(-8,-15,2);g.circle(6,-15,2);g.fill();}
@@ -1134,6 +1289,7 @@ export class PMGame extends Component {
     if(kind==='gear'){g.circle(0,0,13);g.stroke();g.circle(0,0,5);g.stroke();for(let i=0;i<8;i++){const a=i*Math.PI/4;g.moveTo(Math.cos(a)*14,Math.sin(a)*14);g.lineTo(Math.cos(a)*20,Math.sin(a)*20);g.stroke();}}
     if(kind==='lock'){g.roundRect(-12,-17,24,21,5);g.fill();g.arc(0,4,9,0,Math.PI,false);g.stroke();g.fillColor=color('#ffffff');g.circle(0,-5,2);g.fill();}
     if(kind==='home'){g.moveTo(-21,0);g.lineTo(0,19);g.lineTo(21,0);g.stroke();g.moveTo(-15,3);g.lineTo(-15,-19);g.lineTo(-5,-19);g.lineTo(-5,-5);g.lineTo(6,-5);g.lineTo(6,-19);g.lineTo(15,-19);g.lineTo(15,3);g.stroke();}
+    if(kind==='retreat'){g.lineWidth=5;g.moveTo(-15,8);g.lineTo(5,8);g.bezierCurveTo(24,8,24,-16,5,-16);g.lineTo(-2,-16);g.stroke();g.moveTo(-5,20);g.lineTo(-20,8);g.lineTo(-5,-4);g.close();g.fill();}
     if(kind==='energy'){g.moveTo(5,23);g.lineTo(-17,-4);g.lineTo(-3,-4);g.lineTo(-7,-23);g.lineTo(18,7);g.lineTo(3,7);g.close();g.fill();}
     if(kind==='video'){g.roundRect(-22,-16,44,32,7);g.stroke();g.moveTo(-5,-9);g.lineTo(-5,9);g.lineTo(10,0);g.close();g.fill();}
     return n;
@@ -1146,7 +1302,7 @@ export class PMGame extends Component {
   }
   private homeUI(){
     const s=this.state,H=this.h,b=-H/2,top=H/2,active=hasActivePet(s),map=mapFor(s);this.homePeriod=homePeriod();
-    this.homeBackground=this.fillArt(this.art[homeArtKey(this.homePeriod)]?homeArtKey(this.homePeriod):'home-camp-v1');this.homeAtmosphere();void this.refreshHomeArt();
+    this.homeBackground=this.fillArt(homeArtKey(this.homePeriod));this.homeAtmosphere();void this.refreshHomeArt();
     this.homeStaminaUI(top);
     const setting=this.button(this.root,'home-settings','',161,top-39,44,44,()=>this.homeSettings(),'#fffdf1');this.menuIcon(setting,'gear',0,0,25,'#41717d');
     const petY=(top-98+b+360)/2,petSize=Math.max(112,Math.min(208,H-520));
@@ -1154,9 +1310,9 @@ export class PMGame extends Component {
       const lead=this.petImage(this.root,s.active,0,petY,petSize);this.breathe(lead);
     }else{const empty=this.panel(this.root,0,petY,280,72,'#fffdf0',20,235);this.text(empty,'营地等待新的伙伴\n请先孵化新伙伴',0,0,19,'#316b70',270,62);}
     this.panel(this.root,0,b+164,390,320,'#f8f5e8',28,246);
-    const explore=this.button(this.root,'home-explore','',0,b+271,350,86,()=>{this.mapIndex=mapFor(this.state).id;this.screen='adventure';this.render();},'#df6156');
+    const explore=this.button(this.root,'home-explore','',0,b+271,350,86,()=>{this.mapIndex=latestUnlockedMap(this.state);this.mapTabPage=Math.floor(this.mapIndex/6);this.screen='adventure';this.render();},'#df6156');
     this.menuIcon(explore,'map',-128,0,47);this.text(explore,'探险',0,16,28,'#ffffff',106,38).isBold=true;
-    this.menuIcon(explore,'energy',-15,-20,20,'#ffde65');this.text(explore,'−5',12,-20,18,'#fff2d5',32,26);
+    this.menuIcon(explore,'energy',-15,-20,20,'#ffde65');this.text(explore,'−'+EXPEDITION_COST,12,-20,18,'#fff2d5',32,26);
     this.text(explore,'›',145,0,42,'#ffe4bd',40,60);
     const partners=this.button(this.root,'home-partners','',-90,b+164,170,104,()=>this.collection(0),'#427b9e');this.menuIcon(partners,'paw',-48,6,39,'#f3d58c');
     this.text(partners,'伙伴',25,10,24,'#ffffff',82,34).isBold=true;this.text(partners,'已拥有 '+s.pets!.length+' 只',0,-31,13,'#dceef5',158,24);
@@ -1186,7 +1342,7 @@ export class PMGame extends Component {
   private refreshStaminaHUD(){
     const next=syncStamina(this.state);if(next!==this.state){this.state=next;this.save();}
     if(this.staminaLabel?.isValid)this.staminaLabel.string=this.state.stamina!.value+' / '+STAMINA_MAX;
-    if(this.staminaCountdown?.isValid){const left=staminaFullRemaining(this.state),seconds=Math.ceil(left/1000);this.staminaCountdown.string=Number.isFinite(left)?Math.floor(seconds/60).toString().padStart(2,'0')+':'+(seconds%60).toString().padStart(2,'0'):'--:--';}
+    if(this.staminaCountdown?.isValid){const left=staminaRemaining(this.state),seconds=Math.ceil(left/1000);this.staminaCountdown.string=Number.isFinite(left)?Math.floor(seconds/60).toString().padStart(2,'0')+':'+(seconds%60).toString().padStart(2,'0'):'--:--';}
     if(this.staminaFill?.isValid){const g=this.staminaFill;g.clear();g.fillColor=color('#69cba0');const w=88*this.state.stamina!.value/STAMINA_MAX;if(w>0){g.roundRect(-44,-11,w,22,Math.min(11,w/2));g.fill();}}
   }
   private staminaOffer(message='每2分钟恢复1点体力'){
@@ -1208,19 +1364,34 @@ export class PMGame extends Component {
     catch{this.staminaOffer('广告暂不可用，请稍后再试');}
     finally{this.adPending=false;this.busy=false;this.audio.resume('ad');}
   }
-  private homeSettings(){const c=this.overlay('营地设置',220);
-    this.button(c,'settings-close','×',143,75,38,38,()=>this.goHome(),'#e4eef1',true,27);
-    this.button(c,'audio-music','音乐  '+(this.audio.musicEnabled?'开':'关'),0,13,300,48,()=>{this.audio.toggle('music');this.homeSettings();},this.audio.musicEnabled?'#519b81':'#8b9dab');
-    this.button(c,'audio-effects','音效  '+(this.audio.effectsEnabled?'开':'关'),0,-50,300,48,()=>{this.audio.toggle('effects');this.homeSettings();},this.audio.effectsEnabled?'#519b81':'#8b9dab');
+  private homeSettings(){const c=this.overlay('营地设置',292);
+    this.button(c,'settings-close','×',143,111,38,38,()=>this.goHome(),'#e4eef1',true,27);
+    this.button(c,'audio-music','音乐  '+(this.audio.musicEnabled?'开':'关'),0,50,300,48,()=>{this.audio.toggle('music');this.homeSettings();},this.audio.musicEnabled?'#519b81':'#8b9dab');
+    this.button(c,'audio-effects','音效  '+(this.audio.effectsEnabled?'开':'关'),0,-11,300,48,()=>{this.audio.toggle('effects');this.homeSettings();},this.audio.effectsEnabled?'#519b81':'#8b9dab');
+    this.button(c,'settings-language','语言  ›',0,-72,300,48,()=>this.languageSettings(),'#286f94');
+  }
+  private languageSettings(){
+    const c=this.overlay('语言',472);
+    LANGUAGES.forEach((entry,i)=>{
+      const chosen=languageChoice()===entry.id;
+      const button=this.button(c,'language-'+entry.id,(chosen?'✓ ':'')+entry.name,0,145-i*43,300,38,()=>{
+        selectLanguage(entry.id,sys.languageCode||sys.language||'en');
+        try{sys.localStorage.setItem(LANGUAGE_KEY,entry.id);}catch{}
+        this.render();this.languageSettings();
+      },chosen?'#286f94':'#e4eef1',true,17);
+      // Language names stay in their own script so players can always find them.
+      if(entry.id!=='system')button.getComponentInChildren(Label)!.string=(chosen?'✓ ':'')+entry.name;
+    });
+    this.button(c,'language-back','返回',0,-185,300,40,()=>this.homeSettings(),C.blue,true,16);
   }
   private adventureUI(){
     const s=this.state,H=this.h,b=-H/2,top=H/2;
-    this.panel(this.root,0,0,390,H,'#edf3e8',0);this.sectionHeader('探险地图','发现伙伴 · 寻找宠物蛋');
+    this.panel(this.root,0,0,390,H,'#edf3e8',0);this.sectionHeader('探险地图','');
     const m=MAPS[this.mapIndex]||MAPS[0],current=m.id===mapFor(s).id,unlocked=mapUnlocked(s,m.id),active=hasActivePet(s),cleared=!!s.clearedMaps?.includes(m.id);
-    MAPS.forEach((map,i)=>{this.button(this.root,'map-'+i,'0'+(i+1),(i-(MAPS.length-1)/2)*59,top-119,54,42,()=>{this.mapIndex=i;this.render();},i===this.mapIndex?map.tint:'#dbe5dc',true,18);});
-    const center=(top-156+b+160)/2,height=top-156-(b+160),card=this.panel(this.root,0,center,354,height,'#fffdf5',22);
+    this.regionTabs(this.root,top-119,MAPS.map(m=>({id:m.id,label:String(m.id+1).padStart(2,'0'),tint:m.tint})),this.mapIndex,this.mapTabPage,(p,redraw)=>{this.mapTabPage=p;if(redraw)this.render();},id=>{this.mapIndex=id;this.render();},'map');
+    const center=(top-193+b+160)/2,height=top-193-(b+160),card=this.panel(this.root,0,center,354,height,'#fffdf5',22);
     this.panel(card,0,height/2-52,354,104,m.tint,22);this.menuIcon(card,'map',-123,height/2-51,44);
-    this.text(card,m.name,28,height/2-36,27,'#ffffff',245,40).isBold=true;this.text(card,m.stages+' 关 · '+(cleared?'已通关':unlocked?current?'当前探险':'已开放':'通关上一地图解锁'),28,height/2-71,15,'#f5efcf',245,25);
+    this.text(card,m.name,28,height/2-36,27,'#ffffff',245,40).isBold=true;this.text(card,m.stages+' 层',28,height/2-71,15,'#f5efcf',245,25);
     this.text(card,m.types,0,height/2-125,14,m.tint,330,25);
     const rowGap=Math.min(92,(height-195)/2),first=height/2-173;
     m.pets.forEach((id,i)=>{const x=(i%3-1)*104,y=first-Math.floor(i/3)*rowGap;this.petImage(card,id,x,y,Math.min(72,rowGap*.8));this.text(card,PETS[id].name,x,y-38,11,C.muted,102,20);});
@@ -1257,24 +1428,23 @@ export class PMGame extends Component {
     const owned=new Set(this.state.pets!.map(p=>formKey(p))).size;
     const c=this.fullPage('图鉴','已拥有 '+owned+' / '+PET_IDS.length*3+' 形态',()=>this.pokedexUI()),{top,bottom,height}=this.pageBounds(c);
     const chooseMap=(id:number)=>{this.dexMap=id;this.dexPage=0;this.pokedexUI();};
-    this.button(c,'dex-map-all','全部',-156,top-27,42,36,()=>chooseMap(-1),this.dexMap===-1?'#df6156':'#dbe9ef',true,13);
-    MAPS.forEach((m,i)=>this.button(c,'dex-map-'+i,'0'+(i+1),-104+i*52,top-27,42,36,()=>chooseMap(i),this.dexMap===i?m.tint:'#dbe9ef',true,15));
-    this.button(c,'dex-type',(this.dexType||'全部属性')+' ▾',-91,top-72,172,34,()=>this.dexTypePicker(),C.paper,true,14);
-    this.button(c,'dex-owned',this.dexOwnedOnly?'✓ 已拥有':'全部系列',91,top-72,172,34,()=>{this.dexOwnedOnly=!this.dexOwnedOnly;this.dexPage=0;this.pokedexUI();},this.dexOwnedOnly?'#519b81':C.paper,true,14);
-    const ids=PET_IDS.filter(id=>(this.dexMap<0||MAPS[this.dexMap].pets.includes(id))&&(!this.dexType||PETS[id].type===this.dexType)&&(!this.dexOwnedOnly||this.dexOwned(id)));
-    const pages=Math.max(1,Math.ceil(ids.length/9));this.dexPage=Math.min(this.dexPage,pages-1);
-    const rowH=Math.min(198,(height-178)/3),start=top-105-rowH/2;
-    ids.forEach((id,itemIndex)=>{const i=itemIndex%9;
-      const p=this.button(c,'dex-pet-'+id,'',(i%3-1)*120,start-Math.floor(i/3)*(rowH+8),112,rowH,()=>this.dexDetail(id,'normal'),'#ffffff');
-      this.listItem(p,itemIndex,9);const index=PET_IDS.indexOf(id)*3+1;
+    this.regionTabs(c,top-25,[{id:-1,label:'全部',tint:'#df6156'},...MAPS.map(m=>({id:m.id,label:String(m.id+1).padStart(2,'0'),tint:m.tint}))],this.dexMap,this.dexTabPage,(p,redraw)=>{this.dexTabPage=p;if(redraw)this.pokedexUI();},chooseMap,'dex-map');
+    this.button(c,'dex-type',(this.dexType||'全部属性')+' ▾',-91,top-110,172,34,()=>this.dexTypePicker(),C.paper,true,14);
+    this.button(c,'dex-owned',this.dexOwnedOnly?'✓ 已拥有':'全部宠物',91,top-110,172,34,()=>{this.dexOwnedOnly=!this.dexOwnedOnly;this.dexPage=0;this.pokedexUI();},this.dexOwnedOnly?'#519b81':C.paper,true,14);
+    const forms=PET_IDS.reduce((all:{id:PetId;rarity:EggRarity}[],id)=>all.concat(RARITIES.map(rarity=>({id,rarity}))),[]).filter(({id,rarity})=>(this.dexMap<0||MAPS[this.dexMap].pets.includes(id))&&(!this.dexType||PETS[id].type===this.dexType)&&(!this.dexOwnedOnly||this.dexOwned(id,rarity)));
+    const pages=Math.max(1,Math.ceil(forms.length/9));this.dexPage=Math.min(this.dexPage,pages-1);
+    const rowH=Math.min(198,(height-216)/3),start=top-143-rowH/2;
+    this.listPages(c,forms,9,this.dexPage,({id,rarity},itemIndex)=>{const i=itemIndex%9,owned=this.dexOwned(id,rarity),pet=petEntry(this.state,id+':'+rarity);
+      const p=this.button(c,'dex-pet-'+id+'-'+rarity,'',(i%3-1)*120,start-Math.floor(i/3)*(rowH+8),112,rowH,()=>this.dexDetail(id,rarity),'#ffffff');
+      this.listItem(p,itemIndex,9);const index=PET_IDS.indexOf(id)*3+RARITIES.indexOf(rarity)+1;
       this.text(p,'No.'+String(index).padStart(3,'0'),-18,rowH/2-14,11,C.muted,72,20);
-      const count=RARITIES.filter(r=>this.dexOwned(id,r)).length;this.text(p,count+'/3',36,rowH/2-14,11,count?'#3e9673':'#9aaab0',32,20);
-      const size=Math.min(112,rowH-70),art=this.petImage(p,petEntry(this.state,id+':normal'),0,8,size);if(!count)art.getComponent(Sprite)!.grayscale=true;
-      this.text(p,PETS[id].name,0,-rowH/2+39,13,C.ink,106,23).isBold=true;
+      const tint=rarity==='SSR'?'#b78022':rarity==='SR'?'#8b61bb':'#46976e';this.text(p,rarityName(rarity),36,rowH/2-14,11,tint,32,20);
+      const size=Math.min(112,rowH-70),art=this.petImage(p,pet,0,8,size);if(!owned)art.getComponent(Sprite)!.grayscale=true;
+      this.text(p,petName(pet),0,-rowH/2+39,13,C.ink,106,23).isBold=true;
       const type=this.panel(p,0,-rowH/2+16,66,21,'#e5f0eb',10);this.text(type,PETS[id].type,0,0,11,'#4b8273',62,20);
     });
-    if(!ids.length)this.text(c,'暂无符合条件的伙伴',0,0,18,C.muted,330,44);
-    this.pagePager(c,bottom+25,this.dexPage,pages,page=>{this.dexPage=page;this.pokedexUI();},'dex');
+    if(!forms.length)this.text(c,'暂无符合条件的伙伴',0,0,18,C.muted,330,44);
+    this.pagePager(c,bottom+25,this.dexPage,pages,(page,redraw)=>{this.dexPage=page;if(redraw)this.pokedexUI();},'dex');
   }
   private dexTypePicker(){
     const types=['',...Array.from(new Set(PET_IDS.map(id=>PETS[id].type)))],c=this.overlay('属性',444);
@@ -1285,7 +1455,7 @@ export class PMGame extends Component {
     const p=petEntry(this.state,id+':'+rarity),index=PET_IDS.indexOf(id)*3+RARITIES.indexOf(rarity)+1,map=MAPS.find(m=>m.pets.includes(id))!;
     const tint=rarity==='SSR'?'#b78022':rarity==='SR'?'#8b61bb':'#46976e';
     const c=this.fullPage('No.'+String(index).padStart(3,'0')+'  '+petName(p),PETS[id].type+' · '+(this.dexOwned(id,rarity)?'已拥有':'未拥有'),()=>this.dexDetail(id,rarity),()=>this.pokedexUI()),{top,bottom,height}=this.pageBounds(c);
-    RARITIES.forEach((r,i)=>this.button(c,'dex-form-'+r,rarityName(r),(i-1)*120,top-31,112,42,()=>this.dexDetail(id,r),r===rarity?tint:'#dbe9ef',true,17));
+    const badge=this.panel(c,0,top-31,112,36,tint,14);this.text(badge,rarityName(rarity),0,0,18,'#ffffff',105,30).isBold=true;
     const heroH=Math.min(310,height-365),hero=this.panel(c,0,top-65-heroH/2,354,heroH,'#ffffff',22);
     const disc=this.makeNode(hero,'dex-disc',0,-heroH*.32,180,28),g=disc.addComponent(Graphics);g.fillColor=color('#dae9e7');g.ellipse(0,0,88,12);g.fill();
     this.petImage(hero,p,0,5,heroH-32);
@@ -1302,8 +1472,22 @@ export class PMGame extends Component {
     this.button(c,'dex-types','属性关系',0,bottom+78,140,30,()=>this.typeRelationsUI(id,rarity),'#e8f3fa',true,13);
     this.button(c,'dex-detail-back','返回图鉴',0,bottom+32,354,44,()=>this.pokedexUI(),'#427b9e',true,17);
   }
-  private typeRelationsUI(id:PetId,rarity:EggRarity){
-    const type=PETS[id].type,c=this.fullPage('属性关系',type+' · '+petName({id,rarity}),()=>this.typeRelationsUI(id,rarity),()=>this.dexDetail(id,rarity)),{top,bottom,height}=this.pageBounds(c);
+  private encounterTypesUI(){
+    const s=this.state,c=this.overlay('克制关系',350);
+    ([{name:'我方攻击',from:s.active.id,to:s.enemy,y:77},{name:'敌方攻击',from:s.enemy,to:s.active.id,y:8}]).forEach(row=>{
+      this.text(c,row.name,-91,row.y,15,C.ink,110,25);
+      this.typeIcon(c,PETS[row.from].type,-13,row.y,28);
+      this.text(c,'→',27,row.y,22,C.muted,27,28);this.typeIcon(c,PETS[row.to].type,65,row.y,28);
+      this.matchupBadge(c,matchupMultiplier(row.from,row.to),122,row.y,66,true);
+    });
+    this.text(c,'攻击数字已计入克制；两个方向分别计算',0,-40,12,C.muted,330,26);
+    const back=()=>{this.screen='game';this.render();this.encounterTypesUI();};
+    this.button(c,'types-player','我方关系 ›',-80,-81,144,40,()=>this.typeRelationsUI(s.active.id,s.active.rarity||'normal',back),'#286f94',true,15);
+    this.button(c,'types-enemy','敌方关系 ›',80,-81,144,40,()=>this.typeRelationsUI(s.enemy,s.enemyRarity||'normal',back),'#a94f48',true,15);
+    this.button(c,'types-close','返回',0,-130,310,40,()=>this.render(),C.blue,true,16);
+  }
+  private typeRelationsUI(id:PetId,rarity:EggRarity,back?:()=>void){
+    const type=PETS[id].type,c=this.fullPage('属性关系',type+' · '+petName({id,rarity}),()=>this.typeRelationsUI(id,rarity,back),back||(()=>this.dexDetail(id,rarity))),{top,bottom,height}=this.pageBounds(c);
     const groups=[{name:'攻击克制  ×1.5',types:TYPE_NAMES.filter(t=>typeMultiplier(type,t)>1),incoming:false},{name:'攻击受阻  ×0.75 / ×0.5',types:TYPE_NAMES.filter(t=>typeMultiplier(type,t)<1),incoming:false},{name:'受击弱点  ×1.5',types:TYPE_NAMES.filter(t=>typeMultiplier(t,type)>1),incoming:true},{name:'受击抵抗  ×0.75 / ×0.5',types:TYPE_NAMES.filter(t=>typeMultiplier(t,type)<1),incoming:true}];
     const rowH=Math.min(132,(height-50)/4);
     groups.forEach((group,i)=>{const card=this.panel(c,0,top-12-rowH/2-i*rowH,354,rowH-8,'#ffffff',14);this.text(card,group.name,0,rowH/2-23,15,C.ink,330,24).isBold=true;
@@ -1314,7 +1498,8 @@ export class PMGame extends Component {
   }
   private partnersUI(){
     const s=this.state,H=this.h,top=H/2,b=-H/2;
-    const selected=this.partnerSelected&&(!this.partnerOwnedOnly||s.pets!.some(p=>p.uid===this.partnerSelected))?this.partnerSelected:hasActivePet(s)?s.active.uid!:this.partnerOwnedOnly?null:PET_IDS[0]+':normal',selectedPet=selected?petEntry(s,selected):null;
+    const available=s.pets!.filter(p=>!isBreedingPet(s,p.uid!));
+    const selected=this.partnerSelected&&!isBreedingPet(s,this.partnerSelected)&&(!this.partnerOwnedOnly||available.some(p=>p.uid===this.partnerSelected))?this.partnerSelected:hasActivePet(s)&&!isBreedingPet(s,s.active.uid!)?s.active.uid!:this.partnerOwnedOnly?null:PET_IDS[0]+':normal',selectedPet=selected?petEntry(s,selected):null;
     this.panel(this.root,0,0,390,H,'#edf4f5',0);this.sectionHeader('伙伴','拖动伙伴 · 调整队伍');
     const slots=homeParty(s),teamY=top-150;
     slots.forEach((key,i)=>{const x=(i-1)*120,p=this.button(this.root,'team-slot-'+i,'',x,teamY,112,110,()=>{if(key){this.partnerSelected=key;this.render();}},i===0?'#fff0d5':'#deedf2'),entry=key?petEntry(s,key):null;
@@ -1322,11 +1507,11 @@ export class PMGame extends Component {
       this.text(p,i===0?'出战':'候补 '+i,0,40,12,i===0?'#b17a2d':'#63899a',100,22).isBold=true;this.text(p,entry?petName(entry)+sexSymbol(entry.sex):'空位',0,-38,12,C.ink,104,24);
       this.partyDropNodes.push(p);if(key)this.bindPartyDrag(p,key);
     });
-    const filterY=top-232;this.text(this.root,'伙伴 '+s.pets!.length+' 只',-101,filterY,16,C.ink,170,28).isBold=true;
+    const filterY=top-232;this.text(this.root,'伙伴 '+available.length+' 只',-101,filterY,16,C.ink,170,28).isBold=true;
     this.button(this.root,'partner-filter','图鉴 ›',119,filterY,114,32,()=>this.pokedexUI(),'#dbe9ef',true,13);
-    const keys=this.partnerOwnedOnly?s.pets!.map(p=>p.uid!):([] as string[]).concat(...PET_IDS.map(id=>RARITIES.map(r=>id+':'+r))),pages=Math.max(1,Math.ceil(keys.length/6));this.partnerPage=Math.min(this.partnerPage,pages-1);
+    const keys=this.partnerOwnedOnly?available.map(p=>p.uid!):([] as string[]).concat(...PET_IDS.map(id=>RARITIES.map(r=>id+':'+r))),pages=Math.max(1,Math.ceil(keys.length/6));this.partnerPage=Math.min(this.partnerPage,pages-1);
     const gridHeight=Math.min(148,Math.max(90,(H-510)/2)),gridTop=top-258-gridHeight/2,spacing=gridHeight+12;
-    keys.forEach((key,itemIndex)=>{const i=itemIndex%6;const entry=petEntry(s,key),x=(i%3-1)*120,y=gridTop-Math.floor(i/3)*spacing,owned=s.pets!.some(p=>p.uid===key),discovered=s.pets!.some(p=>formKey(p)===formKey(entry)),chosen=key===selected;
+    this.listPages(this.root,keys,6,this.partnerPage,(key,itemIndex)=>{const i=itemIndex%6;const entry=petEntry(s,key),x=(i%3-1)*120,y=gridTop-Math.floor(i/3)*spacing,owned=s.pets!.some(p=>p.uid===key),discovered=s.pets!.some(p=>formKey(p)===formKey(entry)),chosen=key===selected;
       const p=this.button(this.root,'pet-'+key,'',x,y,112,gridHeight,()=>{this.partnerSelected=key;this.render();},chosen?'#fff1d6':'#ffffff'),petSize=Math.min(96,gridHeight-34);
       this.listItem(p,itemIndex,6);const art=this.petImage(p,entry,0,4,petSize);if(!discovered)art.getComponent(Sprite)!.grayscale=true;
       this.text(p,petName(entry)+sexSymbol(entry.sex),0,-gridHeight/2+14,12,C.ink,108,22);this.text(p,rarityName(entry.rarity),31,gridHeight/2-13,10,entry.rarity==='SSR'?'#b78022':entry.rarity==='SR'?'#8b61bb':'#46976e',48,18);
@@ -1334,7 +1519,7 @@ export class PMGame extends Component {
       if(owned)this.bindPartyDrag(p,key);
     });
     if(!keys.length)this.text(this.root,'还没有伙伴\n请先孵化新伙伴',0,gridTop-32,20,C.muted,320,88);
-    this.pagePager(this.root,b+212,this.partnerPage,pages,page=>{this.partnerPage=page;this.render();},'collection');
+    this.pagePager(this.root,b+212,this.partnerPage,pages,(page,redraw)=>{this.partnerPage=page;if(redraw)this.render();},'collection');
     const owned=s.pets!.some(p=>p.uid===selected),detail=this.panel(this.root,0,b+102,390,186,'#fffdf5',22);
     if(!selectedPet){
       this.text(detail,'伙伴破壳后会出现在这里',0,43,18,C.ink,340,32);
@@ -1366,6 +1551,8 @@ export class PMGame extends Component {
     });
     n.on(Node.EventType.TOUCH_MOVE,(e:EventTouch)=>{e.propagationStopped=true;const d=this.partyDrag;if(!d||d.touch!==e.touch!.getID())return;const p=this.dragPoint(e);
       if(!d.moved&&Vec3.distance(p,d.start)<10)return;
+      if(!d.axis)d.axis=Math.abs(p.x-d.start.x)>Math.abs(p.y-d.start.y)?'horizontal':'vertical';
+      if(d.axis==='horizontal'){d.moved=true;return;}
       if(!this.state.pets!.some(p=>p.uid===id)||!canManageParty(this.state)){d.moved=true;return;}
       if(!d.ghost){d.moved=true;const opacity=n.getComponent(UIOpacity)||n.addComponent(UIOpacity);opacity.opacity=120;
         d.ghost=this.panel(this.fx,p.x,p.y+48,90,92,'#fff5dc',18,244);this.petImage(d.ghost,id,0,3,78);
@@ -1374,16 +1561,16 @@ export class PMGame extends Component {
       }
       d.ghost.setPosition(p.x,p.y+48);d.target=this.partyDropNodes.findIndex(slot=>{const v=this.root.getComponent(UITransform)!.convertToNodeSpaceAR(slot.worldPosition);return Math.abs(p.x-v.x)<=58&&Math.abs(p.y-v.y)<=57;});
       d.guides.forEach((guide,i)=>{const g=guide.getComponent(Graphics)!;g.clear();g.fillColor=color(i===d.target?'#5dcc91':'#83b9dd',i===d.target?55:20);g.strokeColor=color(i===d.target?'#299b69':'#7db0cd');g.lineWidth=i===d.target?4:2;g.roundRect(-57,-56,114,112,15);g.fill();g.stroke();});
-      if(this.partyDragHint)this.partyDragHint.string=d.target<0?'拖到上方高亮位置 · 松手放置':d.target===0?'松手设为出战':'松手放入候补 '+d.target;
+      if(this.partyDragHint)this.partyDragHint.string=tr(d.target<0?'拖到上方高亮位置 · 松手放置':d.target===0?'松手设为出战':'松手放入候补 '+d.target);
     });
     const finish=(e:EventTouch)=>{e.propagationStopped=true;const d=this.partyDrag;if(!d||d.touch!==e.touch!.getID())return;
       // Creator 3.8 reports a release outside the source card as TOUCH_CANCEL;
       // getEventCode preserves the original physical end/cancel distinction.
       const canceled=e.getEventCode()!==Node.EventType.TOUCH_END;
       if(canceled){this.cancelPartyDrag();if(!this.pageSwipeActive)this.render();return;}
-      if(!d.moved){this.cancelPartyDrag();this.partnerSelected=id;this.lastTap=performance.now();this.render();return;}
+      if(!d.moved){this.audio?.unlock();this.audio?.effect('click');this.cancelPartyDrag();this.partnerSelected=id;this.lastTap=performance.now();this.render();return;}
       const index=d.target,next=index>=0?assignPartySlot(this.state,id,index):this.state;
-      if(next!==this.state){this.cancelPartyDrag();this.state=next;this.partnerSelected=id;this.save();this.render();
+      if(next!==this.state){this.audio?.unlock();this.audio?.effect('click');this.cancelPartyDrag();this.state=next;this.partnerSelected=id;this.save();this.render();
         const slot=this.partyDropNodes[index];slot.setScale(.92,.92,1);tween(slot).to(.2,{scale:Vec3.ONE},{easing:'backOut'}).start();
         this.popup(index===0?'已设为出战':'已放入候补 '+index,new Vec3(0,this.h/2-255,0),'#2a9266');
       }else if(d.ghost){const ghost=d.ghost;this.partyDrag=null;for(const guide of d.guides)guide.destroy();

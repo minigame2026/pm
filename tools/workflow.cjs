@@ -8,7 +8,9 @@ function plan(scope,files=[]){
   if(!files.length)throw Error('auto 需要 --file 指定本次改动；也可直接选 ui / social / rules / save / preview。');
   for(const raw of files){
    const f=(path.isAbsolute(raw)?path.relative(root,raw):raw).replace(/\\/g,'/');
-   if(f==='assets/scripts/PMModel.ts')scopes.push('rules');
+   const route=(config.moduleRoutes||[]).find(route=>new RegExp(route.pattern).test(f));
+   if(route)scopes.push(...route.scopes);
+   else if(f==='assets/scripts/PMModel.ts')scopes.push('rules');
    else if(f==='assets/scripts/DurableCheckpoint.ts')scopes.push('resume');
    else if(f==='assets/scripts/TrustedClock.ts')scopes.push('time');
    else if(f==='assets/scripts/PMAudio.ts'||/^assets\/resources\/audio\//.test(f))scopes.push('audio');
@@ -35,6 +37,36 @@ function fingerprint(paths){
  };paths.forEach(visit);return hash.digest('hex');
 }
 const sourceFingerprint=()=>fingerprint(['assets','settings','package.json','tsconfig.json',config.buildConfig]);
+function sourceSnapshot(){
+ const files={};
+ const visit=file=>{
+  const full=absolute(file);if(!fs.existsSync(full)){files[file]='missing';return;}
+  if(fs.statSync(full).isDirectory()){for(const name of fs.readdirSync(full).sort())visit(path.posix.join(file,name));}
+  else files[file]=crypto.createHash('sha256').update(fs.readFileSync(full)).digest('hex');
+ };
+ ['assets','settings','package.json','tsconfig.json',config.buildConfig].forEach(visit);return files;
+}
+function sameSnapshot(before,after){
+ return Object.keys(before).length===Object.keys(after).length&&Object.keys(before).every(key=>before[key]===after[key]);
+}
+function onlyAddedMetadata(before,after){
+ const added=Object.keys(after).filter(key=>!(key in before));
+ return added.length>0&&Object.keys(before).every(key=>before[key]===after[key])&&added.every(key=>{
+  const asset=key.slice(0,-5);
+  return key.startsWith('assets/')&&key.endsWith('.meta')&&
+   (asset in before||Object.keys(before).some(file=>file.startsWith(asset+'/')));
+ });
+}
+/** One bounded import retry; never accept changed/deleted source or existing UUID metadata. */
+async function stableBuild(before,snapshot,build,onRetry=()=>{}){
+ await build(0);const imported=snapshot();
+ if(sameSnapshot(before,imported))return {attempts:1,snapshot:imported};
+ if(!onlyAddedMetadata(before,imported))throw Error('构建期间源文件变化，停止验收，请重跑');
+ onRetry();await build(1);
+ const final=snapshot();
+ if(!sameSnapshot(imported,final))throw Error('资源导入重试后源文件仍变化，停止验收');
+ return {attempts:2,snapshot:final};
+}
 function canReuseBuild(receipt,sourceHash){
  try{return receipt.sourceHash===sourceHash&&receipt.editor===config.editor&&receipt.buildHash===fingerprint(['build/web-mobile'])&&fs.existsSync(absolute(config.buildIndex));}catch{return false;}
 }
@@ -82,9 +114,16 @@ async function main(argv){
    const receiptFile=path.join(folder,'build-receipt.json');let receipt;try{receipt=JSON.parse(fs.readFileSync(receiptFile,'utf8'));}catch{}
    await step('build',async log=>{
     if(!options.forceBuild&&receipt&&canReuseBuild(receipt,report.sourceHash)){fs.writeFileSync(log,'Reused matching source and build content fingerprints.\n');return 'reused';}
-    const code=await execute(config.editor,['--project',root,'--build','configPath='+absolute(config.buildConfig)],log,36,180000);if(!fs.existsSync(absolute(config.buildIndex)))throw Error('构建产物不存在');
-    if(sourceFingerprint()!==report.sourceHash)throw Error('构建期间源文件变化，停止验收，请重跑');
-    fs.writeFileSync(receiptFile,JSON.stringify({sourceHash:report.sourceHash,editor:config.editor,buildHash:fingerprint(['build/web-mobile'])},null,2));return code;
+    const before=sourceSnapshot();
+    if(sourceFingerprint()!==report.sourceHash)throw Error('检查后源文件变化，停止构建');
+    const result=await stableBuild(before,sourceSnapshot,attempt=>execute(config.editor,
+      ['--project',root,'--build','configPath='+absolute(config.buildConfig)],attempt?log+'.import-retry.log':log,36,180000),
+      ()=>console.log('仅新增资源导入元数据，自动重试构建一次'));
+    if(!fs.existsSync(absolute(config.buildIndex)))throw Error('构建产物不存在');
+    report.sourceHash=sourceFingerprint();
+    if(!sameSnapshot(result.snapshot,sourceSnapshot()))throw Error('构建完成后源文件变化，停止验收');
+    fs.writeFileSync(receiptFile,JSON.stringify({sourceHash:report.sourceHash,editor:config.editor,buildHash:fingerprint(['build/web-mobile'])},null,2));
+    return {exitCode:36,metadataImportRetries:result.attempts-1};
    });
    await step('preview-server',log=>ensureServer(log));
   }
@@ -94,5 +133,5 @@ async function main(argv){
   report.status='passed';console.log('相关自动检查通过。'+(selection.runtime.length?'试玩：'+config.url+'\n截图仍需人工/助手查看；':'无需构建或画面验收；')+'结果：checks/workflow/latest.json');
  }catch(e){report.status='failed';report.error=e.message;throw e;}finally{report.finishedAt=new Date().toISOString();save();fs.writeFileSync(path.join(folder,selection.scopes.join('-')+'-latest.json'),JSON.stringify(report,null,2));for(const scope of selection.scopes)fs.writeFileSync(path.join(folder,scope+'-latest.json'),JSON.stringify(scopeReport(report,scope),null,2));}
 }
-module.exports={plan,args,execute,fingerprint,canReuseBuild,scopeReport};
+module.exports={plan,args,execute,fingerprint,canReuseBuild,scopeReport,onlyAddedMetadata,stableBuild};
 if(require.main===module)main(process.argv.slice(2)).catch(e=>{console.error('已停止：'+e.message);process.exitCode=1;});

@@ -14,7 +14,7 @@
 |---|---|---|
 | 旧18系列 R 双视图 | `assets/resources/art/<id>-battle-v1.png`；fox/bud/turtle 用 `-battle-ref.png` | 一张图含 back/front，读取 BattleArt |
 | 旧18系列 SR/SSR 四视图 | `assets/resources/art/<id>-evolution-v1.png` | SR背/正、SSR背/正四个矩形，读取 EvolutionArt |
-| 新18系列六视图 | `assets/resources/art/<id>-forms-v1.png` | R/SR/SSR各背面与正面，读取 RegionArt |
+| 第4～9关36系列六视图 | `assets/resources/art/<id>-forms-v1.png` | R/SR/SSR各背面与正面，读取 RegionArt |
 | 初始三只头像 | `fox.png / bud.png / turtle.png` | R 卡片使用独立旧头像；其余系列卡片用正面裁切 |
 | 战斗 / 营地 / 巢穴背景 | `battle-arena.png / home-camp-v1.png / egg-nest-v1.png` | 背景覆盖区域等比放大裁边，留出 UI 空间 |
 | 战斗图标 | `attack-die-a / heal-potion / power-potion / guard-shield / loot-chest / refresh-enemy / battle-start` | 同套立体卡通风格，数字另绘制 |
@@ -30,7 +30,7 @@ R源图并非全部相同像素尺寸；历史15张新双视图1536×1024，旧3
 
 ## 当前场景与封面资源
 
-六地区背景由 PMGame.loadRegionArt 按所选地图加载；第二至六图使用 region-<地图编号>-battle/nest-v1。地台来自 region-pads-v1 图集，裁切映射在 RegionPads。营地由 HomeScenery 按手机本地时段选用六张底图；这是装饰时间，不用于体力或孵化结算。环境动态有数量上限并尊重减少动画偏好。封面使用 login-cover-v2、login-title-v3、login-button-v4，第三主角使用 trainer-medic-v2；完整现用文件以自动资源清单为准。
+第7～9图复用第4～6图主题背景与地台；已有六地区背景由 PMGame.loadRegionArt 按所选地图加载；第二至六图使用 region-<地图编号>-battle/nest-v1。地台来自 region-pads-v1 图集，裁切映射在 RegionPads。营地由 HomeScenery 按手机本地时段选用六张底图；这是装饰时间，不用于体力或孵化结算。环境动态有数量上限并尊重减少动画偏好。封面使用 login-cover-v2、login-title-v3、login-button-v4，第三主角使用 trainer-medic-v2；完整现用文件以自动资源清单为准。
 
 ## 当前战斗尺度
 
@@ -58,12 +58,14 @@ R源图并非全部相同像素尺寸；历史15张新双视图1536×1024，旧3
 2. 输出透明背景原图；同时保留原图和提示词。沿用双/四视图时保证各角色互不相交，四肢不裁断。
 3. 接入resources并保留已有`.meta`/UUID。记录裁切矩形与脚底；保持等比，避免将透明边当身体。
 4. 更新对应Art表与PMGame加载映射；只更新模型名称不会自动出现新图片。初始三只还有卡片与脚底特例。
-5. 用导出脚本检查矩形在图内、资源存在、108形态双角度完整；然后按当前任务选UI/战斗检查，实际看近远比例、脚底与小屏。
+5. 用导出脚本检查矩形在图内、资源存在、162形态双角度完整；然后按当前任务选UI/战斗检查，实际看近远比例、脚底与小屏。
 
 历史初始化/补丁脚本已移除。register-evolution-art、register-region-art和index-battle-art仅在接入对应资产时使用，先核对输入与写入目标，不作为构建前置步骤。
 
 ## 性能与平台边界
 
-当前固定启动加载旧18系列的18张双视图和18张进化图，以及新18系列的18张六视图合图，并非按地图懒加载；裁切帧引用原纹理，裁成小矩形不会使整张纹理内存同步变小。动态Label使用CacheMode.NONE，解决过往字符缺失，但内存和draw call仍需真实测量。
+启动仅加载封面、标题、按钮3张美术纹理；其余由PMArt按当前页面/可见分页请求。同图集并发请求合并，节点存活期间保持引用；未使用纹理闲置4秒或缓存超过32MiB时优先回收。32MiB是闲置缓存回收触发值，不是包含当前页与滑动相邻页的绝对内存上限。裁切帧仍引用整张图集，释放时销毁动态帧并通过Cocos引用计数释放纹理及依赖。
 
-资源表的PNG文件大小、RGBA估算与构建包压缩大小、平台主包/分包大小不是同一个概念。当前未接平台分包、远程资源、纹理压缩档位或真机预算验证；新项目发布前要单独实施并测量，不能将浏览器能跑写成小游戏已达标。本轮没有做资源降质或重新生成图片。
+运行PNG已缩小并作无损PNG编码优化，完整原图在`art-source/runtime-masters-v1/`，不进入游戏构建。`tools/prepare-runtime-art.py`从原图重复生成运行图，保留.meta UUID。裁切坐标仍基于原图，PMArt利用ArtSourceSizes按实际纹理尺寸换算；自动表另给runtimeRect。更换已有美术时先更新对应master与裁切数据，再运行此脚本，不可只覆盖运行图后再次用旧master生成。
+
+资源表的PNG文件大小、RGBA估算与构建包大小、平台主包/分包大小不同。此次未接平台分包、远程资源或GPU专用压缩格式；手机平台预算仍需真机验证。此次没有重新绘制宠物；清晰度已在390/320宽实际界面检查，详见[资源优化结果](RESOURCE-OPTIMIZATION.md)。动态Label仍使用CacheMode.NONE。

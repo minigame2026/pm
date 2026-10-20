@@ -12,11 +12,17 @@
 
 # Local credentials and machine-only files
 .env
+/config/tapads.local.json
 .env.*
 !.env.example
 *.pem
 *.key
 *.pfx
+*.jks
+*.keystore
+/native/engine/common/localCfg.cmake
+# Local application paperwork/reference documents, not current development docs
+/shop/
 *.log
 Thumbs.db
 .DS_Store

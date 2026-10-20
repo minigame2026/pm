@@ -1,0 +1,22 @@
+{
+  "platform": "android",
+  "debug": false,
+  "name": "DicePet",
+  "outputName": "android",
+  "startScene": "badfb9c8-daec-44ba-b1a5-c763f12e9dce",
+  "scenes": [{"url":"db://assets/scenes/PMGame.scene","uuid":"badfb9c8-daec-44ba-b1a5-c763f12e9dce"}],
+  "buildPath": "project://build",
+  "logDest": "D:/game/PM/checks/build-android.log",
+  "packages": {
+    "android": {
+      "packageName": "com.minigame2026.dicepet",
+      "apiLevel": 34,
+      "appABIs": ["arm64-v8a"],
+      "useDebugKeystore": true,
+      "orientation": {"portrait":true,"landscapeLeft":false,"landscapeRight":false},
+      "renderBackEnd": {"gles3":true,"gles2":true,"vulkan":false},
+      "resizeableActivity": false,
+      "inputSDK": false
+    }
+  }
+}

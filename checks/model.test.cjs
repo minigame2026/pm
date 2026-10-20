@@ -46,7 +46,7 @@ test('Both item multipliers independently use 50/40/10 on each turn',()=>{
  const legacy=act(fresh(42),'challenge');legacy.boostMultiplier=1;legacy.doubled=true;const restored=restore(JSON.stringify(legacy));assert.ok(restored);assert.equal(restored.boostMultiplier,1);assert.ok([2,3,4].includes(act(restored,'guard').boostMultiplier));
 });
 test('18 unique attributes and each map has four normal, one elite and one boss encounter species',()=>{
- const {PETS,PET_IDS,MAPS,encounterPool}=moduleObj.exports;assert.equal(PET_IDS.length,36);assert.equal(new Set(PET_IDS.map(id=>PETS[id].type)).size,18);
+ const {PETS,PET_IDS,MAPS,encounterPool}=moduleObj.exports;assert.equal(PET_IDS.length,54);assert.equal(new Set(PET_IDS.map(id=>PETS[id].type)).size,18);
  for(const map of MAPS){assert.equal(encounterPool(1,map.id).length,4);assert.equal(encounterPool(5,map.id).length,1);assert.equal(encounterPool(10,map.id).length,1);}
  const seen=new Set();for(let seed=1;seed<=100;seed++){let s=fresh(Math.imul(seed,2654435761));assert.ok(encounterPool(1,0).includes(s.enemy));seen.add(s.enemy);for(let step=1;step<=10;step++){let fixture=fresh(seed);fixture.step=step;delete fixture.contentVersion;const r=restore(JSON.stringify(fixture)),pool=encounterPool(step,0);assert.ok(pool.includes(r.enemy));assert.equal(r.contentVersion,2);const save=JSON.stringify(r);same(restore(save),r);if(step<10){const rerolled=act(r,'reroll');if(pool.length>1)assert.notEqual(rerolled?.enemy,r.enemy);assert.ok(pool.includes(rerolled.enemy));}}}assert.equal(seen.size,4);
 });

@@ -4,23 +4,24 @@
   "direction": "经典掌机宠物冒险RPG的亲切感；原创旋律与音效，不复刻具体曲目。先试听，选定后接入游戏。",
   "samples": [
     {
-      "id": "camp", "name": "营地 · 晴日启程", "kind": "music", "duration": 40,
+      "id": "camp",
+      "name": "营地 · 晴日启程",
+      "kind": "music",
+      "duration": 40,
       "prompt": "Original instrumental background music for a cozy creature collecting handheld JRPG town and campsite. Nostalgic late 1990s Japanese portable RPG sound palette: warm rounded square wave lead, airy flute, bright mallet bells, soft plucked bass and gentle compact drums. Cheerful curious melody, friendly homecoming feeling, relaxed 104 BPM, clear memorable original melodic motif with musical variation. Clean game soundtrack production, small ensemble, no vocals, no epic orchestral swell, no harsh treble. Steady groove suitable for repeated background listening, no spoken words. Create a completely new composition, not an existing game melody."
     },
     {
-      "id": "battle", "name": "战斗 · 骰子对决", "kind": "music", "duration": 40,
+      "id": "battle",
+      "name": "战斗 · 骰子对决",
+      "kind": "music",
+      "duration": 40,
       "prompt": "Original instrumental turn based creature battle music for a classic Japanese handheld monster collecting RPG. Energetic playful friendly competition, 148 BPM, crisp square wave melody, punchy synthesized brass, fast arpeggios, melodic electric bass and tight snare drums. A catchy new battle motif with call and response phrases, exciting but not threatening, bright adventurous harmony. Polished hybrid chiptune game soundtrack, not cinematic, no heavy metal, no vocals or speech. Consistent driving rhythm suitable for looping gameplay. Entirely original melody, do not reproduce any existing soundtrack."
     },
     {
-      "id": "dice", "name": "骰子 · 滚动落定", "kind": "sfx", "duration": 5,
-      "prompt": "Isolated game sound effect, one short dice roll sequence: three chunky wooden dice clacks bouncing quickly, ending with a satisfying single soft click and a tiny bright synthesized blip. Friendly classic handheld RPG menu sound character mixed with tactile dice, compact dry clean recording. One event near the start then silence. No music, no background ambience, no voice."
-    },
-    {
-      "id": "attack", "name": "攻击 · 命中", "kind": "sfx", "duration": 5,
-      "prompt": "Isolated short friendly creature battle hit sound for a handheld JRPG. One quick airy swoosh immediately followed by a punchy rounded cartoon impact and tiny descending electronic chirp. Clear satisfying attack feedback, compact, bright, non violent, dry clean sound. One event near the start then silence, no repeated hits, no melody, no music, no speech, no ambience."
-    },
-    {
-      "id": "hatch", "name": "孵化 · 新伙伴诞生", "kind": "sfx", "duration": 5,
+      "id": "hatch",
+      "name": "孵化 · 新伙伴诞生",
+      "kind": "sfx",
+      "duration": 5,
       "prompt": "Isolated cute creature egg hatching game sound, soft eggshell crack crack, a tiny popping sound, then a joyful rising three note original synthesized bell sparkle ending in a warm magical twinkle. Nostalgic handheld creature adventure game sound design, happy surprise, clear and delicate not piercing. One short reveal sequence, clean silence afterwards, no background music, no speech, no animal vocalization."
     }
   ]

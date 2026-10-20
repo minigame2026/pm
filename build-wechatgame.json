@@ -1,0 +1,13 @@
+{
+  "platform":"wechatgame",
+  "debug":false,
+  "server":"http://127.0.0.1:8782/",
+  "name":"DicePet",
+  "outputName":"wechatgame",
+  "startScene":"badfb9c8-daec-44ba-b1a5-c763f12e9dce",
+  "scenes":[{"url":"db://assets/scenes/PMGame.scene","uuid":"badfb9c8-daec-44ba-b1a5-c763f12e9dce"}],
+  "buildPath":"project://build",
+  "logDest":"D:/game/PM/checks/build-wechatgame.log",
+  "bundleConfigs":[{"root":"db://assets/resources","name":"resources","isRemote":true,"compressionType":"merge_dep","output":true}],
+  "packages":{"wechatgame":{"appid":"touristappid","orientation":"portrait","remoteServerAddress":"http://127.0.0.1:8782","separateEngine":false}}
+}

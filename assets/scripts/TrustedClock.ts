@@ -1,17 +1,35 @@
 /** HTTPS time anchors + monotonic session elapsed time. Never trusts device wall time. */
 export const CLOCK_LEASE_MS=10*60*1000;
 export type TimeFetcher=()=>Promise<number>;
+/** Same HTTPS authority on each target; never fall back to the device clock. */
+export function requestTimeJson(url:string):Promise<any>{
+  const platform=(globalThis as any).wx||(globalThis as any).tt;
+  if(platform?.request)return new Promise((resolve,reject)=>{
+    platform.request({url,method:'GET',timeout:5000,header:{'Cache-Control':'no-cache'},
+      success:(r:any)=>{if(r.statusCode<200||r.statusCode>=300){reject(new Error('Time HTTP status'));return;}
+        try{resolve(typeof r.data==='string'?JSON.parse(r.data):r.data);}catch(e){reject(e);}},fail:reject});
+  });
+  if(typeof fetch==='function'&&typeof AbortController!=='undefined')return (async()=>{
+    const abort=new AbortController(),timer=setTimeout(()=>abort.abort(),5000);
+    try{const response=await fetch(url,{cache:'no-store',credentials:'omit',referrerPolicy:'no-referrer',signal:abort.signal});
+      if(!response.ok)throw new Error('Time HTTP status');return await response.json();}finally{clearTimeout(timer);}
+  })();
+  return new Promise((resolve,reject)=>{
+    const xhr=new XMLHttpRequest();xhr.open('GET',url,true);xhr.timeout=5000;
+    xhr.onload=()=>{if(xhr.status<200||xhr.status>=300){reject(new Error('Time HTTP status'));return;}
+      try{resolve(JSON.parse(xhr.responseText));}catch(e){reject(e);}};
+    xhr.onerror=xhr.ontimeout=xhr.onabort=()=>reject(new Error('Time request failed'));xhr.send();
+  });
+}
 export async function fetchTrustedUtc():Promise<number>{
   const nonce=Math.random().toString(36).slice(2);
   const urls=['https://timeapi.io/api/time/current/zone?timeZone=UTC&_pm='+nonce,'https://worldtimeapi.org/api/timezone/Etc/UTC?_pm='+nonce];
   for(const url of urls){
-    const abort=new AbortController(),timer=setTimeout(()=>abort.abort(),5000);
-    try{const response=await fetch(url,{cache:'no-store',credentials:'omit',referrerPolicy:'no-referrer',signal:abort.signal});if(!response.ok)continue;
-      const data=await response.json();let value:number;
+    try{const data=await requestTimeJson(url);let value:number;
       if(url.includes('timeapi.io')){if(data.timeZone!=='UTC'||typeof data.dateTime!=='string')continue;value=Date.parse(data.dateTime.replace(/(\.\d{3})\d+/, '$1')+'Z');}
       else{if(data.timezone!=='Etc/UTC'||typeof data.utc_datetime!=='string')continue;value=Date.parse(data.utc_datetime);}
       if(Number.isSafeInteger(value)&&value>=1577836800000&&value<4102444800000)return value;
-    }catch{}finally{clearTimeout(timer);}
+    }catch{}
   }
   throw new Error('Trusted UTC unavailable');
 }

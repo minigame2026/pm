@@ -1,6 +1,6 @@
 const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('node:assert/strict'),cfg=require('../tools/workflow.config.json'),ts=require(path.join(path.dirname(cfg.typescript),'typescript.js')),M={};
 vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/PMModel.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2017}}).outputText,{exports:M,Math,Date,JSON,Set});
-const expected=[[[95,5,0],[90,9,1]],[[90,10,0],[75,20,5]],[[84,15,1],[70,20,10]],[[80,18,2],[60,25,15]],[[75,22,3],[50,30,20]],[[70,26,4],[40,35,25]]],mod=4294967296n,inverse=4276115653n;
+const expected=[[[95,5,0],[90,9,1]],[[90,10,0],[75,20,5]],[[84,15,1],[70,20,10]],[[80,18,2],[60,25,15]],[[75,22,3],[50,30,20]],[[70,26,4],[40,35,25]],[[65,29,6],[35,35,30]],[[60,32,8],[30,35,35]],[[55,35,10],[25,35,40]]],mod=4294967296n,inverse=4276115653n;
 assert.equal(1664525n*inverse%mod,1n);
 let tested=0;
 for(const map of M.MAPS)for(let step=5;step<=map.stages;step+=5){
@@ -13,4 +13,4 @@ for(const map of M.MAPS)for(let step=5;step<=map.stages;step+=5){
   s=M.act(s,'eggSearch');assert.equal(s.eggHunt.candidates[0].rarity,rarity);assert.ok(M.restore(JSON.stringify(s)));tested++;
  }
 }
-console.log(`PASS all 42 elite/BOSS checkpoints, twelve configured distributions and ${tested} real egg-search boundary/save cases`);
+console.log(`PASS all 90 elite/BOSS checkpoints, eighteen configured distributions and ${tested} real egg-search boundary/save cases`);
