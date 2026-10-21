@@ -27,6 +27,13 @@ jobs:
           node tools/ios-cloud-build.cjs preflight
           xcodebuild -version
           xcrun --sdk iphoneos --show-sdk-version
+      - name: Import distribution identity when supplied
+        shell: bash
+        env:
+          IOS_DISTRIBUTION_P12: ${{ secrets.IOS_DISTRIBUTION_P12 }}
+          IOS_DISTRIBUTION_PASSWORD: ${{ secrets.IOS_DISTRIBUTION_PASSWORD }}
+          IOS_APP_STORE_PROFILE: ${{ secrets.IOS_APP_STORE_PROFILE }}
+        run: node tools/ios-cloud-build.cjs signing
       - name: Cache Creator installer
         uses: actions/cache@v4
         with:
@@ -56,13 +63,6 @@ jobs:
           set -e
           tail -n 80 build/ios-logs/creator.log
           test "$RESULT" -eq 36
-      - name: Import distribution identity when supplied
-        shell: bash
-        env:
-          IOS_DISTRIBUTION_P12: ${{ secrets.IOS_DISTRIBUTION_P12 }}
-          IOS_DISTRIBUTION_PASSWORD: ${{ secrets.IOS_DISTRIBUTION_PASSWORD }}
-          IOS_APP_STORE_PROFILE: ${{ secrets.IOS_APP_STORE_PROFILE }}
-        run: node tools/ios-cloud-build.cjs signing
       - name: Prepare native app
         run: node tools/ios-cloud-build.cjs prepare
       - name: Archive and export
@@ -85,6 +85,6 @@ jobs:
             security delete-keychain "$(cat "$RUNNER_TEMP/pm-signing/keychain.path")" || true
           fi
           if [ -f "$RUNNER_TEMP/pm-signing/profile.path" ]; then
-            rm -f "$(cat "$RUNNER_TEMP/pm-signing/profile.path")"
+            while IFS= read -r profile; do rm -f "$profile"; done < "$RUNNER_TEMP/pm-signing/profile.path"
           fi
           rm -rf "$RUNNER_TEMP/pm-signing"

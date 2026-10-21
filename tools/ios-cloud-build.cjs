@@ -110,16 +110,22 @@ function signing() {
   privateRun(['set-keychain-settings', '-lut', '21600', keychain]);
   privateRun(['unlock-keychain', '-p', keychainPassword, keychain]);
   privateRun(['import', path.join(temp, 'identity.p12'), '-P', password, '-A', '-t', 'cert', '-f', 'pkcs12', '-k', keychain]);
+  // This P12 was exported on Windows and contains the leaf identity only.
+  const intermediate = path.join(temp, 'AppleWWDRCAG3.cer');
+  run('curl', ['--fail', '--location', '--retry', '2', '--max-time', '60', '--output', intermediate, 'https://www.apple.com/certificateauthority/AppleWWDRCAG3.cer'], { stdio: 'ignore' });
+  privateRun(['import', intermediate, '-k', keychain]);
   privateRun(['set-key-partition-list', '-S', 'apple-tool:,apple:', '-k', keychainPassword, keychain]);
   privateRun(['list-keychains', '-d', 'user', '-s', keychain]);
   const identities = capture('security', ['find-identity', '-v', '-p', 'codesigning', keychain]);
   const allowed = (data.DeveloperCertificates || []).map(c => crypto.createHash('sha1').update(Buffer.from(c,'base64')).digest('hex').toUpperCase());
   const matched = allowed.find(hash => identities.includes(hash));
   assert.ok(matched, 'P12 private key does not match the App Store distribution profile');
-  const installed = path.join(process.env.HOME, 'Library/MobileDevice/Provisioning Profiles', `${data.UUID}.mobileprovision`);
-  fs.mkdirSync(path.dirname(installed), { recursive: true });
-  fs.copyFileSync(path.join(temp, 'profile.mobileprovision'), installed);
-  fs.writeFileSync(path.join(temp, 'profile.path'), installed);
+  const installed = ['Library/MobileDevice/Provisioning Profiles', 'Library/Developer/Xcode/UserData/Provisioning Profiles'].map(dir => path.join(process.env.HOME, dir, `${data.UUID}.mobileprovision`));
+  for (const file of installed) {
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.copyFileSync(path.join(temp, 'profile.mobileprovision'), file);
+  }
+  fs.writeFileSync(path.join(temp, 'profile.path'), installed.join('\n') + '\n');
   fs.writeFileSync(path.join(temp, 'state.json'), JSON.stringify({ signed: true, identity: matched, uuid: data.UUID, name: data.Name, keychain }));
   console.log('PASS distribution identity matches App Store profile');
 }
