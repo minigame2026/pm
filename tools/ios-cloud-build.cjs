@@ -4,6 +4,7 @@ const path = require('node:path');
 const cp = require('node:child_process');
 const crypto = require('node:crypto');
 const assert = require('node:assert/strict');
+const vm = require('node:vm');
 const root = process.cwd();
 const logs = path.join(root, 'build/ios-logs');
 const output = path.join(root, 'build/ios-export');
@@ -30,6 +31,10 @@ function preflight() {
   assert.match(model, /BUILD_TEST_MODE\s*=\s*false/);
   assert.equal(JSON.parse(fs.readFileSync('package.json')).creator.version, '3.8.7');
   assert.equal(JSON.parse(fs.readFileSync('config/buildConfig_ios.json')).debug, false);
+  const icon = fs.readFileSync('config/ios-app-icon.png');
+  assert.equal(icon.readUInt32BE(16), 1024);
+  assert.equal(icon.readUInt32BE(20), 1024);
+  assert.equal(icon[25], 2, 'App Store icon must be RGB without an alpha channel');
   console.log('PASS production source; Creator 3.8.7; com.dice.pet.rpg');
 }
 function prepare() {
@@ -69,6 +74,10 @@ function prepare() {
     ]
   });
   fs.appendFileSync(path.join(native, 'CMakeLists.txt'), '\nset_source_files_properties("${CMAKE_CURRENT_LIST_DIR}/PrivacyInfo.xcprivacy" PROPERTIES MACOSX_PACKAGE_LOCATION Resources)\ntarget_sources(${EXECUTABLE_NAME} PRIVATE "${CMAKE_CURRENT_LIST_DIR}/PrivacyInfo.xcprivacy")\n');
+  const state = JSON.parse(fs.readFileSync(path.join(temp, 'state.json')));
+  if (state.signed) {
+    fs.appendFileSync(path.join(native, 'CMakeLists.txt'), `\nset_target_properties(\${EXECUTABLE_NAME} PROPERTIES\n XCODE_ATTRIBUTE_CODE_SIGN_STYLE "Manual"\n XCODE_ATTRIBUTE_DEVELOPMENT_TEAM "U5FT6JFLWS"\n XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "${state.identity}"\n XCODE_ATTRIBUTE_PROVISIONING_PROFILE_SPECIFIER "${state.uuid}"\n XCODE_ATTRIBUTE_OTHER_CODE_SIGN_FLAGS "--keychain ${state.keychain}"\n)\n`);
+  }
   run('cmake', ['-S', native, '-B', 'build/ios/proj', '-DCMAKE_POLICY_VERSION_MINIMUM=3.5']);
 }
 function signing() {
@@ -120,8 +129,8 @@ function archive() {
   const project = fs.readdirSync('build/ios/proj').find(x => x.endsWith('.xcodeproj'));
   assert.ok(project, 'Xcode project missing');
   const archive = path.join(output, 'DicePet.xcarchive');
-  const settings = ['PRODUCT_BUNDLE_IDENTIFIER=com.dice.pet.rpg', 'TARGETED_DEVICE_FAMILY=1', 'IPHONEOS_DEPLOYMENT_TARGET=13.0', 'ENABLE_BITCODE=NO', 'SKIP_INSTALL=NO', 'ONLY_ACTIVE_ARCH=NO', 'ARCHS=arm64'];
-  settings.push(...(state.signed ? ['CODE_SIGN_STYLE=Manual', 'DEVELOPMENT_TEAM=U5FT6JFLWS', `CODE_SIGN_IDENTITY=${state.identity}`, `PROVISIONING_PROFILE_SPECIFIER=${state.uuid}`, `OTHER_CODE_SIGN_FLAGS=--keychain ${state.keychain}`] : ['CODE_SIGNING_ALLOWED=NO', 'CODE_SIGNING_REQUIRED=NO']));
+  const settings = ['PRODUCT_BUNDLE_IDENTIFIER=com.dice.pet.rpg', 'TARGETED_DEVICE_FAMILY=1', 'IPHONEOS_DEPLOYMENT_TARGET=13.0', 'ENABLE_BITCODE=NO', 'ONLY_ACTIVE_ARCH=NO', 'ARCHS=arm64'];
+  if (!state.signed) settings.push('CODE_SIGNING_ALLOWED=NO', 'CODE_SIGNING_REQUIRED=NO');
   const log = fs.openSync(path.join(logs, 'xcode-archive.log'), 'w');
   try { run('xcodebuild', ['-project', `build/ios/proj/${project}`, '-scheme', 'DicePet-mobile', '-configuration', 'Release', '-destination', 'generic/platform=iOS', '-archivePath', archive, '-jobs', '3', 'archive', ...settings], { stdio: ['ignore',log,log] }); }
   finally { fs.closeSync(log); console.log(fs.readFileSync(path.join(logs,'xcode-archive.log'),'utf8').split('\n').slice(-75).join('\n')); }
@@ -131,7 +140,20 @@ function archive() {
   assert.equal(info.CFBundleShortVersionString, '1.0');
   assert.ok(Number.parseFloat(info.DTSDKName.replace('iphoneos','')) >= 26);
   assert.ok(fs.existsSync(path.join(app, 'PrivacyInfo.xcprivacy')));
-  const report = { signed: state.signed, bundleID: info.CFBundleIdentifier, version: info.CFBundleShortVersionString, build: info.CFBundleVersion, sdk: info.DTSDKName, readyForAppStore: false };
+  const walk = dir => fs.readdirSync(dir, { withFileTypes: true }).flatMap(x => x.isDirectory() ? walk(path.join(dir,x.name)) : [path.join(dir,x.name)]);
+  const main = walk(app).find(x => /assets\/main\/index\.js$/.test(x));
+  assert.ok(main, 'Packaged game script missing');
+  const modules = {};
+  vm.runInNewContext(fs.readFileSync(main,'utf8'), { System: { register: (id,deps,fn) => { modules[id] = {deps,fn}; } }, Math, Date, JSON, Set });
+  const model = modules['chunks:///_virtual/PMModel.ts'];
+  assert.ok(model, 'Packaged model module missing');
+  const exports = {};
+  const body = model.fn((key,value) => { if (typeof key === 'string') exports[key] = value; else Object.assign(exports,key); return value; }, {meta:{}});
+  body.setters.forEach(setter => setter({cclegacy:{_RF:{push(){},pop(){}}}}));
+  body.execute();
+  const balance = { testMode: exports.BUILD_TEST_MODE, stamina: exports.EXPEDITION_COST, hatchMs: exports.HATCH_DURATION, breedingMs: exports.BREED_DURATION };
+  assert.deepEqual(balance, {testMode:false,stamina:5,hatchMs:1800000,breedingMs:1800000});
+  const report = { signed: state.signed, bundleID: info.CFBundleIdentifier, version: info.CFBundleShortVersionString, build: info.CFBundleVersion, sdk: info.DTSDKName, balance, readyForAppStore: false };
   if (state.signed) {
     run('codesign', ['--verify', '--deep', '--strict', app]);
     const options = path.join(temp, 'ExportOptions.plist');

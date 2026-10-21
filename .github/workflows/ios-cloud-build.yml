@@ -38,7 +38,7 @@ jobs:
           mkdir -p "$HOME/cocos-installer" "$RUNNER_TEMP/cocos"
           ZIP="$HOME/cocos-installer/creator.zip"
           if [ ! -f "$ZIP" ]; then
-            curl --fail --location --retry 3 --output "$ZIP" https://download.cocos.com/CocosCreator/v3.8.7/CocosCreator-v3.8.7-mac-080718.zip
+            curl --fail --location --retry 3 --connect-timeout 30 --max-time 1200 --output "$ZIP" https://download.cocos.com/CocosCreator/v3.8.7/CocosCreator-v3.8.7-mac-080718.zip
           fi
           ditto -xk "$ZIP" "$RUNNER_TEMP/cocos"
           APP=$(find "$RUNNER_TEMP/cocos" -maxdepth 4 -name CocosCreator.app -type d -print -quit)
@@ -46,6 +46,7 @@ jobs:
           xattr -dr com.apple.quarantine "$APP" || true
           echo "CREATOR_APP=$APP" >> "$GITHUB_ENV"
       - name: Export iOS project
+        timeout-minutes: 20
         shell: bash
         run: |
           mkdir -p build/ios-logs
@@ -55,8 +56,6 @@ jobs:
           set -e
           tail -n 80 build/ios-logs/creator.log
           test "$RESULT" -eq 36
-      - name: Prepare native app
-        run: node tools/ios-cloud-build.cjs prepare
       - name: Import distribution identity when supplied
         shell: bash
         env:
@@ -64,6 +63,8 @@ jobs:
           IOS_DISTRIBUTION_PASSWORD: ${{ secrets.IOS_DISTRIBUTION_PASSWORD }}
           IOS_APP_STORE_PROFILE: ${{ secrets.IOS_APP_STORE_PROFILE }}
         run: node tools/ios-cloud-build.cjs signing
+      - name: Prepare native app
+        run: node tools/ios-cloud-build.cjs prepare
       - name: Archive and export
         run: node tools/ios-cloud-build.cjs archive
       - name: Upload build output and diagnostics
