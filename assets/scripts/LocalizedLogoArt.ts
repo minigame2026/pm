@@ -59,5 +59,77 @@ export const LOCALIZED_LOGOS:Record<string,{size:[number,number];rect:[number,nu
       2022,
       743
     ]
+  },
+  "login-title-pt-BR-v1": {
+    "size": [
+      973,
+      430
+    ],
+    "rect": [
+      0,
+      0,
+      973,
+      430
+    ]
+  },
+  "login-title-es-419-v1": {
+    "size": [
+      1024,
+      418
+    ],
+    "rect": [
+      0,
+      0,
+      1024,
+      418
+    ]
+  },
+  "login-title-id-v1": {
+    "size": [
+      907,
+      430
+    ],
+    "rect": [
+      0,
+      0,
+      907,
+      430
+    ]
+  },
+  "login-title-vi-v1": {
+    "size": [
+      911,
+      430
+    ],
+    "rect": [
+      0,
+      0,
+      911,
+      430
+    ]
+  },
+  "login-title-de-v1": {
+    "size": [
+      1024,
+      318
+    ],
+    "rect": [
+      0,
+      0,
+      1024,
+      318
+    ]
+  },
+  "login-title-fr-v1": {
+    "size": [
+      875,
+      430
+    ],
+    "rect": [
+      0,
+      0,
+      875,
+      430
+    ]
   }
 };

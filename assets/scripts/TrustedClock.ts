@@ -3,11 +3,22 @@ export const CLOCK_LEASE_MS=10*60*1000;
 export type TimeFetcher=()=>Promise<number>;
 /** Same HTTPS authority on each target; never fall back to the device clock. */
 export function requestTimeJson(url:string):Promise<any>{
-  const platform=(globalThis as any).wx||(globalThis as any).tt;
+  const platform=(globalThis as any).tap||(globalThis as any).wx||(globalThis as any).tt;
   if(platform?.request)return new Promise((resolve,reject)=>{
     platform.request({url,method:'GET',timeout:5000,header:{'Cache-Control':'no-cache'},
       success:(r:any)=>{if(r.statusCode<200||r.statusCode>=300){reject(new Error('Time HTTP status'));return;}
-        try{resolve(typeof r.data==='string'?JSON.parse(r.data):r.data);}catch(e){reject(e);}},fail:reject});
+        try{
+          let body=r.data;
+          if(typeof body==='string'){
+            // This endpoint returns a fixed JSONP wrapper. Parse JSON only; never execute it.
+            if(url.startsWith('https://vv.video.qq.com/checktime?')){
+              const match=/^\s*QZOutputJson\s*=\s*(\{[\s\S]*\})\s*;?\s*$/.exec(body);
+              if(!match)throw new Error('Invalid time response');body=match[1];
+            }
+            body=JSON.parse(body);
+          }
+          resolve(body);
+        }catch(e){reject(e);}},fail:reject});
   });
   if(typeof fetch==='function'&&typeof AbortController!=='undefined')return (async()=>{
     const abort=new AbortController(),timer=setTimeout(()=>abort.abort(),5000);
@@ -23,6 +34,18 @@ export function requestTimeJson(url:string):Promise<any>{
 }
 export async function fetchTrustedUtc():Promise<number>{
   const nonce=Math.random().toString(36).slice(2);
+  if(typeof (globalThis as any).tap?.request==='function'){
+    // Tap requires ICP-approved request domains; other targets retain their existing services.
+    for(const url of ['https://api.bilibili.com/x/report/click/now?_pm='+nonce,'https://vv.video.qq.com/checktime?otype=json&_pm='+nonce]){
+      try{
+        const data=await requestTimeJson(url);
+        const seconds=url.includes('api.bilibili.com')?(data.code===0?data.data?.now:undefined):(data.s==='o'?data.t:undefined);
+        const value=typeof seconds==='number'?seconds*1000:NaN;
+        if(Number.isSafeInteger(value)&&value>=1577836800000&&value<4102444800000)return value;
+      }catch{}
+    }
+    throw new Error('Trusted UTC unavailable');
+  }
   const urls=['https://timeapi.io/api/time/current/zone?timeZone=UTC&_pm='+nonce,'https://worldtimeapi.org/api/timezone/Etc/UTC?_pm='+nonce];
   for(const url of urls){
     try{const data=await requestTimeJson(url);let value:number;

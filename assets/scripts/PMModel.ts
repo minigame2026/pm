@@ -369,7 +369,7 @@ export const PETS: Record<PetId,{name:string;trait:string;type:string;rank:PetRa
   silkmoth: {"name":"月绒蛾","trait":"妖精 · 精英","type":"妖精","rank":"elite","hp":98,"faces":[22,29,37],"enemyFaces":[20,27,35],"color":"#d8b0cd"},
   kirin: {"name":"曜角驹","trait":"龙 · BOSS","type":"龙","rank":"boss","hp":102,"faces":[23,30,38],"enemyFaces":[21,28,36],"color":"#6d9dae"}
 };
-export type Phase = 'encounter' | 'battle' | 'reward' | 'recruit' | 'team' | 'won' | 'lost' | 'nest' | 'eggClaimed';
+export type Phase = 'encounter' | 'battle' | 'reward' | 'recruit' | 'team' | 'won' | 'lost' | 'nest' | 'eggClaimed' | 'event';
 export type EggRarity = 'normal' | 'SR' | 'SSR';
 export interface Egg { id:string; rarity:EggRarity; affinity:PetId; stage:number; genes?:Genes; mapId?:number; bond?:FriendBond & {sourceAffinity:PetId} }
 export interface FriendCard { version:1; owner:string; petUid:string; species:PetId; rarity:EggRarity; sex:Sex; id:string }
@@ -383,7 +383,7 @@ export interface Pet { id:PetId; faces:number[]; rarity?:EggRarity; uid?:string;
 export interface Breeding { id:string; mother:string; father:string; startedAt:number; readyAt:number; genes:Genes }
 export interface Incubation { eggId:string; startedAt:number; readyAt:number; result:EggRarity }
 export interface HatchResult { eggId:string; petId:PetId; rarity:EggRarity; duplicate:boolean; warmthGain:number; uid?:string }
-export interface SkillState { attackHPRatio?:number; usedCodes?:SkillCode[]; used:boolean; attacks:number; shield:number; poison:number; nextMax:boolean; previousRoll:number; event:string; lastDamage:number; lastTaken:number; heroHealUsed?:boolean }
+export interface SkillState { poisonDamage?:number; attackHPRatio?:number; usedCodes?:SkillCode[]; used:boolean; attacks:number; shield:number; poison:number; nextMax:boolean; previousRoll:number; event:string; lastDamage:number; lastTaken:number; heroHealUsed?:boolean }
 export type HeroId='ranger'|'keeper'|'medic';
 export const HEROES:Record<HeroId,{name:string;sex:Sex;title:string;effect:string;color:string}>={
   ranger:{name:'阿岚',sex:'male',title:'寻蛋好手',effect:'带走蛋时，20% 概率额外获得一枚',color:'#dc6651'},
@@ -393,8 +393,11 @@ export const HEROES:Record<HeroId,{name:string;sex:Sex;title:string;effect:strin
 export const HERO_IDS:HeroId[]=['ranger','keeper','medic'];
 export const STARTERS:PetId[]=['fox','bud','otter'];
 export interface Journey {version:1;stage:'hero'|'starter'|'done';hero:HeroId|null;starter:PetId|null;legacy:boolean}
-export interface Reward { kind: 'hp' | 'attack' | 'heal' | 'potion' | 'boost'; values: number[]; title: string }
+export interface Reward { kind: 'hp' | 'attack' | 'heal' | 'potion' | 'boost' | 'attackMin' | 'attackMax'; values: number[]; title: string }
 export interface State {
+  naturalSkillVersion?:1;
+  runEffects?:Record<string,{giantUntil?:number;skills?:SkillCode[]}>;
+  battleEvent?:{kind:BattleEventKind;uid?:string;skill?:SkillCode;eggId?:string};
   combatVersion?:1; combatVitals?:Record<string,{hpRatio:number;hpBonus:number}>;
   lastRelay?:{from:string;to:string;combat:SkillState};
   stageVersion?:2; contentVersion?: 2; version: 1; seed: number; step: number; phase: Phase; active: Pet; reserve: Pet | null;
@@ -420,7 +423,7 @@ export interface State {
 }
 export type Action = 'challenge' | 'reroll' | 'switch' | 'attack' | 'guard' | 'heal' | 'boost' |
   'take' | 'keep' | 'reward0' | 'invite' | 'skip' | 'replace' | 'collect' |
-  'eggSearch' | 'eggSelect0' | 'eggSelect1' | 'eggSelect2' | 'eggTake' | 'eggContinue';
+  'eggSearch' | 'eggSelect0' | 'eggSelect1' | 'eggSelect2' | 'eggTake' | 'eggContinue' | 'eventContinue';
 export const PET_IDS=Object.keys(PETS) as PetId[];
 export const LATEST_PET_IDS:PetId[]=["nectar","orchid","axolotl","lantern","cobra","hornbill","embercamel","frill","wombat","trilobite","wolverine","bison","narwhal","raccoon","octopus","moonbat","silkmoth","kirin"];
 export const NEW_PET_IDS:PetId[]=["capy","lotus","manta","crane","mantis","cragcrab","cinder","voltage","venom","dune","monk","ironboar","frost","spirit","dream","shade","aurora","starwyrm",...LATEST_PET_IDS];
@@ -488,12 +491,12 @@ export function typeMultiplier(attacking:string,defending:string):number {
 }
 export const matchupMultiplier=(attacker:PetId,defender:PetId)=>typeMultiplier(PETS[attacker].type,PETS[defender].type);
 export const typedDamage=(base:number,multiplier:number)=>Math.max(1,Math.round(base*multiplier));
-export const attackAmount = (s: State) => typedDamage(s.attack * (s.doubled ? s.boostMultiplier : 1),matchupMultiplier(s.active.id,s.enemy)) + (skillReady(s,'opening')?2:0) + (skillReady(s,'heavy')&&s.skill!.attacks===2?4:0);
+export const attackAmount = (s: State) => typedDamage(s.attack * giantMultiplier(s,s.active.uid) * (s.doubled ? s.boostMultiplier : 1),matchupMultiplier(s.active.id,s.enemy)) + (skillReady(s,'opening')?2:0) + (skillReady(s,'heavy')&&s.skill!.attacks===2?4:0) + readySkillSpecs(s,'attack').filter(c=>SKILL_SPECS[c].effect==='damage').reduce((n,c)=>n+SKILL_SPECS[c].amount,0);
 export const enemyAttackAmount=(s:State,base=s.enemyAttack)=>typedDamage(base,matchupMultiplier(s.enemy,s.active.id));
 export const guardDamage = (incoming: number) => Math.max(1, Math.round(incoming / 100));
 const rand = (s: State) => { s.seed = (Math.imul(s.seed, 1664525) + 1013904223) >>> 0; return s.seed / 4294967296; };
 const pick = <T>(s: State, a: T[]): T => a[Math.floor(rand(s) * a.length)];
-export const maxHP = (s: State) => petBaseHP(s.active) + s.hpBonus;
+export const maxHP = (s: State) => Math.round((petBaseHP(s.active) + s.hpBonus)*giantMultiplier(s,s.active.uid));
 export const hp = (s: State) => Math.max(0, Math.ceil(s.hpRatio * maxHP(s) - 1e-8));
 export const pet = (id: PetId): Pet => ({ id, faces: [...PETS[id].faces] });
 export const enemyPet=(s:State):Pet=>({id:s.enemy,rarity:s.enemyRarity||'normal',faces:[]});
@@ -503,7 +506,7 @@ export const enemyAttackFaces = (s: State): number[] => {
   return PETS[s.enemy].enemyFaces.map(v=>v+tier);
 };
 export function fresh(seed = Date.now(), owned: PetId[] = ['fox', 'turtle'], wins = 0): State {
-  const s: State = {stageVersion:2,mapVersion:1,mapId:0,clearedMaps:[],contentVersion:2,version:1, seed:seed >>> 0, step:1, phase:'encounter', active:pet('fox'), reserve:pet('turtle'),
+  const s: State = {naturalSkillVersion:1,stageVersion:2,mapVersion:1,mapId:0,clearedMaps:[],contentVersion:2,version:1, seed:seed >>> 0, step:1, phase:'encounter', active:pet('fox'), reserve:pet('turtle'),
     owned:ids.filter(id=>id==='fox'||id==='turtle'||owned.indexOf(id)>=0), hpRatio:1, hpBonus:0, potions:3, boosts:2,
     healFaces:[3,5,7], healMultiplier:1, boostMultiplier:2, usedHeal:false, doubled:false, swaps:1, rerollVersion:1, enemy:'bud', enemyHP:7, enemyMax:7,
     attack:0, heal:0, enemyAttack:0, turn:0, reward:{kind:'hp',values:[3],title:'生命上限 +3'},
@@ -535,8 +538,9 @@ export const heroFor=(s:State)=>s.journey?.hero?HEROES[s.journey.hero]:null;
 export const heroHealBonus=(s:State)=>s.journey?.hero==='medic'&&s.skill&&!s.skill.heroHealUsed?3:0;
 function reward(s: State, excluded: string[] = []): Reward {
   const tier = growthTier(s.step)+(s.mapId||0)*2;
-  const kinds = ['hp','attack','heal','potion','boost'].filter(x => !excluded.includes(x) && (excluded.length>0 || x!==s.previousReward) && !(x==='potion'&&s.potions>=9) && !(x==='boost'&&s.boosts>=9));
+  const kinds = ['hp','attack','heal','potion','boost','attackMin','attackMax'].filter(x => !excluded.includes(x) && (excluded.length>0 || x!==s.previousReward) && !(x==='potion'&&s.potions>=9) && !(x==='boost'&&s.boosts>=9));
   const k = pick(s,kinds) as Reward['kind'];
+  if(k==='attackMin'||k==='attackMax')return {kind:k,values:[1],title:(k==='attackMin'?'最低攻击':'最高攻击')+' +1'};
   if (k==='attack' || k==='heal') {
     const pool = k==='attack' ? [[2,3,5],[3,3,4],[1,2,7]] : [[3,5,7],[4,4,6],[2,3,9]];
     const a = pick(s,pool).map(v=>v+tier);
@@ -566,6 +570,7 @@ function roll(s: State) {
     if(k.nextMax){s.attack=Math.max(...s.active.faces);k.nextMax=false;}
     if(skillReady(s,'steady')&&s.attack===Math.min(...s.active.faces)){s.attack=[...s.active.faces].sort((a,b)=>a-b)[Math.floor(s.active.faces.length/2)];trigger(s,'steady');}
     if(skillReady(s,'repeat')&&s.attack===k.previousRoll){s.attack=Math.max(...s.active.faces);trigger(s,'repeat');}
+    applySkillSpecs(s,readySkillSpecs(s,'roll'));
     k.previousRoll=s.attack;
   }
 }
@@ -574,6 +579,7 @@ function afterReward(s: State) {
   s.previousReward=s.reward.kind;
   s.hpRatio=Math.min(1,s.hpRatio+Math.max(1,Math.floor(maxHP(s)*.2))/maxHP(s));
   if(rankForStage(s.step)==='elite'){beginEggHunt(s);return;}
+  if(rankForStage(s.step)==='normal'&&rand(s)<.2){const options=battleEventOptions(s);if(options.length){Object.assign(s,grantBattleEvent(s,pick(s,options)));return;}}
   finishReward(s);
 }
 function finishReward(s:State){ next(s); }
@@ -594,18 +600,20 @@ export function act(before: State, a: Action): State {
     const k=s.skill;
     if(k){k.event='';k.lastDamage=0;k.lastTaken=0;}
     if(a==='heal' && !s.usedHeal && s.potions>0 && s.hpRatio<1) {
+      const effects=readySkillSpecs(s,'heal');
       const heroBonus=heroHealBonus(s),amount=healAmount(s)+(skillReady(s,'healing')?2:0)+heroBonus,recovered=Math.min(amount,maxHP(s)-hp(s));
       s.potions--;s.usedHeal=true;
       if(heroBonus&&k){k.heroHealUsed=true;k.event='星遥 · 额外恢复3点';}
       if(k){if(skillReady(s,'healing'))trigger(s,'healing');if(skillReady(s,'refund')){s.potions++;trigger(s,'refund');}if(skillReady(s,'overflow')&&amount>maxHP(s)-hp(s)){k.shield+=Math.min(6,Math.floor(amount-(maxHP(s)-hp(s))));trigger(s,'overflow');}}
-      s.hpRatio=Math.min(1,s.hpRatio+amount/maxHP(s));s.message='治疗 ×'+s.healMultiplier+' · 恢复 '+recovered+' 点生命';valid=true;
+      s.hpRatio=Math.min(1,s.hpRatio+amount/maxHP(s));applySkillSpecs(s,effects);s.message='治疗 ×'+s.healMultiplier+' · 恢复 '+recovered+' 点生命';valid=true;
     }
-    if(a==='boost' && !s.doubled && s.boosts>0) {s.boosts--;s.doubled=true;if(skillReady(s,'charged')){s.attack=Math.max(...s.active.faces);trigger(s,'charged');}s.message='本回合攻击 ×'+s.boostMultiplier+' · 造成 '+attackAmount(s);valid=true;}
+    if(a==='boost' && !s.doubled && s.boosts>0) {s.boosts--;s.doubled=true;if(skillReady(s,'charged')){s.attack=Math.max(...s.active.faces);trigger(s,'charged');}applySkillSpecs(s,readySkillSpecs(s,'boost'));s.message='本回合攻击 ×'+s.boostMultiplier+' · 造成 '+attackAmount(s);valid=true;}
     if(a==='attack'||a==='guard') {
       valid=true;
       const previousEnemy=s.enemyHP;let slow=0;
       if(a==='attack'){
-        const dealt=Math.min(s.enemyHP,attackAmount(s));s.enemyHP-=dealt;
+        const effects=readySkillSpecs(s,'attack'),dealt=Math.min(s.enemyHP,attackAmount(s));s.enemyHP-=dealt;
+        applySkillSpecs(s,effects,dealt);
         if(k){k.attacks++;
           if(skillReady(s,'opening'))trigger(s,'opening');
           if(skillReady(s,'heavy')&&k.attacks===3)trigger(s,'heavy');
@@ -613,8 +621,8 @@ export function act(before: State, a: Action): State {
           if(skillReady(s,'slow')){slow=2;trigger(s,'slow');}
           if(skillReady(s,'leech')){s.hpRatio=Math.min(1,s.hpRatio+Math.min(Math.ceil(dealt*.2),Math.ceil(maxHP(s)*.25))/maxHP(s));trigger(s,'leech');}
         }
-      }else if(k){if(skillReady(s,'focus')){k.nextMax=true;trigger(s,'focus');}if(skillReady(s,'barrier')){k.shield+=6;trigger(s,'barrier');}}
-      if(k&&k.poison>0&&s.enemyHP>0){s.enemyHP=Math.max(0,s.enemyHP-2);k.poison--;k.event=k.event||'毒素 −2';}
+      }else if(k){if(skillReady(s,'focus')){k.nextMax=true;trigger(s,'focus');}if(skillReady(s,'barrier')){k.shield+=6;trigger(s,'barrier');}applySkillSpecs(s,readySkillSpecs(s,'guard'));}
+      if(k&&k.poison>0&&s.enemyHP>0){const poison=k.poisonDamage||2;s.enemyHP=Math.max(0,s.enemyHP-poison);k.poison--;k.event=k.event||'毒素 −'+poison;}
       if(k){k.lastDamage=previousEnemy-s.enemyHP;k.attackHPRatio=s.hpRatio;}
       if(s.enemyHP===0) {
         s.warmth=Math.min(9999,(s.warmth||0)+(rankForStage(s.step)==='boss'?3:rankForStage(s.step)==='elite'?2:1));
@@ -623,7 +631,14 @@ export function act(before: State, a: Action): State {
       } else {
         const incoming=enemyAttackAmount(s);
         let damage=a==='guard'?guardDamage(incoming):Math.max(1,incoming-slow);
-        if(k){if(skillReady(s,'armor')){damage=Math.max(1,damage-2);trigger(s,'armor');}if(skillReady(s,'evade')){damage=0;trigger(s,'evade');}const blocked=Math.min(k.shield,damage);damage-=blocked;k.shield-=blocked;k.lastTaken=damage;}
+        if(k){if(skillReady(s,'armor')){damage=Math.max(1,damage-2);trigger(s,'armor');}
+          const effects=readySkillSpecs(s,'hit',damage,a==='guard').filter(c=>SKILL_SPECS[c].effect!=='survive');applySkillSpecs(s,effects);
+          damage=Math.max(1,damage-effects.filter(c=>SKILL_SPECS[c].effect==='reduce').reduce((n,c)=>n+SKILL_SPECS[c].amount,0));
+          if(skillReady(s,'evade')){damage=0;trigger(s,'evade');}if(effects.some(c=>SKILL_SPECS[c].effect==='evade'))damage=0;
+          const blocked=Math.min(k.shield,damage);damage-=blocked;k.shield-=blocked;
+          const saves=readySkillSpecs(s,'hit',damage,a==='guard').filter(c=>SKILL_SPECS[c].effect==='survive');if(saves.length){damage=Math.max(0,hp(s)-1);applySkillSpecs(s,saves);}
+          k.lastTaken=damage;
+        }
         s.hpRatio=Math.max(0,s.hpRatio-damage/maxHP(s));
         if(skillReady(s,'emergency')&&s.hpRatio>1e-8&&s.hpRatio<=.3){s.hpRatio=Math.min(1,s.hpRatio+Math.ceil(maxHP(s)*.25)/maxHP(s));trigger(s,'emergency');}
         s.message=(a==='guard'?'挡住了攻击，只受 ':'对手反击，受到 ')+damage+' 点伤害';
@@ -631,6 +646,8 @@ export function act(before: State, a: Action): State {
         else roll(s);
       }
     }
+  } else if(s.phase==='event'&&a==='eventContinue') {
+    delete s.battleEvent;next(s);valid=true;
   } else if(s.phase==='nest' && s.eggHunt) {
     const hunt=s.eggHunt;
     if(a==='eggSearch' && hunt.candidates.length<hunt.limit){
@@ -663,7 +680,7 @@ export function act(before: State, a: Action): State {
       if(a==='keep' && !['attack','heal'].includes(s.reward.kind))return before;
       if(a==='take'||choice>=0) {
         const r=s.reward;
-        if(r.kind==='hp'){const current=s.hpRatio*maxHP(s);s.hpBonus+=r.values[0];s.hpRatio=current/maxHP(s);}
+        if(r.kind==='hp'||r.kind==='attackMin'||r.kind==='attackMax')applyTeamReward(s,r);
         if(r.kind==='attack')s.active.faces=[...r.values];
         if(r.kind==='heal')s.healFaces=[...r.values];
         if(r.kind==='potion')s.potions=Math.min(9,s.potions+r.values[0]);
@@ -697,7 +714,7 @@ export function restore(raw: string | null): State | null {
     if(legacyMaps){s.mapId=s.step>10?1:0;s.clearedMaps=s.wins>0?[0,1]:s.step>10?[0]:[];if(s.phase==='won'&&!s.clearedMaps.includes(s.mapId))s.clearedMaps.push(s.mapId);s.mapVersion=1;s.enemyRarity='normal';}
     if(s.mapVersion!==1||!Number.isInteger(s.mapId)||s.mapId!<0||s.mapId!>=MAPS.length||!Array.isArray(s.clearedMaps)||s.clearedMaps.some((id,i,a)=>!Number.isInteger(id)||id<0||id>=MAPS.length||a.indexOf(id)!==i)||!mapUnlocked(s,s.mapId!)||!RARITIES.includes(s.enemyRarity!))return null;
     if(s.roster!==undefined&&(!s.roster||typeof s.roster!=='object'||Array.isArray(s.roster)||Object.keys(s.roster).some(id=>!ids.includes(id as PetId)||!validPet(s.roster![id])||s.roster![id].id!==id)))return null;
-    if(!['encounter','battle','reward','recruit','team','won','lost','nest','eggClaimed'].includes(s.phase))return null;
+    if(!['encounter','battle','reward','recruit','team','won','lost','nest','eggClaimed','event'].includes(s.phase))return null;
     if(![s.seed,s.step,s.hpRatio,s.hpBonus,s.potions,s.boosts,s.swaps,s.enemyHP,s.enemyMax,s.revision,s.wins,s.attack,s.heal,s.enemyAttack,s.turn].every(finite))return null;
     const savedStageLimit=s.stageVersion===2?mapStageCount(s):Math.max(10,((s.mapId||0)+1)*10);
     if(s.step<1||s.step>savedStageLimit||!Number.isInteger(s.step)||s.hpRatio<0||s.hpRatio>1||s.hpBonus<0||s.hpBonus>450)return null;
@@ -707,7 +724,7 @@ export function restore(raw: string | null): State | null {
     if(s.owned.some(x=>typeof x==='object'&&x!==null))s.owned=ids.filter(id=>id==='fox'||id==='turtle'||s.owned.indexOf(id)>=0||s.active.id===id||s.reserve?.id===id||(s.phase==='team'&&s.recruit===id));
     if(!s.owned.every(x=>ids.includes(x)))return null;
     if(s.partySlots!==undefined&&(!Array.isArray(s.partySlots)||s.partySlots.length!==3||s.partySlots.some((id,i)=>!ids.includes(id)||s.partySlots!.indexOf(id)!==i)||!s.partySlots.includes(s.active.id)||(s.reserve&&!s.partySlots.includes(s.reserve.id))))return null;
-    if(!s.reward||!['hp','attack','heal','potion','boost'].includes(s.reward.kind)||!faces(s.reward.values)||typeof s.reward.title!=='string')return null;
+    if(!s.reward||!['hp','attack','heal','potion','boost','attackMin','attackMax'].includes(s.reward.kind)||!faces(s.reward.values)||typeof s.reward.title!=='string')return null;
     if(['recruit','team'].includes(s.phase)&&(!s.recruit||!ids.includes(s.recruit)))return null;
     if(s.enemyMax<=0||s.enemyHP<0||s.enemyHP>s.enemyMax||typeof s.usedHeal!=='boolean'||typeof s.doubled!=='boolean')return null;
     // Preserve effects already committed in older saves; new turns roll multipliers.
@@ -754,7 +771,8 @@ export function restore(raw: string | null): State | null {
     if(starter){for(const p of [starter,s.active,s.reserve,...Object.values(s.runRoster||{})])if(p?.uid===starter.uid)p.skills=['armor'];
       if(s.active.uid===starter.uid&&s.skill?.usedCodes)s.skill.usedCodes=s.skill.usedCodes.map(c=>c==='healing'?'armor':c);
     }
-    if(!restoreCombat(s))return null;
+    if(!restoreCombat(s)||!validRunEffects(s))return null;
+    migrateNaturalSkills(s);
     if(s.breeding){s.team=homeParty(s);if(isBreedingPet(s,s.reserve?.uid||''))s.reserve=null;}
     delete s.lastRelay;
     return s;
@@ -781,10 +799,26 @@ function runPet(s:State,key:string):Pet {return clonePet(s.runRoster?.[key]||s.p
 export function petCombat(s:State,key:string){
   const p=key===s.active.uid?s.active:s.runRoster?.[key]||petEntry(s,key);
   const v=key===s.active.uid?{hpRatio:s.hpRatio,hpBonus:s.hpBonus}:s.combatVitals?.[key]||{hpRatio:1,hpBonus:0};
-  const max=petBaseHP(p)+v.hpBonus;
+  const max=Math.round((petBaseHP(p)+v.hpBonus)*giantMultiplier(s,key));
   return {pet:p,ratio:v.hpRatio,bonus:v.hpBonus,max,hp:Math.max(0,Math.ceil(v.hpRatio*max-1e-8))};
 }
 function loadActiveVitals(s:State){const v=s.combatVitals?.[s.active.uid!]||{hpRatio:1,hpBonus:0};s.hpRatio=v.hpRatio;s.hpBonus=v.hpBonus;}
+function applyTeamReward(s:State,r:Reward){
+  rememberParty(s);
+  for(const uid of new Set(homeParty(s).filter(Boolean))){
+    const stats=petCombat(s,uid),p=runPet(s,uid);
+    if(r.kind==='hp'){
+      const bonus=Math.min(450,stats.bonus+r.values[0]);
+      s.combatVitals![uid]={hpBonus:bonus,hpRatio:stats.ratio*stats.max/Math.round((petBaseHP(p)+bonus)*giantMultiplier(s,uid))};
+    }else{
+      const edge=r.kind==='attackMin'?Math.min(...p.faces):Math.max(...p.faces);
+      p.faces=p.faces.map(v=>v===edge?Math.min(100,v+r.values[0]):v);
+    }
+    s.runRoster![uid]=p;
+  }
+  s.active=runPet(s,s.active.uid!);if(s.reserve?.uid)s.reserve=runPet(s,s.reserve.uid);
+  loadActiveVitals(s);
+}
 function newBattleSkill():SkillState{return {usedCodes:[],used:false,attacks:0,shield:0,poison:0,nextMax:false,previousRoll:0,event:'',lastDamage:0,lastTaken:0,heroHealUsed:false};}
 function relayAfterDefeat(s:State):boolean {
   rememberParty(s);
@@ -793,7 +827,7 @@ function relayAfterDefeat(s:State):boolean {
   const from=s.active.uid!,combat=JSON.parse(JSON.stringify(s.skill||newBattleSkill()));
   [slots[0],slots[index]]=[slots[index],slots[0]];
   s.team=slots;s.active=runPet(s,slots[0]);s.reserve=slots[1]?runPet(s,slots[1]):null;loadActiveVitals(s);
-  s.skill=newBattleSkill();s.skill.poison=combat.poison;s.skill.heroHealUsed=combat.heroHealUsed;
+  s.skill=newBattleSkill();s.skill.poison=combat.poison;s.skill.poisonDamage=combat.poisonDamage;s.skill.heroHealUsed=combat.heroHealUsed;
   s.lastRelay={from,to:s.active.uid!,combat};roll(s);
   s.message=petName(s.active)+'接替出战';return true;
 }
@@ -915,7 +949,7 @@ export function claimHatch(before:State,index:number,now=gameNow()):State {
 }
 export function acknowledgeHatch(before:State):State {if(!before.pendingHatch)return before;const s=clone(before);delete s.pendingHatch;s.revision++;return s;}
 
-export const SKILLS={
+const LEGACY_SKILLS={
   opening:['抢先一击','首次攻击额外造成 2 点伤害。'], armor:['硬壳','首次受击减少 2 点伤害，至少受到 1 点。'],
   healing:['草木祝福','首次使用生命药水额外恢复 2 点生命。'], steady:['稳定发挥','首次掷出最低攻击点数，自动变为中间点数。'],
   repeat:['连锁电流','首次连续两回合攻击点数相同，后一次变为最高点数。'], charged:['力量共鸣','首次使用力量药水，攻击点数变为最高，再计算药水倍率。'],
@@ -925,9 +959,14 @@ export const SKILLS={
   venom:['毒素印记','首次攻击施毒，本次及随后两次行动结束时各造成 2 点伤害。'],
   heavy:['三连重击','第三次攻击额外造成 4 点伤害。'], slow:['霜羽压制','首次攻击令本次反击伤害减少 2，至少受到 1 点。'],
   evade:['幻影守护','首次敌方反击完全免伤。'],leech:['生命汲取','首次攻击恢复其实际直接伤害的 20%（向上取整），不超过最大生命的 25%。'],
+  tm_healStrike:['回春击',''],tm_guardHeal:['休整防御',''],
+  tm_boostShield:['强化屏障',''],tm_healPower:['治愈蓄能',''],
+  tm_finisher:['追击招式',''],tm_lastStand:['不屈招式',''],
+  tm_firstShield:['开场护盾',''],tm_combo:['连击恢复',''],
 } as const;
-export type SkillCode=keyof typeof SKILLS;
-const PET_SKILLS:Record<PetId,[SkillCode,SkillCode,SkillCode]>={
+export type SkillCode=string;
+export const SKILLS:Record<SkillCode,readonly [string,string]>={...LEGACY_SKILLS};
+const OLD_PET_SKILLS:Record<PetId,[SkillCode,SkillCode,SkillCode]>={
   nectar:["healing", "refund", "emergency"],
   orchid:["healing", "overflow", "emergency"],
   axolotl:["armor", "overflow", "refund"],
@@ -970,11 +1009,134 @@ const PET_SKILLS:Record<PetId,[SkillCode,SkillCode,SkillCode]>={
   bird:['opening','slow','evade'],owl:['opening','steady','charged'],beetle:['armor','venom','refund'],ghost:['opening','venom','leech'],
   dragon:['opening','heavy','charged'],lynx:['opening','steady','leech'],rhino:['armor','barrier','evade'],deer:['healing','refund','emergency']
 };
+type SkillMoment='attack'|'heal'|'boost'|'guard'|'hit'|'roll';
+type SkillGate='any'|'third'|'low'|'full'|'enemyHalf'|'minimum'|'maximum'|'repeat'|'first'|'boosted'|'guarded'|'lethal'|'resisted';
+type SkillEffect='damage'|'heal'|'healPct'|'drain'|'shield'|'reduce'|'poison'|'nextMax'|'maxRoll'|'refundHeal'|'refundBoost'|'evade'|'survive';
+export interface SkillSpec {when:SkillMoment;gate:SkillGate;effect:SkillEffect;amount:number}
+const spec=(when:SkillMoment,gate:SkillGate,effect:SkillEffect,amount=1):SkillSpec=>({when,gate,effect,amount});
+const TYPE_SKILL_SPECS:Record<string,SkillSpec[]>={
+  '一般':[spec('attack','any','damage',2),spec('roll','repeat','maxRoll'),spec('attack','third','shield',8)],
+  '火':[spec('attack','boosted','damage',3),spec('boost','any','shield',6),spec('attack','third','poison',4)],
+  '水':[spec('hit','any','reduce',2),spec('guard','any','heal',5),spec('heal','any','nextMax')],
+  '草':[spec('heal','any','heal',3),spec('hit','low','healPct',30),spec('attack','full','shield',7)],
+  '电':[spec('roll','minimum','maxRoll'),spec('boost','any','refundBoost'),spec('attack','third','damage',8)],
+  '冰':[spec('attack','any','nextMax'),spec('hit','full','shield',6),spec('attack','minimum','damage',9)],
+  '格斗':[spec('attack','low','damage',4),spec('guard','any','nextMax'),spec('attack','third','healPct',35)],
+  '毒':[spec('attack','any','poison',2),spec('attack','enemyHalf','poison',4),spec('hit','low','poison',6)],
+  '地面':[spec('hit','guarded','shield',3),spec('attack','minimum','damage',4),spec('guard','any','refundHeal')],
+  '飞行':[spec('hit','full','evade'),spec('attack','full','damage',3),spec('roll','first','shield',10)],
+  '超能力':[spec('roll','minimum','shield',3),spec('boost','any','nextMax'),spec('heal','any','refundBoost')],
+  '虫':[spec('attack','any','drain',25),spec('heal','any','shield',5),spec('hit','low','heal',8)],
+  '岩石':[spec('hit','any','shield',3),spec('guard','any','shield',8),spec('hit','lethal','survive')],
+  '幽灵':[spec('hit','low','evade'),spec('attack','enemyHalf','drain',60),spec('attack','resisted','damage',7)],
+  '龙':[spec('attack','maximum','damage',3),spec('attack','boosted','poison',5),spec('attack','any','damage',6)],
+  '恶':[spec('attack','enemyHalf','damage',3),spec('boost','any','heal',5),spec('attack','maximum','drain',50)],
+  '钢':[spec('hit','full','reduce',3),spec('guard','any','shield',10),spec('hit','any','reduce',6)],
+  '妖精':[spec('roll','first','heal',3),spec('heal','low','healPct',25),spec('guard','any','healPct',40)]
+};
+export const SKILL_SPECS:Record<SkillCode,SkillSpec>={
+  tm_healStrike:spec('attack','any','heal',4),tm_guardHeal:spec('guard','any','heal',6),
+  tm_boostShield:spec('boost','any','shield',5),tm_healPower:spec('heal','any','nextMax'),
+  tm_finisher:spec('attack','enemyHalf','damage',5),tm_lastStand:spec('hit','lethal','survive'),
+  tm_firstShield:spec('roll','first','shield',4),tm_combo:spec('attack','third','heal',5)
+};
+const effectNames:Record<SkillEffect,string>={damage:'强击',heal:'回春',healPct:'复苏',drain:'汲取',shield:'屏障',reduce:'坚守',poison:'印记',nextMax:'蓄能',maxRoll:'改运',refundHeal:'药剂回响',refundBoost:'力量回响',evade:'闪避',survive:'不屈'};
+const momentText:Record<SkillMoment,string>={attack:'攻击时',heal:'使用生命药水时',boost:'使用力量药水时',guard:'防御时',hit:'受到反击时',roll:'掷骰时'};
+const gateText:Record<SkillGate,string>={any:'',third:'第三次攻击时',low:'生命不超过50%',full:'满血时',enemyHalf:'敌人生命不超过50%',minimum:'攻击点数为最低',maximum:'攻击点数为最高',repeat:'点数与上回合相同',first:'本场首次掷骰',boosted:'力量药水生效时',guarded:'本次选择防御',lethal:'将受到致命伤害',resisted:'本次攻击被抵抗'};
+function specDescription(v:SkillSpec):string {
+ const n=v.amount,effects:Record<SkillEffect,string>={damage:'额外伤害 +'+n,heal:'恢复生命 +'+n,healPct:'恢复最大生命 '+n+'%',drain:'恢复实际伤害的 '+n+'%',shield:'获得护盾 +'+n,reduce:'本次伤害减少 '+n,poison:'施毒3次，每次伤害 '+n,nextMax:'下回合攻击取最高点数',maxRoll:'本次攻击取最高点数',refundHeal:'生命药水 +1',refundBoost:'力量药水 +1',evade:'免疫本次反击',survive:'本次保留1点生命'};
+ return momentText[v.when]+(gateText[v.gate]?' · '+gateText[v.gate]:'')+'：'+effects[v.effect]+'。每场一次。';
+}
+const PET_SKILLS={} as Record<PetId,[SkillCode,SkillCode,SkillCode]>;
+for(const code of Object.keys(SKILL_SPECS))SKILLS[code]=[SKILLS[code][0],specDescription(SKILL_SPECS[code])];
+for(const [i,type] of TYPE_NAMES.entries()){
+ const codes=TYPE_SKILL_SPECS[type].map((v,tier)=>{const code='trait_'+i+'_'+tier;SKILL_SPECS[code]=v;SKILLS[code]=[type+'·'+['R','SR','SSR'][tier]+'·'+effectNames[v.effect],specDescription(v)];return code;}) as [SkillCode,SkillCode,SkillCode];
+ for(const id of ids)if(PETS[id].type===type)PET_SKILLS[id]=codes;
+}
+export const NATURAL_SKILL_CODES=Object.keys(SKILL_SPECS).filter(c=>c.startsWith('trait_'));
+function readySkillSpecs(s:State,when:SkillMoment,damage=0,guarded=false):SkillCode[]{
+ if(!s.skill)return [];
+ return combatSkills(s).filter(c=>{const v=SKILL_SPECS[c];if(!v||v.when!==when||!skillReady(s,c))return false;
+  const gates:Record<SkillGate,boolean>={any:true,third:s.skill!.attacks===2,low:s.hpRatio<=.5,full:s.hpRatio===1,enemyHalf:s.enemyHP<=s.enemyMax*.5,minimum:s.attack===Math.min(...s.active.faces),maximum:s.attack===Math.max(...s.active.faces),repeat:s.turn>1&&s.attack===s.skill!.previousRoll,first:s.turn===1,boosted:s.doubled,guarded,lethal:damage>=hp(s)&&hp(s)>0,resisted:matchupMultiplier(s.active.id,s.enemy)<1};
+  return gates[v.gate];
+ });
+}
+function applySkillSpecs(s:State,codes:SkillCode[],dealt=0){
+ const k=s.skill!;
+ for(const code of codes){const v=SKILL_SPECS[code],n=v.amount;
+  if(v.effect==='heal'||v.effect==='healPct'||v.effect==='drain'){const amount=v.effect==='heal'?n:Math.ceil((v.effect==='healPct'?maxHP(s):dealt)*n/100);s.hpRatio=Math.min(1,s.hpRatio+amount/maxHP(s));}
+  if(v.effect==='shield')k.shield+=n;
+  if(v.effect==='poison'){k.poison=3;k.poisonDamage=Math.max(k.poisonDamage||2,n);}
+  if(v.effect==='nextMax')k.nextMax=true;
+  if(v.effect==='maxRoll')s.attack=Math.max(...s.active.faces);
+  if(v.effect==='refundHeal')s.potions=Math.min(9,s.potions+1);
+  if(v.effect==='refundBoost')s.boosts=Math.min(9,s.boosts+1);
+  trigger(s,code);
+ }
+}
+function migrateNaturalSkills(s:State){
+ if(s.naturalSkillVersion===1)return;
+ for(const p of s.pets||[]){const egg=p.uid?.startsWith('hatch-')?s.eggs?.find(e=>'hatch-'+e.id===p.uid):undefined;
+  if(egg?.genes||p.uid?.startsWith('hatch-breed-')||p.skills?.length!==1)continue;
+  const tier=RARITIES.indexOf(p.rarity||'normal'),old=OLD_PET_SKILLS[p.id][tier],code=PET_SKILLS[p.id][tier];
+  if(p.skills[0]!==old)continue;
+  for(const x of [p,s.active,s.reserve,...Object.values(s.runRoster||{})])if(x?.uid===p.uid)x.skills=[code];
+  if(s.active.uid===p.uid&&s.skill?.usedCodes)s.skill.usedCodes=s.skill.usedCodes.map(c=>c===old?code:c);
+ }
+ s.naturalSkillVersion=1;
+}
 export function petSkills(p:Pick<Pet,'id'|'rarity'|'skills'>):SkillCode[]{return p.skills?.slice()||[PET_SKILLS[p.id][RARITIES.indexOf(p.rarity||'normal')]];}
 export function skillFor(p:Pick<Pet,'id'|'rarity'|'skills'>){const codes=petSkills(p);return {code:codes[0],name:codes.map(c=>SKILLS[c][0]).join(' · '),description:codes.map(c=>SKILLS[c][1]).join('\n')+'\n各技能每场限一次。'};}
-function skillReady(s:State,code:SkillCode):boolean {return !!s.skill&&petSkills(s.active).includes(code)&&!(s.skill.usedCodes||(s.skill.used?petSkills(s.active):[])).includes(code);}
-function trigger(s:State,code:SkillCode){if(s.skill){const k=s.skill;k.usedCodes=k.usedCodes||[];if(!k.usedCodes.includes(code))k.usedCodes.push(code);k.used=petSkills(s.active).every(c=>k.usedCodes!.includes(c));k.event+=(k.event?' · ':'')+SKILLS[code][0]+'！';}}
-export function skillStatus(s:State):string {const k=s.skill;if(!k)return '技能从下一场生效';return rarityName(s.active.rarity)+' · 技能 '+(k.usedCodes?.length||(k.used?1:0))+'/'+petSkills(s.active).length+(k.shield?' · 护盾 '+k.shield:k.poison?' · 毒 '+k.poison+' 回合':k.nextMax?' · 下回合最高点数':'');}
+function skillReady(s:State,code:SkillCode):boolean {return !!s.skill&&combatSkills(s).includes(code)&&!(s.skill.usedCodes||(s.skill.used?combatSkills(s):[])).includes(code);}
+function trigger(s:State,code:SkillCode){if(s.skill){const k=s.skill;k.usedCodes=k.usedCodes||[];if(!k.usedCodes.includes(code))k.usedCodes.push(code);k.used=combatSkills(s).every(c=>k.usedCodes!.includes(c));k.event+=(k.event?' · ':'')+SKILLS[code][0]+'！';}}
+export const TEMP_SKILLS:SkillCode[]=['tm_healStrike','tm_guardHeal','tm_boostShield','tm_healPower','tm_finisher','tm_lastStand','tm_firstShield','tm_combo'];
+export type BattleEventKind='revive'|'heal'|'giant'|'learn'|'egg';
+export const giantMultiplier=(s:State,uid?:string)=>uid&&(s.runEffects?.[uid]?.giantUntil||0)>=s.step?1.5:1;
+export function combatSkills(s:State,uid=s.active.uid!):SkillCode[]{return Array.from(new Set([...petSkills(uid===s.active.uid?s.active:petEntry(s,uid)),...(s.runEffects?.[uid]?.skills||[])]));}
+export function battleEventOptions(s:State):BattleEventKind[]{
+  const team=homeParty(s).filter(Boolean),alive=team.filter(uid=>petCombat(s,uid).hp>0),out:BattleEventKind[]=['egg'];
+  if(team.some(uid=>petCombat(s,uid).hp===0))out.push('revive');
+  if(alive.some(uid=>petCombat(s,uid).ratio<1))out.push('heal');
+  if(alive.some(uid=>giantMultiplier(s,uid)===1))out.push('giant');
+  if(alive.some(uid=>TEMP_SKILLS.some(c=>!combatSkills(s,uid).includes(c))))out.push('learn');
+  return out;
+}
+export function grantBattleEvent(before:State,kind:BattleEventKind):State {
+  if(before.phase==='event'||!battleEventOptions(before).includes(kind))return before;
+  const s=clone(before);rememberParty(s);delete s.skill;
+  const team=homeParty(s).filter(Boolean),alive=team.filter(uid=>petCombat(s,uid).hp>0);
+  s.battleEvent={kind};s.phase='event';
+  if(kind==='egg'){
+    const rates=eggRates({mapId:s.mapId,step:5}),roll=rand(s)*100;
+    const rarity:EggRarity=roll<rates.normal?'normal':roll<rates.normal+rates.SR?'SR':'SSR',affinity=pick(s,mapFor(s).pets);
+    const id='event-'+(s.mapId||0)+'-'+s.step+'-'+s.seed+'-'+s.revision;
+    s.eggs=s.eggs||[];s.eggs.push({id,affinity,rarity,stage:5,mapId:s.mapId||0});s.battleEvent.eggId=id;
+  }else{
+    let targets=alive;
+    if(kind==='revive')targets=team.filter(uid=>petCombat(s,uid).hp===0);
+    if(kind==='heal'){const lowest=Math.min(...alive.filter(uid=>petCombat(s,uid).ratio<1).map(uid=>petCombat(s,uid).hp));targets=alive.filter(uid=>petCombat(s,uid).ratio<1&&petCombat(s,uid).hp===lowest);}
+    if(kind==='giant')targets=alive.filter(uid=>giantMultiplier(s,uid)===1);
+    if(kind==='learn')targets=alive.filter(uid=>TEMP_SKILLS.some(c=>!combatSkills(s,uid).includes(c)));
+    const uid=pick(s,targets);s.battleEvent.uid=uid;
+    if(kind==='revive'||kind==='heal'){const p=petCombat(s,uid);s.combatVitals![uid]={hpRatio:1,hpBonus:p.bonus};loadActiveVitals(s);}
+    else{const effect=(s.runEffects||(s.runEffects={}))[uid]||(s.runEffects![uid]={});
+      if(kind==='giant')effect.giantUntil=Math.min(mapStageCount(s),s.step+2);
+      else{const code=pick(s,TEMP_SKILLS.filter(c=>!combatSkills(s,uid).includes(c)));effect.skills=[...(effect.skills||[]),code];s.battleEvent.skill=code;}
+    }
+  }
+  s.revision++;return s;
+}
+function validRunEffects(s:State):boolean {
+  if(s.runEffects){if(typeof s.runEffects!=='object'||Array.isArray(s.runEffects))return false;
+    for(const [uid,e] of Object.entries(s.runEffects)){if(!s.pets?.some(p=>p.uid===uid)||!e||typeof e!=='object'||e.giantUntil!==undefined&&(!Number.isInteger(e.giantUntil)||e.giantUntil<1||e.giantUntil>mapStageCount(s))||e.skills!==undefined&&(!Array.isArray(e.skills)||e.skills.length>8||new Set(e.skills).size!==e.skills.length||e.skills.some(c=>!TEMP_SKILLS.includes(c))))return false;}
+  }
+  if(s.phase==='event'){const e=s.battleEvent;if(!e||!['revive','heal','giant','learn','egg'].includes(e.kind))return false;
+    if(e.kind==='egg'){if(!s.eggs?.some(egg=>egg.id===e.eggId))return false;}
+    else if(!s.pets?.some(p=>p.uid===e.uid)||e.kind==='learn'&&(!e.skill||!TEMP_SKILLS.includes(e.skill)))return false;
+  }
+  return true;
+}
+export function skillStatus(s:State):string {const k=s.skill;if(!k)return '技能从下一场生效';return rarityName(s.active.rarity)+' · 技能 '+(k.usedCodes?.length||(k.used?1:0))+'/'+combatSkills(s).length+(k.shield?' · 护盾 '+k.shield:k.poison?' · 毒 '+k.poison+' 回合':k.nextMax?' · 下回合最高点数':'');}
 function validHatching(s:State):boolean {
   const uint=(n:any)=>Number.isSafeInteger(n)&&n>=0,object=(v:any)=>v&&typeof v==='object'&&!Array.isArray(v);
   if(s.warmth!==undefined&&(!uint(s.warmth)||s.warmth>9999))return false;
@@ -987,7 +1149,7 @@ function validHatching(s:State):boolean {
       if(!egg||!uint(slot.startedAt)||!uint(slot.readyAt)||slot.readyAt<slot.startedAt||!RARITIES.includes(slot.result)||RARITIES.indexOf(slot.result)<RARITIES.indexOf(egg.rarity)||(egg.bond&&slot.result!==egg.rarity)||(s.hatchedEggIds||[]).includes(slot.eggId)||s.incubators.filter(x=>x?.eggId===slot.eggId).length!==1)return false;}
   }
   if(s.pendingHatch){const r=s.pendingHatch,e=s.eggs!.find(e=>e.id===r.eggId);if(!e||e.affinity!==r.petId||!(s.hatchedEggIds||[]).includes(r.eggId)||!unlockedRarities(s,r.petId).includes(r.rarity)||typeof r.duplicate!=='boolean'||r.warmthGain!==(r.duplicate?{normal:3,SR:8,SSR:20}[r.rarity]:0))return false;}
-  if(s.skill){const k=s.skill;if(!object(k)||typeof k.used!=='boolean'||typeof k.nextMax!=='boolean'||typeof k.event!=='string'||![k.attacks,k.shield,k.poison,k.previousRoll,k.lastDamage,k.lastTaken].every(uint)||k.poison>3||k.shield>12||(k.usedCodes!==undefined&&(!Array.isArray(k.usedCodes)||k.usedCodes.some(c=>!petSkills(s.active).includes(c))||new Set(k.usedCodes).size!==k.usedCodes.length)))return false;}
+  if(s.skill){const k=s.skill;if(!object(k)||typeof k.used!=='boolean'||typeof k.nextMax!=='boolean'||typeof k.event!=='string'||![k.attacks,k.shield,k.poison,k.previousRoll,k.lastDamage,k.lastTaken].every(uint)||k.poison>3||k.shield>200||(k.poisonDamage!==undefined&&(!uint(k.poisonDamage)||k.poisonDamage>10))||(k.usedCodes!==undefined&&(!Array.isArray(k.usedCodes)||k.usedCodes.some(c=>!combatSkills(s).includes(c))||new Set(k.usedCodes).size!==k.usedCodes.length)))return false;}
   if(s.skill?.attackHPRatio!==undefined&&(!Number.isFinite(s.skill.attackHPRatio)||s.skill.attackHPRatio<0||s.skill.attackHPRatio>1))return false;
   if(s.skill?.heroHealUsed!==undefined&&typeof s.skill.heroHealUsed!=='boolean')return false;
   return true;
@@ -1082,7 +1244,8 @@ export function inheritedSkillCount(total:number,roll:number):number {
 export function startBreeding(before:State,mother:string,father:string,now=gameNow()):State {
   const m=before.pets?.find(p=>p.uid===mother),f=before.pets?.find(p=>p.uid===father);
   if(before.breeding||!m||!f||m.sex!=='female'||f.sex!=='male'||mother===father||mother===before.active.uid||father===before.active.uid||!Number.isSafeInteger(now)||now<0)return before;
-  const s=clone(before),form=hatchRandom(s)<.5?m:f,health=hatchRandom(s)<.5?m:f,attack=hatchRandom(s)<.5?m:f;
+  const s=clone(before),mr=RARITIES.indexOf(m.rarity||'normal'),fr=RARITIES.indexOf(f.rarity||'normal');
+  const form=mr===fr?(hatchRandom(s)<.5?m:f):mr>fr?m:f,health=hatchRandom(s)<.5?m:f,attack=hatchRandom(s)<.5?m:f;
   const pool=Array.from(new Set([...petSkills(m),...petSkills(f)])),count=inheritedSkillCount(pool.length,hatchRandom(s)),skills:SkillCode[]=[];
   while(skills.length<count){const i=Math.floor(hatchRandom(s)*pool.length);skills.push(pool.splice(i,1)[0]);}
   const genes:Genes={id:form.id,rarity:form.rarity||'normal',baseHP:petBaseHP(health),baseFaces:[...(attack.baseFaces||PETS[attack.id].faces)],skills};
@@ -1098,7 +1261,7 @@ export function claimBreeding(before:State,now=gameNow()):State {
   const removed=[b.mother,b.father],slots=homeParty(s);rememberParty(s);
   if(removed.includes(s.active.uid!))delete s.skill;
   s.pets=s.pets!.filter(p=>!removed.includes(p.uid!));
-  for(const uid of removed){delete s.runRoster![uid];if(s.combatVitals)delete s.combatVitals[uid];}
+  for(const uid of removed){delete s.runRoster![uid];if(s.combatVitals)delete s.combatVitals[uid];if(s.runEffects)delete s.runEffects[uid];}
   s.team=slots.map(uid=>removed.includes(uid)?'':uid);
   if(s.pets.length){
     if(!s.team[0])s.team[0]=s.team.find(Boolean)||s.pets[0].uid!;

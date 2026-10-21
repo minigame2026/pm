@@ -1,6 +1,7 @@
 import { AudioClip, AudioSource, Node, resources, sys } from 'cc';
 
-type Music = 'camp'|'battle';
+type Music = 'camp-app'|'camp-short'|'battle-normal'|'battle-elite'|'battle-boss';
+type MusicChoice = 'camp'|'battle-normal'|'battle-elite'|'battle-boss';
 type Sound = 'click'|'attack'|'hurt'|'heal'|'boost'|'hatch';
 const PREFS = 'pm.audio.v1';
 
@@ -11,7 +12,10 @@ export class PMAudio {
   private music:AudioSource;
   private effects:AudioSource[]=[];
   private clips:Partial<Record<Music|Sound,AudioClip>>={};
-  private desired:Music='camp';
+  private desired:Music=sys.isNative?'camp-app':'camp-short';
+  private loading=new Set<Music>();
+  private failed=new Set<Music>();
+  private playingTrack:Music|null=null;
   private unlocked=false;
   private suspended=new Set<string>();
   private voice=0;
@@ -21,16 +25,17 @@ export class PMAudio {
     this.music=host.addComponent(AudioSource);this.music.playOnAwake=false;this.music.loop=true;this.music.volume=.55;
     for(let i=0;i<2;i++){const n=new Node('SFX '+i);host.addChild(n);const source=n.addComponent(AudioSource);source.playOnAwake=false;source.volume=.75;this.effects.push(source);}
     try{const p=JSON.parse(sys.localStorage.getItem(PREFS)||'{}');this.musicEnabled=p.music!==false;this.effectsEnabled=p.effects!==false;}catch{}
-    for(const id of ['camp','battle','click','attack','hurt','heal','boost','hatch'] as const){
+    for(const id of ['click','attack','hurt','heal','boost','hatch'] as const){
       resources.load('audio/'+id,AudioClip,(error,clip)=>{
         if(this.disposed)return;
         if(error){console.warn('Audio unavailable:',id);return;}
         this.clips[id]=clip;this.sync();
       });
     }
+    this.loadMusic();
   }
   unlock(){this.unlocked=true;this.sync();}
-  select(track:Music){this.desired=track;this.sync();}
+  select(track:MusicChoice){this.desired=track==='camp'?(sys.isNative?'camp-app':'camp-short'):track;this.sync();}
   pause(reason:string){this.suspended.add(reason);this.music.pause();this.effects.forEach(s=>s.stop());}
   resume(reason:string){this.suspended.delete(reason);this.sync();}
   effect(id:Sound){
@@ -46,10 +51,25 @@ export class PMAudio {
   private sync(){
     if(this.disposed)return;
     if(!this.musicEnabled){this.music.stop();return;}
+    this.loadMusic();
     if(!this.unlocked||this.suspended.size)return;
     const clip=this.clips[this.desired];if(!clip)return;
-    if(this.music.clip!==clip){this.music.stop();this.music.clip=clip;}
+    if(this.music.clip!==clip){
+      this.music.stop();this.music.clip=clip;
+      const old=this.playingTrack;this.playingTrack=this.desired;
+      if(old&&old!==this.desired){delete this.clips[old];resources.release('audio/'+old,AudioClip);}
+    }
     if(!this.music.playing)this.music.play();
   }
-  dispose(){this.disposed=true;this.music.stop();this.effects.forEach(s=>s.stop());}
+  private loadMusic(){
+    const id=this.desired;if(this.disposed||!this.musicEnabled||this.clips[id]||this.loading.has(id)||this.failed.has(id))return;
+    this.loading.add(id);
+    resources.load('audio/'+id,AudioClip,(error,clip)=>{
+      this.loading.delete(id);
+      if(error){this.failed.add(id);console.warn('Music unavailable:',id);return;}
+      if(this.disposed||id!==this.desired){resources.release('audio/'+id,AudioClip);return;}
+      this.clips[id]=clip;this.sync();
+    });
+  }
+  dispose(){this.disposed=true;this.music.stop();this.music.clip=null;this.effects.forEach(s=>s.stop());for(const id of Object.keys(this.clips))if(id.startsWith('camp-')||id.startsWith('battle-'))resources.release('audio/'+id,AudioClip);}
 }

@@ -6,6 +6,7 @@ import { REGION_ART } from './RegionArt';
 import { REGION_PAD_RECTS } from './RegionPads';
 import { HomePeriod, homePeriod, homeArtKey } from './HomeScenery';
 import { TYPE_NAMES, typeMultiplier, matchupMultiplier, typedDamage, enemyAttackAmount, petCombat, isBreedingPet } from './PMModel';
+import { giantMultiplier } from './PMModel';
 import { HERO_RECTS } from './HeroArt';
 import { TrustedClock } from './TrustedClock';
 import { PMAudio } from './PMAudio';
@@ -275,7 +276,7 @@ export class PMGame extends Component {
   }
   private clear(){this.appBattle?.dispose();this.appBattle=null;this.appActors.clear();this.cancelPartyDrag();this.partyDropNodes=[];this.partyDragHint=null;const stop=(n:Node)=>{Tween.stopAllByTarget(n);const opacity=n.getComponent(UIOpacity);if(opacity)Tween.stopAllByTarget(opacity);for(const child of n.children)stop(child);};for(const n of [...this.root.children]){stop(n);n.destroy();}this.root.removeAllChildren();this.controls={};this.modal=null;this.enemyNode=null;this.playerNode=null;this.diceNode=null;this.meters={};this.availableGlows=[];}
   private render(){
-    this.audio?.select((this.screen==='game'||this.screen==='utility'&&this.utilityOrigin==='game')&&this.state.phase==='battle'?'battle':'camp');
+    this.audio?.select((this.screen==='game'||this.screen==='utility'&&this.utilityOrigin==='game')&&this.state.phase==='battle'?rankForStage(this.state.step)==='boss'?'battle-boss':rankForStage(this.state.step)==='elite'?'battle-elite':'battle-normal':'camp');
     if(this.screen==='utility'&&this.utilityDraw){this.utilityDraw();return;}
     this.clear();this.layout();const s=this.state,H=this.h,b=-H/2;
     if(this.screen==='login'){this.loginUI();return;}
@@ -286,7 +287,7 @@ export class PMGame extends Component {
     if(this.screen==='adventure'){this.adventureUI();return;}
     if(this.screen==='partners'){this.partnersUI();return;}
     if(s.phase==='nest'||s.phase==='eggClaimed'){this.nestUI();return;}
-    const phase=s.phase;const panelHeight=phase==='battle'?246:phase==='team'?300:phase==='reward'?350:phase==='encounter'?328:230;
+    const phase=s.phase;const panelHeight=phase==='battle'?246:phase==='team'?300:phase==='reward'||phase==='event'?350:phase==='encounter'?328:230;
     const sceneHeight=H-panelHeight;
     const bg=this.image(this.root,this.regionKey('battle'),0,panelHeight/2,390,sceneHeight);bg.name='background';
     const os=this.artCache.size(this.regionKey('battle')),k=Math.max(390/os.width,sceneHeight/os.height);bg.getComponent(UITransform)!.setContentSize(os.width*k,os.height*k);
@@ -301,7 +302,7 @@ export class PMGame extends Component {
       // Low camera composition from the approved reference: two distinct diagonal battle pads.
       const playerGround=H/2-sceneHeight*.92,enemyGround=H/2-sceneHeight*.62;
       const baseSize=Math.min(230,sceneHeight*.38),playerSize=baseSize*1.2*Math.min(1.15,this.petScale(s.active.id)),enemySize=baseSize*.65*(this.appPresentation&&(s.mapId||0)===0?1:.8)*this.petScale(s.enemy);
-      const enemyX=this.groundX(enemyPet(s),'front',enemySize*1.1,82),playerX=this.groundX(s.active,'back',playerSize*.9,-92);
+      const enemyX=this.groundX(enemyPet(s),'front',enemySize*1.1,82),playerX=this.groundX(s.active,'back',playerSize*.9*giantMultiplier(s,s.active.uid),-92);
       this.battlePad(enemyX,enemyGround,enemySize*1.25*1.2*1.15);
       this.shadow(enemyX,enemyGround,enemySize*.55,.82);this.enemyNode=this.petImage(this.stage,enemyPet(s),enemyX,enemyGround,enemySize*1.1,'enemy');
       this.groundPet(this.enemyNode,enemyPet(s),'front',enemyX,enemyGround);
@@ -315,7 +316,7 @@ export class PMGame extends Component {
       this.text(intent,''+enemyAttackAmount(s),14,4,22,'#b94c0a',32,30);
       this.matchupBadge(intent,matchupMultiplier(s.enemy,s.active.id),8,-12,42);
       this.battlePad(playerX,playerGround,baseSize*1.25);
-      this.shadow(playerX,playerGround,playerSize*.55);this.playerNode=this.petImage(this.stage,s.active,playerX,playerGround,playerSize*.9,'player');
+      this.shadow(playerX,playerGround,playerSize*.55*giantMultiplier(s,s.active.uid));this.playerNode=this.petImage(this.stage,s.active,playerX,playerGround,playerSize*.9*giantMultiplier(s,s.active.uid),'player');
       this.groundPet(this.playerNode,s.active,'back',playerX,playerGround);
       if(s.doubled){const tag=this.panel(this.stage,playerX,playerGround+this.playerNode.getComponent(UITransform)!.height+18,116,28,'#fff0cd',14);this.text(tag,'攻击 ×'+s.boostMultiplier,0,0,14,'#a95a10');}
     }else if(phase==='encounter'){
@@ -328,20 +329,26 @@ export class PMGame extends Component {
       const rank=rankForStage(s.step);this.text(status,rank==='boss'?'BOSS':rank==='elite'?'精英':'普通',-142,-22,10,rank==='boss'?'#ad6e15':rank==='elite'?'#8656b0':C.muted,62,18);
       this.makeNode(status,'enemy-attack-values',0,0,350,94);this.refreshEncounterThreat();
       this.bar(status,30,5,272,1,s.enemyMax+' / '+s.enemyMax);
-      const r=s.reward,pointReward=r.kind==='attack'||r.kind==='heal';
-      const contentWidth=rankForStage(s.step)==='boss'?28:r.kind==='hp'?80:pointReward?35+r.values.length*36-6:54;
-      const rewardLeft=-(40+12+contentWidth)/2,contentLeft=rewardLeft+52;
-      this.text(status,'奖励',rewardLeft+20,-29,15,C.muted,40,24);
+      const r=s.reward,pointReward=r.kind==='attack'||r.kind==='heal',edgeReward=r.kind==='attackMin'||r.kind==='attackMax';
+      const contentWidth=rankForStage(s.step)==='boss'?28:r.kind==='hp'?80:edgeReward?94:pointReward?35+r.values.length*36-6:54;
+      const rewardLabelWidth=['zh-CN','zh-TW','ja','ko'].includes(currentLocale())?40:82;
+      const rewardLeft=-(rewardLabelWidth+12+contentWidth)/2,contentLeft=rewardLeft+rewardLabelWidth+12;
+      this.text(status,'奖励',rewardLeft+rewardLabelWidth/2,-29,15,C.muted,rewardLabelWidth,24).enableWrapText=false;
       if(rankForStage(s.step)==='boss'){this.text(status,'★',contentLeft+14,-29,24,'#e49424',28,26);}
       else {
         if(r.kind==='hp')this.text(status,'HP +'+r.values[0],contentLeft+40,-29,17,C.ink,80,24);
         else {
-          if(r.kind==='attack')this.attackDie(status,contentLeft+13.5,-29,24);
+          if(r.kind==='attack'||edgeReward)this.attackDie(status,contentLeft+13.5,-29,24);
           else this.image(status,r.kind==='boost'?'power-potion':'heal-potion',contentLeft+13.5,-29,27,27);
-          if(pointReward)r.values.forEach((v,i)=>{const chip=this.panel(status,contentLeft+50+i*36,-29,30,24,r.kind==='attack'?'#fce0d8':'#d3f0df',6);this.text(chip,''+v,0,0,17,r.kind==='attack'?'#b94c32':'#278665',28,22);});
+          if(edgeReward)this.text(status,(r.kind==='attackMin'?'↓':'↑')+' +1',contentLeft+62,-29,17,'#b94c32',60,24);
+          else if(pointReward)r.values.forEach((v,i)=>{const chip=this.panel(status,contentLeft+50+i*36,-29,30,24,r.kind==='attack'?'#fce0d8':'#d3f0df',6);this.text(chip,''+v,0,0,17,r.kind==='attack'?'#b94c32':'#278665',28,22);});
           else this.text(status,'+'+r.values[0],contentLeft+40,-29,17,C.ink,28,24);
         }
       }
+    }else if(phase==='event'){
+      const e=s.battleEvent!;
+      if(e.kind==='egg'){const egg=s.eggs!.find(v=>v.id===e.eggId)!;this.eggArt(this.stage,egg,0,center,Math.min(170,size));}
+      else{const p=petEntry(s,e.uid!);this.enemyNode=this.petImage(this.stage,p,0,center,size);this.breathe(this.enemyNode);}
     }else if(phase==='reward'){
       this.shadow(0,center-size*.42,150);this.enemyNode=this.petImage(this.stage,s.active,0,center,size);this.breathe(this.enemyNode);
     }else{
@@ -355,6 +362,7 @@ export class PMGame extends Component {
     if(phase==='encounter')this.encounterUI(sheet,panelHeight);
     if(phase==='battle')this.battleUI(sheet,panelHeight);
     if(phase==='reward')this.rewardUI(sheet,panelHeight);
+    if(phase==='event')this.battleEventUI(sheet);
     if(phase==='recruit')this.recruitUI(sheet,panelHeight);
     if(phase==='team')this.teamUI(sheet,panelHeight);
     if(phase==='won'||phase==='lost'){
@@ -416,7 +424,7 @@ export class PMGame extends Component {
   }
   private starterChoiceUI(){
     this.choiceHeader('选择第一位伙伴','01  主角 ✓     ·     02  初始伙伴');
-    const H=this.h,top=H/2,b=-H/2,petInfo={fox:{color:'#d86d49',tag:'火',note:'抢先一击 · 首次攻击伤害 +2'},bud:{color:'#55a06a',tag:'草',note:'草木祝福 · 首次治疗恢复 +2'},otter:{color:'#479fbd',tag:'水',note:'硬壳 · 首次受击伤害 −2'}},selected=this.selectedStarter,entry=petInfo[selected];
+    const H=this.h,top=H/2,b=-H/2,petInfo={fox:{color:'#d86d49',tag:'火',note:skillFor({id:'fox',rarity:'normal'}).description},bud:{color:'#55a06a',tag:'草',note:skillFor({id:'bud',rarity:'normal'}).description},otter:{color:'#479fbd',tag:'水',note:skillFor({id:'otter',rarity:'normal'}).description}},selected=this.selectedStarter,entry=petInfo[selected];
     const hero=this.state.journey?.hero;this.text(this.root,(hero?HEROES[hero].name+'，':'')+'谁陪你踏上旅途？',0,top-115,18,C.ink,350,30);
     const cardH=114,cardY=b+265,artBottom=cardY+cardH/2+16,artTop=top-144,artSize=Math.max(105,Math.min(226,artTop-artBottom));
     const lead=this.petImage(this.root,{id:selected,rarity:'normal',faces:[]},0,(artTop+artBottom)/2,artSize);this.breathe(lead);
@@ -428,7 +436,7 @@ export class PMGame extends Component {
     const foot=this.panel(this.root,0,b+103,390,206,'#fffdf5',24);
     this.text(foot,PETS[selected].name+' · '+entry.tag,0,71,23,entry.color,350,34).isBold=true;
     this.text(foot,'HP '+PETS[selected].hp+'    ⚄ '+PETS[selected].faces.join(' / '),0,39,17,C.ink,340,28);
-    this.text(foot,entry.note,0,7,14,C.muted,350,28);
+    this.text(foot,entry.note,0,3,13,C.muted,350,48);
     this.button(foot,'starter-confirm','和 '+PETS[selected].name+' 出发  ›',0,-49,350,54,()=>{const next=chooseStarter(this.state,this.selectedStarter);if(next===this.state)return;this.state=next;this.save();this.screen='home';this.render();},entry.color,true,20);
     this.fx=this.makeNode(this.root,'starter-choice-effects',0,0,390,H);
   }
@@ -574,7 +582,7 @@ export class PMGame extends Component {
   }
   private playerHUD(p:Node,top:number,preview=false){const s=this.state;
     this.petImage(p,s.active,preview?-142:-150,top-13,52);
-    if(preview)this.encounterNameAttack(p,petName(s.active),s.active.faces.map(v=>typedDamage(v,matchupMultiplier(s.active.id,s.enemy))),top,PETS[s.active.id].type,matchupMultiplier(s.active.id,s.enemy));
+    if(preview)this.encounterNameAttack(p,petName(s.active),s.active.faces.map(v=>typedDamage(v*giantMultiplier(s,s.active.uid),matchupMultiplier(s.active.id,s.enemy))),top,PETS[s.active.id].type,matchupMultiplier(s.active.id,s.enemy));
     else {this.typeIcon(p,PETS[s.active.id].type,-109,top,20);this.text(p,petName(s.active),-42,top,17,C.ink,112);}
     this.bar(p,30,top-25,272,s.hpRatio,hp(s)+' / '+maxHP(s),'player');
   }
@@ -700,7 +708,8 @@ export class PMGame extends Component {
     this.text(p,'胜利',0,145,30,'#bf812b',240,42).isBold=true;
     const recovery=this.panel(p,0,104,198,29,'#e2f5eb',14);
     this.heartIcon(recovery,-77,0,19,'#36a779');this.text(recovery,'恢复生命 +20%',15,0,15,'#278665',160,25);
-    this.text(p,r.kind==='attack'?'攻击点数 · 选择一项':r.kind==='heal'?'恢复点数 · 选择一项':'获得奖励',0,72,15,C.muted,260,24);
+    const teamReward=r.kind==='hp'||r.kind==='attackMin'||r.kind==='attackMax';
+    this.text(p,r.kind==='attack'?'攻击点数 · 选择一项':r.kind==='heal'?'恢复点数 · 选择一项':teamReward?'全队获得奖励':'获得奖励',0,72,15,C.muted,320,24);
     if(r.kind==='attack'||r.kind==='heal'){
       const healing=r.kind==='heal';
       [{id:'keep' as Action,title:'原点数',action:'保留',values:healing?s.healFaces:s.active.faces,tint:'#448dbc',bg:'#edf7fd'},
@@ -717,16 +726,25 @@ export class PMGame extends Component {
       });
       return;
     }
-    const palette={hp:['#d95570','#fff0f3','生命上限'],attack:['#e49424','#fff5df','攻击点数'],heal:['#299c72','#eaf9f1','恢复点数'],potion:['#299c72','#eaf9f1','生命药水'],boost:['#d95557','#fff0ee','力量药水']};
+    const palette={hp:['#d95570','#fff0f3','生命上限'],attackMin:['#cf7130','#fff5df','最低攻击'],attackMax:['#ce4c40','#fff0ee','最高攻击'],attack:['#e49424','#fff5df','攻击点数'],heal:['#299c72','#eaf9f1','恢复点数'],potion:['#299c72','#eaf9f1','生命药水'],boost:['#d95557','#fff0ee','力量药水']};
       const [tint,bg,name]=palette[r.kind];
       const card=this.panel(p,0,-4,338,118,bg,17);
       const border=card.getComponent(Graphics)!;border.lineWidth=2;border.strokeColor=color(tint);border.roundRect(-167,-57,334,114,15);border.stroke();
-      this.text(card,name,47,33,18,tint,206,28).isBold=true;
-      if(r.kind==='hp')this.heartIcon(card,-105,0,70,tint);
-      else this.image(card,r.kind==='boost'?'power-potion':'heal-potion',-105,0,87,87);
-      {
-        const current=r.kind==='hp'?maxHP(s):r.kind==='potion'?s.potions:s.boosts;
-        const next=r.kind==='hp'?current+r.values[0]:Math.min(9,current+r.values[0]);
+      if(teamReward){
+        this.text(card,name+' +'+r.values[0],0,36,18,tint,310,28).isBold=true;
+        const team=homeParty(s).filter(Boolean);
+        team.forEach((uid,i)=>{
+          const stats=petCombat(s,uid),x=(i-(team.length-1)/2)*104;
+          const current=r.kind==='hp'?stats.max:r.kind==='attackMin'?Math.min(...stats.pet.faces):Math.max(...stats.pet.faces);
+          const next=r.kind==='hp'?Math.round((petBaseHP(stats.pet)+Math.min(450,stats.bonus+r.values[0]))*giantMultiplier(s,uid)):Math.min(100,current+r.values[0]);
+          this.petImage(card,stats.pet,x,0,39);
+          this.text(card,current+' → '+next,x,-34,17,tint,100,26).isBold=true;
+        });
+      }else{
+        this.text(card,name,47,33,18,tint,206,28).isBold=true;
+        this.image(card,r.kind==='boost'?'power-potion':'heal-potion',-105,0,87,87);
+        const current=r.kind==='potion'?s.potions:s.boosts;
+        const next=Math.min(9,current+r.values[0]);
         this.text(card,'+'+(next-current),47,0,34,tint,180,44).isBold=true;
         this.text(card,current+' → '+next,47,-35,15,C.muted,180,24);
       }
@@ -735,6 +753,28 @@ export class PMGame extends Component {
     const surface=take.getComponent(Graphics)!;surface.fillColor=color('#ffe8a0',170);surface.roundRect(-162,2,324,21,10);surface.fill();
     const caption=this.text(take,'领取奖励',0,0,23,'#fffdf2',300,40);caption.isBold=true;
     const edge=caption.node.addComponent(LabelOutline);edge.color=color('#a97424');edge.width=1.4;
+  }
+  private battleEventUI(p:Node){
+    const s=this.state,e=s.battleEvent!,tint=e.kind==='egg'?'#ca8b2b':e.kind==='learn'?'#7662bd':e.kind==='giant'?'#d66a45':'#329574';
+    this.text(p,'奇遇',0,142,30,tint,320,44).isBold=true;
+    const titles={revive:'伙伴复活',heal:'恢复满生命',giant:'巨化',learn:'招式学习器',egg:'获得精英蛋'};
+    this.text(p,titles[e.kind],0,99,21,C.ink,330,32).isBold=true;
+    const card=this.panel(p,0,8,338,130,'#ffffff',17);
+    if(e.uid)this.text(card,petName(petEntry(s,e.uid)),0,43,18,tint,310,28).isBold=true;
+    if(e.kind==='revive'||e.kind==='heal'){
+      const c=petCombat(s,e.uid!);this.heartIcon(card,-57,-10,34,tint);this.text(card,c.hp+' / '+c.max,25,-10,28,tint,200,42).isBold=true;
+    }else if(e.kind==='giant'){
+      this.text(card,'体型／生命上限／攻击 +50%',0,2,17,tint,310,42).isBold=true;
+      this.text(card,'接下来2场 · 本关内有效',0,-41,14,C.muted,310,28);
+    }else if(e.kind==='learn'){
+      this.text(card,SKILLS[e.skill!][0],0,5,18,tint,310,30).isBold=true;
+      this.text(card,SKILLS[e.skill!][1],0,-37,14,C.muted,310,46);
+    }else{
+      const egg=s.eggs!.find(v=>v.id===e.eggId)!;this.text(card,this.eggName(egg),0,20,26,this.eggTint(egg),310,42).isBold=true;
+      this.text(card,'已放入蛋袋',0,-24,17,C.muted,310,30);
+    }
+    if(e.kind==='learn')this.text(p,'本关内有效',0,-77,14,C.muted,310,28);
+    this.button(p,'eventContinue','继续冒险  ›',0,-123,338,56,()=>this.command('eventContinue'),tint,true,22);
   }
   private recruitUI(p:Node,height:number){
     this.text(p,'它愿意成为你的伙伴',0,82,19);this.text(p,'邀请必定成功 · 不消耗道具',0,46,14,C.muted);
@@ -1071,7 +1111,7 @@ export class PMGame extends Component {
 
   private breedingUI(){
     const s=this.state,b=s.breeding,c=this.fullPage('交配屋',b?'交配中':'选择一雌一雄',()=>this.breedingUI()),{top,bottom,height}=this.pageBounds(c);
-    this.helpButton(c,'形态、HP、攻击各有 50% 随父或随母。\n技能从父母技能池随机继承，最多 6 个。\n交配需 '+(BUILD_TEST_MODE?'3 秒':'30 分钟')+'，离线继续。\n领取蛋后父母消失，蛋需再孵化。');
+    this.helpButton(c,'异品质合成保留较高品质及形态。\n同品质形态、HP、攻击各有50%随父或母。\n技能从父母技能池随机继承，最多 6 个。\n交配需 '+(BUILD_TEST_MODE?'3 秒':'30 分钟')+'，离线继续。\n领取蛋后父母消失，蛋需再孵化。');
     if(!b){if(this.breedMother===s.active.uid||!s.pets!.some(p=>p.uid===this.breedMother))this.breedMother='';if(this.breedFather===s.active.uid||!s.pets!.some(p=>p.uid===this.breedFather))this.breedFather='';}
     const mother=b?.mother||this.breedMother,father=b?.father||this.breedFather;
     this.breedClock=null;
@@ -1311,15 +1351,15 @@ export class PMGame extends Component {
     }else{const empty=this.panel(this.root,0,petY,280,72,'#fffdf0',20,235);this.text(empty,'营地等待新的伙伴\n请先孵化新伙伴',0,0,19,'#316b70',270,62);}
     this.panel(this.root,0,b+164,390,320,'#f8f5e8',28,246);
     const explore=this.button(this.root,'home-explore','',0,b+271,350,86,()=>{this.mapIndex=latestUnlockedMap(this.state);this.mapTabPage=Math.floor(this.mapIndex/6);this.screen='adventure';this.render();},'#df6156');
-    this.menuIcon(explore,'map',-128,0,47);this.text(explore,'探险',0,16,28,'#ffffff',106,38).isBold=true;
+    this.menuIcon(explore,'map',-128,0,47);const exploreTitle=this.text(explore,'探险',0,16,28,'#ffffff',174,38);exploreTitle.isBold=true;exploreTitle.enableWrapText=false;
     this.menuIcon(explore,'energy',-15,-20,20,'#ffde65');this.text(explore,'−'+EXPEDITION_COST,12,-20,18,'#fff2d5',32,26);
     this.text(explore,'›',145,0,42,'#ffe4bd',40,60);
     const partners=this.button(this.root,'home-partners','',-90,b+164,170,104,()=>this.collection(0),'#427b9e');this.menuIcon(partners,'paw',-48,6,39,'#f3d58c');
-    this.text(partners,'伙伴',25,10,24,'#ffffff',82,34).isBold=true;this.text(partners,'已拥有 '+s.pets!.length+' 只',0,-31,13,'#dceef5',158,24);
+    const partnerTitle=this.text(partners,'伙伴',25,10,24,'#ffffff',100,34);partnerTitle.isBold=true;partnerTitle.enableWrapText=false;this.text(partners,'已拥有 '+s.pets!.length+' 只',0,-31,13,'#dceef5',158,24);
     const incubating=(s.incubators||[]).filter(Boolean),ready=incubating.filter(slot=>hatchRemaining(slot!)===0).length;
     const nursery=this.button(this.root,'home-hatch','',90,b+164,170,104,()=>this.hatchery(),'#519b81');
     this.eggArt(nursery,{id:'home',rarity:'normal',affinity:'bud',stage:5},-48,9,46);
-    this.text(nursery,'孵化屋',25,10,22,'#ffffff',94,34).isBold=true;
+    const nurseryTitle=this.text(nursery,'孵化屋',25,10,22,'#ffffff',100,34);nurseryTitle.isBold=true;nurseryTitle.enableWrapText=false;
     this.homeHatchStatus=this.text(nursery,ready?'有 '+ready+' 枚可以破壳':incubating.length+' / 2 孵化中',0,-31,13,'#e5f7de',158,24);
     if(ready||s.pendingHatch){const dot=this.panel(nursery,73,43,24,24,'#f3ba4f',12);this.text(dot,'!',0,0,16,'#694b20',24,24);}
     const breed=this.button(this.root,'home-breed','',-120,b+64,110,64,()=>this.breedingUI(),'#b57b9b');this.text(breed,'♀ ♂',0,11,22,'#fff2d9',104,30);this.text(breed,s.breeding?(gameNow()>=s.breeding.readyAt?'领取宠物蛋':'交配中'):'交配屋',0,-16,14,'#ffffff',104,25);
@@ -1371,14 +1411,15 @@ export class PMGame extends Component {
     this.button(c,'settings-language','语言  ›',0,-72,300,48,()=>this.languageSettings(),'#286f94');
   }
   private languageSettings(){
-    const c=this.overlay('语言',472);
+    const c=this.overlay('语言',488);
     LANGUAGES.forEach((entry,i)=>{
       const chosen=languageChoice()===entry.id;
-      const button=this.button(c,'language-'+entry.id,(chosen?'✓ ':'')+entry.name,0,145-i*43,300,38,()=>{
+      const row=i===0?0:1+Math.floor((i-1)/2),x=i===0?0:((i-1)%2===0?-78:78);
+      const button=this.button(c,'language-'+entry.id,(chosen?'✓ ':'')+entry.name,x,150-row*46,i===0?306:150,40,()=>{
         selectLanguage(entry.id,sys.languageCode||sys.language||'en');
         try{sys.localStorage.setItem(LANGUAGE_KEY,entry.id);}catch{}
         this.render();this.languageSettings();
-      },chosen?'#286f94':'#e4eef1',true,17);
+      },chosen?'#286f94':'#e4eef1',true,15);
       // Language names stay in their own script so players can always find them.
       if(entry.id!=='system')button.getComponentInChildren(Label)!.string=(chosen?'✓ ':'')+entry.name;
     });
