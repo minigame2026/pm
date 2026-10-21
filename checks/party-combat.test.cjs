@@ -6,7 +6,7 @@ s.hpRatio=.4;s.hpBonus=5;s.active.faces=[8,9,10];
 let n=M.selectActive(s,b);assert.equal(n.hpRatio,1,'reserve has independent full HP');assert.equal(n.hpBonus,0);
 n=M.selectActive(n,a);assert.equal(n.hpRatio,.4);assert.equal(n.hpBonus,5);assert.deepEqual([...n.active.faces],[8,9,10]);
 n.phase='reward';n.reward={kind:'hp',values:[3],title:'HP'};n=M.act(n,'take');assert.equal(n.hpBonus,8);
-n=M.selectActive(n,b);assert.equal(n.hpBonus,0);assert.equal(n.hpRatio,1);
+n=M.selectActive(n,b);assert.equal(n.hpBonus,3);assert.equal(M.hp(n),M.petBaseHP(n.active),'team HP reward preserves current reserve health');
 n.phase='reward';n.reward={kind:'attack',values:[11,12,13],title:'attack'};n=M.act(n,'take');n=M.selectActive(n,a);assert.deepEqual([...n.active.faces],[8,9,10]);
 n=M.selectActive(n,b);assert.deepEqual([...n.active.faces],[11,12,13]);
 n=M.selectActive(n,a);n=M.act(n,'challenge');

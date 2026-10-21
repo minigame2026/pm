@@ -1,0 +1,20 @@
+{
+  "platform": "ios",
+  "debug": false,
+  "name": "DicePet",
+  "outputName": "ios",
+  "buildPath": "project://build",
+  "startScene": "badfb9c8-daec-44ba-b1a5-c763f12e9dce",
+  "scenes": [{ "url": "db://assets/scenes/PMGame.scene", "uuid": "badfb9c8-daec-44ba-b1a5-c763f12e9dce" }],
+  "packages": {
+    "ios": {
+      "packageName": "com.dice.pet.rpg",
+      "developerTeam": "U5FT6JFLWS",
+      "targetVersion": "13.0",
+      "skipUpdateXcodeProject": false,
+      "orientation": { "portrait": true, "upsideDown": false, "landscapeLeft": false, "landscapeRight": false },
+      "renderBackEnd": { "metal": true }
+    },
+    "native": { "encrypted": false, "compressZip": false, "makeAfterBuild": false }
+  }
+}

@@ -39,6 +39,7 @@ public class AppActivity extends CocosActivity {
         // DO OTHER INITIALIZATION BELOW
         SDKWrapper.shared().init(this);
         PMTapAds.attach(this);
+        PMShare.attach(this);
 
     }
 
@@ -57,6 +58,7 @@ public class AppActivity extends CocosActivity {
     @Override
     protected void onDestroy() {
         PMTapAds.detach(this);
+        PMShare.detach(this);
         super.onDestroy();
         // Workaround in https://stackoverflow.com/questions/16283079/re-launch-of-activity-on-home-button-but-only-the-first-time/16447508
         if (!isTaskRoot()) {
@@ -69,12 +71,14 @@ public class AppActivity extends CocosActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         SDKWrapper.shared().onActivityResult(requestCode, resultCode, data);
+        PMShare.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         SDKWrapper.shared().onNewIntent(intent);
+        PMShare.acceptIntent(intent);
     }
 
     @Override

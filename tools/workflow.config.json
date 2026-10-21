@@ -7,26 +7,136 @@
   "buildIndex": "build/web-mobile/index.html",
   "server": "tools/serve.cjs",
   "moduleRoutes": [
-    {"pattern":"^assets/scripts/(PMLocale|PMTranslations)\\.ts(\\.meta)?$","scopes":["locale"]},
-    {"pattern":"^assets/scripts/LocalizedLogoArt\\.ts(\\.meta)?$|^assets/resources/art/login-title-(en|ja|ko|zh-TW|th)-v\\d+\\.png(\\.meta)?$","scopes":["logos"]},
-    {"pattern":"^assets/scripts/(PMAppBattle|AppBattleArt)\\.ts(\\.meta)?$|^assets/resources/art/app-(fox|bud|otter)-poses-v\\d+\\.png(\\.meta)?$|^assets/resources/art/app-coast-v\\d+\\.png(\\.meta)?$","scopes":["app-battle"]},
-    {"pattern":"^assets/scripts/(PMArt|ArtSourceSizes)\\.ts(\\.meta)?$","scopes":["assets"]},
-    {"pattern":"^assets/scripts/(PMAudio)\\.ts(\\.meta)?$","scopes":["audio"]},
-    {"pattern":"^assets/scripts/(DurableCheckpoint)\\.ts(\\.meta)?$","scopes":["resume"]},
-    {"pattern":"^assets/scripts/(TrustedClock)\\.ts(\\.meta)?$","scopes":["time"]}
+    {
+      "pattern": "^assets/scripts/(PMSharing\\.ts(\\.meta)?|vendor/)|^native/engine/android/app/src/com/cocos/game/PMShare\\.java$|^tools/social-deps/package(-lock)?\\.json$",
+      "scopes": [
+        "postcards"
+      ]
+    },
+    {
+      "pattern": "^tools/(build-locales\\.py|locales/(ui|game|pets|surprises|postcards)\\.tsv)$",
+      "scopes": [
+        "locale"
+      ]
+    },
+    {
+      "pattern": "^assets/scripts/(PMLocale|PMTranslations)\\.ts(\\.meta)?$",
+      "scopes": [
+        "locale"
+      ]
+    },
+    {
+      "pattern": "^assets/scripts/LocalizedLogoArt\\.ts(\\.meta)?$|^assets/resources/art/login-title-(en|ja|ko|zh-TW|th|pt-BR|es-419|id|vi|de|fr)-v\\d+\\.png(\\.meta)?$",
+      "scopes": [
+        "logos"
+      ]
+    },
+    {
+      "pattern": "^assets/scripts/(PMAppBattle|AppBattleArt)\\.ts(\\.meta)?$|^assets/resources/art/app-(fox|bud|otter)-poses-v\\d+\\.png(\\.meta)?$|^assets/resources/art/app-coast-v\\d+\\.png(\\.meta)?$",
+      "scopes": [
+        "app-battle"
+      ]
+    },
+    {
+      "pattern": "^assets/scripts/(PMArt|ArtSourceSizes)\\.ts(\\.meta)?$",
+      "scopes": [
+        "assets"
+      ]
+    },
+    {
+      "pattern": "^assets/scripts/(PMAudio)\\.ts(\\.meta)?$",
+      "scopes": [
+        "audio"
+      ]
+    },
+    {
+      "pattern": "^assets/scripts/(DurableCheckpoint)\\.ts(\\.meta)?$",
+      "scopes": [
+        "resume"
+      ]
+    },
+    {
+      "pattern": "^assets/scripts/(TrustedClock)\\.ts(\\.meta)?$",
+      "scopes": [
+        "time"
+      ]
+    }
   ],
   "scopes": {
+    "map-layout": {
+      "tests": [],
+      "runtime": [
+        "checks/map-layout-runtime.cjs"
+      ]
+    },
+    "postcards": {
+      "tests": [
+        "checks/postcards.test.cjs",
+        "checks/friend-visit.test.cjs",
+        "checks/locale.test.cjs"
+      ],
+      "runtime": [
+        "checks/postcards-runtime.cjs",
+        "checks/friend-visit-runtime.cjs"
+      ]
+    },
+    "surprises": {
+      "tests": [
+        "checks/surprises.test.cjs",
+        "checks/run-events.test.cjs",
+        "checks/skill-diversity.test.cjs",
+        "checks/party-combat.test.cjs",
+        "checks/locale.test.cjs"
+      ],
+      "runtime": [
+        "checks/surprises-runtime.cjs"
+      ]
+    },
+    "run-events": {
+      "tests": [
+        "checks/run-events.test.cjs",
+        "checks/skill-diversity.test.cjs",
+        "checks/team-rewards.test.cjs",
+        "checks/party-combat.test.cjs",
+        "checks/locale.test.cjs"
+      ],
+      "runtime": [
+        "checks/run-events-runtime.cjs"
+      ]
+    },
+    "team-rewards": {
+      "tests": [
+        "checks/team-rewards.test.cjs",
+        "checks/party-combat.test.cjs",
+        "checks/locale.test.cjs"
+      ],
+      "runtime": [
+        "checks/team-rewards-runtime.cjs"
+      ]
+    },
     "logos": {
       "tests": [],
-      "runtime": ["checks/localized-logo-runtime.cjs"]
+      "runtime": [
+        "checks/localized-logo-runtime.cjs"
+      ]
     },
     "locale": {
-      "tests": ["checks/locale.test.cjs"],
-      "runtime": ["checks/locale-runtime.cjs", "checks/locale-hatch-runtime.cjs"]
+      "tests": [
+        "checks/locale.test.cjs"
+      ],
+      "runtime": [
+        "checks/locale-runtime.cjs",
+        "checks/locale-hatch-runtime.cjs"
+      ]
     },
     "locale-hatch": {
-      "tests": ["checks/locale.test.cjs", "checks/party-combat.test.cjs"],
-      "runtime": ["checks/locale-hatch-runtime.cjs"]
+      "tests": [
+        "checks/locale.test.cjs",
+        "checks/party-combat.test.cjs"
+      ],
+      "runtime": [
+        "checks/locale-hatch-runtime.cjs"
+      ]
     },
     "onboarding": {
       "tests": [
@@ -138,7 +248,9 @@
       ]
     },
     "audio": {
-      "tests": [],
+      "tests": [
+        "checks/audio-routing.test.cjs"
+      ],
       "runtime": [
         "checks/audio-runtime.cjs"
       ]
@@ -182,8 +294,15 @@
     },
     "release": {
       "tests": [
-        "checks/onboarding.test.cjs",
+        "checks/postcards.test.cjs",
         "checks/friend-visit.test.cjs",
+        "checks/locale.test.cjs",
+        "checks/surprises.test.cjs",
+        "checks/run-events.test.cjs",
+        "checks/skill-diversity.test.cjs",
+        "checks/party-combat.test.cjs",
+        "checks/team-rewards.test.cjs",
+        "checks/onboarding.test.cjs",
         "checks/model.test.cjs",
         "checks/regions-expansion.test.cjs",
         "checks/individuals-breeding.test.cjs",
@@ -193,18 +312,28 @@
         "checks/hatch-ad.test.cjs",
         "checks/trusted-clock.test.cjs",
         "checks/stamina.test.cjs",
+        "checks/audio-routing.test.cjs",
         "checks/mobile-flow.test.cjs",
         "tools/audit-project.cjs",
         "checks/workflow.test.cjs",
         "checks/art-cache.test.cjs",
+        "checks/iteration-oct20.test.cjs",
         "checks/release-soak.test.cjs"
       ],
       "runtime": [
+        "checks/map-layout-runtime.cjs",
+        "checks/postcards-runtime.cjs",
+        "checks/friend-visit-runtime.cjs",
+        "checks/surprises-runtime.cjs",
+        "checks/run-events-runtime.cjs",
+        "checks/team-rewards-runtime.cjs",
+        "checks/localized-logo-runtime.cjs",
+        "checks/locale-runtime.cjs",
+        "checks/locale-hatch-runtime.cjs",
         "checks/onboarding-runtime.cjs",
         "checks/workflow-smoke.cjs",
         "checks/mobile-flow-runtime.cjs",
         "checks/countdown-hatch-ad-runtime.cjs",
-        "checks/friend-visit-runtime.cjs",
         "checks/battle-resume-runtime.cjs",
         "checks/type-matchups-runtime.cjs",
         "checks/regions-runtime.cjs",
@@ -215,7 +344,10 @@
         "checks/scenery-runtime.cjs",
         "checks/swipe-short-runtime.cjs",
         "checks/asset-loading-runtime.cjs",
-        "checks/release-audit-runtime.cjs"
+        "checks/release-audit-runtime.cjs",
+        "checks/app-battle-runtime.cjs",
+        "checks/iteration-oct20-runtime.cjs",
+        "checks/party-combat-runtime.cjs"
       ]
     },
     "assets": {

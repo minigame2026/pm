@@ -2,9 +2,10 @@ const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('nod
 const ts=require(path.join(path.dirname(cfg.typescript),'typescript.js')),M={};
 vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/PMModel.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS}}).outputText,{exports:M,Math,Date,JSON,Set});
 const T=Date.now(),ready=M.syncStamina(M.fresh(42,['fox','turtle','bud']),T);ready.journey={version:1,stage:'done',hero:'ranger',starter:'fox',legacy:true};
-const systems={'zh-CN':'伙伴','en-US':'Pets','ja-JP':'仲間','ko-KR':'친구','zh-TW':'仲間','th-TH':'เพื่อน','de-DE':'Pets'};
+const systems={'zh-CN':'伙伴','en-US':'Pets','ja-JP':'仲間','ko-KR':'친구','zh-TW':'仲間','th-TH':'เพื่อน','pt-BR':'Parceiros','es-MX':'Compañeros','id-ID':'Teman','vi-VN':'Bạn đồng hành','de-DE':'Begleiter','fr-FR':'Compagnons','it-IT':'Pets'};
 (async()=>{const b=await chromium.launch({channel:'msedge',headless:true});try{
  for(const [system,title] of Object.entries(systems)){
+  if(process.env.PM_LOCALE_SYSTEM&&system!==process.env.PM_LOCALE_SYSTEM)continue;
   const context=await b.newContext({viewport:{width:390,height:844},locale:system,isMobile:true,hasTouch:true}),page=await context.newPage(),errors=[];
   page.on('pageerror',e=>errors.push(String(e)));
   await context.route('https://timeapi.io/**',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({timeZone:'UTC',dateTime:new Date(T).toISOString().slice(0,-1)})}));
@@ -15,26 +16,37 @@ const systems={'zh-CN':'伙伴','en-US':'Pets','ja-JP':'仲間','ko-KR':'친구'
     globalThis.labels=()=>{const all=[];function walk(n){if(!n.activeInHierarchy)return;const l=n.getComponent(cc.Label);if(l)all.push(l.string);n.children.forEach(walk);}walk(g.root);return all;};
    });
   }await boot();
-  const lang=system==='de-DE'?'en':system==='zh-CN'||system==='zh-TW'?system:system.slice(0,2);
+  const lang=system==='it-IT'?'en':system==='es-MX'?'es-419':['zh-CN','zh-TW','pt-BR'].includes(system)?system:system.slice(0,2);
   await page.screenshot({path:`checks/locale-${lang}-cover.png`});
   for(const screen of ['home','adventure','partners','game']){
    await page.evaluate(screen=>{g.screen=screen;g.render();},screen);await page.waitForTimeout(220);
    const text=await page.evaluate(()=>labels());
    if(screen==='home')assert(text.includes(system==='zh-TW'?'夥伴':title),system+' home title');
-   if(['en','ko','th'].includes(lang))assert(!/[\u3400-\u9fff]/.test(text.join('\n')),system+': '+text.filter(t=>/[\u3400-\u9fff]/.test(t)));
+   if(!['zh-CN','zh-TW','ja'].includes(lang))assert(!/[\u3400-\u9fff]/.test(text.join('\n')),system+': '+text.filter(t=>/[\u3400-\u9fff]/.test(t)));
    if(screen==='home'||screen==='game')await page.screenshot({path:`checks/locale-${lang}-${screen}.png`});
   }
   for(const draw of ['pokedexUI','hatchery','breedingUI','socialUI','encounterTypesUI']){
    await page.evaluate(draw=>g[draw](),draw);await page.waitForTimeout(180);
-   if(['en','ko','th'].includes(lang))assert(!/[\u3400-\u9fff]/.test((await page.evaluate(()=>labels())).join('\n')),system+' '+draw);
+   if(!['zh-CN','zh-TW','ja'].includes(lang))assert(!/[\u3400-\u9fff]/.test((await page.evaluate(()=>labels())).join('\n')),system+' '+draw);
   }
   await page.setViewportSize({width:320,height:568});await page.waitForTimeout(250);
   await page.evaluate(()=>{g.screen='home';g.render();g.homeSettings();});
   await page.waitForTimeout(250);
   const before=await page.evaluate(()=>JSON.stringify(g.state));
   await page.screenshot({path:`checks/locale-${lang}-settings-320.png`});
-  async function tap(id){const c=await page.evaluate(id=>__pm.controls()[id],id);assert(c,id);const k=page.viewportSize().width/390;await page.touchscreen.tap(c.x*k,c.y*k);await page.waitForTimeout(180);}
+  async function tap(id){
+   // Buttons defer their action for feedback and reject taps within 180ms.
+   // Wait on that state instead of racing a fixed 180ms timeout on slow frames.
+   await page.waitForFunction(()=>!g.busy&&!g.pressPending&&performance.now()-g.lastTap>=200);
+   const c=await page.evaluate(id=>__pm.controls()[id],id);assert(c,id);
+   const k=page.viewportSize().width/390;await page.touchscreen.tap(c.x*k,c.y*k);
+   await page.waitForFunction(()=>!g.busy&&!g.pressPending&&performance.now()-g.lastTap>=200);
+  }
   await tap('settings-language');await page.screenshot({path:`checks/locale-${lang}-picker-320.png`});
+  const picker=await page.evaluate(()=>Object.entries(__pm.controls()).filter(([key])=>key.startsWith('language-')));
+  assert.equal(picker.length,14,'13 choices and back');
+  for(const [id,r] of picker){assert(r.x-r.w/2>=0&&r.x+r.w/2<=390,id+' horizontal bounds');assert(r.y-r.h/2>=0&&r.y+r.h/2<=568*390/320,id+' vertical bounds');}
+  await tap('language-'+lang);assert.equal(await page.evaluate(()=>localStorage.getItem('pm.language.v1')),lang,'select current localized choice');
   await tap('language-en');assert.equal(await page.evaluate(()=>localStorage.getItem('pm.language.v1')),'en');
   await tap('language-back');assert((await page.evaluate(()=>labels())).includes('Settings'));
   assert.equal(await page.evaluate(()=>JSON.stringify(g.state)),before,'language must not alter game state');

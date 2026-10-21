@@ -9,7 +9,7 @@ for(const file of docs){const body=fs.readFileSync(file,'utf8');for(const match 
  const link=match[1].replace(/^<|>$/g,'');if(/^(https?:|#|mailto:)/i.test(link))continue;
  const target=decodeURIComponent(link.split('#')[0]);if(target)assert.ok(fs.existsSync(path.resolve(path.dirname(file),target)),path.relative(root,file)+' -> '+link);
 }}
-for(const file of ['试玩说明.txt','docs/主界面-v0.8.txt','docs/孵蛋与品质技能-v1.txt','docs/巢穴寻蛋-实施说明.txt','docs/pets/catalog.json','docs/pets/宠物图鉴.html','tools/prepare.py','tools/upgrade-individuals.py'])assert.ok(!fs.existsSync(path.join(root,file)),'Superseded file remains: '+file);
+for(const file of ['试玩说明.txt','docs/主界面-v0.8.txt','docs/孵蛋与品质技能-v1.txt','docs/巢穴寻蛋-实施说明.txt','docs/pets/catalog.json','docs/pets/宠物图鉴.html','tools/prepare.py','tools/upgrade-individuals.py','assets/resources/audio/camp.mp3','assets/resources/audio/battle.mp3','art-source/audio-v1/masters/camp.wav','art-source/audio-v1/masters/battle.wav','checks/map-overlap-before.cjs'])assert.ok(!fs.existsSync(path.join(root,file)),'Superseded file remains: '+file);
 for(const [name,group] of Object.entries(cfg.scopes))for(const file of [...group.tests,...group.runtime])assert.ok(fs.existsSync(path.join(root,file)),name+': '+file);
 const data=JSON.parse(fs.readFileSync(path.join(root,'docs/generated/design-data.json'),'utf8'));
 assert.equal(data.counts.forms,data.counts.species*3);assert.equal(data.counts.stages,data.maps.reduce((n,m)=>n+m.stages,0));assert.equal(data.hatching.adReductionMs,1800000);

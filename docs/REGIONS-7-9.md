@@ -50,4 +50,4 @@
 
 [设计与最终提示词](../art-source/regions-7-9/roster.json) · [生成记录](../art-source/regions-7-9/generation.json) · [几何索引](../art-source/regions-7-9/art-index.json) · [完整数值](generated/TABLES.md)。蜜团睡鼠图集另外经一次图片工具缩排，解决两个SSR轮廓接触。
 
-验证入口：`检查试玩.ps1 -Scope maps,dex`，覆盖地图独立池、18属性、孵化/高层存档、蛋概率边界、顺序解锁、图集加载、地区标签横滑和战斗/图鉴。平台真机与全程平衡验收单独进行。
+验证入口：`检查试玩.ps1 -Scope maps,dex`，覆盖地图独立池、18属性、孵化/高层存档、蛋概率边界、顺序解锁、图集加载、地区标签两行选择和战斗/图鉴。平台真机与全程平衡验收单独进行。

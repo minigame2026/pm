@@ -13,7 +13,9 @@ const command=args=>spawnSync(process.execPath,[runner,...args],{cwd:root,encodi
   ['assets/scripts/PMLocale.ts','locale'],['assets/scripts/PMTranslations.ts','locale'],
   ['assets/scripts/LocalizedLogoArt.ts','logos'],['assets/resources/art/login-title-th-v1.png.meta','logos'],
   ['assets/scripts/PMAppBattle.ts','app-battle'],['assets/resources/art/app-otter-poses-v1.png','app-battle'],
-  ['assets/scripts/PMArt.ts','assets']])assert.deepEqual(plan('auto',[file]).scopes,[scope],file);
+  ['assets/scripts/PMArt.ts','assets'],['assets/scripts/PMSharing.ts','postcards'],['assets/scripts/vendor/jsQR.js','postcards'],['native/engine/android/app/src/com/cocos/game/PMShare.java','postcards'],['tools/locales/postcards.tsv','locale'],['tools/build-locales.py','locale']])assert.deepEqual(plan('auto',[file]).scopes,[scope],file);
+ const registry=require('../tools/workflow.config.json');
+ for(const [name,group] of Object.entries(registry.scopes).filter(([name])=>name!=='release'))for(const kind of ['tests','runtime'])for(const script of group[kind])assert.ok(registry.scopes.release[kind].includes(script),'release missing '+name+': '+script+'; run node tools/register-release-check.cjs');
  const base={'assets/a.ts':'a','assets/art/p.png':'p','settings/a.json':'s'},imported={...base,'assets/art/p.png.meta':'uuid'};
  assert(onlyAddedMetadata(base,imported));
  for(const after of [{...imported,'assets/a.ts':'changed'},{'assets/art/p.png':'p'},

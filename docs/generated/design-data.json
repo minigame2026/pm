@@ -1,24 +1,24 @@
 {
   "schemaVersion": 1,
   "sourceHashes": {
-    "assets/scripts/PMModel.ts": "65b64ea5cfeb9e97f233acfb3e6750ac1c0866f9c09c878b4ba6e4250c99c025",
-    "assets/scripts/PMGame.ts": "3a523335bb410d32f4d11b0aefe3db9db00787de9340e18612e87e4479fd9437",
-    "assets/scripts/PMArt.ts": "035213ace0d2639e494ffc4a51b811c10c5ba33389e7ad7d286cb76de6d8590c",
+    "assets/scripts/PMModel.ts": "bfcff2dfbaff4d24354913d2172070fc1d8fc9ee6f08c3040357d5c6fece0f2f",
+    "assets/scripts/PMGame.ts": "a966f01dae0dd7a7b48e649826ae95b0ffff87119cf61fbdd52c37d67030ff7b",
+    "assets/scripts/PMArt.ts": "c449b491309ab15113c8a0a55e709eae883f38f46ae41e4b8eb6ee0c9053643b",
     "assets/scripts/ArtSourceSizes.ts": "85f7b9f713235ed02d260de073257ab5cf476806f50b7a400b616d68f050d0a3",
     "assets/scripts/BattleArt.ts": "4f2192b12c12616b9b029b0e3f9665c1533426c70809b295486afe4911b1aefc",
     "assets/scripts/EvolutionArt.ts": "4b71b04ffc00be36e5ef7ec73354ab901f7ab291f61980b6dc1d2e7e48e8a717",
     "assets/scripts/RegionArt.ts": "cf6b4c59355bfbec7de41b84ee877b0ecc7833add108abf2a57766fd07acd3cc",
     "assets/scripts/HeroArt.ts": "bb76b9a8f346c39bece817b523b670f3a4aa3655b160d1cacada1f71ed0724d0",
-    "assets/scripts/TrustedClock.ts": "b9f22f7b78f858471498257f589a0e292ea5f7b899d1d91c1e714638e33b4892",
+    "assets/scripts/TrustedClock.ts": "9e233a5519e7e540ed3d6f21ae13c0f30f1a0ba1fc64d7bdc741e88f3fd7ff8c",
     "assets/scripts/DurableCheckpoint.ts": "fcfb089d1ebc4709d0dc62be84f40a0616a27c47b84548a6d174ce78cbeafbf5",
-    "assets/scripts/PMAudio.ts": "5e75a6e620293c3b00df08e8811ec853a37343dbbf970be1c45ce4a1b0bc935f",
+    "assets/scripts/PMAudio.ts": "925e32c0252ebaab6f3757214f0d0c6bc5c80cea6942f84eb2bf7bd984efbbf9",
     "assets/scripts/HomeScenery.ts": "938ae7807e3abc465338bac72271b1aa13ec62f79e3435d660563b5912b55988",
     "assets/scripts/RegionPads.ts": "c09ee7a9bacb2067d725dad82686c99ba70a6a313de8ef3f22c069d7a634dd02",
     "assets/scripts/AppBattleArt.ts": "1d2fceb6eaecd195af968191d0ace5821c4f79cb5a8dc8364b860043658bf3d0",
     "assets/scripts/PMAppBattle.ts": "d9d2668de67c54b8a306aafd862d3853d4cb825e7ff28c4cd03cb268f18a680f",
-    "assets/scripts/PMLocale.ts": "157e45270561ea74c90c5ae054d5101457b3ee2e654f399199f64be3f6368413",
-    "assets/scripts/PMTranslations.ts": "e153ba8ab6ae6de071c96ec848b89cd2a43a35418c32c0e3d76b0fa00457b8c5",
-    "assets/scripts/LocalizedLogoArt.ts": "e8930a8b253e20563c39fa1bcefc0f788fcd6713e116adc24f8005a07051c735"
+    "assets/scripts/PMLocale.ts": "debd44f2b4c35a432f133e81f04886299d65aadc10214ea2c29682bf4a468423",
+    "assets/scripts/PMTranslations.ts": "ff20202bf264dd9131777a53977ab7104c13a2c7512f7407c42cd5d3e6cd3c5e",
+    "assets/scripts/LocalizedLogoArt.ts": "210f30734c0a3190e65d0897c109683db1c29b1c8dd8d62f268104bbd55bdddc"
   },
   "notes": [
     "Read-only snapshot; edit PMModel and regenerate.",
@@ -29,7 +29,7 @@
     "species": 54,
     "forms": 162,
     "stages": 90,
-    "skills": 16
+    "skills": 81
   },
   "heroes": {
     "ranger": {
@@ -264,7 +264,7 @@
         7
       ],
       "naturalSkills": [
-        "opening"
+        "trait_1_0"
       ],
       "views": {
         "back": {
@@ -344,7 +344,7 @@
         7
       ],
       "naturalSkills": [
-        "steady"
+        "trait_1_1"
       ],
       "views": {
         "back": {
@@ -445,7 +445,7 @@
         7
       ],
       "naturalSkills": [
-        "charged"
+        "trait_1_2"
       ],
       "views": {
         "back": {
@@ -546,7 +546,7 @@
         3
       ],
       "naturalSkills": [
-        "healing"
+        "trait_4_0"
       ],
       "views": {
         "back": {
@@ -626,7 +626,7 @@
         3
       ],
       "naturalSkills": [
-        "refund"
+        "trait_4_1"
       ],
       "views": {
         "back": {
@@ -727,7 +727,7 @@
         3
       ],
       "naturalSkills": [
-        "emergency"
+        "trait_4_2"
       ],
       "views": {
         "back": {
@@ -828,7 +828,7 @@
         5
       ],
       "naturalSkills": [
-        "armor"
+        "trait_12_0"
       ],
       "views": {
         "back": {
@@ -908,7 +908,7 @@
         5
       ],
       "naturalSkills": [
-        "focus"
+        "trait_12_1"
       ],
       "views": {
         "back": {
@@ -1009,7 +1009,7 @@
         5
       ],
       "naturalSkills": [
-        "barrier"
+        "trait_12_2"
       ],
       "views": {
         "back": {
@@ -1110,7 +1110,7 @@
         3
       ],
       "naturalSkills": [
-        "opening"
+        "trait_0_0"
       ],
       "views": {
         "back": {
@@ -1211,7 +1211,7 @@
         3
       ],
       "naturalSkills": [
-        "steady"
+        "trait_0_1"
       ],
       "views": {
         "back": {
@@ -1312,7 +1312,7 @@
         3
       ],
       "naturalSkills": [
-        "emergency"
+        "trait_0_2"
       ],
       "views": {
         "back": {
@@ -1413,7 +1413,7 @@
         4
       ],
       "naturalSkills": [
-        "armor"
+        "trait_2_0"
       ],
       "views": {
         "back": {
@@ -1514,7 +1514,7 @@
         4
       ],
       "naturalSkills": [
-        "overflow"
+        "trait_2_1"
       ],
       "views": {
         "back": {
@@ -1615,7 +1615,7 @@
         4
       ],
       "naturalSkills": [
-        "refund"
+        "trait_2_2"
       ],
       "views": {
         "back": {
@@ -1716,7 +1716,7 @@
         6
       ],
       "naturalSkills": [
-        "opening"
+        "trait_3_0"
       ],
       "views": {
         "back": {
@@ -1817,7 +1817,7 @@
         6
       ],
       "naturalSkills": [
-        "repeat"
+        "trait_3_1"
       ],
       "views": {
         "back": {
@@ -1918,7 +1918,7 @@
         6
       ],
       "naturalSkills": [
-        "charged"
+        "trait_3_2"
       ],
       "views": {
         "back": {
@@ -2019,7 +2019,7 @@
         4
       ],
       "naturalSkills": [
-        "armor"
+        "trait_5_0"
       ],
       "views": {
         "back": {
@@ -2120,7 +2120,7 @@
         4
       ],
       "naturalSkills": [
-        "slow"
+        "trait_5_1"
       ],
       "views": {
         "back": {
@@ -2221,7 +2221,7 @@
         4
       ],
       "naturalSkills": [
-        "focus"
+        "trait_5_2"
       ],
       "views": {
         "back": {
@@ -2322,7 +2322,7 @@
         7
       ],
       "naturalSkills": [
-        "opening"
+        "trait_6_0"
       ],
       "views": {
         "back": {
@@ -2423,7 +2423,7 @@
         7
       ],
       "naturalSkills": [
-        "heavy"
+        "trait_6_1"
       ],
       "views": {
         "back": {
@@ -2524,7 +2524,7 @@
         7
       ],
       "naturalSkills": [
-        "charged"
+        "trait_6_2"
       ],
       "views": {
         "back": {
@@ -2625,7 +2625,7 @@
         5
       ],
       "naturalSkills": [
-        "opening"
+        "trait_7_0"
       ],
       "views": {
         "back": {
@@ -2726,7 +2726,7 @@
         5
       ],
       "naturalSkills": [
-        "venom"
+        "trait_7_1"
       ],
       "views": {
         "back": {
@@ -2827,7 +2827,7 @@
         5
       ],
       "naturalSkills": [
-        "leech"
+        "trait_7_2"
       ],
       "views": {
         "back": {
@@ -2928,7 +2928,7 @@
         5
       ],
       "naturalSkills": [
-        "armor"
+        "trait_8_0"
       ],
       "views": {
         "back": {
@@ -3029,7 +3029,7 @@
         5
       ],
       "naturalSkills": [
-        "focus"
+        "trait_8_1"
       ],
       "views": {
         "back": {
@@ -3130,7 +3130,7 @@
         5
       ],
       "naturalSkills": [
-        "barrier"
+        "trait_8_2"
       ],
       "views": {
         "back": {
@@ -3231,7 +3231,7 @@
         5
       ],
       "naturalSkills": [
-        "opening"
+        "trait_9_0"
       ],
       "views": {
         "back": {
@@ -3332,7 +3332,7 @@
         5
       ],
       "naturalSkills": [
-        "slow"
+        "trait_9_1"
       ],
       "views": {
         "back": {
@@ -3433,7 +3433,7 @@
         5
       ],
       "naturalSkills": [
-        "evade"
+        "trait_9_2"
       ],
       "views": {
         "back": {
@@ -3534,7 +3534,7 @@
         8
       ],
       "naturalSkills": [
-        "opening"
+        "trait_10_0"
       ],
       "views": {
         "back": {
@@ -3635,7 +3635,7 @@
         8
       ],
       "naturalSkills": [
-        "steady"
+        "trait_10_1"
       ],
       "views": {
         "back": {
@@ -3736,7 +3736,7 @@
         8
       ],
       "naturalSkills": [
-        "charged"
+        "trait_10_2"
       ],
       "views": {
         "back": {
@@ -3837,7 +3837,7 @@
         4
       ],
       "naturalSkills": [
-        "armor"
+        "trait_11_0"
       ],
       "views": {
         "back": {
@@ -3938,7 +3938,7 @@
         4
       ],
       "naturalSkills": [
-        "venom"
+        "trait_11_1"
       ],
       "views": {
         "back": {
@@ -4039,7 +4039,7 @@
         4
       ],
       "naturalSkills": [
-        "refund"
+        "trait_11_2"
       ],
       "views": {
         "back": {
@@ -4140,7 +4140,7 @@
         6
       ],
       "naturalSkills": [
-        "opening"
+        "trait_13_0"
       ],
       "views": {
         "back": {
@@ -4241,7 +4241,7 @@
         6
       ],
       "naturalSkills": [
-        "venom"
+        "trait_13_1"
       ],
       "views": {
         "back": {
@@ -4342,7 +4342,7 @@
         6
       ],
       "naturalSkills": [
-        "leech"
+        "trait_13_2"
       ],
       "views": {
         "back": {
@@ -4444,7 +4444,7 @@
         11
       ],
       "naturalSkills": [
-        "opening"
+        "trait_14_0"
       ],
       "views": {
         "back": {
@@ -4546,7 +4546,7 @@
         11
       ],
       "naturalSkills": [
-        "heavy"
+        "trait_14_1"
       ],
       "views": {
         "back": {
@@ -4648,7 +4648,7 @@
         11
       ],
       "naturalSkills": [
-        "charged"
+        "trait_14_2"
       ],
       "views": {
         "back": {
@@ -4749,7 +4749,7 @@
         6
       ],
       "naturalSkills": [
-        "opening"
+        "trait_15_0"
       ],
       "views": {
         "back": {
@@ -4850,7 +4850,7 @@
         6
       ],
       "naturalSkills": [
-        "steady"
+        "trait_15_1"
       ],
       "views": {
         "back": {
@@ -4951,7 +4951,7 @@
         6
       ],
       "naturalSkills": [
-        "leech"
+        "trait_15_2"
       ],
       "views": {
         "back": {
@@ -5053,7 +5053,7 @@
         10
       ],
       "naturalSkills": [
-        "armor"
+        "trait_16_0"
       ],
       "views": {
         "back": {
@@ -5155,7 +5155,7 @@
         10
       ],
       "naturalSkills": [
-        "barrier"
+        "trait_16_1"
       ],
       "views": {
         "back": {
@@ -5257,7 +5257,7 @@
         10
       ],
       "naturalSkills": [
-        "evade"
+        "trait_16_2"
       ],
       "views": {
         "back": {
@@ -5358,7 +5358,7 @@
         3
       ],
       "naturalSkills": [
-        "healing"
+        "trait_17_0"
       ],
       "views": {
         "back": {
@@ -5459,7 +5459,7 @@
         3
       ],
       "naturalSkills": [
-        "refund"
+        "trait_17_1"
       ],
       "views": {
         "back": {
@@ -5560,7 +5560,7 @@
         3
       ],
       "naturalSkills": [
-        "emergency"
+        "trait_17_2"
       ],
       "views": {
         "back": {
@@ -5661,7 +5661,7 @@
         8
       ],
       "naturalSkills": [
-        "healing"
+        "trait_0_0"
       ],
       "views": {
         "back": {
@@ -5762,7 +5762,7 @@
         8
       ],
       "naturalSkills": [
-        "refund"
+        "trait_0_1"
       ],
       "views": {
         "back": {
@@ -5863,7 +5863,7 @@
         8
       ],
       "naturalSkills": [
-        "emergency"
+        "trait_0_2"
       ],
       "views": {
         "back": {
@@ -5964,7 +5964,7 @@
         8
       ],
       "naturalSkills": [
-        "healing"
+        "trait_4_0"
       ],
       "views": {
         "back": {
@@ -6065,7 +6065,7 @@
         8
       ],
       "naturalSkills": [
-        "overflow"
+        "trait_4_1"
       ],
       "views": {
         "back": {
@@ -6166,7 +6166,7 @@
         8
       ],
       "naturalSkills": [
-        "emergency"
+        "trait_4_2"
       ],
       "views": {
         "back": {
@@ -6267,7 +6267,7 @@
         8
       ],
       "naturalSkills": [
-        "armor"
+        "trait_2_0"
       ],
       "views": {
         "back": {
@@ -6368,7 +6368,7 @@
         8
       ],
       "naturalSkills": [
-        "overflow"
+        "trait_2_1"
       ],
       "views": {
         "back": {
@@ -6469,7 +6469,7 @@
         8
       ],
       "naturalSkills": [
-        "refund"
+        "trait_2_2"
       ],
       "views": {
         "back": {
@@ -6570,7 +6570,7 @@
         8
       ],
       "naturalSkills": [
-        "opening"
+        "trait_9_0"
       ],
       "views": {
         "back": {
@@ -6671,7 +6671,7 @@
         8
       ],
       "naturalSkills": [
-        "slow"
+        "trait_9_1"
       ],
       "views": {
         "back": {
@@ -6772,7 +6772,7 @@
         8
       ],
       "naturalSkills": [
-        "evade"
+        "trait_9_2"
       ],
       "views": {
         "back": {
@@ -6873,7 +6873,7 @@
         9
       ],
       "naturalSkills": [
-        "opening"
+        "trait_11_0"
       ],
       "views": {
         "back": {
@@ -6974,7 +6974,7 @@
         9
       ],
       "naturalSkills": [
-        "heavy"
+        "trait_11_1"
       ],
       "views": {
         "back": {
@@ -7075,7 +7075,7 @@
         9
       ],
       "naturalSkills": [
-        "charged"
+        "trait_11_2"
       ],
       "views": {
         "back": {
@@ -7176,7 +7176,7 @@
         10
       ],
       "naturalSkills": [
-        "armor"
+        "trait_12_0"
       ],
       "views": {
         "back": {
@@ -7277,7 +7277,7 @@
         10
       ],
       "naturalSkills": [
-        "focus"
+        "trait_12_1"
       ],
       "views": {
         "back": {
@@ -7378,7 +7378,7 @@
         10
       ],
       "naturalSkills": [
-        "barrier"
+        "trait_12_2"
       ],
       "views": {
         "back": {
@@ -7479,7 +7479,7 @@
         12
       ],
       "naturalSkills": [
-        "opening"
+        "trait_1_0"
       ],
       "views": {
         "back": {
@@ -7580,7 +7580,7 @@
         12
       ],
       "naturalSkills": [
-        "heavy"
+        "trait_1_1"
       ],
       "views": {
         "back": {
@@ -7681,7 +7681,7 @@
         12
       ],
       "naturalSkills": [
-        "charged"
+        "trait_1_2"
       ],
       "views": {
         "back": {
@@ -7782,7 +7782,7 @@
         12
       ],
       "naturalSkills": [
-        "opening"
+        "trait_3_0"
       ],
       "views": {
         "back": {
@@ -7883,7 +7883,7 @@
         12
       ],
       "naturalSkills": [
-        "repeat"
+        "trait_3_1"
       ],
       "views": {
         "back": {
@@ -7984,7 +7984,7 @@
         12
       ],
       "naturalSkills": [
-        "charged"
+        "trait_3_2"
       ],
       "views": {
         "back": {
@@ -8085,7 +8085,7 @@
         12
       ],
       "naturalSkills": [
-        "opening"
+        "trait_7_0"
       ],
       "views": {
         "back": {
@@ -8186,7 +8186,7 @@
         12
       ],
       "naturalSkills": [
-        "venom"
+        "trait_7_1"
       ],
       "views": {
         "back": {
@@ -8287,7 +8287,7 @@
         12
       ],
       "naturalSkills": [
-        "leech"
+        "trait_7_2"
       ],
       "views": {
         "back": {
@@ -8388,7 +8388,7 @@
         12
       ],
       "naturalSkills": [
-        "armor"
+        "trait_8_0"
       ],
       "views": {
         "back": {
@@ -8489,7 +8489,7 @@
         12
       ],
       "naturalSkills": [
-        "focus"
+        "trait_8_1"
       ],
       "views": {
         "back": {
@@ -8590,7 +8590,7 @@
         12
       ],
       "naturalSkills": [
-        "barrier"
+        "trait_8_2"
       ],
       "views": {
         "back": {
@@ -8691,7 +8691,7 @@
         13
       ],
       "naturalSkills": [
-        "opening"
+        "trait_6_0"
       ],
       "views": {
         "back": {
@@ -8792,7 +8792,7 @@
         13
       ],
       "naturalSkills": [
-        "heavy"
+        "trait_6_1"
       ],
       "views": {
         "back": {
@@ -8893,7 +8893,7 @@
         13
       ],
       "naturalSkills": [
-        "charged"
+        "trait_6_2"
       ],
       "views": {
         "back": {
@@ -8994,7 +8994,7 @@
         14
       ],
       "naturalSkills": [
-        "armor"
+        "trait_16_0"
       ],
       "views": {
         "back": {
@@ -9095,7 +9095,7 @@
         14
       ],
       "naturalSkills": [
-        "barrier"
+        "trait_16_1"
       ],
       "views": {
         "back": {
@@ -9196,7 +9196,7 @@
         14
       ],
       "naturalSkills": [
-        "evade"
+        "trait_16_2"
       ],
       "views": {
         "back": {
@@ -9297,7 +9297,7 @@
         16
       ],
       "naturalSkills": [
-        "armor"
+        "trait_5_0"
       ],
       "views": {
         "back": {
@@ -9398,7 +9398,7 @@
         16
       ],
       "naturalSkills": [
-        "slow"
+        "trait_5_1"
       ],
       "views": {
         "back": {
@@ -9499,7 +9499,7 @@
         16
       ],
       "naturalSkills": [
-        "focus"
+        "trait_5_2"
       ],
       "views": {
         "back": {
@@ -9600,7 +9600,7 @@
         16
       ],
       "naturalSkills": [
-        "opening"
+        "trait_13_0"
       ],
       "views": {
         "back": {
@@ -9701,7 +9701,7 @@
         16
       ],
       "naturalSkills": [
-        "venom"
+        "trait_13_1"
       ],
       "views": {
         "back": {
@@ -9802,7 +9802,7 @@
         16
       ],
       "naturalSkills": [
-        "leech"
+        "trait_13_2"
       ],
       "views": {
         "back": {
@@ -9903,7 +9903,7 @@
         16
       ],
       "naturalSkills": [
-        "opening"
+        "trait_10_0"
       ],
       "views": {
         "back": {
@@ -10004,7 +10004,7 @@
         16
       ],
       "naturalSkills": [
-        "steady"
+        "trait_10_1"
       ],
       "views": {
         "back": {
@@ -10105,7 +10105,7 @@
         16
       ],
       "naturalSkills": [
-        "charged"
+        "trait_10_2"
       ],
       "views": {
         "back": {
@@ -10206,7 +10206,7 @@
         16
       ],
       "naturalSkills": [
-        "opening"
+        "trait_15_0"
       ],
       "views": {
         "back": {
@@ -10307,7 +10307,7 @@
         16
       ],
       "naturalSkills": [
-        "steady"
+        "trait_15_1"
       ],
       "views": {
         "back": {
@@ -10408,7 +10408,7 @@
         16
       ],
       "naturalSkills": [
-        "leech"
+        "trait_15_2"
       ],
       "views": {
         "back": {
@@ -10509,7 +10509,7 @@
         17
       ],
       "naturalSkills": [
-        "healing"
+        "trait_17_0"
       ],
       "views": {
         "back": {
@@ -10610,7 +10610,7 @@
         17
       ],
       "naturalSkills": [
-        "refund"
+        "trait_17_1"
       ],
       "views": {
         "back": {
@@ -10711,7 +10711,7 @@
         17
       ],
       "naturalSkills": [
-        "emergency"
+        "trait_17_2"
       ],
       "views": {
         "back": {
@@ -10812,7 +10812,7 @@
         18
       ],
       "naturalSkills": [
-        "opening"
+        "trait_14_0"
       ],
       "views": {
         "back": {
@@ -10913,7 +10913,7 @@
         18
       ],
       "naturalSkills": [
-        "heavy"
+        "trait_14_1"
       ],
       "views": {
         "back": {
@@ -11014,7 +11014,7 @@
         18
       ],
       "naturalSkills": [
-        "charged"
+        "trait_14_2"
       ],
       "views": {
         "back": {
@@ -11115,7 +11115,7 @@
         21
       ],
       "naturalSkills": [
-        "healing"
+        "trait_0_0"
       ],
       "views": {
         "back": {
@@ -11216,7 +11216,7 @@
         21
       ],
       "naturalSkills": [
-        "refund"
+        "trait_0_1"
       ],
       "views": {
         "back": {
@@ -11317,7 +11317,7 @@
         21
       ],
       "naturalSkills": [
-        "emergency"
+        "trait_0_2"
       ],
       "views": {
         "back": {
@@ -11418,7 +11418,7 @@
         21
       ],
       "naturalSkills": [
-        "healing"
+        "trait_4_0"
       ],
       "views": {
         "back": {
@@ -11519,7 +11519,7 @@
         21
       ],
       "naturalSkills": [
-        "overflow"
+        "trait_4_1"
       ],
       "views": {
         "back": {
@@ -11620,7 +11620,7 @@
         21
       ],
       "naturalSkills": [
-        "emergency"
+        "trait_4_2"
       ],
       "views": {
         "back": {
@@ -11721,7 +11721,7 @@
         21
       ],
       "naturalSkills": [
-        "armor"
+        "trait_2_0"
       ],
       "views": {
         "back": {
@@ -11822,7 +11822,7 @@
         21
       ],
       "naturalSkills": [
-        "overflow"
+        "trait_2_1"
       ],
       "views": {
         "back": {
@@ -11923,7 +11923,7 @@
         21
       ],
       "naturalSkills": [
-        "refund"
+        "trait_2_2"
       ],
       "views": {
         "back": {
@@ -12024,7 +12024,7 @@
         21
       ],
       "naturalSkills": [
-        "opening"
+        "trait_11_0"
       ],
       "views": {
         "back": {
@@ -12125,7 +12125,7 @@
         21
       ],
       "naturalSkills": [
-        "steady"
+        "trait_11_1"
       ],
       "views": {
         "back": {
@@ -12226,7 +12226,7 @@
         21
       ],
       "naturalSkills": [
-        "charged"
+        "trait_11_2"
       ],
       "views": {
         "back": {
@@ -12327,7 +12327,7 @@
         22
       ],
       "naturalSkills": [
-        "opening"
+        "trait_7_0"
       ],
       "views": {
         "back": {
@@ -12428,7 +12428,7 @@
         22
       ],
       "naturalSkills": [
-        "venom"
+        "trait_7_1"
       ],
       "views": {
         "back": {
@@ -12529,7 +12529,7 @@
         22
       ],
       "naturalSkills": [
-        "leech"
+        "trait_7_2"
       ],
       "views": {
         "back": {
@@ -12630,7 +12630,7 @@
         23
       ],
       "naturalSkills": [
-        "opening"
+        "trait_9_0"
       ],
       "views": {
         "back": {
@@ -12731,7 +12731,7 @@
         23
       ],
       "naturalSkills": [
-        "slow"
+        "trait_9_1"
       ],
       "views": {
         "back": {
@@ -12832,7 +12832,7 @@
         23
       ],
       "naturalSkills": [
-        "evade"
+        "trait_9_2"
       ],
       "views": {
         "back": {
@@ -12933,7 +12933,7 @@
         27
       ],
       "naturalSkills": [
-        "opening"
+        "trait_1_0"
       ],
       "views": {
         "back": {
@@ -13034,7 +13034,7 @@
         27
       ],
       "naturalSkills": [
-        "heavy"
+        "trait_1_1"
       ],
       "views": {
         "back": {
@@ -13135,7 +13135,7 @@
         27
       ],
       "naturalSkills": [
-        "charged"
+        "trait_1_2"
       ],
       "views": {
         "back": {
@@ -13236,7 +13236,7 @@
         27
       ],
       "naturalSkills": [
-        "opening"
+        "trait_3_0"
       ],
       "views": {
         "back": {
@@ -13337,7 +13337,7 @@
         27
       ],
       "naturalSkills": [
-        "repeat"
+        "trait_3_1"
       ],
       "views": {
         "back": {
@@ -13438,7 +13438,7 @@
         27
       ],
       "naturalSkills": [
-        "charged"
+        "trait_3_2"
       ],
       "views": {
         "back": {
@@ -13539,7 +13539,7 @@
         27
       ],
       "naturalSkills": [
-        "armor"
+        "trait_8_0"
       ],
       "views": {
         "back": {
@@ -13640,7 +13640,7 @@
         27
       ],
       "naturalSkills": [
-        "focus"
+        "trait_8_1"
       ],
       "views": {
         "back": {
@@ -13741,7 +13741,7 @@
         27
       ],
       "naturalSkills": [
-        "barrier"
+        "trait_8_2"
       ],
       "views": {
         "back": {
@@ -13842,7 +13842,7 @@
         27
       ],
       "naturalSkills": [
-        "armor"
+        "trait_12_0"
       ],
       "views": {
         "back": {
@@ -13943,7 +13943,7 @@
         27
       ],
       "naturalSkills": [
-        "barrier"
+        "trait_12_1"
       ],
       "views": {
         "back": {
@@ -14044,7 +14044,7 @@
         27
       ],
       "naturalSkills": [
-        "evade"
+        "trait_12_2"
       ],
       "views": {
         "back": {
@@ -14145,7 +14145,7 @@
         28
       ],
       "naturalSkills": [
-        "opening"
+        "trait_6_0"
       ],
       "views": {
         "back": {
@@ -14246,7 +14246,7 @@
         28
       ],
       "naturalSkills": [
-        "heavy"
+        "trait_6_1"
       ],
       "views": {
         "back": {
@@ -14347,7 +14347,7 @@
         28
       ],
       "naturalSkills": [
-        "charged"
+        "trait_6_2"
       ],
       "views": {
         "back": {
@@ -14448,7 +14448,7 @@
         29
       ],
       "naturalSkills": [
-        "armor"
+        "trait_16_0"
       ],
       "views": {
         "back": {
@@ -14549,7 +14549,7 @@
         29
       ],
       "naturalSkills": [
-        "focus"
+        "trait_16_1"
       ],
       "views": {
         "back": {
@@ -14650,7 +14650,7 @@
         29
       ],
       "naturalSkills": [
-        "barrier"
+        "trait_16_2"
       ],
       "views": {
         "back": {
@@ -14751,7 +14751,7 @@
         34
       ],
       "naturalSkills": [
-        "armor"
+        "trait_5_0"
       ],
       "views": {
         "back": {
@@ -14852,7 +14852,7 @@
         34
       ],
       "naturalSkills": [
-        "slow"
+        "trait_5_1"
       ],
       "views": {
         "back": {
@@ -14953,7 +14953,7 @@
         34
       ],
       "naturalSkills": [
-        "focus"
+        "trait_5_2"
       ],
       "views": {
         "back": {
@@ -15054,7 +15054,7 @@
         34
       ],
       "naturalSkills": [
-        "opening"
+        "trait_13_0"
       ],
       "views": {
         "back": {
@@ -15155,7 +15155,7 @@
         34
       ],
       "naturalSkills": [
-        "venom"
+        "trait_13_1"
       ],
       "views": {
         "back": {
@@ -15256,7 +15256,7 @@
         34
       ],
       "naturalSkills": [
-        "leech"
+        "trait_13_2"
       ],
       "views": {
         "back": {
@@ -15357,7 +15357,7 @@
         34
       ],
       "naturalSkills": [
-        "opening"
+        "trait_10_0"
       ],
       "views": {
         "back": {
@@ -15458,7 +15458,7 @@
         34
       ],
       "naturalSkills": [
-        "steady"
+        "trait_10_1"
       ],
       "views": {
         "back": {
@@ -15559,7 +15559,7 @@
         34
       ],
       "naturalSkills": [
-        "charged"
+        "trait_10_2"
       ],
       "views": {
         "back": {
@@ -15660,7 +15660,7 @@
         34
       ],
       "naturalSkills": [
-        "opening"
+        "trait_15_0"
       ],
       "views": {
         "back": {
@@ -15761,7 +15761,7 @@
         34
       ],
       "naturalSkills": [
-        "steady"
+        "trait_15_1"
       ],
       "views": {
         "back": {
@@ -15862,7 +15862,7 @@
         34
       ],
       "naturalSkills": [
-        "leech"
+        "trait_15_2"
       ],
       "views": {
         "back": {
@@ -15963,7 +15963,7 @@
         35
       ],
       "naturalSkills": [
-        "healing"
+        "trait_17_0"
       ],
       "views": {
         "back": {
@@ -16064,7 +16064,7 @@
         35
       ],
       "naturalSkills": [
-        "refund"
+        "trait_17_1"
       ],
       "views": {
         "back": {
@@ -16165,7 +16165,7 @@
         35
       ],
       "naturalSkills": [
-        "emergency"
+        "trait_17_2"
       ],
       "views": {
         "back": {
@@ -16266,7 +16266,7 @@
         36
       ],
       "naturalSkills": [
-        "opening"
+        "trait_14_0"
       ],
       "views": {
         "back": {
@@ -16367,7 +16367,7 @@
         36
       ],
       "naturalSkills": [
-        "heavy"
+        "trait_14_1"
       ],
       "views": {
         "back": {
@@ -16468,7 +16468,7 @@
         36
       ],
       "naturalSkills": [
-        "charged"
+        "trait_14_2"
       ],
       "views": {
         "back": {
@@ -16611,6 +16611,266 @@
     "leech": [
       "生命汲取",
       "首次攻击恢复其实际直接伤害的 20%（向上取整），不超过最大生命的 25%。"
+    ],
+    "tm_healStrike": [
+      "回春击",
+      "攻击时：恢复生命 +4。每场一次。"
+    ],
+    "tm_guardHeal": [
+      "休整防御",
+      "防御时：恢复生命 +6。每场一次。"
+    ],
+    "tm_boostShield": [
+      "强化屏障",
+      "使用力量药水时：获得护盾 +5。每场一次。"
+    ],
+    "tm_healPower": [
+      "治愈蓄能",
+      "使用生命药水时：下回合攻击取最高点数。每场一次。"
+    ],
+    "tm_finisher": [
+      "追击招式",
+      "攻击时 · 敌人生命不超过50%：额外伤害 +5。每场一次。"
+    ],
+    "tm_lastStand": [
+      "不屈招式",
+      "受到反击时 · 将受到致命伤害：本次保留1点生命。每场一次。"
+    ],
+    "tm_firstShield": [
+      "开场护盾",
+      "掷骰时 · 本场首次掷骰：获得护盾 +4。每场一次。"
+    ],
+    "tm_combo": [
+      "连击恢复",
+      "攻击时 · 第三次攻击时：恢复生命 +5。每场一次。"
+    ],
+    "res_bloom": [
+      "共鸣·花盾",
+      "使用生命药水时：恢复生命及护盾各 +4。每场一次。"
+    ],
+    "res_venom": [
+      "共鸣·蚀魂",
+      "攻击时：汲取25%伤害并施毒3次，每次3点。每场一次。"
+    ],
+    "res_drive": [
+      "共鸣·蓄壁",
+      "防御时：获得护盾 +5，下回合最高点数。每场一次。"
+    ],
+    "trait_0_0": [
+      "一般·R·强击",
+      "攻击时：额外伤害 +2。每场一次。"
+    ],
+    "trait_0_1": [
+      "一般·SR·改运",
+      "掷骰时 · 点数与上回合相同：本次攻击取最高点数。每场一次。"
+    ],
+    "trait_0_2": [
+      "一般·SSR·屏障",
+      "攻击时 · 第三次攻击时：获得护盾 +8。每场一次。"
+    ],
+    "trait_1_0": [
+      "火·R·强击",
+      "攻击时 · 力量药水生效时：额外伤害 +3。每场一次。"
+    ],
+    "trait_1_1": [
+      "火·SR·屏障",
+      "使用力量药水时：获得护盾 +6。每场一次。"
+    ],
+    "trait_1_2": [
+      "火·SSR·印记",
+      "攻击时 · 第三次攻击时：施毒3次，每次伤害 4。每场一次。"
+    ],
+    "trait_2_0": [
+      "水·R·坚守",
+      "受到反击时：本次伤害减少 2。每场一次。"
+    ],
+    "trait_2_1": [
+      "水·SR·回春",
+      "防御时：恢复生命 +5。每场一次。"
+    ],
+    "trait_2_2": [
+      "水·SSR·蓄能",
+      "使用生命药水时：下回合攻击取最高点数。每场一次。"
+    ],
+    "trait_3_0": [
+      "电·R·改运",
+      "掷骰时 · 攻击点数为最低：本次攻击取最高点数。每场一次。"
+    ],
+    "trait_3_1": [
+      "电·SR·力量回响",
+      "使用力量药水时：力量药水 +1。每场一次。"
+    ],
+    "trait_3_2": [
+      "电·SSR·强击",
+      "攻击时 · 第三次攻击时：额外伤害 +8。每场一次。"
+    ],
+    "trait_4_0": [
+      "草·R·回春",
+      "使用生命药水时：恢复生命 +3。每场一次。"
+    ],
+    "trait_4_1": [
+      "草·SR·复苏",
+      "受到反击时 · 生命不超过50%：恢复最大生命 30%。每场一次。"
+    ],
+    "trait_4_2": [
+      "草·SSR·屏障",
+      "攻击时 · 满血时：获得护盾 +7。每场一次。"
+    ],
+    "trait_5_0": [
+      "冰·R·蓄能",
+      "攻击时：下回合攻击取最高点数。每场一次。"
+    ],
+    "trait_5_1": [
+      "冰·SR·屏障",
+      "受到反击时 · 满血时：获得护盾 +6。每场一次。"
+    ],
+    "trait_5_2": [
+      "冰·SSR·强击",
+      "攻击时 · 攻击点数为最低：额外伤害 +9。每场一次。"
+    ],
+    "trait_6_0": [
+      "格斗·R·强击",
+      "攻击时 · 生命不超过50%：额外伤害 +4。每场一次。"
+    ],
+    "trait_6_1": [
+      "格斗·SR·蓄能",
+      "防御时：下回合攻击取最高点数。每场一次。"
+    ],
+    "trait_6_2": [
+      "格斗·SSR·复苏",
+      "攻击时 · 第三次攻击时：恢复最大生命 35%。每场一次。"
+    ],
+    "trait_7_0": [
+      "毒·R·印记",
+      "攻击时：施毒3次，每次伤害 2。每场一次。"
+    ],
+    "trait_7_1": [
+      "毒·SR·印记",
+      "攻击时 · 敌人生命不超过50%：施毒3次，每次伤害 4。每场一次。"
+    ],
+    "trait_7_2": [
+      "毒·SSR·印记",
+      "受到反击时 · 生命不超过50%：施毒3次，每次伤害 6。每场一次。"
+    ],
+    "trait_8_0": [
+      "地面·R·屏障",
+      "受到反击时 · 本次选择防御：获得护盾 +3。每场一次。"
+    ],
+    "trait_8_1": [
+      "地面·SR·强击",
+      "攻击时 · 攻击点数为最低：额外伤害 +4。每场一次。"
+    ],
+    "trait_8_2": [
+      "地面·SSR·药剂回响",
+      "防御时：生命药水 +1。每场一次。"
+    ],
+    "trait_9_0": [
+      "飞行·R·闪避",
+      "受到反击时 · 满血时：免疫本次反击。每场一次。"
+    ],
+    "trait_9_1": [
+      "飞行·SR·强击",
+      "攻击时 · 满血时：额外伤害 +3。每场一次。"
+    ],
+    "trait_9_2": [
+      "飞行·SSR·屏障",
+      "掷骰时 · 本场首次掷骰：获得护盾 +10。每场一次。"
+    ],
+    "trait_10_0": [
+      "超能力·R·屏障",
+      "掷骰时 · 攻击点数为最低：获得护盾 +3。每场一次。"
+    ],
+    "trait_10_1": [
+      "超能力·SR·蓄能",
+      "使用力量药水时：下回合攻击取最高点数。每场一次。"
+    ],
+    "trait_10_2": [
+      "超能力·SSR·力量回响",
+      "使用生命药水时：力量药水 +1。每场一次。"
+    ],
+    "trait_11_0": [
+      "虫·R·汲取",
+      "攻击时：恢复实际伤害的 25%。每场一次。"
+    ],
+    "trait_11_1": [
+      "虫·SR·屏障",
+      "使用生命药水时：获得护盾 +5。每场一次。"
+    ],
+    "trait_11_2": [
+      "虫·SSR·回春",
+      "受到反击时 · 生命不超过50%：恢复生命 +8。每场一次。"
+    ],
+    "trait_12_0": [
+      "岩石·R·屏障",
+      "受到反击时：获得护盾 +3。每场一次。"
+    ],
+    "trait_12_1": [
+      "岩石·SR·屏障",
+      "防御时：获得护盾 +8。每场一次。"
+    ],
+    "trait_12_2": [
+      "岩石·SSR·不屈",
+      "受到反击时 · 将受到致命伤害：本次保留1点生命。每场一次。"
+    ],
+    "trait_13_0": [
+      "幽灵·R·闪避",
+      "受到反击时 · 生命不超过50%：免疫本次反击。每场一次。"
+    ],
+    "trait_13_1": [
+      "幽灵·SR·汲取",
+      "攻击时 · 敌人生命不超过50%：恢复实际伤害的 60%。每场一次。"
+    ],
+    "trait_13_2": [
+      "幽灵·SSR·强击",
+      "攻击时 · 本次攻击被抵抗：额外伤害 +7。每场一次。"
+    ],
+    "trait_14_0": [
+      "龙·R·强击",
+      "攻击时 · 攻击点数为最高：额外伤害 +3。每场一次。"
+    ],
+    "trait_14_1": [
+      "龙·SR·印记",
+      "攻击时 · 力量药水生效时：施毒3次，每次伤害 5。每场一次。"
+    ],
+    "trait_14_2": [
+      "龙·SSR·强击",
+      "攻击时：额外伤害 +6。每场一次。"
+    ],
+    "trait_15_0": [
+      "恶·R·强击",
+      "攻击时 · 敌人生命不超过50%：额外伤害 +3。每场一次。"
+    ],
+    "trait_15_1": [
+      "恶·SR·回春",
+      "使用力量药水时：恢复生命 +5。每场一次。"
+    ],
+    "trait_15_2": [
+      "恶·SSR·汲取",
+      "攻击时 · 攻击点数为最高：恢复实际伤害的 50%。每场一次。"
+    ],
+    "trait_16_0": [
+      "钢·R·坚守",
+      "受到反击时 · 满血时：本次伤害减少 3。每场一次。"
+    ],
+    "trait_16_1": [
+      "钢·SR·屏障",
+      "防御时：获得护盾 +10。每场一次。"
+    ],
+    "trait_16_2": [
+      "钢·SSR·坚守",
+      "受到反击时：本次伤害减少 6。每场一次。"
+    ],
+    "trait_17_0": [
+      "妖精·R·回春",
+      "掷骰时 · 本场首次掷骰：恢复生命 +3。每场一次。"
+    ],
+    "trait_17_1": [
+      "妖精·SR·复苏",
+      "使用生命药水时 · 生命不超过50%：恢复最大生命 25%。每场一次。"
+    ],
+    "trait_17_2": [
+      "妖精·SSR·复苏",
+      "防御时：恢复最大生命 40%。每场一次。"
     ]
   },
   "stages": [
@@ -20622,6 +20882,443 @@
   "breeding": {
     "durationMs": 1800000
   },
+  "surprises": {
+    "rules": {
+      "gold": {
+        "base": 0.04,
+        "step": 0.002,
+        "cap": 0.15,
+        "pity": 50
+      },
+      "variant": {
+        "base": 0.08,
+        "step": 0.004,
+        "cap": 0.2,
+        "pity": 20
+      },
+      "shiny": {
+        "base": 0.02,
+        "step": 0.002,
+        "cap": 0.12,
+        "pity": 50
+      },
+      "nested": {
+        "base": 0.05,
+        "step": 0.005,
+        "cap": 0.2,
+        "pity": 25
+      },
+      "resonance": {
+        "base": 0.12,
+        "step": 0.01,
+        "cap": 0.3,
+        "pity": 10
+      }
+    },
+    "shinySpecies": [
+      "cotton",
+      "fox",
+      "seal",
+      "capy",
+      "cinder",
+      "frost",
+      "nectar",
+      "embercamel",
+      "narwhal"
+    ]
+  },
+  "skillSpecs": {
+    "res_bloom": {
+      "when": "heal",
+      "gate": "any",
+      "effect": "healShield",
+      "amount": 4
+    },
+    "res_venom": {
+      "when": "attack",
+      "gate": "any",
+      "effect": "venomDrain",
+      "amount": 3
+    },
+    "res_drive": {
+      "when": "guard",
+      "gate": "any",
+      "effect": "powerGuard",
+      "amount": 5
+    },
+    "tm_healStrike": {
+      "when": "attack",
+      "gate": "any",
+      "effect": "heal",
+      "amount": 4
+    },
+    "tm_guardHeal": {
+      "when": "guard",
+      "gate": "any",
+      "effect": "heal",
+      "amount": 6
+    },
+    "tm_boostShield": {
+      "when": "boost",
+      "gate": "any",
+      "effect": "shield",
+      "amount": 5
+    },
+    "tm_healPower": {
+      "when": "heal",
+      "gate": "any",
+      "effect": "nextMax",
+      "amount": 1
+    },
+    "tm_finisher": {
+      "when": "attack",
+      "gate": "enemyHalf",
+      "effect": "damage",
+      "amount": 5
+    },
+    "tm_lastStand": {
+      "when": "hit",
+      "gate": "lethal",
+      "effect": "survive",
+      "amount": 1
+    },
+    "tm_firstShield": {
+      "when": "roll",
+      "gate": "first",
+      "effect": "shield",
+      "amount": 4
+    },
+    "tm_combo": {
+      "when": "attack",
+      "gate": "third",
+      "effect": "heal",
+      "amount": 5
+    },
+    "trait_0_0": {
+      "when": "attack",
+      "gate": "any",
+      "effect": "damage",
+      "amount": 2
+    },
+    "trait_0_1": {
+      "when": "roll",
+      "gate": "repeat",
+      "effect": "maxRoll",
+      "amount": 1
+    },
+    "trait_0_2": {
+      "when": "attack",
+      "gate": "third",
+      "effect": "shield",
+      "amount": 8
+    },
+    "trait_1_0": {
+      "when": "attack",
+      "gate": "boosted",
+      "effect": "damage",
+      "amount": 3
+    },
+    "trait_1_1": {
+      "when": "boost",
+      "gate": "any",
+      "effect": "shield",
+      "amount": 6
+    },
+    "trait_1_2": {
+      "when": "attack",
+      "gate": "third",
+      "effect": "poison",
+      "amount": 4
+    },
+    "trait_2_0": {
+      "when": "hit",
+      "gate": "any",
+      "effect": "reduce",
+      "amount": 2
+    },
+    "trait_2_1": {
+      "when": "guard",
+      "gate": "any",
+      "effect": "heal",
+      "amount": 5
+    },
+    "trait_2_2": {
+      "when": "heal",
+      "gate": "any",
+      "effect": "nextMax",
+      "amount": 1
+    },
+    "trait_3_0": {
+      "when": "roll",
+      "gate": "minimum",
+      "effect": "maxRoll",
+      "amount": 1
+    },
+    "trait_3_1": {
+      "when": "boost",
+      "gate": "any",
+      "effect": "refundBoost",
+      "amount": 1
+    },
+    "trait_3_2": {
+      "when": "attack",
+      "gate": "third",
+      "effect": "damage",
+      "amount": 8
+    },
+    "trait_4_0": {
+      "when": "heal",
+      "gate": "any",
+      "effect": "heal",
+      "amount": 3
+    },
+    "trait_4_1": {
+      "when": "hit",
+      "gate": "low",
+      "effect": "healPct",
+      "amount": 30
+    },
+    "trait_4_2": {
+      "when": "attack",
+      "gate": "full",
+      "effect": "shield",
+      "amount": 7
+    },
+    "trait_5_0": {
+      "when": "attack",
+      "gate": "any",
+      "effect": "nextMax",
+      "amount": 1
+    },
+    "trait_5_1": {
+      "when": "hit",
+      "gate": "full",
+      "effect": "shield",
+      "amount": 6
+    },
+    "trait_5_2": {
+      "when": "attack",
+      "gate": "minimum",
+      "effect": "damage",
+      "amount": 9
+    },
+    "trait_6_0": {
+      "when": "attack",
+      "gate": "low",
+      "effect": "damage",
+      "amount": 4
+    },
+    "trait_6_1": {
+      "when": "guard",
+      "gate": "any",
+      "effect": "nextMax",
+      "amount": 1
+    },
+    "trait_6_2": {
+      "when": "attack",
+      "gate": "third",
+      "effect": "healPct",
+      "amount": 35
+    },
+    "trait_7_0": {
+      "when": "attack",
+      "gate": "any",
+      "effect": "poison",
+      "amount": 2
+    },
+    "trait_7_1": {
+      "when": "attack",
+      "gate": "enemyHalf",
+      "effect": "poison",
+      "amount": 4
+    },
+    "trait_7_2": {
+      "when": "hit",
+      "gate": "low",
+      "effect": "poison",
+      "amount": 6
+    },
+    "trait_8_0": {
+      "when": "hit",
+      "gate": "guarded",
+      "effect": "shield",
+      "amount": 3
+    },
+    "trait_8_1": {
+      "when": "attack",
+      "gate": "minimum",
+      "effect": "damage",
+      "amount": 4
+    },
+    "trait_8_2": {
+      "when": "guard",
+      "gate": "any",
+      "effect": "refundHeal",
+      "amount": 1
+    },
+    "trait_9_0": {
+      "when": "hit",
+      "gate": "full",
+      "effect": "evade",
+      "amount": 1
+    },
+    "trait_9_1": {
+      "when": "attack",
+      "gate": "full",
+      "effect": "damage",
+      "amount": 3
+    },
+    "trait_9_2": {
+      "when": "roll",
+      "gate": "first",
+      "effect": "shield",
+      "amount": 10
+    },
+    "trait_10_0": {
+      "when": "roll",
+      "gate": "minimum",
+      "effect": "shield",
+      "amount": 3
+    },
+    "trait_10_1": {
+      "when": "boost",
+      "gate": "any",
+      "effect": "nextMax",
+      "amount": 1
+    },
+    "trait_10_2": {
+      "when": "heal",
+      "gate": "any",
+      "effect": "refundBoost",
+      "amount": 1
+    },
+    "trait_11_0": {
+      "when": "attack",
+      "gate": "any",
+      "effect": "drain",
+      "amount": 25
+    },
+    "trait_11_1": {
+      "when": "heal",
+      "gate": "any",
+      "effect": "shield",
+      "amount": 5
+    },
+    "trait_11_2": {
+      "when": "hit",
+      "gate": "low",
+      "effect": "heal",
+      "amount": 8
+    },
+    "trait_12_0": {
+      "when": "hit",
+      "gate": "any",
+      "effect": "shield",
+      "amount": 3
+    },
+    "trait_12_1": {
+      "when": "guard",
+      "gate": "any",
+      "effect": "shield",
+      "amount": 8
+    },
+    "trait_12_2": {
+      "when": "hit",
+      "gate": "lethal",
+      "effect": "survive",
+      "amount": 1
+    },
+    "trait_13_0": {
+      "when": "hit",
+      "gate": "low",
+      "effect": "evade",
+      "amount": 1
+    },
+    "trait_13_1": {
+      "when": "attack",
+      "gate": "enemyHalf",
+      "effect": "drain",
+      "amount": 60
+    },
+    "trait_13_2": {
+      "when": "attack",
+      "gate": "resisted",
+      "effect": "damage",
+      "amount": 7
+    },
+    "trait_14_0": {
+      "when": "attack",
+      "gate": "maximum",
+      "effect": "damage",
+      "amount": 3
+    },
+    "trait_14_1": {
+      "when": "attack",
+      "gate": "boosted",
+      "effect": "poison",
+      "amount": 5
+    },
+    "trait_14_2": {
+      "when": "attack",
+      "gate": "any",
+      "effect": "damage",
+      "amount": 6
+    },
+    "trait_15_0": {
+      "when": "attack",
+      "gate": "enemyHalf",
+      "effect": "damage",
+      "amount": 3
+    },
+    "trait_15_1": {
+      "when": "boost",
+      "gate": "any",
+      "effect": "heal",
+      "amount": 5
+    },
+    "trait_15_2": {
+      "when": "attack",
+      "gate": "maximum",
+      "effect": "drain",
+      "amount": 50
+    },
+    "trait_16_0": {
+      "when": "hit",
+      "gate": "full",
+      "effect": "reduce",
+      "amount": 3
+    },
+    "trait_16_1": {
+      "when": "guard",
+      "gate": "any",
+      "effect": "shield",
+      "amount": 10
+    },
+    "trait_16_2": {
+      "when": "hit",
+      "gate": "any",
+      "effect": "reduce",
+      "amount": 6
+    },
+    "trait_17_0": {
+      "when": "roll",
+      "gate": "first",
+      "effect": "heal",
+      "amount": 3
+    },
+    "trait_17_1": {
+      "when": "heal",
+      "gate": "low",
+      "effect": "healPct",
+      "amount": 25
+    },
+    "trait_17_2": {
+      "when": "guard",
+      "gate": "any",
+      "effect": "healPct",
+      "amount": 40
+    }
+  },
   "visitActionMs": 2500,
   "itemMultiplierArrays": {
     "heal": [
@@ -21164,6 +21861,15 @@
       "rgba8EstimateBytes": 3538944
     },
     {
+      "file": "assets/resources/art/login-title-de-v1.png",
+      "width": 1024,
+      "height": 318,
+      "bytes": 564913,
+      "sha256": "983a6e72b96ce00b838c5f0d1dd9002fcaf01843a58cb9195f3a3f860ea71166",
+      "loadedAtStartup": false,
+      "rgba8EstimateBytes": 1302528
+    },
+    {
       "file": "assets/resources/art/login-title-en-v1.png",
       "width": 2020,
       "height": 778,
@@ -21171,6 +21877,33 @@
       "sha256": "b2b380645c432fbd7a53e02069117c6ab5bcf9313c00e5f5d64effcea702e8e6",
       "loadedAtStartup": false,
       "rgba8EstimateBytes": 6286240
+    },
+    {
+      "file": "assets/resources/art/login-title-es-419-v1.png",
+      "width": 1024,
+      "height": 418,
+      "bytes": 745119,
+      "sha256": "4e2de5fd3539f2c36b8d8cebb40f663749967eacc44d45e4ccfc5bf54f8b1bd4",
+      "loadedAtStartup": false,
+      "rgba8EstimateBytes": 1712128
+    },
+    {
+      "file": "assets/resources/art/login-title-fr-v1.png",
+      "width": 875,
+      "height": 430,
+      "bytes": 688915,
+      "sha256": "847dde3250642e05aab7f18dd42db7b739c0307cf99e6e89a76e7ab086369457",
+      "loadedAtStartup": false,
+      "rgba8EstimateBytes": 1505000
+    },
+    {
+      "file": "assets/resources/art/login-title-id-v1.png",
+      "width": 907,
+      "height": 430,
+      "bytes": 676357,
+      "sha256": "b305734f5838e867338423dbf5c50d668bc0888cb7fc6c6ba9ab92453cec6f1a",
+      "loadedAtStartup": false,
+      "rgba8EstimateBytes": 1560040
     },
     {
       "file": "assets/resources/art/login-title-ja-v1.png",
@@ -21191,6 +21924,15 @@
       "rgba8EstimateBytes": 6292464
     },
     {
+      "file": "assets/resources/art/login-title-pt-BR-v1.png",
+      "width": 973,
+      "height": 430,
+      "bytes": 754620,
+      "sha256": "230f85079e5799d37d68a1f700960cc93735775f9f497134d8e5a0efec3eebd2",
+      "loadedAtStartup": false,
+      "rgba8EstimateBytes": 1673560
+    },
+    {
       "file": "assets/resources/art/login-title-th-v1.png",
       "width": 2022,
       "height": 778,
@@ -21207,6 +21949,15 @@
       "sha256": "fce117da5f94ae356557374b4ff3c5f42189fc95819ecff314cccb1a8eb65e71",
       "loadedAtStartup": true,
       "rgba8EstimateBytes": 983040
+    },
+    {
+      "file": "assets/resources/art/login-title-vi-v1.png",
+      "width": 911,
+      "height": 430,
+      "bytes": 727892,
+      "sha256": "5a7d2984b86dd78cf3e65e49a838cdeaba6e01091cfc6233b7d2372bb65af844",
+      "loadedAtStartup": false,
+      "rgba8EstimateBytes": 1566920
     },
     {
       "file": "assets/resources/art/login-title-zh-TW-v1.png",

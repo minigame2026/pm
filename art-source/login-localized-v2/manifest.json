@@ -1,0 +1,53 @@
+{
+  "tool": "built-in image_gen",
+  "outputs": [
+    {
+      "locale": "pt-BR",
+      "file": "assets/resources/art/login-title-pt-BR-v1.png",
+      "width": 973,
+      "height": 430,
+      "bytes": 754620,
+      "source": "art-source/login-localized-v2/pt-BR-source.png"
+    },
+    {
+      "locale": "es-419",
+      "file": "assets/resources/art/login-title-es-419-v1.png",
+      "width": 1024,
+      "height": 418,
+      "bytes": 745119,
+      "source": "art-source/login-localized-v2/es-419-source.png"
+    },
+    {
+      "locale": "id",
+      "file": "assets/resources/art/login-title-id-v1.png",
+      "width": 907,
+      "height": 430,
+      "bytes": 676357,
+      "source": "art-source/login-localized-v2/id-source.png"
+    },
+    {
+      "locale": "vi",
+      "file": "assets/resources/art/login-title-vi-v1.png",
+      "width": 911,
+      "height": 430,
+      "bytes": 727892,
+      "source": "art-source/login-localized-v2/vi-source.png"
+    },
+    {
+      "locale": "de",
+      "file": "assets/resources/art/login-title-de-v1.png",
+      "width": 1024,
+      "height": 318,
+      "bytes": 564913,
+      "source": "art-source/login-localized-v2/de-source.png"
+    },
+    {
+      "locale": "fr",
+      "file": "assets/resources/art/login-title-fr-v1.png",
+      "width": 875,
+      "height": 430,
+      "bytes": 688915,
+      "source": "art-source/login-localized-v2/fr-source.png"
+    }
+  ]
+}

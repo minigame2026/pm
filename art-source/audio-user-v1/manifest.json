@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-21",
+  "provenance": "User supplied five OGG tracks in D:/game; source originals unchanged.",
+  "conversion": "MP3 128kbps stereo; preserve entire source, no trimming or composition edits.",
+  "tracks": [
+    {
+      "id": "camp-app",
+      "source": "D:/game/sound_main_menu_full.ogg",
+      "file": "assets/resources/audio/camp-app.mp3",
+      "sourceSha256": "6e7109e43cdcdb480489c899ef75f2fc74505386c87fea57cd9ce99e49e9d5ea",
+      "bytes": 2951252,
+      "duration": 184.384649,
+      "stream": {
+        "codec_name": "mp3",
+        "sample_rate": "44100",
+        "channels": 2
+      }
+    },
+    {
+      "id": "camp-short",
+      "source": "D:/game/sound_main_menu_short.ogg",
+      "file": "assets/resources/audio/camp-short.mp3",
+      "sourceSha256": "61538be2fd392fcd63bc5033e47013467c0f1dd33c463535da25ac606b4a1a0e",
+      "bytes": 1049538,
+      "duration": 65.538481,
+      "stream": {
+        "codec_name": "mp3",
+        "sample_rate": "44100",
+        "channels": 2
+      }
+    },
+    {
+      "id": "battle-normal",
+      "source": "D:/game/sound_battle_normal.ogg",
+      "file": "assets/resources/audio/battle-normal.mp3",
+      "sourceSha256": "ceca258dce07023d1eb9a09b9c2eeaddc59ade36c5e7ef0655c9ccf01f7da356",
+      "bytes": 1145669,
+      "duration": 71.546077,
+      "stream": {
+        "codec_name": "mp3",
+        "sample_rate": "44100",
+        "channels": 2
+      }
+    },
+    {
+      "id": "battle-elite",
+      "source": "D:/game/sound_battle_elite.ogg",
+      "file": "assets/resources/audio/battle-elite.mp3",
+      "sourceSha256": "6287a563b8aea56e9f3e1335e223d6ec753b9fca72886393b281abf5888e0d68",
+      "bytes": 1194570,
+      "duration": 74.605306,
+      "stream": {
+        "codec_name": "mp3",
+        "sample_rate": "44100",
+        "channels": 2
+      }
+    },
+    {
+      "id": "battle-boss",
+      "source": "D:/game/sound_battle_boss.ogg",
+      "file": "assets/resources/audio/battle-boss.mp3",
+      "sourceSha256": "1c6afd75d715ac2bc9e5e4d489af485c4cf6d03f5b03530cd48478d2ef0d4da6",
+      "bytes": 1046194,
+      "duration": 65.32898,
+      "stream": {
+        "codec_name": "mp3",
+        "sample_rate": "44100",
+        "channels": 2
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict'),crypto=require('crypto');
+const modules={};
+const source=fs.readFileSync('checks/google-play-packaged-main.js','utf8');
+assert.equal(source,fs.readFileSync('build/google-play/data/assets/main/index.js','utf8'),'APK must contain the exported game script');
+vm.runInNewContext(source,{System:{register:(id,deps,fn)=>{modules[id]={deps,fn};}},Math,Date,JSON,Set});
+const out={},m=modules['chunks:///_virtual/PMModel.ts'];
+const body=m.fn((key,value)=>{if(typeof key==='string')out[key]=value;else Object.assign(out,key);return value;},{meta:{}});
+body.setters.forEach(setter=>setter({cclegacy:{_RF:{push(){},pop(){}}}}));body.execute();
+const actual={testMode:out.BUILD_TEST_MODE,stamina:out.EXPEDITION_COST,hatchMs:out.HATCH_DURATION,breedingMs:out.BREED_DURATION};
+assert.equal(actual.testMode,false);assert.equal(actual.stamina,5);assert.equal(actual.hatchMs,1800000);assert.equal(actual.breedingMs,1800000);
+const files=['aab','apk'].map(ext=>{const file='build/releases/Dice-Pet-Spirits-Google-Play-1.0.8-code9.'+ext;const data=fs.readFileSync(file);return {file,bytes:data.length,sha256:crypto.createHash('sha256').update(data).digest('hex')};});
+fs.writeFileSync('checks/google-play-package.json',JSON.stringify({package:'com.dice.pet.rpg',versionName:'1.0.8',versionCode:9,compiledGame:actual,files},null,2));
+console.log('PASS actual APK game code: production mode, 5 stamina, 30 minute hatch and breeding; script matches exported build');

@@ -6,7 +6,7 @@ const seed=M.fresh(71,['fox','turtle','bud']);seed.journey={version:1,stage:'don
 seed.eggs=[{id:'locale-egg',rarity:'normal',affinity:'bud',stage:5,mapId:0}];
 const state=M.startIncubation(seed,'locale-egg',0,T);assert(state.incubators[0]);
 (async()=>{const b=await chromium.launch({channel:'msedge',headless:true});try{
- for(const lang of (process.env.PM_LOCALE_ONLY?[process.env.PM_LOCALE_ONLY]:['en','ja','ko','zh-TW','th','zh-CN'])){
+ for(const lang of (process.env.PM_LOCALE_ONLY?[process.env.PM_LOCALE_ONLY]:['en','ja','ko','zh-TW','th','zh-CN','pt-BR','es-419','id','vi','de','fr'])){
   L.selectLanguage(lang,'en');const c=await b.newContext({viewport:{width:390,height:844},locale:lang}),p=await c.newPage();
   await c.route('https://timeapi.io/**',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({timeZone:'UTC',dateTime:new Date(T).toISOString().slice(0,-1)})}));
   await c.route('https://worldtimeapi.org/**',r=>r.abort());

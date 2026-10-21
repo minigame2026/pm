@@ -18,6 +18,8 @@
 *.pem
 *.key
 *.pfx
+*.p12
+*.mobileprovision
 *.jks
 *.keystore
 /native/engine/common/localCfg.cmake
@@ -26,3 +28,4 @@
 *.log
 Thumbs.db
 .DS_Store
+/tools/social-deps/node_modules/

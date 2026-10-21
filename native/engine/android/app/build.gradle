@@ -27,8 +27,8 @@ android {
         applicationId APPLICATION_ID
         minSdkVersion PROP_MIN_SDK_VERSION
         targetSdkVersion PROP_TARGET_SDK_VERSION
-        versionCode 5
-        versionName "1.0.4"
+        versionCode 8
+        versionName "1.0.7"
         buildConfigField 'String', 'TAP_MEDIA_ID', tapString(tapConfig.mediaId)
         buildConfigField 'String', 'TAP_MEDIA_NAME', tapString(tapConfig.mediaName ?: '骰子宠物精灵')
         buildConfigField 'String', 'TAP_MEDIA_KEY', tapString(tapConfig.mediaKey)
@@ -111,6 +111,8 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.core:core:1.9.0'
+    implementation 'com.google.zxing:core:3.5.3'
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'
     implementation fileTree(dir: '../libs', include: ['*.jar','*.aar'])
     implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])

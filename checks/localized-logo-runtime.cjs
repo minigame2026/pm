@@ -1,5 +1,5 @@
 const cfg=require('../tools/workflow.config.json'),{chromium}=require(cfg.playwright),assert=require('node:assert/strict');
-const locales=['zh-CN','en','ja','ko','zh-TW','th'];
+const locales=['zh-CN','en','ja','ko','zh-TW','th','pt-BR','es-419','id','vi','de','fr'];
 (async()=>{
  const browser=await chromium.launch({channel:'msedge',headless:true});
  try{

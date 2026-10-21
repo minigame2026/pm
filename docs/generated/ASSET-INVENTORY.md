@@ -2,7 +2,7 @@
 
 > 自动生成；不要手改。来源：PMModel、PMGame、BattleArt、EvolutionArt、RegionArt、HeroArt；精确 SHA-256 见 [design-data.json](design-data.json)。运行 `node tools/export-design-data.cjs` 更新，`--check` 检查过期。
 
-资源目录共 119 张 PNG，文件合计 105.03 MiB；固定启动清单加载 3 张，文件合计 1.87 MiB。
+资源目录共 125 张 PNG，文件合计 108.99 MiB；固定启动清单加载 3 张，文件合计 1.87 MiB。
 
 启动图片按每像素RGBA8四字节估算单份纹理为 5.06 MiB，未计mipmap、驱动副本、压缩格式、引擎和帧缓冲，不能当作实测峰值。裁切帧仍引用整张纹理。
 
@@ -67,11 +67,17 @@
 | [lantern-forms-v1.png](../../assets/resources/art/lantern-forms-v1.png) | 683×1024 | 863.2 | 否 | 2.67 |
 | [login-button-v4.png](../../assets/resources/art/login-button-v4.png) | 768×256 | 179.9 | 是 | 0.75 |
 | [login-cover-v2.png](../../assets/resources/art/login-cover-v2.png) | 768×1152 | 1448.5 | 是 | 3.38 |
+| [login-title-de-v1.png](../../assets/resources/art/login-title-de-v1.png) | 1024×318 | 551.7 | 否 | 1.24 |
 | [login-title-en-v1.png](../../assets/resources/art/login-title-en-v1.png) | 2020×778 | 1437.4 | 否 | 6.00 |
+| [login-title-es-419-v1.png](../../assets/resources/art/login-title-es-419-v1.png) | 1024×418 | 727.7 | 否 | 1.63 |
+| [login-title-fr-v1.png](../../assets/resources/art/login-title-fr-v1.png) | 875×430 | 672.8 | 否 | 1.44 |
+| [login-title-id-v1.png](../../assets/resources/art/login-title-id-v1.png) | 907×430 | 660.5 | 否 | 1.49 |
 | [login-title-ja-v1.png](../../assets/resources/art/login-title-ja-v1.png) | 2021×778 | 1692.8 | 否 | 6.00 |
 | [login-title-ko-v1.png](../../assets/resources/art/login-title-ko-v1.png) | 2022×778 | 1431.1 | 否 | 6.00 |
+| [login-title-pt-BR-v1.png](../../assets/resources/art/login-title-pt-BR-v1.png) | 973×430 | 736.9 | 否 | 1.60 |
 | [login-title-th-v1.png](../../assets/resources/art/login-title-th-v1.png) | 2022×778 | 1535.6 | 否 | 6.00 |
 | [login-title-v3.png](../../assets/resources/art/login-title-v3.png) | 768×320 | 288.8 | 是 | 0.94 |
+| [login-title-vi-v1.png](../../assets/resources/art/login-title-vi-v1.png) | 911×430 | 710.8 | 否 | 1.49 |
 | [login-title-zh-TW-v1.png](../../assets/resources/art/login-title-zh-TW-v1.png) | 2022×778 | 1637.2 | 否 | 6.00 |
 | [loot-chest.png](../../assets/resources/art/loot-chest.png) | 192×192 | 54.9 | 否 | 0.14 |
 | [lotus-forms-v1.png](../../assets/resources/art/lotus-forms-v1.png) | 683×1024 | 808.9 | 否 | 2.67 |

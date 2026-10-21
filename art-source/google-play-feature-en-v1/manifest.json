@@ -1,0 +1,11 @@
+{
+  "generator": "built-in imagegen",
+  "prompt": "Edit the first reference promotional illustration into ONE polished Google Play feature graphic for the same original mobile game. Output extra-wide landscape composition, EXACT aspect ratio 1024:500 (2.048:1), ideally 2048x1000. Recompose rather than stretch. Keep the same three recognizable original pets, same cute clean cel-shaded 2D illustration style, sunny coastal meadow, blue sea, flowers, dice and egg nest. Orange fox with huge cream-tipped fluffy tail and brown paws, mint leaf-eared dinosaur with yellow flower, blue baby turtle with cream belly. Preserve their identities, no added pets. Replace ALL Chinese title text completely with exact English title 'Dice Pet Spirits', inspired by the golden-yellow lettering with blue extruded outline in reference 2. Only other allowed text is 'Collect · Hatch · Explore' on a small blue ribbon if it fits clearly. No Chinese or extra labels, no store badge, ratings, UI or border. Compose with the large readable title occupying left 40 percent in two lines 'Dice Pet' / 'Spirits', and the three pets grouped naturally in the right 60 percent of the landscape with a straw nest of green-speckled eggs and one cream die in foreground. Show all faces and recognizable silhouettes fully, avoid cut-off ears or heads, keep essential title, pets, dice and eggs inside central 90 percent with generous edge margin. Light open sky behind title. Vivid welcoming sunny colors, crisp outlines, restrained detailed painting, no photorealism. One die with correct circular pips and perspective. This is a finished full-bleed horizontal store banner, no rounded corners. Adjust pet scale to make a balanced horizontal composition with lettering and all three pets clearly readable at 1024x500.",
+  "source": "source.png",
+  "output": "build/releases/Dice-Pet-Spirits-Google-Play-feature-1024x500.png",
+  "references": [
+    "build/releases/骰子宠物精灵-商店宣传图-1920x1080.jpg",
+    "assets/resources/art/login-title-en-v1.png"
+  ],
+  "processing": "Resize to 1024x500, remove alpha, PNG compression 9."
+}

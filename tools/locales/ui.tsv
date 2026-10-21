@@ -1,306 +1,377 @@
-伙伴们正在赶来…	Your companions are on their way…	仲間たちがやってきます…	친구들이 오고 있어요…	เพื่อน ๆ กำลังมา…
-资源加载失败，请刷新重试	Loading failed. Please reload.	読み込み失敗。再読み込みしてください。	불러오지 못했어요. 새로고침해 주세요.	โหลดไม่สำเร็จ กรุณาโหลดใหม่
-连接网络后继续计时	Connect to resume timers	接続すると計時が再開します	연결하면 시간이 다시 흘러요	เชื่อมต่อเพื่อเดินเวลาต่อ
-等待联网	Waiting for connection	接続待ち	연결 대기 중	รอการเชื่อมต่อ
-返回	Back	戻る	뒤로	กลับ
-重试	Retry	再試行	다시 시도	ลองใหม่
-暂时无法校时，请稍后重试	Time sync unavailable. Try again later.	時刻を同期できません。後でお試しください。	시간을 동기화할 수 없어요. 나중에 다시 시도하세요.	ซิงค์เวลาไม่ได้ โปรดลองภายหลัง
-宠物蛋已准备好	Your egg is ready!	タマゴができました！	알이 준비됐어요!	ไข่พร้อมแล้ว!
-有 	Ready: 	準備完了：	준비 완료: 	พร้อม: 
- 枚可以破壳	 eggs to hatch	個のタマゴ	개의 알	 ฟอง
- / 2 孵化中	 / 2 incubating	 / 2 ふ化中	 / 2 부화 중	 / 2 กำลังฟัก
-阵亡	Down	戦闘不能	전투 불능	หมดสติ
-攻击 ×	ATK ×	攻撃 ×	공격 ×	โจมตี ×
-精英	Elite	エリート	정예	ชั้นยอด
-普通	Normal	通常	일반	ทั่วไป
-奖励	Reward	報酬	보상	รางวัล
-它想和你一起冒险！	It wants to join your adventure!	一緒に冒険したいようです！	함께 모험하고 싶대요!	มันอยากไปผจญภัยด้วย!
-新伙伴加入！	A new companion!	新しい仲間！	새로운 친구!	เพื่อนใหม่!
-胜利通关	Stage Clear!	クリア！	클리어!	ผ่านด่าน!
-失败结算	Adventure Over	冒険終了	모험 종료	จบการผจญภัย
-通关已记录 · 获得的宠物蛋已保留	Clear saved · Eggs kept	クリア記録・タマゴを保存しました	클리어 기록과 알을 보관했어요	บันทึกการผ่านด่านและเก็บไข่แล้ว
-本次探险结束 · 已获得的宠物蛋保留	Adventure over · Eggs kept	冒険終了・タマゴは持ち帰れます	모험 종료 · 획득한 알은 보관돼요	จบการผจญภัย · เก็บไข่ที่ได้ไว้แล้ว
-返回营地	Return to Camp	キャンプへ	캠프로	กลับแคมป์
-保存失败，请勿关闭页面	Save failed. Keep the game open.	保存失敗。画面を閉じないでください。	저장 실패. 게임을 닫지 마세요.	บันทึกไม่สำเร็จ อย่าเพิ่งปิดเกม
- 关 · 自动续玩	 stages · Auto-resume	ステージ・自動再開	스테이지 · 자동 이어하기	 ด่าน · เล่นต่ออัตโนมัติ
-选择你的主角	Choose Your Hero	主人公を選ぼう	주인공 선택	เลือกตัวเอก
-保留原有进度 · 选择一位同行者	Keep your progress · Choose a hero	進行状況を引き継いで主人公を選択	진행 유지 · 주인공 선택	เก็บความคืบหน้า · เลือกตัวเอก
-01  主角     ·     02  初始伙伴	01 Hero · 02 Starter	01 主人公 · 02 最初の仲間	01 주인공 · 02 첫 친구	01 ตัวเอก · 02 เพื่อนเริ่มต้น
-01  主角 ✓     ·     02  初始伙伴	01 Hero ✓ · 02 Starter	01 主人公 ✓ · 02 最初の仲間	01 주인공 ✓ · 02 첫 친구	01 ตัวเอก ✓ · 02 เพื่อนเริ่มต้น
-选择 	Choose 	選択：	선택: 	เลือก 
-选择第一位伙伴	Choose Your First Companion	最初の仲間を選ぼう	첫 친구 선택	เลือกเพื่อนตัวแรก
-抢先一击 · 首次攻击伤害 +2	First Strike · First attack +2	先制の一撃・初回攻撃 +2	선제공격 · 첫 공격 +2	ชิงโจมตี · โจมตีครั้งแรก +2
-草木祝福 · 首次治疗恢复 +2	Green Blessing · First heal +2	草木の祝福・初回回復 +2	초목의 축복 · 첫 회복 +2	พรพฤกษา · ฟื้นฟูครั้งแรก +2
-硬壳 · 首次受击伤害 −2	Hard Shell · First hit taken −2	かたい殻・初回被ダメージ −2	단단한 껍질 · 첫 피격 피해 −2	เปลือกแข็ง · เสียหายครั้งแรก −2
-谁陪你踏上旅途？	Who will join your journey?	誰と旅に出る？	누구와 모험을 떠날까요?	ใครจะร่วมเดินทางกับคุณ?
-和 	With 	仲間：	친구: 	กับ 
- 出发  ›	 · Let's go ›	 · 出発 ›	 · 출발 ›	 · ไปกันเถอะ ›
-带着惊喜回家	Bring a surprise home	おみやげを持って帰ろう	깜짝 선물을 가지고 집으로	นำเซอร์ไพรส์กลับบ้าน
-巢穴寻蛋	Nest Hunt	巣穴のタマゴ探し	둥지 알 찾기	หาไข่ในรัง
-已存入蛋袋 ✓	Egg stored ✓	タマゴバッグに保存 ✓	알 가방에 보관 ✓	เก็บในถุงไข่แล้ว ✓
-BOSS 巢穴	Boss Nest	ボスの巣	보스 둥지	รังบอส
-精英巢穴	Elite Nest	エリートの巣	정예 둥지	รังชั้นยอด
- 次翻找	 searches	回探索	회 탐색	 ครั้ง
-寻蛋好手 · 额外带回一枚！	Egg Scout · One extra egg!	タマゴ探し名人・もう1個！	알 탐색꾼 · 알 1개 추가!	นักหาไข่ · ได้เพิ่ม 1 ฟอง!
- 蛋	 Egg	タマゴ	 알	 ไข่
- · 已存入	 · Stored	 · 保存済み	 · 보관됨	 · เก็บแล้ว
-已保存  ·  蛋袋共 	Saved · Eggs in bag: 	保存済み · タマゴ計 	저장됨 · 가방 속 알: 	บันทึกแล้ว · ไข่ในถุง: 
- 枚	 eggs	個	개	 ฟอง
-完成冒险  ›	Finish ›	冒険を終える ›	모험 완료 ›	จบการผจญภัย ›
-继续冒险  ›	Continue ›	冒険を続ける ›	모험 계속 ›	ผจญภัยต่อ ›
-查看蛋袋	Egg Bag	タマゴバッグ	알 가방	ถุงไข่
-挑一枚，带回家	Pick one to take home	1個選んで持ち帰ろう	하나 골라 가져가세요	เลือกหนึ่งฟองกลับบ้าน
-再找一次  	Search Again  	もう一度探す  	다시 찾기  	หาอีกครั้ง  
-翻找草丛  	Search Grass  	草むらを探す  	풀숲 찾기  	ค้นพุ่มหญ้า  
-带走这枚  ›	Take This Egg ›	これを持ち帰る ›	이 알 가져가기 ›	เลือกไข่นี้ ›
-每次翻找：普通 	Per search: R 	1回ごと：R 	탐색마다: R 	ต่อครั้ง: R 
-蛋袋	Egg Bag	タマゴバッグ	알 가방	ถุงไข่
-选择宠物蛋	Choose an Egg	タマゴを選択	알 선택	เลือกไข่
-孵化中	Incubating	ふ化中	부화 중	กำลังฟัก
-还没有宠物蛋	No eggs yet	タマゴがありません	아직 알이 없어요	ยังไม่มีไข่
-探险 · 交配获得	Explore or breed to get eggs	冒険・交配で入手	탐험 · 교배로 획득	ได้จากผจญภัยหรือผสมพันธุ์
-♡ 已结缘	♡ Bonded	♡ 絆あり	♡ 인연 맺음	♡ ผูกสัมพันธ์แล้ว
-♥ 父母遗传	♥ Inherited	♥ 遺伝	♥ 부모 유전	♥ สืบทอดจากพ่อแม่
- 分钟	 min	分	분	 นาที
-查看孵化	View Incubators	ふ化を確認	부화 확인	ดูการฟัก
-孵化位已满	Incubators Full	ふ化枠がいっぱい	부화 슬롯 가득 참	ช่องฟักเต็ม
-开始孵化	Incubate	ふ化開始	부화 시작	เริ่มฟัก
-去孵化屋	To Hatchery	ふ化小屋へ	부화장으로	ไปโรงฟัก
-空位	Empty	空き	빈자리	ว่าง
-待领蛋	Egg Ready	受取待ち	알 수령 가능	รอรับไข่
-交配中	Breeding	交配中	교배 중	กำลังผสมพันธุ์
-第 	Turn 	ターン 	턴 	เทิร์น 
- 回合		回		
- · 首次治疗 +3	 · First heal +3	 · 初回回復 +3	 · 첫 회복 +3	 · ฟื้นฟูครั้งแรก +3
-胜利	Victory	勝利	승리	ชนะ
-恢复生命 +20%	Heal +20% HP	HP回復 +20%	HP 회복 +20%	ฟื้น HP +20%
-攻击点数 · 选择一项	Attack Roll · Choose One	攻撃出目・1つ選択	공격 눈금 · 하나 선택	แต้มโจมตี · เลือกหนึ่ง
-恢复点数 · 选择一项	Heal Roll · Choose One	回復出目・1つ選択	회복 눈금 · 하나 선택	แต้มฟื้นฟู · เลือกหนึ่ง
-获得奖励	Reward Gained	報酬獲得	보상 획득	ได้รับรางวัล
-原点数	Current	現在	현재	ปัจจุบัน
-保留	Keep	維持	유지	คงเดิม
-新点数	New	新しい出目	새 눈금	ใหม่
-采用	Use	採用	적용	ใช้
-生命上限	Max HP	最大HP	최대 HP	HP สูงสุด
-攻击点数	Attack Rolls	攻撃出目	공격 눈금	แต้มโจมตี
-恢复点数	Heal Rolls	回復出目	회복 눈금	แต้มฟื้นฟู
-生命药水	Healing Potion	回復薬	회복 물약	ยาฟื้นพลัง
-力量药水	Power Potion	力の薬	힘의 물약	ยาเพิ่มพลัง
-领取奖励	Claim Reward	報酬を受け取る	보상 받기	รับรางวัล
-它愿意成为你的伙伴	It wants to be your companion	仲間になりたがっています	친구가 되고 싶대요	มันอยากเป็นเพื่อนคุณ
-邀请必定成功 · 不消耗道具	Guaranteed · No items needed	必ず成功・アイテム不要	반드시 성공 · 아이템 불필요	สำเร็จแน่นอน · ไม่ใช้ไอเทม
-邀请同行	Invite	仲間にする	초대	ชวนร่วมทาง
-暂不邀请	Not Now	今はやめる	나중에	ไว้ก่อน
-队伍已满，安排它的位置	Team full · Choose a slot	チーム満員・場所を選択	팀 가득 참 · 자리 선택	ทีมเต็ม · เลือกช่อง
-出战 	Active: 	出撃：	출전: 	ลงสนาม: 
- 保持不变	 stays	を維持	 유지	 คงเดิม
-替换	Swap	交代	교체	สลับ
-收入收藏	Add to Collection	仲間に加える	컬렉션에 추가	เพิ่มในคอลเลกชัน
-替换候补	Swap Reserve	控えと交代	후보 교체	สลับตัวสำรอง
-被替换的伙伴仍在收藏中	Replaced companions stay in your collection	交代した仲間はコレクションに残ります	교체된 친구는 컬렉션에 남아요	เพื่อนที่ถูกสลับยังอยู่ในคอลเลกชัน
-格挡  −	Block −	ガード −	방어 −	ป้องกัน −
-克制 	Strong 	有利 	유리 	ได้เปรียบ 
-抵抗 	Resisted 	耐性 	저항 	ต้านทาน 
-接替出战	 joins the battle	が交代で出撃	 교대 출전	 เข้าสู้แทน
-沙沙…	Rustle…	ガサガサ…	바스락…	สวบสาบ…
-寻蛋好手 · 额外 +1	Egg Scout · Extra +1	タマゴ探し名人 · 追加 +1	알 탐색꾼 · 추가 +1	นักหาไข่ · เพิ่ม +1
-成为伙伴！	 joined you!	が仲間になった！	 친구가 됐어요!	 เป็นเพื่อนแล้ว!
-恢复 +	Heal +	回復 +	회복 +	ฟื้นฟู +
-抢先一击 +2	First Strike +2	先制の一撃 +2	선제공격 +2	ชิงโจมตี +2
-玩法说明	How to Play	遊び方	게임 방법	วิธีเล่น
-知道了	Got It	わかった	확인	เข้าใจแล้ว
-放弃这次攻击强化？	Give up this attack boost?	攻撃強化を放棄しますか？	공격 강화를 포기할까요?	ยกเลิกการเพิ่มพลังโจมตี?
-防御会放弃已使用的 ×	Defending removes the used ×	防御すると使用済みの ×	방어하면 사용한 ×	ป้องกันจะยกเลิกบัฟ ×
- 强化	 boost	強化	 강화	 ที่ใช้ไป
-仍然防御	Defend Anyway	防御する	그래도 방어	ป้องกันต่อ
-伙伴骰子冒险	Dice Pet Adventure	ダイスペット冒険	주사위 펫 모험	ผจญภัยลูกเต๋าเพื่อนรัก
- 关 · 	 stages · 	ステージ · 	스테이지 · 	 ด่าน · 
- 张地图	 maps	マップ	개 지도	 แผนที่
-继续冒险	Continue	冒険を続ける	모험 계속	ผจญภัยต่อ
-伙伴收藏  	Companions  	仲間一覧  	친구 컬렉션  	คอลเลกชันเพื่อน  
- 只	 pets	匹	마리	 ตัว
-孵化屋  ·  	Hatchery · 	ふ化小屋 · 	부화장 · 	โรงฟัก · 
- 枚待孵	 eggs waiting	個待機中	개 대기 중	 ฟองรอฟัก
-退出自动续玩 · 收藏与宠物蛋永久保留	Leave run · Keep companions and eggs	冒険終了・仲間とタマゴは保持	모험 종료 · 친구와 알은 유지	ออกจากรอบ · เก็บเพื่อนและไข่ไว้
-重新出发？	Start Again?	やり直しますか？	다시 출발할까요?	เริ่มใหม่?
-本局进度重置，收藏与已带走的宠物蛋保留	Reset this run. Keep collected pets and eggs.	今回の進行をリセット。仲間とタマゴは保持。	이번 모험 초기화. 친구와 알은 유지돼요.	รีเซ็ตรอบนี้ เก็บเพื่อนและไข่ไว้
-继续当前	Continue Run	続ける	계속하기	เล่นต่อ
-重新出发	New Run	再出発	다시 출발	เริ่มรอบใหม่
-可以破壳啦！	Ready to Hatch!	ふ化できます！	부화할 준비 완료!	พร้อมออกจากไข่!
-孵化屋	Hatchery	ふ化小屋	부화장	โรงฟัก
-离线成长	Grows Offline	オフラインでも成長	오프라인 성장	เติบโตออฟไลน์
-新放入的蛋孵化 	New eggs hatch in 	新しいタマゴのふ化時間：	새 알의 부화 시간: 	ไข่ใหม่ใช้เวลาฟัก 
- 秒	 sec	秒	초	 วินาที
-，离线继续。\n完整观看视频，孵化时间减少 30 分钟。\nSR 蛋至少孵出 SR；SSR 蛋必出 SSR。	, even offline.\nFinish a video to skip 30 minutes.\nSR eggs give SR or better; SSR eggs always give SSR.	、オフラインでも進行。\n動画を最後まで見ると30分短縮。\nSRタマゴはSR以上、SSRタマゴは必ずSSR。	, 오프라인에서도 진행돼요.\n영상을 끝까지 보면 30분 단축.\nSR 알은 SR 이상, SSR 알은 반드시 SSR.	 แม้ออฟไลน์\nดูวิดีโอจบเพื่อลดเวลา 30 นาที\nไข่ SR ได้ SR ขึ้นไป ไข่ SSR ได้ SSR แน่นอน
-破壳！	Hatch!	ふ化！	부화!	ฟักเลย!
-−30分钟	−30 min	−30分	−30분	−30 นาที
-放入宠物蛋	Add Egg	タマゴを入れる	알 넣기	ใส่ไข่
-待孵化  	Waiting  	待機中  	부화 대기  	รอฟัก  
-蛋袋  ›	Egg Bag ›	タマゴバッグ ›	알 가방 ›	ถุงไข่ ›
-孵化加速	Speed Up Hatch	ふ化を早める	부화 가속	เร่งการฟัก
-刷新对手	New Opponent	相手を変更	상대 새로고침	เปลี่ยนคู่ต่อสู้
-激励广告待接入，暂不能刷新	Ads unavailable · Cannot refresh yet	広告未対応・相手を変更できません	광고 미연결 · 새로고침 불가	ยังไม่มีโฆษณา · เปลี่ยนไม่ได้
-完整观看视频后可刷新	Finish the video to refresh	動画を最後まで見ると変更できます	영상을 끝까지 보면 새로고침돼요	ดูวิดีโอจบเพื่อเปลี่ยน
-广告暂不可用，请稍后再试	Ad unavailable. Try again later.	広告を読み込めません。後でお試しください。	광고를 볼 수 없어요. 나중에 다시 시도하세요.	โฆษณาไม่พร้อม โปรดลองภายหลัง
-激励广告待接入，暂不能加速	Ads unavailable · Cannot speed up yet	広告未対応・短縮できません	광고 미연결 · 가속 불가	ยังไม่มีโฆษณา · เร่งไม่ได้
-加速奖励已保留，联网后到账	Speed-up saved. Connect to apply.	短縮報酬を保存しました。接続後に反映。	가속 보상 저장됨. 연결 후 적용돼요.	เก็บรางวัลเร่งไว้แล้ว เชื่อมต่อเพื่อรับ
-完整观看视频后可加速	Finish the video to speed up	動画を最後まで見ると短縮できます	영상을 끝까지 보면 가속돼요	ดูวิดีโอจบเพื่อเร่ง
-新伙伴	New Companion	新しい仲間	새 친구	เพื่อนใหม่
-收下伙伴	Welcome	仲間にする	친구 받기	รับเพื่อน
-各技能自动触发 · 每场限一次	Auto skills · Once per battle	自動発動・各スキル1戦1回	자동 발동 · 스킬마다 전투당 1회	สกิลอัตโนมัติ · สกิลละ 1 ครั้งต่อการต่อสู้
-返回伙伴	Back to Companions	仲間一覧へ	친구로 돌아가기	กลับไปหาเพื่อน
-交配屋	Breeding	交配小屋	교배소	ผสมพันธุ์
-选择一雌一雄	Choose a female and a male	メスとオスを選択	암컷과 수컷 선택	เลือกตัวเมียและตัวผู้
-形态、HP、攻击各有 50% 随父或随母。\n技能从父母技能池随机继承，最多 6 个。\n交配需 	Form, HP and attack each inherit from either parent at 50%.\nInherit up to 6 different parent skills.\nBreeding takes 	姿・HP・攻撃は各50%で父か母から遺伝。\n親のスキルを重複なく最大6つ継承。\n交配時間：	형태·HP·공격은 각각 50%로 부모 한쪽을 따라요.\n부모 스킬을 중복 없이 최대 6개 계승해요.\n교배 시간: 	รูปร่าง HP และพลังโจมตี สืบทอดจากพ่อหรือแม่อย่างละ 50%\nสืบทอดสกิลพ่อแม่ไม่ซ้ำกันสูงสุด 6 สกิล\nผสมพันธุ์ใช้เวลา 
-，离线继续。\n领取蛋后父母消失，蛋需再孵化。	, even offline.\nClaiming the egg consumes both parents. Incubate the egg afterward.	、オフラインでも進行。\nタマゴ受取時に両親は消えます。その後ふ化が必要です。	, 오프라인에서도 진행돼요.\n알 수령 시 부모가 사라져요. 알은 따로 부화해야 해요.	 แม้ออฟไลน์\nเมื่อรับไข่ พ่อแม่ทั้งสองจะหายไป ต้องนำไข่ไปฟักต่อ
- 技能	 skills	スキル	개 스킬	 สกิล
-选择伙伴	Choose Companion	仲間を選択	친구 선택	เลือกเพื่อน
-领取蛋后，父母消失	Claiming the egg consumes both parents	タマゴ受取時に両親は消えます	알 수령 시 부모가 사라져요	รับไข่แล้วพ่อแม่จะหายไป
-可以领蛋	Egg Ready	タマゴ受取可能	알 수령 가능	รับไข่ได้แล้ว
-战斗中	In Battle	戦闘中	전투 중	กำลังต่อสู้
-先领取新伙伴	Claim Your New Companion First	先に新しい仲間を受け取ってください	새 친구를 먼저 받아 주세요	รับเพื่อนใหม่ก่อน
-交配中…	Breeding…	交配中…	교배 중…	กำลังผสมพันธุ์…
-领取宠物蛋	Claim Egg	タマゴを受け取る	알 받기	รับไข่
-开始交配	Start Breeding	交配開始	교배 시작	เริ่มผสมพันธุ์
-孵化屋 ›	Hatchery ›	ふ化小屋 ›	부화장 ›	โรงฟัก ›
-获得宠物蛋	Egg Obtained	タマゴ獲得	알 획득	ได้รับไข่
-蛋	Egg	タマゴ	알	ไข่
- · 已放入蛋袋	 · Added to Egg Bag	 · タマゴバッグに保存	 · 알 가방에 보관	 · เก็บในถุงไข่แล้ว
-去孵化	Incubate	ふ化へ	부화하러 가기	ไปฟัก
-选择雌性 ♀	Choose Female ♀	メスを選択 ♀	암컷 선택 ♀	เลือกตัวเมีย ♀
-选择雄性 ♂	Choose Male ♂	オスを選択 ♂	수컷 선택 ♂	เลือกตัวผู้ ♂
-暂无可交配的	No eligible 	交配可能な仲間なし：	교배 가능한 친구 없음: 	ไม่มีตัวที่พร้อมผสมพันธุ์: 
-雌性	Female	メス	암컷	ตัวเมีย
-雄性	Male	オス	수컷	ตัวผู้
-伙伴	Pets	仲間	친구	เพื่อน
-来信	Mail	お便り	편지	จดหมาย
-好友 · 结缘	Friends · Bonds	友達 · 絆	친구 · 인연	เพื่อน · สายสัมพันธ์
-分享来访码，邀请好友伙伴作客。\n完成 3 次互动，解锁该伙伴系列。\n用自己的蛋结缘，品质保持不变。\n未解锁地区仅支持 R 蛋。\n来访伙伴不会进入收藏或参与交配。	Share a visit code to invite a friend's pet.\nInteract 3 times to unlock its family.\nBond with your own egg; rarity stays the same.\nLocked regions only allow R eggs.\nVisitors cannot join your collection or breed.	来訪コードで友達の仲間を招待。\n3回交流するとその系統が解放。\n自分のタマゴで絆ふ化。レア度は維持。\n未解放地域はRタマゴのみ。\n来訪者は仲間に加わらず、交配もできません。	방문 코드로 친구의 펫을 초대하세요.\n3번 교류하면 해당 계열이 해금돼요.\n내 알로 인연 부화하며 등급은 유지돼요.\n미해금 지역은 R 알만 가능해요.\n방문 펫은 컬렉션이나 교배에 사용할 수 없어요.	แชร์รหัสเพื่อเชิญสัตว์เลี้ยงเพื่อน\nทำกิจกรรม 3 ครั้งเพื่อปลดล็อกสายพันธุ์\nใช้ไข่ของคุณผูกสัมพันธ์ ระดับคงเดิม\nพื้นที่ยังไม่ปลดล็อกใช้ได้เฉพาะไข่ R\nผู้มาเยือนจะไม่เข้าคอลเลกชันหรือผสมพันธุ์
-来访	Visit	来訪	방문	เยี่ยม
-分享	Share	シェア	공유	แชร์
-结缘	Bond	絆	인연	ผูกสัมพันธ์
-粘贴好友来访码	Paste a friend's visit code	友達の来訪コードを貼り付け	친구 방문 코드 붙여넣기	วางรหัสเยี่ยมของเพื่อน
-粘贴	Paste	貼り付け	붙여넣기	วาง
-长按输入框粘贴	Hold the field to paste	入力欄を長押しで貼り付け	입력창을 길게 눌러 붙여넣기	กดช่องค้างเพื่อวาง
-已粘贴	Pasted	貼り付け済み	붙여넣음	วางแล้ว
-邀请	Invite	招待	초대	เชิญ
-来访码不完整	Invalid visit code	来訪コードが不完全です	방문 코드가 불완전해요	รหัสเยี่ยมไม่ครบ
-请使用好友的来访码	Use a friend's code	友達のコードを使ってください	친구 코드를 사용해 주세요	ใช้รหัสของเพื่อน
-好友已在这里	Your friend is already here	友達はもう来ています	친구가 이미 와 있어요	เพื่อนอยู่ที่นี่แล้ว
-新朋友来啦！	A new friend arrived!	新しい友達が来た！	새 친구가 왔어요!	เพื่อนใหม่มาแล้ว!
-等待新朋友	Waiting for a Friend	友達を待っています	새 친구 기다리는 중	รอเพื่อนใหม่
-我的伙伴	My Companion	自分の仲間	내 친구	เพื่อนของฉัน
-好友伙伴	Friend's Companion	友達の仲間	친구의 펫	สัตว์เลี้ยงของเพื่อน
-招招手	Wave	手を振る	손 흔들기	โบกมือ
-喂点心	Give Snack	おやつ	간식 주기	ให้ขนม
-一起玩	Play	遊ぶ	함께 놀기	เล่นด้วยกัน
-结缘孵化 ›	Bond Hatch ›	絆ふ化 ›	인연 부화 ›	ฟักสายสัมพันธ์ ›
-使用自己的蛋	Use Your Egg	自分のタマゴを使う	내 알 사용	ใช้ไข่ของคุณ
-互动 3 次即可结缘	Interact 3 times to bond	3回交流で絆が生まれます	3번 교류하면 인연을 맺어요	ทำกิจกรรม 3 ครั้งเพื่อผูกสัมพันธ์
-正在招手…	Waving…	手を振っています…	손 흔드는 중…	กำลังโบกมือ…
-一起吃点心…	Sharing a snack…	一緒におやつ…	함께 간식 먹는 중…	กินขนมด้วยกัน…
-开心地玩耍…	Having fun…	楽しく遊んでいます…	즐겁게 노는 중…	กำลังเล่นสนุก…
-结缘成功！	Bond Formed!	絆が生まれた！	인연을 맺었어요!	ผูกสัมพันธ์สำเร็จ!
-好感 +1	Bond +1	好感度 +1	호감도 +1	สัมพันธ์ +1
-稍等片刻	Wait a Moment	少し待ってね	잠시만요	รอสักครู่
-暂无伙伴	No Companions	仲間がいません	친구 없음	ยังไม่มีเพื่อน
-更换伙伴 ›	Change Companion ›	仲間を変更 ›	친구 변경 ›	เปลี่ยนเพื่อน ›
-来访码	Visit Code	来訪コード	방문 코드	รหัสเยี่ยม
-复制来访码	Copy Visit Code	来訪コードをコピー	방문 코드 복사	คัดลอกรหัสเยี่ยม
-长按来访码，全选复制	Hold the code, select all and copy	コードを長押しし、すべて選択してコピー	코드를 길게 눌러 전체 선택 후 복사	กดรหัสค้าง เลือกทั้งหมดและคัดลอก
-已复制，发给好友吧	Copied! Send it to a friend	コピー完了！友達に送ろう	복사 완료! 친구에게 보내세요	คัดลอกแล้ว ส่งให้เพื่อนเลย
-复制后发给好友	Copy and send to a friend	コピーして友達に送ろう	복사해서 친구에게 보내세요	คัดลอกแล้วส่งให้เพื่อน
-伙伴仍留在你的营地	Your companion stays in your camp	仲間は自分のキャンプに残ります	친구는 내 캠프에 남아요	เพื่อนยังอยู่ในแคมป์ของคุณ
-与好友互动 3 次即可结缘	Interact with a friend 3 times to bond	友達と3回交流で絆が生まれます	친구와 3번 교류하면 인연을 맺어요	ทำกิจกรรมกับเพื่อน 3 ครั้งเพื่อผูกสัมพันธ์
-选择伙伴系列，再选自己的蛋	Choose a family, then your egg	系統を選び、自分のタマゴを選択	계열을 고른 뒤 내 알을 선택하세요	เลือกสายพันธุ์ แล้วเลือกไข่ของคุณ
-选择结缘蛋	Choose a Bond Egg	絆のタマゴを選択	인연 알 선택	เลือกไข่ผูกสัมพันธ์
-系列	Family	系統	계열	สายพันธุ์
-已结缘	Bonded	絆あり	인연 맺음	ผูกสัมพันธ์แล้ว
-地区未解锁	Region Locked	地域未解放	지역 미해금	พื้นที่ยังล็อกอยู่
-保留遗传	Keep Genes	遺伝を維持	유전 유지	เก็บยีนเดิม
-分	min	分	분	นาที
-选择	Choose	選択	선택	เลือก
-暂无可用的蛋	No Available Eggs	使えるタマゴがありません	사용 가능한 알 없음	ไม่มีไข่ที่ใช้ได้
-孵化位已满 · 去查看	Incubators Full · View	ふ化枠満員 · 確認	부화 슬롯 가득 참 · 확인	ช่องฟักเต็ม · ดู
-结缘孵化	Bond Hatch	絆ふ化	인연 부화	ฟักสายสัมพันธ์
-品质不变	Rarity Unchanged	レア度維持	등급 유지	ระดับคงเดิม
-宠物蛋 ×1  ·  孵化位 ×1	Egg ×1 · Incubator ×1	タマゴ ×1 · ふ化枠 ×1	알 ×1 · 부화 슬롯 ×1	ไข่ ×1 · ช่องฟัก ×1
- 分钟 · 保留遗传	 min · Genes kept	分 · 遺伝を維持	분 · 유전 유지	 นาที · เก็บยีนเดิม
- 分钟 · 离线继续	 min · Continues offline	分 · オフラインでも進行	분 · 오프라인에서도 진행	 นาที · ทำต่อแม้ออฟไลน์
-营地等待新的伙伴\n请先孵化新伙伴	The camp awaits a companion.\nHatch an egg first.	キャンプで仲間を待っています。\nまずタマゴをふ化させよう。	캠프가 친구를 기다려요.\n먼저 알을 부화하세요.	แคมป์กำลังรอเพื่อนใหม่\nฟักไข่ก่อนนะ
-探险	Explore	冒険	탐험	ผจญภัย
-已拥有 	Owned 	所持 	보유 	มีแล้ว 
-通信小屋	Mail House	通信小屋	통신소	บ้านสื่อสาร
-图鉴	Petdex	図鑑	도감	สารานุกรม
-PM v0.12.0 · 自动保存	PM v0.12.0 · Autosave	PM v0.12.0 · 自動保存	PM v0.12.0 · 자동 저장	PM v0.12.0 · บันทึกอัตโนมัติ
-每2分钟恢复1点体力	Recover 1 stamina every 2 minutes	2分ごとにスタミナ1回復	2분마다 체력 1 회복	ฟื้นพลังงาน 1 แต้มทุก 2 นาที
-体力	Stamina	スタミナ	행동력	พลังงาน
-体力已满	Stamina Full	スタミナ満タン	행동력 가득 참	พลังงานเต็ม
-激励广告待接入，暂不能领取	Ads unavailable · Cannot claim yet	広告未対応・受取できません	광고 미연결 · 수령 불가	ยังไม่มีโฆษณา · รับไม่ได้
-体力奖励已保留，联网后到账	Stamina saved. Connect to claim.	スタミナ報酬を保存。接続後に反映。	행동력 보상 저장됨. 연결 후 받아요.	เก็บพลังงานไว้แล้ว เชื่อมต่อเพื่อรับ
-观看完成后可获得体力	Finish the video to gain stamina	動画を最後まで見るとスタミナ獲得	영상을 끝까지 보면 행동력 획득	ดูวิดีโอจบเพื่อรับพลังงาน
-营地设置	Settings	設定	설정	ตั้งค่า
-音乐  	Music  	音楽  	음악  	เพลง  
-开	On	ON	켜짐	เปิด
-关	Off	OFF	꺼짐	ปิด
-音效  	Sound  	効果音  	효과음  	เสียง  
-探险地图	Adventure Map	冒険マップ	모험 지도	แผนที่ผจญภัย
- 层	 floors	階	층	 ชั้น
-越深入，伙伴形态与蛋品质越高	Go deeper for stronger pets and better eggs	奥へ進むほど強い仲間と良いタマゴに出会えます	깊이 갈수록 강한 친구와 좋은 알을 만나요	ยิ่งลึก ยิ่งได้เพื่อนและไข่ระดับสูง
-精英 / BOSS 巢穴寻蛋	Elite / Boss Egg Hunt	エリート / ボスのタマゴ探し	정예 / 보스 알 찾기	หาไข่ชั้นยอด / บอส
-请先孵化新伙伴	Hatch a Companion First	まず仲間をふ化させよう	먼저 친구를 부화하세요	ฟักเพื่อนใหม่ก่อน
-通关 	Clear 	クリア：	클리어: 	ผ่าน 
- 解锁	 to unlock	で解放	 후 해금	 เพื่อปลดล็อก
-继续探险	Resume	冒険再開	탐험 계속	ผจญภัยต่อ
-体力不足	Not Enough Stamina	スタミナ不足	행동력 부족	พลังงานไม่พอ
-出发！	Let's Go!	出発！	출발!	ไปกันเลย!
-地图加载失败	Map Loading Failed	マップ読み込み失敗	지도 불러오기 실패	โหลดแผนที่ไม่สำเร็จ
-请重试进入地图	Please try entering again	もう一度お試しください	다시 입장해 주세요	ลองเข้าแผนที่อีกครั้ง
-结束当前地图进度，新探险消耗5体力	End this run. A new adventure costs 5 stamina.	現在の冒険を終了。再出発はスタミナ5消費。	현재 모험 종료. 새 탐험은 행동력 5 소모.	จบรอบปัจจุบัน การผจญภัยใหม่ใช้พลังงาน 5
-出发	Go	出発	출발	ไป
- 形态	 forms	形態	형태	 ร่าง
-全部	All	すべて	전체	ทั้งหมด
-全部属性	All Types	全タイプ	모든 속성	ทุกธาตุ
-✓ 已拥有	✓ Owned	✓ 所持	✓ 보유	✓ มีแล้ว
-全部宠物	All Pets	全ての仲間	모든 펫	สัตว์เลี้ยงทั้งหมด
-暂无符合条件的伙伴	No Matching Companions	該当する仲間がいません	해당하는 친구 없음	ไม่พบเพื่อนที่ตรงเงื่อนไข
-属性	Type	タイプ	속성	ธาตุ
-已拥有	Owned	所持	보유	มีแล้ว
-未拥有	Not Owned	未所持	미보유	ยังไม่มี
- · 孵蛋获得	 · From hatching	 · ふ化で入手	 · 부화로 획득	 · ได้จากฟักไข่
-属性关系	Type Matchups	タイプ相性	속성 상성	ความสัมพันธ์ธาตุ
-返回图鉴	Back to Petdex	図鑑へ	도감으로	กลับสารานุกรม
-克制关系	Type Matchups	相性	상성 관계	การแพ้ทาง
-我方攻击	Your Attack	味方の攻撃	아군 공격	ฝ่ายเราโจมตี
-敌方攻击	Enemy Attack	敵の攻撃	적 공격	ศัตรูโจมตี
-攻击数字已计入克制；两个方向分别计算	ATK includes type effects; each direction differs	攻撃値は相性込み。攻守で別々に計算	공격 수치는 상성 적용 후 · 방향별로 계산	พลังโจมตีรวมธาตุแล้ว · คิดแยกแต่ละฝ่าย
-我方关系 ›	Your Types ›	味方の相性 ›	아군 상성 ›	ธาตุฝ่ายเรา ›
-敌方关系 ›	Enemy Types ›	敵の相性 ›	적 상성 ›	ธาตุศัตรู ›
-攻击克制  ×1.5	Strong Against ×1.5	攻撃有利 ×1.5	공격 유리 ×1.5	โจมตีได้เปรียบ ×1.5
-攻击受阻  ×0.75 / ×0.5	Resisted ×0.75 / ×0.5	攻撃不利 ×0.75 / ×0.5	공격 불리 ×0.75 / ×0.5	โจมตีเสียเปรียบ ×0.75 / ×0.5
-受击弱点  ×1.5	Weak To ×1.5	受ける弱点 ×1.5	피격 약점 ×1.5	แพ้ทาง ×1.5
-受击抵抗  ×0.75 / ×0.5	Resists ×0.75 / ×0.5	受ける耐性 ×0.75 / ×0.5	피격 저항 ×0.75 / ×0.5	ต้านทาน ×0.75 / ×0.5
-未列出的关系为 ×1 · ½ 表示强抵抗 ×0.5	Others ×1 · ½ means strong resistance ×0.5	未掲載は×1 · ½は強い耐性×0.5	그 외 ×1 · ½은 강한 저항 ×0.5	อื่น ๆ ×1 · ½ คือต้านทานสูง ×0.5
-拖动伙伴 · 调整队伍	Drag to Arrange Your Team	ドラッグでチーム編成	드래그하여 팀 편성	ลากเพื่อจัดทีม
-出战	Active	出撃	출전	ลงสนาม
-候补 	Reserve 	控え 	후보 	สำรอง 
-伙伴 	Pets 	仲間 	친구 	เพื่อน 
-图鉴 ›	Petdex ›	図鑑 ›	도감 ›	สารานุกรม ›
-还没有伙伴\n请先孵化新伙伴	No companions yet.\nHatch an egg first.	仲間がいません。\nまずタマゴをふ化させよう。	아직 친구가 없어요.\n먼저 알을 부화하세요.	ยังไม่มีเพื่อน\nฟักไข่ก่อนนะ
-伙伴破壳后会出现在这里	Hatched companions appear here	ふ化した仲間がここに現れます	부화한 친구가 여기에 나타나요	เพื่อนที่ฟักแล้วจะอยู่ที่นี่
-先孵化新伙伴，再出发探险	Hatch a companion, then explore	仲間をふ化させて冒険へ	친구를 부화한 뒤 탐험하세요	ฟักเพื่อนแล้วออกผจญภัย
-前往孵化屋	Go to Hatchery	ふ化小屋へ	부화장으로	ไปโรงฟัก
-技能 ›	Skills ›	スキル ›	스킬 ›	สกิล ›
-战斗中 · 队伍已锁定	In Battle · Team Locked	戦闘中 · 編成不可	전투 중 · 팀 고정	กำลังต่อสู้ · ล็อกทีม
-拖动宠物 → 上方出战 / 候补位	Drag a pet → Active / Reserve slot	仲間をドラッグ → 出撃 / 控え枠	펫 드래그 → 출전 / 후보 자리	ลากเพื่อน → ช่องลงสนาม / สำรอง
-通过孵蛋获得此形态	Hatch an egg to get this form	ふ化でこの形態を入手	부화로 이 형태 획득	ฟักไข่เพื่อรับร่างนี้
-拖到上方高亮位置 · 松手放置	Drag to a highlighted slot · Release	光る枠へドラッグして離す	빛나는 자리로 드래그 후 놓기	ลากไปช่องที่สว่างแล้วปล่อย
-松手设为出战	Release to Set Active	離して出撃	놓으면 출전	ปล่อยเพื่อลงสนาม
-松手放入候补 	Release for Reserve 	離して控え 	놓으면 후보 	ปล่อยเพื่อสำรอง 
-已设为出战	Set Active	出撃に設定	출전 설정됨	ตั้งลงสนามแล้ว
-已放入候补 	Set Reserve 	控えに設定 	후보로 설정 	ตั้งสำรองแล้ว 
-语言	Language	言語	언어	ภาษา
-跟随系统	System	システム	시스템 설정	ตามระบบ
-骰子宠物精灵	Dice Pet Spirits	ダイスペット	주사위 펫 스피릿	ลูกเต๋าเพื่อนภูต
-收集 · 孵化 · 冒险	Collect · Hatch · Explore	集める · ふ化 · 冒険	수집 · 부화 · 모험	สะสม · ฟัก · ผจญภัย
-开始游戏	Play	はじめる	시작	เริ่มเกม
+伙伴们正在赶来…	Your companions are on their way…	仲間たちがやってきます…	친구들이 오고 있어요…	เพื่อน ๆ กำลังมา…	Seus parceiros estão chegando…	Tus compañeros están llegando…	Teman-temanmu sedang menuju ke sini…	Bạn đồng hành đang tới…	Deine Begleiter sind unterwegs…	Vos compagnons arrivent…
+资源加载失败，请刷新重试	Loading failed. Please reload.	読み込み失敗。再読み込みしてください。	불러오지 못했어요. 새로고침해 주세요.	โหลดไม่สำเร็จ กรุณาโหลดใหม่	Falha ao carregar. Recarregue.	Error al cargar. Recarga.	Gagal memuat. Muat ulang.	Tải thất bại. Hãy tải lại.	Laden fehlgeschlagen. Bitte neu laden.	Échec du chargement. Rechargez.
+连接网络后继续计时	Connect to resume timers	接続すると計時が再開します	연결하면 시간이 다시 흘러요	เชื่อมต่อเพื่อเดินเวลาต่อ	Conecte para retomar a contagem	Conéctate para reanudar el tiempo	Hubungkan internet untuk melanjutkan waktu	Kết nối mạng để tiếp tục đếm giờ	Verbinden, um Zeit fortzusetzen	Connectez-vous pour reprendre le décompte
+等待联网	Waiting for connection	接続待ち	연결 대기 중	รอการเชื่อมต่อ	Aguardando conexão	Esperando conexión	Menunggu koneksi	Chờ kết nối mạng	Warte auf Verbindung	En attente de connexion
+返回	Back	戻る	뒤로	กลับ	Voltar	Volver	Kembali	Quay lại	Zurück	Retour
+重试	Retry	再試行	다시 시도	ลองใหม่	Tentar de novo	Reintentar	Coba lagi	Thử lại	Erneut versuchen	Réessayer
+暂时无法校时，请稍后重试	Time sync unavailable. Try again later.	時刻を同期できません。後でお試しください。	시간을 동기화할 수 없어요. 나중에 다시 시도하세요.	ซิงค์เวลาไม่ได้ โปรดลองภายหลัง	Não foi possível sincronizar a hora. Tente depois.	No se pudo sincronizar la hora. Intenta más tarde.	Sinkronisasi waktu gagal. Coba lagi nanti.	Chưa thể đồng bộ giờ. Thử lại sau.	Zeitsynchronisierung nicht verfügbar. Später erneut versuchen.	Synchronisation de l'heure indisponible. Réessayez plus tard.
+宠物蛋已准备好	Your egg is ready!	タマゴができました！	알이 준비됐어요!	ไข่พร้อมแล้ว!	Seu ovo está pronto!	¡Tu huevo está listo!	Telurmu siap!	Trứng đã sẵn sàng!	Dein Ei ist bereit!	Votre œuf est prêt !
+有 	Ready: 	準備完了：	준비 완료: 	พร้อม: 	Prontos: 	Listos: 	Siap: 	Sẵn sàng: 	Bereit: 	Prêts : 
+ 枚可以破壳	 eggs to hatch	個のタマゴ	개의 알	 ฟอง	 ovos para eclodir	 huevos por eclosionar	 telur siap menetas	 trứng có thể nở	 Eier zum Schlüpfen	 œufs à éclore
+ / 2 孵化中	 / 2 incubating	 / 2 ふ化中	 / 2 부화 중	 / 2 กำลังฟัก	 / 2 incubando	 / 2 incubando	 / 2 diinkubasi	 / 2 đang ấp	 / 2 in Brut	 / 2 en incubation
+阵亡	Down	戦闘不能	전투 불능	หมดสติ	Derrotado	Derrotado	Tumbang	Đã gục	Besiegt	K.O.
+攻击 ×	ATK ×	攻撃 ×	공격 ×	โจมตี ×	ATQ ×	ATQ ×	ATK ×	Công ×	ANG ×	ATQ ×
+精英	Elite	エリート	정예	ชั้นยอด	Elite	Élite	Elite	Tinh anh	Elite	Élite
+普通	Normal	通常	일반	ทั่วไป	Normal	Normal	Normal	Thường	Normal	Normal
+奖励	Reward	報酬	보상	รางวัล	Prêmio	Premio	Hadiah	Thưởng	Belohnung	Récompense
+它想和你一起冒险！	It wants to join your adventure!	一緒に冒険したいようです！	함께 모험하고 싶대요!	มันอยากไปผจญภัยด้วย!	Quer se aventurar com você!	¡Quiere ir contigo de aventura!	Ia ingin berpetualang bersamamu!	Nó muốn phiêu lưu cùng bạn!	Es will mit dir auf Abenteuer gehen!	Il veut partir à l'aventure avec vous !
+新伙伴加入！	A new companion!	新しい仲間！	새로운 친구!	เพื่อนใหม่!	Um novo parceiro!	¡Nuevo compañero!	Teman baru bergabung!	Bạn mới gia nhập!	Ein neuer Begleiter!	Un nouveau compagnon !
+胜利通关	Stage Clear!	クリア！	클리어!	ผ่านด่าน!	Vitória!	¡Victoria!	Tahap Selesai!	Vượt ải thành công	Geschafft!	Victoire !
+失败结算	Adventure Over	冒険終了	모험 종료	จบการผจญภัย	Fim da aventura	Fin de la aventura	Petualangan Berakhir	Kết thúc hành trình	Abenteuer beendet	Fin de l'aventure
+通关已记录 · 获得的宠物蛋已保留	Clear saved · Eggs kept	クリア記録・タマゴを保存しました	클리어 기록과 알을 보관했어요	บันทึกการผ่านด่านและเก็บไข่แล้ว	Vitória salva · Ovos guardados	Victoria guardada · Huevos conservados	Selesai tersimpan · Telur disimpan	Đã lưu vượt ải · Giữ lại trứng	Sieg gespeichert · Eier behalten	Victoire enregistrée · Œufs conservés
+本次探险结束 · 已获得的宠物蛋保留	Adventure over · Eggs kept	冒険終了・タマゴは持ち帰れます	모험 종료 · 획득한 알은 보관돼요	จบการผจญภัย · เก็บไข่ที่ได้ไว้แล้ว	Aventura encerrada · Ovos guardados	Aventura terminada · Huevos conservados	Petualangan selesai · Telur disimpan	Hành trình kết thúc · Giữ lại trứng	Abenteuer beendet · Eier behalten	Aventure terminée · Œufs conservés
+返回营地	Return to Camp	キャンプへ	캠프로	กลับแคมป์	Voltar ao acampamento	Volver al campamento	Kembali ke Kemah	Về trại	Zum Lager	Retour au camp
+保存失败，请勿关闭页面	Save failed. Keep the game open.	保存失敗。画面を閉じないでください。	저장 실패. 게임을 닫지 마세요.	บันทึกไม่สำเร็จ อย่าเพิ่งปิดเกม	Falha ao salvar. Não feche o jogo.	Error al guardar. No cierres el juego.	Gagal menyimpan. Jangan tutup gim.	Lưu thất bại. Đừng đóng trò chơi.	Speichern fehlgeschlagen. Spiel offen lassen.	Échec de sauvegarde. Gardez le jeu ouvert.
+ 关 · 自动续玩	 stages · Auto-resume	ステージ・自動再開	스테이지 · 자동 이어하기	 ด่าน · เล่นต่ออัตโนมัติ	 fases · Retomada automática	 etapas · Reanudación automática	 tahap · Lanjut otomatis	 ải · Tự tiếp tục	 Gebiete · Automatisch fortsetzen	 zones · Reprise automatique
+选择你的主角	Choose Your Hero	主人公を選ぼう	주인공 선택	เลือกตัวเอก	Escolha seu herói	Elige tu héroe	Pilih Tokohmu	Chọn nhân vật	Wähle deinen Helden	Choisissez votre héros
+保留原有进度 · 选择一位同行者	Keep your progress · Choose a hero	進行状況を引き継いで主人公を選択	진행 유지 · 주인공 선택	เก็บความคืบหน้า · เลือกตัวเอก	Progresso mantido · Escolha um herói	Progreso conservado · Elige un héroe	Progres tetap · Pilih tokoh	Giữ tiến độ · Chọn người đồng hành	Fortschritt bleibt · Wähle einen Helden	Progression conservée · Choisissez un héros
+01  主角     ·     02  初始伙伴	01 Hero · 02 Starter	01 主人公 · 02 最初の仲間	01 주인공 · 02 첫 친구	01 ตัวเอก · 02 เพื่อนเริ่มต้น	01 Herói · 02 Parceiro inicial	01 Héroe · 02 Compañero inicial	01 Tokoh · 02 Teman awal	01 Nhân vật · 02 Thú khởi đầu	01 Held · 02 Starter	01 Héros · 02 Premier compagnon
+01  主角 ✓     ·     02  初始伙伴	01 Hero ✓ · 02 Starter	01 主人公 ✓ · 02 最初の仲間	01 주인공 ✓ · 02 첫 친구	01 ตัวเอก ✓ · 02 เพื่อนเริ่มต้น	01 Herói ✓ · 02 Parceiro inicial	01 Héroe ✓ · 02 Compañero inicial	01 Tokoh ✓ · 02 Teman awal	01 Nhân vật ✓ · 02 Thú khởi đầu	01 Held ✓ · 02 Starter	01 Héros ✓ · 02 Premier compagnon
+选择 	Choose 	選択：	선택: 	เลือก 	Escolher 	Elegir 	Pilih 	Chọn 	Wählen: 	Choisir 
+选择第一位伙伴	Choose Your First Companion	最初の仲間を選ぼう	첫 친구 선택	เลือกเพื่อนตัวแรก	Escolha seu primeiro parceiro	Elige tu primer compañero	Pilih Teman Pertama	Chọn bạn đồng hành đầu tiên	Wähle deinen ersten Begleiter	Choisissez votre premier compagnon
+抢先一击 · 首次攻击伤害 +2	First Strike · First attack +2	先制の一撃・初回攻撃 +2	선제공격 · 첫 공격 +2	ชิงโจมตี · โจมตีครั้งแรก +2	Golpe inicial · Primeiro ataque +2	Primer golpe · Primer ataque +2	Serangan Awal · Serangan pertama +2	Đánh phủ đầu · Đòn đầu +2	Erstschlag · Erster Angriff +2	Premier coup · Première attaque +2
+草木祝福 · 首次治疗恢复 +2	Green Blessing · First heal +2	草木の祝福・初回回復 +2	초목의 축복 · 첫 회복 +2	พรพฤกษา · ฟื้นฟูครั้งแรก +2	Bênção verde · Primeira cura +2	Bendición verde · Primera cura +2	Berkah Hijau · Pemulihan pertama +2	Phúc lành cây cỏ · Lần hồi đầu +2	Grüner Segen · Erste Heilung +2	Bénédiction verte · Premier soin +2
+硬壳 · 首次受击伤害 −2	Hard Shell · First hit taken −2	かたい殻・初回被ダメージ −2	단단한 껍질 · 첫 피격 피해 −2	เปลือกแข็ง · เสียหายครั้งแรก −2	Casco duro · Primeiro dano recebido −2	Caparazón duro · Primer daño recibido −2	Cangkang Keras · Pukulan pertama −2	Mai cứng · Đòn chịu đầu −2	Harte Schale · Erster erlittener Treffer −2	Carapace dure · Premier coup reçu −2
+谁陪你踏上旅途？	Who will join your journey?	誰と旅に出る？	누구와 모험을 떠날까요?	ใครจะร่วมเดินทางกับคุณ?	Quem vai viajar com você?	¿Quién te acompañará?	Siapa yang menemanimu?	Ai sẽ cùng bạn lên đường?	Wer begleitet dich auf deiner Reise?	Qui vous accompagnera ?
+和 	With 	仲間：	친구: 	กับ 	Com 	Con 	Bersama 	Cùng 	Mit 	Avec 
+ 出发  ›	 · Let's go ›	 · 出発 ›	 · 출발 ›	 · ไปกันเถอะ ›	 · Vamos ›	 · Vamos ›	 · Ayo ›	 · Lên đường ›	 · Los geht's ›	 · En route ›
+带着惊喜回家	Bring a surprise home	おみやげを持って帰ろう	깜짝 선물을 가지고 집으로	นำเซอร์ไพรส์กลับบ้าน	Leve uma surpresa para casa	Lleva una sorpresa a casa	Bawa kejutan pulang	Mang bất ngờ về nhà	Bring eine Überraschung heim	Rapportez une surprise
+巢穴寻蛋	Nest Hunt	巣穴のタマゴ探し	둥지 알 찾기	หาไข่ในรัง	Caça aos ovos	Búsqueda de huevos	Berburu Telur	Tìm trứng trong tổ	Eiersuche	Chasse aux œufs
+已存入蛋袋 ✓	Egg stored ✓	タマゴバッグに保存 ✓	알 가방에 보관 ✓	เก็บในถุงไข่แล้ว ✓	Ovo guardado ✓	Huevo guardado ✓	Telur disimpan ✓	Đã cất trứng ✓	Ei verstaut ✓	Œuf rangé ✓
+BOSS 巢穴	Boss Nest	ボスの巣	보스 둥지	รังบอส	Ninho do chefe	Nido del jefe	Sarang Bos	Tổ trùm	Bossnest	Nid du boss
+精英巢穴	Elite Nest	エリートの巣	정예 둥지	รังชั้นยอด	Ninho de elite	Nido de élite	Sarang Elite	Tổ tinh anh	Elitenest	Nid d'élite
+ 次翻找	 searches	回探索	회 탐색	 ครั้ง	 buscas	 búsquedas	 pencarian	 lần tìm	 Suchen	 recherches
+寻蛋好手 · 额外带回一枚！	Egg Scout · One extra egg!	タマゴ探し名人・もう1個！	알 탐색꾼 · 알 1개 추가!	นักหาไข่ · ได้เพิ่ม 1 ฟอง!	Caça-ovos · Um ovo extra!	Busca Huevos · ¡Un huevo extra!	Pencari Telur · Satu telur ekstra!	Thợ tìm trứng · Thêm một trứng!	Eiersucher · Ein Extra-Ei!	Cherche-œufs · Un œuf en plus !
+ 蛋	 Egg	タマゴ	 알	 ไข่	 Ovo	 Huevo	 Telur	 Trứng	 Ei	 Œuf
+ · 已存入	 · Stored	 · 保存済み	 · 보관됨	 · เก็บแล้ว	 · Guardado	 · Guardado	 · Disimpan	 · Đã cất	 · Verstaut	 · Rangé
+已保存  ·  蛋袋共 	Saved · Eggs in bag: 	保存済み · タマゴ計 	저장됨 · 가방 속 알: 	บันทึกแล้ว · ไข่ในถุง: 	Salvo · Ovos na bolsa: 	Guardado · Huevos en bolsa: 	Tersimpan · Telur di tas: 	Đã lưu · Trứng trong túi: 	Gespeichert · Eier im Beutel: 	Sauvegardé · Œufs dans le sac : 
+ 枚	 eggs	個	개	 ฟอง	 ovos	 huevos	 telur	 trứng	 Eier	 œufs
+完成冒险  ›	Finish ›	冒険を終える ›	모험 완료 ›	จบการผจญภัย ›	Concluir ›	Terminar ›	Selesai ›	Hoàn tất ›	Abschließen ›	Terminer ›
+继续冒险  ›	Continue ›	冒険を続ける ›	모험 계속 ›	ผจญภัยต่อ ›	Continuar ›	Continuar ›	Lanjut ›	Tiếp tục ›	Weiter ›	Continuer ›
+查看蛋袋	Egg Bag	タマゴバッグ	알 가방	ถุงไข่	Ver ovos	Ver huevos	Lihat Telur	Xem túi trứng	Eierbeutel	Sac à œufs
+挑一枚，带回家	Pick one to take home	1個選んで持ち帰ろう	하나 골라 가져가세요	เลือกหนึ่งฟองกลับบ้าน	Escolha um para levar	Elige uno para llevar	Pilih satu untuk dibawa pulang	Chọn một trứng mang về	Wähle ein Ei für zu Hause	Choisissez un œuf à rapporter
+再找一次  	Search Again  	もう一度探す  	다시 찾기  	หาอีกครั้ง  	Buscar de novo  	Buscar de nuevo  	Cari Lagi  	Tìm thêm  	Weitersuchen  	Chercher encore  
+翻找草丛  	Search Grass  	草むらを探す  	풀숲 찾기  	ค้นพุ่มหญ้า  	Buscar no mato  	Buscar en el pasto  	Cari di Rumput  	Lục bụi cỏ  	Im Gras suchen  	Fouiller l'herbe  
+带走这枚  ›	Take This Egg ›	これを持ち帰る ›	이 알 가져가기 ›	เลือกไข่นี้ ›	Levar este ovo ›	Llevar este huevo ›	Ambil Telur Ini ›	Lấy trứng này ›	Dieses Ei mitnehmen ›	Prendre cet œuf ›
+每次翻找：普通 	Per search: R 	1回ごと：R 	탐색마다: R 	ต่อครั้ง: R 	Por busca: R 	Por búsqueda: R 	Tiap pencarian: R 	Mỗi lần tìm: R 	Pro Suche: R 	Par recherche : R 
+蛋袋	Egg Bag	タマゴバッグ	알 가방	ถุงไข่	Bolsa de ovos	Bolsa de huevos	Tas Telur	Túi trứng	Eierbeutel	Sac à œufs
+选择宠物蛋	Choose an Egg	タマゴを選択	알 선택	เลือกไข่	Escolha um ovo	Elige un huevo	Pilih Telur	Chọn trứng	Wähle ein Ei	Choisissez un œuf
+孵化中	Incubating	ふ化中	부화 중	กำลังฟัก	Incubando	Incubando	Diinkubasi	Đang ấp	In Brut	En incubation
+还没有宠物蛋	No eggs yet	タマゴがありません	아직 알이 없어요	ยังไม่มีไข่	Ainda não há ovos	Aún no hay huevos	Belum ada telur	Chưa có trứng	Noch keine Eier	Aucun œuf pour l'instant
+探险 · 交配获得	Explore or breed to get eggs	冒険・交配で入手	탐험 · 교배로 획득	ได้จากผจญภัยหรือผสมพันธุ์	Explore ou cruze para obter	Explora o cría para obtener	Jelajahi atau kawinkan	Nhận qua thám hiểm · Phối giống	Durch Abenteuer oder Zucht	Par exploration ou reproduction
+♡ 已结缘	♡ Bonded	♡ 絆あり	♡ 인연 맺음	♡ ผูกสัมพันธ์แล้ว	♡ Com vínculo	♡ Vinculado	♡ Terikat	♡ Đã kết duyên	♡ Verbunden	♡ Lié
+♥ 父母遗传	♥ Inherited	♥ 遺伝	♥ 부모 유전	♥ สืบทอดจากพ่อแม่	♥ Herdado	♥ Heredado	♥ Warisan	♥ Di truyền	♥ Vererbt	♥ Hérité
+ 分钟	 min	分	분	 นาที	 min	 min	 menit	 phút	 Min.	 min
+查看孵化	View Incubators	ふ化を確認	부화 확인	ดูการฟัก	Ver incubadoras	Ver incubadoras	Lihat Inkubator	Xem ấp trứng	Brutplätze ansehen	Voir les incubateurs
+孵化位已满	Incubators Full	ふ化枠がいっぱい	부화 슬롯 가득 참	ช่องฟักเต็ม	Incubadoras cheias	Incubadoras llenas	Inkubator Penuh	Đã đầy chỗ ấp	Brutplätze voll	Incubateurs pleins
+开始孵化	Incubate	ふ化開始	부화 시작	เริ่มฟัก	Incubar	Incubar	Inkubasi	Bắt đầu ấp	Ausbrüten	Incuber
+去孵化屋	To Hatchery	ふ化小屋へ	부화장으로	ไปโรงฟัก	Ir à incubadora	Ir a incubación	Ke Penetasan	Đến nhà ấp	Zur Brutstube	À la nurserie
+空位	Empty	空き	빈자리	ว่าง	Vazio	Vacío	Kosong	Trống	Leer	Libre
+待领蛋	Egg Ready	受取待ち	알 수령 가능	รอรับไข่	Ovo pronto	Huevo listo	Telur Siap	Chờ nhận trứng	Ei bereit	Œuf prêt
+交配中	Breeding	交配中	교배 중	กำลังผสมพันธุ์	Cruzando	En crianza	Berkembang biak	Đang phối giống	In Zucht	Reproduction
+第 	Turn 	ターン 	턴 	เทิร์น 	Turno 	Turno 	Giliran 	Lượt 	Runde 	Tour 
+ 回合		回								
+ · 首次治疗 +3	 · First heal +3	 · 初回回復 +3	 · 첫 회복 +3	 · ฟื้นฟูครั้งแรก +3	 · Primeira cura +3	 · Primera cura +3	 · Pemulihan pertama +3	 · Lần hồi đầu +3	 · Erste Heilung +3	 · Premier soin +3
+胜利	Victory	勝利	승리	ชนะ	Vitória	Victoria	Menang	Chiến thắng	Sieg	Victoire
+恢复生命 +20%	Heal +20% HP	HP回復 +20%	HP 회복 +20%	ฟื้น HP +20%	Cura +20% HP	Cura +20% HP	Pulih +20% HP	Hồi +20% HP	Heilung +20% HP	Soin +20% HP
+攻击点数 · 选择一项	Attack Roll · Choose One	攻撃出目・1つ選択	공격 눈금 · 하나 선택	แต้มโจมตี · เลือกหนึ่ง	Ataque · Escolha um	Ataque · Elige uno	Serangan · Pilih Satu	Điểm công · Chọn một	Angriffswert · Wähle einen	Valeur d'attaque · Au choix
+恢复点数 · 选择一项	Heal Roll · Choose One	回復出目・1つ選択	회복 눈금 · 하나 선택	แต้มฟื้นฟู · เลือกหนึ่ง	Cura · Escolha um	Curación · Elige uno	Pemulihan · Pilih Satu	Điểm hồi · Chọn một	Heilwert · Wähle einen	Valeur de soin · Au choix
+获得奖励	Reward Gained	報酬獲得	보상 획득	ได้รับรางวัล	Prêmio recebido	Premio obtenido	Hadiah Diterima	Nhận thưởng	Belohnung erhalten	Récompense obtenue
+原点数	Current	現在	현재	ปัจจุบัน	Atual	Actual	Saat ini	Điểm cũ	Bisher	Actuel
+保留	Keep	維持	유지	คงเดิม	Manter	Conservar	Simpan	Giữ lại	Behalten	Garder
+新点数	New	新しい出目	새 눈금	ใหม่	Novo	Nuevo	Baru	Điểm mới	Neu	Nouveau
+采用	Use	採用	적용	ใช้	Usar	Usar	Pakai	Chọn	Nutzen	Utiliser
+生命上限	Max HP	最大HP	최대 HP	HP สูงสุด	HP máximo	HP máximo	HP maks.	HP tối đa	Max. HP	HP max.
+攻击点数	Attack Rolls	攻撃出目	공격 눈금	แต้มโจมตี	Valores de ataque	Valores de ataque	Nilai serangan	Điểm tấn công	Angriffswerte	Valeurs d'attaque
+恢复点数	Heal Rolls	回復出目	회복 눈금	แต้มฟื้นฟู	Valores de cura	Valores de curación	Nilai pemulihan	Điểm hồi phục	Heilwerte	Valeurs de soin
+生命药水	Healing Potion	回復薬	회복 물약	ยาฟื้นพลัง	Poção de cura	Poción curativa	Ramuan penyembuh	Thuốc hồi phục	Heiltrank	Potion de soin
+力量药水	Power Potion	力の薬	힘의 물약	ยาเพิ่มพลัง	Poção de força	Poción de fuerza	Ramuan kekuatan	Thuốc sức mạnh	Krafttrank	Potion de force
+领取奖励	Claim Reward	報酬を受け取る	보상 받기	รับรางวัล	Resgatar prêmio	Recoger premio	Ambil Hadiah	Nhận thưởng	Belohnung abholen	Récupérer
+它愿意成为你的伙伴	It wants to be your companion	仲間になりたがっています	친구가 되고 싶대요	มันอยากเป็นเพื่อนคุณ	Quer ser seu parceiro	Quiere ser tu compañero	Ia ingin jadi temanmu	Nó muốn trở thành bạn của bạn	Es möchte dein Begleiter werden	Il veut devenir votre compagnon
+邀请必定成功 · 不消耗道具	Guaranteed · No items needed	必ず成功・アイテム不要	반드시 성공 · 아이템 불필요	สำเร็จแน่นอน · ไม่ใช้ไอเทม	Convite garantido · Sem itens	Invitación segura · Sin objetos	Pasti berhasil · Tanpa item	Chắc chắn thành công · Không tốn vật phẩm	Garantiert · Ohne Gegenstände	Invitation garantie · Sans objet
+邀请同行	Invite	仲間にする	초대	ชวนร่วมทาง	Convidar	Invitar	Undang	Mời đồng hành	Einladen	Inviter
+暂不邀请	Not Now	今はやめる	나중에	ไว้ก่อน	Agora não	Ahora no	Nanti saja	Để sau	Nicht jetzt	Pas maintenant
+队伍已满，安排它的位置	Team full · Choose a slot	チーム満員・場所を選択	팀 가득 참 · 자리 선택	ทีมเต็ม · เลือกช่อง	Equipe cheia · Escolha uma vaga	Equipo lleno · Elige un lugar	Tim penuh · Pilih tempat	Đội đã đầy · Chọn vị trí	Team voll · Wähle einen Platz	Équipe pleine · Choisissez une place
+出战 	Active: 	出撃：	출전: 	ลงสนาม: 	Ativo: 	Activo: 	Aktif: 	Ra trận: 	Aktiv: 	Actif : 
+ 保持不变	 stays	を維持	 유지	 คงเดิม	 permanece	 sigue igual	 tetap	 giữ nguyên	 bleibt	 reste
+替换	Swap	交代	교체	สลับ	Trocar	Cambiar	Ganti	Thay	Tauschen	Remplacer
+收入收藏	Add to Collection	仲間に加える	컬렉션에 추가	เพิ่มในคอลเลกชัน	Guardar na coleção	Añadir a colección	Tambah ke Koleksi	Thêm vào bộ sưu tập	Zur Sammlung	Ajouter à la collection
+替换候补	Swap Reserve	控えと交代	후보 교체	สลับตัวสำรอง	Trocar reserva	Cambiar reserva	Ganti Cadangan	Thay dự bị	Reserve tauschen	Changer la réserve
+被替换的伙伴仍在收藏中	Replaced companions stay in your collection	交代した仲間はコレクションに残ります	교체된 친구는 컬렉션에 남아요	เพื่อนที่ถูกสลับยังอยู่ในคอลเลกชัน	Parceiros trocados ficam na coleção	Los reemplazados quedan en la colección	Teman yang diganti tetap di koleksi	Thú bị thay vẫn ở trong bộ sưu tập	Ersetzte Begleiter bleiben in der Sammlung	Les compagnons remplacés restent dans la collection
+格挡  −	Block −	ガード −	방어 −	ป้องกัน −	Bloqueio −	Bloqueo −	Tangkis −	Đỡ −	Block −	Blocage −
+克制 	Strong 	有利 	유리 	ได้เปรียบ 	Vantagem 	Ventaja 	Unggul 	Khắc chế 	Effektiv 	Efficace 
+抵抗 	Resisted 	耐性 	저항 	ต้านทาน 	Resistido 	Resistido 	Ditahan 	Kháng 	Abgewehrt 	Résisté 
+接替出战	 joins the battle	が交代で出撃	 교대 출전	 เข้าสู้แทน	 entra na batalha	 entra al combate	 ikut bertarung	 vào trận thay thế	 übernimmt den Kampf	 entre au combat
+沙沙…	Rustle…	ガサガサ…	바스락…	สวบสาบ…	Farfalhar…	Susurro…	Keresek…	Xào xạc…	Raschel…	Froufrou…
+寻蛋好手 · 额外 +1	Egg Scout · Extra +1	タマゴ探し名人 · 追加 +1	알 탐색꾼 · 추가 +1	นักหาไข่ · เพิ่ม +1	Caça-ovos · Extra +1	Busca Huevos · Extra +1	Pencari Telur · Ekstra +1	Thợ tìm trứng · Thêm +1	Eiersucher · Extra +1	Cherche-œufs · Bonus +1
+成为伙伴！	 joined you!	が仲間になった！	 친구가 됐어요!	 เป็นเพื่อนแล้ว!	 se juntou a você!	 se unió a ti!	 bergabung!	 đã gia nhập!	 ist jetzt dabei!	 vous rejoint !
+恢复 +	Heal +	回復 +	회복 +	ฟื้นฟู +	Cura +	Cura +	Pulih +	Hồi +	Heilung +	Soin +
+抢先一击 +2	First Strike +2	先制の一撃 +2	선제공격 +2	ชิงโจมตี +2	Golpe inicial +2	Primer golpe +2	Serangan Awal +2	Đánh phủ đầu +2	Erstschlag +2	Premier coup +2
+玩法说明	How to Play	遊び方	게임 방법	วิธีเล่น	Como jogar	Cómo jugar	Cara Bermain	Cách chơi	Spielanleitung	Comment jouer
+知道了	Got It	わかった	확인	เข้าใจแล้ว	Entendi	Entendido	Mengerti	Đã hiểu	Verstanden	Compris
+放弃这次攻击强化？	Give up this attack boost?	攻撃強化を放棄しますか？	공격 강화를 포기할까요?	ยกเลิกการเพิ่มพลังโจมตี?	Desistir deste reforço?	¿Renunciar a este refuerzo?	Batalkan penguat serangan?	Bỏ cường hóa lần này?	Angriffsbonus aufgeben?	Abandonner ce bonus d'attaque ?
+防御会放弃已使用的 ×	Defending removes the used ×	防御すると使用済みの ×	방어하면 사용한 ×	ป้องกันจะยกเลิกบัฟ ×	Defender remove o bônus ×	Defender elimina el refuerzo ×	Bertahan menghapus penguat ×	Phòng thủ sẽ bỏ hệ số ×	Verteidigen entfernt den Bonus ×	Défendre annule le bonus ×
+ 强化	 boost	強化	 강화	 ที่ใช้ไป	 usado	 usado	 yang dipakai	 đã dùng	 des Tranks	 déjà utilisé
+仍然防御	Defend Anyway	防御する	그래도 방어	ป้องกันต่อ	Defender mesmo assim	Defender de todos modos	Tetap Bertahan	Vẫn phòng thủ	Trotzdem verteidigen	Défendre quand même
+伙伴骰子冒险	Dice Pet Adventure	ダイスペット冒険	주사위 펫 모험	ผจญภัยลูกเต๋าเพื่อนรัก	Aventura dos parceiros e dados	Aventura de dados y compañeros	Petualangan Dadu dan Teman	Phiêu lưu thú và xúc xắc	Würfelabenteuer der Begleiter	Aventure des dés et compagnons
+ 关 · 	 stages · 	ステージ · 	스테이지 · 	 ด่าน · 	 fases · 	 etapas · 	 tahap · 	 ải · 	 Gebiete · 	 zones · 
+ 张地图	 maps	マップ	개 지도	 แผนที่	 mapas	 mapas	 peta	 bản đồ	 Karten	 cartes
+继续冒险	Continue	冒険を続ける	모험 계속	ผจญภัยต่อ	Continuar	Continuar	Lanjut	Tiếp tục	Weiter	Continuer
+伙伴收藏  	Companions  	仲間一覧  	친구 컬렉션  	คอลเลกชันเพื่อน  	Parceiros  	Compañeros  	Teman  	Bạn đồng hành  	Begleiter  	Compagnons  
+ 只	 pets	匹	마리	 ตัว	 parceiros	 compañeros	 teman	 thú	 Begleiter	 compagnons
+孵化屋  ·  	Hatchery · 	ふ化小屋 · 	부화장 · 	โรงฟัก · 	Incubadora · 	Incubación · 	Penetasan · 	Nhà ấp · 	Brutstube · 	Nurserie · 
+ 枚待孵	 eggs waiting	個待機中	개 대기 중	 ฟองรอฟัก	 ovos aguardando	 huevos esperando	 telur menunggu	 trứng chờ ấp	 Eier warten	 œufs en attente
+退出自动续玩 · 收藏与宠物蛋永久保留	Leave run · Keep companions and eggs	冒険終了・仲間とタマゴは保持	모험 종료 · 친구와 알은 유지	ออกจากรอบ · เก็บเพื่อนและไข่ไว้	Sair da jornada · Manter parceiros e ovos	Salir de la aventura · Conservar compañeros y huevos	Keluar petualangan · Simpan teman dan telur	Thoát hành trình · Giữ thú và trứng	Abenteuer verlassen · Begleiter und Eier bleiben	Quitter l'aventure · Conserver compagnons et œufs
+重新出发？	Start Again?	やり直しますか？	다시 출발할까요?	เริ่มใหม่?	Começar de novo?	¿Empezar de nuevo?	Mulai Lagi?	Lên đường lại?	Neu starten?	Recommencer ?
+本局进度重置，收藏与已带走的宠物蛋保留	Reset this run. Keep collected pets and eggs.	今回の進行をリセット。仲間とタマゴは保持。	이번 모험 초기화. 친구와 알은 유지돼요.	รีเซ็ตรอบนี้ เก็บเพื่อนและไข่ไว้	Reinicia esta jornada. Mantém parceiros e ovos coletados.	Reinicia esta aventura. Conserva compañeros y huevos obtenidos.	Atur ulang petualangan ini. Teman dan telur tetap tersimpan.	Đặt lại hành trình. Giữ thú và trứng đã lấy.	Setzt diesen Lauf zurück. Begleiter und eingesammelte Eier bleiben.	Réinitialise cette aventure. Compagnons et œufs obtenus sont conservés.
+继续当前	Continue Run	続ける	계속하기	เล่นต่อ	Continuar jornada	Continuar aventura	Lanjutkan	Tiếp tục hiện tại	Lauf fortsetzen	Reprendre
+重新出发	New Run	再出発	다시 출발	เริ่มรอบใหม่	Nova jornada	Nueva aventura	Petualangan Baru	Lên đường lại	Neuer Lauf	Nouvelle aventure
+可以破壳啦！	Ready to Hatch!	ふ化できます！	부화할 준비 완료!	พร้อมออกจากไข่!	Pronto para eclodir!	¡Listo para eclosionar!	Siap Menetas!	Có thể nở rồi!	Bereit zum Schlüpfen!	Prêt à éclore !
+孵化屋	Hatchery	ふ化小屋	부화장	โรงฟัก	Incubadora	Incubación	Penetasan	Nhà ấp	Brutstube	Nurserie
+离线成长	Grows Offline	オフラインでも成長	오프라인 성장	เติบโตออฟไลน์	Cresce offline	Crece sin conexión	Tumbuh Offline	Lớn lên ngoại tuyến	Wächst offline	Grandit hors ligne
+新放入的蛋孵化 	New eggs hatch in 	新しいタマゴのふ化時間：	새 알의 부화 시간: 	ไข่ใหม่ใช้เวลาฟัก 	Novos ovos eclodem em 	Los huevos nuevos eclosionan en 	Telur baru menetas dalam 	Trứng mới nở sau 	Neue Eier schlüpfen nach 	Les nouveaux œufs éclosent en 
+ 秒	 sec	秒	초	 วินาที	 s	 s	 dtk	 giây	 Sek.	 s
+，离线继续。\n完整观看视频，孵化时间减少 30 分钟。\nSR 蛋至少孵出 SR；SSR 蛋必出 SSR。	, even offline.\nFinish a video to skip 30 minutes.\nSR eggs give SR or better; SSR eggs always give SSR.	、オフラインでも進行。\n動画を最後まで見ると30分短縮。\nSRタマゴはSR以上、SSRタマゴは必ずSSR。	, 오프라인에서도 진행돼요.\n영상을 끝까지 보면 30분 단축.\nSR 알은 SR 이상, SSR 알은 반드시 SSR.	 แม้ออฟไลน์\nดูวิดีโอจบเพื่อลดเวลา 30 นาที\nไข่ SR ได้ SR ขึ้นไป ไข่ SSR ได้ SSR แน่นอน	, mesmo offline.\nVeja um vídeo completo para reduzir 30 minutos.\nOvos SR dão SR ou melhor; SSR sempre dão SSR.	, incluso sin conexión.\nMira un video completo para reducir 30 minutos.\nLos huevos SR dan SR o superior; los SSR siempre dan SSR.	, termasuk saat offline.\nTonton video penuh untuk mengurangi 30 menit.\nTelur SR menghasilkan minimal SR; SSR selalu SSR.	, kể cả ngoại tuyến.\nXem hết video để giảm 30 phút.\nTrứng SR nở ít nhất SR; trứng SSR luôn nở SSR.	, auch offline.\nEin vollständiges Video verkürzt um 30 Minuten.\nSR-Eier ergeben mindestens SR; SSR-Eier immer SSR.	, même hors ligne.\nUne vidéo complète réduit le temps de 30 minutes.\nLes œufs SR donnent SR ou mieux ; les SSR donnent toujours SSR.
+破壳！	Hatch!	ふ化！	부화!	ฟักเลย!	Eclodir!	¡Eclosionar!	Menetas!	Nở nào!	Schlüpfen!	Éclore !
+−30分钟	−30 min	−30分	−30분	−30 นาที	−30 min	−30 min	−30 mnt	−30 phút	−30 Min.	−30 min
+放入宠物蛋	Add Egg	タマゴを入れる	알 넣기	ใส่ไข่	Colocar ovo	Añadir huevo	Masukkan Telur	Đặt trứng vào	Ei hineinlegen	Placer un œuf
+待孵化  	Waiting  	待機中  	부화 대기  	รอฟัก  	Aguardando  	En espera  	Menunggu  	Chờ ấp  	Wartend  	En attente  
+蛋袋  ›	Egg Bag ›	タマゴバッグ ›	알 가방 ›	ถุงไข่ ›	Bolsa de ovos ›	Bolsa de huevos ›	Tas Telur ›	Túi trứng ›	Eierbeutel ›	Sac à œufs ›
+孵化加速	Speed Up Hatch	ふ化を早める	부화 가속	เร่งการฟัก	Acelerar incubação	Acelerar incubación	Percepat Penetasan	Tăng tốc ấp	Brut beschleunigen	Accélérer l'éclosion
+刷新对手	New Opponent	相手を変更	상대 새로고침	เปลี่ยนคู่ต่อสู้	Novo rival	Nuevo rival	Lawan Baru	Đổi đối thủ	Neuer Gegner	Nouvel adversaire
+激励广告待接入，暂不能刷新	Ads unavailable · Cannot refresh yet	広告未対応・相手を変更できません	광고 미연결 · 새로고침 불가	ยังไม่มีโฆษณา · เปลี่ยนไม่ได้	Anúncios indisponíveis · Sem troca	Anuncios no disponibles · Sin cambio	Iklan belum tersedia · Tak bisa ganti	Chưa có quảng cáo · Chưa thể đổi	Werbung nicht verfügbar · Kein Wechsel	Publicités indisponibles · Changement impossible
+完整观看视频后可刷新	Finish the video to refresh	動画を最後まで見ると変更できます	영상을 끝까지 보면 새로고침돼요	ดูวิดีโอจบเพื่อเปลี่ยน	Veja o vídeo completo para trocar	Mira el video completo para cambiar	Tonton video penuh untuk ganti	Xem hết video để đổi	Video vollständig ansehen zum Wechseln	Regardez toute la vidéo pour changer
+广告暂不可用，请稍后再试	Ad unavailable. Try again later.	広告を読み込めません。後でお試しください。	광고를 볼 수 없어요. 나중에 다시 시도하세요.	โฆษณาไม่พร้อม โปรดลองภายหลัง	Anúncio indisponível. Tente depois.	Anuncio no disponible. Intenta más tarde.	Iklan tidak tersedia. Coba lagi nanti.	Chưa có quảng cáo. Thử lại sau.	Werbung nicht verfügbar. Später erneut versuchen.	Publicité indisponible. Réessayez plus tard.
+激励广告待接入，暂不能加速	Ads unavailable · Cannot speed up yet	広告未対応・短縮できません	광고 미연결 · 가속 불가	ยังไม่มีโฆษณา · เร่งไม่ได้	Anúncios indisponíveis · Sem aceleração	Anuncios no disponibles · Sin aceleración	Iklan belum tersedia · Tak bisa percepat	Chưa có quảng cáo · Chưa thể tăng tốc	Werbung nicht verfügbar · Keine Beschleunigung	Publicités indisponibles · Accélération impossible
+加速奖励已保留，联网后到账	Speed-up saved. Connect to apply.	短縮報酬を保存しました。接続後に反映。	가속 보상 저장됨. 연결 후 적용돼요.	เก็บรางวัลเร่งไว้แล้ว เชื่อมต่อเพื่อรับ	Aceleração salva. Conecte para aplicar.	Aceleración guardada. Conéctate para aplicarla.	Percepatan disimpan. Hubungkan untuk menerapkan.	Đã giữ thưởng tăng tốc. Kết nối để nhận.	Beschleunigung gespeichert. Zum Anwenden verbinden.	Accélération conservée. Connectez-vous pour l'appliquer.
+完整观看视频后可加速	Finish the video to speed up	動画を最後まで見ると短縮できます	영상을 끝까지 보면 가속돼요	ดูวิดีโอจบเพื่อเร่ง	Veja o vídeo completo para acelerar	Mira el video completo para acelerar	Tonton video penuh untuk mempercepat	Xem hết video để tăng tốc	Video vollständig ansehen zum Beschleunigen	Regardez toute la vidéo pour accélérer
+新伙伴	New Companion	新しい仲間	새 친구	เพื่อนใหม่	Novo parceiro	Nuevo compañero	Teman Baru	Bạn mới	Neuer Begleiter	Nouveau compagnon
+收下伙伴	Welcome	仲間にする	친구 받기	รับเพื่อน	Receber	Recibir	Terima	Đón nhận	Aufnehmen	Accueillir
+各技能自动触发 · 每场限一次	Auto skills · Once per battle	自動発動・各スキル1戦1回	자동 발동 · 스킬마다 전투당 1회	สกิลอัตโนมัติ · สกิลละ 1 ครั้งต่อการต่อสู้	Habilidades automáticas · Uma vez por batalha	Habilidades automáticas · Una vez por combate	Kemampuan otomatis · Sekali tiap pertarungan	Kỹ năng tự động · Một lần mỗi trận	Automatisch · Einmal pro Kampf	Talents automatiques · Une fois par combat
+返回伙伴	Back to Companions	仲間一覧へ	친구로 돌아가기	กลับไปหาเพื่อน	Voltar aos parceiros	Volver a compañeros	Kembali ke Teman	Về bạn đồng hành	Zu den Begleitern	Retour aux compagnons
+交配屋	Breeding	交配小屋	교배소	ผสมพันธุ์	Cruzamento	Crianza	Pembiakan	Nhà phối giống	Zuchtstube	Reproduction
+选择一雌一雄	Choose a female and a male	メスとオスを選択	암컷과 수컷 선택	เลือกตัวเมียและตัวผู้	Escolha uma fêmea e um macho	Elige una hembra y un macho	Pilih satu betina dan satu jantan	Chọn một cái và một đực	Wähle ein Weibchen und ein Männchen	Choisissez une femelle et un mâle
+形态、HP、攻击各有 50% 随父或随母。\n技能从父母技能池随机继承，最多 6 个。\n交配需 	Form, HP and attack each inherit from either parent at 50%.\nInherit up to 6 different parent skills.\nBreeding takes 	姿・HP・攻撃は各50%で父か母から遺伝。\n親のスキルを重複なく最大6つ継承。\n交配時間：	형태·HP·공격은 각각 50%로 부모 한쪽을 따라요.\n부모 스킬을 중복 없이 최대 6개 계승해요.\n교배 시간: 	รูปร่าง HP และพลังโจมตี สืบทอดจากพ่อหรือแม่อย่างละ 50%\nสืบทอดสกิลพ่อแม่ไม่ซ้ำกันสูงสุด 6 สกิล\nผสมพันธุ์ใช้เวลา 	Forma, HP e ataque vêm de um dos pais, com 50% de chance cada.\nHerda até 6 habilidades diferentes dos pais.\nO cruzamento leva 	Forma, HP y ataque se heredan de un progenitor, con 50% de probabilidad cada uno.\nSe heredan hasta 6 habilidades distintas de los padres.\nLa crianza tarda 	Wujud, HP, dan serangan masing-masing diwarisi dari salah satu induk dengan peluang 50%.\nWarisi maksimal 6 kemampuan berbeda dari induk.\nPembiakan perlu 	Hình dạng, HP, tấn công mỗi mục có 50% theo cha hoặc mẹ.\nKế thừa ngẫu nhiên tối đa 6 kỹ năng khác nhau của cha mẹ.\nPhối giống cần 	Form, HP und Angriff stammen jeweils zu 50% von einem Elternteil.\nBis zu 6 verschiedene Elternfähigkeiten werden vererbt.\nDie Zucht dauert 	La forme, les HP et l'attaque viennent chacun d'un parent à 50%.\nJusqu'à 6 talents différents des parents sont hérités.\nLa reproduction dure 
+，离线继续。\n领取蛋后父母消失，蛋需再孵化。	, even offline.\nClaiming the egg consumes both parents. Incubate the egg afterward.	、オフラインでも進行。\nタマゴ受取時に両親は消えます。その後ふ化が必要です。	, 오프라인에서도 진행돼요.\n알 수령 시 부모가 사라져요. 알은 따로 부화해야 해요.	 แม้ออฟไลน์\nเมื่อรับไข่ พ่อแม่ทั้งสองจะหายไป ต้องนำไข่ไปฟักต่อ	, mesmo offline.\nAo pegar o ovo, ambos os pais são consumidos. Depois incube o ovo.	, incluso sin conexión.\nRecoger el huevo consume a ambos padres. Luego debes incubarlo.	, termasuk saat offline.\nMengambil telur menghabiskan kedua induk. Setelah itu inkubasi telurnya.	, kể cả ngoại tuyến.\nNhận trứng sẽ mất cả cha lẫn mẹ. Sau đó cần ấp trứng.	, auch offline.\nBeim Abholen des Eis verschwinden beide Eltern. Danach das Ei ausbrüten.	, même hors ligne.\nRécupérer l'œuf consomme les deux parents. Il faut ensuite l'incuber.
+ 技能	 skills	スキル	개 스킬	 สกิล	 habilidades	 habilidades	 kemampuan	 kỹ năng	 Fähigkeiten	 talents
+选择伙伴	Choose Companion	仲間を選択	친구 선택	เลือกเพื่อน	Escolha um parceiro	Elige un compañero	Pilih Teman	Chọn bạn đồng hành	Begleiter wählen	Choisir un compagnon
+领取蛋后，父母消失	Claiming the egg consumes both parents	タマゴ受取時に両親は消えます	알 수령 시 부모가 사라져요	รับไข่แล้วพ่อแม่จะหายไป	Pegar o ovo consome os dois pais	Recoger el huevo consume a ambos padres	Mengambil telur menghabiskan kedua induk	Nhận trứng sẽ mất cả cha mẹ	Beim Abholen verschwinden beide Eltern	Récupérer l'œuf consomme les deux parents
+可以领蛋	Egg Ready	タマゴ受取可能	알 수령 가능	รับไข่ได้แล้ว	Ovo pronto	Huevo listo	Telur Siap	Có thể nhận trứng	Ei bereit	Œuf prêt
+战斗中	In Battle	戦闘中	전투 중	กำลังต่อสู้	Em batalha	En combate	Bertarung	Đang chiến đấu	Im Kampf	En combat
+先领取新伙伴	Claim Your New Companion First	先に新しい仲間を受け取ってください	새 친구를 먼저 받아 주세요	รับเพื่อนใหม่ก่อน	Receba o novo parceiro primeiro	Recoge primero al nuevo compañero	Ambil Teman Baru Dulu	Nhận bạn mới trước	Neuen Begleiter zuerst abholen	Récupérez d'abord le nouveau compagnon
+交配中…	Breeding…	交配中…	교배 중…	กำลังผสมพันธุ์…	Cruzando…	En crianza…	Berkembang biak…	Đang phối giống…	Zucht läuft…	Reproduction en cours…
+领取宠物蛋	Claim Egg	タマゴを受け取る	알 받기	รับไข่	Pegar ovo	Recoger huevo	Ambil Telur	Nhận trứng	Ei abholen	Récupérer l'œuf
+开始交配	Start Breeding	交配開始	교배 시작	เริ่มผสมพันธุ์	Iniciar cruzamento	Iniciar crianza	Mulai Pembiakan	Bắt đầu phối giống	Zucht starten	Lancer la reproduction
+孵化屋 ›	Hatchery ›	ふ化小屋 ›	부화장 ›	โรงฟัก ›	Incubadora ›	Incubación ›	Penetasan ›	Nhà ấp ›	Brutstube ›	Nurserie ›
+获得宠物蛋	Egg Obtained	タマゴ獲得	알 획득	ได้รับไข่	Ovo recebido	Huevo obtenido	Telur Diperoleh	Nhận được trứng	Ei erhalten	Œuf obtenu
+蛋	Egg	タマゴ	알	ไข่	Ovo	Huevo	Telur	Trứng	Ei	Œuf
+ · 已放入蛋袋	 · Added to Egg Bag	 · タマゴバッグに保存	 · 알 가방에 보관	 · เก็บในถุงไข่แล้ว	 · Guardado na bolsa	 · En la bolsa de huevos	 · Masuk Tas Telur	 · Đã cất vào túi	 · Im Eierbeutel	 · Dans le sac à œufs
+去孵化	Incubate	ふ化へ	부화하러 가기	ไปฟัก	Incubar	Incubar	Inkubasi	Đi ấp	Ausbrüten	Incuber
+选择雌性 ♀	Choose Female ♀	メスを選択 ♀	암컷 선택 ♀	เลือกตัวเมีย ♀	Escolher fêmea ♀	Elegir hembra ♀	Pilih Betina ♀	Chọn con cái ♀	Weibchen wählen ♀	Choisir une femelle ♀
+选择雄性 ♂	Choose Male ♂	オスを選択 ♂	수컷 선택 ♂	เลือกตัวผู้ ♂	Escolher macho ♂	Elegir macho ♂	Pilih Jantan ♂	Chọn con đực ♂	Männchen wählen ♂	Choisir un mâle ♂
+暂无可交配的	No eligible 	交配可能な仲間なし：	교배 가능한 친구 없음: 	ไม่มีตัวที่พร้อมผสมพันธุ์: 	Sem opção elegível: 	Sin opción apta: 	Tidak ada yang memenuhi syarat: 	Chưa có thú phù hợp: 	Keine passende Auswahl: 	Aucun choix compatible : 
+雌性	Female	メス	암컷	ตัวเมีย	Fêmea	Hembra	Betina	Cái	Weibchen	Femelle
+雄性	Male	オス	수컷	ตัวผู้	Macho	Macho	Jantan	Đực	Männchen	Mâle
+伙伴	Pets	仲間	친구	เพื่อน	Parceiros	Compañeros	Teman	Bạn đồng hành	Begleiter	Compagnons
+来信	Mail	お便り	편지	จดหมาย	Correio	Correo	Surat	Thư	Post	Courrier
+好友 · 结缘	Friends · Bonds	友達 · 絆	친구 · 인연	เพื่อน · สายสัมพันธ์	Amigos · Vínculos	Amigos · Vínculos	Teman · Ikatan	Bạn bè · Kết duyên	Freunde · Bindungen	Amis · Liens
+分享来访码，邀请好友伙伴作客。\n完成 3 次互动，解锁该伙伴系列。\n用自己的蛋结缘，品质保持不变。\n未解锁地区仅支持 R 蛋。\n来访伙伴不会进入收藏或参与交配。	Share a visit code to invite a friend's pet.\nInteract 3 times to unlock its family.\nBond with your own egg; rarity stays the same.\nLocked regions only allow R eggs.\nVisitors cannot join your collection or breed.	来訪コードで友達の仲間を招待。\n3回交流するとその系統が解放。\n自分のタマゴで絆ふ化。レア度は維持。\n未解放地域はRタマゴのみ。\n来訪者は仲間に加わらず、交配もできません。	방문 코드로 친구의 펫을 초대하세요.\n3번 교류하면 해당 계열이 해금돼요.\n내 알로 인연 부화하며 등급은 유지돼요.\n미해금 지역은 R 알만 가능해요.\n방문 펫은 컬렉션이나 교배에 사용할 수 없어요.	แชร์รหัสเพื่อเชิญสัตว์เลี้ยงเพื่อน\nทำกิจกรรม 3 ครั้งเพื่อปลดล็อกสายพันธุ์\nใช้ไข่ของคุณผูกสัมพันธ์ ระดับคงเดิม\nพื้นที่ยังไม่ปลดล็อกใช้ได้เฉพาะไข่ R\nผู้มาเยือนจะไม่เข้าคอลเลกชันหรือผสมพันธุ์	Compartilhe um código para convidar o parceiro de um amigo.\nInteraja 3 vezes para desbloquear a família.\nCrie vínculo com seu próprio ovo; a raridade não muda.\nRegiões bloqueadas aceitam só ovos R.\nVisitantes não entram na coleção nem cruzam.	Comparte un código para invitar al compañero de un amigo.\nInteractúa 3 veces para desbloquear su familia.\nVincula tu propio huevo; la rareza no cambia.\nLas regiones bloqueadas solo admiten huevos R.\nLos visitantes no se coleccionan ni se reproducen.	Bagikan kode kunjungan untuk mengundang teman milik sahabat.\nBerinteraksi 3 kali untuk membuka keluarganya.\nIkat telurmu sendiri; kelangkaan tetap.\nWilayah terkunci hanya menerima telur R.\nTamu tidak masuk koleksi atau berkembang biak.	Chia sẻ mã ghé thăm để mời thú của bạn bè.\nTương tác 3 lần để mở dòng thú đó.\nKết duyên bằng trứng của mình; giữ nguyên phẩm chất.\nVùng chưa mở chỉ dùng trứng R.\nThú ghé thăm không vào bộ sưu tập hay phối giống.	Teile einen Besuchscode, um einen Freundesbegleiter einzuladen.\nInteragiere 3-mal, um seine Familie freizuschalten.\nVerbinde dein eigenes Ei; die Seltenheit bleibt.\nGesperrte Gebiete erlauben nur R-Eier.\nBesucher kommen nicht in die Sammlung und können nicht gezüchtet werden.	Partagez un code pour inviter le compagnon d'un ami.\nInteragissez 3 fois pour débloquer sa famille.\nLiez votre propre œuf ; sa rareté ne change pas.\nLes régions verrouillées n'acceptent que les œufs R.\nLes visiteurs ne rejoignent pas la collection et ne se reproduisent pas.
+来访	Visit	来訪	방문	เยี่ยม	Visita	Visita	Kunjungan	Ghé thăm	Besuch	Visite
+分享	Share	シェア	공유	แชร์	Compartilhar	Compartir	Bagikan	Chia sẻ	Teilen	Partager
+结缘	Bond	絆	인연	ผูกสัมพันธ์	Vínculo	Vínculo	Ikatan	Kết duyên	Bindung	Lien
+粘贴好友来访码	Paste a friend's visit code	友達の来訪コードを貼り付け	친구 방문 코드 붙여넣기	วางรหัสเยี่ยมของเพื่อน	Cole o código do amigo	Pega el código de tu amigo	Tempel kode kunjungan teman	Dán mã ghé thăm của bạn	Besuchscode eines Freundes einfügen	Collez le code de visite d'un ami
+粘贴	Paste	貼り付け	붙여넣기	วาง	Colar	Pegar	Tempel	Dán	Einfügen	Coller
+长按输入框粘贴	Hold the field to paste	入力欄を長押しで貼り付け	입력창을 길게 눌러 붙여넣기	กดช่องค้างเพื่อวาง	Segure o campo para colar	Mantén el campo para pegar	Tahan kolom untuk menempel	Nhấn giữ ô để dán	Eingabefeld zum Einfügen halten	Maintenez le champ pour coller
+已粘贴	Pasted	貼り付け済み	붙여넣음	วางแล้ว	Colado	Pegado	Ditempel	Đã dán	Eingefügt	Collé
+邀请	Invite	招待	초대	เชิญ	Convidar	Invitar	Undang	Mời	Einladen	Inviter
+来访码不完整	Invalid visit code	来訪コードが不完全です	방문 코드가 불완전해요	รหัสเยี่ยมไม่ครบ	Código de visita inválido	Código de visita inválido	Kode kunjungan tidak valid	Mã ghé thăm không hợp lệ	Ungültiger Besuchscode	Code de visite invalide
+请使用好友的来访码	Use a friend's code	友達のコードを使ってください	친구 코드를 사용해 주세요	ใช้รหัสของเพื่อน	Use o código de um amigo	Usa el código de un amigo	Gunakan kode milik teman	Hãy dùng mã của bạn bè	Nutze den Code eines Freundes	Utilisez le code d'un ami
+好友已在这里	Your friend is already here	友達はもう来ています	친구가 이미 와 있어요	เพื่อนอยู่ที่นี่แล้ว	Seu amigo já está aqui	Tu amigo ya está aquí	Temanmu sudah di sini	Bạn đã ở đây rồi	Dein Freund ist schon hier	Votre ami est déjà là
+新朋友来啦！	A new friend arrived!	新しい友達が来た！	새 친구가 왔어요!	เพื่อนใหม่มาแล้ว!	Um novo amigo chegou!	¡Llegó un nuevo amigo!	Teman baru datang!	Bạn mới tới rồi!	Ein neuer Freund ist da!	Un nouvel ami est arrivé !
+等待新朋友	Waiting for a Friend	友達を待っています	새 친구 기다리는 중	รอเพื่อนใหม่	Esperando um amigo	Esperando un amigo	Menunggu Teman Baru	Chờ bạn mới	Warte auf einen Freund	En attente d'un ami
+我的伙伴	My Companion	自分の仲間	내 친구	เพื่อนของฉัน	Meu parceiro	Mi compañero	Temanku	Thú của tôi	Mein Begleiter	Mon compagnon
+好友伙伴	Friend's Companion	友達の仲間	친구의 펫	สัตว์เลี้ยงของเพื่อน	Parceiro do amigo	Compañero amigo	Teman Sahabat	Thú của bạn bè	Freundesbegleiter	Compagnon ami
+招招手	Wave	手を振る	손 흔들기	โบกมือ	Acenar	Saludar	Melambai	Vẫy tay	Winken	Saluer
+喂点心	Give Snack	おやつ	간식 주기	ให้ขนม	Dar petisco	Dar bocadillo	Beri Camilan	Cho ăn bánh	Snack geben	Donner un goûter
+一起玩	Play	遊ぶ	함께 놀기	เล่นด้วยกัน	Brincar	Jugar	Bermain	Chơi cùng	Spielen	Jouer
+结缘孵化 ›	Bond Hatch ›	絆ふ化 ›	인연 부화 ›	ฟักสายสัมพันธ์ ›	Incubar vínculo ›	Incubar vínculo ›	Tetaskan Ikatan ›	Ấp kết duyên ›	Bindung ausbrüten ›	Éclosion liée ›
+使用自己的蛋	Use Your Egg	自分のタマゴを使う	내 알 사용	ใช้ไข่ของคุณ	Use seu ovo	Usa tu huevo	Pakai Telurmu	Dùng trứng của mình	Dein Ei nutzen	Utilisez votre œuf
+互动 3 次即可结缘	Interact 3 times to bond	3回交流で絆が生まれます	3번 교류하면 인연을 맺어요	ทำกิจกรรม 3 ครั้งเพื่อผูกสัมพันธ์	Interaja 3 vezes para criar vínculo	Interactúa 3 veces para vincular	Interaksi 3 kali untuk mengikat	Tương tác 3 lần để kết duyên	3-mal interagieren zum Verbinden	Interagissez 3 fois pour créer un lien
+正在招手…	Waving…	手を振っています…	손 흔드는 중…	กำลังโบกมือ…	Acenando…	Saludando…	Melambai…	Đang vẫy tay…	Winkt…	Un petit coucou…
+一起吃点心…	Sharing a snack…	一緒におやつ…	함께 간식 먹는 중…	กินขนมด้วยกัน…	Compartilhando petisco…	Compartiendo bocadillo…	Berbagi camilan…	Đang ăn bánh cùng nhau…	Teilen einen Snack…	Un goûter partagé…
+开心地玩耍…	Having fun…	楽しく遊んでいます…	즐겁게 노는 중…	กำลังเล่นสนุก…	Brincando juntos…	Jugando juntos…	Bermain bersama…	Đang vui chơi…	Spielen fröhlich…	On s'amuse…
+结缘成功！	Bond Formed!	絆が生まれた！	인연을 맺었어요!	ผูกสัมพันธ์สำเร็จ!	Vínculo criado!	¡Vínculo formado!	Ikatan Terbentuk!	Kết duyên thành công!	Bindung geknüpft!	Lien créé !
+好感 +1	Bond +1	好感度 +1	호감도 +1	สัมพันธ์ +1	Afinidade +1	Afinidad +1	Keakraban +1	Thiện cảm +1	Zuneigung +1	Affinité +1
+稍等片刻	Wait a Moment	少し待ってね	잠시만요	รอสักครู่	Aguarde um pouco	Espera un momento	Tunggu Sebentar	Đợi một chút	Einen Moment	Un instant
+暂无伙伴	No Companions	仲間がいません	친구 없음	ยังไม่มีเพื่อน	Sem parceiros	Sin compañeros	Belum Ada Teman	Chưa có bạn đồng hành	Keine Begleiter	Aucun compagnon
+更换伙伴 ›	Change Companion ›	仲間を変更 ›	친구 변경 ›	เปลี่ยนเพื่อน ›	Trocar parceiro ›	Cambiar compañero ›	Ganti Teman ›	Đổi thú ›	Begleiter wechseln ›	Changer de compagnon ›
+来访码	Visit Code	来訪コード	방문 코드	รหัสเยี่ยม	Código de visita	Código de visita	Kode Kunjungan	Mã ghé thăm	Besuchscode	Code de visite
+复制来访码	Copy Visit Code	来訪コードをコピー	방문 코드 복사	คัดลอกรหัสเยี่ยม	Copiar código	Copiar código	Salin Kode	Sao chép mã	Code kopieren	Copier le code
+长按来访码，全选复制	Hold the code, select all and copy	コードを長押しし、すべて選択してコピー	코드를 길게 눌러 전체 선택 후 복사	กดรหัสค้าง เลือกทั้งหมดและคัดลอก	Segure o código, selecione tudo e copie	Mantén el código, selecciona todo y copia	Tahan kode, pilih semua, lalu salin	Nhấn giữ mã, chọn tất cả rồi sao chép	Code halten, alles auswählen und kopieren	Maintenez le code, sélectionnez tout et copiez
+已复制，发给好友吧	Copied! Send it to a friend	コピー完了！友達に送ろう	복사 완료! 친구에게 보내세요	คัดลอกแล้ว ส่งให้เพื่อนเลย	Copiado! Envie ao amigo	¡Copiado! Envíalo a tu amigo	Tersalin! Kirim ke teman	Đã sao chép! Gửi cho bạn bè	Kopiert! An einen Freund senden	Copié ! Envoyez-le à un ami
+复制后发给好友	Copy and send to a friend	コピーして友達に送ろう	복사해서 친구에게 보내세요	คัดลอกแล้วส่งให้เพื่อน	Copie e envie ao amigo	Copia y envía a tu amigo	Salin lalu kirim ke teman	Sao chép rồi gửi bạn bè	Kopieren und an Freund senden	Copiez et envoyez à un ami
+伙伴仍留在你的营地	Your companion stays in your camp	仲間は自分のキャンプに残ります	친구는 내 캠프에 남아요	เพื่อนยังอยู่ในแคมป์ของคุณ	Seu parceiro fica no seu acampamento	Tu compañero permanece en tu campamento	Temanmu tetap di kemahmu	Thú vẫn ở lại trại của bạn	Dein Begleiter bleibt in deinem Lager	Votre compagnon reste dans votre camp
+与好友互动 3 次即可结缘	Interact with a friend 3 times to bond	友達と3回交流で絆が生まれます	친구와 3번 교류하면 인연을 맺어요	ทำกิจกรรมกับเพื่อน 3 ครั้งเพื่อผูกสัมพันธ์	Interaja 3 vezes com o amigo para vincular	Interactúa 3 veces con tu amigo para vincular	Interaksi 3 kali dengan teman untuk mengikat	Tương tác với bạn 3 lần để kết duyên	3-mal mit dem Freund interagieren zum Verbinden	Interagissez 3 fois avec un ami pour créer un lien
+选择伙伴系列，再选自己的蛋	Choose a family, then your egg	系統を選び、自分のタマゴを選択	계열을 고른 뒤 내 알을 선택하세요	เลือกสายพันธุ์ แล้วเลือกไข่ของคุณ	Escolha a família e depois seu ovo	Elige la familia y luego tu huevo	Pilih keluarga, lalu telurmu	Chọn dòng thú rồi chọn trứng của bạn	Wähle eine Familie und dann dein Ei	Choisissez une famille, puis votre œuf
+选择结缘蛋	Choose a Bond Egg	絆のタマゴを選択	인연 알 선택	เลือกไข่ผูกสัมพันธ์	Escolha ovo de vínculo	Elige huevo de vínculo	Pilih Telur Ikatan	Chọn trứng kết duyên	Bindungsei wählen	Choisir un œuf à lier
+系列	Family	系統	계열	สายพันธุ์	Família	Familia	Keluarga	Dòng	Familie	Famille
+已结缘	Bonded	絆あり	인연 맺음	ผูกสัมพันธ์แล้ว	Vinculado	Vinculado	Terikat	Đã kết duyên	Verbunden	Lié
+地区未解锁	Region Locked	地域未解放	지역 미해금	พื้นที่ยังล็อกอยู่	Região bloqueada	Región bloqueada	Wilayah Terkunci	Vùng chưa mở	Gebiet gesperrt	Région verrouillée
+保留遗传	Keep Genes	遺伝を維持	유전 유지	เก็บยีนเดิม	Manter genes	Conservar genes	Pertahankan Gen	Giữ di truyền	Gene behalten	Gènes conservés
+分	min	分	분	นาที	min	min	mnt	phút	Min.	min
+选择	Choose	選択	선택	เลือก	Escolher	Elegir	Pilih	Chọn	Wählen	Choisir
+暂无可用的蛋	No Available Eggs	使えるタマゴがありません	사용 가능한 알 없음	ไม่มีไข่ที่ใช้ได้	Sem ovos disponíveis	Sin huevos disponibles	Tidak Ada Telur	Chưa có trứng phù hợp	Keine verfügbaren Eier	Aucun œuf disponible
+孵化位已满 · 去查看	Incubators Full · View	ふ化枠満員 · 確認	부화 슬롯 가득 참 · 확인	ช่องฟักเต็ม · ดู	Incubadoras cheias · Ver	Incubadoras llenas · Ver	Inkubator Penuh · Lihat	Đã đầy chỗ ấp · Xem	Brutplätze voll · Ansehen	Incubateurs pleins · Voir
+结缘孵化	Bond Hatch	絆ふ化	인연 부화	ฟักสายสัมพันธ์	Incubação de vínculo	Incubación de vínculo	Penetasan Ikatan	Ấp kết duyên	Bindungsbrut	Éclosion liée
+品质不变	Rarity Unchanged	レア度維持	등급 유지	ระดับคงเดิม	Raridade mantida	Rareza intacta	Kelangkaan Tetap	Giữ phẩm chất	Seltenheit bleibt	Rareté inchangée
+宠物蛋 ×1  ·  孵化位 ×1	Egg ×1 · Incubator ×1	タマゴ ×1 · ふ化枠 ×1	알 ×1 · 부화 슬롯 ×1	ไข่ ×1 · ช่องฟัก ×1	Ovo ×1 · Incubadora ×1	Huevo ×1 · Incubadora ×1	Telur ×1 · Inkubator ×1	Trứng ×1 · Chỗ ấp ×1	Ei ×1 · Brutplatz ×1	Œuf ×1 · Incubateur ×1
+ 分钟 · 保留遗传	 min · Genes kept	分 · 遺伝を維持	분 · 유전 유지	 นาที · เก็บยีนเดิม	 min · Genes mantidos	 min · Genes conservados	 menit · Gen tetap	 phút · Giữ di truyền	 Min. · Gene bleiben	 min · Gènes conservés
+ 分钟 · 离线继续	 min · Continues offline	分 · オフラインでも進行	분 · 오프라인에서도 진행	 นาที · ทำต่อแม้ออฟไลน์	 min · Continua offline	 min · Sigue sin conexión	 menit · Lanjut offline	 phút · Tiếp tục ngoại tuyến	 Min. · Läuft offline weiter	 min · Continue hors ligne
+营地等待新的伙伴\n请先孵化新伙伴	The camp awaits a companion.\nHatch an egg first.	キャンプで仲間を待っています。\nまずタマゴをふ化させよう。	캠프가 친구를 기다려요.\n먼저 알을 부화하세요.	แคมป์กำลังรอเพื่อนใหม่\nฟักไข่ก่อนนะ	O acampamento espera um parceiro.\nIncube um ovo primeiro.	El campamento espera un compañero.\nPrimero incuba un huevo.	Kemah menunggu teman baru.\nTetaskan telur dulu.	Trại đang chờ bạn mới.\nHãy ấp trứng trước.	Das Lager wartet auf einen Begleiter.\nBrüte zuerst ein Ei aus.	Le camp attend un compagnon.\nFaites d'abord éclore un œuf.
+探险	Explore	冒険	탐험	ผจญภัย	Explorar	Explorar	Jelajah	Thám hiểm	Abenteuer	Explorer
+已拥有 	Owned 	所持 	보유 	มีแล้ว 	Obtidos 	Obtenidos 	Dimiliki 	Đã có 	Im Besitz 	Possédés 
+通信小屋	Mail House	通信小屋	통신소	บ้านสื่อสาร	Casa do correio	Casa del correo	Rumah Surat	Nhà thư	Posthäuschen	Maison du courrier
+图鉴	Petdex	図鑑	도감	สารานุกรม	Petdex	Petdex	Petdex	Bách khoa thú	Petdex	Petdex
+PM v0.12.0 · 自动保存	PM v0.12.0 · Autosave	PM v0.12.0 · 自動保存	PM v0.12.0 · 자동 저장	PM v0.12.0 · บันทึกอัตโนมัติ	PM v0.12.0 · Salvamento automático	PM v0.12.0 · Autoguardado	PM v0.12.0 · Simpan otomatis	PM v0.12.0 · Tự lưu	PM v0.12.0 · Automatisch gespeichert	PM v0.12.0 · Sauvegarde auto
+每2分钟恢复1点体力	Recover 1 stamina every 2 minutes	2分ごとにスタミナ1回復	2분마다 체력 1 회복	ฟื้นพลังงาน 1 แต้มทุก 2 นาที	Recupera 1 de energia a cada 2 minutos	Recuperas 1 de energía cada 2 minutos	Pulih 1 stamina tiap 2 menit	Hồi 1 thể lực mỗi 2 phút	Alle 2 Minuten 1 Ausdauer	Récupérez 1 énergie toutes les 2 minutes
+体力	Stamina	スタミナ	행동력	พลังงาน	Energia	Energía	Stamina	Thể lực	Ausdauer	Énergie
+体力已满	Stamina Full	スタミナ満タン	행동력 가득 참	พลังงานเต็ม	Energia cheia	Energía llena	Stamina Penuh	Thể lực đầy	Ausdauer voll	Énergie pleine
+激励广告待接入，暂不能领取	Ads unavailable · Cannot claim yet	広告未対応・受取できません	광고 미연결 · 수령 불가	ยังไม่มีโฆษณา · รับไม่ได้	Anúncios indisponíveis · Sem resgate	Anuncios no disponibles · No se puede reclamar	Iklan belum tersedia · Tak bisa ambil	Chưa có quảng cáo · Chưa thể nhận	Werbung nicht verfügbar · Kein Abholen	Publicités indisponibles · Récompense indisponible
+体力奖励已保留，联网后到账	Stamina saved. Connect to claim.	スタミナ報酬を保存。接続後に反映。	행동력 보상 저장됨. 연결 후 받아요.	เก็บพลังงานไว้แล้ว เชื่อมต่อเพื่อรับ	Energia salva. Conecte para receber.	Energía guardada. Conéctate para recibirla.	Stamina disimpan. Hubungkan untuk menerima.	Đã giữ thưởng thể lực. Kết nối để nhận.	Ausdauer gespeichert. Zum Abholen verbinden.	Énergie conservée. Connectez-vous pour la recevoir.
+观看完成后可获得体力	Finish the video to gain stamina	動画を最後まで見るとスタミナ獲得	영상을 끝까지 보면 행동력 획득	ดูวิดีโอจบเพื่อรับพลังงาน	Veja o vídeo completo para ganhar energia	Mira el video completo para ganar energía	Tonton hingga selesai untuk stamina	Xem hết để nhận thể lực	Video vollständig ansehen für Ausdauer	Regardez toute la vidéo pour gagner de l'énergie
+营地设置	Settings	設定	설정	ตั้งค่า	Configurações	Ajustes	Pengaturan	Cài đặt	Einstellungen	Réglages
+音乐  	Music  	音楽  	음악  	เพลง  	Música  	Música  	Musik  	Nhạc  	Musik  	Musique  
+开	On	ON	켜짐	เปิด	Ligado	Sí	Aktif	Bật	An	Oui
+关	Off	OFF	꺼짐	ปิด	Desligado	No	Mati	Tắt	Aus	Non
+音效  	Sound  	効果音  	효과음  	เสียง  	Sons  	Sonidos  	Suara  	Âm thanh  	Töne  	Sons  
+探险地图	Adventure Map	冒険マップ	모험 지도	แผนที่ผจญภัย	Mapa de aventura	Mapa de aventura	Peta Petualangan	Bản đồ thám hiểm	Abenteuerkarte	Carte d'aventure
+ 层	 floors	階	층	 ชั้น	 andares	 pisos	 lantai	 tầng	 Ebenen	 étages
+越深入，伙伴形态与蛋品质越高	Go deeper for stronger pets and better eggs	奥へ進むほど強い仲間と良いタマゴに出会えます	깊이 갈수록 강한 친구와 좋은 알을 만나요	ยิ่งลึก ยิ่งได้เพื่อนและไข่ระดับสูง	Avance para parceiros e ovos melhores	Avanza para obtener mejores compañeros y huevos	Makin jauh, makin kuat teman dan makin bagus telur	Càng sâu, thú và trứng càng cao cấp	Je weiter, desto stärkere Begleiter und bessere Eier	Avancez pour des compagnons et des œufs plus puissants
+精英 / BOSS 巢穴寻蛋	Elite / Boss Egg Hunt	エリート / ボスのタマゴ探し	정예 / 보스 알 찾기	หาไข่ชั้นยอด / บอส	Caça a ovos de elite / chefe	Huevos de élite / jefe	Telur Elite / Bos	Tìm trứng tinh anh / trùm	Eiersuche bei Elite / Boss	Œufs d'élite / boss
+请先孵化新伙伴	Hatch a Companion First	まず仲間をふ化させよう	먼저 친구를 부화하세요	ฟักเพื่อนใหม่ก่อน	Incube um parceiro primeiro	Primero incuba un compañero	Tetaskan Teman Dulu	Hãy ấp bạn mới trước	Zuerst Begleiter ausbrüten	Faites d'abord éclore un compagnon
+通关 	Clear 	クリア：	클리어: 	ผ่าน 	Conclua 	Completa 	Selesaikan 	Vượt 	Abschließen: 	Terminez 
+ 解锁	 to unlock	で解放	 후 해금	 เพื่อปลดล็อก	 para desbloquear	 para desbloquear	 untuk membuka	 để mở khóa	 zum Freischalten	 pour débloquer
+继续探险	Resume	冒険再開	탐험 계속	ผจญภัยต่อ	Retomar	Continuar	Lanjutkan	Tiếp tục	Fortsetzen	Reprendre
+体力不足	Not Enough Stamina	スタミナ不足	행동력 부족	พลังงานไม่พอ	Energia insuficiente	Energía insuficiente	Stamina Kurang	Thiếu thể lực	Zu wenig Ausdauer	Énergie insuffisante
+出发！	Let's Go!	出発！	출발!	ไปกันเลย!	Vamos!	¡Vamos!	Ayo!	Lên đường!	Los geht's!	En route !
+地图加载失败	Map Loading Failed	マップ読み込み失敗	지도 불러오기 실패	โหลดแผนที่ไม่สำเร็จ	Falha ao carregar mapa	Error al cargar mapa	Gagal Memuat Peta	Tải bản đồ thất bại	Karte konnte nicht laden	Échec du chargement de la carte
+请重试进入地图	Please try entering again	もう一度お試しください	다시 입장해 주세요	ลองเข้าแผนที่อีกครั้ง	Tente entrar no mapa de novo	Intenta entrar al mapa de nuevo	Coba masuk peta lagi	Hãy thử vào lại bản đồ	Versuche erneut, die Karte zu betreten	Réessayez d'entrer sur la carte
+结束当前地图进度，新探险消耗5体力	End this run. A new adventure costs 5 stamina.	現在の冒険を終了。再出発はスタミナ5消費。	현재 모험 종료. 새 탐험은 행동력 5 소모.	จบรอบปัจจุบัน การผจญภัยใหม่ใช้พลังงาน 5	Encerra esta jornada. Nova aventura custa 5 de energia.	Termina esta aventura. Una nueva cuesta 5 de energía.	Akhiri petualangan ini. Petualangan baru butuh 5 stamina.	Kết thúc hành trình này. Thám hiểm mới tốn 5 thể lực.	Beendet diesen Lauf. Ein neues Abenteuer kostet 5 Ausdauer.	Termine cette aventure. Une nouvelle coûte 5 énergies.
+出发	Go	出発	출발	ไป	Ir	Ir	Mulai	Đi	Los	Partir
+ 形态	 forms	形態	형태	 ร่าง	 formas	 formas	 wujud	 dạng	 Formen	 formes
+全部	All	すべて	전체	ทั้งหมด	Tudo	Todo	Semua	Tất cả	Alle	Tout
+全部属性	All Types	全タイプ	모든 속성	ทุกธาตุ	Todos os tipos	Todos los tipos	Semua Tipe	Mọi hệ	Alle Typen	Tous les types
+✓ 已拥有	✓ Owned	✓ 所持	✓ 보유	✓ มีแล้ว	✓ Obtido	✓ Obtenido	✓ Dimiliki	✓ Đã có	✓ Im Besitz	✓ Possédé
+全部宠物	All Pets	全ての仲間	모든 펫	สัตว์เลี้ยงทั้งหมด	Todos os parceiros	Todos los compañeros	Semua Teman	Mọi thú	Alle Begleiter	Tous les compagnons
+暂无符合条件的伙伴	No Matching Companions	該当する仲間がいません	해당하는 친구 없음	ไม่พบเพื่อนที่ตรงเงื่อนไข	Nenhum parceiro correspondente	Ningún compañero coincide	Tidak Ada Teman yang Cocok	Chưa có thú phù hợp	Keine passenden Begleiter	Aucun compagnon correspondant
+属性	Type	タイプ	속성	ธาตุ	Tipo	Tipo	Tipe	Hệ	Typ	Type
+已拥有	Owned	所持	보유	มีแล้ว	Obtido	Obtenido	Dimiliki	Đã có	Im Besitz	Possédé
+未拥有	Not Owned	未所持	미보유	ยังไม่มี	Não obtido	No obtenido	Belum Dimiliki	Chưa có	Nicht im Besitz	Non possédé
+ · 孵蛋获得	 · From hatching	 · ふ化で入手	 · 부화로 획득	 · ได้จากฟักไข่	 · Obtido por incubação	 · Se obtiene al incubar	 · Dari penetasan	 · Nhận qua ấp trứng	 · Durch Ausbrüten	 · Par éclosion
+属性关系	Type Matchups	タイプ相性	속성 상성	ความสัมพันธ์ธาตุ	Relações de tipos	Relaciones de tipos	Relasi Tipe	Quan hệ hệ	Typenverhältnisse	Affinités de types
+返回图鉴	Back to Petdex	図鑑へ	도감으로	กลับสารานุกรม	Voltar ao Petdex	Volver al Petdex	Kembali ke Petdex	Về bách khoa thú	Zurück zum Petdex	Retour au Petdex
+克制关系	Type Matchups	相性	상성 관계	การแพ้ทาง	Vantagens de tipos	Ventajas de tipos	Keunggulan Tipe	Quan hệ khắc chế	Typenvorteile	Affinités de types
+我方攻击	Your Attack	味方の攻撃	아군 공격	ฝ่ายเราโจมตี	Seu ataque	Tu ataque	Seranganmu	Ta tấn công	Dein Angriff	Votre attaque
+敌方攻击	Enemy Attack	敵の攻撃	적 공격	ศัตรูโจมตี	Ataque inimigo	Ataque enemigo	Serangan musuh	Địch tấn công	Gegnerangriff	Attaque ennemie
+攻击数字已计入克制；两个方向分别计算	ATK includes type effects; each direction differs	攻撃値は相性込み。攻守で別々に計算	공격 수치는 상성 적용 후 · 방향별로 계산	พลังโจมตีรวมธาตุแล้ว · คิดแยกแต่ละฝ่าย	Ataque inclui tipos; cada direção é calculada separadamente	El ataque incluye tipos; cada dirección se calcula por separado	Nilai serangan termasuk efek tipe; tiap arah dihitung terpisah	Điểm công đã tính khắc chế; hai chiều tính riêng	Angriff enthält Typeneffekt; jede Richtung zählt einzeln	L'attaque inclut les types ; chaque sens est calculé séparément
+我方关系 ›	Your Types ›	味方の相性 ›	아군 상성 ›	ธาตุฝ่ายเรา ›	Seus tipos ›	Tus tipos ›	Tipemu ›	Hệ bên ta ›	Deine Typen ›	Vos types ›
+敌方关系 ›	Enemy Types ›	敵の相性 ›	적 상성 ›	ธาตุศัตรู ›	Tipos inimigos ›	Tipos enemigos ›	Tipe musuh ›	Hệ bên địch ›	Gegnertypen ›	Types ennemis ›
+攻击克制  ×1.5	Strong Against ×1.5	攻撃有利 ×1.5	공격 유리 ×1.5	โจมตีได้เปรียบ ×1.5	Forte contra ×1.5	Fuerte contra ×1.5	Unggul atas ×1.5	Tấn công mạnh ×1.5	Stark gegen ×1.5	Efficace contre ×1.5
+攻击受阻  ×0.75 / ×0.5	Resisted ×0.75 / ×0.5	攻撃不利 ×0.75 / ×0.5	공격 불리 ×0.75 / ×0.5	โจมตีเสียเปรียบ ×0.75 / ×0.5	Resistido ×0.75 / ×0.5	Resistido ×0.75 / ×0.5	Ditahan ×0.75 / ×0.5	Bị kháng ×0.75 / ×0.5	Abgewehrt ×0.75 / ×0.5	Attaque résistée ×0.75 / ×0.5
+受击弱点  ×1.5	Weak To ×1.5	受ける弱点 ×1.5	피격 약점 ×1.5	แพ้ทาง ×1.5	Fraco contra ×1.5	Débil ante ×1.5	Lemah terhadap ×1.5	Yếu trước ×1.5	Schwach gegen ×1.5	Vulnérable à ×1.5
+受击抵抗  ×0.75 / ×0.5	Resists ×0.75 / ×0.5	受ける耐性 ×0.75 / ×0.5	피격 저항 ×0.75 / ×0.5	ต้านทาน ×0.75 / ×0.5	Resiste ×0.75 / ×0.5	Resiste ×0.75 / ×0.5	Tahan ×0.75 / ×0.5	Kháng đòn ×0.75 / ×0.5	Widersteht ×0.75 / ×0.5	Résiste à ×0.75 / ×0.5
+未列出的关系为 ×1 · ½ 表示强抵抗 ×0.5	Others ×1 · ½ means strong resistance ×0.5	未掲載は×1 · ½は強い耐性×0.5	그 외 ×1 · ½은 강한 저항 ×0.5	อื่น ๆ ×1 · ½ คือต้านทานสูง ×0.5	Outros ×1 · ½ indica resistência forte ×0.5	Otros ×1 · ½ indica gran resistencia ×0.5	Lainnya ×1 · ½ berarti tahan kuat ×0.5	Còn lại ×1 · ½ là kháng mạnh ×0.5	Andere ×1 · ½ bedeutet starke Resistenz ×0.5	Autres ×1 · ½ signifie forte résistance ×0.5
+拖动伙伴 · 调整队伍	Drag to Arrange Your Team	ドラッグでチーム編成	드래그하여 팀 편성	ลากเพื่อจัดทีม	Arraste para ajustar a equipe	Arrastra para ordenar el equipo	Seret untuk Atur Tim	Kéo thú để xếp đội	Ziehen, um Team anzuordnen	Glissez pour organiser l'équipe
+出战	Active	出撃	출전	ลงสนาม	Ativo	Activo	Aktif	Ra trận	Aktiv	Actif
+候补 	Reserve 	控え 	후보 	สำรอง 	Reserva 	Reserva 	Cadangan 	Dự bị 	Reserve 	Réserve 
+伙伴 	Pets 	仲間 	친구 	เพื่อน 	Parceiros 	Compañeros 	Teman 	Bạn đồng hành 	Begleiter 	Compagnons 
+图鉴 ›	Petdex ›	図鑑 ›	도감 ›	สารานุกรม ›	Petdex ›	Petdex ›	Petdex ›	Bách khoa ›	Petdex ›	Petdex ›
+还没有伙伴\n请先孵化新伙伴	No companions yet.\nHatch an egg first.	仲間がいません。\nまずタマゴをふ化させよう。	아직 친구가 없어요.\n먼저 알을 부화하세요.	ยังไม่มีเพื่อน\nฟักไข่ก่อนนะ	Ainda sem parceiros.\nIncube um ovo primeiro.	Aún no hay compañeros.\nPrimero incuba un huevo.	Belum ada teman.\nTetaskan telur dulu.	Chưa có bạn đồng hành.\nHãy ấp trứng trước.	Noch keine Begleiter.\nBrüte zuerst ein Ei aus.	Aucun compagnon.\nFaites d'abord éclore un œuf.
+伙伴破壳后会出现在这里	Hatched companions appear here	ふ化した仲間がここに現れます	부화한 친구가 여기에 나타나요	เพื่อนที่ฟักแล้วจะอยู่ที่นี่	Parceiros eclodidos aparecem aqui	Aquí aparecen los compañeros nacidos	Teman yang menetas muncul di sini	Thú nở ra sẽ xuất hiện ở đây	Geschlüpfte Begleiter erscheinen hier	Les compagnons éclos apparaissent ici
+先孵化新伙伴，再出发探险	Hatch a companion, then explore	仲間をふ化させて冒険へ	친구를 부화한 뒤 탐험하세요	ฟักเพื่อนแล้วออกผจญภัย	Incube um parceiro antes de explorar	Incuba un compañero antes de explorar	Tetaskan teman sebelum menjelajah	Ấp bạn mới rồi đi thám hiểm	Erst Begleiter ausbrüten, dann aufbrechen	Faites éclore un compagnon avant de partir
+前往孵化屋	Go to Hatchery	ふ化小屋へ	부화장으로	ไปโรงฟัก	Ir à incubadora	Ir a incubación	Ke Penetasan	Đến nhà ấp	Zur Brutstube	À la nurserie
+技能 ›	Skills ›	スキル ›	스킬 ›	สกิล ›	Habilidades ›	Habilidades ›	Kemampuan ›	Kỹ năng ›	Fähigkeiten ›	Talents ›
+战斗中 · 队伍已锁定	In Battle · Team Locked	戦闘中 · 編成不可	전투 중 · 팀 고정	กำลังต่อสู้ · ล็อกทีม	Em batalha · Equipe travada	En combate · Equipo bloqueado	Bertarung · Tim Terkunci	Đang chiến đấu · Khóa đội hình	Im Kampf · Team gesperrt	En combat · Équipe verrouillée
+拖动宠物 → 上方出战 / 候补位	Drag a pet → Active / Reserve slot	仲間をドラッグ → 出撃 / 控え枠	펫 드래그 → 출전 / 후보 자리	ลากเพื่อน → ช่องลงสนาม / สำรอง	Arraste → Ativo / Reserva acima	Arrastra → Activo / Reserva arriba	Seret → Aktif / Cadangan di atas	Kéo thú → Ô ra trận / dự bị ở trên	Ziehen → Aktiv / Reserve oben	Glissez → Actif / Réserve en haut
+通过孵蛋获得此形态	Hatch an egg to get this form	ふ化でこの形態を入手	부화로 이 형태 획득	ฟักไข่เพื่อรับร่างนี้	Incube um ovo para obter esta forma	Incuba un huevo para obtener esta forma	Tetaskan telur untuk wujud ini	Ấp trứng để nhận dạng này	Diese Form durch Ausbrüten erhalten	Obtenez cette forme par éclosion
+拖到上方高亮位置 · 松手放置	Drag to a highlighted slot · Release	光る枠へドラッグして離す	빛나는 자리로 드래그 후 놓기	ลากไปช่องที่สว่างแล้วปล่อย	Arraste até a vaga destacada · Solte	Arrastra al lugar resaltado · Suelta	Seret ke tempat tersorot · Lepaskan	Kéo vào ô sáng phía trên · Thả tay	Zum markierten Platz ziehen · Loslassen	Glissez vers une place éclairée · Relâchez
+松手设为出战	Release to Set Active	離して出撃	놓으면 출전	ปล่อยเพื่อลงสนาม	Solte para ativar	Suelta para activar	Lepas untuk Aktif	Thả để ra trận	Loslassen zum Aktivieren	Relâchez pour activer
+松手放入候补 	Release for Reserve 	離して控え 	놓으면 후보 	ปล่อยเพื่อสำรอง 	Solte para reserva 	Suelta para reserva 	Lepas untuk Cadangan 	Thả vào dự bị 	Loslassen für Reserve 	Relâchez pour la réserve 
+已设为出战	Set Active	出撃に設定	출전 설정됨	ตั้งลงสนามแล้ว	Definido como ativo	Marcado como activo	Diatur Aktif	Đã cho ra trận	Als aktiv gesetzt	Défini comme actif
+已放入候补 	Set Reserve 	控えに設定 	후보로 설정 	ตั้งสำรองแล้ว 	Definido como reserva 	Marcado como reserva 	Diatur Cadangan 	Đã vào dự bị 	In Reserve gesetzt 	Mis en réserve 
+语言	Language	言語	언어	ภาษา	Idioma	Idioma	Bahasa	Ngôn ngữ	Sprache	Langue
+跟随系统	System	システム	시스템 설정	ตามระบบ	Sistema	Sistema	Sistem	Theo hệ thống	System	Système
+骰子宠物精灵	Dice Pet Spirits	ダイスペット	주사위 펫 스피릿	ลูกเต๋าเพื่อนภูต	Espíritos dos Dados	Espíritus del Dado	Dadu & Monster	Linh Thú Xúc Xắc	Würfelgefährten	Esprits des Dés
+收集 · 孵化 · 冒险	Collect · Hatch · Explore	集める · ふ化 · 冒険	수집 · 부화 · 모험	สะสม · ฟัก · ผจญภัย	Colecione · Choque · Explore	Colecciona · Incuba · Explora	Koleksi · Tetaskan · Jelajahi	Sưu tầm · Ấp trứng · Khám phá	Sammeln · Ausbrüten · Entdecken	Collectionnez · Faites éclore · Explorez
+开始游戏	Play	はじめる	시작	เริ่มเกม	Jogar	Jugar	Main	Chơi	Spielen	Jouer
+战斗样板	Battle Demo	バトルデモ	전투 데모	เดโมการต่อสู้	Demo de batalha	Demo de combate	Demo Pertarungan	Mẫu chiến đấu	Kampfdemo	Démo de combat
+再试一次	Try Again	もう一度	다시 시도	ลองอีกครั้ง	Tentar de novo	Intentar de nuevo	Coba Lagi	Thử lại	Erneut versuchen	Réessayer
+最低攻击	Min Attack	最低攻撃	최소 공격력	พลังโจมตีต่ำสุด	Ataque mínimo	Ataque mínimo	Serangan Min.	Công thấp nhất	Min. Angriff	Attaque min.
+最高攻击	Max Attack	最高攻撃	최대 공격력	พลังโจมตีสูงสุด	Ataque máximo	Ataque máximo	Serangan Maks.	Công cao nhất	Max. Angriff	Attaque max.
+全队获得奖励	Team Reward	チーム全員に報酬	팀 전체 보상	รางวัลทั้งทีม	Recompensa da equipe	Recompensa del equipo	Hadiah Tim	Thưởng toàn đội	Teambelohnung	Récompense d’équipe
+毒素 −	Poison −	毒 −	독 −	พิษ −	Veneno −	Veneno −	Racun −	Độc −	Gift −	Poison −
+回春击	Healing Strike	回復打撃	회복 타격	โจมตีฟื้นฟู	Golpe curativo	Golpe curativo	Pukulan Pulih	Đòn hồi phục	Heilschlag	Frappe curative
+休整防御	Resting Guard	休息防御	회복 방어	ป้องกันพักฟื้น	Defesa reparadora	Defensa reparadora	Pertahanan Pulih	Thủ hồi phục	Erholungsblock	Garde reposante
+强化屏障	Power Barrier	強化障壁	강화 장벽	เกราะเสริมพลัง	Barreira de poder	Barrera de poder	Perisai Kuat	Khiên cường hóa	Kraftbarriere	Barrière renforcée
+治愈蓄能	Healing Charge	回復充填	치유 충전	สะสมพลังรักษา	Carga curativa	Carga curativa	Muatan Pemulih	Tích lực hồi phục	Heilladung	Charge curative
+追击招式	Finishing Move	追撃技	추격 기술	ท่าปิดฉาก	Golpe final	Golpe final	Jurus Penuntas	Đòn kết liễu	Abschlussangriff	Coup final
+不屈招式	Last Stand	不屈の技	불굴의 기술	ท่ายืนหยัด	Última resistência	Última resistencia	Pantang Menyerah	Bất khuất	Letzter Widerstand	Dernier rempart
+开场护盾	Opening Shield	開幕シールド	시작 보호막	โล่เริ่มการต่อสู้	Escudo inicial	Escudo inicial	Perisai Pembuka	Khiên mở đầu	Startschutz	Bouclier initial
+连击恢复	Combo Recovery	連撃回復	연격 회복	ฟื้นฟูคอมโบ	Cura de combo	Cura de combo	Pemulihan Kombo	Hồi phục liên kích	Komboheilung	Soin de combo
+强击	Power Strike	強打	강타	โจมตีหนัก	Golpe forte	Golpe fuerte	Pukulan Kuat	Cường kích	Kraftschlag	Frappe puissante
+回春	Healing	回復	회복	ฟื้นฟู	Cura	Curación	Pemulihan	Hồi phục	Heilung	Soin
+复苏	Renewal	再生	재생	ฟื้นคืน	Renovação	Renovación	Regenerasi	Tái sinh	Erneuerung	Renouveau
+汲取	Drain	吸収	흡수	ดูดพลัง	Drenagem	Drenaje	Serap	Hút sinh lực	Entzug	Drain
+屏障	Barrier	障壁	장벽	เกราะ	Barreira	Barrera	Penghalang	Rào chắn	Barriere	Barrière
+坚守	Fortify	堅守	수호	ตั้งรับ	Fortificar	Fortificar	Bertahan	Kiên thủ	Standhaft	Bastion
+印记	Mark	刻印	낙인	ตราประทับ	Marca	Marca	Tanda	Ấn ký	Mal	Marque
+蓄能	Charge	充填	충전	สะสมพลัง	Carga	Carga	Muatan	Tích lực	Aufladen	Charge
+改运	Lucky Roll	運命変更	행운 주사위	เปลี่ยนโชค	Dado da sorte	Dado de suerte	Dadu Beruntung	Đổi vận	Glückswurf	Jet chanceux
+药剂回响	Potion Echo	薬の反響	물약 메아리	สะท้อนน้ำยา	Eco de poção	Eco de poción	Gema Ramuan	Dư âm thuốc	Trankecho	Écho de potion
+力量回响	Power Echo	力の反響	힘의 메아리	สะท้อนพลัง	Eco de poder	Eco de poder	Gema Kekuatan	Dư âm sức mạnh	Kraftecho	Écho de puissance
+闪避	Dodge	回避	회피	หลบหลีก	Esquiva	Esquiva	Hindar	Né tránh	Ausweichen	Esquive
+不屈	Endure	不屈	불굴	ยืนหยัด	Resistência	Resistencia	Bertahan Hidup	Bất khuất	Durchhalten	Ténacité
+攻击时	On attack	攻撃時	공격 시	เมื่อโจมตี	Ao atacar	Al atacar	Saat menyerang	Khi tấn công	Beim Angriff	À l’attaque
+使用生命药水时	On healing potion	回復薬使用時	생명 물약 사용 시	เมื่อใช้น้ำยาฟื้นฟู	Ao usar poção de cura	Al usar poción curativa	Saat memakai ramuan HP	Khi dùng thuốc hồi HP	Beim Heiltrank	Avec une potion de soin
+使用力量药水时	On power potion	強化薬使用時	힘의 물약 사용 시	เมื่อใช้น้ำยาพลัง	Ao usar poção de poder	Al usar poción de poder	Saat memakai ramuan kekuatan	Khi dùng thuốc sức mạnh	Beim Krafttrank	Avec une potion de force
+防御时	On guard	防御時	방어 시	เมื่อป้องกัน	Ao defender	Al defender	Saat bertahan	Khi phòng thủ	Beim Blocken	En défense
+受到反击时	On enemy counter	反撃を受ける時	반격을 받을 때	เมื่อถูกสวนกลับ	Ao sofrer contra-ataque	Al recibir contraataque	Saat menerima serangan balik	Khi bị phản công	Beim Gegenangriff des Feindes	À la riposte ennemie
+掷骰时	On dice roll	サイコロ時	주사위를 굴릴 때	เมื่อทอยลูกเต๋า	Ao lançar o dado	Al lanzar el dado	Saat melempar dadu	Khi gieo xúc xắc	Beim Würfeln	Au lancer de dé
+第三次攻击时	On the third attack	3回目の攻撃時	세 번째 공격 시	เมื่อโจมตีครั้งที่ 3	No terceiro ataque	En el tercer ataque	Pada serangan ketiga	Ở đòn đánh thứ ba	Beim dritten Angriff	À la troisième attaque
+生命不超过50%	HP at 50% or less	HP50%以下	HP 50% 이하	HP ไม่เกิน 50%	HP em 50% ou menos	HP al 50% o menos	HP 50% atau kurang	HP không quá 50%	HP höchstens 50%	HP à 50% ou moins
+满血时	At full HP	HP満タン	HP 최대일 때	เมื่อ HP เต็ม	Com HP cheio	Con HP completo	Saat HP penuh	Khi đầy HP	Bei vollen HP	Avec tous les HP
+敌人生命不超过50%	Enemy HP at 50% or less	敵HP50%以下	적 HP 50% 이하	HP ศัตรูไม่เกิน 50%	HP inimigo em 50% ou menos	HP enemigo al 50% o menos	HP musuh 50% atau kurang	HP địch không quá 50%	Gegner-HP höchstens 50%	HP ennemis à 50% ou moins
+攻击点数为最低	Lowest attack roll	攻撃が最低値	최저 공격 수치	แต้มโจมตีต่ำสุด	Menor valor de ataque	Valor mínimo de ataque	Nilai serangan terendah	Điểm công thấp nhất	Niedrigster Angriffswurf	Jet d’attaque minimum
+攻击点数为最高	Highest attack roll	攻撃が最高値	최고 공격 수치	แต้มโจมตีสูงสุด	Maior valor de ataque	Valor máximo de ataque	Nilai serangan tertinggi	Điểm công cao nhất	Höchster Angriffswurf	Jet d’attaque maximum
+点数与上回合相同	Same roll as last turn	前ターンと同じ値	지난 턴과 같은 수치	แต้มเท่ากับเทิร์นก่อน	Mesmo valor do turno anterior	Mismo valor que el turno anterior	Nilai sama dengan giliran lalu	Điểm giống lượt trước	Gleicher Wurf wie letzte Runde	Même jet qu’au tour précédent
+本场首次掷骰	First roll this battle	この戦闘の初回サイコロ	이번 전투 첫 주사위	ทอยครั้งแรกในการต่อสู้	Primeiro dado da batalha	Primera tirada del combate	Lemparan pertama pertempuran	Lần gieo đầu trận	Erster Wurf im Kampf	Premier jet du combat
+力量药水生效时	With power potion active	強化薬が有効	힘의 물약 효과 중	ขณะน้ำยาพลังมีผล	Com poção de poder ativa	Con poción de poder activa	Saat ramuan kekuatan aktif	Khi thuốc sức mạnh có hiệu lực	Bei aktivem Krafttrank	Sous potion de force
+本次选择防御	While guarding	今回防御を選択	이번에 방어 선택	เมื่อเลือกป้องกัน	Ao escolher defesa	Al elegir defensa	Saat memilih bertahan	Khi chọn phòng thủ	Bei gewählter Verteidigung	En choisissant la garde
+将受到致命伤害	Before lethal damage	致命傷を受ける直前	치명적인 피해 직전	ก่อนรับความเสียหายถึงตาย	Antes de dano fatal	Antes de daño letal	Sebelum kerusakan fatal	Trước sát thương chí mạng	Vor tödlichem Schaden	Avant des dégâts mortels
+本次攻击被抵抗	Attack is resisted	攻撃が耐性で軽減	공격이 저항될 때	เมื่อการโจมตีถูกต้าน	Ataque resistido	Ataque resistido	Serangan dilawan resistansi	Đòn đánh bị kháng	Angriff wird widerstanden	Attaque résistée
+额外伤害 +	Bonus damage +	追加ダメージ +	추가 피해 +	ความเสียหายเพิ่ม +	Dano extra +	Daño adicional +	Kerusakan tambahan +	Sát thương thêm +	Zusatzschaden +	Dégâts bonus +
+恢复生命 +	Restore HP +	HP回復 +	HP 회복 +	ฟื้นฟู HP +	Recuperar HP +	Recuperar HP +	Pulihkan HP +	Hồi HP +	HP heilen +	Soin HP +
+恢复最大生命 	Restore max HP 	最大HPを回復 	최대 HP 회복 	ฟื้นฟูตาม HP สูงสุด 	Recupera do HP máximo 	Recupera del HP máximo 	Pulihkan dari HP maks. 	Hồi theo HP tối đa 	Heilt von max. HP 	Soigne des HP max. 
+恢复实际伤害的 	Restore dealt damage 	実ダメージから回復 	실제 피해량만큼 회복 	ฟื้นฟูจากความเสียหายจริง 	Cura do dano causado 	Cura del daño causado 	Pulihkan dari kerusakan nyata 	Hồi theo sát thương thực 	Heilt von verursachtem Schaden 	Soigne des dégâts infligés 
+获得护盾 +	Gain shield +	シールド獲得 +	보호막 획득 +	ได้รับโล่ +	Ganha escudo +	Obtiene escudo +	Dapat perisai +	Nhận khiên +	Schild erhalten +	Bouclier gagné +
+本次伤害减少 	Reduce this damage by 	今回のダメージを軽減 	이번 피해 감소 	ลดความเสียหายครั้งนี้ 	Reduz este dano em 	Reduce este daño en 	Kurangi kerusakan ini sebesar 	Giảm sát thương lần này 	Verringert diesen Schaden um 	Réduit ces dégâts de 
+施毒3次，每次伤害 	Poison for 3 ticks, damage each 	毒3回、各ダメージ 	독 3회, 매회 피해 	พิษ 3 ครั้ง ความเสียหายต่อครั้ง 	Veneno por 3 vezes, dano por vez 	Veneno 3 veces, daño por vez 	Racun 3 kali, kerusakan tiap kali 	Độc 3 lần, sát thương mỗi lần 	Gift für 3 Ticks, Schaden je Tick 	Poison sur 3 ticks, dégâts par tick 
+下回合攻击取最高点数	Next attack roll is maximum	次ターンの攻撃は最高値	다음 턴 공격은 최고 수치	เทิร์นหน้าได้แต้มโจมตีสูงสุด	Próximo ataque no valor máximo	Próximo ataque al máximo	Serangan giliran berikutnya maksimum	Lượt sau điểm công tối đa	Nächster Angriffswurf maximal	Prochain jet d’attaque maximal
+本次攻击取最高点数	This attack roll becomes maximum	今回の攻撃を最高値に	이번 공격을 최고 수치로	แต้มโจมตีครั้งนี้เป็นค่าสูงสุด	Este ataque passa ao máximo	Este ataque pasa al máximo	Serangan ini menjadi maksimum	Điểm công lần này thành tối đa	Dieser Angriffswurf wird maximal	Ce jet d’attaque devient maximal
+免疫本次反击	Block this counter completely	今回の反撃を無効化	이번 반격 무효	ป้องกันการสวนกลับครั้งนี้ทั้งหมด	Anula este contra-ataque	Anula este contraataque	Kebal serangan balik ini	Miễn phản công lần này	Diesen Gegenangriff abwehren	Annule cette riposte
+本次保留1点生命	Survive this hit with 1 HP	今回HP1で耐える	이번에 HP 1로 생존	รอดครั้งนี้ด้วย HP 1	Sobrevive com 1 HP	Sobrevive con 1 HP	Bertahan dengan 1 HP	Sống sót với 1 HP	Überlebt mit 1 HP	Survit avec 1 HP
+。每场一次。	. Once per battle.	。各戦闘1回。	. 전투마다 1회.	 ต่อการต่อสู้ 1 ครั้ง	. Uma vez por batalha.	. Una vez por combate.	. Sekali per pertempuran.	. Mỗi trận một lần.	. Einmal pro Kampf.	. Une fois par combat.
+奇遇	Encounter Event	冒険イベント	모험 이벤트	เหตุการณ์ผจญภัย	Evento de aventura	Evento de aventura	Peristiwa Petualangan	Sự kiện phiêu lưu	Abenteuerereignis	Événement d’aventure
+伙伴复活	Companion Revived	仲間が復活	파트너 부활	คู่หูฟื้นคืน	Companheiro revivido	Compañero revivido	Partner Dihidupkan	Đồng đội hồi sinh	Gefährte wiederbelebt	Compagnon ressuscité
+恢复满生命	HP Fully Restored	HP全回復	HP 완전 회복	ฟื้น HP เต็ม	HP restaurado	HP restaurado	HP Pulih Penuh	Hồi đầy HP	HP vollständig geheilt	HP entièrement restaurés
+巨化	Giant Form	巨大化	거대화	ร่างยักษ์	Forma gigante	Forma gigante	Wujud Raksasa	Khổng lồ hóa	Riesenform	Forme géante
+招式学习器	Move Tutor	わざ学習器	기술 학습기	เครื่องเรียนท่า	Tutor de golpe	Tutor de movimiento	Pelatih Jurus	Máy học chiêu	Attackenlehrer	Apprentissage de capacité
+获得精英蛋	Elite Egg Found	エリート報酬の卵	정예 보상 알 획득	ได้รับไข่รางวัลชั้นยอด	Ovo de elite encontrado	Huevo de élite encontrado	Telur Elite Ditemukan	Nhận trứng tinh anh	Elite-Ei gefunden	Œuf d’élite obtenu
+体型／生命上限／攻击 +50%	Size / Max HP / Attack +50%	体格／最大HP／攻撃 +50%	크기 / 최대 HP / 공격 +50%	ขนาด / HP สูงสุด / โจมตี +50%	Tamanho / HP máx. / Ataque +50%	Tamaño / HP máx. / Ataque +50%	Ukuran / HP Maks. / Serangan +50%	Kích thước / HP tối đa / Công +50%	Größe / Max. HP / Angriff +50%	Taille / HP max. / Attaque +50%
+接下来2场 · 本关内有效	Next 2 battles · This map only	次の2戦 · このマップのみ	다음 2전 · 이번 맵 한정	2 การต่อสู้ถัดไป · เฉพาะด่านนี้	Próximas 2 batalhas · Só neste mapa	Próximos 2 combates · Solo este mapa	2 Pertempuran berikutnya · Peta ini saja	2 trận tiếp theo · Chỉ bản đồ này	Nächste 2 Kämpfe · Nur diese Karte	2 prochains combats · Cette carte
+已放入蛋袋	Added to Egg Bag	卵バッグに追加	알 가방에 추가됨	เพิ่มในถุงไข่แล้ว	Adicionado à bolsa de ovos	Añadido a la bolsa de huevos	Ditambahkan ke Tas Telur	Đã vào túi trứng	Zur Eiertasche hinzugefügt	Ajouté au sac à œufs
+本关内有效	This map only	このマップのみ	이번 맵 한정	เฉพาะด่านนี้	Só neste mapa	Solo este mapa	Peta ini saja	Chỉ bản đồ này	Nur diese Karte	Cette carte uniquement
+异品质合成保留较高品质及形态。	Different rarities keep the higher rarity and form.	異なるレア度は高い側のレア度と姿を継承。	다른 등급은 높은 등급과 형태를 계승.	ต่างระดับจะรับระดับและร่างที่สูงกว่า	Raridades diferentes mantêm a maior e sua forma.	Distintas rarezas conservan la mayor y su forma.	Raritas berbeda mewarisi raritas dan wujud tertinggi.	Khác phẩm chất sẽ giữ phẩm chất và hình thái cao hơn.	Verschiedene Seltenheiten behalten die höhere Form.	Raretés différentes : forme et rareté supérieures.
+同品质形态、HP、攻击各有50%随父或母。	Same-rarity form, HP and attack each inherit 50/50.	同レア度の姿・HP・攻撃は各50%で親から継承。	같은 등급 형태, HP, 공격은 각각 50%로 부모 계승.	ร่างระดับเดียวกัน HP และโจมตีรับจากพ่อแม่อย่างละ 50%	Forma da mesma raridade, HP e ataque: 50% de cada pai.	Forma de igual rareza, HP y ataque: 50% de cada padre.	Wujud setara, HP, dan serangan masing-masing 50/50.	Cùng phẩm chất: hình thái, HP và công kế thừa riêng 50/50.	Gleiche Seltenheit, HP und Angriff: je 50/50.	Même rareté, HP et attaque : chacun hérité à 50/50.
+
+异品质合成保留较高品质及形态。\n同品质形态、HP、攻击各有50%随父或母。\n技能从父母技能池随机继承，最多 6 个。\n交配需 	Different rarities keep the higher rarity and form.\nSame-rarity form, HP and attack each inherit 50/50.\nInherit up to 6 different parent skills.\nBreeding takes 	異なるレア度は高い側のレア度と姿を継承。\n同レア度の姿・HP・攻撃は各50%で親から継承。\n親のスキルを重複なく最大6つ継承。\n交配時間：	다른 등급은 높은 등급과 형태를 계승.\n같은 등급 형태, HP, 공격은 각각 50%로 부모 계승.\n부모 스킬을 중복 없이 최대 6개 계승해요.\n교배 시간: 	ต่างระดับจะรับระดับและร่างที่สูงกว่า\nร่างระดับเดียวกัน HP และโจมตีรับจากพ่อแม่อย่างละ 50%\nสืบทอดสกิลพ่อแม่ไม่ซ้ำกันสูงสุด 6 สกิล\nผสมพันธุ์ใช้เวลา 	Raridades diferentes mantêm a maior e sua forma.\nForma da mesma raridade, HP e ataque: 50% de cada pai.\nHerda até 6 habilidades diferentes dos pais.\nO cruzamento leva 	Distintas rarezas conservan la mayor y su forma.\nForma de igual rareza, HP y ataque: 50% de cada padre.\nSe heredan hasta 6 habilidades distintas de los padres.\nLa crianza tarda 	Raritas berbeda mewarisi raritas dan wujud tertinggi.\nWujud setara, HP, dan serangan masing-masing 50/50.\nWarisi maksimal 6 kemampuan berbeda dari induk.\nPembiakan perlu 	Khác phẩm chất sẽ giữ phẩm chất và hình thái cao hơn.\nCùng phẩm chất: hình thái, HP và công kế thừa riêng 50/50.\nKế thừa ngẫu nhiên tối đa 6 kỹ năng khác nhau của cha mẹ.\nPhối giống cần 	Verschiedene Seltenheiten behalten die höhere Form.\nGleiche Seltenheit, HP und Angriff: je 50/50.\nBis zu 6 verschiedene Elternfähigkeiten werden vererbt.\nDie Zucht dauert 	Raretés différentes : forme et rareté supérieures.\nMême rareté, HP et attaque : chacun hérité à 50/50.\nJusqu'à 6 talents différents des parents sont hérités.\nLa reproduction dure 

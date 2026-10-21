@@ -1,13 +1,16 @@
 import { TRANSLATIONS } from './PMTranslations';
 
-export type Locale='zh-CN'|'en'|'ja'|'ko'|'zh-TW'|'th';
+export type Locale='zh-CN'|'en'|'ja'|'ko'|'zh-TW'|'th'|'pt-BR'|'es-419'|'id'|'vi'|'de'|'fr';
 export type LanguageChoice=Locale|'system';
 export const LANGUAGE_KEY='pm.language.v1';
 export const LANGUAGES:{id:LanguageChoice;name:string}[]=[
   {id:'system',name:'跟随系统'},{id:'zh-CN',name:'简体中文'},{id:'en',name:'English'},
-  {id:'ja',name:'日本語'},{id:'ko',name:'한국어'},{id:'zh-TW',name:'繁體中文'},{id:'th',name:'ไทย'}
+  {id:'ja',name:'日本語'},{id:'ko',name:'한국어'},{id:'zh-TW',name:'繁體中文'},{id:'th',name:'ไทย'},
+  {id:'pt-BR',name:'Português (BR)'},{id:'es-419',name:'Español (LatAm)'},
+  {id:'id',name:'Bahasa Indonesia'},{id:'vi',name:'Tiếng Việt'},
+  {id:'de',name:'Deutsch'},{id:'fr',name:'Français'}
 ];
-const columns:Record<string,number>={en:0,ja:1,ko:2,'zh-TW':3,th:4};
+const columns:Record<string,number>={en:0,ja:1,ko:2,'zh-TW':3,th:4,'pt-BR':5,'es-419':6,id:7,vi:8,de:9,fr:10};
 const escape=(s:string)=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const pattern=new RegExp(Object.keys(TRANSLATIONS).sort((a,b)=>b.length-a.length).map(escape).join('|'),'g');
 let locale:Locale='en',choice:LanguageChoice='system';
@@ -19,7 +22,11 @@ export function resolveLocale(code:string):Locale{
     if(parts.includes('hans'))return 'zh-CN';
     return parts.some(p=>['tw','hk','mo'].includes(p))?'zh-TW':'zh-CN';
   }
-  if(['en','ja','ko','th'].includes(base))return base as Locale;
+  if(base==='pt')return 'pt-BR';
+  if(base==='es')return 'es-419';
+  // Older Android system language codes may still report Indonesian as "in".
+  if(base==='in')return 'id';
+  if(['en','ja','ko','th','id','vi','de','fr'].includes(base))return base as Locale;
   return 'en';
 }
 export function selectLanguage(value:string|null,systemCode:string):LanguageChoice{

@@ -1,0 +1,42 @@
+{
+  "tool": "built-in image_gen",
+  "reference": "assets/resources/art/login-title-en-v1.png",
+  "versions": [
+    {
+      "locale": "pt-BR",
+      "title": "Espíritos dos Dados",
+      "subtitle": "Colecione · Choque · Explore",
+      "prompt": "Create one transparent production game logo localized in pt-BR. Match the attached image's established brand: expressive chunky custom golden yellow lettering, warm orange bevels, thick extruded royal blue outline and navy shadow, cream keyline, bright small highlights. Replace all lettering with EXACT title \"Espíritos dos Dados\", on one or two balanced lines, and EXACT subtitle \"Colecione · Choque · Explore\" in clearly legible white letters on a compact curved blue ribbon below with small gold star ends. Preserve every accent mark including Vietnamese diacritics. No English/Chinese words left. No creatures, no background, no additional words. Wide compact logo about 2.6:1 with 5 percent transparent padding. All lettering in frame, readable at 350 pixels wide on a phone. This is a friendly original pet collecting dice adventure. True transparent alpha."
+    },
+    {
+      "locale": "es-419",
+      "title": "Espíritus del Dado",
+      "subtitle": "Colecciona · Incuba · Explora",
+      "prompt": "Create one transparent production game logo localized in es-419. Match the attached image's established brand: expressive chunky custom golden yellow lettering, warm orange bevels, thick extruded royal blue outline and navy shadow, cream keyline, bright small highlights. Replace all lettering with EXACT title \"Espíritus del Dado\", on one or two balanced lines, and EXACT subtitle \"Colecciona · Incuba · Explora\" in clearly legible white letters on a compact curved blue ribbon below with small gold star ends. Preserve every accent mark including Vietnamese diacritics. No English/Chinese words left. No creatures, no background, no additional words. Wide compact logo about 2.6:1 with 5 percent transparent padding. All lettering in frame, readable at 350 pixels wide on a phone. This is a friendly original pet collecting dice adventure. True transparent alpha."
+    },
+    {
+      "locale": "id",
+      "title": "Dadu & Monster",
+      "subtitle": "Koleksi · Tetaskan · Jelajahi",
+      "prompt": "Create one transparent production game logo localized in id. Match the attached image's established brand: expressive chunky custom golden yellow lettering, warm orange bevels, thick extruded royal blue outline and navy shadow, cream keyline, bright small highlights. Replace all lettering with EXACT title \"Dadu & Monster\", on one or two balanced lines, and EXACT subtitle \"Koleksi · Tetaskan · Jelajahi\" in clearly legible white letters on a compact curved blue ribbon below with small gold star ends. Preserve every accent mark including Vietnamese diacritics. No English/Chinese words left. No creatures, no background, no additional words. Wide compact logo about 2.6:1 with 5 percent transparent padding. All lettering in frame, readable at 350 pixels wide on a phone. This is a friendly original pet collecting dice adventure. True transparent alpha."
+    },
+    {
+      "locale": "vi",
+      "title": "Linh Thú Xúc Xắc",
+      "subtitle": "Sưu tầm · Ấp trứng · Khám phá",
+      "prompt": "Create one transparent production game logo localized in vi. Match the attached image's established brand: expressive chunky custom golden yellow lettering, warm orange bevels, thick extruded royal blue outline and navy shadow, cream keyline, bright small highlights. Replace all lettering with EXACT title \"Linh Thú Xúc Xắc\", on one or two balanced lines, and EXACT subtitle \"Sưu tầm · Ấp trứng · Khám phá\" in clearly legible white letters on a compact curved blue ribbon below with small gold star ends. Preserve every accent mark including Vietnamese diacritics. No English/Chinese words left. No creatures, no background, no additional words. Wide compact logo about 2.6:1 with 5 percent transparent padding. All lettering in frame, readable at 350 pixels wide on a phone. This is a friendly original pet collecting dice adventure. True transparent alpha."
+    },
+    {
+      "locale": "de",
+      "title": "Würfelgefährten",
+      "subtitle": "Sammeln · Ausbrüten · Entdecken",
+      "prompt": "Create one transparent production game logo localized in de. Match the attached image's established brand: expressive chunky custom golden yellow lettering, warm orange bevels, thick extruded royal blue outline and navy shadow, cream keyline, bright small highlights. Replace all lettering with EXACT title \"Würfelgefährten\", on one or two balanced lines, and EXACT subtitle \"Sammeln · Ausbrüten · Entdecken\" in clearly legible white letters on a compact curved blue ribbon below with small gold star ends. Preserve every accent mark including Vietnamese diacritics. No English/Chinese words left. No creatures, no background, no additional words. Wide compact logo about 2.6:1 with 5 percent transparent padding. All lettering in frame, readable at 350 pixels wide on a phone. This is a friendly original pet collecting dice adventure. True transparent alpha."
+    },
+    {
+      "locale": "fr",
+      "title": "Esprits des Dés",
+      "subtitle": "Collectionnez · Faites éclore · Explorez",
+      "prompt": "Create one transparent production game logo localized in fr. Match the attached image's established brand: expressive chunky custom golden yellow lettering, warm orange bevels, thick extruded royal blue outline and navy shadow, cream keyline, bright small highlights. Replace all lettering with EXACT title \"Esprits des Dés\", on one or two balanced lines, and EXACT subtitle \"Collectionnez · Faites éclore · Explorez\" in clearly legible white letters on a compact curved blue ribbon below with small gold star ends. Preserve every accent mark including Vietnamese diacritics. No English/Chinese words left. No creatures, no background, no additional words. Wide compact logo about 2.6:1 with 5 percent transparent padding. All lettering in frame, readable at 350 pixels wide on a phone. This is a friendly original pet collecting dice adventure. True transparent alpha."
+    }
+  ]
+}

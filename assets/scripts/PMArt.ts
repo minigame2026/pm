@@ -65,6 +65,11 @@ export class PMArt {
     const queue=Array.from(new Set(keys)).filter(key=>!!this.specs[key]);
     await Promise.all([0,1].map(async()=>{while(queue.length&&!this.disposed)await this.load(queue.shift()!);}));
   }
+  async warmTree(root:Node){
+    const keys:string[]=[];
+    for(const [node,key] of this.bindings){for(let p:Node|null=node;p;p=p.parent)if(p===root){keys.push(key);break;}}
+    await this.warm(keys);
+  }
   async load(key:string):Promise<SpriteFrame>{
     if(this.disposed)throw Error('Art cache disposed');const e=this.entry(key);
     if(!e.texture){

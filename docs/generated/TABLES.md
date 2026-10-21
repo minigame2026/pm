@@ -4,7 +4,7 @@
 
 ## 内容规模
 
-54 个系列，162 种自然形态，90 关，16 种技能机制。个体遗传后数值以存档为准。
+54 个系列，162 种自然形态，90 关，81 种技能机制。个体遗传后数值以存档为准。
 
 初始流程、三位主角效果与三选一伙伴见 [初始流程](../ONBOARDING.md)。阿岚领取巢穴蛋时有20%概率额外获得一枚蛋，下方寻蛋表不含此额外奖励。
 
@@ -28,168 +28,168 @@
 
 | 形态ID | 名称 | 属性 | 品质 | 地图 / 身份 | 美术级 | HP | 攻击点数 | 技能 | 图片 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| fox-normal | 闪尾狐 | 火 | R | 熔岩山径 / 普通 | 普通 | 22 | 1 / 3 / 7 | 抢先一击 | [源图](../../assets/resources/art/fox-battle-ref.png) |
-| fox-SR | 焰鬃狐 | 火 | SR | 熔岩山径 / 普通 | 普通 | 24 | 1 / 3 / 7 | 稳定发挥 | [源图](../../assets/resources/art/fox-evolution-v1.png) |
-| fox-SSR | 曜焰灵狐 | 火 | SSR | 熔岩山径 / 普通 | 普通 | 26 | 1 / 3 / 7 | 力量共鸣 | [源图](../../assets/resources/art/fox-evolution-v1.png) |
-| bud-normal | 芽芽龙 | 草 | R | 草叶海岸 / 普通 | 普通 | 24 | 3 / 3 / 4 | 草木祝福 | [源图](../../assets/resources/art/bud-battle-ref.png) |
-| bud-SR | 蕨翼龙 | 草 | SR | 草叶海岸 / 普通 | 普通 | 26 | 3 / 3 / 4 | 药水回响 | [源图](../../assets/resources/art/bud-evolution-v1.png) |
-| bud-SSR | 花冠森龙 | 草 | SSR | 草叶海岸 / 普通 | 普通 | 28 | 3 / 3 / 4 | 生命绽放 | [源图](../../assets/resources/art/bud-evolution-v1.png) |
-| turtle-normal | 岩背龟 | 岩石 | R | 草叶海岸 / BOSS | 普通 | 30 | 2 / 2 / 4 | 硬壳 | [源图](../../assets/resources/art/turtle-battle-ref.png) |
-| turtle-SR | 峭甲龟 | 岩石 | SR | 草叶海岸 / BOSS | 普通 | 32 | 2 / 2 / 4 | 蓄势反击 | [源图](../../assets/resources/art/turtle-evolution-v1.png) |
-| turtle-SSR | 山垒巨龟 | 岩石 | SSR | 草叶海岸 / BOSS | 普通 | 34 | 2 / 2 / 4 | 坚垒 | [源图](../../assets/resources/art/turtle-evolution-v1.png) |
-| cotton-normal | 绒团兔 | 一般 | R | 草叶海岸 / 普通 | 普通 | 24 | 2 / 3 / 4 | 抢先一击 | [源图](../../assets/resources/art/cotton-battle-v1.png) |
-| cotton-SR | 绒领兔 | 一般 | SR | 草叶海岸 / 普通 | 普通 | 26 | 2 / 3 / 4 | 稳定发挥 | [源图](../../assets/resources/art/cotton-evolution-v1.png) |
-| cotton-SSR | 云绒王兔 | 一般 | SSR | 草叶海岸 / 普通 | 普通 | 28 | 2 / 3 / 4 | 生命绽放 | [源图](../../assets/resources/art/cotton-evolution-v1.png) |
-| otter-normal | 潮泡獭 | 水 | R | 草叶海岸 / 普通 | 普通 | 25 | 2 / 4 / 5 | 硬壳 | [源图](../../assets/resources/art/otter-battle-v1.png) |
-| otter-SR | 涌浪獭 | 水 | SR | 草叶海岸 / 普通 | 普通 | 27 | 2 / 4 / 5 | 泡泡护盾 | [源图](../../assets/resources/art/otter-evolution-v1.png) |
-| otter-SSR | 沧澜海獭 | 水 | SSR | 草叶海岸 / 普通 | 普通 | 29 | 2 / 4 / 5 | 药水回响 | [源图](../../assets/resources/art/otter-evolution-v1.png) |
-| spark-normal | 蓄电貂 | 电 | R | 熔岩山径 / 普通 | 普通 | 21 | 1 / 4 / 7 | 抢先一击 | [源图](../../assets/resources/art/spark-battle-v1.png) |
-| spark-SR | 电弧貂 | 电 | SR | 熔岩山径 / 普通 | 普通 | 23 | 1 / 4 / 7 | 连锁电流 | [源图](../../assets/resources/art/spark-evolution-v1.png) |
-| spark-SSR | 雷冠灵貂 | 电 | SSR | 熔岩山径 / 普通 | 普通 | 25 | 1 / 4 / 7 | 力量共鸣 | [源图](../../assets/resources/art/spark-evolution-v1.png) |
-| seal-normal | 霜团海豹 | 冰 | R | 霜月雪原 / 普通 | 普通 | 27 | 2 / 3 / 5 | 硬壳 | [源图](../../assets/resources/art/seal-battle-v1.png) |
-| seal-SR | 霜鳍海豹 | 冰 | SR | 霜月雪原 / 普通 | 普通 | 29 | 2 / 3 / 5 | 霜羽压制 | [源图](../../assets/resources/art/seal-evolution-v1.png) |
-| seal-SSR | 冰冠海狮 | 冰 | SSR | 霜月雪原 / 普通 | 普通 | 31 | 2 / 3 / 5 | 蓄势反击 | [源图](../../assets/resources/art/seal-evolution-v1.png) |
-| ape-normal | 拳铠猿 | 格斗 | R | 熔岩山径 / 精英 | 精英 | 32 | 3 / 5 / 7 | 抢先一击 | [源图](../../assets/resources/art/ape-battle-v1.png) |
-| ape-SR | 破岩拳猿 | 格斗 | SR | 熔岩山径 / 精英 | 精英 | 34 | 3 / 5 / 7 | 三连重击 | [源图](../../assets/resources/art/ape-evolution-v1.png) |
-| ape-SSR | 金刚斗猿 | 格斗 | SSR | 熔岩山径 / 精英 | 精英 | 36 | 3 / 5 / 7 | 力量共鸣 | [源图](../../assets/resources/art/ape-evolution-v1.png) |
-| slug-normal | 毒泡蜗 | 毒 | R | 熔岩山径 / 普通 | 普通 | 23 | 2 / 4 / 5 | 抢先一击 | [源图](../../assets/resources/art/slug-battle-v1.png) |
-| slug-SR | 棘壳蜗 | 毒 | SR | 熔岩山径 / 普通 | 普通 | 25 | 2 / 4 / 5 | 毒素印记 | [源图](../../assets/resources/art/slug-evolution-v1.png) |
-| slug-SSR | 毒冠巨蜗 | 毒 | SSR | 熔岩山径 / 普通 | 普通 | 27 | 2 / 4 / 5 | 生命汲取 | [源图](../../assets/resources/art/slug-evolution-v1.png) |
-| mole-normal | 铲角鼹 | 地面 | R | 熔岩山径 / 普通 | 普通 | 28 | 2 / 3 / 5 | 硬壳 | [源图](../../assets/resources/art/mole-battle-v1.png) |
-| mole-SR | 钻甲鼹 | 地面 | SR | 熔岩山径 / 普通 | 普通 | 30 | 2 / 3 / 5 | 蓄势反击 | [源图](../../assets/resources/art/mole-evolution-v1.png) |
-| mole-SSR | 地脉巨鼹 | 地面 | SSR | 熔岩山径 / 普通 | 普通 | 32 | 2 / 3 / 5 | 坚垒 | [源图](../../assets/resources/art/mole-evolution-v1.png) |
-| bird-normal | 云翎雀 | 飞行 | R | 草叶海岸 / 普通 | 普通 | 21 | 1 / 4 / 6 | 抢先一击 | [源图](../../assets/resources/art/bird-battle-v1.png) |
-| bird-SR | 流云隼 | 飞行 | SR | 草叶海岸 / 普通 | 普通 | 23 | 1 / 4 / 6 | 霜羽压制 | [源图](../../assets/resources/art/bird-evolution-v1.png) |
-| bird-SSR | 天穹鹏 | 飞行 | SSR | 草叶海岸 / 普通 | 普通 | 25 | 1 / 4 / 6 | 幻影守护 | [源图](../../assets/resources/art/bird-evolution-v1.png) |
-| owl-normal | 星环鸮 | 超能力 | R | 霜月雪原 / 普通 | 精英 | 28 | 2 / 6 / 8 | 抢先一击 | [源图](../../assets/resources/art/owl-battle-v1.png) |
-| owl-SR | 月轮鸮 | 超能力 | SR | 霜月雪原 / 普通 | 精英 | 30 | 2 / 6 / 8 | 稳定发挥 | [源图](../../assets/resources/art/owl-evolution-v1.png) |
-| owl-SSR | 星冕贤鸮 | 超能力 | SSR | 霜月雪原 / 普通 | 精英 | 32 | 2 / 6 / 8 | 力量共鸣 | [源图](../../assets/resources/art/owl-evolution-v1.png) |
-| beetle-normal | 芽角甲虫 | 虫 | R | 草叶海岸 / 精英 | 普通 | 26 | 2 / 3 / 5 | 硬壳 | [源图](../../assets/resources/art/beetle-battle-v1.png) |
-| beetle-SR | 荆角甲虫 | 虫 | SR | 草叶海岸 / 精英 | 普通 | 28 | 2 / 3 / 5 | 毒素印记 | [源图](../../assets/resources/art/beetle-evolution-v1.png) |
-| beetle-SSR | 翠刃甲皇 | 虫 | SSR | 草叶海岸 / 精英 | 普通 | 30 | 2 / 3 / 5 | 药水回响 | [源图](../../assets/resources/art/beetle-evolution-v1.png) |
-| ghost-normal | 灯芯幽灵 | 幽灵 | R | 霜月雪原 / 普通 | 普通 | 22 | 1 / 5 / 6 | 抢先一击 | [源图](../../assets/resources/art/ghost-battle-v1.png) |
-| ghost-SR | 引魂灯灵 | 幽灵 | SR | 霜月雪原 / 普通 | 普通 | 24 | 1 / 5 / 6 | 毒素印记 | [源图](../../assets/resources/art/ghost-evolution-v1.png) |
-| ghost-SSR | 冥灯灵君 | 幽灵 | SSR | 霜月雪原 / 普通 | 普通 | 26 | 1 / 5 / 6 | 生命汲取 | [源图](../../assets/resources/art/ghost-evolution-v1.png) |
-| dragon-normal | 霆冠龙 | 龙 | R | 霜月雪原 / BOSS | BOSS | 36 | 4 / 6 / 9 | 抢先一击 | [源图](../../assets/resources/art/dragon-battle-v1.png) |
-| dragon-SR | 裂霆翼龙 | 龙 | SR | 霜月雪原 / BOSS | BOSS | 38 | 4 / 6 / 9 | 三连重击 | [源图](../../assets/resources/art/dragon-evolution-v1.png) |
-| dragon-SSR | 苍霆龙皇 | 龙 | SSR | 霜月雪原 / BOSS | BOSS | 40 | 4 / 6 / 9 | 力量共鸣 | [源图](../../assets/resources/art/dragon-evolution-v1.png) |
-| lynx-normal | 暮影猞猁 | 恶 | R | 霜月雪原 / 普通 | 普通 | 23 | 1 / 4 / 7 | 抢先一击 | [源图](../../assets/resources/art/lynx-battle-v1.png) |
-| lynx-SR | 夜刃猞猁 | 恶 | SR | 霜月雪原 / 普通 | 普通 | 25 | 1 / 4 / 7 | 稳定发挥 | [源图](../../assets/resources/art/lynx-evolution-v1.png) |
-| lynx-SSR | 蚀月影王 | 恶 | SSR | 霜月雪原 / 普通 | 普通 | 27 | 1 / 4 / 7 | 生命汲取 | [源图](../../assets/resources/art/lynx-evolution-v1.png) |
-| rhino-normal | 铁垒犀 | 钢 | R | 熔岩山径 / BOSS | BOSS | 40 | 3 / 6 / 8 | 硬壳 | [源图](../../assets/resources/art/rhino-battle-v1.png) |
-| rhino-SR | 钢棘战犀 | 钢 | SR | 熔岩山径 / BOSS | BOSS | 42 | 3 / 6 / 8 | 坚垒 | [源图](../../assets/resources/art/rhino-evolution-v1.png) |
-| rhino-SSR | 星钢巨犀 | 钢 | SSR | 熔岩山径 / BOSS | BOSS | 44 | 3 / 6 / 8 | 幻影守护 | [源图](../../assets/resources/art/rhino-evolution-v1.png) |
-| deer-normal | 铃芽鹿 | 妖精 | R | 霜月雪原 / 精英 | 普通 | 24 | 2 / 4 / 5 | 草木祝福 | [源图](../../assets/resources/art/deer-battle-v1.png) |
-| deer-SR | 花铃灵鹿 | 妖精 | SR | 霜月雪原 / 精英 | 普通 | 26 | 2 / 4 / 5 | 药水回响 | [源图](../../assets/resources/art/deer-evolution-v1.png) |
-| deer-SSR | 圣铃仙鹿 | 妖精 | SSR | 霜月雪原 / 精英 | 普通 | 28 | 2 / 4 / 5 | 生命绽放 | [源图](../../assets/resources/art/deer-evolution-v1.png) |
-| capy-normal | 绒果豚 | 一般 | R | 翠风群岛 / 普通 | 普通 | 34 | 4 / 7 / 10 | 草木祝福 | [源图](../../assets/resources/art/capy-forms-v1.png) |
-| capy-SR | 果篮豚 | 一般 | SR | 翠风群岛 / 普通 | 普通 | 40 | 6 / 9 / 12 | 药水回响 | [源图](../../assets/resources/art/capy-forms-v1.png) |
-| capy-SSR | 丰收山豚 | 一般 | SSR | 翠风群岛 / 普通 | 普通 | 46 | 8 / 11 / 14 | 生命绽放 | [源图](../../assets/resources/art/capy-forms-v1.png) |
-| lotus-normal | 荷芽蛙 | 草 | R | 翠风群岛 / 普通 | 普通 | 34 | 4 / 7 / 10 | 草木祝福 | [源图](../../assets/resources/art/lotus-forms-v1.png) |
-| lotus-SR | 莲蓬蛙 | 草 | SR | 翠风群岛 / 普通 | 普通 | 40 | 6 / 9 / 12 | 泡泡护盾 | [源图](../../assets/resources/art/lotus-forms-v1.png) |
-| lotus-SSR | 碧莲仙蛙 | 草 | SSR | 翠风群岛 / 普通 | 普通 | 46 | 8 / 11 / 14 | 生命绽放 | [源图](../../assets/resources/art/lotus-forms-v1.png) |
-| manta-normal | 泡泡鳐 | 水 | R | 翠风群岛 / 普通 | 普通 | 34 | 4 / 7 / 10 | 硬壳 | [源图](../../assets/resources/art/manta-forms-v1.png) |
-| manta-SR | 潮纹鳐 | 水 | SR | 翠风群岛 / 普通 | 普通 | 40 | 6 / 9 / 12 | 泡泡护盾 | [源图](../../assets/resources/art/manta-forms-v1.png) |
-| manta-SSR | 瀚海翼鳐 | 水 | SSR | 翠风群岛 / 普通 | 普通 | 46 | 8 / 11 / 14 | 药水回响 | [源图](../../assets/resources/art/manta-forms-v1.png) |
-| crane-normal | 风铃鹤 | 飞行 | R | 翠风群岛 / 普通 | 普通 | 34 | 4 / 7 / 10 | 抢先一击 | [源图](../../assets/resources/art/crane-forms-v1.png) |
-| crane-SR | 逐风鹤 | 飞行 | SR | 翠风群岛 / 普通 | 普通 | 40 | 6 / 9 / 12 | 霜羽压制 | [源图](../../assets/resources/art/crane-forms-v1.png) |
-| crane-SSR | 九霄灵鹤 | 飞行 | SSR | 翠风群岛 / 普通 | 普通 | 46 | 8 / 11 / 14 | 幻影守护 | [源图](../../assets/resources/art/crane-forms-v1.png) |
-| mantis-normal | 叶镰螳 | 虫 | R | 翠风群岛 / 精英 | 精英 | 38 | 5 / 8 / 11 | 抢先一击 | [源图](../../assets/resources/art/mantis-forms-v1.png) |
-| mantis-SR | 双刃螳 | 虫 | SR | 翠风群岛 / 精英 | 精英 | 44 | 7 / 10 / 13 | 三连重击 | [源图](../../assets/resources/art/mantis-forms-v1.png) |
-| mantis-SSR | 翠甲刃皇 | 虫 | SSR | 翠风群岛 / 精英 | 精英 | 50 | 9 / 12 / 15 | 力量共鸣 | [源图](../../assets/resources/art/mantis-forms-v1.png) |
-| cragcrab-normal | 砂晶蟹 | 岩石 | R | 翠风群岛 / BOSS | BOSS | 42 | 6 / 9 / 12 | 硬壳 | [源图](../../assets/resources/art/cragcrab-forms-v1.png) |
-| cragcrab-SR | 晶簇蟹 | 岩石 | SR | 翠风群岛 / BOSS | BOSS | 48 | 8 / 11 / 14 | 蓄势反击 | [源图](../../assets/resources/art/cragcrab-forms-v1.png) |
-| cragcrab-SSR | 磐晶蟹王 | 岩石 | SSR | 翠风群岛 / BOSS | BOSS | 54 | 10 / 13 / 16 | 坚垒 | [源图](../../assets/resources/art/cragcrab-forms-v1.png) |
-| cinder-normal | 炭角羊 | 火 | R | 赤雷荒原 / 普通 | 普通 | 44 | 6 / 10 / 14 | 抢先一击 | [源图](../../assets/resources/art/cinder-forms-v1.png) |
-| cinder-SR | 炽鬃羊 | 火 | SR | 赤雷荒原 / 普通 | 普通 | 50 | 8 / 12 / 16 | 三连重击 | [源图](../../assets/resources/art/cinder-forms-v1.png) |
-| cinder-SSR | 熔冠炎羊 | 火 | SSR | 赤雷荒原 / 普通 | 普通 | 56 | 10 / 14 / 18 | 力量共鸣 | [源图](../../assets/resources/art/cinder-forms-v1.png) |
-| voltage-normal | 电绒鼠 | 电 | R | 赤雷荒原 / 普通 | 普通 | 44 | 6 / 10 / 14 | 抢先一击 | [源图](../../assets/resources/art/voltage-forms-v1.png) |
-| voltage-SR | 雷跃鼠 | 电 | SR | 赤雷荒原 / 普通 | 普通 | 50 | 8 / 12 / 16 | 连锁电流 | [源图](../../assets/resources/art/voltage-forms-v1.png) |
-| voltage-SSR | 极电灵鼠 | 电 | SSR | 赤雷荒原 / 普通 | 普通 | 56 | 10 / 14 / 18 | 力量共鸣 | [源图](../../assets/resources/art/voltage-forms-v1.png) |
-| venom-normal | 紫尾蝎 | 毒 | R | 赤雷荒原 / 普通 | 普通 | 44 | 6 / 10 / 14 | 抢先一击 | [源图](../../assets/resources/art/venom-forms-v1.png) |
-| venom-SR | 荆毒蝎 | 毒 | SR | 赤雷荒原 / 普通 | 普通 | 50 | 8 / 12 / 16 | 毒素印记 | [源图](../../assets/resources/art/venom-forms-v1.png) |
-| venom-SSR | 蚀毒蝎王 | 毒 | SSR | 赤雷荒原 / 普通 | 普通 | 56 | 10 / 14 / 18 | 生命汲取 | [源图](../../assets/resources/art/venom-forms-v1.png) |
-| dune-normal | 沙鳞兽 | 地面 | R | 赤雷荒原 / 普通 | 普通 | 44 | 6 / 10 / 14 | 硬壳 | [源图](../../assets/resources/art/dune-forms-v1.png) |
-| dune-SR | 流砂穿山兽 | 地面 | SR | 赤雷荒原 / 普通 | 普通 | 50 | 8 / 12 / 16 | 蓄势反击 | [源图](../../assets/resources/art/dune-forms-v1.png) |
-| dune-SSR | 地脉甲尊 | 地面 | SSR | 赤雷荒原 / 普通 | 普通 | 56 | 10 / 14 / 18 | 坚垒 | [源图](../../assets/resources/art/dune-forms-v1.png) |
-| monk-normal | 拳袋鼠 | 格斗 | R | 赤雷荒原 / 精英 | 精英 | 48 | 7 / 11 / 15 | 抢先一击 | [源图](../../assets/resources/art/monk-forms-v1.png) |
-| monk-SR | 斗篷袋鼠 | 格斗 | SR | 赤雷荒原 / 精英 | 精英 | 54 | 9 / 13 / 17 | 三连重击 | [源图](../../assets/resources/art/monk-forms-v1.png) |
-| monk-SSR | 震岳斗王 | 格斗 | SSR | 赤雷荒原 / 精英 | 精英 | 60 | 11 / 15 / 19 | 力量共鸣 | [源图](../../assets/resources/art/monk-forms-v1.png) |
-| ironboar-normal | 铁鼻豕 | 钢 | R | 赤雷荒原 / BOSS | BOSS | 52 | 8 / 12 / 16 | 硬壳 | [源图](../../assets/resources/art/ironboar-forms-v1.png) |
-| ironboar-SR | 钢鬃战豕 | 钢 | SR | 赤雷荒原 / BOSS | BOSS | 58 | 10 / 14 / 18 | 坚垒 | [源图](../../assets/resources/art/ironboar-forms-v1.png) |
-| ironboar-SSR | 陨铁巨牙 | 钢 | SSR | 赤雷荒原 / BOSS | BOSS | 64 | 12 / 16 / 20 | 幻影守护 | [源图](../../assets/resources/art/ironboar-forms-v1.png) |
-| frost-normal | 雪耳兔 | 冰 | R | 星渊圣域 / 普通 | 普通 | 56 | 9 / 13 / 18 | 硬壳 | [源图](../../assets/resources/art/frost-forms-v1.png) |
-| frost-SR | 冰棱兔 | 冰 | SR | 星渊圣域 / 普通 | 普通 | 62 | 11 / 15 / 20 | 霜羽压制 | [源图](../../assets/resources/art/frost-forms-v1.png) |
-| frost-SSR | 霜冠灵兔 | 冰 | SSR | 星渊圣域 / 普通 | 普通 | 68 | 13 / 17 / 22 | 蓄势反击 | [源图](../../assets/resources/art/frost-forms-v1.png) |
-| spirit-normal | 幽泡灵 | 幽灵 | R | 星渊圣域 / 普通 | 普通 | 56 | 9 / 13 / 18 | 抢先一击 | [源图](../../assets/resources/art/spirit-forms-v1.png) |
-| spirit-SR | 夜灯水母 | 幽灵 | SR | 星渊圣域 / 普通 | 普通 | 62 | 11 / 15 / 20 | 毒素印记 | [源图](../../assets/resources/art/spirit-forms-v1.png) |
-| spirit-SSR | 冥幕灯母 | 幽灵 | SSR | 星渊圣域 / 普通 | 普通 | 68 | 13 / 17 / 22 | 生命汲取 | [源图](../../assets/resources/art/spirit-forms-v1.png) |
-| dream-normal | 梦芽貘 | 超能力 | R | 星渊圣域 / 普通 | 普通 | 56 | 9 / 13 / 18 | 抢先一击 | [源图](../../assets/resources/art/dream-forms-v1.png) |
-| dream-SR | 星枕貘 | 超能力 | SR | 星渊圣域 / 普通 | 普通 | 62 | 11 / 15 / 20 | 稳定发挥 | [源图](../../assets/resources/art/dream-forms-v1.png) |
-| dream-SSR | 梦境贤貘 | 超能力 | SSR | 星渊圣域 / 普通 | 普通 | 68 | 13 / 17 / 22 | 力量共鸣 | [源图](../../assets/resources/art/dream-forms-v1.png) |
-| shade-normal | 墨羽鸦 | 恶 | R | 星渊圣域 / 普通 | 普通 | 56 | 9 / 13 / 18 | 抢先一击 | [源图](../../assets/resources/art/shade-forms-v1.png) |
-| shade-SR | 暮刃鸦 | 恶 | SR | 星渊圣域 / 普通 | 普通 | 62 | 11 / 15 / 20 | 稳定发挥 | [源图](../../assets/resources/art/shade-forms-v1.png) |
-| shade-SSR | 蚀星鸦王 | 恶 | SSR | 星渊圣域 / 普通 | 普通 | 68 | 13 / 17 / 22 | 生命汲取 | [源图](../../assets/resources/art/shade-forms-v1.png) |
-| aurora-normal | 彩翎雏 | 妖精 | R | 星渊圣域 / 精英 | 精英 | 60 | 10 / 14 / 19 | 草木祝福 | [源图](../../assets/resources/art/aurora-forms-v1.png) |
-| aurora-SR | 幻彩孔雀 | 妖精 | SR | 星渊圣域 / 精英 | 精英 | 66 | 12 / 16 / 21 | 药水回响 | [源图](../../assets/resources/art/aurora-forms-v1.png) |
-| aurora-SSR | 极光仙凰 | 妖精 | SSR | 星渊圣域 / 精英 | 精英 | 72 | 14 / 18 / 23 | 生命绽放 | [源图](../../assets/resources/art/aurora-forms-v1.png) |
-| starwyrm-normal | 星鳞幼龙 | 龙 | R | 星渊圣域 / BOSS | BOSS | 64 | 11 / 15 / 20 | 抢先一击 | [源图](../../assets/resources/art/starwyrm-forms-v1.png) |
-| starwyrm-SR | 星环游龙 | 龙 | SR | 星渊圣域 / BOSS | BOSS | 70 | 13 / 17 / 22 | 三连重击 | [源图](../../assets/resources/art/starwyrm-forms-v1.png) |
-| starwyrm-SSR | 星渊龙君 | 龙 | SSR | 星渊圣域 / BOSS | BOSS | 76 | 15 / 19 / 24 | 力量共鸣 | [源图](../../assets/resources/art/starwyrm-forms-v1.png) |
-| nectar-normal | 蜜团睡鼠 | 一般 | R | 琉璃雨林 / 普通 | 普通 | 68 | 12 / 17 / 23 | 草木祝福 | [源图](../../assets/resources/art/nectar-forms-v1.png) |
-| nectar-SR | 蜜袋睡鼠 | 一般 | SR | 琉璃雨林 / 普通 | 普通 | 74 | 14 / 19 / 25 | 药水回响 | [源图](../../assets/resources/art/nectar-forms-v1.png) |
-| nectar-SSR | 花蜜守望鼠 | 一般 | SSR | 琉璃雨林 / 普通 | 普通 | 80 | 16 / 21 / 27 | 生命绽放 | [源图](../../assets/resources/art/nectar-forms-v1.png) |
-| orchid-normal | 兰芽壁虎 | 草 | R | 琉璃雨林 / 普通 | 普通 | 68 | 12 / 17 / 23 | 草木祝福 | [源图](../../assets/resources/art/orchid-forms-v1.png) |
-| orchid-SR | 花冠壁虎 | 草 | SR | 琉璃雨林 / 普通 | 普通 | 74 | 14 / 19 / 25 | 泡泡护盾 | [源图](../../assets/resources/art/orchid-forms-v1.png) |
-| orchid-SSR | 翠兰花龙 | 草 | SSR | 琉璃雨林 / 普通 | 普通 | 80 | 16 / 21 / 27 | 生命绽放 | [源图](../../assets/resources/art/orchid-forms-v1.png) |
-| axolotl-normal | 露鳃螈 | 水 | R | 琉璃雨林 / 普通 | 普通 | 68 | 12 / 17 / 23 | 硬壳 | [源图](../../assets/resources/art/axolotl-forms-v1.png) |
-| axolotl-SR | 涟波螈 | 水 | SR | 琉璃雨林 / 普通 | 普通 | 74 | 14 / 19 / 25 | 泡泡护盾 | [源图](../../assets/resources/art/axolotl-forms-v1.png) |
-| axolotl-SSR | 瀑冠灵螈 | 水 | SSR | 琉璃雨林 / 普通 | 普通 | 80 | 16 / 21 / 27 | 药水回响 | [源图](../../assets/resources/art/axolotl-forms-v1.png) |
-| lantern-normal | 灯豆萤 | 虫 | R | 琉璃雨林 / 普通 | 普通 | 68 | 12 / 17 / 23 | 抢先一击 | [源图](../../assets/resources/art/lantern-forms-v1.png) |
-| lantern-SR | 琥灯萤 | 虫 | SR | 琉璃雨林 / 普通 | 普通 | 74 | 14 / 19 / 25 | 稳定发挥 | [源图](../../assets/resources/art/lantern-forms-v1.png) |
-| lantern-SSR | 曦灯萤后 | 虫 | SSR | 琉璃雨林 / 普通 | 普通 | 80 | 16 / 21 / 27 | 力量共鸣 | [源图](../../assets/resources/art/lantern-forms-v1.png) |
-| cobra-normal | 紫芽蛇 | 毒 | R | 琉璃雨林 / 精英 | 精英 | 72 | 13 / 18 / 24 | 抢先一击 | [源图](../../assets/resources/art/cobra-forms-v1.png) |
-| cobra-SR | 棘冠眼镜蛇 | 毒 | SR | 琉璃雨林 / 精英 | 精英 | 78 | 15 / 20 / 26 | 毒素印记 | [源图](../../assets/resources/art/cobra-forms-v1.png) |
-| cobra-SSR | 蚀花蛇君 | 毒 | SSR | 琉璃雨林 / 精英 | 精英 | 84 | 17 / 22 / 28 | 生命汲取 | [源图](../../assets/resources/art/cobra-forms-v1.png) |
-| hornbill-normal | 冠喙雏 | 飞行 | R | 琉璃雨林 / BOSS | BOSS | 76 | 14 / 19 / 25 | 抢先一击 | [源图](../../assets/resources/art/hornbill-forms-v1.png) |
-| hornbill-SR | 风冠犀鸟 | 飞行 | SR | 琉璃雨林 / BOSS | BOSS | 82 | 16 / 21 / 27 | 霜羽压制 | [源图](../../assets/resources/art/hornbill-forms-v1.png) |
-| hornbill-SSR | 苍穹冠皇 | 飞行 | SSR | 琉璃雨林 / BOSS | BOSS | 88 | 18 / 23 / 29 | 幻影守护 | [源图](../../assets/resources/art/hornbill-forms-v1.png) |
-| embercamel-normal | 炭团驼 | 火 | R | 赤曜沙海 / 普通 | 普通 | 80 | 16 / 22 / 29 | 抢先一击 | [源图](../../assets/resources/art/embercamel-forms-v1.png) |
-| embercamel-SR | 熔峰驼 | 火 | SR | 赤曜沙海 / 普通 | 普通 | 86 | 18 / 24 / 31 | 三连重击 | [源图](../../assets/resources/art/embercamel-forms-v1.png) |
-| embercamel-SSR | 赤曜焰驼 | 火 | SSR | 赤曜沙海 / 普通 | 普通 | 92 | 20 / 26 / 33 | 力量共鸣 | [源图](../../assets/resources/art/embercamel-forms-v1.png) |
-| frill-normal | 电扇蜥 | 电 | R | 赤曜沙海 / 普通 | 普通 | 80 | 16 / 22 / 29 | 抢先一击 | [源图](../../assets/resources/art/frill-forms-v1.png) |
-| frill-SR | 雷冠蜥 | 电 | SR | 赤曜沙海 / 普通 | 普通 | 86 | 18 / 24 / 31 | 连锁电流 | [源图](../../assets/resources/art/frill-forms-v1.png) |
-| frill-SSR | 霆环伞蜥 | 电 | SSR | 赤曜沙海 / 普通 | 普通 | 92 | 20 / 26 / 33 | 力量共鸣 | [源图](../../assets/resources/art/frill-forms-v1.png) |
-| wombat-normal | 砂团熊 | 地面 | R | 赤曜沙海 / 普通 | 普通 | 80 | 16 / 22 / 29 | 硬壳 | [源图](../../assets/resources/art/wombat-forms-v1.png) |
-| wombat-SR | 掘岩袋熊 | 地面 | SR | 赤曜沙海 / 普通 | 普通 | 86 | 18 / 24 / 31 | 蓄势反击 | [源图](../../assets/resources/art/wombat-forms-v1.png) |
-| wombat-SSR | 地脉堡熊 | 地面 | SSR | 赤曜沙海 / 普通 | 普通 | 92 | 20 / 26 / 33 | 坚垒 | [源图](../../assets/resources/art/wombat-forms-v1.png) |
-| trilobite-normal | 砾甲虫 | 岩石 | R | 赤曜沙海 / 普通 | 普通 | 80 | 16 / 22 / 29 | 硬壳 | [源图](../../assets/resources/art/trilobite-forms-v1.png) |
-| trilobite-SR | 晶脊古虫 | 岩石 | SR | 赤曜沙海 / 普通 | 普通 | 86 | 18 / 24 / 31 | 坚垒 | [源图](../../assets/resources/art/trilobite-forms-v1.png) |
-| trilobite-SSR | 磐古甲尊 | 岩石 | SSR | 赤曜沙海 / 普通 | 普通 | 92 | 20 / 26 / 33 | 幻影守护 | [源图](../../assets/resources/art/trilobite-forms-v1.png) |
-| wolverine-normal | 拳爪獾 | 格斗 | R | 赤曜沙海 / 精英 | 精英 | 84 | 17 / 23 / 30 | 抢先一击 | [源图](../../assets/resources/art/wolverine-forms-v1.png) |
-| wolverine-SR | 赤拳战獾 | 格斗 | SR | 赤曜沙海 / 精英 | 精英 | 90 | 19 / 25 / 32 | 三连重击 | [源图](../../assets/resources/art/wolverine-forms-v1.png) |
-| wolverine-SSR | 震岳斗獾 | 格斗 | SSR | 赤曜沙海 / 精英 | 精英 | 96 | 21 / 27 / 34 | 力量共鸣 | [源图](../../assets/resources/art/wolverine-forms-v1.png) |
-| bison-normal | 铁角犊 | 钢 | R | 赤曜沙海 / BOSS | BOSS | 88 | 18 / 24 / 31 | 硬壳 | [源图](../../assets/resources/art/bison-forms-v1.png) |
-| bison-SR | 铠峰野牛 | 钢 | SR | 赤曜沙海 / BOSS | BOSS | 94 | 20 / 26 / 33 | 蓄势反击 | [源图](../../assets/resources/art/bison-forms-v1.png) |
-| bison-SSR | 天铸钢牛 | 钢 | SSR | 赤曜沙海 / BOSS | BOSS | 100 | 22 / 28 / 35 | 坚垒 | [源图](../../assets/resources/art/bison-forms-v1.png) |
-| narwhal-normal | 雪角鲸 | 冰 | R | 冥辉天穹 / 普通 | 普通 | 94 | 21 / 28 / 36 | 硬壳 | [源图](../../assets/resources/art/narwhal-forms-v1.png) |
-| narwhal-SR | 冰帆鲸 | 冰 | SR | 冥辉天穹 / 普通 | 普通 | 100 | 23 / 30 / 38 | 霜羽压制 | [源图](../../assets/resources/art/narwhal-forms-v1.png) |
-| narwhal-SSR | 霜冕角鲸 | 冰 | SSR | 冥辉天穹 / 普通 | 普通 | 106 | 25 / 32 / 40 | 蓄势反击 | [源图](../../assets/resources/art/narwhal-forms-v1.png) |
-| raccoon-normal | 幽面狸 | 幽灵 | R | 冥辉天穹 / 普通 | 普通 | 94 | 21 / 28 / 36 | 抢先一击 | [源图](../../assets/resources/art/raccoon-forms-v1.png) |
-| raccoon-SR | 夜灯灵狸 | 幽灵 | SR | 冥辉天穹 / 普通 | 普通 | 100 | 23 / 30 / 38 | 毒素印记 | [源图](../../assets/resources/art/raccoon-forms-v1.png) |
-| raccoon-SSR | 冥面幻狸 | 幽灵 | SSR | 冥辉天穹 / 普通 | 普通 | 106 | 25 / 32 / 40 | 生命汲取 | [源图](../../assets/resources/art/raccoon-forms-v1.png) |
-| octopus-normal | 念泡章 | 超能力 | R | 冥辉天穹 / 普通 | 普通 | 94 | 21 / 28 / 36 | 抢先一击 | [源图](../../assets/resources/art/octopus-forms-v1.png) |
-| octopus-SR | 星瞳章 | 超能力 | SR | 冥辉天穹 / 普通 | 普通 | 100 | 23 / 30 / 38 | 稳定发挥 | [源图](../../assets/resources/art/octopus-forms-v1.png) |
-| octopus-SSR | 星轨贤章 | 超能力 | SSR | 冥辉天穹 / 普通 | 普通 | 106 | 25 / 32 / 40 | 力量共鸣 | [源图](../../assets/resources/art/octopus-forms-v1.png) |
-| moonbat-normal | 暮绒蝠 | 恶 | R | 冥辉天穹 / 普通 | 普通 | 94 | 21 / 28 / 36 | 抢先一击 | [源图](../../assets/resources/art/moonbat-forms-v1.png) |
-| moonbat-SR | 月刃蝠 | 恶 | SR | 冥辉天穹 / 普通 | 普通 | 100 | 23 / 30 / 38 | 稳定发挥 | [源图](../../assets/resources/art/moonbat-forms-v1.png) |
-| moonbat-SSR | 蚀夜翼蝠 | 恶 | SSR | 冥辉天穹 / 普通 | 普通 | 106 | 25 / 32 / 40 | 生命汲取 | [源图](../../assets/resources/art/moonbat-forms-v1.png) |
-| silkmoth-normal | 月绒蛾 | 妖精 | R | 冥辉天穹 / 精英 | 精英 | 98 | 22 / 29 / 37 | 草木祝福 | [源图](../../assets/resources/art/silkmoth-forms-v1.png) |
-| silkmoth-SR | 绫月蝶蛾 | 妖精 | SR | 冥辉天穹 / 精英 | 精英 | 104 | 24 / 31 / 39 | 药水回响 | [源图](../../assets/resources/art/silkmoth-forms-v1.png) |
-| silkmoth-SSR | 月华织梦蛾 | 妖精 | SSR | 冥辉天穹 / 精英 | 精英 | 110 | 26 / 33 / 41 | 生命绽放 | [源图](../../assets/resources/art/silkmoth-forms-v1.png) |
-| kirin-normal | 曜角驹 | 龙 | R | 冥辉天穹 / BOSS | BOSS | 102 | 23 / 30 / 38 | 抢先一击 | [源图](../../assets/resources/art/kirin-forms-v1.png) |
-| kirin-SR | 星鬃麒麟 | 龙 | SR | 冥辉天穹 / BOSS | BOSS | 108 | 25 / 32 / 40 | 三连重击 | [源图](../../assets/resources/art/kirin-forms-v1.png) |
-| kirin-SSR | 九曜龙麟 | 龙 | SSR | 冥辉天穹 / BOSS | BOSS | 114 | 27 / 34 / 42 | 力量共鸣 | [源图](../../assets/resources/art/kirin-forms-v1.png) |
+| fox-normal | 闪尾狐 | 火 | R | 熔岩山径 / 普通 | 普通 | 22 | 1 / 3 / 7 | 火·R·强击 | [源图](../../assets/resources/art/fox-battle-ref.png) |
+| fox-SR | 焰鬃狐 | 火 | SR | 熔岩山径 / 普通 | 普通 | 24 | 1 / 3 / 7 | 火·SR·屏障 | [源图](../../assets/resources/art/fox-evolution-v1.png) |
+| fox-SSR | 曜焰灵狐 | 火 | SSR | 熔岩山径 / 普通 | 普通 | 26 | 1 / 3 / 7 | 火·SSR·印记 | [源图](../../assets/resources/art/fox-evolution-v1.png) |
+| bud-normal | 芽芽龙 | 草 | R | 草叶海岸 / 普通 | 普通 | 24 | 3 / 3 / 4 | 草·R·回春 | [源图](../../assets/resources/art/bud-battle-ref.png) |
+| bud-SR | 蕨翼龙 | 草 | SR | 草叶海岸 / 普通 | 普通 | 26 | 3 / 3 / 4 | 草·SR·复苏 | [源图](../../assets/resources/art/bud-evolution-v1.png) |
+| bud-SSR | 花冠森龙 | 草 | SSR | 草叶海岸 / 普通 | 普通 | 28 | 3 / 3 / 4 | 草·SSR·屏障 | [源图](../../assets/resources/art/bud-evolution-v1.png) |
+| turtle-normal | 岩背龟 | 岩石 | R | 草叶海岸 / BOSS | 普通 | 30 | 2 / 2 / 4 | 岩石·R·屏障 | [源图](../../assets/resources/art/turtle-battle-ref.png) |
+| turtle-SR | 峭甲龟 | 岩石 | SR | 草叶海岸 / BOSS | 普通 | 32 | 2 / 2 / 4 | 岩石·SR·屏障 | [源图](../../assets/resources/art/turtle-evolution-v1.png) |
+| turtle-SSR | 山垒巨龟 | 岩石 | SSR | 草叶海岸 / BOSS | 普通 | 34 | 2 / 2 / 4 | 岩石·SSR·不屈 | [源图](../../assets/resources/art/turtle-evolution-v1.png) |
+| cotton-normal | 绒团兔 | 一般 | R | 草叶海岸 / 普通 | 普通 | 24 | 2 / 3 / 4 | 一般·R·强击 | [源图](../../assets/resources/art/cotton-battle-v1.png) |
+| cotton-SR | 绒领兔 | 一般 | SR | 草叶海岸 / 普通 | 普通 | 26 | 2 / 3 / 4 | 一般·SR·改运 | [源图](../../assets/resources/art/cotton-evolution-v1.png) |
+| cotton-SSR | 云绒王兔 | 一般 | SSR | 草叶海岸 / 普通 | 普通 | 28 | 2 / 3 / 4 | 一般·SSR·屏障 | [源图](../../assets/resources/art/cotton-evolution-v1.png) |
+| otter-normal | 潮泡獭 | 水 | R | 草叶海岸 / 普通 | 普通 | 25 | 2 / 4 / 5 | 水·R·坚守 | [源图](../../assets/resources/art/otter-battle-v1.png) |
+| otter-SR | 涌浪獭 | 水 | SR | 草叶海岸 / 普通 | 普通 | 27 | 2 / 4 / 5 | 水·SR·回春 | [源图](../../assets/resources/art/otter-evolution-v1.png) |
+| otter-SSR | 沧澜海獭 | 水 | SSR | 草叶海岸 / 普通 | 普通 | 29 | 2 / 4 / 5 | 水·SSR·蓄能 | [源图](../../assets/resources/art/otter-evolution-v1.png) |
+| spark-normal | 蓄电貂 | 电 | R | 熔岩山径 / 普通 | 普通 | 21 | 1 / 4 / 7 | 电·R·改运 | [源图](../../assets/resources/art/spark-battle-v1.png) |
+| spark-SR | 电弧貂 | 电 | SR | 熔岩山径 / 普通 | 普通 | 23 | 1 / 4 / 7 | 电·SR·力量回响 | [源图](../../assets/resources/art/spark-evolution-v1.png) |
+| spark-SSR | 雷冠灵貂 | 电 | SSR | 熔岩山径 / 普通 | 普通 | 25 | 1 / 4 / 7 | 电·SSR·强击 | [源图](../../assets/resources/art/spark-evolution-v1.png) |
+| seal-normal | 霜团海豹 | 冰 | R | 霜月雪原 / 普通 | 普通 | 27 | 2 / 3 / 5 | 冰·R·蓄能 | [源图](../../assets/resources/art/seal-battle-v1.png) |
+| seal-SR | 霜鳍海豹 | 冰 | SR | 霜月雪原 / 普通 | 普通 | 29 | 2 / 3 / 5 | 冰·SR·屏障 | [源图](../../assets/resources/art/seal-evolution-v1.png) |
+| seal-SSR | 冰冠海狮 | 冰 | SSR | 霜月雪原 / 普通 | 普通 | 31 | 2 / 3 / 5 | 冰·SSR·强击 | [源图](../../assets/resources/art/seal-evolution-v1.png) |
+| ape-normal | 拳铠猿 | 格斗 | R | 熔岩山径 / 精英 | 精英 | 32 | 3 / 5 / 7 | 格斗·R·强击 | [源图](../../assets/resources/art/ape-battle-v1.png) |
+| ape-SR | 破岩拳猿 | 格斗 | SR | 熔岩山径 / 精英 | 精英 | 34 | 3 / 5 / 7 | 格斗·SR·蓄能 | [源图](../../assets/resources/art/ape-evolution-v1.png) |
+| ape-SSR | 金刚斗猿 | 格斗 | SSR | 熔岩山径 / 精英 | 精英 | 36 | 3 / 5 / 7 | 格斗·SSR·复苏 | [源图](../../assets/resources/art/ape-evolution-v1.png) |
+| slug-normal | 毒泡蜗 | 毒 | R | 熔岩山径 / 普通 | 普通 | 23 | 2 / 4 / 5 | 毒·R·印记 | [源图](../../assets/resources/art/slug-battle-v1.png) |
+| slug-SR | 棘壳蜗 | 毒 | SR | 熔岩山径 / 普通 | 普通 | 25 | 2 / 4 / 5 | 毒·SR·印记 | [源图](../../assets/resources/art/slug-evolution-v1.png) |
+| slug-SSR | 毒冠巨蜗 | 毒 | SSR | 熔岩山径 / 普通 | 普通 | 27 | 2 / 4 / 5 | 毒·SSR·印记 | [源图](../../assets/resources/art/slug-evolution-v1.png) |
+| mole-normal | 铲角鼹 | 地面 | R | 熔岩山径 / 普通 | 普通 | 28 | 2 / 3 / 5 | 地面·R·屏障 | [源图](../../assets/resources/art/mole-battle-v1.png) |
+| mole-SR | 钻甲鼹 | 地面 | SR | 熔岩山径 / 普通 | 普通 | 30 | 2 / 3 / 5 | 地面·SR·强击 | [源图](../../assets/resources/art/mole-evolution-v1.png) |
+| mole-SSR | 地脉巨鼹 | 地面 | SSR | 熔岩山径 / 普通 | 普通 | 32 | 2 / 3 / 5 | 地面·SSR·药剂回响 | [源图](../../assets/resources/art/mole-evolution-v1.png) |
+| bird-normal | 云翎雀 | 飞行 | R | 草叶海岸 / 普通 | 普通 | 21 | 1 / 4 / 6 | 飞行·R·闪避 | [源图](../../assets/resources/art/bird-battle-v1.png) |
+| bird-SR | 流云隼 | 飞行 | SR | 草叶海岸 / 普通 | 普通 | 23 | 1 / 4 / 6 | 飞行·SR·强击 | [源图](../../assets/resources/art/bird-evolution-v1.png) |
+| bird-SSR | 天穹鹏 | 飞行 | SSR | 草叶海岸 / 普通 | 普通 | 25 | 1 / 4 / 6 | 飞行·SSR·屏障 | [源图](../../assets/resources/art/bird-evolution-v1.png) |
+| owl-normal | 星环鸮 | 超能力 | R | 霜月雪原 / 普通 | 精英 | 28 | 2 / 6 / 8 | 超能力·R·屏障 | [源图](../../assets/resources/art/owl-battle-v1.png) |
+| owl-SR | 月轮鸮 | 超能力 | SR | 霜月雪原 / 普通 | 精英 | 30 | 2 / 6 / 8 | 超能力·SR·蓄能 | [源图](../../assets/resources/art/owl-evolution-v1.png) |
+| owl-SSR | 星冕贤鸮 | 超能力 | SSR | 霜月雪原 / 普通 | 精英 | 32 | 2 / 6 / 8 | 超能力·SSR·力量回响 | [源图](../../assets/resources/art/owl-evolution-v1.png) |
+| beetle-normal | 芽角甲虫 | 虫 | R | 草叶海岸 / 精英 | 普通 | 26 | 2 / 3 / 5 | 虫·R·汲取 | [源图](../../assets/resources/art/beetle-battle-v1.png) |
+| beetle-SR | 荆角甲虫 | 虫 | SR | 草叶海岸 / 精英 | 普通 | 28 | 2 / 3 / 5 | 虫·SR·屏障 | [源图](../../assets/resources/art/beetle-evolution-v1.png) |
+| beetle-SSR | 翠刃甲皇 | 虫 | SSR | 草叶海岸 / 精英 | 普通 | 30 | 2 / 3 / 5 | 虫·SSR·回春 | [源图](../../assets/resources/art/beetle-evolution-v1.png) |
+| ghost-normal | 灯芯幽灵 | 幽灵 | R | 霜月雪原 / 普通 | 普通 | 22 | 1 / 5 / 6 | 幽灵·R·闪避 | [源图](../../assets/resources/art/ghost-battle-v1.png) |
+| ghost-SR | 引魂灯灵 | 幽灵 | SR | 霜月雪原 / 普通 | 普通 | 24 | 1 / 5 / 6 | 幽灵·SR·汲取 | [源图](../../assets/resources/art/ghost-evolution-v1.png) |
+| ghost-SSR | 冥灯灵君 | 幽灵 | SSR | 霜月雪原 / 普通 | 普通 | 26 | 1 / 5 / 6 | 幽灵·SSR·强击 | [源图](../../assets/resources/art/ghost-evolution-v1.png) |
+| dragon-normal | 霆冠龙 | 龙 | R | 霜月雪原 / BOSS | BOSS | 36 | 4 / 6 / 9 | 龙·R·强击 | [源图](../../assets/resources/art/dragon-battle-v1.png) |
+| dragon-SR | 裂霆翼龙 | 龙 | SR | 霜月雪原 / BOSS | BOSS | 38 | 4 / 6 / 9 | 龙·SR·印记 | [源图](../../assets/resources/art/dragon-evolution-v1.png) |
+| dragon-SSR | 苍霆龙皇 | 龙 | SSR | 霜月雪原 / BOSS | BOSS | 40 | 4 / 6 / 9 | 龙·SSR·强击 | [源图](../../assets/resources/art/dragon-evolution-v1.png) |
+| lynx-normal | 暮影猞猁 | 恶 | R | 霜月雪原 / 普通 | 普通 | 23 | 1 / 4 / 7 | 恶·R·强击 | [源图](../../assets/resources/art/lynx-battle-v1.png) |
+| lynx-SR | 夜刃猞猁 | 恶 | SR | 霜月雪原 / 普通 | 普通 | 25 | 1 / 4 / 7 | 恶·SR·回春 | [源图](../../assets/resources/art/lynx-evolution-v1.png) |
+| lynx-SSR | 蚀月影王 | 恶 | SSR | 霜月雪原 / 普通 | 普通 | 27 | 1 / 4 / 7 | 恶·SSR·汲取 | [源图](../../assets/resources/art/lynx-evolution-v1.png) |
+| rhino-normal | 铁垒犀 | 钢 | R | 熔岩山径 / BOSS | BOSS | 40 | 3 / 6 / 8 | 钢·R·坚守 | [源图](../../assets/resources/art/rhino-battle-v1.png) |
+| rhino-SR | 钢棘战犀 | 钢 | SR | 熔岩山径 / BOSS | BOSS | 42 | 3 / 6 / 8 | 钢·SR·屏障 | [源图](../../assets/resources/art/rhino-evolution-v1.png) |
+| rhino-SSR | 星钢巨犀 | 钢 | SSR | 熔岩山径 / BOSS | BOSS | 44 | 3 / 6 / 8 | 钢·SSR·坚守 | [源图](../../assets/resources/art/rhino-evolution-v1.png) |
+| deer-normal | 铃芽鹿 | 妖精 | R | 霜月雪原 / 精英 | 普通 | 24 | 2 / 4 / 5 | 妖精·R·回春 | [源图](../../assets/resources/art/deer-battle-v1.png) |
+| deer-SR | 花铃灵鹿 | 妖精 | SR | 霜月雪原 / 精英 | 普通 | 26 | 2 / 4 / 5 | 妖精·SR·复苏 | [源图](../../assets/resources/art/deer-evolution-v1.png) |
+| deer-SSR | 圣铃仙鹿 | 妖精 | SSR | 霜月雪原 / 精英 | 普通 | 28 | 2 / 4 / 5 | 妖精·SSR·复苏 | [源图](../../assets/resources/art/deer-evolution-v1.png) |
+| capy-normal | 绒果豚 | 一般 | R | 翠风群岛 / 普通 | 普通 | 34 | 4 / 7 / 10 | 一般·R·强击 | [源图](../../assets/resources/art/capy-forms-v1.png) |
+| capy-SR | 果篮豚 | 一般 | SR | 翠风群岛 / 普通 | 普通 | 40 | 6 / 9 / 12 | 一般·SR·改运 | [源图](../../assets/resources/art/capy-forms-v1.png) |
+| capy-SSR | 丰收山豚 | 一般 | SSR | 翠风群岛 / 普通 | 普通 | 46 | 8 / 11 / 14 | 一般·SSR·屏障 | [源图](../../assets/resources/art/capy-forms-v1.png) |
+| lotus-normal | 荷芽蛙 | 草 | R | 翠风群岛 / 普通 | 普通 | 34 | 4 / 7 / 10 | 草·R·回春 | [源图](../../assets/resources/art/lotus-forms-v1.png) |
+| lotus-SR | 莲蓬蛙 | 草 | SR | 翠风群岛 / 普通 | 普通 | 40 | 6 / 9 / 12 | 草·SR·复苏 | [源图](../../assets/resources/art/lotus-forms-v1.png) |
+| lotus-SSR | 碧莲仙蛙 | 草 | SSR | 翠风群岛 / 普通 | 普通 | 46 | 8 / 11 / 14 | 草·SSR·屏障 | [源图](../../assets/resources/art/lotus-forms-v1.png) |
+| manta-normal | 泡泡鳐 | 水 | R | 翠风群岛 / 普通 | 普通 | 34 | 4 / 7 / 10 | 水·R·坚守 | [源图](../../assets/resources/art/manta-forms-v1.png) |
+| manta-SR | 潮纹鳐 | 水 | SR | 翠风群岛 / 普通 | 普通 | 40 | 6 / 9 / 12 | 水·SR·回春 | [源图](../../assets/resources/art/manta-forms-v1.png) |
+| manta-SSR | 瀚海翼鳐 | 水 | SSR | 翠风群岛 / 普通 | 普通 | 46 | 8 / 11 / 14 | 水·SSR·蓄能 | [源图](../../assets/resources/art/manta-forms-v1.png) |
+| crane-normal | 风铃鹤 | 飞行 | R | 翠风群岛 / 普通 | 普通 | 34 | 4 / 7 / 10 | 飞行·R·闪避 | [源图](../../assets/resources/art/crane-forms-v1.png) |
+| crane-SR | 逐风鹤 | 飞行 | SR | 翠风群岛 / 普通 | 普通 | 40 | 6 / 9 / 12 | 飞行·SR·强击 | [源图](../../assets/resources/art/crane-forms-v1.png) |
+| crane-SSR | 九霄灵鹤 | 飞行 | SSR | 翠风群岛 / 普通 | 普通 | 46 | 8 / 11 / 14 | 飞行·SSR·屏障 | [源图](../../assets/resources/art/crane-forms-v1.png) |
+| mantis-normal | 叶镰螳 | 虫 | R | 翠风群岛 / 精英 | 精英 | 38 | 5 / 8 / 11 | 虫·R·汲取 | [源图](../../assets/resources/art/mantis-forms-v1.png) |
+| mantis-SR | 双刃螳 | 虫 | SR | 翠风群岛 / 精英 | 精英 | 44 | 7 / 10 / 13 | 虫·SR·屏障 | [源图](../../assets/resources/art/mantis-forms-v1.png) |
+| mantis-SSR | 翠甲刃皇 | 虫 | SSR | 翠风群岛 / 精英 | 精英 | 50 | 9 / 12 / 15 | 虫·SSR·回春 | [源图](../../assets/resources/art/mantis-forms-v1.png) |
+| cragcrab-normal | 砂晶蟹 | 岩石 | R | 翠风群岛 / BOSS | BOSS | 42 | 6 / 9 / 12 | 岩石·R·屏障 | [源图](../../assets/resources/art/cragcrab-forms-v1.png) |
+| cragcrab-SR | 晶簇蟹 | 岩石 | SR | 翠风群岛 / BOSS | BOSS | 48 | 8 / 11 / 14 | 岩石·SR·屏障 | [源图](../../assets/resources/art/cragcrab-forms-v1.png) |
+| cragcrab-SSR | 磐晶蟹王 | 岩石 | SSR | 翠风群岛 / BOSS | BOSS | 54 | 10 / 13 / 16 | 岩石·SSR·不屈 | [源图](../../assets/resources/art/cragcrab-forms-v1.png) |
+| cinder-normal | 炭角羊 | 火 | R | 赤雷荒原 / 普通 | 普通 | 44 | 6 / 10 / 14 | 火·R·强击 | [源图](../../assets/resources/art/cinder-forms-v1.png) |
+| cinder-SR | 炽鬃羊 | 火 | SR | 赤雷荒原 / 普通 | 普通 | 50 | 8 / 12 / 16 | 火·SR·屏障 | [源图](../../assets/resources/art/cinder-forms-v1.png) |
+| cinder-SSR | 熔冠炎羊 | 火 | SSR | 赤雷荒原 / 普通 | 普通 | 56 | 10 / 14 / 18 | 火·SSR·印记 | [源图](../../assets/resources/art/cinder-forms-v1.png) |
+| voltage-normal | 电绒鼠 | 电 | R | 赤雷荒原 / 普通 | 普通 | 44 | 6 / 10 / 14 | 电·R·改运 | [源图](../../assets/resources/art/voltage-forms-v1.png) |
+| voltage-SR | 雷跃鼠 | 电 | SR | 赤雷荒原 / 普通 | 普通 | 50 | 8 / 12 / 16 | 电·SR·力量回响 | [源图](../../assets/resources/art/voltage-forms-v1.png) |
+| voltage-SSR | 极电灵鼠 | 电 | SSR | 赤雷荒原 / 普通 | 普通 | 56 | 10 / 14 / 18 | 电·SSR·强击 | [源图](../../assets/resources/art/voltage-forms-v1.png) |
+| venom-normal | 紫尾蝎 | 毒 | R | 赤雷荒原 / 普通 | 普通 | 44 | 6 / 10 / 14 | 毒·R·印记 | [源图](../../assets/resources/art/venom-forms-v1.png) |
+| venom-SR | 荆毒蝎 | 毒 | SR | 赤雷荒原 / 普通 | 普通 | 50 | 8 / 12 / 16 | 毒·SR·印记 | [源图](../../assets/resources/art/venom-forms-v1.png) |
+| venom-SSR | 蚀毒蝎王 | 毒 | SSR | 赤雷荒原 / 普通 | 普通 | 56 | 10 / 14 / 18 | 毒·SSR·印记 | [源图](../../assets/resources/art/venom-forms-v1.png) |
+| dune-normal | 沙鳞兽 | 地面 | R | 赤雷荒原 / 普通 | 普通 | 44 | 6 / 10 / 14 | 地面·R·屏障 | [源图](../../assets/resources/art/dune-forms-v1.png) |
+| dune-SR | 流砂穿山兽 | 地面 | SR | 赤雷荒原 / 普通 | 普通 | 50 | 8 / 12 / 16 | 地面·SR·强击 | [源图](../../assets/resources/art/dune-forms-v1.png) |
+| dune-SSR | 地脉甲尊 | 地面 | SSR | 赤雷荒原 / 普通 | 普通 | 56 | 10 / 14 / 18 | 地面·SSR·药剂回响 | [源图](../../assets/resources/art/dune-forms-v1.png) |
+| monk-normal | 拳袋鼠 | 格斗 | R | 赤雷荒原 / 精英 | 精英 | 48 | 7 / 11 / 15 | 格斗·R·强击 | [源图](../../assets/resources/art/monk-forms-v1.png) |
+| monk-SR | 斗篷袋鼠 | 格斗 | SR | 赤雷荒原 / 精英 | 精英 | 54 | 9 / 13 / 17 | 格斗·SR·蓄能 | [源图](../../assets/resources/art/monk-forms-v1.png) |
+| monk-SSR | 震岳斗王 | 格斗 | SSR | 赤雷荒原 / 精英 | 精英 | 60 | 11 / 15 / 19 | 格斗·SSR·复苏 | [源图](../../assets/resources/art/monk-forms-v1.png) |
+| ironboar-normal | 铁鼻豕 | 钢 | R | 赤雷荒原 / BOSS | BOSS | 52 | 8 / 12 / 16 | 钢·R·坚守 | [源图](../../assets/resources/art/ironboar-forms-v1.png) |
+| ironboar-SR | 钢鬃战豕 | 钢 | SR | 赤雷荒原 / BOSS | BOSS | 58 | 10 / 14 / 18 | 钢·SR·屏障 | [源图](../../assets/resources/art/ironboar-forms-v1.png) |
+| ironboar-SSR | 陨铁巨牙 | 钢 | SSR | 赤雷荒原 / BOSS | BOSS | 64 | 12 / 16 / 20 | 钢·SSR·坚守 | [源图](../../assets/resources/art/ironboar-forms-v1.png) |
+| frost-normal | 雪耳兔 | 冰 | R | 星渊圣域 / 普通 | 普通 | 56 | 9 / 13 / 18 | 冰·R·蓄能 | [源图](../../assets/resources/art/frost-forms-v1.png) |
+| frost-SR | 冰棱兔 | 冰 | SR | 星渊圣域 / 普通 | 普通 | 62 | 11 / 15 / 20 | 冰·SR·屏障 | [源图](../../assets/resources/art/frost-forms-v1.png) |
+| frost-SSR | 霜冠灵兔 | 冰 | SSR | 星渊圣域 / 普通 | 普通 | 68 | 13 / 17 / 22 | 冰·SSR·强击 | [源图](../../assets/resources/art/frost-forms-v1.png) |
+| spirit-normal | 幽泡灵 | 幽灵 | R | 星渊圣域 / 普通 | 普通 | 56 | 9 / 13 / 18 | 幽灵·R·闪避 | [源图](../../assets/resources/art/spirit-forms-v1.png) |
+| spirit-SR | 夜灯水母 | 幽灵 | SR | 星渊圣域 / 普通 | 普通 | 62 | 11 / 15 / 20 | 幽灵·SR·汲取 | [源图](../../assets/resources/art/spirit-forms-v1.png) |
+| spirit-SSR | 冥幕灯母 | 幽灵 | SSR | 星渊圣域 / 普通 | 普通 | 68 | 13 / 17 / 22 | 幽灵·SSR·强击 | [源图](../../assets/resources/art/spirit-forms-v1.png) |
+| dream-normal | 梦芽貘 | 超能力 | R | 星渊圣域 / 普通 | 普通 | 56 | 9 / 13 / 18 | 超能力·R·屏障 | [源图](../../assets/resources/art/dream-forms-v1.png) |
+| dream-SR | 星枕貘 | 超能力 | SR | 星渊圣域 / 普通 | 普通 | 62 | 11 / 15 / 20 | 超能力·SR·蓄能 | [源图](../../assets/resources/art/dream-forms-v1.png) |
+| dream-SSR | 梦境贤貘 | 超能力 | SSR | 星渊圣域 / 普通 | 普通 | 68 | 13 / 17 / 22 | 超能力·SSR·力量回响 | [源图](../../assets/resources/art/dream-forms-v1.png) |
+| shade-normal | 墨羽鸦 | 恶 | R | 星渊圣域 / 普通 | 普通 | 56 | 9 / 13 / 18 | 恶·R·强击 | [源图](../../assets/resources/art/shade-forms-v1.png) |
+| shade-SR | 暮刃鸦 | 恶 | SR | 星渊圣域 / 普通 | 普通 | 62 | 11 / 15 / 20 | 恶·SR·回春 | [源图](../../assets/resources/art/shade-forms-v1.png) |
+| shade-SSR | 蚀星鸦王 | 恶 | SSR | 星渊圣域 / 普通 | 普通 | 68 | 13 / 17 / 22 | 恶·SSR·汲取 | [源图](../../assets/resources/art/shade-forms-v1.png) |
+| aurora-normal | 彩翎雏 | 妖精 | R | 星渊圣域 / 精英 | 精英 | 60 | 10 / 14 / 19 | 妖精·R·回春 | [源图](../../assets/resources/art/aurora-forms-v1.png) |
+| aurora-SR | 幻彩孔雀 | 妖精 | SR | 星渊圣域 / 精英 | 精英 | 66 | 12 / 16 / 21 | 妖精·SR·复苏 | [源图](../../assets/resources/art/aurora-forms-v1.png) |
+| aurora-SSR | 极光仙凰 | 妖精 | SSR | 星渊圣域 / 精英 | 精英 | 72 | 14 / 18 / 23 | 妖精·SSR·复苏 | [源图](../../assets/resources/art/aurora-forms-v1.png) |
+| starwyrm-normal | 星鳞幼龙 | 龙 | R | 星渊圣域 / BOSS | BOSS | 64 | 11 / 15 / 20 | 龙·R·强击 | [源图](../../assets/resources/art/starwyrm-forms-v1.png) |
+| starwyrm-SR | 星环游龙 | 龙 | SR | 星渊圣域 / BOSS | BOSS | 70 | 13 / 17 / 22 | 龙·SR·印记 | [源图](../../assets/resources/art/starwyrm-forms-v1.png) |
+| starwyrm-SSR | 星渊龙君 | 龙 | SSR | 星渊圣域 / BOSS | BOSS | 76 | 15 / 19 / 24 | 龙·SSR·强击 | [源图](../../assets/resources/art/starwyrm-forms-v1.png) |
+| nectar-normal | 蜜团睡鼠 | 一般 | R | 琉璃雨林 / 普通 | 普通 | 68 | 12 / 17 / 23 | 一般·R·强击 | [源图](../../assets/resources/art/nectar-forms-v1.png) |
+| nectar-SR | 蜜袋睡鼠 | 一般 | SR | 琉璃雨林 / 普通 | 普通 | 74 | 14 / 19 / 25 | 一般·SR·改运 | [源图](../../assets/resources/art/nectar-forms-v1.png) |
+| nectar-SSR | 花蜜守望鼠 | 一般 | SSR | 琉璃雨林 / 普通 | 普通 | 80 | 16 / 21 / 27 | 一般·SSR·屏障 | [源图](../../assets/resources/art/nectar-forms-v1.png) |
+| orchid-normal | 兰芽壁虎 | 草 | R | 琉璃雨林 / 普通 | 普通 | 68 | 12 / 17 / 23 | 草·R·回春 | [源图](../../assets/resources/art/orchid-forms-v1.png) |
+| orchid-SR | 花冠壁虎 | 草 | SR | 琉璃雨林 / 普通 | 普通 | 74 | 14 / 19 / 25 | 草·SR·复苏 | [源图](../../assets/resources/art/orchid-forms-v1.png) |
+| orchid-SSR | 翠兰花龙 | 草 | SSR | 琉璃雨林 / 普通 | 普通 | 80 | 16 / 21 / 27 | 草·SSR·屏障 | [源图](../../assets/resources/art/orchid-forms-v1.png) |
+| axolotl-normal | 露鳃螈 | 水 | R | 琉璃雨林 / 普通 | 普通 | 68 | 12 / 17 / 23 | 水·R·坚守 | [源图](../../assets/resources/art/axolotl-forms-v1.png) |
+| axolotl-SR | 涟波螈 | 水 | SR | 琉璃雨林 / 普通 | 普通 | 74 | 14 / 19 / 25 | 水·SR·回春 | [源图](../../assets/resources/art/axolotl-forms-v1.png) |
+| axolotl-SSR | 瀑冠灵螈 | 水 | SSR | 琉璃雨林 / 普通 | 普通 | 80 | 16 / 21 / 27 | 水·SSR·蓄能 | [源图](../../assets/resources/art/axolotl-forms-v1.png) |
+| lantern-normal | 灯豆萤 | 虫 | R | 琉璃雨林 / 普通 | 普通 | 68 | 12 / 17 / 23 | 虫·R·汲取 | [源图](../../assets/resources/art/lantern-forms-v1.png) |
+| lantern-SR | 琥灯萤 | 虫 | SR | 琉璃雨林 / 普通 | 普通 | 74 | 14 / 19 / 25 | 虫·SR·屏障 | [源图](../../assets/resources/art/lantern-forms-v1.png) |
+| lantern-SSR | 曦灯萤后 | 虫 | SSR | 琉璃雨林 / 普通 | 普通 | 80 | 16 / 21 / 27 | 虫·SSR·回春 | [源图](../../assets/resources/art/lantern-forms-v1.png) |
+| cobra-normal | 紫芽蛇 | 毒 | R | 琉璃雨林 / 精英 | 精英 | 72 | 13 / 18 / 24 | 毒·R·印记 | [源图](../../assets/resources/art/cobra-forms-v1.png) |
+| cobra-SR | 棘冠眼镜蛇 | 毒 | SR | 琉璃雨林 / 精英 | 精英 | 78 | 15 / 20 / 26 | 毒·SR·印记 | [源图](../../assets/resources/art/cobra-forms-v1.png) |
+| cobra-SSR | 蚀花蛇君 | 毒 | SSR | 琉璃雨林 / 精英 | 精英 | 84 | 17 / 22 / 28 | 毒·SSR·印记 | [源图](../../assets/resources/art/cobra-forms-v1.png) |
+| hornbill-normal | 冠喙雏 | 飞行 | R | 琉璃雨林 / BOSS | BOSS | 76 | 14 / 19 / 25 | 飞行·R·闪避 | [源图](../../assets/resources/art/hornbill-forms-v1.png) |
+| hornbill-SR | 风冠犀鸟 | 飞行 | SR | 琉璃雨林 / BOSS | BOSS | 82 | 16 / 21 / 27 | 飞行·SR·强击 | [源图](../../assets/resources/art/hornbill-forms-v1.png) |
+| hornbill-SSR | 苍穹冠皇 | 飞行 | SSR | 琉璃雨林 / BOSS | BOSS | 88 | 18 / 23 / 29 | 飞行·SSR·屏障 | [源图](../../assets/resources/art/hornbill-forms-v1.png) |
+| embercamel-normal | 炭团驼 | 火 | R | 赤曜沙海 / 普通 | 普通 | 80 | 16 / 22 / 29 | 火·R·强击 | [源图](../../assets/resources/art/embercamel-forms-v1.png) |
+| embercamel-SR | 熔峰驼 | 火 | SR | 赤曜沙海 / 普通 | 普通 | 86 | 18 / 24 / 31 | 火·SR·屏障 | [源图](../../assets/resources/art/embercamel-forms-v1.png) |
+| embercamel-SSR | 赤曜焰驼 | 火 | SSR | 赤曜沙海 / 普通 | 普通 | 92 | 20 / 26 / 33 | 火·SSR·印记 | [源图](../../assets/resources/art/embercamel-forms-v1.png) |
+| frill-normal | 电扇蜥 | 电 | R | 赤曜沙海 / 普通 | 普通 | 80 | 16 / 22 / 29 | 电·R·改运 | [源图](../../assets/resources/art/frill-forms-v1.png) |
+| frill-SR | 雷冠蜥 | 电 | SR | 赤曜沙海 / 普通 | 普通 | 86 | 18 / 24 / 31 | 电·SR·力量回响 | [源图](../../assets/resources/art/frill-forms-v1.png) |
+| frill-SSR | 霆环伞蜥 | 电 | SSR | 赤曜沙海 / 普通 | 普通 | 92 | 20 / 26 / 33 | 电·SSR·强击 | [源图](../../assets/resources/art/frill-forms-v1.png) |
+| wombat-normal | 砂团熊 | 地面 | R | 赤曜沙海 / 普通 | 普通 | 80 | 16 / 22 / 29 | 地面·R·屏障 | [源图](../../assets/resources/art/wombat-forms-v1.png) |
+| wombat-SR | 掘岩袋熊 | 地面 | SR | 赤曜沙海 / 普通 | 普通 | 86 | 18 / 24 / 31 | 地面·SR·强击 | [源图](../../assets/resources/art/wombat-forms-v1.png) |
+| wombat-SSR | 地脉堡熊 | 地面 | SSR | 赤曜沙海 / 普通 | 普通 | 92 | 20 / 26 / 33 | 地面·SSR·药剂回响 | [源图](../../assets/resources/art/wombat-forms-v1.png) |
+| trilobite-normal | 砾甲虫 | 岩石 | R | 赤曜沙海 / 普通 | 普通 | 80 | 16 / 22 / 29 | 岩石·R·屏障 | [源图](../../assets/resources/art/trilobite-forms-v1.png) |
+| trilobite-SR | 晶脊古虫 | 岩石 | SR | 赤曜沙海 / 普通 | 普通 | 86 | 18 / 24 / 31 | 岩石·SR·屏障 | [源图](../../assets/resources/art/trilobite-forms-v1.png) |
+| trilobite-SSR | 磐古甲尊 | 岩石 | SSR | 赤曜沙海 / 普通 | 普通 | 92 | 20 / 26 / 33 | 岩石·SSR·不屈 | [源图](../../assets/resources/art/trilobite-forms-v1.png) |
+| wolverine-normal | 拳爪獾 | 格斗 | R | 赤曜沙海 / 精英 | 精英 | 84 | 17 / 23 / 30 | 格斗·R·强击 | [源图](../../assets/resources/art/wolverine-forms-v1.png) |
+| wolverine-SR | 赤拳战獾 | 格斗 | SR | 赤曜沙海 / 精英 | 精英 | 90 | 19 / 25 / 32 | 格斗·SR·蓄能 | [源图](../../assets/resources/art/wolverine-forms-v1.png) |
+| wolverine-SSR | 震岳斗獾 | 格斗 | SSR | 赤曜沙海 / 精英 | 精英 | 96 | 21 / 27 / 34 | 格斗·SSR·复苏 | [源图](../../assets/resources/art/wolverine-forms-v1.png) |
+| bison-normal | 铁角犊 | 钢 | R | 赤曜沙海 / BOSS | BOSS | 88 | 18 / 24 / 31 | 钢·R·坚守 | [源图](../../assets/resources/art/bison-forms-v1.png) |
+| bison-SR | 铠峰野牛 | 钢 | SR | 赤曜沙海 / BOSS | BOSS | 94 | 20 / 26 / 33 | 钢·SR·屏障 | [源图](../../assets/resources/art/bison-forms-v1.png) |
+| bison-SSR | 天铸钢牛 | 钢 | SSR | 赤曜沙海 / BOSS | BOSS | 100 | 22 / 28 / 35 | 钢·SSR·坚守 | [源图](../../assets/resources/art/bison-forms-v1.png) |
+| narwhal-normal | 雪角鲸 | 冰 | R | 冥辉天穹 / 普通 | 普通 | 94 | 21 / 28 / 36 | 冰·R·蓄能 | [源图](../../assets/resources/art/narwhal-forms-v1.png) |
+| narwhal-SR | 冰帆鲸 | 冰 | SR | 冥辉天穹 / 普通 | 普通 | 100 | 23 / 30 / 38 | 冰·SR·屏障 | [源图](../../assets/resources/art/narwhal-forms-v1.png) |
+| narwhal-SSR | 霜冕角鲸 | 冰 | SSR | 冥辉天穹 / 普通 | 普通 | 106 | 25 / 32 / 40 | 冰·SSR·强击 | [源图](../../assets/resources/art/narwhal-forms-v1.png) |
+| raccoon-normal | 幽面狸 | 幽灵 | R | 冥辉天穹 / 普通 | 普通 | 94 | 21 / 28 / 36 | 幽灵·R·闪避 | [源图](../../assets/resources/art/raccoon-forms-v1.png) |
+| raccoon-SR | 夜灯灵狸 | 幽灵 | SR | 冥辉天穹 / 普通 | 普通 | 100 | 23 / 30 / 38 | 幽灵·SR·汲取 | [源图](../../assets/resources/art/raccoon-forms-v1.png) |
+| raccoon-SSR | 冥面幻狸 | 幽灵 | SSR | 冥辉天穹 / 普通 | 普通 | 106 | 25 / 32 / 40 | 幽灵·SSR·强击 | [源图](../../assets/resources/art/raccoon-forms-v1.png) |
+| octopus-normal | 念泡章 | 超能力 | R | 冥辉天穹 / 普通 | 普通 | 94 | 21 / 28 / 36 | 超能力·R·屏障 | [源图](../../assets/resources/art/octopus-forms-v1.png) |
+| octopus-SR | 星瞳章 | 超能力 | SR | 冥辉天穹 / 普通 | 普通 | 100 | 23 / 30 / 38 | 超能力·SR·蓄能 | [源图](../../assets/resources/art/octopus-forms-v1.png) |
+| octopus-SSR | 星轨贤章 | 超能力 | SSR | 冥辉天穹 / 普通 | 普通 | 106 | 25 / 32 / 40 | 超能力·SSR·力量回响 | [源图](../../assets/resources/art/octopus-forms-v1.png) |
+| moonbat-normal | 暮绒蝠 | 恶 | R | 冥辉天穹 / 普通 | 普通 | 94 | 21 / 28 / 36 | 恶·R·强击 | [源图](../../assets/resources/art/moonbat-forms-v1.png) |
+| moonbat-SR | 月刃蝠 | 恶 | SR | 冥辉天穹 / 普通 | 普通 | 100 | 23 / 30 / 38 | 恶·SR·回春 | [源图](../../assets/resources/art/moonbat-forms-v1.png) |
+| moonbat-SSR | 蚀夜翼蝠 | 恶 | SSR | 冥辉天穹 / 普通 | 普通 | 106 | 25 / 32 / 40 | 恶·SSR·汲取 | [源图](../../assets/resources/art/moonbat-forms-v1.png) |
+| silkmoth-normal | 月绒蛾 | 妖精 | R | 冥辉天穹 / 精英 | 精英 | 98 | 22 / 29 / 37 | 妖精·R·回春 | [源图](../../assets/resources/art/silkmoth-forms-v1.png) |
+| silkmoth-SR | 绫月蝶蛾 | 妖精 | SR | 冥辉天穹 / 精英 | 精英 | 104 | 24 / 31 / 39 | 妖精·SR·复苏 | [源图](../../assets/resources/art/silkmoth-forms-v1.png) |
+| silkmoth-SSR | 月华织梦蛾 | 妖精 | SSR | 冥辉天穹 / 精英 | 精英 | 110 | 26 / 33 / 41 | 妖精·SSR·复苏 | [源图](../../assets/resources/art/silkmoth-forms-v1.png) |
+| kirin-normal | 曜角驹 | 龙 | R | 冥辉天穹 / BOSS | BOSS | 102 | 23 / 30 / 38 | 龙·R·强击 | [源图](../../assets/resources/art/kirin-forms-v1.png) |
+| kirin-SR | 星鬃麒麟 | 龙 | SR | 冥辉天穹 / BOSS | BOSS | 108 | 25 / 32 / 40 | 龙·SR·印记 | [源图](../../assets/resources/art/kirin-forms-v1.png) |
+| kirin-SSR | 九曜龙麟 | 龙 | SSR | 冥辉天穹 / BOSS | BOSS | 114 | 27 / 34 / 42 | 龙·SSR·强击 | [源图](../../assets/resources/art/kirin-forms-v1.png) |
 
 ## 技能机制
 
@@ -211,6 +211,71 @@
 | slow | 霜羽压制 | 首次攻击令本次反击伤害减少 2，至少受到 1 点。 |
 | evade | 幻影守护 | 首次敌方反击完全免伤。 |
 | leech | 生命汲取 | 首次攻击恢复其实际直接伤害的 20%（向上取整），不超过最大生命的 25%。 |
+| tm_healStrike | 回春击 | 攻击时：恢复生命 +4。每场一次。 |
+| tm_guardHeal | 休整防御 | 防御时：恢复生命 +6。每场一次。 |
+| tm_boostShield | 强化屏障 | 使用力量药水时：获得护盾 +5。每场一次。 |
+| tm_healPower | 治愈蓄能 | 使用生命药水时：下回合攻击取最高点数。每场一次。 |
+| tm_finisher | 追击招式 | 攻击时 · 敌人生命不超过50%：额外伤害 +5。每场一次。 |
+| tm_lastStand | 不屈招式 | 受到反击时 · 将受到致命伤害：本次保留1点生命。每场一次。 |
+| tm_firstShield | 开场护盾 | 掷骰时 · 本场首次掷骰：获得护盾 +4。每场一次。 |
+| tm_combo | 连击恢复 | 攻击时 · 第三次攻击时：恢复生命 +5。每场一次。 |
+| res_bloom | 共鸣·花盾 | 使用生命药水时：恢复生命及护盾各 +4。每场一次。 |
+| res_venom | 共鸣·蚀魂 | 攻击时：汲取25%伤害并施毒3次，每次3点。每场一次。 |
+| res_drive | 共鸣·蓄壁 | 防御时：获得护盾 +5，下回合最高点数。每场一次。 |
+| trait_0_0 | 一般·R·强击 | 攻击时：额外伤害 +2。每场一次。 |
+| trait_0_1 | 一般·SR·改运 | 掷骰时 · 点数与上回合相同：本次攻击取最高点数。每场一次。 |
+| trait_0_2 | 一般·SSR·屏障 | 攻击时 · 第三次攻击时：获得护盾 +8。每场一次。 |
+| trait_1_0 | 火·R·强击 | 攻击时 · 力量药水生效时：额外伤害 +3。每场一次。 |
+| trait_1_1 | 火·SR·屏障 | 使用力量药水时：获得护盾 +6。每场一次。 |
+| trait_1_2 | 火·SSR·印记 | 攻击时 · 第三次攻击时：施毒3次，每次伤害 4。每场一次。 |
+| trait_2_0 | 水·R·坚守 | 受到反击时：本次伤害减少 2。每场一次。 |
+| trait_2_1 | 水·SR·回春 | 防御时：恢复生命 +5。每场一次。 |
+| trait_2_2 | 水·SSR·蓄能 | 使用生命药水时：下回合攻击取最高点数。每场一次。 |
+| trait_3_0 | 电·R·改运 | 掷骰时 · 攻击点数为最低：本次攻击取最高点数。每场一次。 |
+| trait_3_1 | 电·SR·力量回响 | 使用力量药水时：力量药水 +1。每场一次。 |
+| trait_3_2 | 电·SSR·强击 | 攻击时 · 第三次攻击时：额外伤害 +8。每场一次。 |
+| trait_4_0 | 草·R·回春 | 使用生命药水时：恢复生命 +3。每场一次。 |
+| trait_4_1 | 草·SR·复苏 | 受到反击时 · 生命不超过50%：恢复最大生命 30%。每场一次。 |
+| trait_4_2 | 草·SSR·屏障 | 攻击时 · 满血时：获得护盾 +7。每场一次。 |
+| trait_5_0 | 冰·R·蓄能 | 攻击时：下回合攻击取最高点数。每场一次。 |
+| trait_5_1 | 冰·SR·屏障 | 受到反击时 · 满血时：获得护盾 +6。每场一次。 |
+| trait_5_2 | 冰·SSR·强击 | 攻击时 · 攻击点数为最低：额外伤害 +9。每场一次。 |
+| trait_6_0 | 格斗·R·强击 | 攻击时 · 生命不超过50%：额外伤害 +4。每场一次。 |
+| trait_6_1 | 格斗·SR·蓄能 | 防御时：下回合攻击取最高点数。每场一次。 |
+| trait_6_2 | 格斗·SSR·复苏 | 攻击时 · 第三次攻击时：恢复最大生命 35%。每场一次。 |
+| trait_7_0 | 毒·R·印记 | 攻击时：施毒3次，每次伤害 2。每场一次。 |
+| trait_7_1 | 毒·SR·印记 | 攻击时 · 敌人生命不超过50%：施毒3次，每次伤害 4。每场一次。 |
+| trait_7_2 | 毒·SSR·印记 | 受到反击时 · 生命不超过50%：施毒3次，每次伤害 6。每场一次。 |
+| trait_8_0 | 地面·R·屏障 | 受到反击时 · 本次选择防御：获得护盾 +3。每场一次。 |
+| trait_8_1 | 地面·SR·强击 | 攻击时 · 攻击点数为最低：额外伤害 +4。每场一次。 |
+| trait_8_2 | 地面·SSR·药剂回响 | 防御时：生命药水 +1。每场一次。 |
+| trait_9_0 | 飞行·R·闪避 | 受到反击时 · 满血时：免疫本次反击。每场一次。 |
+| trait_9_1 | 飞行·SR·强击 | 攻击时 · 满血时：额外伤害 +3。每场一次。 |
+| trait_9_2 | 飞行·SSR·屏障 | 掷骰时 · 本场首次掷骰：获得护盾 +10。每场一次。 |
+| trait_10_0 | 超能力·R·屏障 | 掷骰时 · 攻击点数为最低：获得护盾 +3。每场一次。 |
+| trait_10_1 | 超能力·SR·蓄能 | 使用力量药水时：下回合攻击取最高点数。每场一次。 |
+| trait_10_2 | 超能力·SSR·力量回响 | 使用生命药水时：力量药水 +1。每场一次。 |
+| trait_11_0 | 虫·R·汲取 | 攻击时：恢复实际伤害的 25%。每场一次。 |
+| trait_11_1 | 虫·SR·屏障 | 使用生命药水时：获得护盾 +5。每场一次。 |
+| trait_11_2 | 虫·SSR·回春 | 受到反击时 · 生命不超过50%：恢复生命 +8。每场一次。 |
+| trait_12_0 | 岩石·R·屏障 | 受到反击时：获得护盾 +3。每场一次。 |
+| trait_12_1 | 岩石·SR·屏障 | 防御时：获得护盾 +8。每场一次。 |
+| trait_12_2 | 岩石·SSR·不屈 | 受到反击时 · 将受到致命伤害：本次保留1点生命。每场一次。 |
+| trait_13_0 | 幽灵·R·闪避 | 受到反击时 · 生命不超过50%：免疫本次反击。每场一次。 |
+| trait_13_1 | 幽灵·SR·汲取 | 攻击时 · 敌人生命不超过50%：恢复实际伤害的 60%。每场一次。 |
+| trait_13_2 | 幽灵·SSR·强击 | 攻击时 · 本次攻击被抵抗：额外伤害 +7。每场一次。 |
+| trait_14_0 | 龙·R·强击 | 攻击时 · 攻击点数为最高：额外伤害 +3。每场一次。 |
+| trait_14_1 | 龙·SR·印记 | 攻击时 · 力量药水生效时：施毒3次，每次伤害 5。每场一次。 |
+| trait_14_2 | 龙·SSR·强击 | 攻击时：额外伤害 +6。每场一次。 |
+| trait_15_0 | 恶·R·强击 | 攻击时 · 敌人生命不超过50%：额外伤害 +3。每场一次。 |
+| trait_15_1 | 恶·SR·回春 | 使用力量药水时：恢复生命 +5。每场一次。 |
+| trait_15_2 | 恶·SSR·汲取 | 攻击时 · 攻击点数为最高：恢复实际伤害的 50%。每场一次。 |
+| trait_16_0 | 钢·R·坚守 | 受到反击时 · 满血时：本次伤害减少 3。每场一次。 |
+| trait_16_1 | 钢·SR·屏障 | 防御时：获得护盾 +10。每场一次。 |
+| trait_16_2 | 钢·SSR·坚守 | 受到反击时：本次伤害减少 6。每场一次。 |
+| trait_17_0 | 妖精·R·回春 | 掷骰时 · 本场首次掷骰：恢复生命 +3。每场一次。 |
+| trait_17_1 | 妖精·SR·复苏 | 使用生命药水时 · 生命不超过50%：恢复最大生命 25%。每场一次。 |
+| trait_17_2 | 妖精·SSR·复苏 | 防御时：恢复最大生命 40%。每场一次。 |
 
 各技能每场至多触发一次；持续效果仍按规则继续。多技能执行顺序和取整见 [数值规则](../BALANCE.md)。
 

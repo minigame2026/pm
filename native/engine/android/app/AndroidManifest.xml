@@ -11,7 +11,16 @@
         <action android:name="android.intent.action.MAIN"/>
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+        <data android:scheme="dicepet" android:host="postcard"/>
+      </intent-filter>
     </activity>
+    <provider android:name="androidx.core.content.FileProvider" android:authorities="${applicationId}.postcards" android:exported="false" android:grantUriPermissions="true">
+      <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/pm_share_paths"/>
+    </provider>
     <activity android:name="com.cocos.lib.CocosEditBoxActivity" android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|smallestScreenSize" android:screenOrientation="behind" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" android:maxAspectRatio="2.4"/>
   </application>
 </manifest>

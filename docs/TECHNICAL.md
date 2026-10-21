@@ -1,6 +1,6 @@
 # 架构、存档与模块复用
 
-基线：2026-10-20。Cocos Creator 3.8.7，TypeScript，web-mobile竖屏原型。
+基线：2026-10-21。Cocos Creator 3.8.7，TypeScript，web-mobile竖屏原型。
 
 | 模块 | 入口 | 职责 |
 |---|---|---|
@@ -11,6 +11,8 @@
 | 声音 | PMAudio.ts | 音乐/音效、开关、前后台暂停 |
 | 美术 | BattleArt/EvolutionArt/RegionArt/RegionPads/HeroArt | 前后视图、三形态、脚底、地台、主角矩形 |
 | 营地时段 | HomeScenery.ts | 本机时间的纯画面切换 |
+| 离线分享 | PMSharing.ts、Android PMShare.java | 明信片渲染、二维码本机解析、系统分享/导入；见SOCIAL-POSTCARDS |
+| 本地化 | PMLocale、PMTranslations、LocalizedLogoArt | 十二语言文字与独立品牌图片 |
 | 检查 | [workflow.config](../tools/workflow.config.json) | 模块选组、构建复用、截图及结果 |
 
 规则函数有效操作返回新State，无效操作返回原对象。显示异常先核对模型结果、路由、刷新范围；不能改随机数掩盖UI问题。
@@ -40,7 +42,9 @@
 
 见 [可信时间](TRUSTED-TIME.md)、[体力与探险](STAMINA.md)。本地时间只切营地画面；收益无可信时间时暂缓。广告完成后才发奖；校时失败保存待发标记，避免重复发放。接口预留不等于平台SDK已接通。
 
-来访码为PMV1.owner.speciesIndex.rarityIndex.F或M.petUid.checksum。系列索引使用PET_IDS顺序，当前54系列，扩展不重排旧ID。校验码只检测错误，不认证身份。
+当前生成PMV2明信片码并兼容PMV1；系列索引使用PET_IDS顺序，当前54系列，扩展不重排旧ID。昵称、心愿和技能仅展示，不导入对方战斗数值。校验码只检测错误，不认证身份。协议、平台能力与测试见[通信小屋](SOCIAL-POSTCARDS.md)。
+
+随机惊喜采用独立持久化随机流与失败计数；抽样先保存再动画。runEffects只记录本关临时招式/巨化，不能写回遗传基因。规则与概率统一查[BALANCE](BALANCE.md)，自动快照包含SKILL_SPECS、SURPRISE_RULES和异色名单。
 
 ## 验收与来源
 

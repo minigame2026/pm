@@ -1,19 +1,24 @@
 # 按模块检查与交付
 
-基线：2026-10-20。统一入口为项目根的检查试玩.ps1，支持逗号组合模块。只运行本次相关模块。
+基线：2026-10-21。统一入口为项目根的检查试玩.ps1，支持逗号组合模块。只运行本次相关模块。
 
 | 范围 | 用途 |
 |---|---|
 | onboarding | 开局、主角、初始伙伴 |
-| locale | 六语言、系统语言与英文回退、手动选择持久化、页面文字与存档不变 |
-| logos | 六语言封面LOGO、按需加载、比例与390/320宽、开始按钮 |
+| locale | 十二语言、系统语言与英文回退、手动选择持久化、页面文字与存档不变 |
+| logos | 十二语言封面LOGO、按需加载、比例与390/320宽、开始按钮 |
 | battle / types | 战斗基础 / 属性克制 |
 | app-battle | APP草叶海岸样板、三初始宠物姿态/攻防、两种屏幕、临时存档隔离 |
+| map-layout | 九地图预览图/名称/说明不重叠；三种屏幕与英文/德文长文本 |
 | maps / rules | 九地图内容 / 综合纯规则 |
 | party | 个体、交配限制、候补、立绘裁切 |
 | party-combat | 独立生命/成长、阵亡替补、克制预览与查看、交配得蛋提示、战斗续存 |
+| run-events | 异品质合成、54常驻＋8临时技能、20%奇遇、复活/巨化/续玩及390/320宽界面 |
+| surprises | 金色骰子、神秘敌人、异色/蛋中蛋、秘密配方/共鸣、概率保底及存档幂等、390/320宽显示 |
+| team-rewards | 全队HP/最低攻击/最高攻击奖励、并列点数、阵亡候补、存档与390/320宽领奖界面 |
 | hatch / time | 孵化广告 / 可信时间与体力 |
 | social / dex | 好友结缘 / 图鉴 |
+| postcards | 离线明信片/心愿/一次掷骰/回信合影、PMV1/V2兼容、真实PNG二维码导入、390/320宽与英文页面 |
 | scenery / touch | 地图与营地表现 / 横滑及移动操作 |
 | app-pages | APP有界缓存/邻页加载、原生短滑与网页按钮翻页 |
 | iteration-oct20 | 10层地图、初始技能、独立图鉴、扣血动画时机、倒计时与旧存档兼容 |
@@ -35,11 +40,11 @@
 ./检查试玩.ps1 -Scope release
 ~~~
 
-`release`是全量检查清单，日常小修改仍使用相关模块。模块清单变化后用`node tools/register-release-check.cjs`更新；最新测试结果与发布风险见[测试报告](TEST-REPORT.md)。
+`release`是全量检查清单，日常小修改仍使用相关模块。模块清单变化后用`node tools/register-release-check.cjs`更新；tools组会检查所有已注册脚本是否纳入release，漏项立即失败；最新测试结果与发布风险见[测试报告](TEST-REPORT.md)。
 
 auto仅根据本次明确提供的Files选择，不扫描所有未提交文件。PMGame承担多个模块，最好直接选择功能组；不能因改了一个文案跑全项目。
 
-`workflow.config.json` 的 `moduleRoutes` 提供新模块的精确路由：多语言文字→locale、语言LOGO→logos、APP表现→app-battle、加载缓存→assets。`--plan`可先查看范围；新模块补路由时同步检查`workflow.test.cjs`。
+`workflow.config.json` 的 `moduleRoutes` 提供新模块的精确路由：多语言文字及源翻译表→locale、语言LOGO→logos、APP表现→app-battle、加载缓存→assets、PMSharing/二维码库/Android分享桥→postcards。`--plan`可先查看范围；新模块补路由时同步检查`workflow.test.cjs`。
 
 多个组共享一次类型检查、一次构建，去重重复脚本。构建成功后保存源文件与产物内容指纹；完全匹配才复用，源文件/资产/meta/settings/构建配置/产物变化都重建。ForceBuild用于显式重建；构建中源码变化停止验收。文档/工具组不要求启动Creator。
 

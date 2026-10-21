@@ -35,7 +35,12 @@
 | 音频 | PMAudio.ts | audio |
 | 资源缓存 | PMArt.ts、ArtSourceSizes.ts | assets |
 | APP增强表现 | PMAppBattle.ts、AppBattleArt.ts | app-battle |
-| 文字本地化 | PMLocale.ts、PMTranslations.ts | locale |
+| 文字本地化 | PMLocale.ts、PMTranslations.ts、tools/locales/*.tsv | locale |
+| 明信片与结缘 | PMSharing.ts、PMShare.java、PMModel社交状态 | postcards |
+| 队伍成长奖励 | PMModel奖励、PMGame结算卡 | team-rewards |
+| 本关事件与技能 | PMModel技能规格/runEffects、PMGame事件页 | run-events |
+| 随机惊喜与保底 | SURPRISE_RULES、独立随机流、PMGame揭晓 | surprises |
+| 地图预览布局 | PMGame.adventureUI | map-layout |
 | 品牌本地化 | LocalizedLogoArt.ts、各语言标题图片 | logos |
 | 通用页面/动画 | PMGame.ts | 明确指定本次scope，避免整文件导致宽泛检查 |
 
@@ -60,6 +65,15 @@ APP与小游戏共享数值和存档；增强姿态、场景和粒子按表现�
 | 改编队规模 | 固定3槽的数据校验、UI、拖放、候补、空队伍处理、本局缓存 |
 | 改计时 | readyAt生成、恢复、加速、防重复领取、测试时钟；说明旧任务是否保留截止时间 |
 | 加联网服务 | 身份认证、同步冲突、离线时间、交易原子性、隐私/发布；现有来访码不能替代服务端 |
+
+## 新模块接入的最小闭环
+
+1. 按功能选scope，保留既有服务边界；PMModel/PMGame仍为大型文件，不宣称已经完全插件化，也不在复盘时大拆分。
+2. 新字段同时覆盖旧档恢复、随机结果持久化与重复领取；临时效果/展示信息不得混入永久基因。
+3. 新文案写入源TSV再生成，动态计时也使用翻译。测试必须确认实际语言和页面文字；只设置偏好但被初始化覆盖，不算外语测试通过。
+4. 新入口登记workflow scope与精确文件路由，再生成release清单。规则、运行页面、平台桥分别验证。新增图片共享模块必须测试真实导出图片再导入，不能只测编码函数。
+5. 新音频统一按manifest路由；旧资源退役时同步移除能重建旧文件的工具路径，保留仍在使用的母版和许可证。
+6. 画面验证按真实内容区划分，长名称、小屏、多语言使用实际节点边界及截图。记录结果后交用户测试；不顺带打包。
 
 ## 文档同步方法
 
