@@ -113,10 +113,15 @@ function signing() {
   // This P12 was exported on Windows and contains the leaf identity only.
   const intermediate = path.join(temp, 'AppleWWDRCAG3.cer');
   run('curl', ['--fail', '--location', '--retry', '2', '--max-time', '60', '--output', intermediate, 'https://www.apple.com/certificateauthority/AppleWWDRCAG3.cer'], { stdio: 'ignore' });
-  privateRun(['import', intermediate, '-k', keychain]);
+  const ca = new crypto.X509Certificate(fs.readFileSync(intermediate));
+  assert.equal(ca.fingerprint.replaceAll(':',''), '06EC06599F4ED0027CC58956B4D3AC1255114F35');
+  const caImport = cp.spawnSync('security', ['import', intermediate, '-k', keychain], { encoding: 'utf8' });
+  // Runner images can already contain this public CA. The valid identity check below is definitive.
+  if (caImport.status !== 0) console.log('Public Apple intermediate import: ' + (caImport.stderr || '').trim());
   privateRun(['set-key-partition-list', '-S', 'apple-tool:,apple:', '-k', keychainPassword, keychain]);
   privateRun(['list-keychains', '-d', 'user', '-s', keychain]);
   const identities = capture('security', ['find-identity', '-v', '-p', 'codesigning', keychain]);
+  console.log(identities);
   const allowed = (data.DeveloperCertificates || []).map(c => crypto.createHash('sha1').update(Buffer.from(c,'base64')).digest('hex').toUpperCase());
   const matched = allowed.find(hash => identities.includes(hash));
   assert.ok(matched, 'P12 private key does not match the App Store distribution profile');
