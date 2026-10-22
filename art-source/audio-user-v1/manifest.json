@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-21",
-  "provenance": "User supplied five OGG tracks in D:/game; source originals unchanged.",
+  "date": "2026-10-22",
+  "provenance": "User supplied six OGG tracks in D:/game; source originals unchanged.",
   "conversion": "MP3 128kbps stereo; preserve entire source, no trimming or composition edits.",
   "tracks": [
     {
@@ -62,6 +62,19 @@
       "sourceSha256": "1c6afd75d715ac2bc9e5e4d489af485c4cf6d03f5b03530cd48478d2ef0d4da6",
       "bytes": 1046194,
       "duration": 65.32898,
+      "stream": {
+        "codec_name": "mp3",
+        "sample_rate": "44100",
+        "channels": 2
+      }
+    },
+    {
+      "id": "egg-quest",
+      "source": "D:/game/sound_egg_quest.ogg",
+      "file": "assets/resources/audio/egg-quest.mp3",
+      "sourceSha256": "4141d7d0509be67e914912e4a1a7de57948bed18a474504106f819be7a64ed7d",
+      "bytes": 494488,
+      "duration": 30.833333,
       "stream": {
         "codec_name": "mp3",
         "sample_rate": "44100",

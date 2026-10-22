@@ -8,13 +8,37 @@
   "server": "tools/serve.cjs",
   "moduleRoutes": [
     {
+      "pattern": "^checks/legendary-art\\.cjs$|^art-source/regions-10-12/(generation|art-index)\\.json$",
+      "scopes": [
+        "legendary-art"
+      ]
+    },
+    {
+      "pattern": "^checks/legendary-runtime\\.cjs$",
+      "scopes": [
+        "legendary-runtime"
+      ]
+    },
+    {
+      "pattern": "^art-source/regions-10-12/roster\\.json$|^checks/legendary\\.test\\.cjs$",
+      "scopes": [
+        "legendary"
+      ]
+    },
+    {
+      "pattern": "^assets/scripts/BattleAmbience\\.ts(\\.meta)?$",
+      "scopes": [
+        "battle-ambient"
+      ]
+    },
+    {
       "pattern": "^assets/scripts/(PMSharing\\.ts(\\.meta)?|vendor/)|^native/engine/android/app/src/com/cocos/game/PMShare\\.java$|^tools/social-deps/package(-lock)?\\.json$",
       "scopes": [
         "postcards"
       ]
     },
     {
-      "pattern": "^tools/(build-locales\\.py|locales/(ui|game|pets|surprises|postcards)\\.tsv)$",
+      "pattern": "^tools/(build-locales\\.py|seed-extra-locales\\.py|locales/((ui|game|pets|surprises|postcards|arena)\\.tsv|expanded/[^/]+\\.json|overrides-[^/]+\\.json))$",
       "scopes": [
         "locale"
       ]
@@ -63,6 +87,20 @@
     }
   ],
   "scopes": {
+    "home-layout": {
+      "tests": [],
+      "runtime": [
+        "checks/home-layout-runtime.cjs"
+      ]
+    },
+    "gyms": {
+      "tests": [
+        "checks/gyms.test.cjs"
+      ],
+      "runtime": [
+        "checks/gyms-runtime.cjs"
+      ]
+    },
     "map-layout": {
       "tests": [],
       "runtime": [
@@ -126,7 +164,10 @@
       ],
       "runtime": [
         "checks/locale-runtime.cjs",
-        "checks/locale-hatch-runtime.cjs"
+        "checks/locale-expanded-runtime.cjs",
+        "checks/locale-hatch-runtime.cjs",
+        "checks/language-menu.cjs",
+        "checks/locale-long-text.cjs"
       ]
     },
     "locale-hatch": {
@@ -294,6 +335,7 @@
     },
     "release": {
       "tests": [
+        "checks/gyms.test.cjs",
         "checks/postcards.test.cjs",
         "checks/friend-visit.test.cjs",
         "checks/locale.test.cjs",
@@ -318,9 +360,19 @@
         "checks/workflow.test.cjs",
         "checks/art-cache.test.cjs",
         "checks/iteration-oct20.test.cjs",
+        "checks/breeding-ad.test.cjs",
+        "checks/tapads.test.cjs",
+        "checks/hatch-duration.test.cjs",
+        "checks/shiny.test.cjs",
+        "checks/arena.test.cjs",
+        "checks/legendary.test.cjs",
+        "checks/legendary-art.cjs",
+        "checks/difficulty-curve.test.cjs",
         "checks/release-soak.test.cjs"
       ],
       "runtime": [
+        "checks/home-layout-runtime.cjs",
+        "checks/gyms-runtime.cjs",
         "checks/map-layout-runtime.cjs",
         "checks/postcards-runtime.cjs",
         "checks/friend-visit-runtime.cjs",
@@ -329,7 +381,10 @@
         "checks/team-rewards-runtime.cjs",
         "checks/localized-logo-runtime.cjs",
         "checks/locale-runtime.cjs",
+        "checks/locale-expanded-runtime.cjs",
         "checks/locale-hatch-runtime.cjs",
+        "checks/language-menu.cjs",
+        "checks/locale-long-text.cjs",
         "checks/onboarding-runtime.cjs",
         "checks/workflow-smoke.cjs",
         "checks/mobile-flow-runtime.cjs",
@@ -347,7 +402,19 @@
         "checks/release-audit-runtime.cjs",
         "checks/app-battle-runtime.cjs",
         "checks/iteration-oct20-runtime.cjs",
-        "checks/party-combat-runtime.cjs"
+        "checks/party-combat-runtime.cjs",
+        "checks/breeding-ad-runtime.cjs",
+        "checks/battle-ambient-runtime.cjs",
+        "checks/partners-layout-runtime.cjs",
+        "checks/recipes-runtime.cjs",
+        "checks/shiny-runtime.cjs",
+        "checks/enemy-visual-runtime.cjs",
+        "checks/arena-runtime.cjs",
+        "checks/ui-comfort-runtime.cjs",
+        "checks/ui-comfort-care.cjs",
+        "checks/ui-comfort-social.cjs",
+        "checks/home-motion-runtime.cjs",
+        "checks/legendary-runtime.cjs"
       ]
     },
     "assets": {
@@ -399,6 +466,155 @@
         "checks/party-combat-runtime.cjs",
         "checks/battle-resume-runtime.cjs"
       ]
+    },
+    "breeding-ad": {
+      "tests": [
+        "checks/breeding-ad.test.cjs",
+        "checks/tapads.test.cjs",
+        "checks/locale.test.cjs"
+      ],
+      "runtime": [
+        "checks/breeding-ad-runtime.cjs"
+      ]
+    },
+    "battle-ambient": {
+      "tests": [],
+      "runtime": [
+        "checks/battle-ambient-runtime.cjs"
+      ]
+    },
+    "partners-layout": {
+      "tests": [],
+      "runtime": [
+        "checks/partners-layout-runtime.cjs"
+      ]
+    },
+    "recipes": {
+      "tests": [
+        "checks/surprises.test.cjs",
+        "checks/locale.test.cjs"
+      ],
+      "runtime": [
+        "checks/recipes-runtime.cjs"
+      ]
+    },
+    "hatch-duration": {
+      "tests": [
+        "checks/hatch-duration.test.cjs",
+        "checks/hatch-ad.test.cjs",
+        "checks/breeding-ad.test.cjs",
+        "checks/trusted-clock.test.cjs",
+        "checks/friend-visit.test.cjs",
+        "checks/locale.test.cjs"
+      ],
+      "runtime": [
+        "checks/countdown-hatch-ad-runtime.cjs",
+        "checks/breeding-ad-runtime.cjs"
+      ]
+    },
+    "shiny": {
+      "tests": [
+        "checks/shiny.test.cjs",
+        "checks/surprises.test.cjs",
+        "checks/locale.test.cjs"
+      ],
+      "runtime": [
+        "checks/shiny-runtime.cjs"
+      ]
+    },
+    "enemy-visual": {
+      "tests": [],
+      "runtime": [
+        "checks/enemy-visual-runtime.cjs"
+      ]
+    },
+    "arena": {
+      "tests": [
+        "checks/arena.test.cjs",
+        "checks/locale.test.cjs"
+      ],
+      "runtime": [
+        "checks/arena-runtime.cjs"
+      ]
+    },
+    "ui-comfort": {
+      "tests": [
+        "checks/locale.test.cjs"
+      ],
+      "runtime": [
+        "checks/ui-comfort-runtime.cjs",
+        "checks/ui-comfort-care.cjs",
+        "checks/ui-comfort-social.cjs",
+        "checks/partners-layout-runtime.cjs"
+      ]
+    },
+    "home-motion": {
+      "tests": [],
+      "runtime": [
+        "checks/home-motion-runtime.cjs"
+      ]
+    },
+    "locale-expanded": {
+      "tests": [
+        "checks/locale.test.cjs"
+      ],
+      "runtime": [
+        "checks/locale-expanded-runtime.cjs",
+        "checks/locale-long-text.cjs",
+        "checks/locale-hatch-runtime.cjs",
+        "checks/language-menu.cjs"
+      ]
+    },
+    "locale-text": {
+      "tests": [
+        "checks/locale.test.cjs"
+      ],
+      "runtime": [
+        "checks/locale-long-text.cjs",
+        "checks/locale-hatch-runtime.cjs",
+        "checks/language-menu.cjs"
+      ]
+    },
+    "language-menu": {
+      "tests": [
+        "checks/locale.test.cjs"
+      ],
+      "runtime": [
+        "checks/language-menu.cjs"
+      ]
+    },
+    "legendary": {
+      "tests": [
+        "checks/legendary.test.cjs",
+        "checks/skill-diversity.test.cjs",
+        "checks/egg-rates.test.cjs",
+        "checks/model.test.cjs"
+      ],
+      "runtime": [],
+      "build": false
+    },
+    "legendary-runtime": {
+      "tests": [],
+      "runtime": [
+        "checks/legendary-runtime.cjs"
+      ],
+      "build": true
+    },
+    "legendary-art": {
+      "tests": [
+        "checks/legendary-art.cjs"
+      ],
+      "runtime": [],
+      "build": false
+    },
+    "difficulty-curve": {
+      "tests": [
+        "checks/difficulty-curve.test.cjs",
+        "checks/model.test.cjs",
+        "checks/gyms.test.cjs"
+      ],
+      "runtime": [],
+      "build": false
     }
   }
 }

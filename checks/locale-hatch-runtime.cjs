@@ -1,12 +1,12 @@
 const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('node:assert/strict'),cfg=require('../tools/workflow.config.json'),{chromium}=require(cfg.playwright);
 const ts=require(path.join(path.dirname(cfg.typescript),'typescript.js')),modules={};
-for(const name of ['PMModel','PMTranslations','PMLocale']){const exports={};vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS}}).outputText,{exports,require:p=>modules[p.replace('./','')],Math,Date,JSON,Set,Map,RegExp});modules[name]=exports;}
+for(const name of ['PMModel','PMTranslations','PMLocale']){const exports={};vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2017}}).outputText,{exports,require:p=>modules[p.replace('./','')],Math,Date,JSON,Set,Map,RegExp});modules[name]=exports;}
 const M=modules.PMModel,L=modules.PMLocale,T=Date.now();
 const seed=M.fresh(71,['fox','turtle','bud']);seed.journey={version:1,stage:'done',hero:'ranger',starter:'fox',legacy:true};
 seed.eggs=[{id:'locale-egg',rarity:'normal',affinity:'bud',stage:5,mapId:0}];
 const state=M.startIncubation(seed,'locale-egg',0,T);assert(state.incubators[0]);
 (async()=>{const b=await chromium.launch({channel:'msedge',headless:true});try{
- for(const lang of (process.env.PM_LOCALE_ONLY?[process.env.PM_LOCALE_ONLY]:['en','ja','ko','zh-TW','th','zh-CN','pt-BR','es-419','id','vi','de','fr'])){
+ for(const lang of (process.env.PM_LOCALE_ONLY?[process.env.PM_LOCALE_ONLY]:['en','ja','ko','zh-TW','th','zh-CN','pt-BR','es-419','id','vi','de','fr','hi','ar','ru','ur','bn','tr','fil','mr','te','ta'])){
   L.selectLanguage(lang,'en');const c=await b.newContext({viewport:{width:390,height:844},locale:lang}),p=await c.newPage();
   await c.route('https://timeapi.io/**',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({timeZone:'UTC',dateTime:new Date(T).toISOString().slice(0,-1)})}));
   await c.route('https://worldtimeapi.org/**',r=>r.abort());

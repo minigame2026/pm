@@ -1,0 +1,12 @@
+const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict'),cfg=require('../tools/workflow.config.json'),ts=require(cfg.typescript.replace(/tsc\.js$/,'typescript.js')),M={};
+vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/PMModel.ts','utf8'),{compilerOptions:{module:1,target:4}}).outputText,{exports:M,Math,Date,JSON,Set});
+const T=1792396800000;let s=M.fresh(55,['fox','turtle','bud']);s.pets[0].sex='female';s.pets[1].sex='male';s=M.assignPartySlot(s,s.pets[2].uid,0);s=M.startBreeding(s,s.pets[0].uid,s.pets[1].uid,T);
+const id=s.breeding.id,deadline=s.breeding.readyAt,genes=JSON.stringify(s.breeding.genes);
+for(const [target,completed,now] of [[id,false,T],[id,true,NaN],[id,true,T-1],['different',true,T]])assert.equal(M.grantBreedingAd(s,target,completed,now),s);
+const reduced=M.grantBreedingAd(s,id,true,T+10000);assert.equal(reduced.breeding.readyAt,T+10000);assert.equal(JSON.stringify(reduced.breeding.genes),genes);assert.equal(reduced.pets.length,3,'acceleration does not consume parents');assert.equal(s.breeding.readyAt,deadline);
+assert.equal(M.grantBreedingAd(reduced,id,true,T+10000),reduced,'repeated callback does not grant twice');
+let claimed=M.claimBreeding(reduced,T+10000);assert.equal(claimed.pets.length,1);assert.equal(claimed.eggs.filter(e=>e.id===id).length,1);assert.equal(M.grantBreedingAd(claimed,id,true,T+10000),claimed);
+s.pendingBreedingAd={breedingId:id};const loaded=M.restore(JSON.stringify(s));assert.equal(loaded.pendingBreedingAd.breedingId,id);assert.equal(M.restartRun(loaded,91).pendingBreedingAd.breedingId,id);
+const invalid=JSON.parse(JSON.stringify(s));invalid.pendingBreedingAd={breedingId:13};assert.equal(M.restore(JSON.stringify(invalid)),null);
+const long=JSON.parse(JSON.stringify(s));long.breeding.readyAt=T+7200000;assert.equal(M.grantBreedingAd(long,id,true,T).breeding.readyAt,T,'instant completion is not a fixed subtraction');
+console.log('PASS breeding ad: completion, 30m clamp, trusted time, task binding, pending save/restart, unchanged genes and explicit parent consumption.');

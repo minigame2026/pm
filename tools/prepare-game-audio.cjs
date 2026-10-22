@@ -11,4 +11,4 @@ for(const [id,start,end] of [['hatch',0,2.55]]){
  const duration=end-start;
  cp.execFileSync(config.ffmpeg,['-hide_banner','-loglevel','error','-y','-i',`art-source/audio-v1/masters/${id}.wav`,'-af',`atrim=start=${start}:end=${end},asetpts=PTS-STARTPTS,afade=t=in:d=0.008,afade=t=out:st=${duration-.08}:d=0.08,alimiter=limit=0.8:level=false`,'-ar','44100','-ac','1','-c:a','libmp3lame','-b:a','96k',path.join(out,id+'.mp3')],{stdio:'inherit'});
 }
-console.log('Prepared current five music tracks and hatch effect; casual effects remain unchanged');
+console.log('Prepared current music tracks and hatch effect; casual effects remain unchanged');

@@ -1,46 +1,47 @@
 # PM 项目交接卡
 
-更新：2026-10-21。开工先读此卡，只进入本次有关模块；当前源码和用户最新要求优先。
+更新：2026-10-23。开工只进入本次相关模块，遵循用户任务基准。D:/game/PM，Cocos Creator 3.8.7、TypeScript、手机竖屏。
 
-## 当前位置
+## 当前交付
 
-- 项目：D:/game/PM；Cocos Creator 3.8.7、TypeScript、手机竖屏。
-- 最新网页：[本机试玩](http://127.0.0.1:8780/)，服务目录build/web-mobile；用户测试存档不得覆盖。
-- 最新安卓测试包：`build/releases/骰子宠物精灵-安卓测试版-20261021-v8.apk`，139285926字节（132.8MiB），1.0.7/code8；含异品质合成保高品质、54常驻＋8临时技能、20%战后奇遇及新5首音乐。入场1体力，孵化/交配基础3秒；包内脚本执行与11段音频逐字节核对、v1/v2签名通过，与v7同测试证书。源码已恢复正式数值；未做本轮设备安装。见[手机测试构建](PHONE-TEST-BUILD.md)。
-- 当前网页比v8测试APK增加六类惊喜、离线明信片/回信与地图布局修复；本次整理不重打APK。
-- Google Play、App Store、iOS云构建和支持站的记录集中在[平台状态](RELEASE-STATUS.md)。该文档保留正在进行的iOS工作；同步主分支不等于重建/更新商店包。
-- 全部资料：[文档目录](README.md)；本日成果与验证：[最新复盘](REVIEW-LATEST.md)；限制：[STATUS](STATUS.md)。
+- 网页：[本机试玩](http://127.0.0.1:8780/?balance=learn-v1)，服务目录build/web-mobile。测试用独立浏览器，不覆盖玩家存档。
+- 最近调整：首关先上手，中段减缓断崖，后段递增；老档当前遭遇保留原数值，下场生效，道馆不变。见[曲线与模拟](BALANCE-SIMULATION.md)。
+- 最新已存在APK：build/releases/骰子宠物精灵-安卓测试版-20261022-v10.apk，133.5MiB、1.0.9/code10；不含其后网页更新。本轮未重打APK或上架。
+- iOS/Google Play/广告见[平台状态](RELEASE-STATUS.md)，推送主分支不等于更新商店包。20日著作权资料按用户要求冻结。
+- [文档目录](README.md)、[最新复盘](REVIEW-LATEST.md)、[验证边界](STATUS.md)、[测试记录](TEST-REPORT.md)。
 
 ## 模块定位
 
-| 修改内容 | 实现入口与规则 | 最小检查范围 |
+| 修改内容 | 入口/规则 | 最小检查范围 |
 |---|---|---|
-| 战斗、独立队伍、自动替补 | PMModel.ts、PMGame.ts；[规则](BALANCE.md) | party-combat / types |
-| 全队奖励 | HP、最低/最高攻击加成；[规则](BALANCE.md) | team-rewards |
-| 技能/本关奇遇 | SKILL_SPECS、runEffects、遗传 | run-events |
-| 金骰/神秘敌人/异色/蛋中蛋/配方/共鸣 | SURPRISE_RULES；[规则](BALANCE.md) | surprises |
-| 来信、二维码、结缘 | PMSharing.ts、PMShare.java；[通信小屋](SOCIAL-POSTCARDS.md) | postcards |
-| 地图图文排布 | PMGame.adventureUI；[UI模板](UI-PATTERNS.md) | map-layout |
-| 翻译与封面 | PMLocale、源TSV、LocalizedLogoArt | locale / logos |
-| 音频 | PMAudio；audio-user-v1/manifest.json | audio |
-| 计时、续战、广告 | TrustedClock、DurableCheckpoint、PMRewardedAds；[广告](TAPTAP-ADS.md) | time / resume，平台另验 |
-| 文档、模板、工作流 | [工作流](WORKFLOW.md)、[复用指南](TEMPLATE-REUSE.md) | docs / tools |
+| 曲线/开局/养成 | PMModel.ADVENTURE_DIFFICULTY；[数值](BALANCE.md) | difficulty-curve；长模拟按需 |
+| 战斗/队伍/替补 | PMModel、PMGame | party-combat / types |
+| 全队成长奖励 | PMModel | team-rewards |
+| 技能/奇遇/闪光/配方 | SKILL_SPECS、SURPRISE_RULES、ShinyVisuals | run-events / surprises / shiny / recipes |
+| 九道馆 | PMModel.GYMS、PMGymsUI；[规则](GYMS.md) | gyms |
+| 54新神兽/10–12图 | [批次](REGIONS-10-12.md)、RegionArt | legendary / legendary-art / legendary-runtime |
+| 来信/好友专属蛋 | PMSharing；[通信](SOCIAL-POSTCARDS.md) | postcards / gyms中的好友规则 |
+| 界面与布局 | [UI模板](UI-PATTERNS.md)、PMGame | map-layout / ui-comfort / partners-layout |
+| 营地布局/动效 | homeUI、homeMotionUpdate | home-layout / home-motion |
+| 22语言 | PMLocale、TSV、expanded/overrides、编译器 | locale / locale-expanded / language-menu |
+| 音乐 | PMAudio、audio-user-v1/manifest | audio |
+| 计时/续战/广告 | TrustedClock、DurableCheckpoint、PMRewardedAds | time / resume / hatch-duration；平台另验 |
+| 文档/工具 | [工作流](WORKFLOW.md)、[模板](TEMPLATE-REUSE.md) | docs / tools，不构建 |
 
-## 当前规则摘要
+## 当前事实
 
-- 54系列、162独立形态、18属性、9地图各10层；初始三选一，其后新宠物仅通过孵化。每只UID独立，可重复。
-- 整张地图算一关，逐图解锁；正式入场5体力，上限30，每120秒+1，显示下一点倒计时。九地图按钮5＋4，图鉴地区5＋5，无地区翻页。
-- 三队员独立HP/成长；阵亡顺序替补，全灭失败。HP上限与最低/最高攻击+1发给出战及候补；攻击数组替换和战后20%治疗仅当前出战。奇遇可复活；BOSS直接寻蛋。
-- 54种自然技能、8种本关临时招式、3种共鸣，兼容16种旧技能。普通层战后20%发生有效奇遇；巨化接下来2场，本关临时效果不遗传。
-- 孵化双槽，基础30分钟、小晴24分钟，完整视频减30分钟；交配30分钟产蛋，领取消耗父母。异品质随高品质形态，同品质形态50%随一方；HP和攻击数组独立遗传。
-- 技能合并去重：1种→1；2种→2；3种→2/3各50%；4种→2/3/4占25/50/25%；5种→3/4/5占25/50/25%；6种以上→4/5/6占25/50/25%。已经生成的任务/蛋不重抽。
-- 交配宠物隐藏于伙伴/候补且不能出战。来访只展示快照，用自己的蛋结缘，不复制好友战斗属性；PMV1兼容PMV2，一次掷骰后保存，云服务未接。
-- 十二语言＋英文回退；语言独立偏好，不改存档。每语言独立图片LOGO；新文案、技能与明信片同步源表，母语审校仍待完成。
-- 5首用户音乐：APP长营地、小游戏短营地、普通/精英/BOSS各一；6类音效。旧营地/战斗音乐已退役，孵化音效母版保留。
-- 时间收益只用可信校时，失败暂缓；营地时段仅画面读本机时间。动作先存结果再动画，独立检查点支持中断续玩；真机验证另记。
+- 18属性90系列270形态（地图72＋好友18），12图各10层，选关2行×6；图鉴先270普通后270闪光。初始三选一，此后新宠物只通过孵化；UID独立、可重复。
+- 正式入场5体力，上限30，每120秒恢复1点，显示下一点倒计时；逐图解锁，撤退重打、不返还体力。
+- 3队员HP/本局成长独立，阵亡顺序替补；HP上限/最低和最高攻击奖励全队得到，数组替换及战后20%治疗仅出战。普通层20%奇遇，临时效果仅本关。
+- 108自然＋8临时＋3共鸣，兼容16旧技能；9配方覆盖18属性。5%孵化闪光，最高攻击+2。交配选中闪光亲本形态才继承，否则仍可自发闪光。
+- 孵化R/SR/SSR为10/20/30分钟，小晴缩短20%；交配30分钟产蛋，领取消耗父母，交配中不能参战。两者视频立即完成，可信校时失败暂缓。
+- 异品质遗传高品质形态，同品质50%随父母；HP和攻击数组独立遗传。技能去重后1→1；2→2；3→2/3各50%；4→2/3/4为25/50/25%；5→3/4/5同分布；≥6→4/5/6同分布。已生成任务/蛋不重抽。
+- 9道馆通过对应1–9地图解锁，各双属性全部系列，10战无偷蛋、通关不可重打；徽章永久对应属性HP/攻击+10%，不写入遗传基础。
+- 好友扫码＋回信双方各一次赠蛋；每好友可信24小时周期30%赠蛋。好友蛋只出54专属形态，品质70/25/5；无自动跨机通知。
+- 22语言自动匹配、英文回退、手动选择；新增hi/ar/ru/ur/bn/tr/fil/mr/te/ta，使用英文LOGO和国际名字。母语审校/原生字体待验。
+- 6首用户音乐（长短营地、普通/精英/BOSS、偷蛋），地区轻动效、营地6时段。运行图按需加载，原画保留在art-source不进包。
 
 ## 执行约定
 
-按本次功能选组，组合去重且复用构建；文档/工具检查不构建游戏。新scope必须纳入release，由tools检查防漏。参考[工作流](WORKFLOW.md)。源码/资产改动后导出当前数据；[自动表](generated/TABLES.md)是只读快照。
-
-本地报告checks/workflow/<scope>-latest.json区分规则、浏览器、截图；历史报告不当作当前全量验收。发布须另核对正式5体力/30分钟与签名、平台广告、手机性能。新项目改保存键、端口、协议身份及平台配置，见[模板指南](TEMPLATE-REUSE.md)。
+相关组共享构建，新scope登记release；仅按任务范围检查。规则变化后导出generated只读快照。技术通过、截图、玩家验收、平台真机分开记录。
+新项目按[模板指南](TEMPLATE-REUSE.md)更换存储身份/端口/平台配置。批量内容/语言和真实开局平衡经验见[仓库SKILL](../tools/skills/cocos-miniapp-game-dev/SKILL.md)。历史留Git，交接卡不再叠加旧版本日志。

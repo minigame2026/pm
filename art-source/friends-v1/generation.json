@@ -1,0 +1,128 @@
+[
+  {
+    "id": "postplat",
+    "source": "art-source/friends-v1/postplat-forms-v1.png",
+    "generatedSource": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-3e757a51-2bca-4c9c-b85d-6891793d86f7.png",
+    "sha256": "ab9dbce6b910911939ebc28fcdd729683220d5f632ae4c8f14698c8be4f6ab65",
+    "asset": "assets/resources/art/postplat-forms-v1.png"
+  },
+  {
+    "id": "emberhorse",
+    "source": "art-source/friends-v1/emberhorse-forms-v1.png",
+    "generatedSource": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-9a30e439-c4b3-46ff-bab2-d0d0ef6598f3.png",
+    "sha256": "5b49a54ca746162a9029b5786a9c582a73e0259fd6034c8003bd3caa96f752b8",
+    "asset": "assets/resources/art/emberhorse-forms-v1.png"
+  },
+  {
+    "id": "leafsloth",
+    "source": "art-source/friends-v1/leafsloth-forms-v1.png",
+    "generatedSource": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-84f2c01d-20c7-4c6c-bf52-35ae2afd810e.png",
+    "sha256": "83d74554aa02e91f66e73f38f616d62e3e2a23663a50c4d7234a2c7b8a1838f7",
+    "asset": "assets/resources/art/leafsloth-forms-v1.png"
+  },
+  {
+    "id": "bubpup",
+    "source": "art-source/friends-v1/bubpup-forms-v1.png",
+    "generatedSource": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-381845d8-a1d5-42ba-ac6b-1a4a98b7cd1b.png",
+    "sha256": "6cbfd271fa68386ec28d223b2808990df39d61666583df717aa012c5b8695321",
+    "asset": "assets/resources/art/bubpup-forms-v1.png"
+  },
+  {
+    "id": "arceel",
+    "source": "art-source/friends-v1/arceel-forms-v1.png",
+    "generatedSource": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-b8e2c030-68e3-47da-b8a2-79a96e5e9440.png",
+    "sha256": "b5362711a515efc4c83bdfe353da5508fc09b66848455b001255ba7db982ad21",
+    "asset": "assets/resources/art/arceel-forms-v1.png"
+  },
+  {
+    "id": "snowpeng",
+    "source": "art-source/friends-v1/snowpeng-forms-v1.png",
+    "generatedSource": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-2a63ef4d-76ed-4df9-b69f-ee65c4931370.png",
+    "sha256": "bdea6c13456bc9313b1a87941b5ed73b1089a65450e94cdbb9b59e31ab9f9000",
+    "asset": "assets/resources/art/snowpeng-forms-v1.png"
+  },
+  {
+    "id": "punchshrimp",
+    "source": "art-source/friends-v1/punchshrimp-forms-v1.png",
+    "generatedSource": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-3e786b01-c0c8-4234-8a23-8d1138fe93b6.png",
+    "sha256": "f6dabc53b6dd5462c8ad8e773cc07d2de1cdd7c97a0a95847a9f27eadb46fabb",
+    "asset": "assets/resources/art/punchshrimp-forms-v1.png"
+  },
+  {
+    "id": "velvetslug",
+    "source": "art-source/friends-v1/velvetslug-forms-v1.png",
+    "generatedSource": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-4fbbb0b4-c893-400a-9a31-390a5b427f4a.png",
+    "sha256": "7cc5c751e953b18e43e4fb017b1362e89af9c0f89452d8a1c0659913d3b8f747",
+    "asset": "assets/resources/art/velvetslug-forms-v1.png"
+  },
+  {
+    "id": "sandlion",
+    "source": "art-source/friends-v1/sandlion-forms-v1.png",
+    "generatedSource": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-2d905a1a-7413-4007-954d-675dff1360cf.png",
+    "sha256": "587ea9e4069a1a0c78c370f5be025225a31c305f2ecf3dfd6790fa31ba7ce0aa",
+    "asset": "assets/resources/art/sandlion-forms-v1.png"
+  },
+  {
+    "id": "sailfrigate",
+    "source": "art-source/friends-v1/sailfrigate-forms-v1.png",
+    "generatedSource": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-b91c8fd3-c64c-4e78-b4b1-52a7d4345ff5.png",
+    "sha256": "0dab6a9d0625d1f51830b83886e34d6a201dc03677d5ff2725c1540f121b084f",
+    "asset": "assets/resources/art/sailfrigate-forms-v1.png"
+  },
+  {
+    "id": "orbitphant",
+    "source": "art-source/friends-v1/orbitphant-forms-v1.png",
+    "generatedSource": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-b184df4e-f092-4a03-9843-f4075ad411bf.png",
+    "sha256": "c18d0a4f5f53015cb0ec7f7257b6e1355fed1d066a95a9e519088711f8570111",
+    "asset": "assets/resources/art/orbitphant-forms-v1.png"
+  },
+  {
+    "id": "twigbug",
+    "source": "art-source/friends-v1/twigbug-forms-v1.png",
+    "generatedSource": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-52400f27-ae68-4ba0-8e7e-5951e0395215.png",
+    "sha256": "484f981d113908e7830fe648d88b6800903834b2f9216ee2b4a7d80d22a34d34",
+    "asset": "assets/resources/art/twigbug-forms-v1.png"
+  },
+  {
+    "id": "gemnautilus",
+    "source": "art-source/friends-v1/gemnautilus-forms-v1.png",
+    "generatedSource": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-7e43b3b6-c2fe-4019-b0ee-d552098c5ad5.png",
+    "sha256": "d08a60d2cadf72d59d14d69469d4d8fbc048c309ede828e202bdf894a3f07a9f",
+    "asset": "assets/resources/art/gemnautilus-forms-v1.png"
+  },
+  {
+    "id": "shroudsprite",
+    "source": "art-source/friends-v1/shroudsprite-forms-v1.png",
+    "generatedSource": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-e9c362d8-45e3-4041-9a02-dfd91e01606d.png",
+    "sha256": "3e868ce454bdd133dbf86566e302a70b74431aa3253f2592440bb1de1351a196",
+    "asset": "assets/resources/art/shroudsprite-forms-v1.png"
+  },
+  {
+    "id": "quillwyvern",
+    "source": "art-source/friends-v1/quillwyvern-forms-v1.png",
+    "generatedSource": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-3119dd44-bc53-4e17-8991-7f29b146a909.png",
+    "sha256": "ca18bfab12dcb30a80b5d2b3e04fb02271bfbc72ee4b855b132480889441207e",
+    "asset": "assets/resources/art/quillwyvern-forms-v1.png"
+  },
+  {
+    "id": "nightmeerkat",
+    "source": "art-source/friends-v1/nightmeerkat-forms-v1.png",
+    "generatedSource": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-68cf5fda-e3d9-4445-b40e-a0138868ce44.png",
+    "sha256": "e3376ad0d72d2cb4cf061ceb467592e540d03c9e2072e5cd4bf5a2fe22577448",
+    "asset": "assets/resources/art/nightmeerkat-forms-v1.png"
+  },
+  {
+    "id": "railpede",
+    "source": "art-source/friends-v1/railpede-forms-v1.png",
+    "generatedSource": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-c301af36-8a33-45f7-83c6-95587ff6e5ab.png",
+    "sha256": "40a5c4e075dfda37b8dcc66b2749ae256044de94f90f1bfd74ea2575d3db6946",
+    "asset": "assets/resources/art/railpede-forms-v1.png"
+  },
+  {
+    "id": "peachflamingo",
+    "source": "art-source/friends-v1/peachflamingo-forms-v1.png",
+    "generatedSource": "C:\\Users\\k\\.codex\\generated_images\\01a13a87-2b39-78e2-95d0-45f08d572726\\exec-8deaa0ce-7b3c-477c-96d9-c91e25d92041.png",
+    "sha256": "be6e6ea002798553d7fb820365586b2fc05b403bddfbbc46f66aac07072743f7",
+    "asset": "assets/resources/art/peachflamingo-forms-v1.png"
+  }
+]

@@ -76,10 +76,10 @@ test('bonding needs three interactions and an existing eligible egg',()=>{
   s=bonded().s;eq(M.bondEligibleEggs(s,'dragon'),[]);unchanged(s,x=>M.startBondIncubation(x,'missing-egg','dragon',0,10000));assert.equal(s.eggs.length,0);assert.equal(s.pets.length,2);
 });
 
-test('A to B bond hatching consumes an existing egg and creates one natural local pet after 30 minutes',()=>{
+test('A to B bond hatching consumes an existing egg and creates one natural local pet after its rarity-specific duration',()=>{
   let {a,s}=bonded();const original=copy(egg(s)),pets=copy(s.pets),before=s,prior=copy(s);eq(M.bondEligibleEggs(s,'dragon').map(e=>e.id),[original.id]);assert.equal(M.bondBlockReason(s,s.eggs[0],'dragon'),'');
   s=M.startBondIncubation(s,original.id,'dragon',0,10000);eq(before,prior);eq(s.pets,pets);assert.equal(s.eggs.length,1);const linked=s.eggs[0];assert.equal(linked.id,original.id);assert.equal(linked.affinity,'dragon');assert.equal(linked.rarity,original.rarity);assert.equal(linked.mapId,original.mapId);assert.equal(linked.stage,original.stage);assert.equal(linked.bond.sourceAffinity,original.affinity);assert.equal(linked.bond.species,'dragon');assert.equal(linked.bond.owner,a.s.social.owner);assert.ok(linked.bond.cardId);assert.equal(linked.genes,undefined);
-  assert.equal(M.HATCH_DURATION,30*60*1000);assert.equal(s.incubators[0].readyAt-s.incubators[0].startedAt,M.HATCH_DURATION);assert.equal(s.incubators[0].result,'normal');eq(M.availableEggs(s),[]);unchanged(s,x=>M.claimHatch(x,0,10000+M.HATCH_DURATION-1));
+  assert.equal(M.HATCH_DURATION,30*60*1000);assert.equal(s.incubators[0].readyAt-s.incubators[0].startedAt,M.HATCH_DURATIONS.normal);assert.equal(s.incubators[0].result,'normal');eq(M.availableEggs(s),[]);unchanged(s,x=>M.claimHatch(x,0,10000+M.HATCH_DURATIONS.normal-1));
   s=finish(s);assert.equal(s.pets.length,pets.length+1);const child=s.pets.at(-1);assert.equal(child.id,'dragon');assert.equal(child.rarity,'normal');assert.equal(child.baseHP,M.PETS.dragon.hp);eq(child.baseFaces,M.PETS.dragon.faces);eq(child.skills,M.petSkills({id:'dragon',rarity:'normal'}));assert.notEqual(child.baseHP,a.p.baseHP);assert.notEqual(child.uid,a.p.uid);assert.equal(s.pendingHatch.petId,'dragon');assert.equal(s.pendingHatch.rarity,'normal');assert.ok(s.hatchedEggIds.includes(original.id));unchanged(s,x=>M.claimHatch(x,0,99999999));saved(s);
 });
 

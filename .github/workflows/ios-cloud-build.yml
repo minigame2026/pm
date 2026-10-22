@@ -3,6 +3,15 @@ on:
   workflow_dispatch:
   push:
     branches: [codex/ios-cloud-build]
+    paths:
+      - assets/**
+      - settings/**
+      - native/engine/common/**
+      - package.json
+      - config/buildConfig_ios.json
+      - config/ios-app-icon.png
+      - tools/ios-cloud-build.cjs
+      - .github/workflows/ios-cloud-build.yml
 
 permissions:
   contents: read

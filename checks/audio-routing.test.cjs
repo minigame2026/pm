@@ -10,8 +10,10 @@ for(const native of [false,true]){
  finish(camp);assert(!a.music.playing);a.unlock();assert(a.music.playing);a.select('camp');assert.equal(loaded.filter(p=>p==='audio/'+camp).length,1);
  a.select('battle-normal');a.select('battle-elite');finish('battle-normal');assert.equal(a.music.clip.name,camp,'stale load cannot replace selected track');finish('battle-elite');assert.equal(a.music.clip.name,'battle-elite');assert(released.includes('audio/'+camp));assert(released.includes('audio/battle-normal'));
  a.pause('ad');assert(!a.music.playing);a.select('battle-boss');finish('battle-boss');assert(!a.music.playing);a.resume('ad');assert.equal(a.music.clip.name,'battle-boss');assert(a.music.playing);
- a.toggle('music');assert(!a.music.playing);a.toggle('music');assert(a.music.playing);a.dispose();assert(!a.music.playing);
+ a.select('egg-quest');finish('egg-quest');assert.equal(a.music.clip.name,'egg-quest');assert(released.includes('audio/battle-boss'));a.select('egg-quest');assert.equal(loaded.filter(p=>p==='audio/egg-quest').length,1);
+ a.pause('background');assert(!a.music.playing);a.resume('background');assert(a.music.playing);
+ a.toggle('music');assert(!a.music.playing);a.toggle('music');assert(a.music.playing);a.dispose();assert(!a.music.playing);assert(released.includes('audio/egg-quest'));
 }
 assert(!fs.existsSync('assets/resources/audio/camp.mp3'));assert(!fs.existsSync('assets/resources/audio/battle.mp3'));
-for(const n of ['camp-app','camp-short','battle-normal','battle-elite','battle-boss'])assert(fs.statSync('assets/resources/audio/'+n+'.mp3').size>1000);
+for(const n of ['camp-app','camp-short','battle-normal','battle-elite','battle-boss','egg-quest'])assert(fs.statSync('assets/resources/audio/'+n+'.mp3').size>1000);
 console.log('PASS native/full vs browser/short; three enemy ranks; lazy loading, stale requests, release, ad/mute/dispose; obsolete tracks removed');

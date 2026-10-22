@@ -12,7 +12,7 @@
 | 美术 | BattleArt/EvolutionArt/RegionArt/RegionPads/HeroArt | 前后视图、三形态、脚底、地台、主角矩形 |
 | 营地时段 | HomeScenery.ts | 本机时间的纯画面切换 |
 | 离线分享 | PMSharing.ts、Android PMShare.java | 明信片渲染、二维码本机解析、系统分享/导入；见SOCIAL-POSTCARDS |
-| 本地化 | PMLocale、PMTranslations、LocalizedLogoArt | 十二语言文字与独立品牌图片 |
+| 本地化 | PMLocale、PMTranslations、LocalizedLogoArt | 22语言文字；原12语言品牌图片，新增10语言沿用英文国际版图片 |
 | 检查 | [workflow.config](../tools/workflow.config.json) | 模块选组、构建复用、截图及结果 |
 
 规则函数有效操作返回新State，无效操作返回原对象。显示异常先核对模型结果、路由、刷新范围；不能改随机数掩盖UI问题。

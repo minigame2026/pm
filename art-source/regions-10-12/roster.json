@@ -1,0 +1,1367 @@
+{
+  "version": 1,
+  "notes": "18 new species appended after existing 72. Three normal/SR/SSR forms per species. Existing content identifiers and order remain stable.",
+  "maps": [
+    {
+      "id": 9,
+      "name": "圣枝云庭",
+      "en": "Sacred Cloudgarden",
+      "stages": 10,
+      "tint": "#5fa994",
+      "pets": [
+        "oracleater",
+        "mandragrove",
+        "ribbonoar",
+        "sixwing",
+        "glassdarner",
+        "cairnheart"
+      ],
+      "eggRates": {
+        "elite": [
+          50,
+          38,
+          12
+        ],
+        "boss": [
+          20,
+          35,
+          45
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "name": "万象神炉",
+      "en": "Divine Crucible",
+      "stages": 10,
+      "tint": "#bb8267",
+      "pets": [
+        "solion",
+        "drumthunder",
+        "crystalmedusa",
+        "ringolin",
+        "maskasura",
+        "starhorseshoe"
+      ],
+      "eggRates": {
+        "elite": [
+          45,
+          41,
+          14
+        ],
+        "boss": [
+          15,
+          35,
+          50
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "name": "太初星界",
+      "en": "Primordial Starrealm",
+      "stages": 10,
+      "tint": "#8885bc",
+      "pets": [
+        "frostfan",
+        "origamighost",
+        "orbeholder",
+        "eclipsehydra",
+        "bloomgiraffe",
+        "triarchdrake"
+      ],
+      "eggRates": {
+        "elite": [
+          40,
+          44,
+          16
+        ],
+        "boss": [
+          10,
+          35,
+          55
+        ]
+      }
+    }
+  ],
+  "pets": [
+    {
+      "id": "oracleater",
+      "type": "一般",
+      "mapId": 9,
+      "rank": "normal",
+      "color": "#bea27a",
+      "archetype": "食蚁兽神兽；极长细吻、低矮厚肩、巨蓬尾如拱门；四足，禁止貘鼻/狐狸体型。",
+      "hp": 110,
+      "faces": [
+        26,
+        34,
+        43
+      ],
+      "enemyFaces": [
+        24,
+        32,
+        41
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "祈纹食蚁兽",
+          "en": "Runeater"
+        },
+        {
+          "rarity": "SR",
+          "name": "梦庭守蚁兽",
+          "en": "Dreamater"
+        },
+        {
+          "rarity": "SSR",
+          "name": "天谕食蚁神",
+          "en": "Oracleater"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_legendary_oracleater_0",
+          "name": "探梦长吻",
+          "en": "Dream Siphon",
+          "when": "attack",
+          "gate": "minimum",
+          "effect": "drain",
+          "amount": 35,
+          "description": "攻击时 · 攻击点数为最低：恢复实际伤害的 35%。每场一次。",
+          "descriptionEn": "On attack · with the lowest attack roll: restore 35% of damage dealt as HP. Once per battle."
+        },
+        {
+          "code": "trait_legendary_oracleater_1",
+          "name": "回药祷言",
+          "en": "Restoring Prayer",
+          "when": "heal",
+          "gate": "any",
+          "effect": "refundHeal",
+          "amount": 1,
+          "description": "使用生命药水时：生命药水 +1。每场一次。",
+          "descriptionEn": "On using a healing potion: gain 1 healing potion. Once per battle."
+        },
+        {
+          "code": "trait_legendary_oracleater_2",
+          "name": "周梦回生",
+          "en": "Dreamcycle",
+          "when": "roll",
+          "gate": "repeat",
+          "effect": "healPct",
+          "amount": 25,
+          "description": "掷骰时 · 点数与上回合相同：恢复最大生命 25%。每场一次。",
+          "descriptionEn": "On rolling · when the roll matches the previous turn: restore 25% of maximum HP. Once per battle."
+        }
+      ]
+    },
+    {
+      "id": "mandragrove",
+      "type": "草",
+      "mapId": 9,
+      "rank": "normal",
+      "color": "#71aa73",
+      "archetype": "曼德拉古树人；直立宽树干、分叉根足、树冠如鹿角但没有鹿身；由苗木长为巨型树祖。",
+      "hp": 110,
+      "faces": [
+        26,
+        34,
+        43
+      ],
+      "enemyFaces": [
+        24,
+        32,
+        41
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "树咒芽灵",
+          "en": "Sprigroot"
+        },
+        {
+          "rarity": "SR",
+          "name": "古根树卫",
+          "en": "Rootwarden"
+        },
+        {
+          "rarity": "SSR",
+          "name": "万枝森祖",
+          "en": "Grovefather"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_legendary_mandragrove_0",
+          "name": "根饮",
+          "en": "Rootdraught",
+          "when": "guard",
+          "gate": "low",
+          "effect": "healPct",
+          "amount": 20,
+          "description": "防御时 · 生命不超过50%：恢复最大生命 20%。每场一次。",
+          "descriptionEn": "On guard · at 50% HP or less: restore 20% of maximum HP. Once per battle."
+        },
+        {
+          "code": "trait_legendary_mandragrove_1",
+          "name": "棘露",
+          "en": "Thorn Dew",
+          "when": "heal",
+          "gate": "any",
+          "effect": "poison",
+          "amount": 4,
+          "description": "使用生命药水时：施毒3次，每次伤害 4。每场一次。",
+          "descriptionEn": "On using a healing potion: poison for 3 ticks of 4 damage. Once per battle."
+        },
+        {
+          "code": "trait_legendary_mandragrove_2",
+          "name": "古森庇荫",
+          "en": "Ancient Canopy",
+          "when": "hit",
+          "gate": "guarded",
+          "effect": "healPct",
+          "amount": 30,
+          "description": "受到反击时 · 本次选择防御：恢复最大生命 30%。每场一次。",
+          "descriptionEn": "On taking a counterattack · after choosing guard: restore 30% of maximum HP. Once per battle."
+        }
+      ]
+    },
+    {
+      "id": "ribbonoar",
+      "type": "水",
+      "mapId": 9,
+      "rank": "normal",
+      "color": "#69aeca",
+      "archetype": "皇带鱼神兽；极长扁绸带身、窄头与冠鳍、垂直S形游姿；没有四足、龙翼或鳗鱼圆筒身。",
+      "hp": 110,
+      "faces": [
+        26,
+        34,
+        43
+      ],
+      "enemyFaces": [
+        24,
+        32,
+        41
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "绸冠带鱼",
+          "en": "Ribbonfin"
+        },
+        {
+          "rarity": "SR",
+          "name": "霓流皇带鱼",
+          "en": "Regaloar"
+        },
+        {
+          "rarity": "SSR",
+          "name": "沧穹绸龙",
+          "en": "Tideribbon"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_legendary_ribbonoar_0",
+          "name": "流光回潮",
+          "en": "Gleaming Tide",
+          "when": "attack",
+          "gate": "maximum",
+          "effect": "heal",
+          "amount": 12,
+          "description": "攻击时 · 攻击点数为最高：恢复生命 +12。每场一次。",
+          "descriptionEn": "On attack · with the highest attack roll: restore 12 HP. Once per battle."
+        },
+        {
+          "code": "trait_legendary_ribbonoar_1",
+          "name": "潮赠",
+          "en": "Tidal Gift",
+          "when": "guard",
+          "gate": "any",
+          "effect": "refundBoost",
+          "amount": 1,
+          "description": "防御时：力量药水 +1。每场一次。",
+          "descriptionEn": "On guard: gain 1 power potion. Once per battle."
+        },
+        {
+          "code": "trait_legendary_ribbonoar_2",
+          "name": "绸冠水幕",
+          "en": "Silken Veil",
+          "when": "heal",
+          "gate": "maximum",
+          "effect": "shield",
+          "amount": 24,
+          "description": "使用生命药水时 · 攻击点数为最高：获得护盾 +24。每场一次。",
+          "descriptionEn": "On using a healing potion · with the highest attack roll: gain 24 shield. Once per battle."
+        }
+      ]
+    },
+    {
+      "id": "sixwing",
+      "type": "飞行",
+      "mapId": 9,
+      "rank": "normal",
+      "color": "#91bad1",
+      "archetype": "信天翁神兽；三对六翼分层展开、短鸟身、长钩嘴、足下云羽；禁止凤凰长尾。",
+      "hp": 110,
+      "faces": [
+        26,
+        34,
+        43
+      ],
+      "enemyFaces": [
+        24,
+        32,
+        41
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "六翎信天雏",
+          "en": "Sixplume"
+        },
+        {
+          "rarity": "SR",
+          "name": "巡云六翼鸟",
+          "en": "Cloudalbatross"
+        },
+        {
+          "rarity": "SSR",
+          "name": "苍空六翼神",
+          "en": "Skyseraph"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_legendary_sixwing_0",
+          "name": "天羽叠屏",
+          "en": "Skyfeather Screen",
+          "when": "roll",
+          "gate": "maximum",
+          "effect": "shield",
+          "amount": 9,
+          "description": "掷骰时 · 攻击点数为最高：获得护盾 +9。每场一次。",
+          "descriptionEn": "On rolling · with the highest attack roll: gain 9 shield. Once per battle."
+        },
+        {
+          "code": "trait_legendary_sixwing_1",
+          "name": "顺风回旋",
+          "en": "Tailwind Spiral",
+          "when": "attack",
+          "gate": "full",
+          "effect": "nextMax",
+          "amount": 1,
+          "description": "攻击时 · 满血时：下回合攻击取最高点数。每场一次。",
+          "descriptionEn": "On attack · at full HP: roll maximum attack next turn. Once per battle."
+        },
+        {
+          "code": "trait_legendary_sixwing_2",
+          "name": "六翼掠影",
+          "en": "Sixwing Mirage",
+          "when": "hit",
+          "gate": "maximum",
+          "effect": "evade",
+          "amount": 1,
+          "description": "受到反击时 · 攻击点数为最高：免疫本次反击。每场一次。",
+          "descriptionEn": "On taking a counterattack · with the highest attack roll: evade this counterattack. Once per battle."
+        }
+      ]
+    },
+    {
+      "id": "glassdarner",
+      "type": "虫",
+      "mapId": 9,
+      "rank": "elite",
+      "color": "#84c7b0",
+      "archetype": "玻璃蜻蜓；细长节腹、四片透明几何翅、横向展开、复眼；禁止蛾/蝴蝶宽圆翅。",
+      "hp": 114,
+      "faces": [
+        27,
+        35,
+        44
+      ],
+      "enemyFaces": [
+        25,
+        33,
+        42
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "琉翅蜻",
+          "en": "Glassdart"
+        },
+        {
+          "rarity": "SR",
+          "name": "镜翼蜓卫",
+          "en": "Mirrordarner"
+        },
+        {
+          "rarity": "SSR",
+          "name": "万镜神蜓",
+          "en": "Prismdarner"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_legendary_glassdarner_0",
+          "name": "透镜毒针",
+          "en": "Lens Sting",
+          "when": "attack",
+          "gate": "resisted",
+          "effect": "poison",
+          "amount": 4,
+          "description": "攻击时 · 本次攻击被抵抗：施毒3次，每次伤害 4。每场一次。",
+          "descriptionEn": "On attack · when the attack is resisted: poison for 3 ticks of 4 damage. Once per battle."
+        },
+        {
+          "code": "trait_legendary_glassdarner_1",
+          "name": "碎光晶尘",
+          "en": "Shard Dust",
+          "when": "roll",
+          "gate": "minimum",
+          "effect": "poison",
+          "amount": 5,
+          "description": "掷骰时 · 攻击点数为最低：施毒3次，每次伤害 5。每场一次。",
+          "descriptionEn": "On rolling · with the lowest attack roll: poison for 3 ticks of 5 damage. Once per battle."
+        },
+        {
+          "code": "trait_legendary_glassdarner_2",
+          "name": "千镜虹吸",
+          "en": "Prism Siphon",
+          "when": "attack",
+          "gate": "boosted",
+          "effect": "drain",
+          "amount": 60,
+          "description": "攻击时 · 力量药水生效时：恢复实际伤害的 60%。每场一次。",
+          "descriptionEn": "On attack · while a power potion is active: restore 60% of damage dealt as HP. Once per battle."
+        }
+      ]
+    },
+    {
+      "id": "cairnheart",
+      "type": "岩石",
+      "mapId": 9,
+      "rank": "boss",
+      "color": "#b3a18c",
+      "archetype": "层叠巨石生命；悬浮不规则石块堆成短塔、胸腔发光石芯、粗短石足；非龟、蟹、岩蛇。",
+      "hp": 118,
+      "faces": [
+        28,
+        36,
+        45
+      ],
+      "enemyFaces": [
+        26,
+        34,
+        43
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "叠石幼灵",
+          "en": "Pebblestack"
+        },
+        {
+          "rarity": "SR",
+          "name": "重岩塔卫",
+          "en": "Cairnwarden"
+        },
+        {
+          "rarity": "SSR",
+          "name": "山岳碑神",
+          "en": "Mountainmonolith"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_legendary_cairnheart_0",
+          "name": "满垒",
+          "en": "Full Rampart",
+          "when": "guard",
+          "gate": "full",
+          "effect": "shield",
+          "amount": 18,
+          "description": "防御时 · 满血时：获得护盾 +18。每场一次。",
+          "descriptionEn": "On guard · at full HP: gain 18 shield. Once per battle."
+        },
+        {
+          "code": "trait_legendary_cairnheart_1",
+          "name": "叠岩缓冲",
+          "en": "Layered Stone",
+          "when": "hit",
+          "gate": "minimum",
+          "effect": "reduce",
+          "amount": 10,
+          "description": "受到反击时 · 攻击点数为最低：本次伤害减少 10。每场一次。",
+          "descriptionEn": "On taking a counterattack · with the lowest attack roll: reduce incoming damage by 10. Once per battle."
+        },
+        {
+          "code": "trait_legendary_cairnheart_2",
+          "name": "镇岳不动",
+          "en": "Mountain Stillness",
+          "when": "hit",
+          "gate": "low",
+          "effect": "reduce",
+          "amount": 16,
+          "description": "受到反击时 · 生命不超过50%：本次伤害减少 16。每场一次。",
+          "descriptionEn": "On taking a counterattack · at 50% HP or less: reduce incoming damage by 16. Once per battle."
+        }
+      ]
+    },
+    {
+      "id": "solion",
+      "type": "火",
+      "mapId": 10,
+      "rank": "normal",
+      "color": "#e6a061",
+      "archetype": "日冠雄狮；圆盘太阳鬃、前重后轻的狮躯、大方爪与尾端火团；区别于无鬃猞猁。",
+      "hp": 128,
+      "faces": [
+        32,
+        41,
+        51
+      ],
+      "enemyFaces": [
+        30,
+        39,
+        49
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "日绒狮",
+          "en": "Sunmane"
+        },
+        {
+          "rarity": "SR",
+          "name": "曜鬃圣狮",
+          "en": "Dawnlion"
+        },
+        {
+          "rarity": "SSR",
+          "name": "日冕狮神",
+          "en": "Solion"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_legendary_solion_0",
+          "name": "温阳火种",
+          "en": "Sunseed",
+          "when": "boost",
+          "gate": "low",
+          "effect": "healPct",
+          "amount": 20,
+          "description": "使用力量药水时 · 生命不超过50%：恢复最大生命 20%。每场一次。",
+          "descriptionEn": "On using a power potion · at 50% HP or less: restore 20% of maximum HP. Once per battle."
+        },
+        {
+          "code": "trait_legendary_solion_1",
+          "name": "曜鬃灼印",
+          "en": "Dawnbrand",
+          "when": "attack",
+          "gate": "maximum",
+          "effect": "poison",
+          "amount": 6,
+          "description": "攻击时 · 攻击点数为最高：施毒3次，每次伤害 6。每场一次。",
+          "descriptionEn": "On attack · with the highest attack roll: poison for 3 ticks of 6 damage. Once per battle."
+        },
+        {
+          "code": "trait_legendary_solion_2",
+          "name": "日冕噬焰",
+          "en": "Corona Feast",
+          "when": "attack",
+          "gate": "low",
+          "effect": "drain",
+          "amount": 80,
+          "description": "攻击时 · 生命不超过50%：恢复实际伤害的 80%。每场一次。",
+          "descriptionEn": "On attack · at 50% HP or less: restore 80% of damage dealt as HP. Once per battle."
+        }
+      ]
+    },
+    {
+      "id": "drumthunder",
+      "type": "电",
+      "mapId": 10,
+      "rank": "normal",
+      "color": "#dec45e",
+      "archetype": "双足雷鼓神灵；鼓形躯干、短腿、环绕雷鼓、两条大鼓槌臂，类仪式神兽不做人类脸。",
+      "hp": 128,
+      "faces": [
+        32,
+        41,
+        51
+      ],
+      "enemyFaces": [
+        30,
+        39,
+        49
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "雷鼓灵",
+          "en": "Drumimp"
+        },
+        {
+          "rarity": "SR",
+          "name": "震霆鼓卫",
+          "en": "Thunderdrummer"
+        },
+        {
+          "rarity": "SSR",
+          "name": "万雷司鼓神",
+          "en": "Stormdrum"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_legendary_drumthunder_0",
+          "name": "回声鼓障",
+          "en": "Echo Ward",
+          "when": "roll",
+          "gate": "repeat",
+          "effect": "shield",
+          "amount": 14,
+          "description": "掷骰时 · 点数与上回合相同：获得护盾 +14。每场一次。",
+          "descriptionEn": "On rolling · when the roll matches the previous turn: gain 14 shield. Once per battle."
+        },
+        {
+          "code": "trait_legendary_drumthunder_1",
+          "name": "雷雨鼓点",
+          "en": "Stormbeat",
+          "when": "boost",
+          "gate": "any",
+          "effect": "poison",
+          "amount": 5,
+          "description": "使用力量药水时：施毒3次，每次伤害 5。每场一次。",
+          "descriptionEn": "On using a power potion: poison for 3 ticks of 5 damage. Once per battle."
+        },
+        {
+          "code": "trait_legendary_drumthunder_2",
+          "name": "凯旋震鼓",
+          "en": "Victory Drum",
+          "when": "attack",
+          "gate": "maximum",
+          "effect": "refundBoost",
+          "amount": 1,
+          "description": "攻击时 · 攻击点数为最高：力量药水 +1。每场一次。",
+          "descriptionEn": "On attack · with the highest attack roll: gain 1 power potion. Once per battle."
+        }
+      ]
+    },
+    {
+      "id": "crystalmedusa",
+      "type": "毒",
+      "mapId": 10,
+      "rank": "normal",
+      "color": "#b487c6",
+      "archetype": "毒晶水母；硬质倒皇冠多棱伞盖、成束锋利水晶触须、镂空中央；区别于圆软幽灵水母。",
+      "hp": 128,
+      "faces": [
+        32,
+        41,
+        51
+      ],
+      "enemyFaces": [
+        30,
+        39,
+        49
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "毒晶浮母",
+          "en": "Toxbell"
+        },
+        {
+          "rarity": "SR",
+          "name": "紫棱冥母",
+          "en": "Prismedusa"
+        },
+        {
+          "rarity": "SSR",
+          "name": "万毒晶后",
+          "en": "Venomatriarch"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_legendary_crystalmedusa_0",
+          "name": "反棱毒刺",
+          "en": "Prism Barb",
+          "when": "hit",
+          "gate": "any",
+          "effect": "poison",
+          "amount": 3,
+          "description": "受到反击时：施毒3次，每次伤害 3。每场一次。",
+          "descriptionEn": "On taking a counterattack: poison for 3 ticks of 3 damage. Once per battle."
+        },
+        {
+          "code": "trait_legendary_crystalmedusa_1",
+          "name": "冥晶毒潮",
+          "en": "Gloom Venom",
+          "when": "guard",
+          "gate": "low",
+          "effect": "poison",
+          "amount": 7,
+          "description": "防御时 · 生命不超过50%：施毒3次，每次伤害 7。每场一次。",
+          "descriptionEn": "On guard · at 50% HP or less: poison for 3 ticks of 7 damage. Once per battle."
+        },
+        {
+          "code": "trait_legendary_crystalmedusa_2",
+          "name": "万毒汲流",
+          "en": "Venom Torrent",
+          "when": "attack",
+          "gate": "third",
+          "effect": "venomDrain",
+          "amount": 3,
+          "description": "攻击时 · 第三次攻击时：汲取25%伤害并施毒3次，每次3点。每场一次。",
+          "descriptionEn": "On attack · on the third attack: restore 25% of damage dealt as HP and poison for 3 ticks of 3 damage. Once per battle."
+        }
+      ]
+    },
+    {
+      "id": "ringolin",
+      "type": "地面",
+      "mapId": 10,
+      "rank": "normal",
+      "color": "#c2a276",
+      "archetype": "环状披甲神兽；常态侧立成完整轮环、头尾围合、层层盾甲形成轮缘、四短爪外撑；不要普通直身穿山甲。",
+      "hp": 128,
+      "faces": [
+        32,
+        41,
+        51
+      ],
+      "enemyFaces": [
+        30,
+        39,
+        49
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "环甲小兽",
+          "en": "Ringlet"
+        },
+        {
+          "rarity": "SR",
+          "name": "地轮甲卫",
+          "en": "Ringolin"
+        },
+        {
+          "rarity": "SSR",
+          "name": "环陆镇岳兽",
+          "en": "Terrawheel"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_legendary_ringolin_0",
+          "name": "轮缘甲障",
+          "en": "Rim Shield",
+          "when": "hit",
+          "gate": "maximum",
+          "effect": "shield",
+          "amount": 14,
+          "description": "受到反击时 · 攻击点数为最高：获得护盾 +14。每场一次。",
+          "descriptionEn": "On taking a counterattack · with the highest attack roll: gain 14 shield. Once per battle."
+        },
+        {
+          "code": "trait_legendary_ringolin_1",
+          "name": "地轮蓄势",
+          "en": "Earthwheel Charge",
+          "when": "guard",
+          "gate": "low",
+          "effect": "nextMax",
+          "amount": 1,
+          "description": "防御时 · 生命不超过50%：下回合攻击取最高点数。每场一次。",
+          "descriptionEn": "On guard · at 50% HP or less: roll maximum attack next turn. Once per battle."
+        },
+        {
+          "code": "trait_legendary_ringolin_2",
+          "name": "万环壁垒",
+          "en": "Ringwall",
+          "when": "attack",
+          "gate": "minimum",
+          "effect": "shield",
+          "amount": 26,
+          "description": "攻击时 · 攻击点数为最低：获得护盾 +26。每场一次。",
+          "descriptionEn": "On attack · with the lowest attack roll: gain 26 shield. Once per battle."
+        }
+      ]
+    },
+    {
+      "id": "maskasura",
+      "type": "格斗",
+      "mapId": 10,
+      "rank": "elite",
+      "color": "#c48d79",
+      "archetype": "面具护法兽；悬浮面具胸身，R双臂、SR四臂、SSR六臂；宽掌仪式拳姿，短足，非猿猴或人类。",
+      "hp": 132,
+      "faces": [
+        33,
+        42,
+        52
+      ],
+      "enemyFaces": [
+        31,
+        40,
+        50
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "双拳面灵",
+          "en": "Maskling"
+        },
+        {
+          "rarity": "SR",
+          "name": "四臂面卫",
+          "en": "Maskwarden"
+        },
+        {
+          "rarity": "SSR",
+          "name": "六臂武神",
+          "en": "Hexaguard"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_legendary_maskasura_0",
+          "name": "起手神印",
+          "en": "Opening Seal",
+          "when": "guard",
+          "gate": "full",
+          "effect": "nextMax",
+          "amount": 1,
+          "description": "防御时 · 满血时：下回合攻击取最高点数。每场一次。",
+          "descriptionEn": "On guard · at full HP: roll maximum attack next turn. Once per battle."
+        },
+        {
+          "code": "trait_legendary_maskasura_1",
+          "name": "破御擒拿",
+          "en": "Wardbreaker Grip",
+          "when": "attack",
+          "gate": "resisted",
+          "effect": "drain",
+          "amount": 70,
+          "description": "攻击时 · 本次攻击被抵抗：恢复实际伤害的 70%。每场一次。",
+          "descriptionEn": "On attack · when the attack is resisted: restore 70% of damage dealt as HP. Once per battle."
+        },
+        {
+          "code": "trait_legendary_maskasura_2",
+          "name": "六臂护法",
+          "en": "Sixfold Aegis",
+          "when": "boost",
+          "gate": "low",
+          "effect": "shield",
+          "amount": 28,
+          "description": "使用力量药水时 · 生命不超过50%：获得护盾 +28。每场一次。",
+          "descriptionEn": "On using a power potion · at 50% HP or less: gain 28 shield. Once per battle."
+        }
+      ]
+    },
+    {
+      "id": "starhorseshoe",
+      "type": "钢",
+      "mapId": 10,
+      "rank": "boss",
+      "color": "#94aeba",
+      "archetype": "星舰鲎；极宽低平马蹄盾壳、中央舰桥隆起、背部星轨、细长剑尾与多小足；非甲虫、螃蟹。",
+      "hp": 136,
+      "faces": [
+        34,
+        43,
+        53
+      ],
+      "enemyFaces": [
+        32,
+        41,
+        51
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "星甲鲎",
+          "en": "Starshoe"
+        },
+        {
+          "rarity": "SR",
+          "name": "舷盾重鲎",
+          "en": "Hullshoe"
+        },
+        {
+          "rarity": "SSR",
+          "name": "穹舰神鲎",
+          "en": "Starcarrier"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_legendary_starhorseshoe_0",
+          "name": "启航护场",
+          "en": "Launch Field",
+          "when": "roll",
+          "gate": "first",
+          "effect": "powerGuard",
+          "amount": 5,
+          "description": "掷骰时 · 本场首次掷骰：获得护盾 +5，下回合最高点数。每场一次。",
+          "descriptionEn": "On rolling · on the first roll of battle: gain 5 shield and roll maximum attack next turn. Once per battle."
+        },
+        {
+          "code": "trait_legendary_starhorseshoe_1",
+          "name": "舷灯急修",
+          "en": "Hull Repair",
+          "when": "heal",
+          "gate": "low",
+          "effect": "shield",
+          "amount": 24,
+          "description": "使用生命药水时 · 生命不超过50%：获得护盾 +24。每场一次。",
+          "descriptionEn": "On using a healing potion · at 50% HP or less: gain 24 shield. Once per battle."
+        },
+        {
+          "code": "trait_legendary_starhorseshoe_2",
+          "name": "穹舰装甲",
+          "en": "Astral Hull",
+          "when": "hit",
+          "gate": "boosted",
+          "effect": "reduce",
+          "amount": 20,
+          "description": "受到反击时 · 力量药水生效时：本次伤害减少 20。每场一次。",
+          "descriptionEn": "On taking a counterattack · while a power potion is active: reduce incoming damage by 20. Once per battle."
+        }
+      ]
+    },
+    {
+      "id": "frostfan",
+      "type": "冰",
+      "mapId": 11,
+      "rank": "normal",
+      "color": "#96cce4",
+      "archetype": "冰扇孔雀；直立小身，尾屏为巨大层叠冰晶折扇、方尖冰羽而非彩色圆眼尾羽；强几何扇形。",
+      "hp": 148,
+      "faces": [
+        39,
+        49,
+        60
+      ],
+      "enemyFaces": [
+        37,
+        47,
+        58
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "雪屏雏",
+          "en": "Snowfan"
+        },
+        {
+          "rarity": "SR",
+          "name": "霜扇孔雀",
+          "en": "Frostpeacock"
+        },
+        {
+          "rarity": "SSR",
+          "name": "冰阙屏王",
+          "en": "Glacierfan"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_legendary_frostfan_0",
+          "name": "凝冰预兆",
+          "en": "Frost Omen",
+          "when": "hit",
+          "gate": "any",
+          "effect": "nextMax",
+          "amount": 1,
+          "description": "受到反击时：下回合攻击取最高点数。每场一次。",
+          "descriptionEn": "On taking a counterattack: roll maximum attack next turn. Once per battle."
+        },
+        {
+          "code": "trait_legendary_frostfan_1",
+          "name": "羽扇冰障",
+          "en": "Fan of Ice",
+          "when": "attack",
+          "gate": "boosted",
+          "effect": "shield",
+          "amount": 18,
+          "description": "攻击时 · 力量药水生效时：获得护盾 +18。每场一次。",
+          "descriptionEn": "On attack · while a power potion is active: gain 18 shield. Once per battle."
+        },
+        {
+          "code": "trait_legendary_frostfan_2",
+          "name": "霜心再生",
+          "en": "Frostheart",
+          "when": "roll",
+          "gate": "minimum",
+          "effect": "healPct",
+          "amount": 30,
+          "description": "掷骰时 · 攻击点数为最低：恢复最大生命 30%。每场一次。",
+          "descriptionEn": "On rolling · with the lowest attack roll: restore 30% of maximum HP. Once per battle."
+        }
+      ]
+    },
+    {
+      "id": "origamighost",
+      "type": "幽灵",
+      "mapId": 11,
+      "rank": "normal",
+      "color": "#b8add0",
+      "archetype": "折纸幽灵；不对称棱角纸折身、纸角面具、散开的长符纸带；无灯、伞、水母或圆球主体。",
+      "hp": 148,
+      "faces": [
+        39,
+        49,
+        60
+      ],
+      "enemyFaces": [
+        37,
+        47,
+        58
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "折纸幽灵",
+          "en": "Foldling"
+        },
+        {
+          "rarity": "SR",
+          "name": "千折纸使",
+          "en": "Paperwraith"
+        },
+        {
+          "rarity": "SSR",
+          "name": "冥卷纸神",
+          "en": "Origamortis"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_legendary_origamighost_0",
+          "name": "纸隙遁影",
+          "en": "Paper Slip",
+          "when": "hit",
+          "gate": "minimum",
+          "effect": "evade",
+          "amount": 1,
+          "description": "受到反击时 · 攻击点数为最低：免疫本次反击。每场一次。",
+          "descriptionEn": "On taking a counterattack · with the lowest attack roll: evade this counterattack. Once per battle."
+        },
+        {
+          "code": "trait_legendary_origamighost_1",
+          "name": "折页蓄愿",
+          "en": "Folded Wish",
+          "when": "heal",
+          "gate": "low",
+          "effect": "nextMax",
+          "amount": 1,
+          "description": "使用生命药水时 · 生命不超过50%：下回合攻击取最高点数。每场一次。",
+          "descriptionEn": "On using a healing potion · at 50% HP or less: roll maximum attack next turn. Once per battle."
+        },
+        {
+          "code": "trait_legendary_origamighost_2",
+          "name": "返魂长卷",
+          "en": "Soulscroll",
+          "when": "hit",
+          "gate": "lethal",
+          "effect": "healPct",
+          "amount": 35,
+          "description": "受到反击时 · 将受到致命伤害：恢复最大生命 35%。每场一次。",
+          "descriptionEn": "On taking a counterattack · before taking lethal damage: restore 35% of maximum HP. Once per battle."
+        }
+      ]
+    },
+    {
+      "id": "orbeholder",
+      "type": "超能力",
+      "mapId": 11,
+      "rank": "normal",
+      "color": "#b099ce",
+      "archetype": "悬浮独眼星仪；一枚大眼球，外绕多层互相垂直的断环与几何刻度，无躯干四肢。",
+      "hp": 148,
+      "faces": [
+        39,
+        49,
+        60
+      ],
+      "enemyFaces": [
+        37,
+        47,
+        58
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "星瞳球",
+          "en": "Orbeye"
+        },
+        {
+          "rarity": "SR",
+          "name": "悬环星仪",
+          "en": "Astrolabe"
+        },
+        {
+          "rarity": "SSR",
+          "name": "天测独眼神",
+          "en": "Orbeholder"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_legendary_orbeholder_0",
+          "name": "星瞳调息",
+          "en": "Starfocus",
+          "when": "roll",
+          "gate": "maximum",
+          "effect": "healPct",
+          "amount": 15,
+          "description": "掷骰时 · 攻击点数为最高：恢复最大生命 15%。每场一次。",
+          "descriptionEn": "On rolling · with the highest attack roll: restore 15% of maximum HP. Once per battle."
+        },
+        {
+          "code": "trait_legendary_orbeholder_1",
+          "name": "双环祝福",
+          "en": "Twin Orbit",
+          "when": "boost",
+          "gate": "any",
+          "effect": "healShield",
+          "amount": 4,
+          "description": "使用力量药水时：恢复生命及护盾各 +4。每场一次。",
+          "descriptionEn": "On using a power potion: restore 4 HP and gain 4 shield. Once per battle."
+        },
+        {
+          "code": "trait_legendary_orbeholder_2",
+          "name": "天仪回转",
+          "en": "Celestial Cycle",
+          "when": "roll",
+          "gate": "repeat",
+          "effect": "powerGuard",
+          "amount": 5,
+          "description": "掷骰时 · 点数与上回合相同：获得护盾 +5，下回合最高点数。每场一次。",
+          "descriptionEn": "On rolling · when the roll matches the previous turn: gain 5 shield and roll maximum attack next turn. Once per battle."
+        }
+      ]
+    },
+    {
+      "id": "eclipsehydra",
+      "type": "恶",
+      "mapId": 11,
+      "rank": "normal",
+      "color": "#8a789e",
+      "archetype": "双首蚀月蛇；两条反向长颈共一个盘踞环身、双首之间黑月空洞，完全无足无翼；区别于单头眼镜蛇。",
+      "hp": 148,
+      "faces": [
+        39,
+        49,
+        60
+      ],
+      "enemyFaces": [
+        37,
+        47,
+        58
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "双吻影蛇",
+          "en": "Twinshade"
+        },
+        {
+          "rarity": "SR",
+          "name": "噬月双首蛇",
+          "en": "Moonmaw"
+        },
+        {
+          "rarity": "SSR",
+          "name": "蚀天双首神蛇",
+          "en": "Eclipserpent"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_legendary_eclipsehydra_0",
+          "name": "伏影毒牙",
+          "en": "Shadowfang",
+          "when": "attack",
+          "gate": "low",
+          "effect": "poison",
+          "amount": 7,
+          "description": "攻击时 · 生命不超过50%：施毒3次，每次伤害 7。每场一次。",
+          "descriptionEn": "On attack · at 50% HP or less: poison for 3 ticks of 7 damage. Once per battle."
+        },
+        {
+          "code": "trait_legendary_eclipsehydra_1",
+          "name": "双首蚀魂",
+          "en": "Twin Eclipse",
+          "when": "attack",
+          "gate": "resisted",
+          "effect": "venomDrain",
+          "amount": 3,
+          "description": "攻击时 · 本次攻击被抵抗：汲取25%伤害并施毒3次，每次3点。每场一次。",
+          "descriptionEn": "On attack · when the attack is resisted: restore 25% of damage dealt as HP and poison for 3 ticks of 3 damage. Once per battle."
+        },
+        {
+          "code": "trait_legendary_eclipsehydra_2",
+          "name": "吞月回生",
+          "en": "Moonrenewal",
+          "when": "attack",
+          "gate": "enemyHalf",
+          "effect": "healPct",
+          "amount": 30,
+          "description": "攻击时 · 敌人生命不超过50%：恢复最大生命 30%。每场一次。",
+          "descriptionEn": "On attack · when the enemy has 50% HP or less: restore 30% of maximum HP. Once per battle."
+        }
+      ]
+    },
+    {
+      "id": "bloomgiraffe",
+      "type": "妖精",
+      "mapId": 11,
+      "rank": "elite",
+      "color": "#d8a5c2",
+      "archetype": "花冠长颈鹿神兽；极长竖颈、细高四腿、短背、树冠花角，身上花瓣斑块；不是鹿/麒麟轮廓。",
+      "hp": 152,
+      "faces": [
+        40,
+        50,
+        61
+      ],
+      "enemyFaces": [
+        38,
+        48,
+        59
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "花角长颈兽",
+          "en": "Bloomneck"
+        },
+        {
+          "rarity": "SR",
+          "name": "圣庭花冠兽",
+          "en": "Gardengiraffe"
+        },
+        {
+          "rarity": "SSR",
+          "name": "天苑长颈神",
+          "en": "Heavengarden"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_legendary_bloomgiraffe_0",
+          "name": "花露补给",
+          "en": "Dew Supply",
+          "when": "guard",
+          "gate": "low",
+          "effect": "refundHeal",
+          "amount": 1,
+          "description": "防御时 · 生命不超过50%：生命药水 +1。每场一次。",
+          "descriptionEn": "On guard · at 50% HP or less: gain 1 healing potion. Once per battle."
+        },
+        {
+          "code": "trait_legendary_bloomgiraffe_1",
+          "name": "香冠回响",
+          "en": "Blossom Echo",
+          "when": "heal",
+          "gate": "low",
+          "effect": "refundBoost",
+          "amount": 1,
+          "description": "使用生命药水时 · 生命不超过50%：力量药水 +1。每场一次。",
+          "descriptionEn": "On using a healing potion · at 50% HP or less: gain 1 power potion. Once per battle."
+        },
+        {
+          "code": "trait_legendary_bloomgiraffe_2",
+          "name": "天苑恩泽",
+          "en": "Garden Grace",
+          "when": "roll",
+          "gate": "first",
+          "effect": "healPct",
+          "amount": 40,
+          "description": "掷骰时 · 本场首次掷骰：恢复最大生命 40%。每场一次。",
+          "descriptionEn": "On rolling · on the first roll of battle: restore 40% of maximum HP. Once per battle."
+        }
+      ]
+    },
+    {
+      "id": "triarchdrake",
+      "type": "龙",
+      "mapId": 11,
+      "rank": "boss",
+      "color": "#839ebb",
+      "archetype": "太古多首巨龙；R一首三角、SR双首、SSR三首，宽厚六肢龙躯与一对巨翼，头颈呈扇形分开；不用细长游龙。",
+      "hp": 156,
+      "faces": [
+        41,
+        51,
+        62
+      ],
+      "enemyFaces": [
+        39,
+        49,
+        60
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "三角幼龙",
+          "en": "Trihorn"
+        },
+        {
+          "rarity": "SR",
+          "name": "双首翼龙",
+          "en": "Twindrake"
+        },
+        {
+          "rarity": "SSR",
+          "name": "三曜太古龙",
+          "en": "Triarchwyrm"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_legendary_triarchdrake_0",
+          "name": "幼龙棘息",
+          "en": "Thornbreath",
+          "when": "attack",
+          "gate": "minimum",
+          "effect": "poison",
+          "amount": 5,
+          "description": "攻击时 · 攻击点数为最低：施毒3次，每次伤害 5。每场一次。",
+          "descriptionEn": "On attack · with the lowest attack roll: poison for 3 ticks of 5 damage. Once per battle."
+        },
+        {
+          "code": "trait_legendary_triarchdrake_1",
+          "name": "双曜蓄守",
+          "en": "Twin Radiance",
+          "when": "attack",
+          "gate": "third",
+          "effect": "powerGuard",
+          "amount": 5,
+          "description": "攻击时 · 第三次攻击时：获得护盾 +5，下回合最高点数。每场一次。",
+          "descriptionEn": "On attack · on the third attack: gain 5 shield and roll maximum attack next turn. Once per battle."
+        },
+        {
+          "code": "trait_legendary_triarchdrake_2",
+          "name": "三首共噬",
+          "en": "Triune Feast",
+          "when": "attack",
+          "gate": "third",
+          "effect": "drain",
+          "amount": 100,
+          "description": "攻击时 · 第三次攻击时：恢复实际伤害的 100%。每场一次。",
+          "descriptionEn": "On attack · on the third attack: restore 100% of damage dealt as HP. Once per battle."
+        }
+      ]
+    }
+  ]
+}

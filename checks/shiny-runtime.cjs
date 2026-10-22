@@ -1,0 +1,26 @@
+const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict'),cfg=require('../tools/workflow.config.json'),{chromium}=require(cfg.playwright),ts=require(cfg.typescript.replace(/tsc\.js$/,'typescript.js')),M={};
+vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/PMModel.ts','utf8'),{compilerOptions:{module:1,target:4}}).outputText,{exports:M,Math,Date,JSON,Set});
+const T=Date.now();let base=M.fresh(91,['fox','otter','bud']);base.journey={version:1,stage:'done',hero:'ranger',starter:'fox',legacy:true};base=M.syncStamina(base,T);base.pets[0].shiny=true;base.active=JSON.parse(JSON.stringify(base.pets[0]));base.runRoster={};base.pets.push({...base.pets[0],uid:'normal-fox',shiny:false});
+(async()=>{const browser=await chromium.launch({channel:'msedge',headless:true});try{for(const width of [390,320]){
+ const context=await browser.newContext({viewport:{width,height:width===390?844:568},isMobile:true,hasTouch:true}),page=await context.newPage(),errors=[];
+ page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error'&&/shader|compile|effect/i.test(m.text()))errors.push(m.text());});
+ await context.route('https://timeapi.io/**',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({timeZone:'UTC',dateTime:new Date(T).toISOString().slice(0,-1)})}));await context.route('https://worldtimeapi.org/**',r=>r.abort());
+ await page.addInitScript(s=>{localStorage.setItem('pm.creature-dice.v1',JSON.stringify(s));localStorage.setItem('pm.language.v1','zh-CN');},base);
+ await page.goto(cfg.url+'?shiny=test');await page.waitForFunction(()=>globalThis.__pm?.ready,null,{timeout:120000});
+ await page.evaluate(async()=>{globalThis.cc=await System.import('cc');function walk(n){const c=n.components.find(c=>typeof c.pokedexUI==='function');if(c)return c;for(const ch of n.children){const f=walk(ch);if(f)return f;}}globalThis.g=walk(cc.director.getScene());globalThis.nodes=(root=g.root)=>{const out=[];function walk(n){out.push(n);n.children.forEach(walk);}walk(root);return out;};});
+ await page.evaluate(()=>{g.screen='home';g.render();});await page.waitForFunction(()=>!g.artCache.pending);await page.waitForTimeout(120);await page.screenshot({path:`checks/shiny-home-${width}.png`});
+ assert(await page.evaluate(()=>nodes().find(n=>n.name==='stamina-ad').children.some(n=>nodes(n).some(x=>x.getComponent(cc.Label)?.string==='AD'))));
+ await page.evaluate(()=>g.pokedexUI());await page.waitForFunction(()=>!g.artCache.pending);await page.waitForTimeout(150);
+ const ids=await page.evaluate(()=>nodes().map(n=>n.name).filter(n=>n.startsWith('dex-pet-')));assert.deepEqual(ids.slice(0,6),Array.from(M.PET_IDS).slice(0,2).flatMap(id=>M.RARITIES.map(r=>'dex-pet-'+id+'-'+r)));
+ assert(await page.evaluate(()=>nodes().some(n=>n.getComponent(cc.Label)?.string.includes('/ 324'))));
+ await page.evaluate(()=>{globalThis.normalFrame=nodes(nodes().find(n=>n.name==='dex-pet-fox-normal')).map(n=>n.getComponent(cc.Sprite)).find(s=>s?.spriteFrame).spriteFrame;g.dexPage=17;g.pokedexUI();});
+ assert((await page.evaluate(()=>nodes().map(n=>n.name).filter(n=>n.startsWith('dex-pet-')))).every(id=>!id.endsWith('-shiny')));
+ await page.evaluate(()=>{g.dexPage=18;g.pokedexUI();});await page.waitForFunction(()=>!g.artCache.pending);
+ const shinyIds=await page.evaluate(()=>nodes().map(n=>n.name).filter(n=>n.startsWith('dex-pet-')));assert.deepEqual(shinyIds.slice(0,6),Array.from(M.PET_IDS).slice(0,2).flatMap(id=>M.RARITIES.map(r=>'dex-pet-'+id+'-'+r+'-shiny')));
+ assert(await page.evaluate(()=>{const s=nodes(nodes().find(n=>n.name==='dex-pet-fox-normal-shiny')).map(n=>n.getComponent(cc.Sprite)).find(s=>s?.spriteFrame);return s.spriteFrame===normalFrame&&!!s.customMaterial;}));
+ await page.screenshot({path:`checks/shiny-dex-${width}.png`});await page.evaluate(()=>g.dexDetail('fox','normal',true));await page.waitForFunction(()=>!g.artCache.pending);await page.screenshot({path:`checks/shiny-detail-${width}.png`});
+ await page.evaluate(()=>{g.dexOwnedOnly=true;g.dexPage=0;g.pokedexUI();});const owned=await page.evaluate(()=>nodes().map(n=>n.name).filter(n=>n.startsWith('dex-pet-')));assert(owned.includes('dex-pet-fox-normal')&&owned.includes('dex-pet-fox-normal-shiny'));assert(owned.at(-1).endsWith('-shiny'));assert(owned.slice(0,-1).every(id=>!id.endsWith('-shiny')));assert.equal(owned.length,new Set(base.pets.map(p=>p.id+':'+p.rarity+':'+!!p.shiny)).size);
+ const battle=M.act({...base,expedition:true},'challenge');await page.evaluate(s=>{g.state=s;g.screen='game';g.render();},battle);assert.equal(await page.evaluate(()=>nodes().filter(n=>n.name.startsWith('shiny-spark-')).length),10);
+ await page.waitForTimeout(250);await page.screenshot({path:`checks/shiny-battle-${width}.png`});await page.waitForTimeout(1100);assert.equal(await page.evaluate(()=>nodes().filter(n=>n.name==='shiny-entrance').length),0);
+ await page.evaluate(()=>g.render());assert.equal(await page.evaluate(()=>nodes().filter(n=>n.name==='shiny-entrance').length),0);assert.deepEqual(errors,[]);await context.close();
+ }console.log('PASS shiny dex normal-first order and page18/19 boundary/324/ownership/shared texture/material, detail, battle burst bounded and once, stamina ad icon, 390/320.');}finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

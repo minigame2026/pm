@@ -1,0 +1,1618 @@
+{
+  "date": "2026-10-23",
+  "method": "Production single-starter onboarding, visible dice policies, no ads/gym/friends; sequential virtual wait; 120 attempt cap",
+  "cohorts": {
+    "before-first": {
+      "sourceSHA": "b02dc8129b1fa7974b2e6ee9f35de8dc23ed6752c96cc89f3ab05ac21e86031d",
+      "assumptions": {
+        "freshFactory": "newJourney/chooseHero/chooseStarter",
+        "ads": false,
+        "gyms": false,
+        "friends": false,
+        "productChanges": false,
+        "waiting": "virtual trusted elapsed time, normal durations",
+        "policy": "visible current dice only, heal/boost, guard poor rolls, type-aware 3-pet team; no RNG peeking",
+        "breeding": "opposite sex, real consumes parents, choose high expected base stats plus skill union, never retry same egg"
+      },
+      "results": [
+        {
+          "starter": "fox",
+          "hero": "ranger",
+          "careful": false,
+          "n": 100,
+          "win": 1,
+          "reachElite": 100,
+          "gotEgg": 98,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            2,
+            21,
+            33,
+            23,
+            11,
+            9
+          ],
+          "medianTurns": 22
+        },
+        {
+          "starter": "fox",
+          "hero": "keeper",
+          "careful": false,
+          "n": 100,
+          "win": 0,
+          "reachElite": 99,
+          "gotEgg": 99,
+          "deaths": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            20,
+            35,
+            21,
+            12,
+            10
+          ],
+          "medianTurns": 21
+        },
+        {
+          "starter": "fox",
+          "hero": "medic",
+          "careful": false,
+          "n": 100,
+          "win": 1,
+          "reachElite": 99,
+          "gotEgg": 99,
+          "deaths": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            12,
+            30,
+            26,
+            16,
+            14
+          ],
+          "medianTurns": 23
+        },
+        {
+          "starter": "bud",
+          "hero": "ranger",
+          "careful": false,
+          "n": 100,
+          "win": 2,
+          "reachElite": 100,
+          "gotEgg": 71,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            55,
+            18,
+            20,
+            4,
+            0,
+            1
+          ],
+          "medianTurns": 19
+        },
+        {
+          "starter": "bud",
+          "hero": "keeper",
+          "careful": false,
+          "n": 100,
+          "win": 1,
+          "reachElite": 98,
+          "gotEgg": 69,
+          "deaths": [
+            0,
+            0,
+            0,
+            2,
+            53,
+            23,
+            10,
+            6,
+            3,
+            2
+          ],
+          "medianTurns": 19
+        },
+        {
+          "starter": "bud",
+          "hero": "medic",
+          "careful": false,
+          "n": 100,
+          "win": 3,
+          "reachElite": 99,
+          "gotEgg": 75,
+          "deaths": [
+            0,
+            0,
+            0,
+            1,
+            41,
+            26,
+            10,
+            10,
+            7,
+            2
+          ],
+          "medianTurns": 20
+        },
+        {
+          "starter": "otter",
+          "hero": "ranger",
+          "careful": false,
+          "n": 100,
+          "win": 5,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            19,
+            34,
+            28,
+            10,
+            3
+          ],
+          "medianTurns": 26
+        },
+        {
+          "starter": "otter",
+          "hero": "keeper",
+          "careful": false,
+          "n": 100,
+          "win": 1,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            21,
+            41,
+            24,
+            6,
+            6
+          ],
+          "medianTurns": 25
+        },
+        {
+          "starter": "otter",
+          "hero": "medic",
+          "careful": false,
+          "n": 100,
+          "win": 1,
+          "reachElite": 100,
+          "gotEgg": 99,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            2,
+            20,
+            49,
+            16,
+            8,
+            4
+          ],
+          "medianTurns": 26
+        },
+        {
+          "starter": "fox",
+          "hero": "ranger",
+          "careful": true,
+          "n": 100,
+          "win": 1,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            5,
+            24,
+            22,
+            48
+          ],
+          "medianTurns": 44
+        },
+        {
+          "starter": "fox",
+          "hero": "keeper",
+          "careful": true,
+          "n": 100,
+          "win": 3,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            8,
+            11,
+            23,
+            54
+          ],
+          "medianTurns": 45
+        },
+        {
+          "starter": "fox",
+          "hero": "medic",
+          "careful": true,
+          "n": 100,
+          "win": 4,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            7,
+            11,
+            13,
+            65
+          ],
+          "medianTurns": 45
+        },
+        {
+          "starter": "bud",
+          "hero": "ranger",
+          "careful": true,
+          "n": 100,
+          "win": 7,
+          "reachElite": 100,
+          "gotEgg": 91,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            23,
+            20,
+            23,
+            11,
+            10,
+            6
+          ],
+          "medianTurns": 36
+        },
+        {
+          "starter": "bud",
+          "hero": "keeper",
+          "careful": true,
+          "n": 100,
+          "win": 4,
+          "reachElite": 100,
+          "gotEgg": 91,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            25,
+            19,
+            19,
+            17,
+            10,
+            6
+          ],
+          "medianTurns": 37
+        },
+        {
+          "starter": "bud",
+          "hero": "medic",
+          "careful": true,
+          "n": 100,
+          "win": 8,
+          "reachElite": 100,
+          "gotEgg": 89,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            23,
+            16,
+            19,
+            16,
+            12,
+            6
+          ],
+          "medianTurns": 36
+        },
+        {
+          "starter": "otter",
+          "hero": "ranger",
+          "careful": true,
+          "n": 100,
+          "win": 12,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            23,
+            32,
+            17,
+            12
+          ],
+          "medianTurns": 44
+        },
+        {
+          "starter": "otter",
+          "hero": "keeper",
+          "careful": true,
+          "n": 100,
+          "win": 9,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            9,
+            28,
+            29,
+            17,
+            7
+          ],
+          "medianTurns": 40
+        },
+        {
+          "starter": "otter",
+          "hero": "medic",
+          "careful": true,
+          "n": 100,
+          "win": 18,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            21,
+            27,
+            22,
+            10
+          ],
+          "medianTurns": 46
+        }
+      ]
+    },
+    "first-report": {
+      "sourceSHA": "0aa182228c946fe1d613a82e8e81eee728ef8f7d9d6d5d410312cd3165e8ea29",
+      "assumptions": {
+        "freshFactory": "newJourney/chooseHero/chooseStarter",
+        "ads": false,
+        "gyms": false,
+        "friends": false,
+        "productChanges": false,
+        "waiting": "virtual trusted elapsed time, normal durations",
+        "policy": "visible current dice only, heal/boost, guard poor rolls, type-aware 3-pet team; no RNG peeking",
+        "breeding": "opposite sex, real consumes parents, choose high expected base stats plus skill union, never retry same egg"
+      },
+      "results": [
+        {
+          "starter": "fox",
+          "hero": "ranger",
+          "careful": false,
+          "n": 100,
+          "win": 69,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            4,
+            23
+          ],
+          "medianTurns": 33
+        },
+        {
+          "starter": "fox",
+          "hero": "keeper",
+          "careful": false,
+          "n": 100,
+          "win": 76,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            1,
+            19
+          ],
+          "medianTurns": 32
+        },
+        {
+          "starter": "fox",
+          "hero": "medic",
+          "careful": false,
+          "n": 100,
+          "win": 79,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            2,
+            17
+          ],
+          "medianTurns": 31
+        },
+        {
+          "starter": "bud",
+          "hero": "ranger",
+          "careful": false,
+          "n": 100,
+          "win": 98,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1
+          ],
+          "medianTurns": 33
+        },
+        {
+          "starter": "bud",
+          "hero": "keeper",
+          "careful": false,
+          "n": 100,
+          "win": 87,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            5,
+            4,
+            2
+          ],
+          "medianTurns": 33
+        },
+        {
+          "starter": "bud",
+          "hero": "medic",
+          "careful": false,
+          "n": 100,
+          "win": 93,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          "medianTurns": 32
+        },
+        {
+          "starter": "otter",
+          "hero": "ranger",
+          "careful": false,
+          "n": 100,
+          "win": 99,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "medianTurns": 34
+        },
+        {
+          "starter": "otter",
+          "hero": "keeper",
+          "careful": false,
+          "n": 100,
+          "win": 96,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            2,
+            1
+          ],
+          "medianTurns": 34
+        },
+        {
+          "starter": "otter",
+          "hero": "medic",
+          "careful": false,
+          "n": 100,
+          "win": 100,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "medianTurns": 34
+        },
+        {
+          "starter": "fox",
+          "hero": "ranger",
+          "careful": true,
+          "n": 100,
+          "win": 91,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            8
+          ],
+          "medianTurns": 48
+        },
+        {
+          "starter": "fox",
+          "hero": "keeper",
+          "careful": true,
+          "n": 100,
+          "win": 90,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            9
+          ],
+          "medianTurns": 45
+        },
+        {
+          "starter": "fox",
+          "hero": "medic",
+          "careful": true,
+          "n": 100,
+          "win": 90,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            10
+          ],
+          "medianTurns": 45
+        },
+        {
+          "starter": "bud",
+          "hero": "ranger",
+          "careful": true,
+          "n": 100,
+          "win": 89,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            5,
+            0,
+            4,
+            0,
+            2
+          ],
+          "medianTurns": 46
+        },
+        {
+          "starter": "bud",
+          "hero": "keeper",
+          "careful": true,
+          "n": 100,
+          "win": 92,
+          "reachElite": 100,
+          "gotEgg": 98,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            2,
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          "medianTurns": 42
+        },
+        {
+          "starter": "bud",
+          "hero": "medic",
+          "careful": true,
+          "n": 100,
+          "win": 94,
+          "reachElite": 99,
+          "gotEgg": 98,
+          "deaths": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            2,
+            0
+          ],
+          "medianTurns": 45
+        },
+        {
+          "starter": "otter",
+          "hero": "ranger",
+          "careful": true,
+          "n": 100,
+          "win": 99,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "medianTurns": 43
+        },
+        {
+          "starter": "otter",
+          "hero": "keeper",
+          "careful": true,
+          "n": 100,
+          "win": 100,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "medianTurns": 44
+        },
+        {
+          "starter": "otter",
+          "hero": "medic",
+          "careful": true,
+          "n": 100,
+          "win": 100,
+          "reachElite": 100,
+          "gotEgg": 100,
+          "deaths": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "medianTurns": 45
+        }
+      ]
+    },
+    "before-campaign": {
+      "sourceSHA": "b02dc8129b1fa7974b2e6ee9f35de8dc23ed6752c96cc89f3ab05ac21e86031d",
+      "assumptions": {
+        "freshFactory": "newJourney/chooseHero/chooseStarter",
+        "ads": false,
+        "gyms": false,
+        "friends": false,
+        "productChanges": false,
+        "waiting": "virtual trusted elapsed time, normal durations",
+        "policy": "visible current dice only, heal/boost, guard poor rolls, type-aware 3-pet team; no RNG peeking",
+        "breeding": "opposite sex, real consumes parents, choose high expected base stats plus skill union, never retry same egg"
+      },
+      "results": [
+        {
+          "breeding": false,
+          "n": 30,
+          "completed": 22,
+          "medianSuccessfulAttempts": 99,
+          "medianHatches": 292,
+          "medianVirtualHours": 51.37152777777778,
+          "runs": [
+            {
+              "starter": "fox",
+              "index": 0,
+              "cleared": 9,
+              "attempts": 120
+            },
+            {
+              "starter": "fox",
+              "index": 1,
+              "cleared": 12,
+              "attempts": 103
+            },
+            {
+              "starter": "fox",
+              "index": 2,
+              "cleared": 12,
+              "attempts": 95
+            },
+            {
+              "starter": "fox",
+              "index": 3,
+              "cleared": 12,
+              "attempts": 71
+            },
+            {
+              "starter": "fox",
+              "index": 4,
+              "cleared": 9,
+              "attempts": 120
+            },
+            {
+              "starter": "fox",
+              "index": 5,
+              "cleared": 12,
+              "attempts": 109
+            },
+            {
+              "starter": "fox",
+              "index": 6,
+              "cleared": 11,
+              "attempts": 120
+            },
+            {
+              "starter": "fox",
+              "index": 7,
+              "cleared": 12,
+              "attempts": 113
+            },
+            {
+              "starter": "fox",
+              "index": 8,
+              "cleared": 6,
+              "attempts": 120
+            },
+            {
+              "starter": "fox",
+              "index": 9,
+              "cleared": 12,
+              "attempts": 118
+            },
+            {
+              "starter": "bud",
+              "index": 0,
+              "cleared": 12,
+              "attempts": 111
+            },
+            {
+              "starter": "bud",
+              "index": 1,
+              "cleared": 12,
+              "attempts": 120
+            },
+            {
+              "starter": "bud",
+              "index": 2,
+              "cleared": 12,
+              "attempts": 115
+            },
+            {
+              "starter": "bud",
+              "index": 3,
+              "cleared": 12,
+              "attempts": 80
+            },
+            {
+              "starter": "bud",
+              "index": 4,
+              "cleared": 12,
+              "attempts": 82
+            },
+            {
+              "starter": "bud",
+              "index": 5,
+              "cleared": 9,
+              "attempts": 120
+            },
+            {
+              "starter": "bud",
+              "index": 6,
+              "cleared": 8,
+              "attempts": 120
+            },
+            {
+              "starter": "bud",
+              "index": 7,
+              "cleared": 12,
+              "attempts": 99
+            },
+            {
+              "starter": "bud",
+              "index": 8,
+              "cleared": 12,
+              "attempts": 94
+            },
+            {
+              "starter": "bud",
+              "index": 9,
+              "cleared": 9,
+              "attempts": 120
+            },
+            {
+              "starter": "otter",
+              "index": 0,
+              "cleared": 9,
+              "attempts": 120
+            },
+            {
+              "starter": "otter",
+              "index": 1,
+              "cleared": 12,
+              "attempts": 105
+            },
+            {
+              "starter": "otter",
+              "index": 2,
+              "cleared": 12,
+              "attempts": 103
+            },
+            {
+              "starter": "otter",
+              "index": 3,
+              "cleared": 12,
+              "attempts": 112
+            },
+            {
+              "starter": "otter",
+              "index": 4,
+              "cleared": 12,
+              "attempts": 84
+            },
+            {
+              "starter": "otter",
+              "index": 5,
+              "cleared": 12,
+              "attempts": 82
+            },
+            {
+              "starter": "otter",
+              "index": 6,
+              "cleared": 12,
+              "attempts": 81
+            },
+            {
+              "starter": "otter",
+              "index": 7,
+              "cleared": 12,
+              "attempts": 94
+            },
+            {
+              "starter": "otter",
+              "index": 8,
+              "cleared": 12,
+              "attempts": 64
+            },
+            {
+              "starter": "otter",
+              "index": 9,
+              "cleared": 12,
+              "attempts": 107
+            }
+          ]
+        },
+        {
+          "breeding": true,
+          "n": 30,
+          "completed": 22,
+          "medianSuccessfulAttempts": 91,
+          "medianHatches": 353,
+          "medianVirtualHours": 117.16291666666666,
+          "runs": [
+            {
+              "starter": "fox",
+              "index": 0,
+              "cleared": 7,
+              "attempts": 120
+            },
+            {
+              "starter": "fox",
+              "index": 1,
+              "cleared": 6,
+              "attempts": 120
+            },
+            {
+              "starter": "fox",
+              "index": 2,
+              "cleared": 6,
+              "attempts": 120
+            },
+            {
+              "starter": "fox",
+              "index": 3,
+              "cleared": 12,
+              "attempts": 80
+            },
+            {
+              "starter": "fox",
+              "index": 4,
+              "cleared": 12,
+              "attempts": 115
+            },
+            {
+              "starter": "fox",
+              "index": 5,
+              "cleared": 9,
+              "attempts": 120
+            },
+            {
+              "starter": "fox",
+              "index": 6,
+              "cleared": 12,
+              "attempts": 96
+            },
+            {
+              "starter": "fox",
+              "index": 7,
+              "cleared": 12,
+              "attempts": 107
+            },
+            {
+              "starter": "fox",
+              "index": 8,
+              "cleared": 12,
+              "attempts": 118
+            },
+            {
+              "starter": "fox",
+              "index": 9,
+              "cleared": 10,
+              "attempts": 120
+            },
+            {
+              "starter": "bud",
+              "index": 0,
+              "cleared": 12,
+              "attempts": 89
+            },
+            {
+              "starter": "bud",
+              "index": 1,
+              "cleared": 12,
+              "attempts": 85
+            },
+            {
+              "starter": "bud",
+              "index": 2,
+              "cleared": 12,
+              "attempts": 112
+            },
+            {
+              "starter": "bud",
+              "index": 3,
+              "cleared": 12,
+              "attempts": 90
+            },
+            {
+              "starter": "bud",
+              "index": 4,
+              "cleared": 12,
+              "attempts": 108
+            },
+            {
+              "starter": "bud",
+              "index": 5,
+              "cleared": 12,
+              "attempts": 73
+            },
+            {
+              "starter": "bud",
+              "index": 6,
+              "cleared": 11,
+              "attempts": 120
+            },
+            {
+              "starter": "bud",
+              "index": 7,
+              "cleared": 7,
+              "attempts": 120
+            },
+            {
+              "starter": "bud",
+              "index": 8,
+              "cleared": 12,
+              "attempts": 81
+            },
+            {
+              "starter": "bud",
+              "index": 9,
+              "cleared": 9,
+              "attempts": 120
+            },
+            {
+              "starter": "otter",
+              "index": 0,
+              "cleared": 12,
+              "attempts": 73
+            },
+            {
+              "starter": "otter",
+              "index": 1,
+              "cleared": 12,
+              "attempts": 114
+            },
+            {
+              "starter": "otter",
+              "index": 2,
+              "cleared": 12,
+              "attempts": 105
+            },
+            {
+              "starter": "otter",
+              "index": 3,
+              "cleared": 12,
+              "attempts": 68
+            },
+            {
+              "starter": "otter",
+              "index": 4,
+              "cleared": 12,
+              "attempts": 107
+            },
+            {
+              "starter": "otter",
+              "index": 5,
+              "cleared": 12,
+              "attempts": 91
+            },
+            {
+              "starter": "otter",
+              "index": 6,
+              "cleared": 12,
+              "attempts": 70
+            },
+            {
+              "starter": "otter",
+              "index": 7,
+              "cleared": 12,
+              "attempts": 117
+            },
+            {
+              "starter": "otter",
+              "index": 8,
+              "cleared": 12,
+              "attempts": 81
+            },
+            {
+              "starter": "otter",
+              "index": 9,
+              "cleared": 12,
+              "attempts": 105
+            }
+          ]
+        }
+      ]
+    },
+    "campaign-report": {
+      "sourceSHA": "0aa182228c946fe1d613a82e8e81eee728ef8f7d9d6d5d410312cd3165e8ea29",
+      "assumptions": {
+        "freshFactory": "newJourney/chooseHero/chooseStarter",
+        "ads": false,
+        "gyms": false,
+        "friends": false,
+        "productChanges": false,
+        "waiting": "virtual trusted elapsed time, normal durations",
+        "policy": "visible current dice only, heal/boost, guard poor rolls, type-aware 3-pet team; no RNG peeking",
+        "breeding": "opposite sex, real consumes parents, choose high expected base stats plus skill union, never retry same egg"
+      },
+      "results": [
+        {
+          "breeding": false,
+          "n": 30,
+          "completed": 30,
+          "medianSuccessfulAttempts": 44,
+          "medianHatches": 150,
+          "medianVirtualHours": 26.94097222222222,
+          "runs": [
+            {
+              "starter": "fox",
+              "index": 0,
+              "cleared": 12,
+              "attempts": 45
+            },
+            {
+              "starter": "fox",
+              "index": 1,
+              "cleared": 12,
+              "attempts": 37
+            },
+            {
+              "starter": "fox",
+              "index": 2,
+              "cleared": 12,
+              "attempts": 37
+            },
+            {
+              "starter": "fox",
+              "index": 3,
+              "cleared": 12,
+              "attempts": 56
+            },
+            {
+              "starter": "fox",
+              "index": 4,
+              "cleared": 12,
+              "attempts": 40
+            },
+            {
+              "starter": "fox",
+              "index": 5,
+              "cleared": 12,
+              "attempts": 58
+            },
+            {
+              "starter": "fox",
+              "index": 6,
+              "cleared": 12,
+              "attempts": 44
+            },
+            {
+              "starter": "fox",
+              "index": 7,
+              "cleared": 12,
+              "attempts": 54
+            },
+            {
+              "starter": "fox",
+              "index": 8,
+              "cleared": 12,
+              "attempts": 35
+            },
+            {
+              "starter": "fox",
+              "index": 9,
+              "cleared": 12,
+              "attempts": 46
+            },
+            {
+              "starter": "bud",
+              "index": 0,
+              "cleared": 12,
+              "attempts": 58
+            },
+            {
+              "starter": "bud",
+              "index": 1,
+              "cleared": 12,
+              "attempts": 43
+            },
+            {
+              "starter": "bud",
+              "index": 2,
+              "cleared": 12,
+              "attempts": 48
+            },
+            {
+              "starter": "bud",
+              "index": 3,
+              "cleared": 12,
+              "attempts": 49
+            },
+            {
+              "starter": "bud",
+              "index": 4,
+              "cleared": 12,
+              "attempts": 36
+            },
+            {
+              "starter": "bud",
+              "index": 5,
+              "cleared": 12,
+              "attempts": 35
+            },
+            {
+              "starter": "bud",
+              "index": 6,
+              "cleared": 12,
+              "attempts": 45
+            },
+            {
+              "starter": "bud",
+              "index": 7,
+              "cleared": 12,
+              "attempts": 56
+            },
+            {
+              "starter": "bud",
+              "index": 8,
+              "cleared": 12,
+              "attempts": 42
+            },
+            {
+              "starter": "bud",
+              "index": 9,
+              "cleared": 12,
+              "attempts": 38
+            },
+            {
+              "starter": "otter",
+              "index": 0,
+              "cleared": 12,
+              "attempts": 51
+            },
+            {
+              "starter": "otter",
+              "index": 1,
+              "cleared": 12,
+              "attempts": 43
+            },
+            {
+              "starter": "otter",
+              "index": 2,
+              "cleared": 12,
+              "attempts": 48
+            },
+            {
+              "starter": "otter",
+              "index": 3,
+              "cleared": 12,
+              "attempts": 49
+            },
+            {
+              "starter": "otter",
+              "index": 4,
+              "cleared": 12,
+              "attempts": 34
+            },
+            {
+              "starter": "otter",
+              "index": 5,
+              "cleared": 12,
+              "attempts": 59
+            },
+            {
+              "starter": "otter",
+              "index": 6,
+              "cleared": 12,
+              "attempts": 58
+            },
+            {
+              "starter": "otter",
+              "index": 7,
+              "cleared": 12,
+              "attempts": 41
+            },
+            {
+              "starter": "otter",
+              "index": 8,
+              "cleared": 12,
+              "attempts": 29
+            },
+            {
+              "starter": "otter",
+              "index": 9,
+              "cleared": 12,
+              "attempts": 41
+            }
+          ]
+        },
+        {
+          "breeding": true,
+          "n": 30,
+          "completed": 30,
+          "medianSuccessfulAttempts": 50,
+          "medianHatches": 208,
+          "medianVirtualHours": 70.56305555555555,
+          "runs": [
+            {
+              "starter": "fox",
+              "index": 0,
+              "cleared": 12,
+              "attempts": 78
+            },
+            {
+              "starter": "fox",
+              "index": 1,
+              "cleared": 12,
+              "attempts": 46
+            },
+            {
+              "starter": "fox",
+              "index": 2,
+              "cleared": 12,
+              "attempts": 44
+            },
+            {
+              "starter": "fox",
+              "index": 3,
+              "cleared": 12,
+              "attempts": 59
+            },
+            {
+              "starter": "fox",
+              "index": 4,
+              "cleared": 12,
+              "attempts": 50
+            },
+            {
+              "starter": "fox",
+              "index": 5,
+              "cleared": 12,
+              "attempts": 51
+            },
+            {
+              "starter": "fox",
+              "index": 6,
+              "cleared": 12,
+              "attempts": 43
+            },
+            {
+              "starter": "fox",
+              "index": 7,
+              "cleared": 12,
+              "attempts": 42
+            },
+            {
+              "starter": "fox",
+              "index": 8,
+              "cleared": 12,
+              "attempts": 54
+            },
+            {
+              "starter": "fox",
+              "index": 9,
+              "cleared": 12,
+              "attempts": 50
+            },
+            {
+              "starter": "bud",
+              "index": 0,
+              "cleared": 12,
+              "attempts": 45
+            },
+            {
+              "starter": "bud",
+              "index": 1,
+              "cleared": 12,
+              "attempts": 57
+            },
+            {
+              "starter": "bud",
+              "index": 2,
+              "cleared": 12,
+              "attempts": 44
+            },
+            {
+              "starter": "bud",
+              "index": 3,
+              "cleared": 12,
+              "attempts": 71
+            },
+            {
+              "starter": "bud",
+              "index": 4,
+              "cleared": 12,
+              "attempts": 49
+            },
+            {
+              "starter": "bud",
+              "index": 5,
+              "cleared": 12,
+              "attempts": 26
+            },
+            {
+              "starter": "bud",
+              "index": 6,
+              "cleared": 12,
+              "attempts": 55
+            },
+            {
+              "starter": "bud",
+              "index": 7,
+              "cleared": 12,
+              "attempts": 64
+            },
+            {
+              "starter": "bud",
+              "index": 8,
+              "cleared": 12,
+              "attempts": 48
+            },
+            {
+              "starter": "bud",
+              "index": 9,
+              "cleared": 12,
+              "attempts": 34
+            },
+            {
+              "starter": "otter",
+              "index": 0,
+              "cleared": 12,
+              "attempts": 46
+            },
+            {
+              "starter": "otter",
+              "index": 1,
+              "cleared": 12,
+              "attempts": 53
+            },
+            {
+              "starter": "otter",
+              "index": 2,
+              "cleared": 12,
+              "attempts": 58
+            },
+            {
+              "starter": "otter",
+              "index": 3,
+              "cleared": 12,
+              "attempts": 66
+            },
+            {
+              "starter": "otter",
+              "index": 4,
+              "cleared": 12,
+              "attempts": 56
+            },
+            {
+              "starter": "otter",
+              "index": 5,
+              "cleared": 12,
+              "attempts": 42
+            },
+            {
+              "starter": "otter",
+              "index": 6,
+              "cleared": 12,
+              "attempts": 39
+            },
+            {
+              "starter": "otter",
+              "index": 7,
+              "cleared": 12,
+              "attempts": 50
+            },
+            {
+              "starter": "otter",
+              "index": 8,
+              "cleared": 12,
+              "attempts": 44
+            },
+            {
+              "starter": "otter",
+              "index": 9,
+              "cleared": 12,
+              "attempts": 82
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

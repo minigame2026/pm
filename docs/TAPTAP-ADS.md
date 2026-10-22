@@ -2,7 +2,7 @@
 
 更新：2026-10-21。SDK 与测试广告参数已配置；不代表正式广告已开通或真机播放成功。
 
-本次后台核对：APP 媒体 `1112381`（后台名称“宠物骰子精灵”）与竖屏激励位 `1071610`；小游戏媒体 `1112379` 与竖屏激励位 `1071615`。两个广告位均为测试中，各平台的三个奖励入口共用各自广告位。APP 密钥仅保存在被 Git 忽略的 `config/tapads.local.json`，小游戏 ID 在 `TapAdConfig.ts`。
+本次后台核对：APP 媒体 `1112381`（后台名称“宠物骰子精灵”）与竖屏激励位 `1071610`；小游戏媒体 `1112379` 与竖屏激励位 `1071615`。两个广告位均为测试中，各平台的四个奖励入口共用各自广告位。APP 密钥仅保存在被 Git 忽略的 `config/tapads.local.json`，小游戏 ID 在 `TapAdConfig.ts`。
 
 APP 可安装包：`build/releases/骰子宠物精灵-Tap广告测试-20261021.apk`，139286746字节，1.0.7/code8，正式玩法数值（5体力/30分钟），沿用测试签名。Creator 导出、原生编译/R8、TypeScript、广告回调检查、生成 BuildConfig 参数与本机配置一致、APK v1/v2签名通过；未安装设备或实际播放。测试设备仍需在后台登记。
 
@@ -17,7 +17,8 @@ APP 可安装包：`build/releases/骰子宠物精灵-Tap广告测试-20261021.a
 | 游戏入口 | placement | 完整观看的奖励 |
 |---|---|---|
 | 体力条视频按钮 | stamina_10 | +10体力，遵循原有上限/可信时间规则 |
-| 孵化屋加速 | hatch_reduce_30m | 指定蛋减少30分钟，遵循原有蛋ID核验 |
+| 孵化屋加速 | hatch_reduce_30m | 立即完成指定蛋的孵化，遵循原有蛋ID核验；保留原广告接口名 |
+| 交配屋加速 | breed_reduce_30m | 立即完成当前交配任务；父母仍在手动领取蛋时消耗；保留原广告接口名 |
 | 敌人刷新 | encounter_reroll | 额外刷新一次，BOSS不适用 |
 
 APP 使用官方 **TapADN Android 5.3.0.4 非聚合 SDK**，仅 TapADN 广告源；没有额外接穿山甲/优量汇 SDK。Tap 小游戏使用宿主 `tap.createRewardedVideoAd`，宿主侧的聚合由平台管理。H5 小游戏是另一种发布形态，须确认所提交类型后另核对其宿主接口，不能把 Tap 小游戏接口当作已完成 H5 适配。
@@ -50,7 +51,7 @@ APP 使用官方 **TapADN Android 5.3.0.4 非聚合 SDK**，仅 TapADN 广告源
 - Android 仅 `onRewardVerify(true)` 与关闭事件共同确认成功；视频完成、广告曝光不作为奖励依据。回调切回 Cocos 游戏线程。
 - Tap 小游戏仅 `onClose({isEnded:true})` 成功；每次隔离实例，清理回调，拒绝并发请求。
 - 请求ID绑定、超时与一次性结算防止重复/过期回调误发；缺失账号参数返回失败。
-- 原有三入口负责奖励和存档，可信校时/目标蛋校验/音频暂停恢复保持原逻辑。
+- 四个入口负责奖励和存档，可信校时/目标蛋校验/音频暂停恢复保持原逻辑。
 - 已通过：TypeScript检查、`checks/tapads.test.cjs`（模拟平台事件的路由、完成/取消/错误/超时、并发与过期回调）、原生Java编译、合并Manifest、R8混淆。
 - 未验证：后台广告位真实性、正式广告填充、真实广告观看/关闭、真实收益报表、Tap小游戏宿主运行。
 - 本次已交付上述广告测试APK；此前v4不含SDK。实际广告播放仍待真机验证。
@@ -66,3 +67,5 @@ APP 使用官方 **TapADN Android 5.3.0.4 非聚合 SDK**，仅 TapADN 广告源
 
 AAR来源：`https://tapad-platform.tapimg.com/sdk/dirichlet_ad/dirichlet_ad_5.3.0.4.aar`。
 本地 `native/engine/android/app/libs/dirichlet_ad_5.3.0.4.aar` MD5：`B423C723F58CAB2FCAF23CA9510E8943`，与官方公布值一致。SDK额外依赖OkHttp 3.12.1；无需为此SDK引入额外AndroidX或Glide。
+
+2026-10-22：交配屋新增视频−30分钟，Tap小游戏复用1071615；APP使用已有孵化广告位，配置可选placements.breed_reduce_30m覆盖。已完成广告后先保存pendingBreedingAd与任务ID，校时失败暂缓、恢复后只结算该任务。失败/取消不减时，到期显示领取按钮；不自动领取或重抽遗传结果。本轮网页与规则验证、原生编译单独记录，不等于真实广告填充验收。

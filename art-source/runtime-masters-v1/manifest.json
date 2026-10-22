@@ -182,20 +182,6 @@
     "sourceSha256": "23e258978eb2379f4a30b3f3e7b9bbcd3b271d8e50776597e4a32d182d412891"
   },
   {
-    "file": "bud-battle.png",
-    "sourceSize": [
-      1774,
-      887
-    ],
-    "runtimeSize": [
-      1024,
-      512
-    ],
-    "sourceBytes": 1170513,
-    "runtimeBytes": 441530,
-    "sourceSha256": "f79da57a0efda59ef221c39759baab9087be9c81ff19a2406579b4dbf0ceddaa"
-  },
-  {
     "file": "bud-evolution-v1.png",
     "sourceSize": [
       1254,
@@ -446,20 +432,6 @@
     "sourceBytes": 1109577,
     "runtimeBytes": 401586,
     "sourceSha256": "a59644536bd23ddaed455b13d2e574b061e43219ff19662ea8f4a760b8c91453"
-  },
-  {
-    "file": "fox-battle.png",
-    "sourceSize": [
-      1774,
-      887
-    ],
-    "runtimeSize": [
-      1024,
-      512
-    ],
-    "sourceBytes": 1138718,
-    "runtimeBytes": 428688,
-    "sourceSha256": "afd8ebc9cedc4f152842230aa382ee57b92f67b301e1ac01ec437721c0467a8a"
   },
   {
     "file": "fox-evolution-v1.png",
@@ -1260,20 +1232,6 @@
     "sourceSha256": "85218a65dff730dfe40dc7fcf02a354c87c7e53fb3c6da90254d36eb76437bc3"
   },
   {
-    "file": "settings-s2.png",
-    "sourceSize": [
-      1254,
-      1254
-    ],
-    "runtimeSize": [
-      1024,
-      1024
-    ],
-    "sourceBytes": 870995,
-    "runtimeBytes": 516379,
-    "sourceSha256": "8e10975fea2753ddca9185faf82d2ea47a1a535771c856f3c0ea2eb6b78f1c7a"
-  },
-  {
     "file": "shade-forms-v1.png",
     "sourceSize": [
       1024,
@@ -1442,20 +1400,6 @@
     "sourceSha256": "12f199a3cd3640752f79a83b6075ab7851c77e4c8ddcda5a74f8829d8590d34f"
   },
   {
-    "file": "turtle-battle.png",
-    "sourceSize": [
-      1774,
-      887
-    ],
-    "runtimeSize": [
-      1024,
-      512
-    ],
-    "sourceBytes": 1003782,
-    "runtimeBytes": 375294,
-    "sourceSha256": "95b78223d6b3d34659a6074f53a6ebdb923a1f91723d5fab941ed08c5655c67a"
-  },
-  {
     "file": "turtle-evolution-v1.png",
     "sourceSize": [
       1254,
@@ -1538,5 +1482,257 @@
     "sourceBytes": 2383157,
     "runtimeBytes": 825159,
     "sourceSha256": "2e3040bc4e905204e02c95362fbdfe2631ceb52844e113beeec8a8da56a513f6"
+  },
+  {
+    "file": "bloomgiraffe-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 1942398,
+    "runtimeBytes": 515909,
+    "sourceSha256": "f614eb4017dadb25e774150076c3860ee6164d6bbdc016bbba70c665e9c36dbd"
+  },
+  {
+    "file": "cairnheart-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2617783,
+    "runtimeBytes": 977395,
+    "sourceSha256": "41d0363b4f1dc0f829c012a86555142e64842bf130cf403cf254357aecb1e1c1"
+  },
+  {
+    "file": "crystalmedusa-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2484058,
+    "runtimeBytes": 909743,
+    "sourceSha256": "36fc738f56ce78d854dfc5b6bcfaebb4a2b723e13e1ee603900549e04c845411"
+  },
+  {
+    "file": "drumthunder-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2601552,
+    "runtimeBytes": 957207,
+    "sourceSha256": "7542952c95c4009392efb52b13a1aefee139dfeb29f9b41032643885becd0821"
+  },
+  {
+    "file": "eclipsehydra-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2317527,
+    "runtimeBytes": 733769,
+    "sourceSha256": "e6e318104dec1ca4c62cd10503e3599bca969de4997ddd90cd3b2b94d535da86"
+  },
+  {
+    "file": "frostfan-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2522394,
+    "runtimeBytes": 920230,
+    "sourceSha256": "64ecae365a93a1bb343b6969946f0801ccccbb7b735d73738dda92193b2186c6"
+  },
+  {
+    "file": "glassdarner-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2471666,
+    "runtimeBytes": 844593,
+    "sourceSha256": "115de9452305ad7f197f526bb9b618c87dcc0ed6b1810e7e83024e0198b80a4b"
+  },
+  {
+    "file": "mandragrove-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2763766,
+    "runtimeBytes": 1075265,
+    "sourceSha256": "b28e985c207c965ae1cbc4f440f95cf86cb294f0f0de53dcc94c80db0bd50569"
+  },
+  {
+    "file": "maskasura-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2285247,
+    "runtimeBytes": 794103,
+    "sourceSha256": "f10b6ff803ce557ffad4e2ae18216ee32ccad2fcd815b32bced3f8b8f1485cd3"
+  },
+  {
+    "file": "oracleater-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 1920239,
+    "runtimeBytes": 498843,
+    "sourceSha256": "0c13b6fd6a657b2093dbe649aa254ea28fb9f358dc0cf36f5ede8a1f7df71f0c"
+  },
+  {
+    "file": "orbeholder-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2275799,
+    "runtimeBytes": 755443,
+    "sourceSha256": "55ab8f1850f80e243cc24e0cd36177f95ab6765c8b047c9d25423fb5a003b7f7"
+  },
+  {
+    "file": "origamighost-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2127703,
+    "runtimeBytes": 708296,
+    "sourceSha256": "df458a0d692194615592fb6ed61434b3cbe2b1630f7dd32bb0bd4d1ddc5320c8"
+  },
+  {
+    "file": "ribbonoar-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2062713,
+    "runtimeBytes": 592924,
+    "sourceSha256": "af8a4487ece42073202463ee01d564114e8240cd28e43060855f524464a8588a"
+  },
+  {
+    "file": "ringolin-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2320241,
+    "runtimeBytes": 804213,
+    "sourceSha256": "b98ac037a03af83ec44a80bfb64c3242049e3df40c89c63649720979ce2488ef"
+  },
+  {
+    "file": "sixwing-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2058781,
+    "runtimeBytes": 573469,
+    "sourceSha256": "00c01b3b59e56bae7f8ff1fa8caf7af2933b6a437ce4b26bf7ae9d91d7c1962f"
+  },
+  {
+    "file": "solion-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2523513,
+    "runtimeBytes": 931072,
+    "sourceSha256": "7b5ed4f6dffa1c3e27dcb89e3b33af9c8910902aa9687b7da1d2daef6fe7751e"
+  },
+  {
+    "file": "starhorseshoe-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 1734685,
+    "runtimeBytes": 404727,
+    "sourceSha256": "b25a7d450013ede2c1465144633fb95e244888b36c57f53674b8e5350cf015ad"
+  },
+  {
+    "file": "triarchdrake-forms-v1.png",
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "runtimeSize": [
+      683,
+      1024
+    ],
+    "sourceBytes": 2210311,
+    "runtimeBytes": 696438,
+    "sourceSha256": "2693cbf747048cedf942a58b9aa82421500350b00ec2b9dfcc430b0e2c5513c6"
   }
 ]

@@ -1,0 +1,18 @@
+const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict'),cfg=require('../tools/workflow.config.json'),{chromium}=require(cfg.playwright),ts=require(cfg.typescript.replace(/tsc\.js$/,'typescript.js')),M={};
+vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/PMModel.ts','utf8'),{compilerOptions:{module:1,target:4}}).outputText,{exports:M,Math,Date,JSON,Set});
+(async()=>{const browser=await chromium.launch({channel:'msedge',headless:true});try{
+ const page=await browser.newPage({viewport:{width:390,height:844}}),errors=[];page.on('pageerror',e=>errors.push(String(e)));await page.goto(cfg.url);await page.waitForFunction(()=>globalThis.__pm?.ready,null,{timeout:120000});
+ await page.evaluate(async s=>{globalThis.cc=await System.import('cc');function walk(n){const g=n.components.find(c=>typeof c.partnersUI==='function');if(g)return g;for(const ch of n.children){const g=walk(ch);if(g)return g;}}globalThis.g=walk(cc.director.getScene());g.state=s;g.screen='partners';g.partnerOwnedOnly=false;g.render();},M.fresh(7));
+ for(const [width,height]of [[390,844],[450,650],[800,650],[390,650],[320,568],[390,844]]){
+  await page.setViewportSize({width,height});await page.waitForTimeout(700);await page.waitForFunction(()=>!g.artCache.pending&&!g.pressPending);
+  const boxes=await page.evaluate(()=>{const rect=n=>{const r=n.getComponent(cc.UITransform).getBoundingBoxToWorld();return {x:r.x,y:r.y,w:r.width,h:r.height};};return {detail:rect(g.root.getChildByName('partner-detail')),pets:g.root.children.filter(n=>n.name.startsWith('pet-')).map(rect),H:cc.view.getVisibleSize().height,scale:g.root.scale.x};});
+  assert.equal(boxes.pets.length,6);for(const p of boxes.pets){assert(p.y>boxes.detail.y+boxes.detail.h+3,'cards must clear detail sheet');assert(p.x>=0&&p.x+p.w<=390.1&&p.y+p.h<=boxes.H,'cards stay inside viewport');}
+  for(const [id,expected] of [['collection-next',1],['collection-prev',0]]){const c=await page.evaluate(id=>__pm.controls()[id],id);await page.mouse.click(c.x*width/390,c.y*width/390);await page.waitForTimeout(350);await page.waitForFunction(()=>!g.artCache.pending&&!g.pressPending);assert.equal(await page.evaluate(()=>g.partnerPage),expected,'scaled paging button hit area');}
+  await page.screenshot({path:`checks/partners-layout-${width}x${height}.png`});console.log(`PASS resize ${width}x${height}: no overlap, paging works`);
+ }
+ await page.evaluate(()=>{g.partnerOwnedOnly=true;g.partnerPage=0;g.render();});await page.setViewportSize({width:450,height:650});await page.waitForTimeout(700);await page.waitForFunction(()=>!g.artCache.pending&&!g.pressPending);
+ const drag=await page.evaluate(()=>{const [id,from]=Object.entries(__pm.controls()).find(([id])=>id.startsWith('pet-'));return {id:id.slice(4),from,to:__pm.controls()['team-slot-1']};});
+ const k=450/390;await page.mouse.move(drag.from.x*k,drag.from.y*k);await page.mouse.down();for(let i=1;i<=12;i++){await page.mouse.move((drag.from.x+(drag.to.x-drag.from.x)*i/12)*k,(drag.from.y+(drag.to.y-drag.from.y)*i/12)*k);await page.waitForTimeout(25);}await page.mouse.up();await page.waitForTimeout(500);
+ const state=await page.evaluate(()=>g.state);assert.equal(M.homeParty(state)[1],drag.id,'drag assigns selected pet to reserve slot 1');
+ await page.evaluate(()=>{g.screen='home';g.render();});assert.equal(await page.evaluate(()=>g.root.scale.x),1,'other pages restore normal scale');assert.deepEqual(errors,[]);console.log('PASS scaled drag and leaving partners restores normal layout; isolated save');
+}finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

@@ -27,7 +27,7 @@ export async function sendCard(image:CardImage,text:string,saveOnly=false):Promi
   call('share','(Ljava/lang/String;Ljava/lang/String;)V',image.path||'',text);return 'opened';
  }
  const host=globalThis as any,mini=host.wx||host.tt;
- if(mini&&image.path){if(saveOnly&&mini.saveImageToPhotosAlbum){await new Promise<void>((resolve,reject)=>mini.saveImageToPhotosAlbum({filePath:image.path,success:resolve,fail:reject}));return 'saved';}if(mini.shareAppMessage){mini.shareAppMessage({title:text.split('\n')[0],imageUrl:image.path,query:'postcard='+encodeURIComponent(text.match(/PMV2\.[A-Za-z0-9_.-]+/)?.[0]||'')});return 'opened';}}
+ if(mini&&image.path){if(saveOnly&&mini.saveImageToPhotosAlbum){await new Promise<void>((resolve,reject)=>mini.saveImageToPhotosAlbum({filePath:image.path,success:resolve,fail:reject}));return 'saved';}if(mini.shareAppMessage){mini.shareAppMessage({title:text.split('\n')[0],imageUrl:image.path,query:'postcard='+encodeURIComponent(text.match(/(?:PMV2|PMD1)\.[A-Za-z0-9_.-]+/)?.[0]||'')});return 'opened';}}
  if(!image.blob)throw Error('unsupported');const file=new File([image.blob],'Dice-Pet-Postcard.png',{type:'image/png'});
  if(!saveOnly&&navigator.share&&navigator.canShare?.({files:[file]})){try{await navigator.share({files:[file],text});return 'opened';}catch(e){if(e?.name==='AbortError')return 'cancelled';throw e;}}
  const url=URL.createObjectURL(image.blob),a=document.createElement('a');a.href=url;a.download=file.name;a.click();setTimeout(()=>URL.revokeObjectURL(url),30000);return 'saved';

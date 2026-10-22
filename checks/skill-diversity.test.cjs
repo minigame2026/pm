@@ -2,12 +2,13 @@ const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('nod
 const source=fs.readFileSync('assets/scripts/PMModel.ts','utf8')+'\nexport const testRoll=roll;';
 vm.runInNewContext(ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2017}}).outputText,{exports:M,Math,Date,JSON,Set});
 const copy=x=>JSON.parse(JSON.stringify(x));
-assert.equal(M.NATURAL_SKILL_CODES.length,54);assert.equal(M.TEMP_SKILLS.length,8);
-assert.equal(new Set(M.NATURAL_SKILL_CODES.map(c=>JSON.stringify(M.SKILL_SPECS[c]))).size,54,'natural skills have distinct triggers/effects');
+assert.equal(M.NATURAL_SKILL_CODES.length,108);assert.equal(M.TEMP_SKILLS.length,8);
+assert.deepEqual(copy(M.NATURAL_SKILL_CODES.slice(0,54)),Array.from({length:18},(_,i)=>[0,1,2].map(t=>'trait_'+i+'_'+t)).flat(),'old 54 natural skill indexes remain stable');
+assert.equal(new Set(M.NATURAL_SKILL_CODES.map(c=>JSON.stringify(M.SKILL_SPECS[c]))).size,108,'natural skills have distinct triggers/effects');
 for(const code of [...M.NATURAL_SKILL_CODES,...M.TEMP_SKILLS]){
- const v=M.SKILL_SPECS[code];let s=M.fresh(41,['fox','turtle','bud']);s.active.skills=[code];s.pets[0].skills=[code];s.runRoster={};s=M.act(s,'challenge');
+ const v=M.SKILL_SPECS[code];let s=M.fresh(41,['fox','turtle','bud']);s.active.skills=[code];s.pets[0].skills=[code];s.runRoster={};s.team=[s.active.uid,'',''];s.reserve=null;s=M.act(s,'challenge');
  s.enemyHP=s.enemyMax=1000;s.enemyAttack=8;s.hpRatio=.6;s.skill.usedCodes=[];s.skill.used=false;s.skill.shield=0;s.skill.poison=0;s.skill.nextMax=false;s.skill.attacks=v.gate==='third'?2:0;s.attack=3;s.turn=2;
- if(v.gate==='low')s.hpRatio=.3;if(v.gate==='full')s.hpRatio=1;if(v.gate==='enemyHalf')s.enemyHP=400;if(v.gate==='minimum')s.attack=Math.min(...s.active.faces);if(v.gate==='maximum')s.attack=Math.max(...s.active.faces);if(v.gate==='boosted')s.doubled=true;if(v.gate==='lethal')s.enemyAttack=999;if(v.gate==='resisted')s.enemy='otter';
+ if(v.gate==='low')s.hpRatio=.3;if(v.gate==='full')s.hpRatio=1;if(v.gate==='enemyHalf')s.enemyHP=400;if(v.gate==='minimum')s.attack=Math.min(...s.active.faces);if(v.gate==='maximum')s.attack=Math.max(...s.active.faces);if(v.gate==='boosted')s.doubled=true;if(v.gate==='lethal'){s.enemy='cotton';s.enemyAttack=M.hp(s)+1;}if(v.gate==='resisted')s.enemy='otter';
  let n;
  if(v.when==='roll'){
   let triggered=false;
@@ -30,9 +31,12 @@ for(const code of [...M.NATURAL_SKILL_CODES,...M.TEMP_SKILLS]){
   const baseline=copy(s);baseline.active.skills=[];baseline.pets[0].skills=[];let b;if(v.when==='roll'){b=copy(n);b.hpRatio=s.hpRatio;}else b=M.act(baseline,v.when==='hit'?'attack':v.when);
   assert(n.hpRatio>b.hpRatio||n.hpRatio===1,code+' heals');
  }
+ if(e==='healShield'){assert(n.hpRatio>s.hpRatio,code+' heals');assert(n.skill.shield>=4,code+' adds shield');}
+ if(e==='venomDrain'){const plain=copy(s);plain.active.skills=[];plain.pets[0].skills=[];const baseline=M.act(plain,'attack');assert(n.hpRatio>baseline.hpRatio,code+' drains');assert.equal(n.skill.poisonDamage,3);assert(n.skill.lastDamage>baseline.skill.lastDamage,code+' poison deals damage');}
+ if(e==='powerGuard'){assert(n.skill.nextMax||n.attack===Math.max(...n.active.faces),code+' maximizes next roll');if(v.when==='roll')assert(n.skill.shield>=5,code+' adds shield');else {const plain=copy(s);plain.active.skills=[];plain.pets[0].skills=[];const baseline=M.act(plain,v.when);assert(n.skill.lastTaken<baseline.skill.lastTaken,code+' shield blocks damage');}}
  assert.equal(n.skill.usedCodes.filter(c=>c===code).length,1);
 }
 // Existing inherited skills remain intact; old natural pets receive their type/form skill.
 let old=M.fresh(8,['fox','turtle','bud']);delete old.naturalSkillVersion;old.pets[0].skills=['opening'];old.active.skills=['opening'];old.runRoster={};let migrated=M.restore(JSON.stringify(old));assert(migrated);assert(migrated.active.skills[0].startsWith('trait_'));
 old=M.fresh(8,['fox','turtle','bud']);delete old.naturalSkillVersion;old.pets[0].skills=['opening','healing'];old.active.skills=['opening','healing'];old.runRoster={};migrated=M.restore(JSON.stringify(old));assert(migrated);assert.equal(migrated.active.skills.join(),'opening,healing');
-console.log('PASS all 54 distinct permanent + 8 temporary skills activate and produce effects; natural migration preserves inherited skills');
+console.log('PASS all 108 distinct permanent + 8 temporary skills activate and produce effects; old indexes and inherited skills remain stable');

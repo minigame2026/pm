@@ -45,9 +45,11 @@ public final class PMTapAds {
         try {
             if (BuildConfig.TAP_MEDIA_KEY.isEmpty() || Long.parseLong(BuildConfig.TAP_MEDIA_ID) <= 0)
                 throw new IllegalArgumentException();
-            if (!placement.equals("stamina_10") && !placement.equals("hatch_reduce_30m") && !placement.equals("encounter_reroll"))
+            if (!placement.equals("stamina_10") && !placement.equals("hatch_reduce_30m") && !placement.equals("breed_reduce_30m") && !placement.equals("encounter_reroll"))
                 throw new IllegalArgumentException();
-            space = new JSONObject(BuildConfig.TAP_PLACEMENTS).optLong(placement, 0);
+            JSONObject placements = new JSONObject(BuildConfig.TAP_PLACEMENTS);
+            // Breeding reuses the configured incubation rewarded unit unless explicitly overridden.
+            space = placements.optLong(placement, placement.equals("breed_reduce_30m") ? placements.optLong("hatch_reduce_30m", 0) : 0);
             if (space <= 0) throw new IllegalArgumentException();
         } catch (Exception e) { send(id, false, "not-configured"); return; }
         Session s = new Session(id); current = s;

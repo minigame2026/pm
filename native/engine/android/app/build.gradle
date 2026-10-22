@@ -27,8 +27,8 @@ android {
         applicationId APPLICATION_ID
         minSdkVersion PROP_MIN_SDK_VERSION
         targetSdkVersion PROP_TARGET_SDK_VERSION
-        versionCode 8
-        versionName "1.0.7"
+        versionCode 10
+        versionName "1.0.9"
         buildConfigField 'String', 'TAP_MEDIA_ID', tapString(tapConfig.mediaId)
         buildConfigField 'String', 'TAP_MEDIA_NAME', tapString(tapConfig.mediaName ?: '骰子宠物精灵')
         buildConfigField 'String', 'TAP_MEDIA_KEY', tapString(tapConfig.mediaKey)

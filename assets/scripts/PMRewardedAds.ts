@@ -1,7 +1,7 @@
 import { native, sys } from 'cc';
 import { TAP_MINI_AD_UNITS } from './TapAdConfig';
 
-export const AD_PLACEMENTS = ['stamina_10', 'hatch_reduce_30m', 'encounter_reroll'] as const;
+export const AD_PLACEMENTS = ['stamina_10', 'hatch_reduce_30m', 'breed_reduce_30m', 'encounter_reroll'] as const;
 type Result = { completed: boolean; reason?: string };
 type Host = Record<string, any>;
 

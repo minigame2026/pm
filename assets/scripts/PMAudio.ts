@@ -1,7 +1,7 @@
 import { AudioClip, AudioSource, Node, resources, sys } from 'cc';
 
-type Music = 'camp-app'|'camp-short'|'battle-normal'|'battle-elite'|'battle-boss';
-type MusicChoice = 'camp'|'battle-normal'|'battle-elite'|'battle-boss';
+type Music = 'camp-app'|'camp-short'|'battle-normal'|'battle-elite'|'battle-boss'|'egg-quest';
+type MusicChoice = 'camp'|'battle-normal'|'battle-elite'|'battle-boss'|'egg-quest';
 type Sound = 'click'|'attack'|'hurt'|'heal'|'boost'|'hatch';
 const PREFS = 'pm.audio.v1';
 
@@ -71,5 +71,5 @@ export class PMAudio {
       this.clips[id]=clip;this.sync();
     });
   }
-  dispose(){this.disposed=true;this.music.stop();this.music.clip=null;this.effects.forEach(s=>s.stop());for(const id of Object.keys(this.clips))if(id.startsWith('camp-')||id.startsWith('battle-'))resources.release('audio/'+id,AudioClip);}
+  dispose(){this.disposed=true;this.music.stop();this.music.clip=null;this.effects.forEach(s=>s.stop());for(const id of Object.keys(this.clips))if(id.startsWith('camp-')||id.startsWith('battle-')||id==='egg-quest')resources.release('audio/'+id,AudioClip);}
 }
