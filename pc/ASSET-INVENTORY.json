@@ -1,0 +1,785 @@
+{
+  "schema": 1,
+  "date": "2026-10-26",
+  "platform": "Steam PC",
+  "scope": "art and store media only; not a standalone PC source/build backup",
+  "sharedReadOnly": [
+    "assets/resources/",
+    "art-source/runtime-masters-v1/"
+  ],
+  "files": [
+    {
+      "path": "pc/assets/art-manifest.json",
+      "bytes": 756,
+      "sha256": "a9731945904446f4c64fe93db475848a4a4ac6811cc22f03274dfe2bdaaf197d"
+    },
+    {
+      "path": "pc/assets/battle-scenes/map-01-v1.png",
+      "bytes": 2801857,
+      "sha256": "37f6692afbbcbeb7c951985028e8640ceffd9847a9bc20def2a459648eeff9e5",
+      "pixels": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "pc/assets/battle-scenes/map-02-v1.png",
+      "bytes": 2595072,
+      "sha256": "fbee80ff19252328f7af47e6f424cc1f52c9c7afb7ae9f47a37903b2d693ba66",
+      "pixels": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "pc/assets/battle-scenes/map-03-v1.png",
+      "bytes": 2472299,
+      "sha256": "d4971cb70fce05cccd621e274c121ac394d82d66bf4a9f358ec590cf6df8717f",
+      "pixels": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "pc/assets/battle-scenes/map-04-v1.png",
+      "bytes": 3074387,
+      "sha256": "aa26ff25ba160b3b3f8487cdb3b6a0e65b7ff3f7b4588ea3c2b6fc1939d1caf7",
+      "pixels": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "pc/assets/battle-scenes/map-05-v1.png",
+      "bytes": 2575380,
+      "sha256": "18d3edc6d3569a6a89f1280fd305ff0666eadf8fc5b2d149dfc7a625108352a5",
+      "pixels": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "pc/assets/battle-scenes/map-06-v1.png",
+      "bytes": 2915115,
+      "sha256": "f662b43bbd22be2118417d5ce8b62f4574cbb14f765328af94b0fd95293b63d8",
+      "pixels": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "pc/assets/battle-scenes/map-07-v1.png",
+      "bytes": 3371579,
+      "sha256": "fc43898714baf69a4e8938fdc21bd544f6db80eaac387d85c67921357cca5114",
+      "pixels": [
+        1672,
+        940
+      ]
+    },
+    {
+      "path": "pc/assets/battle-scenes/map-08-v1.png",
+      "bytes": 2075716,
+      "sha256": "ec076e2bc540b9caabf7e309360377e813dd36a357ca996f0ff4bedf40562634",
+      "pixels": [
+        1672,
+        940
+      ]
+    },
+    {
+      "path": "pc/assets/battle-scenes/map-09-v1.png",
+      "bytes": 2590497,
+      "sha256": "83e3f578987e0f510dfb96d360cba1883e0d0900c196b362df1d3dc3ed75a898",
+      "pixels": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "pc/assets/battle-scenes/map-10-v1.png",
+      "bytes": 2632797,
+      "sha256": "bab1a667bdb6f73d87f9901eb38d0d967ea89addce66cdb8beed9fec5a3a6b17",
+      "pixels": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "pc/assets/battle-scenes/map-11-v1.png",
+      "bytes": 2389998,
+      "sha256": "6825d38338f623b1b105a9f6b06218b690b459868fb2873d02eaf8ba366bf500",
+      "pixels": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "pc/assets/battle-scenes/map-12-v1.png",
+      "bytes": 2223864,
+      "sha256": "ecd24a1e01bec69dc828ab55946c4509b199d8768c5bce170efe7fda1062603f",
+      "pixels": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "pc/assets/battle-scenes/raid-molten-v1.png",
+      "bytes": 2372803,
+      "sha256": "b379fcf0c5b28a7e18a960fb2c37424a1364ca8f7c1a9c55c3a072f37ed43011",
+      "pixels": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "pc/assets/camp-panorama-v1.png",
+      "bytes": 3350635,
+      "sha256": "9d112c952110e36298082274f8b839a44d10e0aa3ac1c119b2875af80a2f0763",
+      "pixels": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "pc/assets/camp-panorama-v1.png.meta",
+      "bytes": 987,
+      "sha256": "17d80a0a29b877deb19d0e92314510067c7768c953b91f83e59cf254a7a1d5c9"
+    },
+    {
+      "path": "pc/assets/README.md",
+      "bytes": 907,
+      "sha256": "20860fad78a921a1078b3b8da139bb5dbb5dd50b0e956dbc5e9d4c2ce95827bd"
+    },
+    {
+      "path": "pc/steam/achievements/catalog.json",
+      "bytes": 2662,
+      "sha256": "28cadee7e0c4a351be6934283e109efc82802c276e20aab93b8875322e2ede3f"
+    },
+    {
+      "path": "pc/steam/achievements/definitions.csv",
+      "bytes": 933,
+      "sha256": "d7a1d5bf6698185128ca98ff5850d99cfd1b4ffde907336d4434b10d0a823782"
+    },
+    {
+      "path": "pc/steam/achievements/DK_COLLECT_10.svg",
+      "bytes": 1231,
+      "sha256": "a054aa868e97f71c46160bcb8774782e809f90bc7c6b0c707af7a477581b79e5"
+    },
+    {
+      "path": "pc/steam/achievements/DK_COLLECT_10_ACHIEVED.png",
+      "bytes": 38085,
+      "sha256": "d2b9975f9ae87713a435ce55da5fa8edd50607f107fea7645645466b421704cd",
+      "pixels": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "pc/steam/achievements/DK_COLLECT_30.svg",
+      "bytes": 1231,
+      "sha256": "370f4d0443bb192ab2e01f4ff5e4f7f66a138329db711901f59bb227715bd229"
+    },
+    {
+      "path": "pc/steam/achievements/DK_COLLECT_30_ACHIEVED.png",
+      "bytes": 38324,
+      "sha256": "db6cdce245a10cbf1abaa6027e6ad72012de7a4df68d1d8b0ed3f9604c627ed5",
+      "pixels": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "pc/steam/achievements/DK_COLLECT_60.svg",
+      "bytes": 1231,
+      "sha256": "ebc5ae927b03689d8530b9ba0880d5efcbb4ee5330bb0de5983fe9ac209e6019"
+    },
+    {
+      "path": "pc/steam/achievements/DK_COLLECT_60_ACHIEVED.png",
+      "bytes": 38341,
+      "sha256": "5e51a95c71d3fb4a11079a30cf570b823a04f821770fa429671424312ec7cf2d",
+      "pixels": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "pc/steam/achievements/DK_COOK.svg",
+      "bytes": 1057,
+      "sha256": "7f03827de26b20d26b12673fecd84aa9507c9ceede2fddb955447681ca7013d0"
+    },
+    {
+      "path": "pc/steam/achievements/DK_COOK_ACHIEVED.png",
+      "bytes": 38066,
+      "sha256": "dbcd232560967615f8418f769833589e95634e7e080d018df3d7bc40909df7a6",
+      "pixels": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "pc/steam/achievements/DK_FEAST.svg",
+      "bytes": 1166,
+      "sha256": "2936e112366f51d8c7b41eadf9d9889700937d3b8e19d6596cb6a7f7da92fe26"
+    },
+    {
+      "path": "pc/steam/achievements/DK_FEAST_ACHIEVED.png",
+      "bytes": 37189,
+      "sha256": "929722cf39eecead397a0bfe96e96b70bd3c2dd42a95cac35d7c3c9e6e97a43e",
+      "pixels": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "pc/steam/achievements/DK_GYM_1.svg",
+      "bytes": 1110,
+      "sha256": "5c098b416484e9599622a75aaa1a82e75ceb430bc410be553a884d9b29d3d81e"
+    },
+    {
+      "path": "pc/steam/achievements/DK_GYM_1_ACHIEVED.png",
+      "bytes": 37739,
+      "sha256": "6f4ccadb5d5ef65a18c4772b5ee3243a650d2374825101c4ad158a25ec9d852e",
+      "pixels": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "pc/steam/achievements/DK_GYM_9.svg",
+      "bytes": 1110,
+      "sha256": "8e3eb6eb3a76441455413517f0f5a1e61fe8dc32c2e21624ce59d89c0841625e"
+    },
+    {
+      "path": "pc/steam/achievements/DK_GYM_9_ACHIEVED.png",
+      "bytes": 38027,
+      "sha256": "e35e2a0b55fdb2eb560a411278c59b6387a620742d0d3eaaeee1e348e561fa2b",
+      "pixels": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "pc/steam/achievements/DK_HATCH_1.svg",
+      "bytes": 1134,
+      "sha256": "9f9ba8403172c44c78c5485242604f5d5a74491da0518ac742b2612128abd24c"
+    },
+    {
+      "path": "pc/steam/achievements/DK_HATCH_10.svg",
+      "bytes": 1135,
+      "sha256": "334c61955656767e31317864d7d87074eea83aeb82d4ba9b2bf523ed0640ad8d"
+    },
+    {
+      "path": "pc/steam/achievements/DK_HATCH_10_ACHIEVED.png",
+      "bytes": 38205,
+      "sha256": "51580af89a6a787a0d8f882c74b3d19b0373fe62cbdbf00360e35e42ca0b579b",
+      "pixels": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "pc/steam/achievements/DK_HATCH_1_ACHIEVED.png",
+      "bytes": 37799,
+      "sha256": "972d0c4aaaab3ad307674b62ca70e74978b336c99a2cb43c58a63b5e1a9dbc4b",
+      "pixels": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "pc/steam/achievements/DK_MAP_1.svg",
+      "bytes": 1155,
+      "sha256": "832fa78f48dab23238b3d2d98dd24b4b19bcc02533acc9885f88fcff9d599e94"
+    },
+    {
+      "path": "pc/steam/achievements/DK_MAP_12.svg",
+      "bytes": 1156,
+      "sha256": "febd8c18cd921ee37fd775e62b46d0a62d65fd3d1ffd536ce456454bb390ff31"
+    },
+    {
+      "path": "pc/steam/achievements/DK_MAP_12_ACHIEVED.png",
+      "bytes": 38416,
+      "sha256": "6a54e53224268857c6865e12e4973456a08180aa7c741850ad4b8df8b754a037",
+      "pixels": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "pc/steam/achievements/DK_MAP_1_ACHIEVED.png",
+      "bytes": 38144,
+      "sha256": "c802c417473945cbe948223749acd627b2b53f1fb028c541650da38ec5d62c93",
+      "pixels": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "pc/steam/achievements/DK_MAP_6.svg",
+      "bytes": 1155,
+      "sha256": "73d4796ab778914d8fece5a71116148aeed5abcf74b50c8cf5ff7a7606f3e34f"
+    },
+    {
+      "path": "pc/steam/achievements/DK_MAP_6_ACHIEVED.png",
+      "bytes": 38431,
+      "sha256": "b88a417d485849f56ae59f95a763daea39a6debbbce2b90c018b8045a0b84b52",
+      "pixels": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "pc/steam/achievements/DK_PARTNER.svg",
+      "bytes": 1123,
+      "sha256": "8560d20e2b2c85be678fa93412dc9527256eb0a0824639e16fdf19146cabcc48"
+    },
+    {
+      "path": "pc/steam/achievements/DK_PARTNER_ACHIEVED.png",
+      "bytes": 37701,
+      "sha256": "baad48364e10af7fb68b3ef82cc822e773bc86cf9d56972e2f1ec35a5eca1986",
+      "pixels": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "pc/steam/achievements/DK_RAID.svg",
+      "bytes": 992,
+      "sha256": "74e988195cc83fcdad8651bf50d916c1b83a6f5a2ffcc656f9ff96455e143183"
+    },
+    {
+      "path": "pc/steam/achievements/DK_RAID_ACHIEVED.png",
+      "bytes": 38789,
+      "sha256": "55395002b7c17619cb55f17b3b863232f33a6bace125400dcc98eeca18bbbf19",
+      "pixels": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "pc/steam/achievements/DK_SHINY.svg",
+      "bytes": 1016,
+      "sha256": "a6a66c791d2ce8c453fd7174cf8e86c618d75e08d1e118bff851d3a8b1a43423"
+    },
+    {
+      "path": "pc/steam/achievements/DK_SHINY_ACHIEVED.png",
+      "bytes": 40767,
+      "sha256": "bd2eeec4a0391ed970530e48320cd06c95010d5a3dc639ad008d7389b9f9a16e",
+      "pixels": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "pc/steam/achievements/DK_SSR.svg",
+      "bytes": 1101,
+      "sha256": "85712a76e1a20f683835de95c20f7fddb4f2ac91142c26f5587c8b07aec39e83"
+    },
+    {
+      "path": "pc/steam/achievements/DK_SSR_ACHIEVED.png",
+      "bytes": 39019,
+      "sha256": "5bb4cd62d7dc1bd80f4c79a90242db142ef98b21fdb8ba0476ba74cd7ce116a7",
+      "pixels": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "pc/steam/achievements/localization.csv",
+      "bytes": 23298,
+      "sha256": "0839b99adad8bfc68364ad7a5d202121b6aadd5c95cdaa0890f86a29e0aad9d8"
+    },
+    {
+      "path": "pc/store/capsules/app_icon_184.jpg",
+      "bytes": 18387,
+      "sha256": "4dc42189ef7b18a0c4c90af1c6dc1fcd8f542e1f62352f245363158ac53eb926",
+      "pixels": [
+        184,
+        184
+      ]
+    },
+    {
+      "path": "pc/store/capsules/header_english.png",
+      "bytes": 1062541,
+      "sha256": "54044956b8f029af08f228930b77ea693281329122e91580c4490fc14ccffbb1",
+      "pixels": [
+        920,
+        430
+      ]
+    },
+    {
+      "path": "pc/store/capsules/main_capsule_english.png",
+      "bytes": 2281878,
+      "sha256": "a4477baf8b7121a88b641ce93a83cd0fe2be91944cde4b6b9183fa61c2cdf17f",
+      "pixels": [
+        1232,
+        706
+      ]
+    },
+    {
+      "path": "pc/store/capsules/shortcut_icon_256.png",
+      "bytes": 81106,
+      "sha256": "1983170bcbf2b67b6004fd29d7e20c96b70620aaa80c07d291762a6f82390a03",
+      "pixels": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "pc/store/capsules/small_capsule_english.png",
+      "bytes": 212229,
+      "sha256": "d41294ad71980325cbd43aea6719c8543be05f65bfadb0e6dcbac4fc2d0b261b",
+      "pixels": [
+        462,
+        174
+      ]
+    },
+    {
+      "path": "pc/store/capsules/vertical_capsule_english.png",
+      "bytes": 1732438,
+      "sha256": "132ca0d012eb89498cad79f4572e9a2436db1596e25b32ccfeb990a1873e7e94",
+      "pixels": [
+        748,
+        896
+      ]
+    },
+    {
+      "path": "pc/store/library/library_600x900_english.png",
+      "bytes": 1384077,
+      "sha256": "eda84acb3fe2c1a69bfb4b3aa070639493e51b379074e2bbbcd0cb69fb67b18e",
+      "pixels": [
+        600,
+        900
+      ]
+    },
+    {
+      "path": "pc/store/library/library_header_english.png",
+      "bytes": 1062541,
+      "sha256": "54044956b8f029af08f228930b77ea693281329122e91580c4490fc14ccffbb1",
+      "pixels": [
+        920,
+        430
+      ]
+    },
+    {
+      "path": "pc/store/library/library_hero.png",
+      "bytes": 11767998,
+      "sha256": "0569d9f28ad15cf253d7e5b105ee5c3145bcbbb731a7c9be1fbf0559a19b53de",
+      "pixels": [
+        3840,
+        1240
+      ]
+    },
+    {
+      "path": "pc/store/library/library_logo_english.png",
+      "bytes": 1277573,
+      "sha256": "b41a032a026ecd6a30a9ac50b258ce816ed0fb2c0b753bffdb14ce22f0ddf9d8",
+      "pixels": [
+        1280,
+        581
+      ]
+    },
+    {
+      "path": "pc/store/README.md",
+      "bytes": 1401,
+      "sha256": "2b4ba0a9283195cf495be0b411fdc4801f72081b17adf20b3661b6ca1b035ee3"
+    },
+    {
+      "path": "pc/store/screenshots/20261026/english/01-battle_english.png",
+      "bytes": 3140093,
+      "sha256": "639df8ba787a5c32513a510819ed064af1877a6e9ee3a7790d0ea202d4f93c1f",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/english/02-camp_english.png",
+      "bytes": 3077602,
+      "sha256": "9710235bcf5b1a51071b684a099ec17cf6cc3d54aafb7c0e1e6af10593565960",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/english/03-world_english.png",
+      "bytes": 1106868,
+      "sha256": "8060c92004088c280288d2df7132d83678bbe702d5b7a7221c17bb8861865e32",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/english/04-monsters_english.png",
+      "bytes": 816516,
+      "sha256": "d54a7793a13e2e6672f0d5ed789d6b2b81b4ed38f11e808d0e997655e1712998",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/english/05-cooking_english.png",
+      "bytes": 708759,
+      "sha256": "ef573909d216b14112eecadd77f033624860fc7e3a8d8a09c51c80cb74c8ab4d",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/japanese/01-battle_japanese.png",
+      "bytes": 3144074,
+      "sha256": "58a864513076aa73e4e428ffde1c8f70bed61b47f8c452d8cf2e8247dc3dae1e",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/japanese/02-camp_japanese.png",
+      "bytes": 3059511,
+      "sha256": "47d20266115ff3a3cf8323c0b850dcb1409de35e542311e2c7a12ece1377bb64",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/japanese/03-world_japanese.png",
+      "bytes": 1067893,
+      "sha256": "c2b41e619656b8e9dbe4293cd89b76881c594cb88270ce1c593a9097a2b3703f",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/japanese/04-monsters_japanese.png",
+      "bytes": 823903,
+      "sha256": "411629dd669ede35a95777574bf43e892566bd61d7e2543cbf2a25cb7018d204",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/japanese/05-cooking_japanese.png",
+      "bytes": 675028,
+      "sha256": "d5301c3f4bb1f60f6bb2369d027f5f0fdc1f79c3f2117d5579e036fbda85aa66",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/koreana/01-battle_koreana.png",
+      "bytes": 3131785,
+      "sha256": "598ad441092978fe0467a833c54bb2751b9bdfdb9fd5be186974f612fa15285b",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/koreana/02-camp_koreana.png",
+      "bytes": 3046639,
+      "sha256": "fa5c1d48dc95f192c1ee437dfba98f198da7bbc82542ff3258510487f2916ef7",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/koreana/03-world_koreana.png",
+      "bytes": 1023316,
+      "sha256": "6a4a4b923fa50cbd5e71b169234b64fbf2ed84238c28130123b6dd7d38ee2d20",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/koreana/04-monsters_koreana.png",
+      "bytes": 784795,
+      "sha256": "f5fdc934eadc7e8f9e778851734dd4a30e1e5f4a9abd021f97de7804e2955055",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/koreana/05-cooking_koreana.png",
+      "bytes": 633752,
+      "sha256": "53fc235dd81a5c86dc7fee4e07c63e171466e784f6e933e10281b67251a898af",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/schinese/01-battle_schinese.png",
+      "bytes": 3135065,
+      "sha256": "4fb1dd6043dedaca6ab7b9c4b2aed390ad162e2118169f5700e07dfcb1d4d839",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/schinese/02-camp_schinese.png",
+      "bytes": 3048240,
+      "sha256": "c6a9c5ed2021ee5c576976a7dc345e4cdcb03d62a7448822bff10142bad1bc08",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/schinese/03-world_schinese.png",
+      "bytes": 1015919,
+      "sha256": "1bcf11dd00b9ceb9d7dd98783251d287d61ac3bf2f9f0d19b5f4f3d9d4a57fdb",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/schinese/04-monsters_schinese.png",
+      "bytes": 765431,
+      "sha256": "cfb8bd9f0faa7197956ebab9c690189bce3ab21bbfcb78df0bdc7b7c74a3f7ca",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/schinese/05-cooking_schinese.png",
+      "bytes": 581772,
+      "sha256": "5c8adbe8b976248e19604e4d57a10df1459c4cc5adad460976dd2651ffc937a4",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/tchinese/01-battle_tchinese.png",
+      "bytes": 3133578,
+      "sha256": "23cc727bb93ec6e148f0f55f0689ca906a11c0d263cf8bf9fba165454b960649",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/tchinese/02-camp_tchinese.png",
+      "bytes": 3044513,
+      "sha256": "4433307ee16abb6b231e381536063a617c364840df64b991f6a1e1a1d05400e9",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/tchinese/03-world_tchinese.png",
+      "bytes": 1014770,
+      "sha256": "792f509ac8348452a2d49d12b9895473897cb4a10baa1ea76d9bda924c3ff854",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/tchinese/04-monsters_tchinese.png",
+      "bytes": 763064,
+      "sha256": "ae04048d5305827fa259110aa187bca754f173af728b002766927232a9b6b179",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/screenshots/20261026/tchinese/05-cooking_tchinese.png",
+      "bytes": 579196,
+      "sha256": "8c6dea56b5372c80846e851b5e50e7694c4c92b2b1aa1778351bcf31cf7ec12b",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/sources/hero.png",
+      "bytes": 2967852,
+      "sha256": "8899542ca9d29695f138cc9e761ccdb98e1bf3304d4a58ab88f614fbb1038366",
+      "pixels": [
+        2206,
+        713
+      ]
+    },
+    {
+      "path": "pc/store/sources/landscape.png",
+      "bytes": 2768831,
+      "sha256": "636f0bd5a78989c5f9d0199427fc1e0d0d203cba85358e4ac46a5d940c9919d4",
+      "pixels": [
+        1658,
+        949
+      ]
+    },
+    {
+      "path": "pc/store/sources/logo.png",
+      "bytes": 1768308,
+      "sha256": "0b4038ee34745905a0ae30f052dc454c55aa36306d7474af3cdfd61776976ac7",
+      "pixels": [
+        1838,
+        856
+      ]
+    },
+    {
+      "path": "pc/store/sources/portrait.png",
+      "bytes": 2661418,
+      "sha256": "de801ae30903b91c1a6d3b9e318e1ddbfa04588b55aaadc23a7af211b874b7ee",
+      "pixels": [
+        1086,
+        1448
+      ]
+    },
+    {
+      "path": "pc/store/sources/small.png",
+      "bytes": 2385675,
+      "sha256": "bc7ad840d32250daa650f272efce8e53699e17a8e57865579ca1f67195ee88fb",
+      "pixels": [
+        2043,
+        770
+      ]
+    },
+    {
+      "path": "pc/store/trailers/20261025/Dicekin-Gameplay-EN-30s.mp4",
+      "bytes": 24988710,
+      "sha256": "baaccdaa6a8fd5f4327c7556ca332a28046bd7cd340e183c1b53fd59d5e3689e"
+    },
+    {
+      "path": "pc/store/trailers/20261025/Dicekin-Gameplay-EN-poster-1920.png",
+      "bytes": 2984784,
+      "sha256": "75757b340f4ed56edfb1d1f7bf17237dcfbfc15a3bab062a382518454adbfb1c",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/store/trailers/20261025/Dicekin-Gameplay-ZH-30s.mp4",
+      "bytes": 24986990,
+      "sha256": "cfeb882018fab35a6782cf51ffbcc8dc9eac925d414680f8080de7b0495a62bd"
+    },
+    {
+      "path": "pc/store/trailers/20261025/Dicekin-Gameplay-ZH-poster-1920.png",
+      "bytes": 2959724,
+      "sha256": "f6ff60ffc562e09c0dfd922bf70518d92332f80a643c55bd1e347264e3de80bc",
+      "pixels": [
+        1920,
+        1080
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Steam PC 游戏开发与提交"
+  short_description: "独立 PC 客户端、Steam 商店与包体、云档成就及社区物品经验"
+  default_prompt: "使用 $steam-pc-game 完成本项目本轮 Steam PC 开发或提交任务，沿用当前引擎与资产，并区分技术检查、真实 Steam 验证和待完成事项。"

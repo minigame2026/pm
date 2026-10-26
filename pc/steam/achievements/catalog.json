@@ -1,0 +1,114 @@
+[
+  {
+    "api": "DK_PARTNER",
+    "name": "First Companion",
+    "zh": "初次结伴",
+    "description": "Choose your first companion and finish the introduction.",
+    "icon": "paw"
+  },
+  {
+    "api": "DK_MAP_1",
+    "name": "Beyond the Camp",
+    "zh": "营地之外",
+    "description": "Clear your first story region.",
+    "icon": "map"
+  },
+  {
+    "api": "DK_MAP_6",
+    "name": "Halfway to the Horizon",
+    "zh": "地平线的另一半",
+    "description": "Clear 6 different story regions.",
+    "icon": "map"
+  },
+  {
+    "api": "DK_MAP_12",
+    "name": "Every Corner of the World",
+    "zh": "踏遍十二境",
+    "description": "Clear 12 different story regions.",
+    "icon": "map"
+  },
+  {
+    "api": "DK_COLLECT_10",
+    "name": "A Growing Family",
+    "zh": "伙伴成群",
+    "description": "Collect 10 different pet species.",
+    "icon": "paw"
+  },
+  {
+    "api": "DK_COLLECT_30",
+    "name": "Friends of Every Kind",
+    "zh": "百般相遇",
+    "description": "Collect 30 different pet species.",
+    "icon": "paw"
+  },
+  {
+    "api": "DK_COLLECT_60",
+    "name": "Master Tamer",
+    "zh": "驯兽大师",
+    "description": "Collect 60 different pet species.",
+    "icon": "paw"
+  },
+  {
+    "api": "DK_HATCH_1",
+    "name": "Hello, Little One",
+    "zh": "破壳之喜",
+    "description": "Hatch your first pet egg.",
+    "icon": "egg"
+  },
+  {
+    "api": "DK_HATCH_10",
+    "name": "A Nest Full of Stories",
+    "zh": "十次新生",
+    "description": "Hatch 10 pet eggs.",
+    "icon": "egg"
+  },
+  {
+    "api": "DK_SSR",
+    "name": "Extraordinary Companion",
+    "zh": "非凡伙伴",
+    "description": "Obtain an SSR pet.",
+    "icon": "crown"
+  },
+  {
+    "api": "DK_SHINY",
+    "name": "A Different Spark",
+    "zh": "闪耀相逢",
+    "description": "Obtain a shiny pet.",
+    "icon": "star"
+  },
+  {
+    "api": "DK_GYM_1",
+    "name": "First Badge",
+    "zh": "第一枚徽章",
+    "description": "Earn your first gym badge.",
+    "icon": "shield"
+  },
+  {
+    "api": "DK_GYM_9",
+    "name": "Ninefold Champion",
+    "zh": "九馆冠军",
+    "description": "Earn 9 different gym badges.",
+    "icon": "shield"
+  },
+  {
+    "api": "DK_COOK",
+    "name": "Campfire Cook",
+    "zh": "营地掌勺人",
+    "description": "Cook your first meal.",
+    "icon": "pot"
+  },
+  {
+    "api": "DK_FEAST",
+    "name": "A Feast to Remember",
+    "zh": "珍馐时刻",
+    "description": "Cook a quality-3 meal.",
+    "icon": "pot"
+  },
+  {
+    "api": "DK_RAID",
+    "name": "Together Against the Crown",
+    "zh": "并肩破熔冠",
+    "description": "Clear Molten Crown with at least one other player.",
+    "icon": "crown"
+  }
+]
