@@ -1,0 +1,387 @@
+{
+  "appid": 5500200,
+  "series": 1,
+  "locales": [
+    "english",
+    "japanese",
+    "koreana",
+    "tchinese",
+    "schinese"
+  ],
+  "cards": [
+    {
+      "id": "fox",
+      "type": "card",
+      "internal": "dicekin_card_fox",
+      "source": "sources/card-fox.png",
+      "title": {
+        "english": "Sparkfox",
+        "japanese": "ヒバナギツネ",
+        "koreana": "불씨여우",
+        "tchinese": "閃尾狐",
+        "schinese": "闪尾狐"
+      },
+      "description": {
+        "english": "A bright-eyed companion races toward the next adventure, with a lucky roll waiting on the trail.",
+        "japanese": "幸運のひと振りを待ちながら、瞳を輝かせた仲間が次の冒険へ駆け出す。",
+        "koreana": "반짝이는 눈의 동료가 다음 모험으로 달려간다. 길 위에는 행운의 주사위가 기다린다.",
+        "tchinese": "眼中閃著光的夥伴奔向下一段冒險，幸運的一擲就在前方。",
+        "schinese": "眼中闪着光的伙伴奔向下一段冒险，幸运的一掷就在前方。"
+      },
+      "sourcePixels": [
+        1672,
+        941
+      ],
+      "large": "cards/fox.jpg",
+      "small": "cards/fox-small.png"
+    },
+    {
+      "id": "bud",
+      "type": "card",
+      "internal": "dicekin_card_bud",
+      "source": "sources/card-bud.png",
+      "title": {
+        "english": "Sproutling",
+        "japanese": "メバエリュウ",
+        "koreana": "새싹룡",
+        "tchinese": "芽芽龍",
+        "schinese": "芽芽龙"
+      },
+      "description": {
+        "english": "Where the forest wakes, a little leaf-eared friend discovers that every roll can begin a new journey.",
+        "japanese": "森が目覚める場所で、葉の耳を持つ小さな仲間が、新たな旅を告げるサイコロに出会う。",
+        "koreana": "숲이 깨어나는 곳에서 잎사귀 귀를 가진 작은 친구가 새로운 여정을 열 주사위를 발견한다.",
+        "tchinese": "森林甦醒之處，葉耳小夥伴發現，每一次擲骰都能開啟新的旅程。",
+        "schinese": "森林苏醒之处，叶耳小伙伴发现，每一次掷骰都能开启新的旅程。"
+      },
+      "sourcePixels": [
+        1672,
+        941
+      ],
+      "large": "cards/bud.jpg",
+      "small": "cards/bud-small.png"
+    },
+    {
+      "id": "otter",
+      "type": "card",
+      "internal": "dicekin_card_otter",
+      "source": "sources/card-otter.png",
+      "title": {
+        "english": "Bubbotter",
+        "japanese": "アワカワウソ",
+        "koreana": "물방울수달",
+        "tchinese": "潮泡獺",
+        "schinese": "潮泡獭"
+      },
+      "description": {
+        "english": "A splash, a bubble, and a playful catch. Even a quiet stream has room for a little dice magic.",
+        "japanese": "水しぶき、泡、そして見事なキャッチ。静かな小川にもサイコロの魔法がきらめく。",
+        "koreana": "물보라와 물방울 사이로 장난스러운 한 번의 캐치. 고요한 시냇물에도 주사위의 마법이 깃든다.",
+        "tchinese": "水花、泡泡與輕巧的一接，寧靜溪流也藏著骰子的魔法。",
+        "schinese": "水花、泡泡与轻巧的一接，宁静溪流也藏着骰子的魔法。"
+      },
+      "sourcePixels": [
+        1672,
+        941
+      ],
+      "large": "cards/otter.jpg",
+      "small": "cards/otter-small.png"
+    },
+    {
+      "id": "owl",
+      "type": "card",
+      "internal": "dicekin_card_owl",
+      "source": "sources/card-owl.png",
+      "title": {
+        "english": "Starowl",
+        "japanese": "ホシワフクロウ",
+        "koreana": "별고리올빼미",
+        "tchinese": "星環鴞",
+        "schinese": "星环鸮"
+      },
+      "description": {
+        "english": "Beneath ancient stars, the ringed guardian watches over the possibilities of the next roll.",
+        "japanese": "太古の星空の下、環をまとう守護者が、次のひと振りに秘められた可能性を見守る。",
+        "koreana": "오랜 별들 아래에서 고리를 두른 수호자가 다음 주사위에 담긴 가능성을 지켜본다.",
+        "tchinese": "古老星空下，星環守護者凝望下一擲所蘊藏的可能。",
+        "schinese": "古老星空下，星环守护者凝望下一掷所蕴藏的可能。"
+      },
+      "sourcePixels": [
+        1672,
+        941
+      ],
+      "large": "cards/owl.jpg",
+      "small": "cards/owl-small.png"
+    },
+    {
+      "id": "dragon",
+      "type": "card",
+      "internal": "dicekin_card_dragon",
+      "source": "sources/card-dragon.png",
+      "title": {
+        "english": "Thundrake",
+        "japanese": "ライカンリュウ",
+        "koreana": "뇌관룡",
+        "tchinese": "霆冠龍",
+        "schinese": "霆冠龙"
+      },
+      "description": {
+        "english": "Above the storm, a thunder-crowned dragon greets the dawn. The boldest journeys begin with one roll.",
+        "japanese": "嵐の上で、雷の冠をいただく竜が夜明けを迎える。勇敢な旅も、ひと振りから始まる。",
+        "koreana": "폭풍 위에서 번개의 왕관을 쓴 용이 새벽을 맞는다. 대담한 여정도 주사위 한 번에서 시작된다.",
+        "tchinese": "風暴之上，雷冠之龍迎接黎明。勇敢的旅程，始於一次擲骰。",
+        "schinese": "风暴之上，雷冠之龙迎接黎明。勇敢的旅程，始于一次掷骰。"
+      },
+      "sourcePixels": [
+        1672,
+        941
+      ],
+      "large": "cards/dragon.jpg",
+      "small": "cards/dragon-small.png"
+    }
+  ],
+  "backgrounds": [
+    {
+      "id": "forest",
+      "type": "background",
+      "internal": "dicekin_bg_forest",
+      "source": "sources/background-forest.png",
+      "title": {
+        "english": "Moonlit Grove",
+        "japanese": "月明かりの森",
+        "koreana": "달빛 숲",
+        "tchinese": "月影森林",
+        "schinese": "月影森林"
+      },
+      "description": {
+        "english": "The forest keeps a little luck glowing long after sunset.",
+        "japanese": "日が沈んだ後も、森には小さな幸運の光が灯る。",
+        "koreana": "해가 진 뒤에도 숲에는 작은 행운의 빛이 남아 있다.",
+        "tchinese": "日落之後，森林仍守著一點幸運的微光。",
+        "schinese": "日落之后，森林仍守着一点幸运的微光。"
+      },
+      "sourcePixels": [
+        1672,
+        941
+      ],
+      "large": "backgrounds/forest.jpg"
+    },
+    {
+      "id": "tide",
+      "type": "background",
+      "internal": "dicekin_bg_tide",
+      "source": "sources/background-tide.png",
+      "title": {
+        "english": "Starlit Cove",
+        "japanese": "星明かりの入江",
+        "koreana": "별빛 만",
+        "tchinese": "星潮海灣",
+        "schinese": "星潮海湾"
+      },
+      "description": {
+        "english": "Quiet tides carry dreams of the next adventure.",
+        "japanese": "静かな潮が、次の冒険への夢を運ぶ。",
+        "koreana": "잔잔한 물결이 다음 모험의 꿈을 실어 나른다.",
+        "tchinese": "寧靜潮汐，帶來下一段冒險的夢。",
+        "schinese": "宁静潮汐，带来下一段冒险的梦。"
+      },
+      "sourcePixels": [
+        1672,
+        941
+      ],
+      "large": "backgrounds/tide.jpg"
+    },
+    {
+      "id": "stars",
+      "type": "background",
+      "internal": "dicekin_bg_stars",
+      "source": "sources/background-stars.png",
+      "title": {
+        "english": "Celestial Sanctuary",
+        "japanese": "星天の聖域",
+        "koreana": "천상의 성역",
+        "tchinese": "星穹聖域",
+        "schinese": "星穹圣域"
+      },
+      "description": {
+        "english": "Beyond the clouds, ancient constellations watch over every journey.",
+        "japanese": "雲の向こうで、太古の星座がすべての旅を見守る。",
+        "koreana": "구름 너머에서 오랜 별자리가 모든 여정을 지켜본다.",
+        "tchinese": "雲海之上，古老星座守望每一段旅程。",
+        "schinese": "云海之上，古老星座守望每一段旅程。"
+      },
+      "sourcePixels": [
+        1672,
+        941
+      ],
+      "large": "backgrounds/stars.jpg"
+    }
+  ],
+  "badges": [
+    {
+      "id": "1",
+      "title": {
+        "english": "First Roll",
+        "japanese": "はじめのひと振り",
+        "koreana": "첫 주사위",
+        "tchinese": "初次擲骰",
+        "schinese": "初次掷骰"
+      },
+      "image": "badges/1.png"
+    },
+    {
+      "id": "2",
+      "title": {
+        "english": "Growing Bond",
+        "japanese": "芽生える絆",
+        "koreana": "자라나는 유대",
+        "tchinese": "萌芽羈絆",
+        "schinese": "萌芽羁绊"
+      },
+      "image": "badges/2.png"
+    },
+    {
+      "id": "3",
+      "title": {
+        "english": "Trusted Companion",
+        "japanese": "信頼の仲間",
+        "koreana": "믿음직한 동료",
+        "tchinese": "可靠夥伴",
+        "schinese": "可靠伙伴"
+      },
+      "image": "badges/3.png"
+    },
+    {
+      "id": "4",
+      "title": {
+        "english": "Winged Adventurer",
+        "japanese": "翼ある冒険者",
+        "koreana": "날개 달린 모험가",
+        "tchinese": "展翼冒險家",
+        "schinese": "展翼冒险家"
+      },
+      "image": "badges/4.png"
+    },
+    {
+      "id": "5",
+      "title": {
+        "english": "Crowned Tamer",
+        "japanese": "冠を戴くテイマー",
+        "koreana": "왕관의 테이머",
+        "tchinese": "加冕馴獸師",
+        "schinese": "加冕驯兽师"
+      },
+      "image": "badges/5.png"
+    },
+    {
+      "id": "foil",
+      "title": {
+        "english": "Starlight Kin",
+        "japanese": "星光の絆",
+        "koreana": "별빛의 유대",
+        "tchinese": "星光之契",
+        "schinese": "星光之契"
+      },
+      "image": "badges/foil.png"
+    }
+  ],
+  "emotes": [
+    {
+      "id": "roll",
+      "type": "emote",
+      "internal": "dicekin_roll",
+      "title": {
+        "english": "Lucky Roll",
+        "japanese": "幸運のひと振り",
+        "koreana": "행운의 주사위",
+        "tchinese": "幸運一擲",
+        "schinese": "幸运一掷"
+      },
+      "description": {
+        "english": "Lucky Roll",
+        "japanese": "幸運のひと振り",
+        "koreana": "행운의 주사위",
+        "tchinese": "幸運一擲",
+        "schinese": "幸运一掷"
+      }
+    },
+    {
+      "id": "fox",
+      "type": "emote",
+      "internal": "dicekin_fox",
+      "title": {
+        "english": "Happy Sparkfox",
+        "japanese": "ごきげんヒバナギツネ",
+        "koreana": "행복한 불씨여우",
+        "tchinese": "開心閃尾狐",
+        "schinese": "开心闪尾狐"
+      },
+      "description": {
+        "english": "Happy Sparkfox",
+        "japanese": "ごきげんヒバナギツネ",
+        "koreana": "행복한 불씨여우",
+        "tchinese": "開心閃尾狐",
+        "schinese": "开心闪尾狐"
+      }
+    },
+    {
+      "id": "leaf",
+      "type": "emote",
+      "internal": "dicekin_leaf",
+      "title": {
+        "english": "Leafy Love",
+        "japanese": "葉っぱの愛",
+        "koreana": "잎사귀 사랑",
+        "tchinese": "葉之心意",
+        "schinese": "叶之心意"
+      },
+      "description": {
+        "english": "Leafy Love",
+        "japanese": "葉っぱの愛",
+        "koreana": "잎사귀 사랑",
+        "tchinese": "葉之心意",
+        "schinese": "叶之心意"
+      }
+    },
+    {
+      "id": "splash",
+      "type": "emote",
+      "internal": "dicekin_splash",
+      "title": {
+        "english": "Bubble Cheer",
+        "japanese": "あわあわ応援",
+        "koreana": "물방울 응원",
+        "tchinese": "泡泡歡呼",
+        "schinese": "泡泡欢呼"
+      },
+      "description": {
+        "english": "Bubble Cheer",
+        "japanese": "あわあわ応援",
+        "koreana": "물방울 응원",
+        "tchinese": "泡泡歡呼",
+        "schinese": "泡泡欢呼"
+      }
+    },
+    {
+      "id": "egg",
+      "type": "emote",
+      "internal": "dicekin_egg",
+      "title": {
+        "english": "New Friend",
+        "japanese": "新しい仲間",
+        "koreana": "새로운 친구",
+        "tchinese": "新夥伴",
+        "schinese": "新伙伴"
+      },
+      "description": {
+        "english": "New Friend",
+        "japanese": "新しい仲間",
+        "koreana": "새로운 친구",
+        "tchinese": "新夥伴",
+        "schinese": "新伙伴"
+      }
+    }
+  ],
+  "borderColor": "#DDB76E",
+  "sourceNote": "Original AI-assisted illustrations based on game characters. Native source dimensions retained per item; 1920x1080 exports are resized for Steam and not native 1920-detail claims. Vector badges/emotes are original editable SVG."
+}

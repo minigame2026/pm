@@ -160,11 +160,6 @@
       "sha256": "d7a1d5bf6698185128ca98ff5850d99cfd1b4ffde907336d4434b10d0a823782"
     },
     {
-      "path": "pc/steam/achievements/DK_COLLECT_10.svg",
-      "bytes": 1231,
-      "sha256": "a054aa868e97f71c46160bcb8774782e809f90bc7c6b0c707af7a477581b79e5"
-    },
-    {
       "path": "pc/steam/achievements/DK_COLLECT_10_ACHIEVED.png",
       "bytes": 38085,
       "sha256": "d2b9975f9ae87713a435ce55da5fa8edd50607f107fea7645645466b421704cd",
@@ -174,9 +169,9 @@
       ]
     },
     {
-      "path": "pc/steam/achievements/DK_COLLECT_30.svg",
+      "path": "pc/steam/achievements/DK_COLLECT_10.svg",
       "bytes": 1231,
-      "sha256": "370f4d0443bb192ab2e01f4ff5e4f7f66a138329db711901f59bb227715bd229"
+      "sha256": "a054aa868e97f71c46160bcb8774782e809f90bc7c6b0c707af7a477581b79e5"
     },
     {
       "path": "pc/steam/achievements/DK_COLLECT_30_ACHIEVED.png",
@@ -188,9 +183,9 @@
       ]
     },
     {
-      "path": "pc/steam/achievements/DK_COLLECT_60.svg",
+      "path": "pc/steam/achievements/DK_COLLECT_30.svg",
       "bytes": 1231,
-      "sha256": "ebc5ae927b03689d8530b9ba0880d5efcbb4ee5330bb0de5983fe9ac209e6019"
+      "sha256": "370f4d0443bb192ab2e01f4ff5e4f7f66a138329db711901f59bb227715bd229"
     },
     {
       "path": "pc/steam/achievements/DK_COLLECT_60_ACHIEVED.png",
@@ -202,9 +197,9 @@
       ]
     },
     {
-      "path": "pc/steam/achievements/DK_COOK.svg",
-      "bytes": 1057,
-      "sha256": "7f03827de26b20d26b12673fecd84aa9507c9ceede2fddb955447681ca7013d0"
+      "path": "pc/steam/achievements/DK_COLLECT_60.svg",
+      "bytes": 1231,
+      "sha256": "ebc5ae927b03689d8530b9ba0880d5efcbb4ee5330bb0de5983fe9ac209e6019"
     },
     {
       "path": "pc/steam/achievements/DK_COOK_ACHIEVED.png",
@@ -216,9 +211,9 @@
       ]
     },
     {
-      "path": "pc/steam/achievements/DK_FEAST.svg",
-      "bytes": 1166,
-      "sha256": "2936e112366f51d8c7b41eadf9d9889700937d3b8e19d6596cb6a7f7da92fe26"
+      "path": "pc/steam/achievements/DK_COOK.svg",
+      "bytes": 1057,
+      "sha256": "7f03827de26b20d26b12673fecd84aa9507c9ceede2fddb955447681ca7013d0"
     },
     {
       "path": "pc/steam/achievements/DK_FEAST_ACHIEVED.png",
@@ -230,9 +225,9 @@
       ]
     },
     {
-      "path": "pc/steam/achievements/DK_GYM_1.svg",
-      "bytes": 1110,
-      "sha256": "5c098b416484e9599622a75aaa1a82e75ceb430bc410be553a884d9b29d3d81e"
+      "path": "pc/steam/achievements/DK_FEAST.svg",
+      "bytes": 1166,
+      "sha256": "2936e112366f51d8c7b41eadf9d9889700937d3b8e19d6596cb6a7f7da92fe26"
     },
     {
       "path": "pc/steam/achievements/DK_GYM_1_ACHIEVED.png",
@@ -244,9 +239,9 @@
       ]
     },
     {
-      "path": "pc/steam/achievements/DK_GYM_9.svg",
+      "path": "pc/steam/achievements/DK_GYM_1.svg",
       "bytes": 1110,
-      "sha256": "8e3eb6eb3a76441455413517f0f5a1e61fe8dc32c2e21624ce59d89c0841625e"
+      "sha256": "5c098b416484e9599622a75aaa1a82e75ceb430bc410be553a884d9b29d3d81e"
     },
     {
       "path": "pc/steam/achievements/DK_GYM_9_ACHIEVED.png",
@@ -258,23 +253,9 @@
       ]
     },
     {
-      "path": "pc/steam/achievements/DK_HATCH_1.svg",
-      "bytes": 1134,
-      "sha256": "9f9ba8403172c44c78c5485242604f5d5a74491da0518ac742b2612128abd24c"
-    },
-    {
-      "path": "pc/steam/achievements/DK_HATCH_10.svg",
-      "bytes": 1135,
-      "sha256": "334c61955656767e31317864d7d87074eea83aeb82d4ba9b2bf523ed0640ad8d"
-    },
-    {
-      "path": "pc/steam/achievements/DK_HATCH_10_ACHIEVED.png",
-      "bytes": 38205,
-      "sha256": "51580af89a6a787a0d8f882c74b3d19b0373fe62cbdbf00360e35e42ca0b579b",
-      "pixels": [
-        256,
-        256
-      ]
+      "path": "pc/steam/achievements/DK_GYM_9.svg",
+      "bytes": 1110,
+      "sha256": "8e3eb6eb3a76441455413517f0f5a1e61fe8dc32c2e21624ce59d89c0841625e"
     },
     {
       "path": "pc/steam/achievements/DK_HATCH_1_ACHIEVED.png",
@@ -286,23 +267,23 @@
       ]
     },
     {
-      "path": "pc/steam/achievements/DK_MAP_1.svg",
-      "bytes": 1155,
-      "sha256": "832fa78f48dab23238b3d2d98dd24b4b19bcc02533acc9885f88fcff9d599e94"
+      "path": "pc/steam/achievements/DK_HATCH_1.svg",
+      "bytes": 1134,
+      "sha256": "9f9ba8403172c44c78c5485242604f5d5a74491da0518ac742b2612128abd24c"
     },
     {
-      "path": "pc/steam/achievements/DK_MAP_12.svg",
-      "bytes": 1156,
-      "sha256": "febd8c18cd921ee37fd775e62b46d0a62d65fd3d1ffd536ce456454bb390ff31"
-    },
-    {
-      "path": "pc/steam/achievements/DK_MAP_12_ACHIEVED.png",
-      "bytes": 38416,
-      "sha256": "6a54e53224268857c6865e12e4973456a08180aa7c741850ad4b8df8b754a037",
+      "path": "pc/steam/achievements/DK_HATCH_10_ACHIEVED.png",
+      "bytes": 38205,
+      "sha256": "51580af89a6a787a0d8f882c74b3d19b0373fe62cbdbf00360e35e42ca0b579b",
       "pixels": [
         256,
         256
       ]
+    },
+    {
+      "path": "pc/steam/achievements/DK_HATCH_10.svg",
+      "bytes": 1135,
+      "sha256": "334c61955656767e31317864d7d87074eea83aeb82d4ba9b2bf523ed0640ad8d"
     },
     {
       "path": "pc/steam/achievements/DK_MAP_1_ACHIEVED.png",
@@ -314,9 +295,23 @@
       ]
     },
     {
-      "path": "pc/steam/achievements/DK_MAP_6.svg",
+      "path": "pc/steam/achievements/DK_MAP_1.svg",
       "bytes": 1155,
-      "sha256": "73d4796ab778914d8fece5a71116148aeed5abcf74b50c8cf5ff7a7606f3e34f"
+      "sha256": "832fa78f48dab23238b3d2d98dd24b4b19bcc02533acc9885f88fcff9d599e94"
+    },
+    {
+      "path": "pc/steam/achievements/DK_MAP_12_ACHIEVED.png",
+      "bytes": 38416,
+      "sha256": "6a54e53224268857c6865e12e4973456a08180aa7c741850ad4b8df8b754a037",
+      "pixels": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "pc/steam/achievements/DK_MAP_12.svg",
+      "bytes": 1156,
+      "sha256": "febd8c18cd921ee37fd775e62b46d0a62d65fd3d1ffd536ce456454bb390ff31"
     },
     {
       "path": "pc/steam/achievements/DK_MAP_6_ACHIEVED.png",
@@ -328,9 +323,9 @@
       ]
     },
     {
-      "path": "pc/steam/achievements/DK_PARTNER.svg",
-      "bytes": 1123,
-      "sha256": "8560d20e2b2c85be678fa93412dc9527256eb0a0824639e16fdf19146cabcc48"
+      "path": "pc/steam/achievements/DK_MAP_6.svg",
+      "bytes": 1155,
+      "sha256": "73d4796ab778914d8fece5a71116148aeed5abcf74b50c8cf5ff7a7606f3e34f"
     },
     {
       "path": "pc/steam/achievements/DK_PARTNER_ACHIEVED.png",
@@ -342,9 +337,9 @@
       ]
     },
     {
-      "path": "pc/steam/achievements/DK_RAID.svg",
-      "bytes": 992,
-      "sha256": "74e988195cc83fcdad8651bf50d916c1b83a6f5a2ffcc656f9ff96455e143183"
+      "path": "pc/steam/achievements/DK_PARTNER.svg",
+      "bytes": 1123,
+      "sha256": "8560d20e2b2c85be678fa93412dc9527256eb0a0824639e16fdf19146cabcc48"
     },
     {
       "path": "pc/steam/achievements/DK_RAID_ACHIEVED.png",
@@ -356,9 +351,9 @@
       ]
     },
     {
-      "path": "pc/steam/achievements/DK_SHINY.svg",
-      "bytes": 1016,
-      "sha256": "a6a66c791d2ce8c453fd7174cf8e86c618d75e08d1e118bff851d3a8b1a43423"
+      "path": "pc/steam/achievements/DK_RAID.svg",
+      "bytes": 992,
+      "sha256": "74e988195cc83fcdad8651bf50d916c1b83a6f5a2ffcc656f9ff96455e143183"
     },
     {
       "path": "pc/steam/achievements/DK_SHINY_ACHIEVED.png",
@@ -370,9 +365,9 @@
       ]
     },
     {
-      "path": "pc/steam/achievements/DK_SSR.svg",
-      "bytes": 1101,
-      "sha256": "85712a76e1a20f683835de95c20f7fddb4f2ac91142c26f5587c8b07aec39e83"
+      "path": "pc/steam/achievements/DK_SHINY.svg",
+      "bytes": 1016,
+      "sha256": "a6a66c791d2ce8c453fd7174cf8e86c618d75e08d1e118bff851d3a8b1a43423"
     },
     {
       "path": "pc/steam/achievements/DK_SSR_ACHIEVED.png",
@@ -384,9 +379,435 @@
       ]
     },
     {
+      "path": "pc/steam/achievements/DK_SSR.svg",
+      "bytes": 1101,
+      "sha256": "85712a76e1a20f683835de95c20f7fddb4f2ac91142c26f5587c8b07aec39e83"
+    },
+    {
       "path": "pc/steam/achievements/localization.csv",
       "bytes": 23298,
       "sha256": "0839b99adad8bfc68364ad7a5d202121b6aadd5c95cdaa0890f86a29e0aad9d8"
+    },
+    {
+      "path": "pc/steam/community-items/series-1/backgrounds/forest.jpg",
+      "bytes": 327758,
+      "sha256": "dff689c8557fe30cf960180ffea9a6f11a3f593040b9e8467908ae90b7f883e0",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/backgrounds/stars.jpg",
+      "bytes": 261922,
+      "sha256": "45b2a2c6935360057b1bd91b0f431fcd51c603bd838fe12ba1a90e347f6f68ca",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/backgrounds/tide.jpg",
+      "bytes": 231050,
+      "sha256": "af756cd1318daa230a3d1021e9df589d86799620ef436cc999b23001a521ea54",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/badges/1.png",
+      "bytes": 3605,
+      "sha256": "2777b094f178865d51c8e1b1ec918e48ce39fc39ba706c8ef6f7a1bdbcf0bf20",
+      "pixels": [
+        80,
+        80
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/badges/1.svg",
+      "bytes": 1082,
+      "sha256": "e0b7e74d28b406a3122dba2a3eac0724420dc48e079095a438c9690cbadeac59"
+    },
+    {
+      "path": "pc/steam/community-items/series-1/badges/2.png",
+      "bytes": 4946,
+      "sha256": "3215981ed9ca1e0ed77680b80d59ca185b50a447b2253d096b5e3e1cee71144a",
+      "pixels": [
+        80,
+        80
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/badges/2.svg",
+      "bytes": 1273,
+      "sha256": "8a56c96307731be8235bee08b190567208e1184859fcd689e00bd8c25e56a963"
+    },
+    {
+      "path": "pc/steam/community-items/series-1/badges/3.png",
+      "bytes": 4671,
+      "sha256": "289758a53f8f57bf45a2f2a558a09598b65e1763bdb31ba66b0b0f047fdcf9c3",
+      "pixels": [
+        80,
+        80
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/badges/3.svg",
+      "bytes": 1256,
+      "sha256": "9c95b307bc78b9cad4415335b3c7961b3e73c712168d0b2223454c8d3ca700aa"
+    },
+    {
+      "path": "pc/steam/community-items/series-1/badges/4.png",
+      "bytes": 5184,
+      "sha256": "02430bc657fac7192f09149ce704ee0d68a7dc5613470a81d91c8b2420eebe29",
+      "pixels": [
+        80,
+        80
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/badges/4.svg",
+      "bytes": 1207,
+      "sha256": "8cf31a562927ea24e176cb06b363c1fe455f4369e83a3b288b1d66f4b90468a3"
+    },
+    {
+      "path": "pc/steam/community-items/series-1/badges/5.png",
+      "bytes": 6118,
+      "sha256": "5b02e6bffd9af5e174181f4b12a6fd2cc3b8bc1c3b4049f23db84e7e77327534",
+      "pixels": [
+        80,
+        80
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/badges/5.svg",
+      "bytes": 1333,
+      "sha256": "afb600dcdd77c546adbaad7da35ea57ac59a5111cec19596d0f5dae9183256c6"
+    },
+    {
+      "path": "pc/steam/community-items/series-1/badges/foil.png",
+      "bytes": 6985,
+      "sha256": "eebad62c1eb6472ac810eb7b594dba8fbf42191dc08f0d4d63da0586493800eb",
+      "pixels": [
+        80,
+        80
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/badges/foil.svg",
+      "bytes": 1301,
+      "sha256": "188483effc4b52381affc76b8616374ac66d2c671405402dac65efddfdd6ce7b"
+    },
+    {
+      "path": "pc/steam/community-items/series-1/branding/logo.png",
+      "bytes": 4533,
+      "sha256": "e3d2f2b7387d5f363084582ed5510d087c99449c554b32b9ed7048c579290bad",
+      "pixels": [
+        206,
+        44
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/branding/logo.svg",
+      "bytes": 252,
+      "sha256": "6514e417fda09395b89642e462eb0a6e49ffcdc25e778f5225227e37817f8c6f"
+    },
+    {
+      "path": "pc/steam/community-items/series-1/cards/bud-small.png",
+      "bytes": 107954,
+      "sha256": "cc9472040f22455ad6e9eb403a67306731b20b81e60f803aaeb70686db3a57c1",
+      "pixels": [
+        206,
+        184
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/cards/bud.jpg",
+      "bytes": 339857,
+      "sha256": "24b3c111aa4026d4612ff9db239ced54a4b85a1298ca1811fccb87e5648678b3",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/cards/dragon-small.png",
+      "bytes": 111463,
+      "sha256": "1743947b598be0ba0de268879aac58d9011d92bd15ad10a6f5b55dd784656187",
+      "pixels": [
+        206,
+        184
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/cards/dragon.jpg",
+      "bytes": 321623,
+      "sha256": "37dd4e2ec21e58674e0a05229668aa4a3ec9693d2cf2dd8319fd8dbf6d5e7930",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/cards/fox-small.png",
+      "bytes": 98700,
+      "sha256": "a6134a3554458067fc368077952b236c99770d12e7e0fda1c61c5ccb9b76d6c7",
+      "pixels": [
+        206,
+        184
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/cards/fox.jpg",
+      "bytes": 318950,
+      "sha256": "00ea70ab11132d108a40f3c82dab124f71ec11a824474521eb21896d1a2ef9f7",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/cards/otter-small.png",
+      "bytes": 101680,
+      "sha256": "e6ce1cd1cef5b235ea115e29c5b6d173330c3191693c3f109abe1d085b5d3926",
+      "pixels": [
+        206,
+        184
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/cards/otter.jpg",
+      "bytes": 327049,
+      "sha256": "d8c842a68df3f7e40048893da31e0478b4e8f0ab5154364dd5b3a92eb5fcadf9",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/cards/owl-small.png",
+      "bytes": 110370,
+      "sha256": "b901fbdc45eef1b16582bc31b2040a93a0a74b78736bde054ccde4ae8c4247b3",
+      "pixels": [
+        206,
+        184
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/cards/owl.jpg",
+      "bytes": 310901,
+      "sha256": "e1e85e6a4a3588ed85cbaef1a92a5a90225bcbc734e1cbce2d697e9d817c96df",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/catalog.json",
+      "bytes": 12976,
+      "sha256": "27af0d3194452c380123a78d667b737699959efd87c4ee62ec47ae6533a894e9"
+    },
+    {
+      "path": "pc/steam/community-items/series-1/emotes/egg-18.png",
+      "bytes": 652,
+      "sha256": "779cc3722e9580ccc882cffba6e462e8fe593b526835c25269ffb07f10d21926",
+      "pixels": [
+        18,
+        18
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/emotes/egg-54.png",
+      "bytes": 2226,
+      "sha256": "d09f7ccb42165b46e86f209ed7734208094ac2c78607ab5595268ee20e822133",
+      "pixels": [
+        54,
+        54
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/emotes/egg.svg",
+      "bytes": 864,
+      "sha256": "8f5406405c44a1e17ae9346cde4c5c763ac8c3acc2ececb1489674e3eabbd8e9"
+    },
+    {
+      "path": "pc/steam/community-items/series-1/emotes/fox-18.png",
+      "bytes": 623,
+      "sha256": "47878c31c175f688920233b115482a6ea3c5f618cfc636380f0a406ed4d52d3e",
+      "pixels": [
+        18,
+        18
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/emotes/fox-54.png",
+      "bytes": 2203,
+      "sha256": "3b0e08b8065c47073574aaacf577e2c678cf8fdd03b9129158e548abff2c833e",
+      "pixels": [
+        54,
+        54
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/emotes/fox.svg",
+      "bytes": 896,
+      "sha256": "b1678da216ebb07751c6a5b37c32bbc5b96a736d0fec3a862248c760adad27b6"
+    },
+    {
+      "path": "pc/steam/community-items/series-1/emotes/leaf-18.png",
+      "bytes": 611,
+      "sha256": "36d914deb63d5ac38f9804080efef5bb239ffb62d347741bbea572e73cb6ca11",
+      "pixels": [
+        18,
+        18
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/emotes/leaf-54.png",
+      "bytes": 2111,
+      "sha256": "b0a033abdb21bef3de27b71541c52322d83ca1bc14c41c942c8e805013bb834f",
+      "pixels": [
+        54,
+        54
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/emotes/leaf.svg",
+      "bytes": 773,
+      "sha256": "bc6e532b95f0a589a43c8513302301f9eab7c1ccd64dd0751ee03d27711553a3"
+    },
+    {
+      "path": "pc/steam/community-items/series-1/emotes/roll-18.png",
+      "bytes": 372,
+      "sha256": "cea6709e0cf8e7c962189ae1473a0f9e713912a51ed5d7f205ebe2f45419bd42",
+      "pixels": [
+        18,
+        18
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/emotes/roll-54.png",
+      "bytes": 1073,
+      "sha256": "2abb51584813692ab939606775526f8f4b1c499cced30351f335d03bbd83501b",
+      "pixels": [
+        54,
+        54
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/emotes/roll.svg",
+      "bytes": 812,
+      "sha256": "9b701d55d010dd2b62856f9023269341b0b9c2223798e618e0558776137f0558"
+    },
+    {
+      "path": "pc/steam/community-items/series-1/emotes/splash-18.png",
+      "bytes": 559,
+      "sha256": "6ca2f67ed3cf4b4572337ce7ddcff88c04d26a86e79e125664305a4daa9aec34",
+      "pixels": [
+        18,
+        18
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/emotes/splash-54.png",
+      "bytes": 1869,
+      "sha256": "4f200e8c1a5ed6e9117e09cb05ccc37447d260f17b442f65e65623a2256d38e5",
+      "pixels": [
+        54,
+        54
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/emotes/splash.svg",
+      "bytes": 867,
+      "sha256": "5e13be5b1b6cf5ba4aed717ed45c5cffb0c0748c0e3deb40f89ddad10d236834"
+    },
+    {
+      "path": "pc/steam/community-items/series-1/preview-v2.png",
+      "bytes": 649018,
+      "sha256": "2acce729605d1fbb91532d76e559b6fc7d499aa46ae88cbfa267fd0dde0ada37",
+      "pixels": [
+        1080,
+        520
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/README.md",
+      "bytes": 1458,
+      "sha256": "de6734b022bc0c2df57e0245413b7a9b47bc948e3c80317115bbb557b297b508"
+    },
+    {
+      "path": "pc/steam/community-items/series-1/sources/background-forest.png",
+      "bytes": 1881354,
+      "sha256": "0a82b61907fa44472581a5151950033eaeece1a0c01d0a638f9ebb3cb565e81c",
+      "pixels": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/sources/background-stars.png",
+      "bytes": 1818130,
+      "sha256": "97b148ab5b7403485ad7351f10094879b8ebfaa90a7e12b3c537431369c668b7",
+      "pixels": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/sources/background-tide.png",
+      "bytes": 1663580,
+      "sha256": "3260eb4fc656690c24348800f01388908915355c9488ce9f2ce03c39bf610026",
+      "pixels": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/sources/card-bud.png",
+      "bytes": 2482874,
+      "sha256": "08b0800714010ccdd0cd2dc5c5ea18dfd6684eed7302651689c8f235522f0830",
+      "pixels": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/sources/card-dragon.png",
+      "bytes": 2858995,
+      "sha256": "f8fa2f3d49ce3de8be41e1c502783d199f2edcaa75478549e99051fcf6b1cde9",
+      "pixels": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/sources/card-fox.png",
+      "bytes": 2498759,
+      "sha256": "3ba66018587ad08460c2296ca2392636379080eb161e6b8c27e6a4f3eb6d63c9",
+      "pixels": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/sources/card-otter.png",
+      "bytes": 2560956,
+      "sha256": "076473b9ea17f47e291367286b5283eb3bb247c8dea65c4f6c6634936fa8f778",
+      "pixels": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "pc/steam/community-items/series-1/sources/card-owl.png",
+      "bytes": 2814049,
+      "sha256": "538bdbea08de74a6d5b69921355e243cd4368647252200871876de66c94ed707",
+      "pixels": [
+        1672,
+        941
+      ]
     },
     {
       "path": "pc/store/capsules/app_icon_184.jpg",
