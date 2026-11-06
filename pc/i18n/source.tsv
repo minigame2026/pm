@@ -1,0 +1,517 @@
+id	source	English reference	files
+pc0001	正在整理旅行背包…	Packing your travel bag…	PCLocale.ts,PMPCGame.ts
+pc0002	存档无法读取，请保留原文件并恢复备份	Cannot read this save. Keep the original and restore a backup.	PCLocale.ts,PMPCGame.ts
+pc0003	资源未能加载，请重新启动	Resources could not load. Please restart.	PCLocale.ts,PMPCGame.ts
+pc0004	等待联网校时	Waiting for online time sync	PCLocale.ts,PMPCGame.ts
+pc0005	孵化与交配需要联网校时。战斗和烹饪仍可使用。	Hatching and breeding need online time sync. Battles and cooking are still available.	PCLocale.ts,PMPCGame.ts
+pc0006	暂时无法校时	Time sync unavailable	PCLocale.ts,PMPCGame.ts
+pc0007	请检查网络后再试。	Check your connection and try again.	PCLocale.ts,PMPCGame.ts
+pc0008	保存失败 · 请勿退出	Save failed · Please do not quit	PCLocale.ts,PMPCGame.ts
+pc0009	驯兽师	Tamer	PCLocale.ts,PMPCGame.ts
+pc0010	等待 Steam 联网校时	Waiting for Steam time sync	PCLocale.ts,PMPCGame.ts
+pc0011	暂时无法领取，请检查连接与存档	Unable to claim. Check your connection and save.	PCLocale.ts,PMPCGame.ts
+pc0012	保存失败，奖励尚未领取，请重试	Save failed. Your reward has not been claimed. Try again.	PCLocale.ts,PMPCGame.ts
+pc0013	获得龙鳞碎片	Dragon scale shards obtained	PCLocale.ts,PMPCGame.ts
+pc0014	获得 	Obtained 	PCLocale.ts,PMPCGame.ts
+pc0015	 枚宠物蛋	 pet eggs	PCLocale.ts,PMPCGame.ts
+pc0016	请完成当前战斗后再用餐	Finish this battle before eating	PCLocale.ts,PMPCGame.ts
+pc0017	请结束当前副本后再用餐	Finish this raid before eating	PCLocale.ts,PMPCGame.ts
+pc0018	当前存档不可写入	This save is read-only	PCLocale.ts,PMPCGame.ts
+pc0019	暂时无法完成料理	Unable to cook right now	PCLocale.ts,PMPCGame.ts
+pc0020	保存失败，材料与食物未消耗	Save failed. Ingredients and food were not consumed.	PCLocale.ts,PMPCGame.ts
+pc0021	料理已放入餐盒	Meal added to your lunchbox	PCLocale.ts,PMPCGame.ts
+pc0022	副本食材尚未保存，请重试领取	Raid ingredients were not saved. Please claim again.	PCLocale.ts,PMPCGame.ts
+pc0023	Steam账号已改变，请重新启动游戏以载入对应存档	Steam account changed. Restart to load the matching save.	PCLocale.ts,PMPCGame.ts
+pc0024	1–4 指令    Enter 攻击 / 继续    Esc 设置	1–4 Commands    Enter Attack / Continue    Esc Settings	PCLocale.ts,PMPCGame.ts
+pc0025	Enter 确认    ← → 翻页    Esc 返回	Enter Confirm    ← → Pages    Esc Back	PCLocale.ts,PMPCGame.ts
+pc0026	骰子精灵 · 驯兽之旅	Dicekin · Monster Tamer	PCLocale.ts,PMPCGame.ts
+pc0027	骰子精灵	Dicekin	PCLocale.ts,PMPCGame.ts
+pc0028	营地	Camp	PCLocale.ts,PMPCGame.ts
+pc0029	世界地图	World Map	PCLocale.ts,PMPCGame.ts
+pc0030	孵化与培育	Hatch & Breed	PCLocale.ts,PMPCGame.ts
+pc0031	营地烹饪	Camp Kitchen	PCLocale.ts,PMPCGame.ts
+pc0032	精灵图鉴	Monster Journal	PCLocale.ts,PMPCGame.ts
+pc0033	道馆挑战	Gym Challenges	PCLocale.ts,PMPCGame.ts
+pc0034	旅伴	Companions	PCLocale.ts,PCOnlineUI.ts,PMPCGame.ts
+pc0035	多人副本	Co-op Raids	PCLocale.ts,PCOnlineUI.ts,PMPCGame.ts
+pc0036	赛季天梯	Season Ladder	PCLocale.ts,PCOnlineUI.ts,PMPCGame.ts
+pc0037	设置	Settings	PCLocale.ts,PMPCGame.ts
+pc0038	通关上一地区后解锁	Clear the previous region to unlock	PCLocale.ts,PMPCGame.ts
+pc0039	请先结束当前冒险	Finish your current adventure first	PCLocale.ts,PMPCGame.ts
+pc0040	继续旅程   →	Continue Journey   →	PCLocale.ts,PMPCGame.ts
+pc0041	选择目的地，开始新的冒险	Choose a destination for your next adventure	PCLocale.ts,PMPCGame.ts
+pc0042	你的旅程，由此开始	Your journey begins here	PCLocale.ts,PMPCGame.ts
+pc0043	选一位伙伴，一起出发	Choose a monster and set out together	PCLocale.ts,PMPCGame.ts
+pc0044	选择旅行者	Choose Your Traveler	PCLocale.ts,PMPCGame.ts
+pc0045	每一位伙伴，都有自己的拿手本领	Every companion has a special talent	PCLocale.ts,PMPCGame.ts
+pc0046	Steam 云档案	Steam Cloud Save	PCLocale.ts,PMPCGame.ts
+pc0047	导入本机原有进度	Import Local Progress	PCLocale.ts,PMPCGame.ts
+pc0048	已选择	Selected	PCLocale.ts,PMPCGame.ts
+pc0049	确认旅行者   →	Confirm Traveler   →	PCLocale.ts,PMPCGame.ts
+pc0050	一起出发   →	Begin Together   →	PCLocale.ts,PMPCGame.ts
+pc0051	导入本机进度	Import Local Progress	PCLocale.ts,PMPCGame.ts
+pc0052	将原有PC进度复制到当前Steam账号；原存档保留。	Copy local PC progress to this Steam account. The original save is kept.	PCLocale.ts,PMPCGame.ts
+pc0053	没有可导入的进度	No progress to import	PCLocale.ts,PMPCGame.ts
+pc0054	世界探险	World Adventure	PCLocale.ts,PMPCGame.ts
+pc0055	十二片风景，等你与伙伴一同抵达	Twelve regions await you and your companions	PCLocale.ts,PMPCGame.ts
+pc0056	已探索	Explored	PCLocale.ts,PMPCGame.ts
+pc0057	可出发	Available	PCLocale.ts,PMPCGame.ts
+pc0058	待解锁	Locked	PCLocale.ts,PMPCGame.ts
+pc0059	10 场遭遇 · 精英与首领可寻蛋	10 encounters · Elites and bosses may lead to eggs	PCLocale.ts,PMPCGame.ts
+pc0060	每一次相遇，都值得收藏	Every encounter is worth remembering	PCLocale.ts,PMPCGame.ts
+pc0061	查看伙伴，安排你的冒险队伍	Meet your companions and arrange your adventuring party	PCLocale.ts,PMPCGame.ts
+pc0062	★ 闪光形态	★ Shiny Form	PCLocale.ts,PMPCGame.ts
+pc0063	普通形态	Normal Form	PCLocale.ts,PMPCGame.ts
+pc0064	当前队伍	Current Party	PCLocale.ts,PMPCGame.ts
+pc0065	领队	Leader	PCLocale.ts,PMPCGame.ts
+pc0066	待安排	Unassigned	PCLocale.ts,PMPCGame.ts
+pc0067	 种形态	 forms	PCLocale.ts,PMPCGame.ts
+pc0068	 位伙伴	 companions	PCLocale.ts,PMPCGame.ts
+pc0069	孵化第一枚蛋，认识新的伙伴	Hatch your first egg to meet a new companion	PCLocale.ts,PMPCGame.ts
+pc0070	生命	HP	PCLocale.ts,PMPCGame.ts
+pc0071	 等 	 and 	PCLocale.ts,PMPCGame.ts
+pc0072	 种	 types	PCLocale.ts,PMPCGame.ts
+pc0073	详情	Details	PCLocale.ts,PMPCGame.ts
+pc0074	已收集	Collected	PCLocale.ts,PMPCGame.ts
+pc0075	尚未收集	Not collected	PCLocale.ts,PMPCGame.ts
+pc0076	战斗或交配期间无法调整队伍	You cannot change the party during battle or breeding	PCLocale.ts,PMPCGame.ts
+pc0077	安排队伍	Arrange Party	PCLocale.ts,PMPCGame.ts
+pc0078	当前领队	Current Leader	PCLocale.ts,PMPCGame.ts
+pc0079	下阵	Remove	PCLocale.ts,PMPCGame.ts
+pc0080	设为领队	Make Leader	PCLocale.ts,PMPCGame.ts
+pc0081	下一页	Next Page	PCLocale.ts,PMPCGame.ts
+pc0082	已完成 · 点击领取	Complete · Claim	PCLocale.ts,PMPCGame.ts
+pc0083	交配培育	Breeding	PCLocale.ts,PMPCGame.ts
+pc0084	让新的伙伴，加入你的旅程	Welcome new companions to your journey	PCLocale.ts,PMPCGame.ts
+pc0085	孵化位 0	Hatchery Slot 0	PCLocale.ts,PMPCGame.ts
+pc0086	领取伙伴	Claim Companion	PCLocale.ts,PMPCGame.ts
+pc0087	孵化完成后可领取	Claim when hatching is complete	PCLocale.ts,PMPCGame.ts
+pc0088	等待一枚蛋	Waiting for an egg	PCLocale.ts,PMPCGame.ts
+pc0089	先从右侧蛋袋中选择	Select from the egg bag on the right	PCLocale.ts,PMPCGame.ts
+pc0090	先选一枚蛋	Choose an egg first	PCLocale.ts,PMPCGame.ts
+pc0091	在右侧蛋袋中选择，再放入空孵化位。	Choose an egg on the right, then place it in an empty slot.	PCLocale.ts,PMPCGame.ts
+pc0092	请先在蛋袋选中一枚蛋	Select an egg from your bag first	PCLocale.ts,PMPCGame.ts
+pc0093	我的蛋袋	My Egg Bag	PCLocale.ts,PMPCGame.ts
+pc0094	蛋袋还是空的	Your egg bag is empty	PCLocale.ts,PMPCGame.ts
+pc0095	探险中击败精英与首领，\n就有机会带回宠物蛋。	Defeat elites and bosses during adventures\nfor a chance to bring home monster eggs.	PCLocale.ts,PMPCGame.ts
+pc0096	新伙伴诞生！	A New Companion!	PCLocale.ts,PMPCGame.ts
+pc0097	欢迎加入	Welcome	PCLocale.ts,PMPCGame.ts
+pc0098	培育进行中	Breeding in progress	PCLocale.ts,PMPCGame.ts
+pc0099	交配完成后可领取	Claim when breeding is complete	PCLocale.ts,PMPCGame.ts
+pc0100	领取后父母会离开队伍，留下遗传宠物蛋	Claiming retires both parents and grants an inherited egg	PCLocale.ts,PMPCGame.ts
+pc0101	领取后父母会离开队伍，遗传宠物蛋进入蛋袋。此操作不可撤销。	Both parents leave your party when you claim their inherited egg. This cannot be undone.	PCLocale.ts,PMPCGame.ts
+pc0102	确认领取	Confirm Claim	PCLocale.ts,PMPCGame.ts
+pc0103	母亲	Mother	PCLocale.ts,PMPCGame.ts
+pc0104	父亲	Father	PCLocale.ts,PMPCGame.ts
+pc0105	没有符合条件的伙伴\n领队不能参与交配	No eligible companions\nThe party leader cannot breed	PCLocale.ts,PMPCGame.ts
+pc0106	完成并领取后，父母会离开队伍，留下遗传宠物蛋。	After claiming, both parents leave the party and grant an inherited egg.	PCLocale.ts,PMPCGame.ts
+pc0107	完成并领取后将消耗这两位父母。确认开始？	Claiming will consume both selected parents. Begin breeding?	PCLocale.ts,PMPCGame.ts
+pc0108	确认开始	Confirm	PCLocale.ts,PMPCGame.ts
+pc0109	以伙伴的力量，赢得属于你的徽章	Earn your badges with your companions	PCLocale.ts,PMPCGame.ts
+pc0110	属性的十场挑战，获胜后永久强化对应属性伙伴。	 types across ten encounters. Win to permanently strengthen matching monsters.	PCLocale.ts,PMPCGame.ts
+pc0111	已取得徽章	Badge Earned	PCLocale.ts,PMPCGame.ts
+pc0112	通关对应地区后解锁	Clear the matching region to unlock	PCLocale.ts,PMPCGame.ts
+pc0113	徽章已获得	Badge already earned	PCLocale.ts,PMPCGame.ts
+pc0114	尚未开放	Not available	PCLocale.ts,PMPCGame.ts
+pc0115	旅行来信	Travel Letters	PCLocale.ts,PMPCGame.ts
+pc0116	邀请朋友的伙伴，分享彼此的旅程	Invite a friend’s companion and share your journey	PCLocale.ts,PMPCGame.ts
+pc0117	寄出邀请	Send Invitation	PCLocale.ts,PMPCGame.ts
+pc0118	我的拜访码	My Visit Code	PCLocale.ts,PMPCGame.ts
+pc0119	选择伙伴后生成拜访码	Choose a companion to create a visit code	PCLocale.ts,PMPCGame.ts
+pc0120	复制拜访码	Copy Visit Code	PCLocale.ts,PMPCGame.ts
+pc0121	已复制拜访码	Visit code copied	PCLocale.ts,PMPCGame.ts
+pc0122	当前环境无法访问剪贴板	Clipboard access is unavailable	PCLocale.ts,PMPCGame.ts
+pc0123	把拜访码分享给朋友，邀请他们来做客。	Share your visit code and invite a friend.	PCLocale.ts,PMPCGame.ts
+pc0124	接收来信	Receive Letter	PCLocale.ts,PMPCGame.ts
+pc0125	粘贴朋友的拜访码	Paste your friend’s visit code	PCLocale.ts,PMPCGame.ts
+pc0126	拜访码无法识别，请检查是否完整	Unrecognized visit code. Check that it is complete.	PCLocale.ts,PMPCGame.ts
+pc0127	朋友	Friend	PCLocale.ts,PMPCGame.ts
+pc0128	的伙伴正在拜访	’s companion is visiting	PCLocale.ts,PMPCGame.ts
+pc0129	互动进度 	Interaction progress 	PCLocale.ts,PMPCGame.ts
+pc0130	和伙伴互动	Interact	PCLocale.ts,PMPCGame.ts
+pc0131	稍等片刻，再来互动	Wait a moment before interacting again	PCLocale.ts,PMPCGame.ts
+pc0132	收到来信后，朋友的伙伴会来到营地。	Receive a letter to welcome a friend’s companion to camp.	PCLocale.ts,PMPCGame.ts
+pc0133	 场 / 	 / 	PCLocale.ts,PMPCGame.ts
+pc0134	 场	 encounter	PCLocale.ts,PCCooking.ts,PCOnlineUI.ts,PMPCGame.ts
+pc0135	野外遭遇	Wild Encounter	PCLocale.ts,PMPCGame.ts
+pc0136	战斗胜利	Victory	PCLocale.ts,PMPCGame.ts
+pc0137	当前点数：	Current Roll: 	PCLocale.ts,PMPCGame.ts
+pc0138	旅途奇遇	Travel Encounter	PCLocale.ts,PMPCGame.ts
+pc0139	意外的相遇	An Unexpected Encounter	PCLocale.ts,PMPCGame.ts
+pc0140	继续旅程  →	Continue Journey  →	PCLocale.ts,PMPCGame.ts
+pc0141	探索完成	Adventure Complete	PCLocale.ts,PMPCGame.ts
+pc0142	旅程暂歇	Journey Paused	PCLocale.ts,PMPCGame.ts
+pc0143	新的风景，已经抵达	A New Region Awaits	PCLocale.ts,PMPCGame.ts
+pc0144	先回营地休息吧	Rest at camp before setting out again	PCLocale.ts,PMPCGame.ts
+pc0145	带着收获回营地	Return to camp with your rewards	PCLocale.ts,PMPCGame.ts
+pc0146	回营地	Return to Camp	PCLocale.ts,PMPCGame.ts
+pc0147	更换对手 · 	Reroll Foe · 	PCLocale.ts,PMPCGame.ts
+pc0148	每次探险的可用更换次数有限	Opponent rerolls are limited per adventure	PCLocale.ts,PMPCGame.ts
+pc0149	开始战斗	Start Battle	PCLocale.ts,PMPCGame.ts
+pc0150	防御	Guard	PCLocale.ts,PMPCGame.ts
+pc0151	治疗	Heal	PCLocale.ts,PCOnlineUI.ts,PCRaid.ts,PMPCGame.ts
+pc0152	强化	Power Up	PCLocale.ts,PCOnlineUI.ts,PMPCGame.ts
+pc0153	属性受限 ×	Resisted ×	PCLocale.ts,PMPCGame.ts
+pc0154	属性效果正常	Neutral Matchup	PCLocale.ts,PMPCGame.ts
+pc0155	总伤害 …	Damage …	PCLocale.ts,PMPCGame.ts
+pc0156	总伤害 	Damage 	PCLocale.ts,PMPCGame.ts
+pc0157	当前骰子点数 	Current roll 	PCLocale.ts,PMPCGame.ts
+pc0158	防御 · 预计承受 	Guard · Expected damage 	PCLocale.ts,PMPCGame.ts
+pc0159	已使用	Used	PCLocale.ts,PMPCGame.ts
+pc0160	已满	Full	PCLocale.ts,PMPCGame.ts
+pc0161	本回合已经使用治疗	Healing already used this turn	PCLocale.ts,PMPCGame.ts
+pc0162	没有生命药水	No healing potions	PCLocale.ts,PMPCGame.ts
+pc0163	生命已满	HP is full	PCLocale.ts,PMPCGame.ts
+pc0164	治疗恢复 	Restore 	PCLocale.ts,PMPCGame.ts
+pc0165	 点生命，不消耗攻击行动	 HP without spending your attack	PCLocale.ts,PMPCGame.ts
+pc0166	本回合已经强化	Power-up already used this turn	PCLocale.ts,PMPCGame.ts
+pc0167	没有力量药水	No power potions	PCLocale.ts,PMPCGame.ts
+pc0168	，使用后仍可行动	; you can still act afterward	PCLocale.ts,PMPCGame.ts
+pc0169	等待骰子停稳	Waiting for the dice to settle	PCLocale.ts,PMPCGame.ts
+pc0170	获得食材：	Ingredients found: 	PCLocale.ts,PMPCGame.ts
+pc0171	料理效果已结束，回营地补充美食	Your meal has expired. Visit camp for another.	PCLocale.ts,PMPCGame.ts
+pc0172	造成伤害	Damage Dealt	PCLocale.ts,PMPCGame.ts
+pc0173	受到伤害	Damage Taken	PCLocale.ts,PMPCGame.ts
+pc0174	恢复生命	HP Restored	PCLocale.ts,PMPCGame.ts
+pc0175	新的生命，即将与你同行	A New Companion Awaits	PCLocale.ts,PMPCGame.ts
+pc0176	草丛里，传来了新的声音	A Sound in the Grass	PCLocale.ts,PMPCGame.ts
+pc0177	宠物蛋已收入蛋袋	Monster egg added to your bag	PCLocale.ts,PMPCGame.ts
+pc0178	寻找一枚蛋，带回营地孵化新伙伴	Find an egg and hatch a new companion at camp	PCLocale.ts,PMPCGame.ts
+pc0179	寻找宠物蛋  	Search for Eggs  	PCLocale.ts,PMPCGame.ts
+pc0180	带走选中的蛋	Take Selected Egg	PCLocale.ts,PMPCGame.ts
+pc0181	暂别这段旅程？	Leave This Adventure?	PCLocale.ts,PMPCGame.ts
+pc0182	撤退会结束本次冒险，已收集的宠物蛋和食材保留。	Retreat ends this adventure. Collected eggs and ingredients are kept.	PCLocale.ts,PMPCGame.ts
+pc0183	游戏设置	Game Settings	PCLocale.ts,PMPCGame.ts
+pc0184	减少动态  ·  开	Reduced Motion · On	PCLocale.ts,PMPCGame.ts
+pc0185	减少动态  ·  关	Reduced Motion · Off	PCLocale.ts,PMPCGame.ts
+pc0186	战斗速度  ·  快速	Battle Speed · Fast	PCLocale.ts,PMPCGame.ts
+pc0187	战斗速度  ·  标准	Battle Speed · Normal	PCLocale.ts,PMPCGame.ts
+pc0188	手动备份或恢复，操作前保留原档案。	Back up or restore manually. Your original save is kept.	PCLocale.ts,PMPCGame.ts
+pc0189	请先登录 Steam，再重新启动游戏。	Sign in to Steam, then restart the game.	PCLocale.ts,PMPCGame.ts
+pc0190	备份到 Steam	Back Up to Steam	PCLocale.ts,PMPCGame.ts
+pc0191	将当前账号进度写入 Steam 云；原云档会先保存在本机。	Upload this account’s progress to Steam Cloud. The previous cloud save will be backed up locally.	PCLocale.ts,PMPCGame.ts
+pc0192	确认备份	Confirm Backup	PCLocale.ts,PMPCGame.ts
+pc0193	本机保存失败，暂不能备份	Local save failed. Backup is unavailable.	PCLocale.ts,PMPCGame.ts
+pc0194	已备份到 Steam	Backed up to Steam	PCLocale.ts,PMPCGame.ts
+pc0195	云备份暂不可用	Cloud backup unavailable	PCLocale.ts,PMPCGame.ts
+pc0196	查看并恢复云档	View and Restore Cloud Save	PCLocale.ts,PMPCGame.ts
+pc0197	暂时无法读取云档	Unable to read the cloud save	PCLocale.ts,PMPCGame.ts
+pc0198	恢复云档案	Restore Cloud Save	PCLocale.ts,PMPCGame.ts
+pc0199	云端：	Cloud: 	PCLocale.ts,PMPCGame.ts
+pc0200	 个地区\n本机与云端原档都会保留；恢复后使用云端进度。	 regions\nBoth originals are kept. Restoring switches to cloud progress.	PCLocale.ts,PMPCGame.ts
+pc0201	确认恢复	Confirm Restore	PCLocale.ts,PMPCGame.ts
+pc0202	恢复失败，原进度保留	Restore failed. Your original progress is kept.	PCLocale.ts,PMPCGame.ts
+pc0203	已恢复云档，原本机进度已备份	Cloud save restored. Local progress was backed up.	PCLocale.ts,PMPCGame.ts
+pc0204	请先结束冒险并离开联机队伍	Finish your adventure and leave your online party first	PCLocale.ts,PMPCGame.ts
+pc0205	云服务不可用时，本机存档仍可正常游玩。	Local saves remain playable when cloud services are unavailable.	PCLocale.ts,PMPCGame.ts
+pc0206	界面语言	Interface Language	PCLocale.ts,PMPCGame.ts
+pc0207	选择语言	Choose Language	PCLocale.ts,PMPCGame.ts
+pc0208	返回设置	Back to Settings	PCLocale.ts,PMPCGame.ts
+pc0209	回合 	Turn 	PCLocale.ts,PMPCGame.ts
+pc0210	出发探险	Explore	PCLocale.ts
+pc0211	家常	Homestyle	PCLocale.ts,PCCooking.ts
+pc0212	鲜美	Fine	PCLocale.ts,PCCooking.ts
+pc0213	珍馐	Gourmet	PCLocale.ts,PCCooking.ts
+pc0214	谷穗	Grain	PCLocale.ts,PCCooking.ts
+pc0215	鲜肉	Fresh Meat	PCLocale.ts,PCCooking.ts
+pc0216	溪鱼	Stream Fish	PCLocale.ts,PCCooking.ts
+pc0217	嫩叶	Tender Leaves	PCLocale.ts,PCCooking.ts
+pc0218	香菇	Mushroom	PCLocale.ts,PCCooking.ts
+pc0219	香辛果	Spiceberry	PCLocale.ts,PCCooking.ts
+pc0220	炭火鲜肉串	Chargrilled Skewers	PCLocale.ts,PCCooking.ts
+pc0221	岩谷菌香焖饭	Stonepot Mushroom Rice	PCLocale.ts,PCCooking.ts
+pc0222	海风鲜鱼浓汤	Sea Breeze Chowder	PCLocale.ts,PCCooking.ts
+pc0223	青叶暖菌煲	Leaf & Mushroom Stew	PCLocale.ts,PCCooking.ts
+pc0224	云菇酥香饼	Cloudcap Pastry	PCLocale.ts,PCCooking.ts
+pc0225	月椒秘香鱼	Moonpepper Fish	PCLocale.ts,PCCooking.ts
+pc0226	热腾腾的肉串，让进攻更有力量。	Sizzling skewers that strengthen your attacks.	PCLocale.ts,PCCooking.ts
+pc0227	慢火焖出的扎实滋味，帮助伙伴站稳。	A hearty slow-cooked meal that bolsters defense.	PCLocale.ts,PCCooking.ts
+pc0228	清甜浓汤，让生命药水恢复更多。	Sweet, rich chowder that improves healing potions.	PCLocale.ts,PCCooking.ts
+pc0229	嫩叶与香菇炖出满满活力。	Tender leaves and mushrooms simmered for vitality.	PCLocale.ts,PCCooking.ts
+pc0230	酥松小饼，兼顾进攻与恢复。	Flaky pastries that improve attacks and healing.	PCLocale.ts,PCCooking.ts
+pc0231	微辣的秘制香气，让攻守都更从容。	A secret spicy recipe for stronger attacks and defense.	PCLocale.ts,PCCooking.ts
+pc0232	配方无效	Invalid recipe	PCLocale.ts,PCCooking.ts
+pc0233	食材不足：	Missing ingredients: 	PCLocale.ts,PCCooking.ts
+pc0234	成品食物已满	Lunchbox is full	PCLocale.ts,PCCooking.ts
+pc0235	食物无效	Invalid meal	PCLocale.ts,PCCooking.ts
+pc0236	先烹饪一份食物	Cook a meal first	PCLocale.ts,PCCooking.ts
+pc0237	尚未用餐	No meal active	PCLocale.ts,PCCooking.ts
+pc0238	最大生命	Max HP	PCLocale.ts
+pc0239	 · 剩余 	 · Remaining 	PCLocale.ts,PCCooking.ts
+pc0240	攻击 +	Attack +	PCLocale.ts,PCCooking.ts
+pc0241	超能	Psychic	PCLocale.ts,PCPetMotion.ts
+pc0242	营地厨房	Camp Kitchen	PCLocale.ts,PCCookingUI.ts
+pc0243	让旅途的收获，变成下一程的好滋味	Turn your adventure’s bounty into a delicious boost	PCLocale.ts,PCCookingUI.ts
+pc0244	食材品质越好，料理效果越强	Better ingredients make stronger meals	PCLocale.ts,PCCookingUI.ts
+pc0245	已做好 ×	Prepared ×	PCLocale.ts,PCCookingUI.ts
+pc0246	适合当前队伍	Matches Your Party	PCLocale.ts,PCCookingUI.ts
+pc0247	持续 10 场战斗	Lasts 10 battles	PCLocale.ts,PCCookingUI.ts
+pc0248	烹饪一份	Cook One	PCLocale.ts,PCCookingUI.ts
+pc0249	享用  ×	Eat  ×	PCLocale.ts,PCCookingUI.ts
+pc0250	先烹饪再享用	Cook a meal first	PCLocale.ts,PCCookingUI.ts
+pc0251	享用后替换当前料理效果	Eating replaces your current meal effect	PCLocale.ts,PCCookingUI.ts
+pc0252	持续 10 场已结算战斗	Lasts for 10 completed battles	PCLocale.ts,PCCookingUI.ts
+pc0253	食材 · 探险胜利有机会获得	Ingredients · Chance to drop after winning battles	PCLocale.ts,PCCookingUI.ts
+pc0254	请先登录对应 Steam 账号。		PCCloud.ts,PCProfile.ts
+pc0255	Steam 当前未联网，云档案未操作。		PCCloud.ts
+pc0256	Steam 账号已改变，请重启后再操作该账号的云档案。		PCCloud.ts
+pc0257	Steam 连接暂不可用，云档案未操作。		PCCloud.ts
+pc0258	无法读取 Steam 云档案，请检查连接或确认已有上传记录。		PCCloud.ts
+pc0259	云档案损坏、账号不符或超出大小限制，未改动本机。		PCCloud.ts
+pc0260	Steam 云档案读取失败，未改动本机。		PCCloud.ts
+pc0261	现有云档案无法验证，请先保留原文件；未覆盖云档案。		PCCloud.ts
+pc0262	无法读取现有云档案，未执行覆盖；请检查连接后重试。		PCCloud.ts
+pc0263	Steam 云档案上传失败，本机档案保持不变。		PCCloud.ts
+pc0264	旧云档案备份或上传失败，未改动本机档案。		PCCloud.ts
+pc0265	受到伤害 −		PCCooking.ts
+pc0266	治疗 +		PCCooking.ts
+pc0267	最大生命 +		PCCooking.ts
+pc0268	 属性伙伴		PCCookingUI.ts
+pc0269	Steam账号已改变，请重启游戏后加载对应账号档案。		PCOnline.ts
+pc0270	旅人		PCOnline.ts
+pc0271	请选择有效的伙伴阵容		PCOnline.ts
+pc0272	Steam当前未联网，此功能暂不可用；单人试炼仍可游玩。		PCOnline.ts
+pc0273	Steam消息发送失败，请稍后重试。		PCOnline.ts
+pc0274	收到的Steam资料无效，已忽略。		PCOnline.ts
+pc0275	队员重连超时，本场已中止，不发放未完成奖励。		PCOnline.ts
+pc0276	副本重连快照接收超时。		PCOnline.ts
+pc0277	收到好友组队邀请。		PCOnline.ts
+pc0278	收到组队邀请，请先完成当前战斗并保存。		PCOnline.ts
+pc0279	房主连接中断，本场已中止。		PCOnline.ts
+pc0280	无法读取Steam好友，请检查连接。		PCOnline.ts
+pc0281	创建Steam房间失败，请稍后重试。		PCOnline.ts
+pc0282	Steam邀请界面无法打开，请确认已启用Overlay。		PCOnline.ts
+pc0283	请先完成当前战斗并保存，再加入有效的Steam房间。		PCOnline.ts
+pc0284	加入Steam房间失败，请确认邀请仍然有效。		PCOnline.ts
+pc0285	已离开房间，本场副本中止。		PCOnline.ts
+pc0286	房间规则版本不同，请所有玩家更新游戏后重试。		PCOnline.ts
+pc0287	房主已退出或房间已改变，本场中止；不会自动迁移房主。		PCOnline.ts
+pc0288	当前阵容无效，请先选择1至3只已有伙伴。		PCOnline.ts
+pc0289	请先完成当前战斗并保存，再开始副本。		PCOnline.ts
+pc0290	请等待所有队员确认阵容并准备。		PCOnline.ts
+pc0291	无法取得Steam赛季时间，暂不能开始升阶挑战。		PCOnline.ts
+pc0292	副本阵容资料无效，无法开始。		PCOnline.ts
+pc0293	Steam账号已改变，请重启游戏后再开始试炼。		PCOnline.ts
+pc0294	无法取得Steam赛季时间，暂不能开始升阶试炼。		PCOnline.ts
+pc0295	单人试炼阵容无效。		PCOnline.ts
+pc0296	行动无效		PCOnline.ts
+pc0297	行动结算失败，本场已中止。		PCOnline.ts
+pc0298	队伍已中止本场副本，不提交天梯成绩。		PCOnline.ts
+pc0299	副本回放校验不一致，本场已中止。		PCOnline.ts
+pc0300	当前战斗尚未结束，未加入副本；请结算保存后重新准备。		PCOnline.ts
+pc0301	房主的阵容、准备状态或规则不匹配，未开始副本。		PCOnline.ts
+pc0302	队员连接中断，副本暂停并等待60秒重连。		PCOnline.ts
+pc0303	房主已退出，本场已中止。		PCOnline.ts
+pc0304	房主已离线，本场已中止。		PCOnline.ts
+pc0305	副本记录过大，无法安全重连。		PCOnline.ts
+pc0306	重连副本记录校验失败，本场已中止。		PCOnline.ts
+pc0307	已中止本场副本，不提交天梯成绩。		PCOnline.ts
+pc0308	只能与同房间的Steam好友确认结缘。		PCOnline.ts
+pc0309	该旅伴已结缘，或对方伙伴资料无效。		PCOnline.ts
+pc0310	好友暂未接受结缘。		PCOnline.ts
+pc0311	本场已完成，但Steam连接或赛季时间不可用，未提交天梯成绩。		PCOnline.ts
+pc0312	本场成绩已提交Steam荣誉榜。		PCOnline.ts
+pc0313	成绩已提交，阵容详情暂不可用。		PCOnline.ts
+pc0314	本场已完成，但Steam天梯提交失败；本地奖励不受影响。		PCOnline.ts
+pc0315	赛季时间或榜单参数无效。		PCOnline.ts
+pc0316	Steam榜单读取失败，请稍后重试。		PCOnline.ts
+pc0317	该成绩尚无可验证的阵容详情。		PCOnline.ts
+pc0318	成绩详情与Steam身份、分数或战斗回放不匹配。		PCOnline.ts
+pc0319	Steam 当前离线		PCOnlineUI.ts
+pc0320	Steam 连接未就绪，请确认登录与游戏访问权限		PCOnlineUI.ts
+pc0321	启动 Steam 并登录后，即可与好友一起冒险		PCOnlineUI.ts
+pc0322	结缘的伙伴，带来新的相遇		PCOnlineUI.ts
+pc0323	 · Steam 在线		PCOnlineUI.ts
+pc0324	Steam 好友		PCOnlineUI.ts
+pc0325	刷新		PCOnlineUI.ts
+pc0326	好友上线后，可以邀请他们来结缘。		PCOnlineUI.ts
+pc0327	好友列表需要 Steam 连接		PCOnlineUI.ts
+pc0328	正在同一营地		PCOnlineUI.ts
+pc0329	正在游戏中		PCOnlineUI.ts
+pc0330	尚未到访		PCOnlineUI.ts
+pc0331	需要 Steam 连接		PCOnlineUI.ts
+pc0332	 位旅伴		PCOnlineUI.ts
+pc0333	每位旅伴 · 每24小时30%赠蛋		PCOnlineUI.ts
+pc0334	收集 54 种好友专属形态		PCOnlineUI.ts
+pc0335	收到结缘邀请		PCOnlineUI.ts
+pc0336	接受结缘		PCOnlineUI.ts
+pc0337	稍后		PCOnlineUI.ts
+pc0338	邀请好友到营地		PCOnlineUI.ts
+pc0339	打开好友营地		PCOnlineUI.ts
+pc0340	拜访码		PCOnlineUI.ts
+pc0341	商店页面		PCOnlineUI.ts
+pc0342	请先启动并登录 Steam		PCOnlineUI.ts
+pc0343	一起挑战副本 →		PCOnlineUI.ts
+pc0344	熔冠巢穴		PCOnlineUI.ts
+pc0345	熔冠巨龙		PCOnlineUI.ts,PCRaid.ts
+pc0346	撕咬 · 蓄力吐息 · 幼龙召唤		PCOnlineUI.ts
+pc0347	首次通关：熔冠龙专属蛋		PCOnlineUI.ts
+pc0348	龙鳞碎片 		PCOnlineUI.ts
+pc0349	兑换专属蛋		PCOnlineUI.ts
+pc0350	通关副本收集龙鳞碎片		PCOnlineUI.ts
+pc0351	好友队伍  		PCOnlineUI.ts
+pc0352	召集你的旅伴		PCOnlineUI.ts
+pc0353	你是房主		PCOnlineUI.ts
+pc0354	等待房主开始		PCOnlineUI.ts
+pc0355	Steam 好友邀请 · 2–4人		PCOnlineUI.ts
+pc0356	等待伙伴资料		PCOnlineUI.ts
+pc0357	已准备		PCOnlineUI.ts
+pc0358	选择伙伴后准备		PCOnlineUI.ts
+pc0359	房主		PCOnlineUI.ts
+pc0360	队员		PCOnlineUI.ts
+pc0361	等待旅伴		PCOnlineUI.ts
+pc0362	 阶		PCOnlineUI.ts
+pc0363	天梯挑战		PCOnlineUI.ts
+pc0364	普通挑战		PCOnlineUI.ts
+pc0365	天梯挑战每轮准备限时30秒		PCOnlineUI.ts
+pc0366	继续当前挑战 →		PCOnlineUI.ts
+pc0367	创建好友房		PCOnlineUI.ts
+pc0368	单人试炼		PCOnlineUI.ts
+pc0369	取消准备		PCOnlineUI.ts
+pc0370	准备		PCOnlineUI.ts
+pc0371	所有队员准备后由房主开始		PCOnlineUI.ts
+pc0372	离开队伍		PCOnlineUI.ts
+pc0373	接受好友邀请		PCOnlineUI.ts
+pc0374	更高的阶层，更漂亮的一战		PCOnlineUI.ts
+pc0375	单人		PCOnlineUI.ts
+pc0376	人		PCOnlineUI.ts
+pc0377	全球		PCOnlineUI.ts
+pc0378	上一赛季		PCOnlineUI.ts
+pc0379	当前赛季		PCOnlineUI.ts
+pc0380	名次       驯兽师                                    阶层 / 回合		PCOnlineUI.ts
+pc0381	正在读取成绩…		PCOnlineUI.ts
+pc0382	还没有成绩，开始第一场挑战吧		PCOnlineUI.ts
+pc0383	 阶 · 		PCOnlineUI.ts
+pc0384	通关队伍		PCOnlineUI.ts
+pc0385	骰面 		PCOnlineUI.ts
+pc0386	 阶  ·  		PCOnlineUI.ts
+pc0387	 回合\n		PCOnlineUI.ts
+pc0388	 次阵亡		PCOnlineUI.ts
+pc0389	正在读取通关记录…		PCOnlineUI.ts
+pc0390	选择一条成绩\n查看当时的宠物与队伍		PCOnlineUI.ts
+pc0391	阶层 ＞ 回合 ＞ 阵亡		PCOnlineUI.ts
+pc0392	前往挑战 →		PCOnlineUI.ts
+pc0393	料理加成 · 剩余 		PCOnlineUI.ts
+pc0394	退出挑战		PCOnlineUI.ts
+pc0395	攻击		PCOnlineUI.ts,PCRaid.ts
+pc0396	守护		PCOnlineUI.ts,PCRaid.ts
+pc0397	挑衅		PCOnlineUI.ts,PCRaid.ts
+pc0398	确认行动		PCOnlineUI.ts
+pc0399	巨龙		PCOnlineUI.ts
+pc0400	幼龙		PCOnlineUI.ts
+pc0401	返回副本选择下一场挑战		PCOnlineUI.ts
+pc0402	返回副本		PCOnlineUI.ts
+pc0403	格挡		PCOnlineUI.ts
+pc0404	护盾 +		PCOnlineUI.ts
+pc0405	力量 +		PCOnlineUI.ts
+pc0406	人副本		PCOnlineUI.ts
+pc0407	 · 第		PCOnlineUI.ts
+pc0408	阶 · 回合 		PCOnlineUI.ts
+pc0409	下一轮：		PCOnlineUI.ts
+pc0410	◆ 当前目标 · 		PCOnlineUI.ts
+pc0411	仇恨 		PCOnlineUI.ts
+pc0412	幼龙 		PCOnlineUI.ts
+pc0413	挑战成功 · 		PCOnlineUI.ts
+pc0414	 回合 · 		PCOnlineUI.ts
+pc0415	挑战结束 · 调整队伍再出发		PCOnlineUI.ts
+pc0416	熔冠巨龙已被击败		PCOnlineUI.ts,PCRaid.ts
+pc0417	伙伴已全部失去战斗能力		PCOnlineUI.ts
+pc0418	料理加成已用完		PCOnlineUI.ts
+pc0419	已阵亡		PCOnlineUI.ts
+pc0420	换宠消耗本回合		PCOnlineUI.ts
+pc0421	选择行动		PCOnlineUI.ts
+pc0422	守护/治疗目标		PCOnlineUI.ts
+pc0423	领取个人奖励		PCOnlineUI.ts
+pc0424	调整队伍，再来挑战		PCOnlineUI.ts
+pc0425	单人试炼不掉落副本专属蛋		PCOnlineUI.ts
+pc0426	奖励等待保存		PCOnlineUI.ts
+pc0427	奖励已保存 · 前往孵化		PCOnlineUI.ts
+pc0428	战斗结算中		PCOnlineUI.ts
+pc0429	等待重连		PCOnlineUI.ts
+pc0430	同步结果…		PCOnlineUI.ts
+pc0431	换宠		PCOnlineUI.ts
+pc0432	秒		PCOnlineUI.ts
+pc0433	 · Enter 确认		PCOnlineUI.ts
+pc0434	该账号存档及备份无法读取，已停止自动保存。		PCProfile.ts
+pc0435	无法读取或写入存档，已停止自动保存。		PCProfile.ts
+pc0436	Steam 账号无效，已停止自动保存。		PCProfile.ts
+pc0437	旧本机存档无法读取，已停止自动保存。		PCProfile.ts
+pc0438	Steam 账号无效，无法导入。		PCProfile.ts
+pc0439	此账号已有游戏进度或已导入过旧存档，无法覆盖。		PCProfile.ts
+pc0440	没有可导入的旧本机存档。		PCProfile.ts
+pc0441	此 Steam 账号还没有可上传的本机档案。		PCProfile.ts
+pc0442	档案超出 1 MiB 或无法验证，未上传。		PCProfile.ts
+pc0443	云档案损坏、账号不符或超出大小限制，未恢复。		PCProfile.ts
+pc0444	档案序号超出范围，未恢复。		PCProfile.ts
+pc0445	云档案无法恢复，未修改本机。		PCProfile.ts
+pc0446	副本需要1至4位玩家		PCRaid.ts
+pc0447	Steam身份无效		PCRaid.ts
+pc0448	玩家身份重复		PCRaid.ts
+pc0449	每人需要1至3只伙伴		PCRaid.ts
+pc0450	出场伙伴无效		PCRaid.ts
+pc0451	伙伴生命或骰面无效		PCRaid.ts
+pc0452	伙伴显示资料无效		PCRaid.ts
+pc0453	料理效果快照无效		PCRaid.ts
+pc0454	副本场次、种子或阶层无效		PCRaid.ts
+pc0455	副本赛季或图像资料无效		PCRaid.ts
+pc0456	蓄力 · 下一轮全体吐息		PCRaid.ts
+pc0457	全体吐息 · 无视挑衅		PCRaid.ts
+pc0458	召唤幼龙		PCRaid.ts
+pc0459	撕咬 · 最高仇恨		PCRaid.ts
+pc0460	幼龙扑击		PCRaid.ts
+pc0461	本场已结束或版本不一致		PCRaid.ts
+pc0462	回合已过期		PCRaid.ts
+pc0463	行动目标格式无效		PCRaid.ts
+pc0464	行动玩家无效或已退场		PCRaid.ts
+pc0465	行动类型无效		PCRaid.ts
+pc0466	只能切换至存活候补		PCRaid.ts
+pc0467	伙伴已倒下，请先切换候补		PCRaid.ts
+pc0468	该行动不能切换伙伴		PCRaid.ts
+pc0469	本场治疗药水已用完		PCRaid.ts
+pc0470	本场力量药水已用完或目标无效		PCRaid.ts
+pc0471	敌方目标无效		PCRaid.ts
+pc0472	友方目标必须存活		PCRaid.ts
+pc0473	（护盾抵挡		PCRaid.ts
+pc0474	的伙伴倒下		PCRaid.ts
+pc0475	换上		PCRaid.ts
+pc0476	强化下一次攻击		PCRaid.ts
+pc0477	熔冠巨龙进入狂怒		PCRaid.ts
+pc0478	巨龙蓄力：下一轮全体吐息		PCRaid.ts
+pc0479	熔冠幼龙		PCRaid.ts
+pc0480	巨龙召来一只幼龙		PCRaid.ts
+pc0481	需等待每位存活玩家准备		PCRaid.ts
+pc0482	同一玩家不能重复提交		PCRaid.ts
+pc0483	超过副本回合上限		PCRaid.ts
+pc0484	队伍已全部退场		PCRaid.ts
+pc0485	副本记录版本或结构无效		PCRaid.ts
+pc0486	副本记录回合顺序无效		PCRaid.ts
+pc0487	副本记录不同步		PCRaid.ts
+pc0488	副本快照校验失败		PCRaid.ts
+pc0489	副本记录过大		PCRaid.ts
+pc0490	副本记录无法读取		PCRaid.ts
+pc0491	熔冠龙		PCSocial.ts
+pc0492	熔冠龙专属蛋		PCSocial.ts
+pc0493	Steam 旅伴		PCSocial.ts
+pc0494	继续冒险  →		PMPCGame.ts
+pc0495	出发探险  →		PMPCGame.ts
+pc0496	出发探险   →		PMPCGame.ts
+pc0497	  ·  第 		PMPCGame.ts
+pc0498	 · 闪光		PMPCGame.ts
+pc0499	技能  		PMPCGame.ts
+pc0500	更换伙伴  →		PMPCGame.ts
+pc0501	确认交配		PMPCGame.ts
+pc0502	开始挑战  →		PMPCGame.ts
+pc0503	领取奖励  →		PMPCGame.ts
+pc0504	保留原点数	Keep Current Rolls	PC wording correction
+pc0505	生命 		PMPCGame.ts
+pc0506	属性克制 ×		PMPCGame.ts
+pc0507	力量药水 · 攻击 ×		PMPCGame.ts
+pc0508	确认撤退		PMPCGame.ts
+pc0509	音乐  ·  开		PMPCGame.ts
+pc0510	音乐  ·  关		PMPCGame.ts
+pc0511	音效  ·  开		PMPCGame.ts
+pc0512	音效  ·  关		PMPCGame.ts
+pc0513	 位伙伴 · 		PMPCGame.ts
+pc0514	第 {n} 场	Encounter {n}	PC wording correction
+pc0515	语言设置立即生效	Language changes apply immediately	PC wording correction
+pc0516	第 {n} 阶	Tier {n}	PCOnlineUI.ts numbered tier label

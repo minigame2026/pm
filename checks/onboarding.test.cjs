@@ -28,10 +28,10 @@ test('Invalid hero, stage and starter data rejected',()=>{
  }
 });
 function ready(hero,seed=41){return M.chooseStarter(M.chooseHero(M.newJourney(seed),hero),'fox');}
-test('Keeper shortens new incubations to 24 minutes including fixed-quality eggs',()=>{
+test('Keeper shortens new incubations by 20 percent including fixed-quality eggs',()=>{
  for(const hero of ['ranger','keeper','medic']){
   let s=ready(hero);s.eggs=[{id:'egg-test',rarity:'SR',affinity:'bud',stage:5,mapId:0}];
-  s=M.startIncubation(s,'egg-test',0,10000);assert.equal(s.incubators[0].readyAt-10000,(hero==='keeper'?24:30)*60000);saved(s);
+  s=M.startIncubation(s,'egg-test',0,10000);assert.equal(s.incubators[0].readyAt-10000,M.HATCH_DURATIONS.SR*(hero==='keeper'?.8:1));saved(s);
  }
 });
 test('Medic adds exactly 3 to first heal each battle, survives reload and resets next battle',()=>{

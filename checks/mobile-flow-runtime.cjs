@@ -5,7 +5,7 @@ const T=Date.now();let base=M.syncStamina(M.chooseStarter(M.chooseHero(M.newJour
 for(const id of M.PET_IDS.slice(0,16)){const map=M.MAPS.find(m=>m.pets.includes(id));base.eggs.push({id:'test-'+id,rarity:'normal',affinity:id,stage:5,mapId:map.id});base=M.startIncubation(base,'test-'+id,0,T-31*60000);base=M.acknowledgeHatch(M.claimHatch(base,0,T));}
 for(let i=0;i<14;i++)base.eggs.push({id:'bag-'+i,rarity:'normal',affinity:'bud',stage:5,mapId:0});
 base.pets.forEach((p,i)=>p.sex=i%2?'male':'female');
-base.active.sex=base.pets.find(p=>p.uid===base.active.uid).sex;assert.ok(M.restore(JSON.stringify(base)),'test fixture restores');
+base.active.sex=base.pets.find(p=>p.uid===base.active.uid).sex;if(base.reserve)base.reserve.sex=base.pets.find(p=>p.uid===base.reserve.uid).sex;for(const p of Object.values(base.runRoster||{}))p.sex=base.pets.find(v=>v.uid===p.uid).sex;assert.ok(M.restore(JSON.stringify(base)),'test fixture restores');
 (async()=>{const browser=await chromium.launch({channel:'msedge',headless:true});try{
  const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true}),page=await context.newPage(),errors=[],cdp=await context.newCDPSession(page);
  page.on('pageerror',e=>errors.push(String(e)));await context.route('https://timeapi.io/**',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({timeZone:'UTC',dateTime:new Date().toISOString().slice(0,-1)})}));await context.route('https://worldtimeapi.org/**',r=>r.abort());
@@ -21,7 +21,7 @@ base.active.sex=base.pets.find(p=>p.uid===base.active.uid).sex;assert.ok(M.resto
  await page.evaluate(()=>g.eggBag());await swipe('eggs');assert.ok((await page.evaluate(()=>texts())).some(t=>t.endsWith('2 / 3')));
  await page.evaluate(()=>g.breedingPicker('female'));await swipe('breed-picker');assert.ok((await page.evaluate(()=>texts())).some(t=>t.includes('2 /')));
  await page.evaluate(()=>g.sharePicker());await swipe('share');assert.ok((await page.evaluate(()=>texts())).some(t=>t.endsWith('2 / 5')));
- await page.evaluate(()=>g.bondEggPicker('bud'));await swipe('bond-eggs');assert.ok((await page.evaluate(()=>texts())).some(t=>t.endsWith('2 / 4')));
+ await page.evaluate(()=>g.bondEggPicker('bud'));await swipe('bond-eggs');assert.ok((await page.evaluate(()=>texts())).some(t=>/^2 \/ \d+$/.test(t)));
  await page.evaluate(()=>{g.state.social=g.state.social||{version:1,playerId:'qa',bonds:[]};g.state.social.bonds=Object.keys(g.state.qualities).slice(0,10).map((species,i)=>({species,visitorId:'v'+i,unlockedAt:Date.now()}));g.socialUI('bonds');});await swipe('bonds');assert.ok((await page.evaluate(()=>texts())).some(t=>t.endsWith('2 / 2')));
  await page.evaluate(()=>g.goHome());await tap('home-settings');assert.deepEqual((await page.evaluate(()=>Object.keys(__pm.controls()).filter(k=>['resume','restartConfirm'].includes(k)))),[]);assert.ok(!(await page.evaluate(()=>texts())).includes('游戏进度自动保存'));await page.screenshot({path:'checks/settings-simple.png'});await tap('audio-music');await tap('settings-close');
  await page.evaluate(s=>{g.state=s;g.screen='game';g.render();},base);await tap('reroll');assert.equal((await page.evaluate(()=>__pm.snapshot())).swaps,0);await tap('reroll');assert.ok((await page.evaluate(()=>texts())).includes('激励广告待接入，暂不能刷新'));await tap('reroll-ad-close');

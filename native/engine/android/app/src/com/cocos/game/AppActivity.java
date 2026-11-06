@@ -39,6 +39,7 @@ public class AppActivity extends CocosActivity {
         // DO OTHER INITIALIZATION BELOW
         SDKWrapper.shared().init(this);
         PMTapAds.attach(this);
+        PMTapServices.attach(this);
         PMShare.attach(this);
 
     }
@@ -47,6 +48,7 @@ public class AppActivity extends CocosActivity {
     protected void onResume() {
         super.onResume();
         SDKWrapper.shared().onResume();
+        PMTapServices.resume();
     }
 
     @Override
@@ -58,6 +60,7 @@ public class AppActivity extends CocosActivity {
     @Override
     protected void onDestroy() {
         PMTapAds.detach(this);
+        PMTapServices.detach(this);
         PMShare.detach(this);
         super.onDestroy();
         // Workaround in https://stackoverflow.com/questions/16283079/re-launch-of-activity-on-home-button-but-only-the-first-time/16447508

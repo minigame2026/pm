@@ -1,0 +1,53 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const cfg=require('../tools/workflow.config.json'),{chromium}=require(cfg.playwright),ts=require(cfg.typescript.replace(/tsc\.js$/,'typescript.js')),modules={};
+for(const name of ['PMTranslations','PMLocale','PMModel']){const exports={};vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/'+name+'.ts','utf8'),{compilerOptions:{module:1,target:4}}).outputText,{exports,require:p=>modules[p.replace('./','')],Math,Date,JSON,Set,Map,RegExp});modules[name]=exports;}
+const M=modules.PMModel,L=modules.PMLocale,NOW=Date.now(),only=process.env.PM_PC_LOCALE_ONLY,locales=L.LANGUAGES.filter(l=>l.id!=='system'&&(!only||l.id===only)),out='checks/pc-locale/runtime'+(only?'-'+only:''),results=[],issues=[],errors=[],dynamic=[];
+assert(locales.length,'Unknown PM_PC_LOCALE_ONLY locale');
+fs.mkdirSync(out,{recursive:true});M.setTimeProvider(()=>NOW);
+let camp=M.syncStamina(M.fresh(91,['fox','bud','otter']),NOW);camp.journey={version:1,stage:'done',hero:'ranger',starter:'fox',legacy:true};camp.expedition=false;
+let battle=M.act(M.enterExpedition(camp,0),'challenge');battle.enemyHP=battle.enemyMax=100;battle.hpRatio=.7;battle.potions=battle.boosts=2;
+const stable=s=>{const copy=JSON.parse(JSON.stringify(s));delete copy.trustedTime;return JSON.stringify(copy);};
+const report=()=>fs.writeFileSync(out+'/report.json',JSON.stringify({checkedAt:new Date().toISOString(),platform:'Cocos web-desktop, isolated headless Microsoft Edge',viewport:[1280,720],nativeClient:false,saveIsolation:'Fresh non-persistent browser context; generated fixture only; mobile storage sentinel',results,issues,errors,dynamic,limitations:['Screenshots and metrics do not prove native Windows shaping or RTL reading order.','Metrics report severe shrinkage and clipping candidates rather than treating all small text as failures.','All PC additions have explicit local translations; user names and protocol identifiers are intentionally unchanged.']},null,2));
+async function wait(p){await p.waitForFunction(()=>globalThis.__pmPC?.ready&&!__pmPC.busy()&&globalThis.g&&!g.closingModal&&!g.art.pending,null,{timeout:120000});await p.waitForTimeout(240);}
+async function click(p,id){await wait(p);const q=await p.evaluate(id=>{const c=__pmPC.controls()[id],b=document.querySelector('canvas').getBoundingClientRect(),k=Math.min(b.width/1600,b.height/900);if(!c||!c.enabled)throw Error('Unavailable control '+id);return{x:b.left+(b.width-1600*k)/2+c.x*k,y:b.top+(b.height-900*k)/2+c.y*k};},id);await p.mouse.click(q.x,q.y);await wait(p);}
+async function route(p,name,state){await p.evaluate(({name,state})=>{g.state=state;g.show(name);},{name,state});await wait(p);}
+async function inspect(p,lang,screen,shot=false,nativeNames=false){await wait(p);const metrics=await p.evaluate(()=>{
+ const scale=document.querySelector('canvas').getBoundingClientRect().width/1600,labels=[];const rect=n=>{const t=n.getComponent(cc.UITransform),p=n.worldPosition,s=n.worldScale;return{x:p.x-t.width*Math.abs(s.x)*t.anchorX,y:p.y-t.height*Math.abs(s.y)*t.anchorY,w:t.width*Math.abs(s.x),h:t.height*Math.abs(s.y)};};
+ for(const l of g.root.getComponentsInChildren(cc.Label)){const n=l.node;if(!n.activeInHierarchy||!l.string)continue;if(g.modal&&!g.ui.contains(n,g.modal))continue;const r=rect(n);let alpha=l.color.a,masked=false,visible={x:Math.max(r.x,0),y:Math.max(r.y,0),right:Math.min(r.x+r.w,1600),top:Math.min(r.y+r.h,900)};
+  for(let a=n;a;a=a.parent){const o=a.getComponent(cc.UIOpacity);if(o)alpha*=o.opacity/255;if(a.getComponent(cc.Mask)){masked=true;const m=rect(a);visible.x=Math.max(visible.x,m.x);visible.y=Math.max(visible.y,m.y);visible.right=Math.min(visible.right,m.x+m.w);visible.top=Math.min(visible.top,m.y+m.h);}}
+  if(alpha<8||visible.right<=visible.x||visible.top<=visible.y)continue;const actual=l.actualFontSize||l.fontSize,screenPx=actual*Math.abs(n.worldScale.y)*scale;
+  labels.push({text:l.string,font:l.fontFamily,requested:l.fontSize,actual,screenPx,bounds:r,masked,shrunken:l.fontSize>=16&&actual<l.fontSize*.65&&screenPx<11,verySmall:screenPx<9,outside:!masked&&(r.x< -1||r.y< -1||r.x+r.w>1601||r.y+r.h>901)});
+ }
+ const controls=[];for(const [id,c] of g.ui.controls){if(!c.node.activeInHierarchy||g.modal&&!g.ui.contains(c.node,g.modal))continue;const r=rect(c.node);controls.push({id,enabled:c.enabled,bounds:r,outside:r.x< -1||r.y< -1||r.x+r.w>1601||r.y+r.h>901});}
+ return {labels,controls};
+ });const residual=!nativeNames&&!['zh-CN','zh-TW','ja'].includes(lang)?metrics.labels.filter(l=>/[\u3400-\u9fff]/.test(l.text)).map(l=>l.text):[];
+ const entry={lang,screen,...metrics,residualChinese:residual};for(const label of metrics.labels)if(label.shrunken||label.verySmall||label.outside)issues.push({kind:'label',lang,screen,...label});for(const control of metrics.controls)if(control.outside)issues.push({kind:'control',lang,screen,...control});if(residual.length)issues.push({kind:'untranslated-Chinese',lang,screen,text:residual});
+ if(shot){entry.screenshot=out+'/'+lang+'-'+screen+'.png';await p.screenshot({path:entry.screenshot});}results.push(entry);report();if(!nativeNames)assert.equal(residual.length,0,lang+' Chinese residue on '+screen+': '+residual.join('|'));return entry;
+}
+(async()=>{const browser=await chromium.launch({channel:'msedge',headless:true});try{
+ const context=await browser.newContext({viewport:{width:1280,height:720},deviceScaleFactor:1,locale:'en-US'});
+ // Keep the mocked trusted server advancing across reload; a frozen timestamp correctly fails rollback protection.
+ await context.route('https://timeapi.io/**',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({timeZone:'UTC',dateTime:new Date().toISOString().slice(0,-1)})}));await context.route('https://worldtimeapi.org/**',r=>r.abort());
+ await context.addInitScript(s=>{if(!sessionStorage.getItem('pc-locale-fixture')){localStorage.setItem('pm.pc.creature-dice.v1',JSON.stringify(s));localStorage.setItem('pm.creature-dice.v1','MOBILE_SAVE_SENTINEL');localStorage.setItem('pm.pc.language.v1','zh-CN');sessionStorage.setItem('pc-locale-fixture','1');}},camp);
+ const p=await context.newPage();p.on('pageerror',e=>errors.push(String(e)));await p.goto('http://127.0.0.1:8781/?qa=pc-locale');
+ async function bind(){await p.waitForFunction(()=>globalThis.__pmPC?.ready&&__pmPC.timeReady(),null,{timeout:120000});await p.evaluate(async()=>{globalThis.cc=await System.import('cc');function find(n){return n.components.find(c=>typeof c.languageSettings==='function'&&typeof c.battleActors==='function')||n.children.map(find).find(Boolean);}globalThis.g=find(cc.director.getScene());});await wait(p);}
+ await bind();assert.equal(await p.evaluate(()=>__pmPC.locale()),'zh-CN');
+ // Use actual settings controls once, not only the QA language setter.
+ await click(p,'settings');await click(p,'language');assert.equal(await p.evaluate(()=>Object.keys(__pmPC.controls()).filter(id=>id.startsWith('language-')).length),24);await click(p,'language-en');assert.equal(await p.evaluate(()=>__pmPC.locale()),'en');await click(p,'language-back');await p.keyboard.press('Escape');await wait(p);
+ for(const {id:lang} of locales){
+  await route(p,'home',camp);const before=stable(await p.evaluate(()=>__pmPC.snapshot()));assert.equal(await p.evaluate(lang=>__pmPC.setLanguage(lang),lang),true);assert.equal(await p.evaluate(()=>__pmPC.locale()),lang);assert.equal(stable(await p.evaluate(()=>__pmPC.snapshot())),before,'language selection mutates gameplay '+lang);
+  const home=await inspect(p,lang,'home',true);if(lang==='en')assert(home.labels.some(l=>l.text==='Set Out   →'),'English main command must be a complete phrase, not joined fragments');await click(p,'nav-map');await inspect(p,lang,'map');await click(p,'nav-partners');await inspect(p,lang,'partners');
+  for(const name of ['hatch','dex','gyms','cooking','social','postcards','raids','ladder']){await route(p,name,camp);await inspect(p,lang,name,['cooking','social'].includes(name));}
+  await p.evaluate(()=>g.cloudProfile());await inspect(p,lang,'cloud');await p.keyboard.press('Escape');await wait(p);
+  await route(p,'raids',camp);await click(p,'solo-trial');await inspect(p,lang,'raidbattle',true);await click(p,'raid-abort');await wait(p);
+
+  await route(p,'battle',battle);await inspect(p,lang,'battle',true);await click(p,'battle-settings');await inspect(p,lang,'settings',['en','ar','ur','hi','bn','mr','te','ta','th','ja','ko'].includes(lang));
+  if(['en','ar','hi','ta'].includes(lang)){await click(p,'language');await inspect(p,lang,'language-menu',true,true);await click(p,'language-back');}await p.keyboard.press('Escape');await wait(p);
+  if(['en','zh-CN'].includes(lang)){
+   const beforeAttack=await p.evaluate(()=>{globalThis.hitTexts=new Set();const until=performance.now()+2200;function sample(){for(const node of g.effects.children.filter(n=>n.name==='combat-pop'))for(const label of node.getComponentsInChildren(cc.Label))hitTexts.add(label.string);if(performance.now()<until)requestAnimationFrame(sample);}requestAnimationFrame(sample);return __pmPC.snapshot();});await click(p,'attack');await p.waitForTimeout(450);
+   const after=await p.evaluate(()=>__pmPC.snapshot()),expected=M.act(beforeAttack,'attack'),texts=await p.evaluate(()=>[...hitTexts]);for(const key of ['enemyHP','hpRatio','seed','turn','potions','boosts'])assert.equal(after[key],expected[key],lang+' translated battle changed '+key);assert(texts.includes(lang==='en'?'Damage Dealt':'造成伤害'),lang+' outgoing dynamic caption');assert(texts.includes(lang==='en'?'Damage Taken':'受到伤害'),lang+' incoming dynamic caption');if(lang==='en')assert(!/[\u3400-\u9fff]/.test(texts.join(' ')),'English dynamic hit Chinese residue');dynamic.push({lang,texts,rulesMatch:true});await inspect(p,lang,'after-attack',true);
+  }
+  assert.equal(await p.evaluate(()=>localStorage.getItem('pm.creature-dice.v1')),'MOBILE_SAVE_SENTINEL');console.log('PC locale checked: '+lang);
+ }
+ await route(p,'home',camp);await p.evaluate(()=>__pmPC.setLanguage('en'));await p.reload();await bind();assert.equal(await p.evaluate(()=>__pmPC.locale()),'en','selected locale survives reload');await inspect(p,'en','reload-home');assert.deepEqual(errors,[]);await context.close();report();console.log(JSON.stringify({locales:locales.length,screens:results.length,issues:issues.length,controlBoundsIssues:issues.filter(i=>i.kind==='control').length,residualChineseScreens:issues.filter(i=>i.kind==='untranslated-Chinese').length,errors,dynamic:dynamic.length,report:out+'/report.json'}));
+ }finally{report();await browser.close();}})().catch(e=>{errors.push(String(e.stack));report();console.error(e);process.exitCode=1;});

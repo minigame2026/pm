@@ -99,9 +99,10 @@ async function ensureServer(log){
 }
 async function main(argv){
  const options=args(argv),selection=plan(options.scope,options.files);
- if(options.dry){console.log(JSON.stringify({planOnly:true,...selection,typecheck:selection.build,buildPolicy:options.forceBuild?'force':'reuse-only-if-content-matches',url:config.url,visualReview:selection.runtime.length?'运行后仍需查看截图':'不涉及'},null,2));return;}
+ const previewURL=selection.scopes.length===1?(config.scopes[selection.scopes[0]].url||config.url):config.url;
+ if(options.dry){console.log(JSON.stringify({planOnly:true,...selection,typecheck:selection.build,buildPolicy:options.forceBuild?'force':'reuse-only-if-content-matches',url:previewURL,visualReview:selection.runtime.length?'运行后仍需查看截图':'不涉及'},null,2));return;}
  const folder=absolute('checks/workflow'),startedAt=new Date().toISOString();fs.mkdirSync(folder,{recursive:true});
- const report={startedAt,status:'running',...selection,steps:[],url:config.url,visualReview:selection.runtime.length?'pending':'not-applicable',deviceValidation:'not-run'};
+ const report={startedAt,status:'running',...selection,steps:[],url:previewURL,visualReview:selection.runtime.length?'pending':'not-applicable',deviceValidation:'not-run'};
  const reportFile=path.join(folder,'latest.json');
  const save=()=>fs.writeFileSync(reportFile,JSON.stringify(report,null,2));save();
  const step=async(name,fn)=>{const entry={name,status:'running',startedAt:new Date().toISOString(),log:path.join(folder,String(report.steps.length+1).padStart(2,'0')+'-'+name+'.log')};report.steps.push(entry);save();console.log('正在检查：'+name);const begin=Date.now();try{entry.result=await fn(entry.log);entry.status='passed';}catch(e){entry.status='failed';entry.error=e.message;throw e;}finally{entry.elapsedMs=Date.now()-begin;save();}};
@@ -130,7 +131,7 @@ async function main(argv){
   const screenshotStart=Date.now();
   for(const script of selection.runtime)await step(path.basename(script,'.cjs'),async log=>{await execute(process.execPath,[absolute(script)],log,0,240000);if(!/pass/i.test(fs.readFileSync(log,'utf8')))throw Error('脚本退出但没有完成验证的通过输出');return 0;});
   report.screenshots=fs.readdirSync(absolute('checks')).filter(f=>f.endsWith('.png')&&fs.statSync(absolute('checks/'+f)).mtimeMs>=screenshotStart-1000).map(f=>'checks/'+f);
-  report.status='passed';console.log('相关自动检查通过。'+(selection.runtime.length?'试玩：'+config.url+'\n截图仍需人工/助手查看；':'无需构建或画面验收；')+'结果：checks/workflow/latest.json');
+  report.status='passed';console.log('相关自动检查通过。'+(selection.runtime.length?'试玩：'+previewURL+'\n截图仍需人工/助手查看；':'无需构建或画面验收；')+'结果：checks/workflow/latest.json');
  }catch(e){report.status='failed';report.error=e.message;throw e;}finally{report.finishedAt=new Date().toISOString();save();fs.writeFileSync(path.join(folder,selection.scopes.join('-')+'-latest.json'),JSON.stringify(report,null,2));for(const scope of selection.scopes)fs.writeFileSync(path.join(folder,scope+'-latest.json'),JSON.stringify(scopeReport(report,scope),null,2));}
 }
 module.exports={plan,args,execute,fingerprint,canReuseBuild,scopeReport,onlyAddedMetadata,stableBuild};

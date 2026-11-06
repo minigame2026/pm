@@ -1,9 +1,27 @@
 const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('node:assert/strict'),cfg=require('../tools/workflow.config.json'),ts=require(path.join(path.dirname(cfg.typescript),'typescript.js'));
 const code=ts.transpileModule(fs.readFileSync('assets/scripts/PMAudio.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2017}}).outputText;
-for(const native of [false,true]){
- const pending=new Map(),loaded=[],released=[];
+// Tap's interactive cover must not compete with music/SFX reads and decoding.
+{
+ const loaded=[],pending=new Map(),released=[],exports={};let prefs=null;
  class Node{addChild(){}addComponent(){return {playing:false,clip:null,play(){this.playing=true},stop(){this.playing=false},pause(){this.playing=false}};}}
- const exports={},cc={Node,AudioClip:class{},AudioSource:class{},sys:{isNative:native,localStorage:{getItem:()=>null,setItem(){}}},resources:{load(p,t,cb){loaded.push(p);pending.set(p,cb)},release(p){released.push(p)}}};
+ const cc={Node,AudioClip:class{},AudioSource:class{},sys:{isNative:false,localStorage:{getItem:()=>prefs,setItem(k,v){prefs=v;}}},resources:{load(p,t,cb){loaded.push(p);pending.set(p,cb);},release(p){released.push(p);}}};
+ vm.runInNewContext(code,{exports,require:()=>cc,Set,console});
+ const a=new exports.PMAudio(new Node(),undefined,true);
+ a.select('camp');a.pause('background');a.resume('background');
+ assert.deepEqual(loaded,[],'deferred mini audio must do no loading before first interaction');
+ a.unlock();assert.equal(loaded.length,7);assert.equal(new Set(loaded).size,7);
+ a.unlock();a.resume('background');assert.equal(loaded.length,7,'unlock/resume must not duplicate loads');
+ pending.get('audio/camp-short')(null,{name:'camp-short'});assert(a.music.playing);
+ a.toggle('music');assert(!a.music.playing);a.toggle('music');assert(a.music.playing);
+ a.pause('ad');assert(!a.music.playing);a.resume('ad');assert(a.music.playing);
+ a.dispose();assert(!a.music.playing);
+ const b=new exports.PMAudio(new Node(),undefined,true);b.dispose();const count=loaded.length;b.unlock();assert.equal(loaded.length,count,'disposed audio must not start deferred loads');
+ console.log('PASS Tap audio waits for first interaction; settings, ad resume, duplicate unlock and disposal preserved');
+}
+for(const native of [false,true]){
+ const pending=new Map(),loaded=[],released=[];let prefs=null;
+ class Node{addChild(){}addComponent(){return {playing:false,clip:null,play(){this.playing=true},stop(){this.playing=false},pause(){this.playing=false}};}}
+ const exports={},cc={Node,AudioClip:class{},AudioSource:class{},sys:{isNative:native,localStorage:{getItem:()=>prefs,setItem(k,v){prefs=v;}}},resources:{load(p,t,cb){loaded.push(p);pending.set(p,cb)},release(p){released.push(p)}}};
  vm.runInNewContext(code,{exports,require:()=>cc,Set,console});const a=new exports.PMAudio(new Node()),camp=native?'camp-app':'camp-short';
  assert(loaded.includes('audio/'+camp));assert(!loaded.includes('audio/'+(native?'camp-short':'camp-app')));assert(!loaded.includes('audio/battle-normal'));
  function finish(id){const p='audio/'+id,cb=pending.get(p);assert(cb,p);pending.delete(p);cb(null,{name:id});}
@@ -15,5 +33,19 @@ for(const native of [false,true]){
  a.toggle('music');assert(!a.music.playing);a.toggle('music');assert(a.music.playing);a.dispose();assert(!a.music.playing);assert(released.includes('audio/egg-quest'));
 }
 assert(!fs.existsSync('assets/resources/audio/camp.mp3'));assert(!fs.existsSync('assets/resources/audio/battle.mp3'));
+// Two live same-origin game pages share settings, not in-memory AudioSource instances.
+{
+ let stored=null;const pages=[];
+ function open(){const listeners=new Set(),exports={};class Node{addChild(){}addComponent(){return {playing:false,clip:null,volume:1,play(){this.playing=true},stop(){this.playing=false},pause(){this.playing=false}};}}
+  const cc={Node,AudioClip:class{},AudioSource:class{},sys:{isNative:false,localStorage:{getItem:()=>stored,setItem(k,v){stored=v;for(const p of pages)if(p.listeners!==listeners)for(const fn of p.listeners)fn({key:k});}}},resources:{load(p,t,cb){cb(null,{name:p});},release(){}}};
+  vm.runInNewContext(code,{exports,require:()=>cc,Set,console,addEventListener(k,fn){if(k==='storage')listeners.add(fn);},removeEventListener(k,fn){listeners.delete(fn);}});
+  const a=new exports.PMAudio(new Node());pages.push({a,listeners});a.unlock();return a;
+ }
+ const a=open(),b=open();assert(a.music.playing&&b.music.playing);a.toggle('music');assert.equal(b.musicEnabled,false,'other open page must receive mute');assert(!a.music.playing&&!b.music.playing);assert.equal(b.music.volume,0);
+ b.toggle('effects');assert.equal(a.effectsEnabled,false);assert.equal(a.musicEnabled,false,'effects toggle must not reenable music');b.select('battle-normal');assert(!b.music.playing);b.resume('background');assert(!b.music.playing);
+ a.toggle('music');assert(a.music.playing&&b.music.playing);assert.equal(b.music.volume,.55);a.pause('ad');b.toggle('music');b.toggle('music');assert(!a.music.playing);a.resume('ad');assert(a.music.playing);
+ a.dispose();b.dispose();assert(pages.every(p=>p.listeners.size===0),'dispose removes storage listeners');
+ console.log('PASS shared music/effects prefs, mute output volume, track/background/ad transitions and listener cleanup');
+}
 for(const n of ['camp-app','camp-short','battle-normal','battle-elite','battle-boss','egg-quest'])assert(fs.statSync('assets/resources/audio/'+n+'.mp3').size>1000);
 console.log('PASS native/full vs browser/short; three enemy ranks; lazy loading, stale requests, release, ad/mute/dispose; obsolete tracks removed');

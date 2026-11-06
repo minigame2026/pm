@@ -1,0 +1,528 @@
+{
+  "date": "2026-10-23",
+  "modelSHA": "392d578ca6db3ff30324834b43b875b1ed6699fdd6f7175e37eae8a518740f9a",
+  "assumptions": {
+    "ads": false,
+    "lookahead": false,
+    "clock": "virtual trusted time, production timers",
+    "tapOnly": "attack only",
+    "basic": "heal below half HP, boost above average roll, sort team by visible HP times average attack, no type swaps or guards",
+    "guided": "basic policy follows the actual first-map hint when present; assumes adoption, not observed users",
+    "informed": "existing visible-roll/type-aware policy",
+    "retention": "not a real user retention measurement"
+  },
+  "firstMap": [
+    {
+      "profile": "tap-only",
+      "starter": "fox",
+      "n": 100,
+      "win": 17,
+      "egg": 100,
+      "medianTurns": 33,
+      "deathFloors": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        10,
+        14,
+        15,
+        43
+      ]
+    },
+    {
+      "profile": "tap-only",
+      "starter": "bud",
+      "n": 100,
+      "win": 48,
+      "egg": 97,
+      "medianTurns": 34,
+      "deathFloors": [
+        0,
+        0,
+        0,
+        0,
+        5,
+        4,
+        11,
+        11,
+        15,
+        6
+      ]
+    },
+    {
+      "profile": "tap-only",
+      "starter": "otter",
+      "n": 100,
+      "win": 79,
+      "egg": 100,
+      "medianTurns": 37,
+      "deathFloors": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        4,
+        11,
+        4
+      ]
+    },
+    {
+      "profile": "basic",
+      "starter": "fox",
+      "n": 100,
+      "win": 87,
+      "egg": 100,
+      "medianTurns": 36,
+      "deathFloors": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        11
+      ]
+    },
+    {
+      "profile": "basic",
+      "starter": "bud",
+      "n": 100,
+      "win": 99,
+      "egg": 100,
+      "medianTurns": 36,
+      "deathFloors": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "profile": "basic",
+      "starter": "otter",
+      "n": 100,
+      "win": 100,
+      "egg": 100,
+      "medianTurns": 36,
+      "deathFloors": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "profile": "guided",
+      "starter": "fox",
+      "n": 100,
+      "win": 91,
+      "egg": 100,
+      "medianTurns": 54,
+      "deathFloors": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        9
+      ]
+    },
+    {
+      "profile": "guided",
+      "starter": "bud",
+      "n": 100,
+      "win": 99,
+      "egg": 100,
+      "medianTurns": 47,
+      "deathFloors": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "profile": "guided",
+      "starter": "otter",
+      "n": 100,
+      "win": 100,
+      "egg": 100,
+      "medianTurns": 44,
+      "deathFloors": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "profile": "informed",
+      "starter": "fox",
+      "n": 100,
+      "win": 91,
+      "egg": 100,
+      "medianTurns": 48,
+      "deathFloors": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        8
+      ]
+    },
+    {
+      "profile": "informed",
+      "starter": "bud",
+      "n": 100,
+      "win": 94,
+      "egg": 100,
+      "medianTurns": 47,
+      "deathFloors": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        2,
+        0,
+        0
+      ]
+    },
+    {
+      "profile": "informed",
+      "starter": "otter",
+      "n": 100,
+      "win": 99,
+      "egg": 100,
+      "medianTurns": 43,
+      "deathFloors": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "careers": [
+    {
+      "profile": "basic",
+      "starter": "fox",
+      "seed": 0,
+      "cleared": 4,
+      "attempts": 80,
+      "maxFail": 2,
+      "hatches": 257,
+      "breeds": 31
+    },
+    {
+      "profile": "basic",
+      "starter": "fox",
+      "seed": 1,
+      "cleared": 6,
+      "attempts": 80,
+      "maxFail": 2,
+      "hatches": 298,
+      "breeds": 65
+    },
+    {
+      "profile": "basic",
+      "starter": "fox",
+      "seed": 2,
+      "cleared": 6,
+      "attempts": 80,
+      "maxFail": 2,
+      "hatches": 271,
+      "breeds": 55
+    },
+    {
+      "profile": "basic",
+      "starter": "fox",
+      "seed": 3,
+      "cleared": 7,
+      "attempts": 80,
+      "maxFail": 2,
+      "hatches": 277,
+      "breeds": 72
+    },
+    {
+      "profile": "basic",
+      "starter": "bud",
+      "seed": 0,
+      "cleared": 7,
+      "attempts": 80,
+      "maxFail": 2,
+      "hatches": 281,
+      "breeds": 67
+    },
+    {
+      "profile": "basic",
+      "starter": "bud",
+      "seed": 1,
+      "cleared": 9,
+      "attempts": 80,
+      "maxFail": 2,
+      "hatches": 294,
+      "breeds": 72
+    },
+    {
+      "profile": "basic",
+      "starter": "bud",
+      "seed": 2,
+      "cleared": 8,
+      "attempts": 80,
+      "maxFail": 2,
+      "hatches": 272,
+      "breeds": 64
+    },
+    {
+      "profile": "basic",
+      "starter": "bud",
+      "seed": 3,
+      "cleared": 7,
+      "attempts": 80,
+      "maxFail": 2,
+      "hatches": 298,
+      "breeds": 61
+    },
+    {
+      "profile": "basic",
+      "starter": "otter",
+      "seed": 0,
+      "cleared": 8,
+      "attempts": 80,
+      "maxFail": 2,
+      "hatches": 284,
+      "breeds": 60
+    },
+    {
+      "profile": "basic",
+      "starter": "otter",
+      "seed": 1,
+      "cleared": 7,
+      "attempts": 80,
+      "maxFail": 2,
+      "hatches": 251,
+      "breeds": 55
+    },
+    {
+      "profile": "basic",
+      "starter": "otter",
+      "seed": 2,
+      "cleared": 5,
+      "attempts": 80,
+      "maxFail": 2,
+      "hatches": 323,
+      "breeds": 62
+    },
+    {
+      "profile": "basic",
+      "starter": "otter",
+      "seed": 3,
+      "cleared": 7,
+      "attempts": 80,
+      "maxFail": 2,
+      "hatches": 298,
+      "breeds": 69
+    },
+    {
+      "profile": "informed",
+      "starter": "fox",
+      "seed": 0,
+      "cleared": 12,
+      "attempts": 49,
+      "maxFail": 2,
+      "hatches": 210,
+      "breeds": 45
+    },
+    {
+      "profile": "informed",
+      "starter": "fox",
+      "seed": 1,
+      "cleared": 12,
+      "attempts": 65,
+      "maxFail": 2,
+      "hatches": 248,
+      "breeds": 53
+    },
+    {
+      "profile": "informed",
+      "starter": "fox",
+      "seed": 2,
+      "cleared": 12,
+      "attempts": 50,
+      "maxFail": 2,
+      "hatches": 219,
+      "breeds": 45
+    },
+    {
+      "profile": "informed",
+      "starter": "fox",
+      "seed": 3,
+      "cleared": 12,
+      "attempts": 40,
+      "maxFail": 2,
+      "hatches": 165,
+      "breeds": 38
+    },
+    {
+      "profile": "informed",
+      "starter": "bud",
+      "seed": 0,
+      "cleared": 12,
+      "attempts": 61,
+      "maxFail": 2,
+      "hatches": 255,
+      "breeds": 56
+    },
+    {
+      "profile": "informed",
+      "starter": "bud",
+      "seed": 1,
+      "cleared": 12,
+      "attempts": 54,
+      "maxFail": 2,
+      "hatches": 243,
+      "breeds": 47
+    },
+    {
+      "profile": "informed",
+      "starter": "bud",
+      "seed": 2,
+      "cleared": 12,
+      "attempts": 58,
+      "maxFail": 2,
+      "hatches": 234,
+      "breeds": 56
+    },
+    {
+      "profile": "informed",
+      "starter": "bud",
+      "seed": 3,
+      "cleared": 12,
+      "attempts": 44,
+      "maxFail": 2,
+      "hatches": 182,
+      "breeds": 41
+    },
+    {
+      "profile": "informed",
+      "starter": "otter",
+      "seed": 0,
+      "cleared": 12,
+      "attempts": 55,
+      "maxFail": 2,
+      "hatches": 238,
+      "breeds": 54
+    },
+    {
+      "profile": "informed",
+      "starter": "otter",
+      "seed": 1,
+      "cleared": 12,
+      "attempts": 46,
+      "maxFail": 2,
+      "hatches": 190,
+      "breeds": 40
+    },
+    {
+      "profile": "informed",
+      "starter": "otter",
+      "seed": 2,
+      "cleared": 12,
+      "attempts": 46,
+      "maxFail": 2,
+      "hatches": 199,
+      "breeds": 42
+    },
+    {
+      "profile": "informed",
+      "starter": "otter",
+      "seed": 3,
+      "cleared": 12,
+      "attempts": 59,
+      "maxFail": 2,
+      "hatches": 257,
+      "breeds": 58
+    }
+  ],
+  "adventureRuns": 1587,
+  "hatches": 6044,
+  "breeds": 1308,
+  "audit": {
+    "rulesPassed": 39,
+    "rulesTotal": 39,
+    "browserPassed": 45,
+    "browserTotal": 45,
+    "retired": [
+      {
+        "file": "checks/arena-runtime.cjs",
+        "reason": "Removed four-mode arena is superseded by current gyms runtime; migration rules retained."
+      }
+    ],
+    "finalLayoutRegression": {
+      "status": "passed",
+      "sourceHash": "40a9adea35fa0a62f4532235289f448aad41ace086c783328246d955fe1d9258",
+      "scopes": [
+        "player-release",
+        "party-combat",
+        "app-battle"
+      ]
+    }
+  },
+  "limits": [
+    "Model policies are not real players or retention metrics.",
+    "Campaign breeding policy is informed in both cohorts; basic cohort is not an entirely unassisted novice.",
+    "Virtual trusted timers; no reward ads, cloud, gifts, badges, or player saves in career simulation.",
+    "Browser/native-mode emulation does not establish physical device or platform SDK performance."
+  ]
+}

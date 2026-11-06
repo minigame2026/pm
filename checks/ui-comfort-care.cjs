@@ -24,7 +24,7 @@ const partySnapshot=s=>clone(Object.fromEntries(['active','reserve','team','pets
     await page.addInitScript(lang=>localStorage.setItem('pm.language.v1',lang),lang);
     await page.goto(cfg.url);await page.waitForFunction(()=>globalThis.__pm?.ready&&__pm.timeReady(),null,{timeout:120000});
     await page.evaluate(async()=>{globalThis.cc=await System.import('cc');const find=n=>n.components.find(c=>typeof c.hatchery==='function')||n.children.map(find).find(Boolean);globalThis.g=find(cc.director.getScene());globalThis.findNode=(name,n=g.root)=>n.name===name?n:n.children.map(c=>findNode(name,c)).find(Boolean);});
-    const settle=async()=>{await page.waitForTimeout(240);await page.waitForFunction(()=>!g.pressPending&&!g.artCache.pending);};
+    const settle=async()=>{await page.waitForTimeout(240);await page.waitForFunction(()=>!__pm.animating());};
     const tap=async id=>{const p=await page.evaluate(id=>{const c=__pm.controls()[id];if(!c)throw new Error('Missing control '+id);return c;},id);await page.touchscreen.tap(p.x*width/390,p.y*width/390);await settle();};
     const image=async name=>{await settle();const file=`${out}/${name}-${width}-${lang}.png`;await page.screenshot({path:file});return file;};
     const load=async(s,route)=>{await page.evaluate(({s,route})=>{g.state=s;g.screen='home';g.render();g.breedMother='';g.breedFather='';g.partnerSelected=null;if(route==='partners')g.collection();if(route==='breed'){g.breedMother=s.pets[2].uid;g.breedFather=s.pets[1].uid;g.breedingUI();}if(route==='hatch')g.hatchery();},{s:clone(s),route});await settle();};

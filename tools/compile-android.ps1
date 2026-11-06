@@ -1,4 +1,4 @@
-param(
+﻿param(
     [string]$BuildDir = 'build/android',
     [switch]$Bundle,
     [string]$AppLabel = '骰子宠物精灵'

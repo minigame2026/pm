@@ -1,0 +1,7 @@
+{
+  "generator": "built-in imagegen",
+  "reference": "art-source/store-promo-v1/source.png",
+  "source": "source.png",
+  "output": "build/releases/Tap商店素材-20261023/视频封面-1440.jpg",
+  "processing": "Resized generated square to1440x1440 JPEG quality94"
+}

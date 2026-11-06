@@ -1,6 +1,6 @@
 ---
 name: cocos-miniapp-game-dev
-description: "Develop and validate Cocos Creator games for WeChat or Douyin mini games and Android or iOS apps. Use for Cocos gameplay, asset integration, mobile adaptation, platform builds, and playtesting; not for unrelated browser-only Phaser or Three.js projects."
+description: "Develop, optimize and validate Cocos Creator games for TapTap, WeChat or Douyin mini games and Android or iOS apps. Use for Cocos gameplay, assets, mobile adaptation, platform builds, playtesting, and 小游戏性能优化: package size, cold startup, memory and platform admission failures; not for unrelated browser-only Phaser or Three.js projects."
 ---
 
 # Cocos Mini Games and Mobile Apps
@@ -42,6 +42,12 @@ For large catalog/map additions, many-language layouts, balance simulations, or 
 - Validate clipped sprites at the largest actual animation scale/displacement, with their transparent bounds and small-screen layout. A static centered screenshot is insufficient for a moving masked portrait.
 - Reuse module-specific check groups and combine overlapping tasks into one build. Reuse a build only when both source/asset/config fingerprints and output fingerprints match; documentation-only checks should not launch the engine. Await asynchronous action commits in automation fixtures.
 - When preparing a template or repository handoff, regenerate data from current code, check local document links, and remove superseded guidance from the current entry points. Keep asset provenance separate from gameplay truth; retain Git history instead of replaying obsolete generation/patch scripts.
+## Mini-game performance optimization / 小游戏性能优化
+
+For package size, slow startup, memory/FPS issues, or a failed platform performance test, read [小游戏性能优化](references/miniapp-performance.md). It includes the verified Tap/Cocos 3.8 resource-subpackage workflow and a traceable optimization case.
+
+Identify the failing metric and exact tested package first. Optimize its critical path, verify the final exported payload and affected gameplay, then retest within the user's authorization. Keep local build checks, platform admission, manual device acceptance and publishing as separate results. Do not apply the reference's project-specific bundle counts, image sizes or module list as universal defaults.
+
 ## Build and validate
 
 Read [Platform builds](references/platform-builds.md) when configuring exports, interpreting build results, or preparing target-platform tests.

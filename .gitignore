@@ -3,16 +3,20 @@
 /temp/
 /build/
 /profiles/
+/output/
+/.playwright-cli/
 /node_modules/
 /.serena/
 
 # Keep test scripts; exclude generated checks and screenshots
 /checks/*
 !/checks/*.cjs
+!/checks/pc-fonts-native.py
 
 # Local credentials and machine-only files
 .env
 /config/tapads.local.json
+/config/taplogin.local.json
 .env.*
 !.env.example
 *.pem

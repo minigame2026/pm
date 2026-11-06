@@ -10,6 +10,12 @@
 
 参考：[本地化名称](https://partner.steamgames.com/doc/store/localization#localized_app_names)、[改名限制](https://partner.steamgames.com/doc/store/editing/name)。
 
+## 在线互动披露与多人分类
+
+实现了 Steam 好友互动或在线合作时，同时核对两处独立配置：内容调查 General Topics 的 Online Interactivity，以及商店 Basic Info 的多人模式分类。勾选多人不等于已声明具体模式；按当前实现选择 Co-op/PvP 及 Online/LAN/Local。仅支持在线合作时不补勾 PvP、本地、局域网或跨平台。以当前后台表单与官方说明为准。
+
+内容调查保存草稿后还要检查差异并发布；商店功能另行保存、检查差异、公开发布，再读回前台标签。保留原有 AI 等披露，未经事实支持不改写用户负责的答案。一次发布成功不能代替另一处生效验证。参考：[内容调查](https://partner.steamgames.com/doc/gettingstarted/contentsurvey#3)。
+
 ## 五语截图经验
 
 - 使用确定版本的实际原生客户端，在游戏里切换语言拍摄。只裁除系统边框/留黑和合理缩小；不可用生成画替代实机，也不添加并不存在的功能。

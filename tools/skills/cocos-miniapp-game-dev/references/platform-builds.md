@@ -4,14 +4,9 @@ Use only the sections relevant to the requested target. Platform rules, package 
 
 ## Creator command-line builds
 
-Use the actual installed editor, project path, and a JSON configuration exported from its Build panel. A Windows PowerShell invocation has this shape:
+Use the actual installed editor, project path, and a JSON configuration exported from its Build panel. Pass `--project <project directory> --build configPath=<configuration path>` as separate arguments through the project's build wrapper.
 
-```powershell
-& $creatorExe --project $projectDir --build "configPath=$buildConfig"
-$creatorExitCode = $LASTEXITCODE
-```
-
-The variables must point to verified paths. Creator 3.8 documents exit codes 36 (success), 32 (invalid parameters), and 34 (build error). Preserve full logs in the project's intermediate-work location; show a short diagnostic summary to the user.
+On Windows, a bare PowerShell invocation of the GUI executable can return before the build finishes. Use a wrapper that waits for the actual child process to exit and captures its log (for example Node `spawn` with `windowsHide: true`, awaiting `close`). A shell return of 0 or an empty log does not establish build completion. Creator 3.8 documents exit codes 36 (success), 32 (invalid parameters), and 34 (build error). Inspect the log and fresh output as well as that process's exit code. Preserve full logs in the project's intermediate-work location; show a short diagnostic summary to the user.
 
 Distinguish `build` (export/build assets and target project) from native `make` (compile the native app). Use explicit requested targets and inspect generated files, rather than relying on whichever platform was last selected in the editor.
 
@@ -33,6 +28,10 @@ Source: [WeChat publishing](https://docs.cocos.com/creator/3.8/manual/en/editor/
 - Keep Douyin-specific APIs behind a project adapter; do not reuse WeChat calls by renaming prefixes without checking API behavior.
 
 Source: [Douyin publishing](https://docs.cocos.com/creator/3.8/manual/en/editor/publish/publish-bytedance-mini-game.html).
+
+## TapTap mini games
+
+For Tap package admission failures, startup optimization, or conversion of Cocos resource subpackages, read [小游戏性能优化](miniapp-performance.md). It distinguishes actual resource partitioning from the platform's WASM option and describes final-package validation. Check current Tap documentation for SDK/API support and submission limits.
 
 ## Android apps
 

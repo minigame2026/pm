@@ -1,0 +1,22 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const cfg=require('../tools/workflow.config.json'),ts=require(cfg.typescript.replace(/tsc\.js$/,'typescript.js')),cache={};
+function load(name){if(cache[name])return cache[name];const out=cache[name]={},file=(name.startsWith('PC')?'pc/game/':'assets/scripts/')+name+'.ts';assert(fs.existsSync(file),'achievement module exists');vm.runInNewContext(ts.transpileModule(fs.readFileSync(file,'utf8'),{compilerOptions:{module:1,target:4}}).outputText,{exports:out,require:p=>load(p.replace('./','')),Math,Date,JSON,Set,Map});return out;}
+const M=load('PMModel'),S=load('PCSocial'),A=load('PCAchievements'),id='76561198000000001',social=S.newPCSocial(id);
+let game=M.newJourney();assert.equal(A.earnedAchievements(game,social).length,0,'new unchosen starter is not an achievement');
+game={...game,journey:{...game.journey,stage:'done'},clearedMaps:[0,1,2,3,4,5],gymBadges:[0],hatchedEggIds:['one'],pets:[{id:'fox',shiny:true,rarity:'SSR'}],pcCooking:{active:{quality:3}}};
+const earned=A.earnedAchievements(game,social);
+for(const name of ['DK_PARTNER','DK_MAP_1','DK_MAP_6','DK_HATCH_1','DK_SHINY','DK_SSR','DK_GYM_1','DK_COOK','DK_FEAST'])assert(earned.includes(name),name);
+for(const name of ['DK_MAP_12','DK_HATCH_10','DK_GYM_9','DK_RAID'])assert(!earned.includes(name),name);
+const ledger=A.recordAchievements(game,social);assert.equal(social.achievements,undefined,'input is immutable');assert(ledger.achievements.includes('DK_FEAST'));
+assert(A.recordAchievements(M.newJourney(),ledger).achievements.includes('DK_FEAST'),'consumed meals and old progress remain recorded');
+assert.equal(A.recordAchievements(game,ledger),ledger,'unchanged ledger keeps identity');
+assert(S.restorePCSocial(ledger,id));assert.equal(S.restorePCSocial({...ledger,achievements:['made-up']},id),null);
+game={...game,clearedMaps:Array.from({length:12},(_,i)=>i),gymBadges:Array.from({length:9},(_,i)=>i),hatchedEggIds:Array.from({length:10},(_,i)=>'egg'+i),owned:M.PET_IDS.slice(0,60)};
+assert.equal(A.earnedAchievements(game,{...social,firstRaidClears:['molten-crown']}).length,16);
+assert.equal(A.earnedAchievements({...game,owned:Array(60).fill('fox'),pets:[]},social).includes('DK_COLLECT_10'),false,'duplicates are not species');
+let calls=[],now=0,identity={available:true,online:true,appId:5500200,steamId:id};
+const bridge={request(op,args){calls.push({op,args});return op==='status'?{ok:true,data:identity}:{ok:false,error:'not_ready'};}};
+const sync=new A.PCAchievementSync(id,bridge,()=>now);sync.update(ledger);sync.update(ledger);assert.equal(calls.filter(x=>x.op==='achievements.sync').length,1,'no per-frame retry');
+now=31000;sync.update(ledger);assert.equal(calls.filter(x=>x.op==='achievements.sync').length,2,'failed submission retries');
+identity={...identity,steamId:'76561198000000002'};now=62000;sync.update(ledger);assert.equal(calls.filter(x=>x.op==='achievements.sync').length,2,'wrong account receives no unlock');
+console.log('PC achievements: 16 predicates, retroactive ledger, consumable retention, identity and retry passed');

@@ -38,10 +38,10 @@ test('breeding is timed, restart-safe, idempotent and produces an egg rather tha
  s=roundtrip(s);s=M.restartRun(s,99);assert.equal(JSON.stringify(s.breeding.genes),genes);s=M.claimBreeding(s,2000+M.BREED_DURATION);assert.equal(s.pets.length,count-2);const egg=s.eggs.at(-1);assert.equal(JSON.stringify(egg.genes),genes);assert.equal(M.claimBreeding(s,99999999),s);s=roundtrip(s);
  s=M.startIncubation(s,egg.id,0,9000000);assert.equal(s.incubators[0].result,egg.rarity);s=M.claimHatch(s,0,9000000+M.HATCH_DURATION);const child=s.pets.at(-1);assert.equal(child.skills.join(),egg.genes.skills.join());assert.equal(child.baseHP,egg.genes.baseHP);assert.equal(child.rarity,egg.rarity);assert.equal(child.id,egg.affinity);assert.equal(child.faces.join(),egg.genes.baseFaces.join());assert.equal(s.pets.length,count-1);assert.equal(M.claimHatch(s,0,99999999),s);roundtrip(s);
 });
-test('independent inheritance is 50/50, ignores temporary upgrades, deduplicates max six skills',()=>{
+test('higher quality form is kept; independent HP and attacks are 50/50, ignores temporary upgrades, deduplicates max six skills',()=>{
  let s=parents();s.pets[0].rarity='SSR';s.pets[0].baseHP=41;s.runRoster[s.pets[0].uid]=copy(s.pets[0]);s.runRoster[s.pets[0].uid].faces=[99,99,99];s.hpBonus=80;let motherForm=0,motherHP=0,motherAttack=0,mixed=0;
  for(let i=0;i<3000;i++){s.breeding=null;s=M.startBreeding(s,s.pets[0].uid,s.pets[1].uid,i);const g=s.breeding.genes;motherForm+=g.id==='fox';motherHP+=g.baseHP===41;motherAttack+=g.baseFaces.join()==='1,3,7';mixed+=(g.id==='fox')!==(g.baseHP===41);assert.ok(g.skills.length>=3&&g.skills.length<=6);assert.equal(new Set(g.skills).size,g.skills.length);assert.ok(!g.baseFaces.includes(99));}
- for(const n of [motherForm,motherHP,motherAttack])assert.ok(n>1350&&n<1650,n);assert.ok(mixed>1000);
+ assert.equal(motherForm,3000);for(const n of [motherHP,motherAttack])assert.ok(n>1350&&n<1650,n);assert.ok(mixed>1000);
  const duplicate=parents();duplicate.pets[1].skills=['opening','charged','healing'];const n=M.startBreeding(duplicate,duplicate.pets[0].uid,duplicate.pets[1].uid,0);assert.ok(n.breeding.genes.skills.length<=3);
  for(const second of ['opening','armor']){const d=parents();d.pets[0].skills=['opening'];d.pets[1].skills=[second];const child=M.startBreeding(d,d.pets[0].uid,d.pets[1].uid,0).breeding.genes;assert.equal(child.skills.length,second==='opening'?1:2);assert.equal(new Set(child.skills).size,child.skills.length);}
 });

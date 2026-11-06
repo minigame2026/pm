@@ -6,6 +6,8 @@ apply plugin: 'com.android.application'
 def tapConfigFile = file('../../../../config/tapads.local.json')
 def tapConfig = tapConfigFile.exists() ? new groovy.json.JsonSlurper().parse(tapConfigFile) : [:]
 def tapString = { value -> groovy.json.JsonOutput.toJson((value ?: '').toString()) }
+def tapLoginFile = file('../../../../config/taplogin.local.json')
+def tapLogin = tapLoginFile.exists() ? new groovy.json.JsonSlurper().parse(tapLoginFile) : [:]
 
 RES_PATH = RES_PATH.replace("\\", "/")
 COCOS_ENGINE_PATH = COCOS_ENGINE_PATH.replace("\\", "/")
@@ -27,9 +29,11 @@ android {
         applicationId APPLICATION_ID
         minSdkVersion PROP_MIN_SDK_VERSION
         targetSdkVersion PROP_TARGET_SDK_VERSION
-        versionCode 10
-        versionName "1.0.9"
+        versionCode 16
+        versionName "1.0.15"
         buildConfigField 'String', 'TAP_MEDIA_ID', tapString(tapConfig.mediaId)
+        buildConfigField 'String', 'TAP_CLIENT_ID', tapString(tapLogin.clientId)
+        buildConfigField 'String', 'TAP_CLIENT_TOKEN', tapString(tapLogin.clientToken)
         buildConfigField 'String', 'TAP_MEDIA_NAME', tapString(tapConfig.mediaName ?: '骰子宠物精灵')
         buildConfigField 'String', 'TAP_MEDIA_KEY', tapString(tapConfig.mediaKey)
         buildConfigField 'String', 'TAP_PLACEMENTS', tapString(groovy.json.JsonOutput.toJson(tapConfig.placements ?: [:]))
@@ -111,6 +115,11 @@ android {
 }
 
 dependencies {
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.24'
+    implementation 'com.taptap.sdk:tap-core:4.11.0'
+    implementation 'com.taptap.sdk:tap-login:4.11.0'
+    implementation 'com.taptap.sdk:tap-compliance:4.11.0'
+    implementation 'com.taptap.sdk:tap-cloudsave:4.11.0'
     implementation 'androidx.core:core:1.9.0'
     implementation 'com.google.zxing:core:3.5.3'
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'

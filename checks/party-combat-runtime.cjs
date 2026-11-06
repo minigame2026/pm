@@ -19,7 +19,7 @@ function ready(){const s=M.fresh(91,['fox','turtle','bud','otter','spark']);s.jo
  async function seed(s){await page.waitForFunction(()=>!g.busy);await page.evaluate(s=>{g.state=s;g.screen='game';g.render();},s);await page.waitForFunction(()=>!__pm.animating());}
  async function tap(id){const p=await page.evaluate(id=>__pm.controls()[id],id);assert(p,id);await page.touchscreen.tap(p.x,p.y);await page.waitForTimeout(300);}
  let s=ready();s=M.selectActive(s,s.pets.find(p=>p.id==='otter').uid);s.enemy='spark';s.enemyRarity='normal';await seed(s);
- assert((await page.evaluate(()=>texts())).includes('↑ ×1.5'));assert((await page.evaluate(()=>texts())).includes('×1'));
+ assert((await page.evaluate(()=>texts())).includes('×1.5'));assert((await page.evaluate(()=>texts())).includes('×1'));
  await tap('encounter-types');assert((await page.evaluate(()=>texts())).includes('敌方攻击'));
  await page.screenshot({path:'checks/party-types-390.png'});
  await tap('types-enemy');await tap('nav-home');assert((await page.evaluate(()=>texts())).includes('克制关系'));await tap('types-close');

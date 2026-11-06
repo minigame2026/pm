@@ -17,9 +17,10 @@ for(const gym of M.GYMS){
  const clears=copy(s.clearedMaps),eggs=s.eggs.length;
  for(let step=1;step<=10;step++){
   assert.equal(s.step,step);assert(gym.types.includes(M.PETS[s.enemy].type));
-  assert.equal(s.enemyMax,Math.round(M.legacyEnemyHealthForStage(step,gym.id)*1.5));
+  assert.equal(s.enemyMax,Math.round(Math.round(M.enemyHealthForStage(step,gym.id)*1.2)*1.1));
   const adventure=copy(s);delete adventure.gymRun;delete adventure.gymDifficultyVersion;
-  assert.deepEqual(copy(M.enemyAttackFaces(s)),copy(M.enemyAttackFaces(adventure).map(v=>Math.round(v*1.5))));
+  assert.deepEqual(copy(M.enemyAttackFaces({...s,gymDifficultyVersion:1})),copy(M.enemyAttackFaces(adventure).map(v=>Math.round(v*1.5))),'legacy v1 multiplier unchanged');
+  assert(M.gymEnemyPool(gym.id,step).includes(s.enemy),'current role uses its matching strength pool');
   if(step===5)assert(['SR','SSR'].includes(s.enemyRarity));if(step===10)assert.equal(s.enemyRarity,'SSR');
   s=M.act(s,'challenge');assert(M.enemyAttackFaces(s).includes(s.enemyAttack),'roll uses the displayed boosted faces');
   assert.equal(M.enemyAttackAmount(s),M.typedDamage(s.enemyAttack,M.matchupMultiplier(s.enemy,s.active.id)),'damage does not multiply difficulty twice');
@@ -43,9 +44,9 @@ legacy=M.act(legacy,'challenge');const saved=copy(legacy);legacy=M.restore(JSON.
 assert.equal(legacy.enemyHP,saved.enemyHP);assert.equal(legacy.enemyMax,saved.enemyMax);assert.equal(legacy.enemyAttack,saved.enemyAttack);
 assert.deepEqual(copy(M.enemyAttackFaces(legacy)),copy(M.enemyAttackFaces(saved)));
 legacy.enemyHP=1;legacy.attack=100;legacy=M.act(legacy,'attack');legacy=M.act(legacy,legacy.reward.kind==='attack'||legacy.reward.kind==='heal'?'keep':'take');
-assert.equal(legacy.step,2);assert.equal(legacy.gymDifficultyVersion,1);assert.equal(legacy.enemyMax,Math.round(M.legacyEnemyHealthForStage(2,4)*1.5));
+assert.equal(legacy.step,2);assert.equal(legacy.gymDifficultyVersion,5);assert.equal(legacy.enemyMax,Math.round(Math.round(M.enemyHealthForStage(2,4)*1.2)*1.1));
 for(let mapId=0;mapId<9;mapId++){const s=M.startMap(base,mapId,42);assert.equal(s.gymRun,undefined);assert.equal(s.enemyMax,M.enemyHealthForStage(1,mapId));}
-console.log('PASS nine gyms / 18 types / 10 families and 30 forms each, +50% HP and dice, roll/damage/reload consistency, legacy turn preservation, unchanged adventure, ten fights and badges.');
+console.log('PASS nine gyms / 18 types / 10 families and 30 forms each, retained HP uplift and smoothed attack, roll/damage/reload consistency, legacy turn preservation, unchanged adventure, ten fights and badges.');
 let before=M.fresh(41,['fox','otter','bud']),boosted=copy(before);boosted.gymBadges=[2];boosted.attack=before.attack=10;boosted.skill=before.skill=undefined;
 assert.equal(M.maxHP(boosted),Math.round(M.maxHP(before)*1.1));assert(M.attackAmount(boosted)>M.attackAmount(before));assert.deepEqual(copy(boosted.pets),copy(before.pets),'badge never changes genetic bases');
 assert.equal(M.petCombat(boosted,boosted.active.uid).max,M.maxHP(boosted));

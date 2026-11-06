@@ -18,7 +18,7 @@ const out='checks/map-layout',now=Date.now();fs.mkdirSync(out,{recursive:true});
   const maps=['ar','ru','ta'].includes(lang)?[9,10,11]:Array.from({length:12},(_,i)=>i);
   for(const map of maps){
    await tap('map-'+map);assert.equal(await page.evaluate(()=>g.mapIndex),map);
-   const boxes=await page.evaluate(()=>{const list=[];function walk(n){if(/^map-(pet-|types$|note$|title$|stage-count$)/.test(n.name))list.push(rect(n));n.children.forEach(walk);}walk(g.root);return list;});assert.equal(boxes.length,16);nonOverlapping(boxes,'map '+(map+1));
+   const boxes=await page.evaluate(()=>{const list=[];function walk(n){if(/^map-(pet-|types$|note$|title$|stage-count$)/.test(n.name))list.push(rect(n));n.children.forEach(walk);}walk(g.root);return list;});assert.equal(boxes.length,15);assert.equal(await page.evaluate(()=>!!findNode('map-stage-count')),false,'map header omits floor count');nonOverlapping(boxes,'map '+(map+1));
    const title=await page.evaluate(()=>{const l=findNode('map-title').getComponent(cc.Label);return {text:l.string,font:l.actualFontSize||l.fontSize};});assert(title.font>=12,`${lang} map ${map+1} title unreadable: ${JSON.stringify(title)}`);
    if(map===11)await page.screenshot({path:`${out}/${width}x${height}-${lang}-adventure.png`});
   }

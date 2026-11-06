@@ -18,7 +18,7 @@ function source(species='dragon',rarity='SSR',owner='owner-A001'){
   const code=M.makeVisitCode(s,p.uid);assert.equal(typeof code,'string');assert.ok(code.length>0);
   return {s:saved(s),p,code};
 }
-function welcomed(species='dragon',rarity='SSR',seed=71){const a=source(species,rarity);return {a,s:M.receiveVisitor(host(seed),a.code,1000)};}
+function welcomed(species='dragon',rarity='SSR',seed=71){const a=source(species,rarity);const s=M.receiveVisitor(host(seed),a.code,1000);assert.equal(s.eggs.length,1);assert(s.eggs[0].friend);s.eggs=[];return {a,s}; /* Bond fixtures isolate a separate, player-owned egg. */}
 function bonded(species='dragon',rarity='SSR',seed=71){let {a,s}=welcomed(species,rarity,seed);for(const at of [3500,6000,8500])s=M.visitAction(s,at);assert.ok(M.friendBonds(s).some(b=>b.species===species));return {a,s};}
 function egg(s,id='own-egg',rarity='normal',affinity='bud',mapId=0){s.eggs.push({id,rarity,affinity,stage:5,mapId});return s.eggs.at(-1);}
 function withoutSocial(s){const n=copy(s);delete n.social;delete n.revision;delete n.message;return n;}
@@ -44,9 +44,9 @@ test('malformed, altered-checksum and own visit codes are rejected without state
   unchanged(a.s,x=>M.receiveVisitor(x,a.code,1000));
 });
 
-test('receiving a visitor grants no egg, collection, stats, team or breeding parent',()=>{
+test('receiving a visitor grants one friend egg but no collection, stats, team or breeding parent',()=>{
   const a=source(),before=host(),snapshot=copy(before),s=M.receiveVisitor(before,a.code,1000),v=M.visitorPet(s);
-  eq(before,snapshot);eq(withoutSocial(s),withoutSocial(before));assert.ok(v);assert.equal(v.id,a.p.id);assert.equal(v.rarity,'SSR');assert.ok(!s.pets.some(p=>p.uid===v.uid));assert.ok(!s.owned.includes('dragon'));
+  eq(before,snapshot);const nonSocial=withoutSocial(s);assert.equal(nonSocial.eggs.length,1);assert(nonSocial.eggs[0].friend);nonSocial.eggs=[];eq(nonSocial,withoutSocial(before));assert.ok(v);assert.equal(v.id,a.p.id);assert.equal(v.rarity,'SSR');assert.ok(!s.pets.some(p=>p.uid===v.uid));assert.ok(!s.owned.includes('dragon'));
   unchanged(s,x=>M.assignPartySlot(x,v.uid,0));unchanged(s,x=>M.equipReserve(x,v.uid));
   unchanged(s,x=>M.startBreeding(x,v.uid,x.pets[1].uid,1000));unchanged(s,x=>M.startBreeding(x,x.pets[0].uid,v.uid,1000));saved(s);
 });

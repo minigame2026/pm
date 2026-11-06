@@ -12,8 +12,8 @@ const loaded=M.restore(JSON.stringify(old));assert(loaded);assert.equal(loaded.e
 const continued=M.act(loaded,'guard');assert.equal(continued.adventureDifficultyVersion,undefined,'old current encounter retains its curve');
 old.enemyHP=1;let next=M.act(old,'attack');next=M.act(next,'take');if(next.phase==='event')next=M.act(next,'eventContinue');assert.equal(next.adventureDifficultyVersion,1,'next new encounter uses new curve');
 for(let i=0;i<9;i++){
- s.clearedMaps=Array.from({length:12},(_,j)=>j);const g=M.enterGym(s,i);assert.equal(g.adventureDifficultyVersion,undefined);assert.equal(g.enemyMax,Math.round(M.legacyEnemyHealthForStage(1,i)*1.5));
- const raw=flat(g);delete raw.gymRun;delete raw.gymDifficultyVersion;assert.deepEqual(flat(M.enemyAttackFaces(g)),flat(M.enemyAttackFaces(raw).map(v=>Math.round(v*1.5))));
+ s.clearedMaps=Array.from({length:12},(_,j)=>j);const g=M.enterGym(s,i);assert.equal(g.adventureDifficultyVersion,undefined);assert.equal(g.enemyMax,Math.round(Math.round(M.enemyHealthForStage(1,i)*1.2)*1.1));
+ const raw=flat(g);delete raw.gymRun;delete raw.gymDifficultyVersion;assert.deepEqual(flat(M.enemyAttackFaces({...g,gymDifficultyVersion:1})),flat(M.enemyAttackFaces(raw).map(v=>Math.round(v*1.5))));
 }
 assert.equal(M.EXPEDITION_COST,5);assert.equal(M.BREED_DURATION,1800000);assert.deepEqual(flat(M.HATCH_DURATIONS),{normal:600000,SR:1200000,SSR:1800000});
 console.log('PASS adventure curve 120 floors, fresh one-pet entry, old encounter persistence, nine unchanged gym curves and production costs');

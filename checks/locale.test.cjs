@@ -11,7 +11,7 @@ L.selectLanguage('ko','ja-JP');assert.equal(L.currentLocale(),'ko');
 L.selectLanguage('system','ja-JP');assert.equal(L.currentLocale(),'ja');
 L.selectLanguage('bad','it-IT');assert.equal(L.currentLocale(),'en');assert.equal(L.languageChoice(),'system');
 const sourceStrings=new Set();
-for(const name of ['PMGame','PMModel','TrustedClock','PMRewardedAds']){
+for(const name of ['PMGame','PMPlayerGuidance','PMModel','TrustedClock','PMRewardedAds']){
  const src=ts.createSourceFile(name,fs.readFileSync('assets/scripts/'+name+'.ts','utf8'),ts.ScriptTarget.Latest,true);
  function walk(n){if(ts.isStringLiteralLike(n)&&/[\u3400-\u9fff]/.test(n.text))sourceStrings.add(n.text);ts.forEachChild(n,walk);}walk(src);
 }

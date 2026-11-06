@@ -13,7 +13,7 @@ for(let mapId=0;mapId<9;mapId++){
  s=M.act(s,'eggSearch');s=M.act(s,'eggTake');s=M.act(s,'eggContinue');
  assert.equal(s.phase,'won');assert.ok(s.clearedMaps.includes(mapId));assert.ok(M.restore(JSON.stringify(s)));
 }
-let s=M.act(ready(),'challenge');s.enemyMax=s.enemyHP=100;s.attack=1;s.enemyAttack=2;
+let legacyOpening=ready();legacyOpening.active.skills=['opening'];legacyOpening.pets[0].skills=['opening'];legacyOpening.runRoster[legacyOpening.active.uid]=copy(legacyOpening.active);let s=M.act(legacyOpening,'challenge');s.enemyMax=s.enemyHP=100;s.attack=1;s.enemyAttack=2;
 const expected=M.typedDamage(1,M.matchupMultiplier(s.active.id,s.enemy))+2,next=M.act(s,'attack');
 assert.equal(next.skill.lastDamage,expected);assert.ok(next.skill.usedCodes.includes('opening'));
 assert.equal(next.skill.attackHPRatio,1);assert.ok(next.hpRatio<next.skill.attackHPRatio);

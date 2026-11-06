@@ -20,11 +20,22 @@ export class PMAudio {
   private suspended=new Set<string>();
   private voice=0;
   private disposed=false;
-  constructor(parent:Node){
+  private loadingStarted=false;
+  private preferenceListener=(event:{key:string|null})=>{
+    if(this.disposed||event.key!==PREFS)return;
+    this.readPreferences();this.sync();this.onPreferencesChanged?.();
+  };
+  constructor(parent:Node,private onPreferencesChanged?:()=>void,deferUntilInteraction=false){
     const host=new Node('PM Audio');parent.addChild(host);
     this.music=host.addComponent(AudioSource);this.music.playOnAwake=false;this.music.loop=true;this.music.volume=.55;
     for(let i=0;i<2;i++){const n=new Node('SFX '+i);host.addChild(n);const source=n.addComponent(AudioSource);source.playOnAwake=false;source.volume=.75;this.effects.push(source);}
-    try{const p=JSON.parse(sys.localStorage.getItem(PREFS)||'{}');this.musicEnabled=p.music!==false;this.effectsEnabled=p.effects!==false;}catch{}
+    this.readPreferences();
+    if(!sys.isNative)(globalThis as any).addEventListener?.('storage',this.preferenceListener);
+    if(!deferUntilInteraction)this.prepareAudio();
+  }
+  private prepareAudio(){
+    if(this.disposed||this.loadingStarted)return;
+    this.loadingStarted=true;
     for(const id of ['click','attack','hurt','heal','boost','hatch'] as const){
       resources.load('audio/'+id,AudioClip,(error,clip)=>{
         if(this.disposed)return;
@@ -34,22 +45,29 @@ export class PMAudio {
     }
     this.loadMusic();
   }
-  unlock(){this.unlocked=true;this.sync();}
+  unlock(){this.readPreferences();this.unlocked=true;this.prepareAudio();this.sync();}
   select(track:MusicChoice){this.desired=track==='camp'?(sys.isNative?'camp-app':'camp-short'):track;this.sync();}
-  pause(reason:string){this.suspended.add(reason);this.music.pause();this.effects.forEach(s=>s.stop());}
-  resume(reason:string){this.suspended.delete(reason);this.sync();}
+  pause(reason:string){this.suspended.add(reason);this.music.volume=0;this.music.pause();this.effects.forEach(s=>s.stop());}
+  resume(reason:string){this.readPreferences();this.suspended.delete(reason);this.sync();}
   effect(id:Sound){
     const clip=this.clips[id];if(!clip||!this.unlocked||!this.effectsEnabled||this.suspended.size||this.disposed)return;
     const source=this.effects[this.voice++%this.effects.length];source.stop();source.volume=id==='click'?.55:.75;source.clip=clip;source.play();
   }
   toggle(kind:'music'|'effects'){
+    this.readPreferences();
     if(kind==='music')this.musicEnabled=!this.musicEnabled;
     else {this.effectsEnabled=!this.effectsEnabled;if(!this.effectsEnabled)this.effects.forEach(s=>s.stop());}
     try{sys.localStorage.setItem(PREFS,JSON.stringify({music:this.musicEnabled,effects:this.effectsEnabled}));}catch{}
     this.sync();
   }
+  private readPreferences(){
+    try{const p=JSON.parse(sys.localStorage.getItem(PREFS)||'{}');if(!p||typeof p!=='object')return;this.musicEnabled=p.music!==false;this.effectsEnabled=p.effects!==false;}catch{}
+    if(!this.effectsEnabled)this.effects.forEach(s=>s.stop());
+  }
   private sync(){
     if(this.disposed)return;
+    // Silence output immediately as well as stopping the engine's async player.
+    this.music.volume=this.musicEnabled&&this.unlocked&&!this.suspended.size ? .55 : 0;
     if(!this.musicEnabled){this.music.stop();return;}
     this.loadMusic();
     if(!this.unlocked||this.suspended.size)return;
@@ -62,7 +80,7 @@ export class PMAudio {
     if(!this.music.playing)this.music.play();
   }
   private loadMusic(){
-    const id=this.desired;if(this.disposed||!this.musicEnabled||this.clips[id]||this.loading.has(id)||this.failed.has(id))return;
+    const id=this.desired;if(this.disposed||!this.loadingStarted||!this.musicEnabled||this.clips[id]||this.loading.has(id)||this.failed.has(id))return;
     this.loading.add(id);
     resources.load('audio/'+id,AudioClip,(error,clip)=>{
       this.loading.delete(id);
@@ -71,5 +89,5 @@ export class PMAudio {
       this.clips[id]=clip;this.sync();
     });
   }
-  dispose(){this.disposed=true;this.music.stop();this.music.clip=null;this.effects.forEach(s=>s.stop());for(const id of Object.keys(this.clips))if(id.startsWith('camp-')||id.startsWith('battle-')||id==='egg-quest')resources.release('audio/'+id,AudioClip);}
+  dispose(){this.disposed=true;if(!sys.isNative)(globalThis as any).removeEventListener?.('storage',this.preferenceListener);this.music.volume=0;this.music.stop();this.music.clip=null;this.effects.forEach(s=>s.stop());for(const id of Object.keys(this.clips))if(id.startsWith('camp-')||id.startsWith('battle-')||id==='egg-quest')resources.release('audio/'+id,AudioClip);}
 }

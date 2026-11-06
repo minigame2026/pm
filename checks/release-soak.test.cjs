@@ -12,10 +12,10 @@ function check(s,label){
  checkpoints++;return r;
 }
 function action(s,a){const before=JSON.stringify(s),next=M.act(s,a);assert.equal(JSON.stringify(s),before,'input mutated');actions++;return check(next,`${s.mapId}/${s.step}/${s.phase}/${a}`);}
-// Exercise all 162 forms against map-appropriate random opponents using legal
+// Exercise all 270 forms against map-appropriate random opponents using legal
 // attack/heal/boost/guard/reroll choices, with deterministic seeds and reloads.
 for(const id of M.PET_IDS)for(const rarity of M.RARITIES)for(let seed=1;seed<=3;seed++){
- const region=M.MAPS.find(m=>m.pets.includes(id)).id;let s=M.fresh(seed*713,[id]);
+ const region=M.MAPS.find(m=>m.pets.includes(id))?.id??0;let s=M.fresh(seed*713,[id]);
  s.clearedMaps=Array.from({length:region},(_,i)=>i);s.pets[0].rarity=rarity;
  s.pets[0].faces=M.naturalPetFaces(id,rarity);s.pets[0].baseFaces=s.pets[0].faces.slice();s.pets[0].baseHP=M.naturalPetHP(id,rarity);s.pets[0].skills=M.petSkills({id,rarity});s.active=flat(s.pets[0]);
  s=M.startMap(s,region,seed*713);s=check(s,'form fixture');
@@ -35,8 +35,9 @@ for(const map of M.MAPS){
  s=M.syncStamina(s,T+(map.id+1)*3600000);s=M.enterExpedition(s,map.id,T+(map.id+1)*3600000);
  assert.equal(s.mapId,map.id);assert.equal(s.stamina.value,25);
  for(let step=1;step<=map.stages;step++){
-  assert.equal(s.step,step);assert.equal(s.phase,'encounter');s=action(s,'challenge');s.enemyHP=1;s.hpRatio=1;s=action(s,'attack');floors++;
+  assert.equal(s.step,step);assert.equal(s.phase,'encounter');s=action(s,'challenge');s.enemyHP=1;s.hpRatio=1;s=action(s,'attack');for(let retry=0;s.phase==='battle'&&retry<5;retry++){s.enemyHP=1;s.hpRatio=1;s=action(s,'attack');}assert.notEqual(s.phase,'battle');floors++;
   if(s.phase==='reward')s=action(s,'take');
+  if(s.phase==='event')s=action(s,'eventContinue');
   if(s.phase==='nest'){
    while(s.eggHunt.candidates.length<s.eggHunt.limit)s=action(s,'eggSearch');
    const ranks={normal:0,SR:1,SSR:2},best=Math.max(...s.eggHunt.candidates.map(e=>ranks[e.rarity]));
@@ -46,5 +47,5 @@ for(const map of M.MAPS){
  }
  assert.equal(s.phase,'won');assert.ok(s.clearedMaps.includes(map.id));s=check(M.retreatExpedition(s,T+(map.id+1)*3600000),'settlement');assert.equal(s.expedition,false);
 }
-assert.equal(floors,450);assert.equal(s.clearedMaps.length,9);assert.equal(s.pets.length,2,'combat must not recruit pets');
-console.log('PASS '+JSON.stringify({battles,floors,actions,checkpoints,allForms:162,balancedPlaythrough:false}));
+assert.equal(floors,120);assert.equal(s.clearedMaps.length,12);assert.equal(s.pets.length,2,'combat must not recruit pets');
+console.log('PASS '+JSON.stringify({battles,floors,actions,checkpoints,allForms:270,balancedPlaythrough:false}));

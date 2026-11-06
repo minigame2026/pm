@@ -12,10 +12,10 @@ const T=Date.now();let base=M.fresh(91,['fox','otter','bud']);base.journey={vers
  assert(await page.evaluate(()=>nodes().find(n=>n.name==='stamina-ad').children.some(n=>nodes(n).some(x=>x.getComponent(cc.Label)?.string==='AD'))));
  await page.evaluate(()=>g.pokedexUI());await page.waitForFunction(()=>!g.artCache.pending);await page.waitForTimeout(150);
  const ids=await page.evaluate(()=>nodes().map(n=>n.name).filter(n=>n.startsWith('dex-pet-')));assert.deepEqual(ids.slice(0,6),Array.from(M.PET_IDS).slice(0,2).flatMap(id=>M.RARITIES.map(r=>'dex-pet-'+id+'-'+r)));
- assert(await page.evaluate(()=>nodes().some(n=>n.getComponent(cc.Label)?.string.includes('/ 324'))));
- await page.evaluate(()=>{globalThis.normalFrame=nodes(nodes().find(n=>n.name==='dex-pet-fox-normal')).map(n=>n.getComponent(cc.Sprite)).find(s=>s?.spriteFrame).spriteFrame;g.dexPage=17;g.pokedexUI();});
+ assert(await page.evaluate(()=>nodes().some(n=>n.getComponent(cc.Label)?.string.includes('/ 540'))));
+ await page.evaluate(()=>{globalThis.normalFrame=nodes(nodes().find(n=>n.name==='dex-pet-fox-normal')).map(n=>n.getComponent(cc.Sprite)).find(s=>s?.spriteFrame).spriteFrame;g.dexPage=44;g.pokedexUI();});
  assert((await page.evaluate(()=>nodes().map(n=>n.name).filter(n=>n.startsWith('dex-pet-')))).every(id=>!id.endsWith('-shiny')));
- await page.evaluate(()=>{g.dexPage=18;g.pokedexUI();});await page.waitForFunction(()=>!g.artCache.pending);
+ await page.evaluate(()=>{g.dexPage=45;g.pokedexUI();});await page.waitForFunction(()=>!g.artCache.pending);
  const shinyIds=await page.evaluate(()=>nodes().map(n=>n.name).filter(n=>n.startsWith('dex-pet-')));assert.deepEqual(shinyIds.slice(0,6),Array.from(M.PET_IDS).slice(0,2).flatMap(id=>M.RARITIES.map(r=>'dex-pet-'+id+'-'+r+'-shiny')));
  assert(await page.evaluate(()=>{const s=nodes(nodes().find(n=>n.name==='dex-pet-fox-normal-shiny')).map(n=>n.getComponent(cc.Sprite)).find(s=>s?.spriteFrame);return s.spriteFrame===normalFrame&&!!s.customMaterial;}));
  await page.screenshot({path:`checks/shiny-dex-${width}.png`});await page.evaluate(()=>g.dexDetail('fox','normal',true));await page.waitForFunction(()=>!g.artCache.pending);await page.screenshot({path:`checks/shiny-detail-${width}.png`});
@@ -23,4 +23,4 @@ const T=Date.now();let base=M.fresh(91,['fox','otter','bud']);base.journey={vers
  const battle=M.act({...base,expedition:true},'challenge');await page.evaluate(s=>{g.state=s;g.screen='game';g.render();},battle);assert.equal(await page.evaluate(()=>nodes().filter(n=>n.name.startsWith('shiny-spark-')).length),10);
  await page.waitForTimeout(250);await page.screenshot({path:`checks/shiny-battle-${width}.png`});await page.waitForTimeout(1100);assert.equal(await page.evaluate(()=>nodes().filter(n=>n.name==='shiny-entrance').length),0);
  await page.evaluate(()=>g.render());assert.equal(await page.evaluate(()=>nodes().filter(n=>n.name==='shiny-entrance').length),0);assert.deepEqual(errors,[]);await context.close();
- }console.log('PASS shiny dex normal-first order and page18/19 boundary/324/ownership/shared texture/material, detail, battle burst bounded and once, stamina ad icon, 390/320.');}finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});
+ }console.log('PASS shiny dex normal-first order and page45/46 boundary/540/ownership/shared texture/material, detail, battle burst bounded and once, stamina ad icon, 390/320.');}finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

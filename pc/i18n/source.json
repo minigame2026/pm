@@ -1,0 +1,4571 @@
+[
+  {
+    "id": "pc0001",
+    "source": "正在整理旅行背包…",
+    "english": "Packing your travel bag…",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0002",
+    "source": "存档无法读取，请保留原文件并恢复备份",
+    "english": "Cannot read this save. Keep the original and restore a backup.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0003",
+    "source": "资源未能加载，请重新启动",
+    "english": "Resources could not load. Please restart.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0004",
+    "source": "等待联网校时",
+    "english": "Waiting for online time sync",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0005",
+    "source": "孵化与交配需要联网校时。战斗和烹饪仍可使用。",
+    "english": "Hatching and breeding need online time sync. Battles and cooking are still available.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0006",
+    "source": "暂时无法校时",
+    "english": "Time sync unavailable",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0007",
+    "source": "请检查网络后再试。",
+    "english": "Check your connection and try again.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0008",
+    "source": "保存失败 · 请勿退出",
+    "english": "Save failed · Please do not quit",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0009",
+    "source": "驯兽师",
+    "english": "Tamer",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0010",
+    "source": "等待 Steam 联网校时",
+    "english": "Waiting for Steam time sync",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0011",
+    "source": "暂时无法领取，请检查连接与存档",
+    "english": "Unable to claim. Check your connection and save.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0012",
+    "source": "保存失败，奖励尚未领取，请重试",
+    "english": "Save failed. Your reward has not been claimed. Try again.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0013",
+    "source": "获得龙鳞碎片",
+    "english": "Dragon scale shards obtained",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0014",
+    "source": "获得 ",
+    "english": "Obtained ",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0015",
+    "source": " 枚宠物蛋",
+    "english": " pet eggs",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0016",
+    "source": "请完成当前战斗后再用餐",
+    "english": "Finish this battle before eating",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0017",
+    "source": "请结束当前副本后再用餐",
+    "english": "Finish this raid before eating",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0018",
+    "source": "当前存档不可写入",
+    "english": "This save is read-only",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0019",
+    "source": "暂时无法完成料理",
+    "english": "Unable to cook right now",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0020",
+    "source": "保存失败，材料与食物未消耗",
+    "english": "Save failed. Ingredients and food were not consumed.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0021",
+    "source": "料理已放入餐盒",
+    "english": "Meal added to your lunchbox",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0022",
+    "source": "副本食材尚未保存，请重试领取",
+    "english": "Raid ingredients were not saved. Please claim again.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0023",
+    "source": "Steam账号已改变，请重新启动游戏以载入对应存档",
+    "english": "Steam account changed. Restart to load the matching save.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0024",
+    "source": "1–4 指令    Enter 攻击 / 继续    Esc 设置",
+    "english": "1–4 Commands    Enter Attack / Continue    Esc Settings",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0025",
+    "source": "Enter 确认    ← → 翻页    Esc 返回",
+    "english": "Enter Confirm    ← → Pages    Esc Back",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0026",
+    "source": "骰子精灵 · 驯兽之旅",
+    "english": "Dicekin · Monster Tamer",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0027",
+    "source": "骰子精灵",
+    "english": "Dicekin",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0028",
+    "source": "营地",
+    "english": "Camp",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0029",
+    "source": "世界地图",
+    "english": "World Map",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0030",
+    "source": "孵化与培育",
+    "english": "Hatch & Breed",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0031",
+    "source": "营地烹饪",
+    "english": "Camp Kitchen",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0032",
+    "source": "精灵图鉴",
+    "english": "Monster Journal",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0033",
+    "source": "道馆挑战",
+    "english": "Gym Challenges",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0034",
+    "source": "旅伴",
+    "english": "Companions",
+    "files": [
+      "PCLocale.ts",
+      "PCOnlineUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0035",
+    "source": "多人副本",
+    "english": "Co-op Raids",
+    "files": [
+      "PCLocale.ts",
+      "PCOnlineUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0036",
+    "source": "赛季天梯",
+    "english": "Season Ladder",
+    "files": [
+      "PCLocale.ts",
+      "PCOnlineUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0037",
+    "source": "设置",
+    "english": "Settings",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0038",
+    "source": "通关上一地区后解锁",
+    "english": "Clear the previous region to unlock",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0039",
+    "source": "请先结束当前冒险",
+    "english": "Finish your current adventure first",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0040",
+    "source": "继续旅程   →",
+    "english": "Continue Journey   →",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0041",
+    "source": "选择目的地，开始新的冒险",
+    "english": "Choose a destination for your next adventure",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0042",
+    "source": "你的旅程，由此开始",
+    "english": "Your journey begins here",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0043",
+    "source": "选一位伙伴，一起出发",
+    "english": "Choose a monster and set out together",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0044",
+    "source": "选择旅行者",
+    "english": "Choose Your Traveler",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0045",
+    "source": "每一位伙伴，都有自己的拿手本领",
+    "english": "Every companion has a special talent",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0046",
+    "source": "Steam 云档案",
+    "english": "Steam Cloud Save",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0047",
+    "source": "导入本机原有进度",
+    "english": "Import Local Progress",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0048",
+    "source": "已选择",
+    "english": "Selected",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0049",
+    "source": "确认旅行者   →",
+    "english": "Confirm Traveler   →",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0050",
+    "source": "一起出发   →",
+    "english": "Begin Together   →",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0051",
+    "source": "导入本机进度",
+    "english": "Import Local Progress",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0052",
+    "source": "将原有PC进度复制到当前Steam账号；原存档保留。",
+    "english": "Copy local PC progress to this Steam account. The original save is kept.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0053",
+    "source": "没有可导入的进度",
+    "english": "No progress to import",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0054",
+    "source": "世界探险",
+    "english": "World Adventure",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0055",
+    "source": "十二片风景，等你与伙伴一同抵达",
+    "english": "Twelve regions await you and your companions",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0056",
+    "source": "已探索",
+    "english": "Explored",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0057",
+    "source": "可出发",
+    "english": "Available",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0058",
+    "source": "待解锁",
+    "english": "Locked",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0059",
+    "source": "10 场遭遇 · 精英与首领可寻蛋",
+    "english": "10 encounters · Elites and bosses may lead to eggs",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0060",
+    "source": "每一次相遇，都值得收藏",
+    "english": "Every encounter is worth remembering",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0061",
+    "source": "查看伙伴，安排你的冒险队伍",
+    "english": "Meet your companions and arrange your adventuring party",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0062",
+    "source": "★ 闪光形态",
+    "english": "★ Shiny Form",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0063",
+    "source": "普通形态",
+    "english": "Normal Form",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0064",
+    "source": "当前队伍",
+    "english": "Current Party",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0065",
+    "source": "领队",
+    "english": "Leader",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0066",
+    "source": "待安排",
+    "english": "Unassigned",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0067",
+    "source": " 种形态",
+    "english": " forms",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0068",
+    "source": " 位伙伴",
+    "english": " companions",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0069",
+    "source": "孵化第一枚蛋，认识新的伙伴",
+    "english": "Hatch your first egg to meet a new companion",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0070",
+    "source": "生命",
+    "english": "HP",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0071",
+    "source": " 等 ",
+    "english": " and ",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0072",
+    "source": " 种",
+    "english": " types",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0073",
+    "source": "详情",
+    "english": "Details",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0074",
+    "source": "已收集",
+    "english": "Collected",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0075",
+    "source": "尚未收集",
+    "english": "Not collected",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0076",
+    "source": "战斗或交配期间无法调整队伍",
+    "english": "You cannot change the party during battle or breeding",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0077",
+    "source": "安排队伍",
+    "english": "Arrange Party",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0078",
+    "source": "当前领队",
+    "english": "Current Leader",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0079",
+    "source": "下阵",
+    "english": "Remove",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0080",
+    "source": "设为领队",
+    "english": "Make Leader",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0081",
+    "source": "下一页",
+    "english": "Next Page",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0082",
+    "source": "已完成 · 点击领取",
+    "english": "Complete · Claim",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0083",
+    "source": "交配培育",
+    "english": "Breeding",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0084",
+    "source": "让新的伙伴，加入你的旅程",
+    "english": "Welcome new companions to your journey",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0085",
+    "source": "孵化位 0",
+    "english": "Hatchery Slot 0",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0086",
+    "source": "领取伙伴",
+    "english": "Claim Companion",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0087",
+    "source": "孵化完成后可领取",
+    "english": "Claim when hatching is complete",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0088",
+    "source": "等待一枚蛋",
+    "english": "Waiting for an egg",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0089",
+    "source": "先从右侧蛋袋中选择",
+    "english": "Select from the egg bag on the right",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0090",
+    "source": "先选一枚蛋",
+    "english": "Choose an egg first",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0091",
+    "source": "在右侧蛋袋中选择，再放入空孵化位。",
+    "english": "Choose an egg on the right, then place it in an empty slot.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0092",
+    "source": "请先在蛋袋选中一枚蛋",
+    "english": "Select an egg from your bag first",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0093",
+    "source": "我的蛋袋",
+    "english": "My Egg Bag",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0094",
+    "source": "蛋袋还是空的",
+    "english": "Your egg bag is empty",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0095",
+    "source": "探险中击败精英与首领，\n就有机会带回宠物蛋。",
+    "english": "Defeat elites and bosses during adventures\nfor a chance to bring home monster eggs.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0096",
+    "source": "新伙伴诞生！",
+    "english": "A New Companion!",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0097",
+    "source": "欢迎加入",
+    "english": "Welcome",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0098",
+    "source": "培育进行中",
+    "english": "Breeding in progress",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0099",
+    "source": "交配完成后可领取",
+    "english": "Claim when breeding is complete",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0100",
+    "source": "领取后父母会离开队伍，留下遗传宠物蛋",
+    "english": "Claiming retires both parents and grants an inherited egg",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0101",
+    "source": "领取后父母会离开队伍，遗传宠物蛋进入蛋袋。此操作不可撤销。",
+    "english": "Both parents leave your party when you claim their inherited egg. This cannot be undone.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0102",
+    "source": "确认领取",
+    "english": "Confirm Claim",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0103",
+    "source": "母亲",
+    "english": "Mother",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0104",
+    "source": "父亲",
+    "english": "Father",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0105",
+    "source": "没有符合条件的伙伴\n领队不能参与交配",
+    "english": "No eligible companions\nThe party leader cannot breed",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0106",
+    "source": "完成并领取后，父母会离开队伍，留下遗传宠物蛋。",
+    "english": "After claiming, both parents leave the party and grant an inherited egg.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0107",
+    "source": "完成并领取后将消耗这两位父母。确认开始？",
+    "english": "Claiming will consume both selected parents. Begin breeding?",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0108",
+    "source": "确认开始",
+    "english": "Confirm",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0109",
+    "source": "以伙伴的力量，赢得属于你的徽章",
+    "english": "Earn your badges with your companions",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0110",
+    "source": "属性的十场挑战，获胜后永久强化对应属性伙伴。",
+    "english": " types across ten encounters. Win to permanently strengthen matching monsters.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0111",
+    "source": "已取得徽章",
+    "english": "Badge Earned",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0112",
+    "source": "通关对应地区后解锁",
+    "english": "Clear the matching region to unlock",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0113",
+    "source": "徽章已获得",
+    "english": "Badge already earned",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0114",
+    "source": "尚未开放",
+    "english": "Not available",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0115",
+    "source": "旅行来信",
+    "english": "Travel Letters",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0116",
+    "source": "邀请朋友的伙伴，分享彼此的旅程",
+    "english": "Invite a friend’s companion and share your journey",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0117",
+    "source": "寄出邀请",
+    "english": "Send Invitation",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0118",
+    "source": "我的拜访码",
+    "english": "My Visit Code",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0119",
+    "source": "选择伙伴后生成拜访码",
+    "english": "Choose a companion to create a visit code",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0120",
+    "source": "复制拜访码",
+    "english": "Copy Visit Code",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0121",
+    "source": "已复制拜访码",
+    "english": "Visit code copied",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0122",
+    "source": "当前环境无法访问剪贴板",
+    "english": "Clipboard access is unavailable",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0123",
+    "source": "把拜访码分享给朋友，邀请他们来做客。",
+    "english": "Share your visit code and invite a friend.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0124",
+    "source": "接收来信",
+    "english": "Receive Letter",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0125",
+    "source": "粘贴朋友的拜访码",
+    "english": "Paste your friend’s visit code",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0126",
+    "source": "拜访码无法识别，请检查是否完整",
+    "english": "Unrecognized visit code. Check that it is complete.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0127",
+    "source": "朋友",
+    "english": "Friend",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0128",
+    "source": "的伙伴正在拜访",
+    "english": "’s companion is visiting",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0129",
+    "source": "互动进度 ",
+    "english": "Interaction progress ",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0130",
+    "source": "和伙伴互动",
+    "english": "Interact",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0131",
+    "source": "稍等片刻，再来互动",
+    "english": "Wait a moment before interacting again",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0132",
+    "source": "收到来信后，朋友的伙伴会来到营地。",
+    "english": "Receive a letter to welcome a friend’s companion to camp.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0133",
+    "source": " 场 / ",
+    "english": " / ",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0134",
+    "source": " 场",
+    "english": " encounter",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts",
+      "PCOnlineUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0135",
+    "source": "野外遭遇",
+    "english": "Wild Encounter",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0136",
+    "source": "战斗胜利",
+    "english": "Victory",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0137",
+    "source": "当前点数：",
+    "english": "Current Roll: ",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0138",
+    "source": "旅途奇遇",
+    "english": "Travel Encounter",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0139",
+    "source": "意外的相遇",
+    "english": "An Unexpected Encounter",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0140",
+    "source": "继续旅程  →",
+    "english": "Continue Journey  →",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0141",
+    "source": "探索完成",
+    "english": "Adventure Complete",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0142",
+    "source": "旅程暂歇",
+    "english": "Journey Paused",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0143",
+    "source": "新的风景，已经抵达",
+    "english": "A New Region Awaits",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0144",
+    "source": "先回营地休息吧",
+    "english": "Rest at camp before setting out again",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0145",
+    "source": "带着收获回营地",
+    "english": "Return to camp with your rewards",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0146",
+    "source": "回营地",
+    "english": "Return to Camp",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0147",
+    "source": "更换对手 · ",
+    "english": "Reroll Foe · ",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0148",
+    "source": "每次探险的可用更换次数有限",
+    "english": "Opponent rerolls are limited per adventure",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0149",
+    "source": "开始战斗",
+    "english": "Start Battle",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0150",
+    "source": "防御",
+    "english": "Guard",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0151",
+    "source": "治疗",
+    "english": "Heal",
+    "files": [
+      "PCLocale.ts",
+      "PCOnlineUI.ts",
+      "PCRaid.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0152",
+    "source": "强化",
+    "english": "Power Up",
+    "files": [
+      "PCLocale.ts",
+      "PCOnlineUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0153",
+    "source": "属性受限 ×",
+    "english": "Resisted ×",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0154",
+    "source": "属性效果正常",
+    "english": "Neutral Matchup",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0155",
+    "source": "总伤害 …",
+    "english": "Damage …",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0156",
+    "source": "总伤害 ",
+    "english": "Damage ",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0157",
+    "source": "当前骰子点数 ",
+    "english": "Current roll ",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0158",
+    "source": "防御 · 预计承受 ",
+    "english": "Guard · Expected damage ",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0159",
+    "source": "已使用",
+    "english": "Used",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0160",
+    "source": "已满",
+    "english": "Full",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0161",
+    "source": "本回合已经使用治疗",
+    "english": "Healing already used this turn",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0162",
+    "source": "没有生命药水",
+    "english": "No healing potions",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0163",
+    "source": "生命已满",
+    "english": "HP is full",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0164",
+    "source": "治疗恢复 ",
+    "english": "Restore ",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0165",
+    "source": " 点生命，不消耗攻击行动",
+    "english": " HP without spending your attack",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0166",
+    "source": "本回合已经强化",
+    "english": "Power-up already used this turn",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0167",
+    "source": "没有力量药水",
+    "english": "No power potions",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0168",
+    "source": "，使用后仍可行动",
+    "english": "; you can still act afterward",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0169",
+    "source": "等待骰子停稳",
+    "english": "Waiting for the dice to settle",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0170",
+    "source": "获得食材：",
+    "english": "Ingredients found: ",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0171",
+    "source": "料理效果已结束，回营地补充美食",
+    "english": "Your meal has expired. Visit camp for another.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0172",
+    "source": "造成伤害",
+    "english": "Damage Dealt",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0173",
+    "source": "受到伤害",
+    "english": "Damage Taken",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0174",
+    "source": "恢复生命",
+    "english": "HP Restored",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0175",
+    "source": "新的生命，即将与你同行",
+    "english": "A New Companion Awaits",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0176",
+    "source": "草丛里，传来了新的声音",
+    "english": "A Sound in the Grass",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0177",
+    "source": "宠物蛋已收入蛋袋",
+    "english": "Monster egg added to your bag",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0178",
+    "source": "寻找一枚蛋，带回营地孵化新伙伴",
+    "english": "Find an egg and hatch a new companion at camp",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0179",
+    "source": "寻找宠物蛋  ",
+    "english": "Search for Eggs  ",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0180",
+    "source": "带走选中的蛋",
+    "english": "Take Selected Egg",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0181",
+    "source": "暂别这段旅程？",
+    "english": "Leave This Adventure?",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0182",
+    "source": "撤退会结束本次冒险，已收集的宠物蛋和食材保留。",
+    "english": "Retreat ends this adventure. Collected eggs and ingredients are kept.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0183",
+    "source": "游戏设置",
+    "english": "Game Settings",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0184",
+    "source": "减少动态  ·  开",
+    "english": "Reduced Motion · On",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0185",
+    "source": "减少动态  ·  关",
+    "english": "Reduced Motion · Off",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0186",
+    "source": "战斗速度  ·  快速",
+    "english": "Battle Speed · Fast",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0187",
+    "source": "战斗速度  ·  标准",
+    "english": "Battle Speed · Normal",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0188",
+    "source": "手动备份或恢复，操作前保留原档案。",
+    "english": "Back up or restore manually. Your original save is kept.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0189",
+    "source": "请先登录 Steam，再重新启动游戏。",
+    "english": "Sign in to Steam, then restart the game.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0190",
+    "source": "备份到 Steam",
+    "english": "Back Up to Steam",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0191",
+    "source": "将当前账号进度写入 Steam 云；原云档会先保存在本机。",
+    "english": "Upload this account’s progress to Steam Cloud. The previous cloud save will be backed up locally.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0192",
+    "source": "确认备份",
+    "english": "Confirm Backup",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0193",
+    "source": "本机保存失败，暂不能备份",
+    "english": "Local save failed. Backup is unavailable.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0194",
+    "source": "已备份到 Steam",
+    "english": "Backed up to Steam",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0195",
+    "source": "云备份暂不可用",
+    "english": "Cloud backup unavailable",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0196",
+    "source": "查看并恢复云档",
+    "english": "View and Restore Cloud Save",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0197",
+    "source": "暂时无法读取云档",
+    "english": "Unable to read the cloud save",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0198",
+    "source": "恢复云档案",
+    "english": "Restore Cloud Save",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0199",
+    "source": "云端：",
+    "english": "Cloud: ",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0200",
+    "source": " 个地区\n本机与云端原档都会保留；恢复后使用云端进度。",
+    "english": " regions\nBoth originals are kept. Restoring switches to cloud progress.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0201",
+    "source": "确认恢复",
+    "english": "Confirm Restore",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0202",
+    "source": "恢复失败，原进度保留",
+    "english": "Restore failed. Your original progress is kept.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0203",
+    "source": "已恢复云档，原本机进度已备份",
+    "english": "Cloud save restored. Local progress was backed up.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0204",
+    "source": "请先结束冒险并离开联机队伍",
+    "english": "Finish your adventure and leave your online party first",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0205",
+    "source": "云服务不可用时，本机存档仍可正常游玩。",
+    "english": "Local saves remain playable when cloud services are unavailable.",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0206",
+    "source": "界面语言",
+    "english": "Interface Language",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0207",
+    "source": "选择语言",
+    "english": "Choose Language",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0208",
+    "source": "返回设置",
+    "english": "Back to Settings",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0209",
+    "source": "回合 ",
+    "english": "Turn ",
+    "files": [
+      "PCLocale.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0210",
+    "source": "出发探险",
+    "english": "Explore",
+    "files": [
+      "PCLocale.ts"
+    ]
+  },
+  {
+    "id": "pc0211",
+    "source": "家常",
+    "english": "Homestyle",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0212",
+    "source": "鲜美",
+    "english": "Fine",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0213",
+    "source": "珍馐",
+    "english": "Gourmet",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0214",
+    "source": "谷穗",
+    "english": "Grain",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0215",
+    "source": "鲜肉",
+    "english": "Fresh Meat",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0216",
+    "source": "溪鱼",
+    "english": "Stream Fish",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0217",
+    "source": "嫩叶",
+    "english": "Tender Leaves",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0218",
+    "source": "香菇",
+    "english": "Mushroom",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0219",
+    "source": "香辛果",
+    "english": "Spiceberry",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0220",
+    "source": "炭火鲜肉串",
+    "english": "Chargrilled Skewers",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0221",
+    "source": "岩谷菌香焖饭",
+    "english": "Stonepot Mushroom Rice",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0222",
+    "source": "海风鲜鱼浓汤",
+    "english": "Sea Breeze Chowder",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0223",
+    "source": "青叶暖菌煲",
+    "english": "Leaf & Mushroom Stew",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0224",
+    "source": "云菇酥香饼",
+    "english": "Cloudcap Pastry",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0225",
+    "source": "月椒秘香鱼",
+    "english": "Moonpepper Fish",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0226",
+    "source": "热腾腾的肉串，让进攻更有力量。",
+    "english": "Sizzling skewers that strengthen your attacks.",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0227",
+    "source": "慢火焖出的扎实滋味，帮助伙伴站稳。",
+    "english": "A hearty slow-cooked meal that bolsters defense.",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0228",
+    "source": "清甜浓汤，让生命药水恢复更多。",
+    "english": "Sweet, rich chowder that improves healing potions.",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0229",
+    "source": "嫩叶与香菇炖出满满活力。",
+    "english": "Tender leaves and mushrooms simmered for vitality.",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0230",
+    "source": "酥松小饼，兼顾进攻与恢复。",
+    "english": "Flaky pastries that improve attacks and healing.",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0231",
+    "source": "微辣的秘制香气，让攻守都更从容。",
+    "english": "A secret spicy recipe for stronger attacks and defense.",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0232",
+    "source": "配方无效",
+    "english": "Invalid recipe",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0233",
+    "source": "食材不足：",
+    "english": "Missing ingredients: ",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0234",
+    "source": "成品食物已满",
+    "english": "Lunchbox is full",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0235",
+    "source": "食物无效",
+    "english": "Invalid meal",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0236",
+    "source": "先烹饪一份食物",
+    "english": "Cook a meal first",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0237",
+    "source": "尚未用餐",
+    "english": "No meal active",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0238",
+    "source": "最大生命",
+    "english": "Max HP",
+    "files": [
+      "PCLocale.ts"
+    ]
+  },
+  {
+    "id": "pc0239",
+    "source": " · 剩余 ",
+    "english": " · Remaining ",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0240",
+    "source": "攻击 +",
+    "english": "Attack +",
+    "files": [
+      "PCLocale.ts",
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0241",
+    "source": "超能",
+    "english": "Psychic",
+    "files": [
+      "PCLocale.ts",
+      "PCPetMotion.ts"
+    ]
+  },
+  {
+    "id": "pc0242",
+    "source": "营地厨房",
+    "english": "Camp Kitchen",
+    "files": [
+      "PCLocale.ts",
+      "PCCookingUI.ts"
+    ]
+  },
+  {
+    "id": "pc0243",
+    "source": "让旅途的收获，变成下一程的好滋味",
+    "english": "Turn your adventure’s bounty into a delicious boost",
+    "files": [
+      "PCLocale.ts",
+      "PCCookingUI.ts"
+    ]
+  },
+  {
+    "id": "pc0244",
+    "source": "食材品质越好，料理效果越强",
+    "english": "Better ingredients make stronger meals",
+    "files": [
+      "PCLocale.ts",
+      "PCCookingUI.ts"
+    ]
+  },
+  {
+    "id": "pc0245",
+    "source": "已做好 ×",
+    "english": "Prepared ×",
+    "files": [
+      "PCLocale.ts",
+      "PCCookingUI.ts"
+    ]
+  },
+  {
+    "id": "pc0246",
+    "source": "适合当前队伍",
+    "english": "Matches Your Party",
+    "files": [
+      "PCLocale.ts",
+      "PCCookingUI.ts"
+    ]
+  },
+  {
+    "id": "pc0247",
+    "source": "持续 10 场战斗",
+    "english": "Lasts 10 battles",
+    "files": [
+      "PCLocale.ts",
+      "PCCookingUI.ts"
+    ]
+  },
+  {
+    "id": "pc0248",
+    "source": "烹饪一份",
+    "english": "Cook One",
+    "files": [
+      "PCLocale.ts",
+      "PCCookingUI.ts"
+    ]
+  },
+  {
+    "id": "pc0249",
+    "source": "享用  ×",
+    "english": "Eat  ×",
+    "files": [
+      "PCLocale.ts",
+      "PCCookingUI.ts"
+    ]
+  },
+  {
+    "id": "pc0250",
+    "source": "先烹饪再享用",
+    "english": "Cook a meal first",
+    "files": [
+      "PCLocale.ts",
+      "PCCookingUI.ts"
+    ]
+  },
+  {
+    "id": "pc0251",
+    "source": "享用后替换当前料理效果",
+    "english": "Eating replaces your current meal effect",
+    "files": [
+      "PCLocale.ts",
+      "PCCookingUI.ts"
+    ]
+  },
+  {
+    "id": "pc0252",
+    "source": "持续 10 场已结算战斗",
+    "english": "Lasts for 10 completed battles",
+    "files": [
+      "PCLocale.ts",
+      "PCCookingUI.ts"
+    ]
+  },
+  {
+    "id": "pc0253",
+    "source": "食材 · 探险胜利有机会获得",
+    "english": "Ingredients · Chance to drop after winning battles",
+    "files": [
+      "PCLocale.ts",
+      "PCCookingUI.ts"
+    ]
+  },
+  {
+    "id": "pc0254",
+    "source": "请先登录对应 Steam 账号。",
+    "english": "",
+    "files": [
+      "PCCloud.ts",
+      "PCProfile.ts"
+    ]
+  },
+  {
+    "id": "pc0255",
+    "source": "Steam 当前未联网，云档案未操作。",
+    "english": "",
+    "files": [
+      "PCCloud.ts"
+    ]
+  },
+  {
+    "id": "pc0256",
+    "source": "Steam 账号已改变，请重启后再操作该账号的云档案。",
+    "english": "",
+    "files": [
+      "PCCloud.ts"
+    ]
+  },
+  {
+    "id": "pc0257",
+    "source": "Steam 连接暂不可用，云档案未操作。",
+    "english": "",
+    "files": [
+      "PCCloud.ts"
+    ]
+  },
+  {
+    "id": "pc0258",
+    "source": "无法读取 Steam 云档案，请检查连接或确认已有上传记录。",
+    "english": "",
+    "files": [
+      "PCCloud.ts"
+    ]
+  },
+  {
+    "id": "pc0259",
+    "source": "云档案损坏、账号不符或超出大小限制，未改动本机。",
+    "english": "",
+    "files": [
+      "PCCloud.ts"
+    ]
+  },
+  {
+    "id": "pc0260",
+    "source": "Steam 云档案读取失败，未改动本机。",
+    "english": "",
+    "files": [
+      "PCCloud.ts"
+    ]
+  },
+  {
+    "id": "pc0261",
+    "source": "现有云档案无法验证，请先保留原文件；未覆盖云档案。",
+    "english": "",
+    "files": [
+      "PCCloud.ts"
+    ]
+  },
+  {
+    "id": "pc0262",
+    "source": "无法读取现有云档案，未执行覆盖；请检查连接后重试。",
+    "english": "",
+    "files": [
+      "PCCloud.ts"
+    ]
+  },
+  {
+    "id": "pc0263",
+    "source": "Steam 云档案上传失败，本机档案保持不变。",
+    "english": "",
+    "files": [
+      "PCCloud.ts"
+    ]
+  },
+  {
+    "id": "pc0264",
+    "source": "旧云档案备份或上传失败，未改动本机档案。",
+    "english": "",
+    "files": [
+      "PCCloud.ts"
+    ]
+  },
+  {
+    "id": "pc0265",
+    "source": "受到伤害 −",
+    "english": "",
+    "files": [
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0266",
+    "source": "治疗 +",
+    "english": "",
+    "files": [
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0267",
+    "source": "最大生命 +",
+    "english": "",
+    "files": [
+      "PCCooking.ts"
+    ]
+  },
+  {
+    "id": "pc0268",
+    "source": " 属性伙伴",
+    "english": "",
+    "files": [
+      "PCCookingUI.ts"
+    ]
+  },
+  {
+    "id": "pc0269",
+    "source": "Steam账号已改变，请重启游戏后加载对应账号档案。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0270",
+    "source": "旅人",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0271",
+    "source": "请选择有效的伙伴阵容",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0272",
+    "source": "Steam当前未联网，此功能暂不可用；单人试炼仍可游玩。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0273",
+    "source": "Steam消息发送失败，请稍后重试。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0274",
+    "source": "收到的Steam资料无效，已忽略。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0275",
+    "source": "队员重连超时，本场已中止，不发放未完成奖励。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0276",
+    "source": "副本重连快照接收超时。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0277",
+    "source": "收到好友组队邀请。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0278",
+    "source": "收到组队邀请，请先完成当前战斗并保存。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0279",
+    "source": "房主连接中断，本场已中止。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0280",
+    "source": "无法读取Steam好友，请检查连接。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0281",
+    "source": "创建Steam房间失败，请稍后重试。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0282",
+    "source": "Steam邀请界面无法打开，请确认已启用Overlay。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0283",
+    "source": "请先完成当前战斗并保存，再加入有效的Steam房间。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0284",
+    "source": "加入Steam房间失败，请确认邀请仍然有效。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0285",
+    "source": "已离开房间，本场副本中止。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0286",
+    "source": "房间规则版本不同，请所有玩家更新游戏后重试。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0287",
+    "source": "房主已退出或房间已改变，本场中止；不会自动迁移房主。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0288",
+    "source": "当前阵容无效，请先选择1至3只已有伙伴。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0289",
+    "source": "请先完成当前战斗并保存，再开始副本。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0290",
+    "source": "请等待所有队员确认阵容并准备。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0291",
+    "source": "无法取得Steam赛季时间，暂不能开始升阶挑战。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0292",
+    "source": "副本阵容资料无效，无法开始。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0293",
+    "source": "Steam账号已改变，请重启游戏后再开始试炼。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0294",
+    "source": "无法取得Steam赛季时间，暂不能开始升阶试炼。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0295",
+    "source": "单人试炼阵容无效。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0296",
+    "source": "行动无效",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0297",
+    "source": "行动结算失败，本场已中止。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0298",
+    "source": "队伍已中止本场副本，不提交天梯成绩。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0299",
+    "source": "副本回放校验不一致，本场已中止。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0300",
+    "source": "当前战斗尚未结束，未加入副本；请结算保存后重新准备。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0301",
+    "source": "房主的阵容、准备状态或规则不匹配，未开始副本。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0302",
+    "source": "队员连接中断，副本暂停并等待60秒重连。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0303",
+    "source": "房主已退出，本场已中止。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0304",
+    "source": "房主已离线，本场已中止。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0305",
+    "source": "副本记录过大，无法安全重连。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0306",
+    "source": "重连副本记录校验失败，本场已中止。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0307",
+    "source": "已中止本场副本，不提交天梯成绩。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0308",
+    "source": "只能与同房间的Steam好友确认结缘。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0309",
+    "source": "该旅伴已结缘，或对方伙伴资料无效。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0310",
+    "source": "好友暂未接受结缘。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0311",
+    "source": "本场已完成，但Steam连接或赛季时间不可用，未提交天梯成绩。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0312",
+    "source": "本场成绩已提交Steam荣誉榜。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0313",
+    "source": "成绩已提交，阵容详情暂不可用。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0314",
+    "source": "本场已完成，但Steam天梯提交失败；本地奖励不受影响。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0315",
+    "source": "赛季时间或榜单参数无效。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0316",
+    "source": "Steam榜单读取失败，请稍后重试。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0317",
+    "source": "该成绩尚无可验证的阵容详情。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0318",
+    "source": "成绩详情与Steam身份、分数或战斗回放不匹配。",
+    "english": "",
+    "files": [
+      "PCOnline.ts"
+    ]
+  },
+  {
+    "id": "pc0319",
+    "source": "Steam 当前离线",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0320",
+    "source": "Steam 连接未就绪，请确认登录与游戏访问权限",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0321",
+    "source": "启动 Steam 并登录后，即可与好友一起冒险",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0322",
+    "source": "结缘的伙伴，带来新的相遇",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0323",
+    "source": " · Steam 在线",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0324",
+    "source": "Steam 好友",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0325",
+    "source": "刷新",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0326",
+    "source": "好友上线后，可以邀请他们来结缘。",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0327",
+    "source": "好友列表需要 Steam 连接",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0328",
+    "source": "正在同一营地",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0329",
+    "source": "正在游戏中",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0330",
+    "source": "尚未到访",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0331",
+    "source": "需要 Steam 连接",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0332",
+    "source": " 位旅伴",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0333",
+    "source": "每位旅伴 · 每24小时30%赠蛋",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0334",
+    "source": "收集 54 种好友专属形态",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0335",
+    "source": "收到结缘邀请",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0336",
+    "source": "接受结缘",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0337",
+    "source": "稍后",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0338",
+    "source": "邀请好友到营地",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0339",
+    "source": "打开好友营地",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0340",
+    "source": "拜访码",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0341",
+    "source": "商店页面",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0342",
+    "source": "请先启动并登录 Steam",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0343",
+    "source": "一起挑战副本 →",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0344",
+    "source": "熔冠巢穴",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0345",
+    "source": "熔冠巨龙",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts",
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0346",
+    "source": "撕咬 · 蓄力吐息 · 幼龙召唤",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0347",
+    "source": "首次通关：熔冠龙专属蛋",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0348",
+    "source": "龙鳞碎片 ",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0349",
+    "source": "兑换专属蛋",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0350",
+    "source": "通关副本收集龙鳞碎片",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0351",
+    "source": "好友队伍  ",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0352",
+    "source": "召集你的旅伴",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0353",
+    "source": "你是房主",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0354",
+    "source": "等待房主开始",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0355",
+    "source": "Steam 好友邀请 · 2–4人",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0356",
+    "source": "等待伙伴资料",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0357",
+    "source": "已准备",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0358",
+    "source": "选择伙伴后准备",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0359",
+    "source": "房主",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0360",
+    "source": "队员",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0361",
+    "source": "等待旅伴",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0362",
+    "source": " 阶",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0363",
+    "source": "天梯挑战",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0364",
+    "source": "普通挑战",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0365",
+    "source": "天梯挑战每轮准备限时30秒",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0366",
+    "source": "继续当前挑战 →",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0367",
+    "source": "创建好友房",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0368",
+    "source": "单人试炼",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0369",
+    "source": "取消准备",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0370",
+    "source": "准备",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0371",
+    "source": "所有队员准备后由房主开始",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0372",
+    "source": "离开队伍",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0373",
+    "source": "接受好友邀请",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0374",
+    "source": "更高的阶层，更漂亮的一战",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0375",
+    "source": "单人",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0376",
+    "source": "人",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0377",
+    "source": "全球",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0378",
+    "source": "上一赛季",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0379",
+    "source": "当前赛季",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0380",
+    "source": "名次       驯兽师                                    阶层 / 回合",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0381",
+    "source": "正在读取成绩…",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0382",
+    "source": "还没有成绩，开始第一场挑战吧",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0383",
+    "source": " 阶 · ",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0384",
+    "source": "通关队伍",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0385",
+    "source": "骰面 ",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0386",
+    "source": " 阶  ·  ",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0387",
+    "source": " 回合\n",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0388",
+    "source": " 次阵亡",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0389",
+    "source": "正在读取通关记录…",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0390",
+    "source": "选择一条成绩\n查看当时的宠物与队伍",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0391",
+    "source": "阶层 ＞ 回合 ＞ 阵亡",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0392",
+    "source": "前往挑战 →",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0393",
+    "source": "料理加成 · 剩余 ",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0394",
+    "source": "退出挑战",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0395",
+    "source": "攻击",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts",
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0396",
+    "source": "守护",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts",
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0397",
+    "source": "挑衅",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts",
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0398",
+    "source": "确认行动",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0399",
+    "source": "巨龙",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0400",
+    "source": "幼龙",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0401",
+    "source": "返回副本选择下一场挑战",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0402",
+    "source": "返回副本",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0403",
+    "source": "格挡",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0404",
+    "source": "护盾 +",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0405",
+    "source": "力量 +",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0406",
+    "source": "人副本",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0407",
+    "source": " · 第",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0408",
+    "source": "阶 · 回合 ",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0409",
+    "source": "下一轮：",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0410",
+    "source": "◆ 当前目标 · ",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0411",
+    "source": "仇恨 ",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0412",
+    "source": "幼龙 ",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0413",
+    "source": "挑战成功 · ",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0414",
+    "source": " 回合 · ",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0415",
+    "source": "挑战结束 · 调整队伍再出发",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0416",
+    "source": "熔冠巨龙已被击败",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts",
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0417",
+    "source": "伙伴已全部失去战斗能力",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0418",
+    "source": "料理加成已用完",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0419",
+    "source": "已阵亡",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0420",
+    "source": "换宠消耗本回合",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0421",
+    "source": "选择行动",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0422",
+    "source": "守护/治疗目标",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0423",
+    "source": "领取个人奖励",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0424",
+    "source": "调整队伍，再来挑战",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0425",
+    "source": "单人试炼不掉落副本专属蛋",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0426",
+    "source": "奖励等待保存",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0427",
+    "source": "奖励已保存 · 前往孵化",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0428",
+    "source": "战斗结算中",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0429",
+    "source": "等待重连",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0430",
+    "source": "同步结果…",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0431",
+    "source": "换宠",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0432",
+    "source": "秒",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0433",
+    "source": " · Enter 确认",
+    "english": "",
+    "files": [
+      "PCOnlineUI.ts"
+    ]
+  },
+  {
+    "id": "pc0434",
+    "source": "该账号存档及备份无法读取，已停止自动保存。",
+    "english": "",
+    "files": [
+      "PCProfile.ts"
+    ]
+  },
+  {
+    "id": "pc0435",
+    "source": "无法读取或写入存档，已停止自动保存。",
+    "english": "",
+    "files": [
+      "PCProfile.ts"
+    ]
+  },
+  {
+    "id": "pc0436",
+    "source": "Steam 账号无效，已停止自动保存。",
+    "english": "",
+    "files": [
+      "PCProfile.ts"
+    ]
+  },
+  {
+    "id": "pc0437",
+    "source": "旧本机存档无法读取，已停止自动保存。",
+    "english": "",
+    "files": [
+      "PCProfile.ts"
+    ]
+  },
+  {
+    "id": "pc0438",
+    "source": "Steam 账号无效，无法导入。",
+    "english": "",
+    "files": [
+      "PCProfile.ts"
+    ]
+  },
+  {
+    "id": "pc0439",
+    "source": "此账号已有游戏进度或已导入过旧存档，无法覆盖。",
+    "english": "",
+    "files": [
+      "PCProfile.ts"
+    ]
+  },
+  {
+    "id": "pc0440",
+    "source": "没有可导入的旧本机存档。",
+    "english": "",
+    "files": [
+      "PCProfile.ts"
+    ]
+  },
+  {
+    "id": "pc0441",
+    "source": "此 Steam 账号还没有可上传的本机档案。",
+    "english": "",
+    "files": [
+      "PCProfile.ts"
+    ]
+  },
+  {
+    "id": "pc0442",
+    "source": "档案超出 1 MiB 或无法验证，未上传。",
+    "english": "",
+    "files": [
+      "PCProfile.ts"
+    ]
+  },
+  {
+    "id": "pc0443",
+    "source": "云档案损坏、账号不符或超出大小限制，未恢复。",
+    "english": "",
+    "files": [
+      "PCProfile.ts"
+    ]
+  },
+  {
+    "id": "pc0444",
+    "source": "档案序号超出范围，未恢复。",
+    "english": "",
+    "files": [
+      "PCProfile.ts"
+    ]
+  },
+  {
+    "id": "pc0445",
+    "source": "云档案无法恢复，未修改本机。",
+    "english": "",
+    "files": [
+      "PCProfile.ts"
+    ]
+  },
+  {
+    "id": "pc0446",
+    "source": "副本需要1至4位玩家",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0447",
+    "source": "Steam身份无效",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0448",
+    "source": "玩家身份重复",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0449",
+    "source": "每人需要1至3只伙伴",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0450",
+    "source": "出场伙伴无效",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0451",
+    "source": "伙伴生命或骰面无效",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0452",
+    "source": "伙伴显示资料无效",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0453",
+    "source": "料理效果快照无效",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0454",
+    "source": "副本场次、种子或阶层无效",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0455",
+    "source": "副本赛季或图像资料无效",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0456",
+    "source": "蓄力 · 下一轮全体吐息",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0457",
+    "source": "全体吐息 · 无视挑衅",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0458",
+    "source": "召唤幼龙",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0459",
+    "source": "撕咬 · 最高仇恨",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0460",
+    "source": "幼龙扑击",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0461",
+    "source": "本场已结束或版本不一致",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0462",
+    "source": "回合已过期",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0463",
+    "source": "行动目标格式无效",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0464",
+    "source": "行动玩家无效或已退场",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0465",
+    "source": "行动类型无效",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0466",
+    "source": "只能切换至存活候补",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0467",
+    "source": "伙伴已倒下，请先切换候补",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0468",
+    "source": "该行动不能切换伙伴",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0469",
+    "source": "本场治疗药水已用完",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0470",
+    "source": "本场力量药水已用完或目标无效",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0471",
+    "source": "敌方目标无效",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0472",
+    "source": "友方目标必须存活",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0473",
+    "source": "（护盾抵挡",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0474",
+    "source": "的伙伴倒下",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0475",
+    "source": "换上",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0476",
+    "source": "强化下一次攻击",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0477",
+    "source": "熔冠巨龙进入狂怒",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0478",
+    "source": "巨龙蓄力：下一轮全体吐息",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0479",
+    "source": "熔冠幼龙",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0480",
+    "source": "巨龙召来一只幼龙",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0481",
+    "source": "需等待每位存活玩家准备",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0482",
+    "source": "同一玩家不能重复提交",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0483",
+    "source": "超过副本回合上限",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0484",
+    "source": "队伍已全部退场",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0485",
+    "source": "副本记录版本或结构无效",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0486",
+    "source": "副本记录回合顺序无效",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0487",
+    "source": "副本记录不同步",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0488",
+    "source": "副本快照校验失败",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0489",
+    "source": "副本记录过大",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0490",
+    "source": "副本记录无法读取",
+    "english": "",
+    "files": [
+      "PCRaid.ts"
+    ]
+  },
+  {
+    "id": "pc0491",
+    "source": "熔冠龙",
+    "english": "",
+    "files": [
+      "PCSocial.ts"
+    ]
+  },
+  {
+    "id": "pc0492",
+    "source": "熔冠龙专属蛋",
+    "english": "",
+    "files": [
+      "PCSocial.ts"
+    ]
+  },
+  {
+    "id": "pc0493",
+    "source": "Steam 旅伴",
+    "english": "",
+    "files": [
+      "PCSocial.ts"
+    ]
+  },
+  {
+    "id": "pc0494",
+    "source": "继续冒险  →",
+    "english": "",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0495",
+    "source": "出发探险  →",
+    "english": "",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0496",
+    "source": "出发探险   →",
+    "english": "",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0497",
+    "source": "  ·  第 ",
+    "english": "",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0498",
+    "source": " · 闪光",
+    "english": "",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0499",
+    "source": "技能  ",
+    "english": "",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0500",
+    "source": "更换伙伴  →",
+    "english": "",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0501",
+    "source": "确认交配",
+    "english": "",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0502",
+    "source": "开始挑战  →",
+    "english": "",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0503",
+    "source": "领取奖励  →",
+    "english": "",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0504",
+    "source": "保留原点数",
+    "english": "Keep Current Rolls",
+    "files": [
+      "PC wording correction"
+    ]
+  },
+  {
+    "id": "pc0505",
+    "source": "生命 ",
+    "english": "",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0506",
+    "source": "属性克制 ×",
+    "english": "",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0507",
+    "source": "力量药水 · 攻击 ×",
+    "english": "",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0508",
+    "source": "确认撤退",
+    "english": "",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0509",
+    "source": "音乐  ·  开",
+    "english": "",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0510",
+    "source": "音乐  ·  关",
+    "english": "",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0511",
+    "source": "音效  ·  开",
+    "english": "",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0512",
+    "source": "音效  ·  关",
+    "english": "",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0513",
+    "source": " 位伙伴 · ",
+    "english": "",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0514",
+    "source": "第 {n} 场",
+    "english": "Encounter {n}",
+    "files": [
+      "PC wording correction"
+    ]
+  },
+  {
+    "id": "pc0515",
+    "source": "语言设置立即生效",
+    "english": "Language changes apply immediately",
+    "files": [
+      "PC wording correction"
+    ]
+  },
+  {
+    "id": "pc0516",
+    "source": "第 {n} 阶",
+    "english": "Tier {n}",
+    "files": [
+      "PCOnlineUI.ts numbered tier label"
+    ]
+  },
+  {
+    "id": "pc0517",
+    "source": "云端与本机进度不同，请在设置中选择保留的云档案。",
+    "english": "Cloud and local progress differ. Choose which save to keep in Settings.",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0518",
+    "source": "进度自动同步到 Steam；也可手动备份或恢复。",
+    "english": "Progress syncs to Steam automatically. Manual backup and restore are also available.",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0519",
+    "source": "旧骰子",
+    "english": "Old Die",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0520",
+    "source": "新骰子",
+    "english": "New Die",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0521",
+    "source": "料理效果不叠加，新料理替换旧效果",
+    "english": "Meal effects do not stack. A new meal replaces the old effect.",
+    "files": [
+      "PCCookingUI.ts"
+    ]
+  },
+  {
+    "id": "pc0522",
+    "source": "恢复旅行档案",
+    "english": "Recover Your Journey",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0523",
+    "source": "本机档案暂时无法读取。原文件会保留，请选择恢复方式。",
+    "english": "This device’s save cannot be read. The originals will be kept. Choose a recovery option.",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0524",
+    "source": "重试读取",
+    "english": "Try Reading Again",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0525",
+    "source": "开始独立新旅程",
+    "english": "Start a Separate Journey",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0526",
+    "source": "原存档会先保存在本机；新旅程不会覆盖已有云档。",
+    "english": "The original save will be backed up here first. The new journey will not overwrite an existing cloud save.",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0527",
+    "source": "保留原档并开始",
+    "english": "Keep Original and Start",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0528",
+    "source": "已找到可用存档，请重试读取。",
+    "english": "A usable save was found. Try reading again.",
+    "files": [
+      "PCProfile.ts"
+    ]
+  },
+  {
+    "id": "pc0529",
+    "source": "筛选属性",
+    "english": "Filter by Type",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0530",
+    "source": "筛选技能",
+    "english": "Filter by Skill",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0531",
+    "source": "没有符合条件的伙伴",
+    "english": "No companions match",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0532",
+    "source": "攻击起伏大，低点时防御",
+    "english": "Variable attacks: guard on low rolls",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0533",
+    "source": "擅长恢复，受伤后及时治疗",
+    "english": "Strong recovery: heal after taking damage",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0534",
+    "source": "更耐打，适合初次冒险",
+    "english": "Tougher: a good first companion",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0535",
+    "source": "战斗技巧",
+    "english": "Battle Tips",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0536",
+    "source": "先看双方骰子，选择攻击或防御。",
+    "english": "Check both dice, then choose Attack or Guard.",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0537",
+    "source": "防御会结束本回合，大幅降低受到的伤害。",
+    "english": "Guard ends your turn and greatly reduces incoming damage.",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0538",
+    "source": "治疗和强化后仍可行动，每种药水每回合可用一次。",
+    "english": "You can still act after healing or boosting. Each potion can be used once per turn.",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  }
+]

@@ -1,7 +1,7 @@
 const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('node:assert/strict'),cfg=require('../tools/workflow.config.json'),{chromium}=require(cfg.playwright),ts=require(path.join(path.dirname(cfg.typescript),'typescript.js')),M={};
 vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/PMModel.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2017}}).outputText,{exports:M,Math,Date,JSON,Set});
 const T=Date.now();
-function ready(kind){const s=M.fresh(91,['fox','turtle','bud']);s.journey={version:1,stage:'done',hero:'ranger',starter:null,legacy:true};s.expedition=true;s.phase='reward';s.reward={kind,values:[kind==='hp'?3:1],title:kind};return M.syncStamina(s,T);}
+function ready(kind){const s=M.syncStamina(M.fresh(91,['fox','turtle','bud']),T);s.journey={version:1,stage:'done',hero:'ranger',starter:null,legacy:true};s.expedition=true;s.phase='reward';s.reward={kind,values:[kind==='hp'?3:1],title:kind};return M.syncStamina(s,T);}
 (async()=>{const browser=await chromium.launch({channel:'msedge',headless:true});try{
  for(const width of [390,320]){
   const context=await browser.newContext({viewport:{width,height:width===390?844:568},isMobile:true,hasTouch:true}),page=await context.newPage(),errors=[];
@@ -23,7 +23,7 @@ function ready(kind){const s=M.fresh(91,['fox','turtle','bud']);s.journey={versi
    await page.screenshot({path:`checks/team-reward-${kind}-${width}.png`});
    await page.waitForFunction(()=>!g.busy&&!g.pressPending&&performance.now()-g.lastTap>=200);
    const pos=await page.evaluate(()=>__pm.controls().take),scale=width/390;assert(pos.y*scale>0&&pos.y*scale< (width===390?844:568));await page.touchscreen.tap(pos.x*scale,pos.y*scale);
-   await page.waitForFunction(()=>!g.busy&&!g.pressPending&&g.state.phase==='encounter');
+   await page.waitForFunction(()=>!g.busy&&!g.pressPending&&['encounter','event'].includes(g.state.phase));
    const actual=await page.evaluate(()=>g.state),expected=M.act(s,'take');
    for(const uid of M.homeParty(s).filter(Boolean))assert.deepEqual(JSON.parse(JSON.stringify(M.petCombat(actual,uid))),JSON.parse(JSON.stringify(M.petCombat(expected,uid))));
    assert(M.restore(JSON.stringify(actual)));

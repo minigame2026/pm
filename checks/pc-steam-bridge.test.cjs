@@ -1,0 +1,25 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const root=path.resolve(__dirname,'..'),cfg=require('../tools/workflow.config.json');
+const ts=require(path.join(path.dirname(cfg.typescript),'typescript.js'));
+const file=path.join(root,'pc/game/PCSteam.ts');
+assert.ok(fs.existsSync(file),'PCSteam adapter must exist');
+const code=ts.transpileModule(fs.readFileSync(file,'utf8'),{compilerOptions:{target:ts.ScriptTarget.ES2020,module:ts.ModuleKind.CommonJS}}).outputText;
+function load(native){const context={exports:{},__dicekinSteam:native};vm.runInNewContext(code,context);return context.exports.steam;}
+const offline=load();
+assert.equal(offline.request('status').data.available,false,'Browser remains explicitly unavailable');
+assert.equal(offline.request('lobby.create',{maxMembers:2}).ok,false,'No synthetic successful lobby');
+assert.equal(offline.poll().length,0,'Offline polling never crashes');
+const broken=load({request(){throw Error('Native unavailable');},poll(){return 'bad json';}});
+assert.equal(broken.request('friends').ok,false);
+assert.equal(broken.poll().length,0);
+const invalid=load({request(){return '{"ok":true,"requestId":"bogus"}';},poll(){return '{"type":"message"}';}});
+assert.equal(invalid.request('lobby.create').ok,false,'Malformed native response fails closed');
+assert.equal(invalid.poll().length,0);
+let called;
+const working=load({request(op,args){called={op,args:JSON.parse(args)};return '{"ok":true,"requestId":7}';},poll(){return '[{"type":"overlay","active":true},null,42]';}});
+assert.equal(working.request('lobby.create',{maxMembers:3}).requestId,7);
+assert.equal(called.args.maxMembers,3);
+assert.equal(working.poll().length,1);
+const cycle={};cycle.self=cycle;
+assert.equal(working.request('message.send',cycle).ok,false);
+console.log('PC Steam adapter: offline, malformed bridge, async forwarding and event validation passed');

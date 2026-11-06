@@ -7,8 +7,8 @@ s.eggs=[{id:'audio-test-egg',rarity:'normal',affinity:'bud',stage:5,mapId:0}];s=
  page.on('pageerror',e=>errors.push(String(e)));
  await context.route('https://timeapi.io/**',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({timeZone:'UTC',dateTime:new Date().toISOString().slice(0,-1)})}));await context.route('https://worldtimeapi.org/**',r=>r.abort());
  await page.addInitScript(s=>{if(!sessionStorage.getItem('seeded')){localStorage.setItem('pm.creature-dice.v1',JSON.stringify(s));sessionStorage.setItem('seeded','1');}},s);
- async function ready(){await page.waitForFunction(()=>globalThis.__pm?.ready,null,{timeout:60000});await page.evaluate(async()=>{const cc=await System.import('cc');function walk(n){const c=n.components.find(c=>typeof c.hatchery==='function');if(c)return c;for(const ch of n.children){const found=walk(ch);if(found)return found;}}globalThis.g=walk(cc.director.getScene());});await page.waitForFunction(()=>['click','attack','hurt','heal','boost','hatch'].every(id=>g.audio.clips[id]));}
- async function tap(id){await page.waitForFunction(()=>!__pm.animating());const c=await page.evaluate(id=>__pm.controls()[id],id);assert.ok(c,id);await page.touchscreen.tap(c.x*page.viewportSize().width/390,c.y*page.viewportSize().width/390);await page.waitForTimeout(260);await page.waitForFunction(()=>!__pm.animating());}
+ async function ready(target=page){await target.waitForFunction(()=>globalThis.__pm?.ready,null,{timeout:60000});await target.evaluate(async()=>{const cc=await System.import('cc');function walk(n){const c=n.components.find(c=>typeof c.hatchery==='function');if(c)return c;for(const ch of n.children){const found=walk(ch);if(found)return found;}}globalThis.g=walk(cc.director.getScene());});await target.waitForFunction(()=>['click','attack','hurt','heal','boost','hatch'].every(id=>g.audio.clips[id]));}
+ async function tap(id,target=page){await target.waitForFunction(()=>!__pm.animating());const c=await target.evaluate(id=>__pm.controls()[id],id);assert.ok(c,id);await target.touchscreen.tap(c.x*target.viewportSize().width/390,c.y*target.viewportSize().width/390);await target.waitForTimeout(260);await target.waitForFunction(()=>!__pm.animating());}
  const audio=()=>page.evaluate(()=>({playing:g.audio.music.playing,track:g.audio.music.clip?.name,music:g.audio.musicEnabled,effects:g.audio.effectsEnabled,time:g.audio.music.currentTime,paused:g.audio.suspended.size}));
  await page.goto(cfg.url);await ready();assert.equal((await audio()).playing,false);
  await tap('start-game');await page.waitForFunction(()=>g.audio.music.playing);assert.equal((await audio()).track,'camp-short');
@@ -34,5 +34,18 @@ s.eggs=[{id:'audio-test-egg',rarity:'normal',affinity:'bud',stage:5,mapId:0}];s=
  const nestTime=(await audio()).time;await page.evaluate(()=>g.render());await page.waitForTimeout(200);assert.ok((await audio()).time>=nestTime,'egg UI refresh keeps music progress');
  await page.evaluate(()=>g.onHide());assert.equal((await audio()).playing,false);await page.evaluate(()=>g.onShow());await page.waitForFunction(()=>g.audio.music.playing&&g.audio.music.clip?.name==='egg-quest');
  await page.evaluate(()=>g.goHome());await page.waitForFunction(()=>g.audio.music.playing&&g.audio.music.clip?.name==='camp-short');assert.equal(await page.evaluate(()=>!!g.audio.clips['egg-quest']),false,'release nest music on exit');
+ // Real same-origin pages: mute must reach an already-open game, not just local settings.
+ const peer=await context.newPage();await peer.goto(cfg.url+'?audio=peer');await ready(peer);await tap('start-game',peer);
+ await peer.waitForFunction(()=>g.audio.music.playing);await page.evaluate(()=>g.onShow());await page.waitForFunction(()=>g.audio.music.playing);
+ await tap('home-settings');await tap('home-settings',peer);await tap('audio-music');
+ await peer.waitForFunction(()=>!g.audio.musicEnabled&&!g.audio.music.playing&&g.audio.music.volume===0);
+ assert.equal(await page.evaluate(()=>g.audio.music.volume),0);
+ assert.equal(await peer.evaluate(()=>{function labels(n){return [...n.components.filter(c=>typeof c.string==='string').map(c=>c.string),...n.children.flatMap(labels)];}return labels(g.modal).some(s=>s.includes('音乐')&&s.includes('关'));}),true,'peer settings label refreshes');
+ await tap('audio-effects',peer);await page.waitForFunction(()=>!g.audio.effectsEnabled);assert.equal(await peer.evaluate(()=>g.audio.musicEnabled),false);
+ await page.evaluate(()=>g.audio.select('battle-boss'));await page.waitForTimeout(250);assert.equal(await page.evaluate(()=>g.audio.music.playing),false);
+ await tap('audio-music',peer);await page.waitForFunction(()=>g.audio.musicEnabled&&g.audio.music.playing&&g.audio.music.volume===.55);
+ await peer.waitForFunction(()=>g.audio.music.playing);await tap('audio-music',peer);await page.waitForFunction(()=>!g.audio.music.playing);
+ await page.reload();await ready();await tap('start-game');assert.equal((await audio()).music,false);assert.equal((await audio()).playing,false);
+ await peer.close();console.log('PASS two live pages: mute/unmute, output gain, settings text sync, independent effects, muted track changes and reload persistence');
  assert.equal(await page.evaluate(()=>!!g.audio.clips['camp-app']),false);assert.deepEqual(errors,[]);console.log('PASS: six SFX, platform camp and three battle tracks; nest/claimed egg-quest playback, no restart on redraw, background resume, exit to camp and release; saved toggles and ad pause; no JS errors');
  }finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

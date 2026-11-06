@@ -1,0 +1,13 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+const root=path.resolve(__dirname,'..'),dest=path.join(root,'build/pc-project');
+const manifest=JSON.parse(fs.readFileSync(path.join(dest,'pc-manifest.json')));
+for(const [name,hash]of Object.entries(manifest.sourceHashes))assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'assets/scripts',name))).digest('hex'),hash,'mobile source changed: '+name);
+const mobileModel=fs.readFileSync(path.join(root,'assets/scripts/PMModel.ts'),'utf8').replace(/\r\n/g,'\n');
+assert.equal(require('../tools/pc-model-overrides.cjs').applyPCModelOverrides(mobileModel),fs.readFileSync(path.join(dest,'assets/scripts/PMModel.ts'),'utf8'),'PC changes must be limited to the explicit stamina/cooking adapter');
+const pcGame=fs.readFileSync(path.join(dest,'assets/scripts/PMGame.ts'),'utf8');assert.ok(pcGame.includes('pm.pc.creature-dice.v1'));assert.ok(!pcGame.includes('installRewardedAds'));
+assert.ok(fs.readFileSync(path.join(dest,'assets/scripts/DurableCheckpoint.ts'),'utf8').includes('pm-pc-checkpoints-v1'));
+assert.ok(fs.readFileSync(path.join(dest,'assets/scripts/PMAudio.ts'),'utf8').includes('pm.pc.audio.v1'));
+assert.equal(JSON.parse(fs.readFileSync(path.join(root,'build-config.json'))).platform,'web-mobile');
+assert.equal(JSON.parse(fs.readFileSync(path.join(dest,'build-pc.json'))).platform,'web-desktop');
+assert.ok(fs.existsSync(path.join(dest,'assets/resources/pc/camp-panorama-v1.png')));
+console.log('PC isolation: explicit stamina/cooking adapter, independent assets/save/audio/build and unchanged mobile source passed');

@@ -1,0 +1,1774 @@
+{
+  "sourceSHA": "392d578ca6db3ff30324834b43b875b1ed6699fdd6f7175e37eae8a518740f9a",
+  "version": 5,
+  "calibration": {
+    "careers": 18,
+    "trialsPerGym": 180,
+    "seedIndices": [
+      0,
+      1,
+      2
+    ]
+  },
+  "holdout": {
+    "careers": 18,
+    "trialsPerGym": 90,
+    "seedIndices": [
+      3,
+      4,
+      5
+    ]
+  },
+  "pressure": [
+    1.1,
+    1.1,
+    0.7,
+    0.67,
+    0.93,
+    0.64,
+    0.58,
+    0.67,
+    0.8
+  ],
+  "method": "Fresh progression, no granted pets/stats/unlocks. Checkpoint after first map clear and ordinary hatch/breed. Same three pets and visible-dice policy, independent repeat branches, no badge carryover. Production rules unmodified.",
+  "limitations": [
+    "Model policy, not human win-rate evidence.",
+    "Holdout seeds were not used for selecting pressure.",
+    "Same collections, type-prepared team; no ads, badge carryover or friend pets.",
+    "Small reversals on calibration cohorts remain; do not promise monotonic success for every team."
+  ],
+  "before": [
+    {
+      "map": 1,
+      "name": "初心道馆",
+      "adventure": {
+        "wins": 180,
+        "n": 180,
+        "winRate": 100,
+        "meanDeaths": 0.01,
+        "meanTurns": 40,
+        "winMedianTurns": 39,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "gym": {
+        "wins": 180,
+        "n": 180,
+        "winRate": 100,
+        "meanDeaths": 0.08,
+        "meanTurns": 57.6,
+        "winMedianTurns": 54,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "gymPrepared": {
+        "wins": 180,
+        "n": 180,
+        "winRate": 100,
+        "meanDeaths": 0.08,
+        "meanTurns": 57,
+        "winMedianTurns": 53,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "map": 2,
+      "name": "森芽道馆",
+      "adventure": {
+        "wins": 180,
+        "n": 180,
+        "winRate": 100,
+        "meanDeaths": 0.32,
+        "meanTurns": 59.9,
+        "winMedianTurns": 60,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "gym": {
+        "wins": 97,
+        "n": 180,
+        "winRate": 53.9,
+        "meanDeaths": 1.84,
+        "meanTurns": 69.7,
+        "winMedianTurns": 69,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          7,
+          15,
+          57
+        ]
+      },
+      "gymPrepared": {
+        "wins": 144,
+        "n": 180,
+        "winRate": 80,
+        "meanDeaths": 1.38,
+        "meanTurns": 71.2,
+        "winMedianTurns": 70,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          4,
+          30
+        ]
+      }
+    },
+    {
+      "map": 3,
+      "name": "熔岩道馆",
+      "adventure": {
+        "wins": 157,
+        "n": 180,
+        "winRate": 87.2,
+        "meanDeaths": 1.07,
+        "meanTurns": 64.7,
+        "winMedianTurns": 64,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          3,
+          3,
+          15
+        ]
+      },
+      "gym": {
+        "wins": 86,
+        "n": 180,
+        "winRate": 47.8,
+        "meanDeaths": 2.11,
+        "meanTurns": 76.4,
+        "winMedianTurns": 75,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          15,
+          24,
+          52
+        ]
+      },
+      "gymPrepared": {
+        "wins": 98,
+        "n": 180,
+        "winRate": 54.4,
+        "meanDeaths": 1.97,
+        "meanTurns": 76.8,
+        "winMedianTurns": 75,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          3,
+          19,
+          58
+        ]
+      }
+    },
+    {
+      "map": 4,
+      "name": "潮风道馆",
+      "adventure": {
+        "wins": 147,
+        "n": 180,
+        "winRate": 81.7,
+        "meanDeaths": 1.25,
+        "meanTurns": 57.3,
+        "winMedianTurns": 55,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1,
+          9,
+          21
+        ]
+      },
+      "gym": {
+        "wins": 98,
+        "n": 180,
+        "winRate": 54.4,
+        "meanDeaths": 1.74,
+        "meanTurns": 68.7,
+        "winMedianTurns": 68,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          4,
+          6,
+          18,
+          21,
+          32
+        ]
+      },
+      "gymPrepared": {
+        "wins": 103,
+        "n": 180,
+        "winRate": 57.2,
+        "meanDeaths": 1.67,
+        "meanTurns": 68.9,
+        "winMedianTurns": 68,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          4,
+          3,
+          18,
+          19,
+          32
+        ]
+      }
+    },
+    {
+      "map": 5,
+      "name": "雷铠道馆",
+      "adventure": {
+        "wins": 129,
+        "n": 180,
+        "winRate": 71.7,
+        "meanDeaths": 1.43,
+        "meanTurns": 52.3,
+        "winMedianTurns": 51,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          4,
+          6,
+          12,
+          28
+        ]
+      },
+      "gym": {
+        "wins": 46,
+        "n": 180,
+        "winRate": 25.6,
+        "meanDeaths": 2.43,
+        "meanTurns": 53.1,
+        "winMedianTurns": 57,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          13,
+          29,
+          30,
+          30,
+          31
+        ]
+      },
+      "gymPrepared": {
+        "wins": 67,
+        "n": 180,
+        "winRate": 37.2,
+        "meanDeaths": 2.26,
+        "meanTurns": 54.3,
+        "winMedianTurns": 58,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          7,
+          18,
+          20,
+          30,
+          37
+        ]
+      }
+    },
+    {
+      "map": 6,
+      "name": "沙棘道馆",
+      "adventure": {
+        "wins": 114,
+        "n": 180,
+        "winRate": 63.3,
+        "meanDeaths": 1.56,
+        "meanTurns": 51.5,
+        "winMedianTurns": 50,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          5,
+          7,
+          18,
+          34
+        ]
+      },
+      "gym": {
+        "wins": 7,
+        "n": 180,
+        "winRate": 3.9,
+        "meanDeaths": 2.94,
+        "meanTurns": 62.4,
+        "winMedianTurns": 69,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          11,
+          39,
+          50,
+          40,
+          32
+        ]
+      },
+      "gymPrepared": {
+        "wins": 33,
+        "n": 180,
+        "winRate": 18.3,
+        "meanDeaths": 2.73,
+        "meanTurns": 64.1,
+        "winMedianTurns": 66,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          9,
+          31,
+          52,
+          55
+        ]
+      }
+    },
+    {
+      "map": 7,
+      "name": "霜灵道馆",
+      "adventure": {
+        "wins": 95,
+        "n": 180,
+        "winRate": 52.8,
+        "meanDeaths": 2.14,
+        "meanTurns": 47.6,
+        "winMedianTurns": 47,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          4,
+          5,
+          28,
+          47
+        ]
+      },
+      "gym": {
+        "wins": 21,
+        "n": 180,
+        "winRate": 11.7,
+        "meanDeaths": 2.8,
+        "meanTurns": 52.6,
+        "winMedianTurns": 70,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          3,
+          18,
+          51,
+          50,
+          20,
+          17
+        ]
+      },
+      "gymPrepared": {
+        "wins": 38,
+        "n": 180,
+        "winRate": 21.1,
+        "meanDeaths": 2.65,
+        "meanTurns": 60.9,
+        "winMedianTurns": 67,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          18,
+          40,
+          50,
+          33
+        ]
+      }
+    },
+    {
+      "map": 8,
+      "name": "幻夜道馆",
+      "adventure": {
+        "wins": 111,
+        "n": 180,
+        "winRate": 61.7,
+        "meanDeaths": 1.85,
+        "meanTurns": 40.7,
+        "winMedianTurns": 39,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          6,
+          11,
+          15,
+          37
+        ]
+      },
+      "gym": {
+        "wins": 6,
+        "n": 180,
+        "winRate": 3.3,
+        "meanDeaths": 2.95,
+        "meanTurns": 41.7,
+        "winMedianTurns": 49,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          8,
+          27,
+          44,
+          53,
+          30,
+          12
+        ]
+      },
+      "gymPrepared": {
+        "wins": 26,
+        "n": 180,
+        "winRate": 14.4,
+        "meanDeaths": 2.78,
+        "meanTurns": 48.1,
+        "winMedianTurns": 53,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          22,
+          34,
+          51,
+          43
+        ]
+      }
+    },
+    {
+      "map": 9,
+      "name": "星龙道馆",
+      "adventure": {
+        "wins": 99,
+        "n": 180,
+        "winRate": 55,
+        "meanDeaths": 1.77,
+        "meanTurns": 37.2,
+        "winMedianTurns": 37,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          2,
+          2,
+          11,
+          19,
+          20,
+          27
+        ]
+      },
+      "gym": {
+        "wins": 15,
+        "n": 180,
+        "winRate": 8.3,
+        "meanDeaths": 2.85,
+        "meanTurns": 36.9,
+        "winMedianTurns": 48,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          2,
+          18,
+          38,
+          30,
+          25,
+          24,
+          28
+        ]
+      },
+      "gymPrepared": {
+        "wins": 36,
+        "n": 180,
+        "winRate": 20,
+        "meanDeaths": 2.66,
+        "meanTurns": 41.2,
+        "winMedianTurns": 45,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          5,
+          16,
+          21,
+          32,
+          35,
+          35
+        ]
+      }
+    }
+  ],
+  "after": [
+    {
+      "map": 1,
+      "name": "初心道馆",
+      "adventure": {
+        "wins": 180,
+        "n": 180,
+        "winRate": 100,
+        "meanDeaths": 0.01,
+        "meanTurns": 40,
+        "winMedianTurns": 39,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "gym": {
+        "wins": 180,
+        "n": 180,
+        "winRate": 100,
+        "meanDeaths": 0.08,
+        "meanTurns": 57.6,
+        "winMedianTurns": 54,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "gymPrepared": {
+        "wins": 180,
+        "n": 180,
+        "winRate": 100,
+        "meanDeaths": 0.08,
+        "meanTurns": 57,
+        "winMedianTurns": 53,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "map": 2,
+      "name": "森芽道馆",
+      "adventure": {
+        "wins": 180,
+        "n": 180,
+        "winRate": 100,
+        "meanDeaths": 0.32,
+        "meanTurns": 59.9,
+        "winMedianTurns": 60,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "gym": {
+        "wins": 97,
+        "n": 180,
+        "winRate": 53.9,
+        "meanDeaths": 1.84,
+        "meanTurns": 69.7,
+        "winMedianTurns": 69,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          7,
+          15,
+          57
+        ]
+      },
+      "gymPrepared": {
+        "wins": 144,
+        "n": 180,
+        "winRate": 80,
+        "meanDeaths": 1.38,
+        "meanTurns": 71.2,
+        "winMedianTurns": 70,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          4,
+          30
+        ]
+      }
+    },
+    {
+      "map": 3,
+      "name": "熔岩道馆",
+      "adventure": {
+        "wins": 157,
+        "n": 180,
+        "winRate": 87.2,
+        "meanDeaths": 1.07,
+        "meanTurns": 64.7,
+        "winMedianTurns": 64,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          3,
+          3,
+          15
+        ]
+      },
+      "gym": {
+        "wins": 94,
+        "n": 180,
+        "winRate": 52.2,
+        "meanDeaths": 1.86,
+        "meanTurns": 77.2,
+        "winMedianTurns": 76,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          10,
+          21,
+          53
+        ]
+      },
+      "gymPrepared": {
+        "wins": 104,
+        "n": 180,
+        "winRate": 57.8,
+        "meanDeaths": 1.8,
+        "meanTurns": 79.4,
+        "winMedianTurns": 76,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          10,
+          62
+        ]
+      }
+    },
+    {
+      "map": 4,
+      "name": "潮风道馆",
+      "adventure": {
+        "wins": 147,
+        "n": 180,
+        "winRate": 81.7,
+        "meanDeaths": 1.25,
+        "meanTurns": 57.3,
+        "winMedianTurns": 55,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1,
+          9,
+          21
+        ]
+      },
+      "gym": {
+        "wins": 103,
+        "n": 180,
+        "winRate": 57.2,
+        "meanDeaths": 1.68,
+        "meanTurns": 69.2,
+        "winMedianTurns": 67,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          5,
+          19,
+          20,
+          31
+        ]
+      },
+      "gymPrepared": {
+        "wins": 111,
+        "n": 180,
+        "winRate": 61.7,
+        "meanDeaths": 1.58,
+        "meanTurns": 68.6,
+        "winMedianTurns": 67,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          5,
+          16,
+          20,
+          26
+        ]
+      }
+    },
+    {
+      "map": 5,
+      "name": "雷铠道馆",
+      "adventure": {
+        "wins": 129,
+        "n": 180,
+        "winRate": 71.7,
+        "meanDeaths": 1.43,
+        "meanTurns": 52.3,
+        "winMedianTurns": 51,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          4,
+          6,
+          12,
+          28
+        ]
+      },
+      "gym": {
+        "wins": 66,
+        "n": 180,
+        "winRate": 36.7,
+        "meanDeaths": 2.14,
+        "meanTurns": 56,
+        "winMedianTurns": 57,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          22,
+          24,
+          27,
+          38
+        ]
+      },
+      "gymPrepared": {
+        "wins": 88,
+        "n": 180,
+        "winRate": 48.9,
+        "meanDeaths": 1.89,
+        "meanTurns": 56.5,
+        "winMedianTurns": 58,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          17,
+          16,
+          20,
+          38
+        ]
+      }
+    },
+    {
+      "map": 6,
+      "name": "沙棘道馆",
+      "adventure": {
+        "wins": 114,
+        "n": 180,
+        "winRate": 63.3,
+        "meanDeaths": 1.56,
+        "meanTurns": 51.5,
+        "winMedianTurns": 50,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          5,
+          7,
+          18,
+          34
+        ]
+      },
+      "gym": {
+        "wins": 21,
+        "n": 180,
+        "winRate": 11.7,
+        "meanDeaths": 2.84,
+        "meanTurns": 67.4,
+        "winMedianTurns": 70,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          22,
+          30,
+          45,
+          61
+        ]
+      },
+      "gymPrepared": {
+        "wins": 79,
+        "n": 180,
+        "winRate": 43.9,
+        "meanDeaths": 2.28,
+        "meanTurns": 66.4,
+        "winMedianTurns": 67,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          7,
+          27,
+          67
+        ]
+      }
+    },
+    {
+      "map": 7,
+      "name": "霜灵道馆",
+      "adventure": {
+        "wins": 95,
+        "n": 180,
+        "winRate": 52.8,
+        "meanDeaths": 2.14,
+        "meanTurns": 47.6,
+        "winMedianTurns": 47,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          4,
+          5,
+          28,
+          47
+        ]
+      },
+      "gym": {
+        "wins": 39,
+        "n": 180,
+        "winRate": 21.7,
+        "meanDeaths": 2.56,
+        "meanTurns": 63.1,
+        "winMedianTurns": 74,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          32,
+          37,
+          34,
+          35
+        ]
+      },
+      "gymPrepared": {
+        "wins": 77,
+        "n": 180,
+        "winRate": 42.8,
+        "meanDeaths": 2.14,
+        "meanTurns": 69.2,
+        "winMedianTurns": 69,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          13,
+          36,
+          52
+        ]
+      }
+    },
+    {
+      "map": 8,
+      "name": "幻夜道馆",
+      "adventure": {
+        "wins": 111,
+        "n": 180,
+        "winRate": 61.7,
+        "meanDeaths": 1.85,
+        "meanTurns": 40.7,
+        "winMedianTurns": 39,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          6,
+          11,
+          15,
+          37
+        ]
+      },
+      "gym": {
+        "wins": 18,
+        "n": 180,
+        "winRate": 10,
+        "meanDeaths": 2.84,
+        "meanTurns": 49.2,
+        "winMedianTurns": 50,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          2,
+          11,
+          23,
+          40,
+          42,
+          44
+        ]
+      },
+      "gymPrepared": {
+        "wins": 66,
+        "n": 180,
+        "winRate": 36.7,
+        "meanDeaths": 2.32,
+        "meanTurns": 54.3,
+        "winMedianTurns": 54,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          12,
+          35,
+          65
+        ]
+      }
+    },
+    {
+      "map": 9,
+      "name": "星龙道馆",
+      "adventure": {
+        "wins": 99,
+        "n": 180,
+        "winRate": 55,
+        "meanDeaths": 1.77,
+        "meanTurns": 37.2,
+        "winMedianTurns": 37,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          2,
+          2,
+          11,
+          19,
+          20,
+          27
+        ]
+      },
+      "gym": {
+        "wins": 27,
+        "n": 180,
+        "winRate": 15,
+        "meanDeaths": 2.73,
+        "meanTurns": 41.1,
+        "winMedianTurns": 47,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          6,
+          27,
+          33,
+          25,
+          21,
+          41
+        ]
+      },
+      "gymPrepared": {
+        "wins": 70,
+        "n": 180,
+        "winRate": 38.9,
+        "meanDeaths": 2.34,
+        "meanTurns": 44.2,
+        "winMedianTurns": 47,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          3,
+          9,
+          18,
+          17,
+          26,
+          37
+        ]
+      }
+    }
+  ],
+  "holdoutResults": [
+    {
+      "map": 1,
+      "name": "初心道馆",
+      "adventure": {
+        "wins": 90,
+        "n": 90,
+        "winRate": 100,
+        "meanDeaths": 0.01,
+        "meanTurns": 45.5,
+        "winMedianTurns": 43,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "gym": {
+        "wins": 90,
+        "n": 90,
+        "winRate": 100,
+        "meanDeaths": 0.11,
+        "meanTurns": 63.1,
+        "winMedianTurns": 62,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "gymPrepared": {
+        "wins": 90,
+        "n": 90,
+        "winRate": 100,
+        "meanDeaths": 0.11,
+        "meanTurns": 62.5,
+        "winMedianTurns": 62,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "map": 2,
+      "name": "森芽道馆",
+      "adventure": {
+        "wins": 84,
+        "n": 90,
+        "winRate": 93.3,
+        "meanDeaths": 0.52,
+        "meanTurns": 59,
+        "winMedianTurns": 57,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          5
+        ]
+      },
+      "gym": {
+        "wins": 55,
+        "n": 90,
+        "winRate": 61.1,
+        "meanDeaths": 1.73,
+        "meanTurns": 69.9,
+        "winMedianTurns": 70,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          1,
+          8,
+          24
+        ]
+      },
+      "gymPrepared": {
+        "wins": 73,
+        "n": 90,
+        "winRate": 81.1,
+        "meanDeaths": 1.3,
+        "meanTurns": 70.9,
+        "winMedianTurns": 69,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          15
+        ]
+      }
+    },
+    {
+      "map": 3,
+      "name": "熔岩道馆",
+      "adventure": {
+        "wins": 81,
+        "n": 90,
+        "winRate": 90,
+        "meanDeaths": 0.89,
+        "meanTurns": 64.2,
+        "winMedianTurns": 65,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          7
+        ]
+      },
+      "gym": {
+        "wins": 49,
+        "n": 90,
+        "winRate": 54.4,
+        "meanDeaths": 1.88,
+        "meanTurns": 76,
+        "winMedianTurns": 74,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          9,
+          11,
+          21
+        ]
+      },
+      "gymPrepared": {
+        "wins": 55,
+        "n": 90,
+        "winRate": 61.1,
+        "meanDeaths": 1.78,
+        "meanTurns": 77.2,
+        "winMedianTurns": 73,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          10,
+          25
+        ]
+      }
+    },
+    {
+      "map": 4,
+      "name": "潮风道馆",
+      "adventure": {
+        "wins": 72,
+        "n": 90,
+        "winRate": 80,
+        "meanDeaths": 1.22,
+        "meanTurns": 54.4,
+        "winMedianTurns": 52,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          4,
+          13
+        ]
+      },
+      "gym": {
+        "wins": 55,
+        "n": 90,
+        "winRate": 61.1,
+        "meanDeaths": 1.61,
+        "meanTurns": 66.3,
+        "winMedianTurns": 61,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          9,
+          7,
+          18
+        ]
+      },
+      "gymPrepared": {
+        "wins": 53,
+        "n": 90,
+        "winRate": 58.9,
+        "meanDeaths": 1.64,
+        "meanTurns": 66.7,
+        "winMedianTurns": 60,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          6,
+          9,
+          20
+        ]
+      }
+    },
+    {
+      "map": 5,
+      "name": "雷铠道馆",
+      "adventure": {
+        "wins": 56,
+        "n": 90,
+        "winRate": 62.2,
+        "meanDeaths": 1.68,
+        "meanTurns": 51,
+        "winMedianTurns": 48,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          2,
+          3,
+          4,
+          24
+        ]
+      },
+      "gym": {
+        "wins": 38,
+        "n": 90,
+        "winRate": 42.2,
+        "meanDeaths": 2.03,
+        "meanTurns": 51.2,
+        "winMedianTurns": 51,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          9,
+          12,
+          19,
+          9
+        ]
+      },
+      "gymPrepared": {
+        "wins": 45,
+        "n": 90,
+        "winRate": 50,
+        "meanDeaths": 2,
+        "meanTurns": 53.6,
+        "winMedianTurns": 55,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          5,
+          10,
+          11,
+          18
+        ]
+      }
+    },
+    {
+      "map": 6,
+      "name": "沙棘道馆",
+      "adventure": {
+        "wins": 60,
+        "n": 90,
+        "winRate": 66.7,
+        "meanDeaths": 1.42,
+        "meanTurns": 49,
+        "winMedianTurns": 48,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5,
+          4,
+          10,
+          11
+        ]
+      },
+      "gym": {
+        "wins": 11,
+        "n": 90,
+        "winRate": 12.2,
+        "meanDeaths": 2.81,
+        "meanTurns": 65.8,
+        "winMedianTurns": 75,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          4,
+          10,
+          14,
+          25,
+          25
+        ]
+      },
+      "gymPrepared": {
+        "wins": 40,
+        "n": 90,
+        "winRate": 44.4,
+        "meanDeaths": 2.27,
+        "meanTurns": 65.4,
+        "winMedianTurns": 65,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          8,
+          10,
+          28
+        ]
+      }
+    },
+    {
+      "map": 7,
+      "name": "霜灵道馆",
+      "adventure": {
+        "wins": 40,
+        "n": 90,
+        "winRate": 44.4,
+        "meanDeaths": 2.31,
+        "meanTurns": 47.3,
+        "winMedianTurns": 45,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          3,
+          11,
+          33
+        ]
+      },
+      "gym": {
+        "wins": 10,
+        "n": 90,
+        "winRate": 11.1,
+        "meanDeaths": 2.83,
+        "meanTurns": 65.1,
+        "winMedianTurns": 67,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5,
+          20,
+          27,
+          28
+        ]
+      },
+      "gymPrepared": {
+        "wins": 38,
+        "n": 90,
+        "winRate": 42.2,
+        "meanDeaths": 2.37,
+        "meanTurns": 71.2,
+        "winMedianTurns": 73,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          3,
+          11,
+          36
+        ]
+      }
+    },
+    {
+      "map": 8,
+      "name": "幻夜道馆",
+      "adventure": {
+        "wins": 53,
+        "n": 90,
+        "winRate": 58.9,
+        "meanDeaths": 1.69,
+        "meanTurns": 39.1,
+        "winMedianTurns": 38,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          5,
+          9,
+          11,
+          11
+        ]
+      },
+      "gym": {
+        "wins": 3,
+        "n": 90,
+        "winRate": 3.3,
+        "meanDeaths": 2.97,
+        "meanTurns": 49.3,
+        "winMedianTurns": 70,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          8,
+          17,
+          18,
+          22,
+          22
+        ]
+      },
+      "gymPrepared": {
+        "wins": 30,
+        "n": 90,
+        "winRate": 33.3,
+        "meanDeaths": 2.32,
+        "meanTurns": 53.8,
+        "winMedianTurns": 56,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          4,
+          10,
+          19,
+          26
+        ]
+      }
+    },
+    {
+      "map": 9,
+      "name": "星龙道馆",
+      "adventure": {
+        "wins": 47,
+        "n": 90,
+        "winRate": 52.2,
+        "meanDeaths": 1.89,
+        "meanTurns": 36.6,
+        "winMedianTurns": 34,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          8,
+          8,
+          11,
+          16
+        ]
+      },
+      "gym": {
+        "wins": 16,
+        "n": 90,
+        "winRate": 17.8,
+        "meanDeaths": 2.72,
+        "meanTurns": 43,
+        "winMedianTurns": 49,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          4,
+          13,
+          13,
+          12,
+          17,
+          15
+        ]
+      },
+      "gymPrepared": {
+        "wins": 25,
+        "n": 90,
+        "winRate": 27.8,
+        "meanDeaths": 2.53,
+        "meanTurns": 45,
+        "winMedianTurns": 49,
+        "deathFloors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          16,
+          11,
+          10,
+          24
+        ]
+      }
+    }
+  ]
+}

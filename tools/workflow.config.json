@@ -8,6 +8,37 @@
   "server": "tools/serve.cjs",
   "moduleRoutes": [
     {
+      "pattern": "^pc/|^tools/(?:prepare-pc-project|prepare-pc-steam|build-pc|build-pc-windows|serve-pc)[.]cjs$|^checks/pc-",
+      "scopes": [
+        "pc"
+      ]
+    },
+    {
+      "pattern": "^(?:tools/(?:prepare-tap-project|prepare-tap-subpackages|optimize-tap-startup|optimize-tap-images)[.]cjs|checks/(?:prepare-tap-project|tap-subpackages)[.]test[.]cjs)$",
+      "scopes": [
+        "tools"
+      ]
+    },
+    {
+      "pattern": "^tools/locales/events-v2[.]tsv$",
+      "scopes": [
+        "run-events",
+        "locale"
+      ]
+    },
+    {
+      "pattern": "^assets/scripts/PMUIStyle\\.ts(\\.meta)?$|^checks/ui-(polish-runtime|style.test)\\.cjs$",
+      "scopes": [
+        "ui-polish"
+      ]
+    },
+    {
+      "pattern": "^assets/scripts/PMTapServices\\.ts$|^checks/tap-services\\.test\\.cjs$",
+      "scopes": [
+        "tap-services"
+      ]
+    },
+    {
       "pattern": "^checks/legendary-art\\.cjs$|^art-source/regions-10-12/(generation|art-index)\\.json$",
       "scopes": [
         "legendary-art"
@@ -328,7 +359,9 @@
     },
     "tools": {
       "tests": [
-        "checks/workflow.test.cjs"
+        "checks/workflow.test.cjs",
+        "checks/prepare-tap-project.test.cjs",
+        "checks/tap-subpackages.test.cjs"
       ],
       "runtime": [],
       "build": false
@@ -358,6 +391,8 @@
         "checks/mobile-flow.test.cjs",
         "tools/audit-project.cjs",
         "checks/workflow.test.cjs",
+        "checks/prepare-tap-project.test.cjs",
+        "checks/tap-subpackages.test.cjs",
         "checks/art-cache.test.cjs",
         "checks/iteration-oct20.test.cjs",
         "checks/breeding-ad.test.cjs",
@@ -368,7 +403,33 @@
         "checks/legendary.test.cjs",
         "checks/legendary-art.cjs",
         "checks/difficulty-curve.test.cjs",
-        "checks/release-soak.test.cjs"
+        "checks/tap-services.test.cjs",
+        "checks/breeding-split.test.cjs",
+        "checks/party-remove.test.cjs",
+        "checks/gym-strength.test.cjs",
+        "checks/player-guidance.test.cjs",
+        "checks/release-soak.test.cjs",
+        "checks/ui-style.test.cjs",
+        "checks/pc-build.cjs",
+        "checks/pc-input.test.cjs",
+        "checks/pc-project.test.cjs",
+        "checks/pc-steam-bridge.test.cjs",
+        "checks/pc-steam-build.test.cjs",
+        "checks/pc-steam-native.test.cjs",
+        "checks/pc-raid.test.cjs",
+        "checks/pc-social.test.cjs",
+        "checks/pc-profile.test.cjs",
+        "checks/pc-cloud.test.cjs",
+        "checks/pc-cloud-auto.test.cjs",
+        "checks/pc-achievements.test.cjs",
+        "checks/pc-online.test.cjs",
+        "checks/pc-raid-animation.test.cjs",
+        "checks/pc-cooking.test.cjs",
+        "checks/pc-cooking-integration.test.cjs",
+        "checks/pc-profile-recovery.test.cjs",
+        "checks/pc-cooking-health.test.cjs",
+        "checks/pc-command-help.test.cjs",
+        "checks/pc-locale.test.cjs"
       ],
       "runtime": [
         "checks/home-layout-runtime.cjs",
@@ -409,12 +470,25 @@
         "checks/recipes-runtime.cjs",
         "checks/shiny-runtime.cjs",
         "checks/enemy-visual-runtime.cjs",
-        "checks/arena-runtime.cjs",
         "checks/ui-comfort-runtime.cjs",
         "checks/ui-comfort-care.cjs",
         "checks/ui-comfort-social.cjs",
         "checks/home-motion-runtime.cjs",
-        "checks/legendary-runtime.cjs"
+        "checks/legendary-runtime.cjs",
+        "checks/party-remove-runtime.cjs",
+        "checks/player-guidance-runtime.cjs",
+        "checks/ui-polish-runtime.cjs",
+        "checks/pc-runtime.cjs",
+        "checks/pc-motion.cjs",
+        "checks/pc-online-runtime.cjs",
+        "checks/pc-cloud-runtime.cjs",
+        "checks/pc-pet-animation.cjs",
+        "checks/pc-dice-window-runtime.cjs",
+        "checks/pc-readability-runtime.cjs",
+        "checks/pc-battle-scenes.cjs",
+        "checks/pc-cooking-runtime.cjs",
+        "checks/pc-audit-fixes-runtime.cjs",
+        "checks/pc-locale-runtime.cjs"
       ]
     },
     "assets": {
@@ -534,7 +608,7 @@
         "checks/locale.test.cjs"
       ],
       "runtime": [
-        "checks/arena-runtime.cjs"
+        "checks/gyms-runtime.cjs"
       ]
     },
     "ui-comfort": {
@@ -615,6 +689,91 @@
       ],
       "runtime": [],
       "build": false
+    },
+    "tap-services": {
+      "tests": [
+        "checks/tap-services.test.cjs",
+        "checks/tapads.test.cjs"
+      ],
+      "runtime": []
+    },
+    "qa-feedback": {
+      "tests": [
+        "checks/breeding-split.test.cjs",
+        "checks/party-remove.test.cjs",
+        "checks/gym-strength.test.cjs",
+        "checks/gyms.test.cjs"
+      ],
+      "runtime": [
+        "checks/party-remove-runtime.cjs",
+        "checks/gyms-runtime.cjs"
+      ],
+      "build": true
+    },
+    "player-release": {
+      "tests": [
+        "checks/player-guidance.test.cjs",
+        "checks/locale.test.cjs",
+        "checks/release-soak.test.cjs"
+      ],
+      "runtime": [
+        "checks/player-guidance-runtime.cjs"
+      ]
+    },
+    "ui-polish": {
+      "tests": [
+        "checks/ui-style.test.cjs"
+      ],
+      "runtime": [
+        "checks/ui-polish-runtime.cjs"
+      ]
+    },
+    "pc": {
+      "tests": [
+        "checks/pc-build.cjs",
+        "checks/pc-input.test.cjs",
+        "checks/pc-project.test.cjs",
+        "checks/pc-steam-bridge.test.cjs",
+        "checks/pc-steam-build.test.cjs",
+        "checks/pc-steam-native.test.cjs",
+        "checks/pc-raid.test.cjs",
+        "checks/pc-social.test.cjs",
+        "checks/pc-profile.test.cjs",
+        "checks/pc-cloud.test.cjs",
+        "checks/pc-cloud-auto.test.cjs",
+        "checks/pc-achievements.test.cjs",
+        "checks/pc-online.test.cjs",
+        "checks/pc-raid-animation.test.cjs",
+        "checks/pc-cooking.test.cjs",
+        "checks/pc-cooking-integration.test.cjs",
+        "checks/pc-profile-recovery.test.cjs",
+        "checks/pc-cooking-health.test.cjs",
+        "checks/pc-command-help.test.cjs"
+      ],
+      "runtime": [
+        "checks/pc-runtime.cjs",
+        "checks/pc-motion.cjs",
+        "checks/pc-online-runtime.cjs",
+        "checks/pc-cloud-runtime.cjs",
+        "checks/pc-pet-animation.cjs",
+        "checks/pc-dice-window-runtime.cjs",
+        "checks/pc-readability-runtime.cjs",
+        "checks/pc-battle-scenes.cjs",
+        "checks/pc-cooking-runtime.cjs",
+        "checks/pc-audit-fixes-runtime.cjs"
+      ],
+      "build": false,
+      "url": "http://127.0.0.1:8781/"
+    },
+    "pc-locale": {
+      "tests": [
+        "checks/pc-locale.test.cjs"
+      ],
+      "runtime": [
+        "checks/pc-locale-runtime.cjs"
+      ],
+      "build": false,
+      "url": "http://127.0.0.1:8781/"
     }
   }
 }

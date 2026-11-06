@@ -24,10 +24,10 @@ const T=Date.now(),ready=()=>M.syncStamina(M.chooseStarter(M.chooseHero(M.newJou
  await page.screenshot({path:'checks/iteration-map.png'});
  await page.evaluate(()=>g.pokedexUI());let keys=await page.evaluate(()=>Object.keys(__pm.controls()));
  assert.ok(keys.includes('dex-pet-fox-normal')&&keys.includes('dex-pet-fox-SR')&&keys.includes('dex-pet-fox-SSR'));
- text=await page.evaluate(()=>texts());assert.ok(text.includes('1 / 18'));assert.ok(!text.includes('1/3'));
+ text=await page.evaluate(()=>texts());assert.ok(text.includes('1 / 90'));assert.ok(!text.includes('1/3'));
  await page.screenshot({path:'checks/iteration-dex.png'});
  await tap('dex-pet-fox-SR');assert.ok((await page.evaluate(()=>texts())).some(t=>t.includes('焰鬃狐')));assert.ok(!(await page.evaluate(()=>Object.keys(__pm.controls()))).some(k=>k.startsWith('dex-form-')));
- s=M.act(M.enterExpedition(ready(),0,T),'challenge');s.enemyMax=s.enemyHP=100;s.enemyAttack=5;s.hpRatio=.8;
+ s=M.enterExpedition(ready(),0,T);s.active.skills=['opening'];s.pets.find(p=>p.uid===s.active.uid).skills=['opening'];s.runRoster[s.active.uid]=JSON.parse(JSON.stringify(s.active));s=M.act(s,'challenge');s.enemyMax=s.enemyHP=100;s.enemyAttack=5;s.hpRatio=.8;
  await seed(s);
  await page.evaluate(()=>{
   globalThis.events=[];const hurt=g.hurt.bind(g),life=g.lifeTo.bind(g);

@@ -8,13 +8,12 @@ const save=s=>{const result=M.restore(JSON.stringify(s));assert(result,'new cont
 const hash=x=>crypto.createHash('sha256').update(JSON.stringify(x)).digest('hex');
 const oldIds='fox bud turtle cotton otter spark seal ape slug mole bird owl beetle ghost dragon lynx rhino deer capy lotus manta crane mantis cragcrab cinder voltage venom dune monk ironboar frost spirit dream shade aurora starwyrm nectar orchid axolotl lantern cobra hornbill embercamel frill wombat trilobite wolverine bison narwhal raccoon octopus moonbat silkmoth kirin postplat emberhorse leafsloth bubpup arceel snowpeng punchshrimp velvetslug sandlion sailfrigate orbitphant twigbug gemnautilus shroudsprite quillwyvern nightmeerkat railpede peachflamingo'.split(' ');
 const oldSkills='opening armor healing steady repeat charged focus barrier overflow refund emergency venom heavy slow evade leech tm_healStrike tm_guardHeal tm_boostShield tm_healPower tm_finisher tm_lastStand tm_firstShield tm_combo res_bloom res_venom res_drive'.split(' ').concat(Array.from({length:18},(_,i)=>[0,1,2].map(t=>'trait_'+i+'_'+t)).flat());
-const oldRates=[[[95,5,0],[90,9,1]],[[90,10,0],[75,20,5]],[[84,15,1],[70,20,10]],[[80,18,2],[60,25,15]],[[75,22,3],[50,30,20]],[[70,26,4],[40,35,25]],[[65,29,6],[35,35,30]],[[60,32,8],[30,35,35]],[[55,35,10],[25,35,40]]];
 let checks=0;const test=(label,fn)=>{fn();checks++;console.log('PASS '+label);};
 test('90 species preserve all 72 existing species and permanent skill indexes',()=>{
  assert.equal(M.PET_IDS.length,90);same(M.PET_IDS.slice(0,72),oldIds);same(M.PET_IDS.slice(72),roster.pets.map(p=>p.id));
  assert.equal(hash(Object.fromEntries(oldIds.map(id=>[id,M.PETS[id]]))),'8314e49de80786549e5b44aee07b8171e8cb8d3e6eacd3d1c16df10315e6ba20');
  same(Object.keys(M.SKILLS).slice(0,oldSkills.length),oldSkills);
- assert.equal(hash(Object.fromEntries(Object.entries(M.SKILL_SPECS).filter(([id])=>!id.startsWith('trait_legendary_')))),'88993add65306cb6294fad79a34c0446c15196b430f4c163ae9945c68f3bc07c');
+ assert.equal(hash(Object.fromEntries(Object.entries(M.SKILL_SPECS).filter(([id])=>oldSkills.includes(id)))),'88993add65306cb6294fad79a34c0446c15196b430f4c163ae9945c68f3bc07c');
 });
 test('maps 10–12 have 18 types, 54 forms and progressive original-formula opponents',()=>{
  assert.equal(M.MAPS.length,12);assert.equal(roster.pets.length,18);assert.equal(new Set(roster.pets.map(p=>p.type)).size,18);
@@ -25,8 +24,8 @@ test('maps 10–12 have 18 types, 54 forms and progressive original-formula oppo
   const s=M.fresh(1);assert.equal(M.mapUnlocked(s,map.id),false);s.clearedMaps=Array.from({length:map.id},(_,i)=>i);assert(M.mapUnlocked(s,map.id));const entered=M.startMap(s,map.id,7);assert.equal(entered.mapId,map.id);assert(map.pets.includes(entered.enemy));save(entered);
  }
 });
-test('old egg rates are unchanged and new elite/boss rates match the approved ladder',()=>{
- for(let id=0;id<12;id++)for(const [i,step] of [5,10].entries()){const actual=M.eggRates({mapId:id,step}),expected=id<9?oldRates[id][i]:roster.maps[id-9].eggRates[i?'boss':'elite'];same([actual.normal,actual.SR,actual.SSR],expected);assert.equal(Object.values(actual).reduce((a,b)=>a+b,0),100);}
+test('all twelve maps share elite 80/15/5 and boss 60/30/10 rates',()=>{
+ for(let id=0;id<12;id++)for(const [i,step] of [5,10].entries()){const actual=M.eggRates({mapId:id,step}),expected=i?[60,30,10]:[80,15,5];same([actual.normal,actual.SR,actual.SSR],expected);if(id>=9)same(roster.maps[id-9].eggRates[i?'boss':'elite'],expected);assert.equal(Object.values(actual).reduce((a,b)=>a+b,0),100);}
  same(M.HATCH_RATES,{normal:[90,9,1],SR:[0,95,5],SSR:[0,0,100]});
 });
 test('each new ten-floor expedition completes, offers map eggs and unlocks the next map',()=>{

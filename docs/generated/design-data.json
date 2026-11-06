@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "sourceHashes": {
-    "assets/scripts/PMModel.ts": "0aa182228c946fe1d613a82e8e81eee728ef8f7d9d6d5d410312cd3165e8ea29",
-    "assets/scripts/PMGame.ts": "4101f094abb35899a7087968b2a1de1c920ace132bdecdb800b854e6150d603f",
+    "assets/scripts/PMModel.ts": "590177b4b0764ae7c59b970ba6abde7ba0d4eb2fe911cb4259bbe398c784c987",
+    "assets/scripts/PMGame.ts": "5bc3455983729e1361783f1340e62c7c5e8ed0510836671140354d9b89bed2df",
     "assets/scripts/PMArt.ts": "c449b491309ab15113c8a0a55e709eae883f38f46ae41e4b8eb6ee0c9053643b",
     "assets/scripts/ArtSourceSizes.ts": "5d4ad360469289aa9c20612f3a22e6e9fafc10a431b5544cd1dc3a9be8954e9b",
     "assets/scripts/BattleArt.ts": "4f2192b12c12616b9b029b0e3f9665c1533426c70809b295486afe4911b1aefc",
@@ -11,13 +11,13 @@
     "assets/scripts/HeroArt.ts": "bb76b9a8f346c39bece817b523b670f3a4aa3655b160d1cacada1f71ed0724d0",
     "assets/scripts/TrustedClock.ts": "9e233a5519e7e540ed3d6f21ae13c0f30f1a0ba1fc64d7bdc741e88f3fd7ff8c",
     "assets/scripts/DurableCheckpoint.ts": "fcfb089d1ebc4709d0dc62be84f40a0616a27c47b84548a6d174ce78cbeafbf5",
-    "assets/scripts/PMAudio.ts": "ed766d4829880913a83f688cc9b13ecf130ab1e57d3410c7e3483a15a5642b52",
+    "assets/scripts/PMAudio.ts": "43d4cdc3f34f0db8b4fc770d5297da1eedbba0f1769b92c8308fa6aca24fc072",
     "assets/scripts/HomeScenery.ts": "938ae7807e3abc465338bac72271b1aa13ec62f79e3435d660563b5912b55988",
     "assets/scripts/RegionPads.ts": "c09ee7a9bacb2067d725dad82686c99ba70a6a313de8ef3f22c069d7a634dd02",
     "assets/scripts/AppBattleArt.ts": "1d2fceb6eaecd195af968191d0ace5821c4f79cb5a8dc8364b860043658bf3d0",
     "assets/scripts/PMAppBattle.ts": "d9d2668de67c54b8a306aafd862d3853d4cb825e7ff28c4cd03cb268f18a680f",
     "assets/scripts/PMLocale.ts": "8448d114a32777079c4299eeb6ac8431ae8865603ed21ab25c6955c2030e466f",
-    "assets/scripts/PMTranslations.ts": "9ab711fc2c783488de717c86030b87d43be403b3c55a380c89066062d98147e8",
+    "assets/scripts/PMTranslations.ts": "163dc95149175f6c7faf70f6741a6c7d41dda4b3324814f8261e687cbd0a8748",
     "assets/scripts/LocalizedLogoArt.ts": "210f30734c0a3190e65d0897c109683db1c29b1c8dd8d62f268104bbd55bdddc"
   },
   "notes": [
@@ -29,7 +29,7 @@
     "species": 90,
     "forms": 270,
     "stages": 120,
-    "skills": 135
+    "skills": 159
   },
   "heroes": {
     "ranger": {
@@ -100,7 +100,7 @@
         "turtle"
       ],
       "types": "一般 · 草 · 水 · 飞行 · 虫 · 岩石",
-      "eggs": "精英 SR 蛋 5% · BOSS SSR 蛋 1%",
+      "eggs": "精英 SSR 蛋 5% · BOSS SSR 蛋 10%",
       "note": "6 个系列 · 18 种形态 · R → SR → SSR"
     },
     {
@@ -117,7 +117,7 @@
         "rhino"
       ],
       "types": "火 · 电 · 毒 · 地面 · 格斗 · 钢",
-      "eggs": "精英 SR 蛋 10% · BOSS SSR 蛋 5%",
+      "eggs": "精英 SSR 蛋 5% · BOSS SSR 蛋 10%",
       "note": "6 个系列 · 18 种形态 · 难度提升"
     },
     {
@@ -134,7 +134,7 @@
         "dragon"
       ],
       "types": "冰 · 幽灵 · 超能力 · 恶 · 妖精 · 龙",
-      "eggs": "精英 SSR 蛋 1% · BOSS SSR 蛋 10%",
+      "eggs": "精英 SSR 蛋 5% · BOSS SSR 蛋 10%",
       "note": "6 个系列 · 18 种形态 · 高阶挑战"
     },
     {
@@ -151,7 +151,7 @@
         "cragcrab"
       ],
       "types": "一般 · 草 · 水 · 飞行 · 虫 · 岩石",
-      "eggs": "精英 SSR 蛋 2% · BOSS SSR 蛋 15%",
+      "eggs": "精英 SSR 蛋 5% · BOSS SSR 蛋 10%",
       "note": "6 个新系列 · 18 种形态 · 进阶冒险"
     },
     {
@@ -168,7 +168,7 @@
         "ironboar"
       ],
       "types": "火 · 电 · 毒 · 地面 · 格斗 · 钢",
-      "eggs": "精英 SSR 蛋 3% · BOSS SSR 蛋 20%",
+      "eggs": "精英 SSR 蛋 5% · BOSS SSR 蛋 10%",
       "note": "6 个新系列 · 18 种形态 · 强敌试炼"
     },
     {
@@ -185,7 +185,7 @@
         "starwyrm"
       ],
       "types": "冰 · 幽灵 · 超能力 · 恶 · 妖精 · 龙",
-      "eggs": "精英 SSR 蛋 4% · BOSS SSR 蛋 25%",
+      "eggs": "精英 SSR 蛋 5% · BOSS SSR 蛋 10%",
       "note": "6 个新系列 · 18 种形态 · 最终挑战"
     },
     {
@@ -202,7 +202,7 @@
         "hornbill"
       ],
       "types": "一般 · 草 · 水 · 虫 · 毒 · 飞行",
-      "eggs": "精英 SSR 蛋 6% · BOSS SSR 蛋 30%",
+      "eggs": "精英 SSR 蛋 5% · BOSS SSR 蛋 10%",
       "note": "6 个新系列 · 18 种形态 · 雨林深处"
     },
     {
@@ -219,7 +219,7 @@
         "bison"
       ],
       "types": "火 · 电 · 地面 · 岩石 · 格斗 · 钢",
-      "eggs": "精英 SSR 蛋 8% · BOSS SSR 蛋 35%",
+      "eggs": "精英 SSR 蛋 5% · BOSS SSR 蛋 10%",
       "note": "6 个新系列 · 18 种形态 · 沙海试炼"
     },
     {
@@ -236,7 +236,7 @@
         "kirin"
       ],
       "types": "冰 · 幽灵 · 超能力 · 恶 · 妖精 · 龙",
-      "eggs": "精英 SSR 蛋 10% · BOSS SSR 蛋 40%",
+      "eggs": "精英 SSR 蛋 5% · BOSS SSR 蛋 10%",
       "note": "6 个新系列 · 18 种形态 · 天穹终境"
     },
     {
@@ -253,7 +253,7 @@
         "cairnheart"
       ],
       "types": "一般 · 草 · 水 · 飞行 · 虫 · 岩石",
-      "eggs": "精英 SSR 蛋 12% · BOSS SSR 蛋 45%",
+      "eggs": "精英 SSR 蛋 5% · BOSS SSR 蛋 10%",
       "note": "6 个新系列 · 18 种形态 · 神兽领域"
     },
     {
@@ -270,7 +270,7 @@
         "starhorseshoe"
       ],
       "types": "火 · 电 · 毒 · 地面 · 格斗 · 钢",
-      "eggs": "精英 SSR 蛋 14% · BOSS SSR 蛋 50%",
+      "eggs": "精英 SSR 蛋 5% · BOSS SSR 蛋 10%",
       "note": "6 个新系列 · 18 种形态 · 神兽领域"
     },
     {
@@ -287,7 +287,7 @@
         "triarchdrake"
       ],
       "types": "冰 · 幽灵 · 超能力 · 恶 · 妖精 · 龙",
-      "eggs": "精英 SSR 蛋 16% · BOSS SSR 蛋 55%",
+      "eggs": "精英 SSR 蛋 5% · BOSS SSR 蛋 10%",
       "note": "6 个新系列 · 18 种形态 · 神兽领域"
     }
   ],
@@ -28046,6 +28046,102 @@
     "trait_legendary_triarchdrake_2": [
       "三首共噬",
       "攻击时 · 第三次攻击时：恢复实际伤害的 100%。每场一次。"
+    ],
+    "tm_vampire": [
+      "吮吸攻击",
+      "攻击时：恢复实际伤害的 20%。每场一次。"
+    ],
+    "tm_venomMark": [
+      "毒雾印记",
+      "攻击时：施毒3次，每次伤害 1。每场一次。"
+    ],
+    "tm_openingEdge": [
+      "破风一击",
+      "攻击时：额外伤害 +3。每场一次。"
+    ],
+    "tm_lowStrike": [
+      "绝地强袭",
+      "攻击时 · 生命不超过50%：额外伤害 +4。每场一次。"
+    ],
+    "tm_highGuard": [
+      "极点护身",
+      "攻击时 · 攻击点数为最高：获得护盾 +5。每场一次。"
+    ],
+    "tm_lowHeal": [
+      "低点回春",
+      "攻击时 · 攻击点数为最低：恢复生命 +6。每场一次。"
+    ],
+    "tm_fullStrike": [
+      "满血突击",
+      "攻击时 · 满血时：额外伤害 +3。每场一次。"
+    ],
+    "tm_resistBreak": [
+      "逆克穿透",
+      "攻击时 · 本次攻击被抵抗：额外伤害 +4。每场一次。"
+    ],
+    "tm_thirdShield": [
+      "三连壁垒",
+      "攻击时 · 第三次攻击时：获得护盾 +6。每场一次。"
+    ],
+    "tm_attackFocus": [
+      "蓄势一击",
+      "攻击时：下回合攻击取最高点数。每场一次。"
+    ],
+    "tm_guardPower": [
+      "守势蓄力",
+      "防御时：下回合攻击取最高点数。每场一次。"
+    ],
+    "tm_guardShield": [
+      "固守屏障",
+      "防御时：获得护盾 +6。每场一次。"
+    ],
+    "tm_guardPoison": [
+      "荆棘反击",
+      "防御时：施毒3次，每次伤害 1。每场一次。"
+    ],
+    "tm_guardSupply": [
+      "节用防御",
+      "防御时：生命药水 +1。每场一次。"
+    ],
+    "tm_healShield": [
+      "药液护壁",
+      "使用生命药水时：获得护盾 +5。每场一次。"
+    ],
+    "tm_healBurst": [
+      "生命回甘",
+      "使用生命药水时：恢复生命 +4。每场一次。"
+    ],
+    "tm_healToxin": [
+      "药香毒雾",
+      "使用生命药水时：施毒3次，每次伤害 1。每场一次。"
+    ],
+    "tm_boostHeal": [
+      "强身暖流",
+      "使用力量药水时：恢复生命 +5。每场一次。"
+    ],
+    "tm_boostRefund": [
+      "力量回收",
+      "使用力量药水时：力量药水 +1。每场一次。"
+    ],
+    "tm_boostFocus": [
+      "力量校准",
+      "使用力量药水时：下回合攻击取最高点数。每场一次。"
+    ],
+    "tm_firstRegen": [
+      "晨露开场",
+      "掷骰时 · 本场首次掷骰：恢复生命 +4。每场一次。"
+    ],
+    "tm_minWard": [
+      "低点结界",
+      "掷骰时 · 攻击点数为最低：获得护盾 +5。每场一次。"
+    ],
+    "tm_repeatFocus": [
+      "重复转运",
+      "掷骰时 · 点数与上回合相同：本次攻击取最高点数。每场一次。"
+    ],
+    "tm_hitReduce": [
+      "柔韧护体",
+      "受到反击时：本次伤害减少 3。每场一次。"
     ]
   },
   "stages": [
@@ -33052,11 +33148,11 @@
       "rank": "elite",
       "searches": 2,
       "rates": {
-        "normal": 95,
-        "SR": 5,
-        "SSR": 0
+        "normal": 80,
+        "SR": 15,
+        "SSR": 5
       },
-      "atLeastOneSSRPercent": 0
+      "atLeastOneSSRPercent": 9.75
     },
     {
       "mapId": 0,
@@ -33065,11 +33161,11 @@
       "rank": "boss",
       "searches": 3,
       "rates": {
-        "normal": 90,
-        "SR": 9,
-        "SSR": 1
+        "normal": 60,
+        "SR": 30,
+        "SSR": 10
       },
-      "atLeastOneSSRPercent": 2.9701
+      "atLeastOneSSRPercent": 27.1
     },
     {
       "mapId": 1,
@@ -33078,24 +33174,24 @@
       "rank": "elite",
       "searches": 2,
       "rates": {
-        "normal": 90,
-        "SR": 10,
-        "SSR": 0
-      },
-      "atLeastOneSSRPercent": 0
-    },
-    {
-      "mapId": 1,
-      "map": "熔岩山径",
-      "step": 10,
-      "rank": "boss",
-      "searches": 3,
-      "rates": {
-        "normal": 75,
-        "SR": 20,
+        "normal": 80,
+        "SR": 15,
         "SSR": 5
       },
-      "atLeastOneSSRPercent": 14.2625
+      "atLeastOneSSRPercent": 9.75
+    },
+    {
+      "mapId": 1,
+      "map": "熔岩山径",
+      "step": 10,
+      "rank": "boss",
+      "searches": 3,
+      "rates": {
+        "normal": 60,
+        "SR": 30,
+        "SSR": 10
+      },
+      "atLeastOneSSRPercent": 27.1
     },
     {
       "mapId": 2,
@@ -33104,11 +33200,11 @@
       "rank": "elite",
       "searches": 2,
       "rates": {
-        "normal": 84,
+        "normal": 80,
         "SR": 15,
-        "SSR": 1
+        "SSR": 5
       },
-      "atLeastOneSSRPercent": 1.99
+      "atLeastOneSSRPercent": 9.75
     },
     {
       "mapId": 2,
@@ -33117,8 +33213,8 @@
       "rank": "boss",
       "searches": 3,
       "rates": {
-        "normal": 70,
-        "SR": 20,
+        "normal": 60,
+        "SR": 30,
         "SSR": 10
       },
       "atLeastOneSSRPercent": 27.1
@@ -33131,10 +33227,10 @@
       "searches": 2,
       "rates": {
         "normal": 80,
-        "SR": 18,
-        "SSR": 2
+        "SR": 15,
+        "SSR": 5
       },
-      "atLeastOneSSRPercent": 3.96
+      "atLeastOneSSRPercent": 9.75
     },
     {
       "mapId": 3,
@@ -33144,127 +33240,127 @@
       "searches": 3,
       "rates": {
         "normal": 60,
-        "SR": 25,
-        "SSR": 15
-      },
-      "atLeastOneSSRPercent": 38.5875
-    },
-    {
-      "mapId": 4,
-      "map": "赤雷荒原",
-      "step": 5,
-      "rank": "elite",
-      "searches": 2,
-      "rates": {
-        "normal": 75,
-        "SR": 22,
-        "SSR": 3
-      },
-      "atLeastOneSSRPercent": 5.91
-    },
-    {
-      "mapId": 4,
-      "map": "赤雷荒原",
-      "step": 10,
-      "rank": "boss",
-      "searches": 3,
-      "rates": {
-        "normal": 50,
         "SR": 30,
-        "SSR": 20
-      },
-      "atLeastOneSSRPercent": 48.8
-    },
-    {
-      "mapId": 5,
-      "map": "星渊圣域",
-      "step": 5,
-      "rank": "elite",
-      "searches": 2,
-      "rates": {
-        "normal": 70,
-        "SR": 26,
-        "SSR": 4
-      },
-      "atLeastOneSSRPercent": 7.84
-    },
-    {
-      "mapId": 5,
-      "map": "星渊圣域",
-      "step": 10,
-      "rank": "boss",
-      "searches": 3,
-      "rates": {
-        "normal": 40,
-        "SR": 35,
-        "SSR": 25
-      },
-      "atLeastOneSSRPercent": 57.8125
-    },
-    {
-      "mapId": 6,
-      "map": "琉璃雨林",
-      "step": 5,
-      "rank": "elite",
-      "searches": 2,
-      "rates": {
-        "normal": 65,
-        "SR": 29,
-        "SSR": 6
-      },
-      "atLeastOneSSRPercent": 11.64
-    },
-    {
-      "mapId": 6,
-      "map": "琉璃雨林",
-      "step": 10,
-      "rank": "boss",
-      "searches": 3,
-      "rates": {
-        "normal": 35,
-        "SR": 35,
-        "SSR": 30
-      },
-      "atLeastOneSSRPercent": 65.7
-    },
-    {
-      "mapId": 7,
-      "map": "赤曜沙海",
-      "step": 5,
-      "rank": "elite",
-      "searches": 2,
-      "rates": {
-        "normal": 60,
-        "SR": 32,
-        "SSR": 8
-      },
-      "atLeastOneSSRPercent": 15.36
-    },
-    {
-      "mapId": 7,
-      "map": "赤曜沙海",
-      "step": 10,
-      "rank": "boss",
-      "searches": 3,
-      "rates": {
-        "normal": 30,
-        "SR": 35,
-        "SSR": 35
-      },
-      "atLeastOneSSRPercent": 72.5375
-    },
-    {
-      "mapId": 8,
-      "map": "冥辉天穹",
-      "step": 5,
-      "rank": "elite",
-      "searches": 2,
-      "rates": {
-        "normal": 55,
-        "SR": 35,
         "SSR": 10
       },
-      "atLeastOneSSRPercent": 19
+      "atLeastOneSSRPercent": 27.1
+    },
+    {
+      "mapId": 4,
+      "map": "赤雷荒原",
+      "step": 5,
+      "rank": "elite",
+      "searches": 2,
+      "rates": {
+        "normal": 80,
+        "SR": 15,
+        "SSR": 5
+      },
+      "atLeastOneSSRPercent": 9.75
+    },
+    {
+      "mapId": 4,
+      "map": "赤雷荒原",
+      "step": 10,
+      "rank": "boss",
+      "searches": 3,
+      "rates": {
+        "normal": 60,
+        "SR": 30,
+        "SSR": 10
+      },
+      "atLeastOneSSRPercent": 27.1
+    },
+    {
+      "mapId": 5,
+      "map": "星渊圣域",
+      "step": 5,
+      "rank": "elite",
+      "searches": 2,
+      "rates": {
+        "normal": 80,
+        "SR": 15,
+        "SSR": 5
+      },
+      "atLeastOneSSRPercent": 9.75
+    },
+    {
+      "mapId": 5,
+      "map": "星渊圣域",
+      "step": 10,
+      "rank": "boss",
+      "searches": 3,
+      "rates": {
+        "normal": 60,
+        "SR": 30,
+        "SSR": 10
+      },
+      "atLeastOneSSRPercent": 27.1
+    },
+    {
+      "mapId": 6,
+      "map": "琉璃雨林",
+      "step": 5,
+      "rank": "elite",
+      "searches": 2,
+      "rates": {
+        "normal": 80,
+        "SR": 15,
+        "SSR": 5
+      },
+      "atLeastOneSSRPercent": 9.75
+    },
+    {
+      "mapId": 6,
+      "map": "琉璃雨林",
+      "step": 10,
+      "rank": "boss",
+      "searches": 3,
+      "rates": {
+        "normal": 60,
+        "SR": 30,
+        "SSR": 10
+      },
+      "atLeastOneSSRPercent": 27.1
+    },
+    {
+      "mapId": 7,
+      "map": "赤曜沙海",
+      "step": 5,
+      "rank": "elite",
+      "searches": 2,
+      "rates": {
+        "normal": 80,
+        "SR": 15,
+        "SSR": 5
+      },
+      "atLeastOneSSRPercent": 9.75
+    },
+    {
+      "mapId": 7,
+      "map": "赤曜沙海",
+      "step": 10,
+      "rank": "boss",
+      "searches": 3,
+      "rates": {
+        "normal": 60,
+        "SR": 30,
+        "SSR": 10
+      },
+      "atLeastOneSSRPercent": 27.1
+    },
+    {
+      "mapId": 8,
+      "map": "冥辉天穹",
+      "step": 5,
+      "rank": "elite",
+      "searches": 2,
+      "rates": {
+        "normal": 80,
+        "SR": 15,
+        "SSR": 5
+      },
+      "atLeastOneSSRPercent": 9.75
     },
     {
       "mapId": 8,
@@ -33273,11 +33369,11 @@
       "rank": "boss",
       "searches": 3,
       "rates": {
-        "normal": 25,
-        "SR": 35,
-        "SSR": 40
+        "normal": 60,
+        "SR": 30,
+        "SSR": 10
       },
-      "atLeastOneSSRPercent": 78.4
+      "atLeastOneSSRPercent": 27.1
     },
     {
       "mapId": 9,
@@ -33286,11 +33382,11 @@
       "rank": "elite",
       "searches": 2,
       "rates": {
-        "normal": 50,
-        "SR": 38,
-        "SSR": 12
+        "normal": 80,
+        "SR": 15,
+        "SSR": 5
       },
-      "atLeastOneSSRPercent": 22.56
+      "atLeastOneSSRPercent": 9.75
     },
     {
       "mapId": 9,
@@ -33299,11 +33395,11 @@
       "rank": "boss",
       "searches": 3,
       "rates": {
-        "normal": 20,
-        "SR": 35,
-        "SSR": 45
+        "normal": 60,
+        "SR": 30,
+        "SSR": 10
       },
-      "atLeastOneSSRPercent": 83.3625
+      "atLeastOneSSRPercent": 27.1
     },
     {
       "mapId": 10,
@@ -33312,11 +33408,11 @@
       "rank": "elite",
       "searches": 2,
       "rates": {
-        "normal": 45,
-        "SR": 41,
-        "SSR": 14
+        "normal": 80,
+        "SR": 15,
+        "SSR": 5
       },
-      "atLeastOneSSRPercent": 26.04
+      "atLeastOneSSRPercent": 9.75
     },
     {
       "mapId": 10,
@@ -33325,11 +33421,11 @@
       "rank": "boss",
       "searches": 3,
       "rates": {
-        "normal": 15,
-        "SR": 35,
-        "SSR": 50
+        "normal": 60,
+        "SR": 30,
+        "SSR": 10
       },
-      "atLeastOneSSRPercent": 87.5
+      "atLeastOneSSRPercent": 27.1
     },
     {
       "mapId": 11,
@@ -33338,11 +33434,11 @@
       "rank": "elite",
       "searches": 2,
       "rates": {
-        "normal": 40,
-        "SR": 44,
-        "SSR": 16
+        "normal": 80,
+        "SR": 15,
+        "SSR": 5
       },
-      "atLeastOneSSRPercent": 29.44
+      "atLeastOneSSRPercent": 9.75
     },
     {
       "mapId": 11,
@@ -33351,11 +33447,11 @@
       "rank": "boss",
       "searches": 3,
       "rates": {
-        "normal": 10,
-        "SR": 35,
-        "SSR": 55
+        "normal": 60,
+        "SR": 30,
+        "SSR": 10
       },
-      "atLeastOneSSRPercent": 90.8875
+      "atLeastOneSSRPercent": 27.1
     }
   ],
   "hatching": {
@@ -34235,6 +34331,150 @@
       "gate": "third",
       "effect": "drain",
       "amount": 100
+    },
+    "tm_vampire": {
+      "when": "attack",
+      "gate": "any",
+      "effect": "drain",
+      "amount": 20
+    },
+    "tm_venomMark": {
+      "when": "attack",
+      "gate": "any",
+      "effect": "poison",
+      "amount": 1
+    },
+    "tm_openingEdge": {
+      "when": "attack",
+      "gate": "any",
+      "effect": "damage",
+      "amount": 3
+    },
+    "tm_lowStrike": {
+      "when": "attack",
+      "gate": "low",
+      "effect": "damage",
+      "amount": 4
+    },
+    "tm_highGuard": {
+      "when": "attack",
+      "gate": "maximum",
+      "effect": "shield",
+      "amount": 5
+    },
+    "tm_lowHeal": {
+      "when": "attack",
+      "gate": "minimum",
+      "effect": "heal",
+      "amount": 6
+    },
+    "tm_fullStrike": {
+      "when": "attack",
+      "gate": "full",
+      "effect": "damage",
+      "amount": 3
+    },
+    "tm_resistBreak": {
+      "when": "attack",
+      "gate": "resisted",
+      "effect": "damage",
+      "amount": 4
+    },
+    "tm_thirdShield": {
+      "when": "attack",
+      "gate": "third",
+      "effect": "shield",
+      "amount": 6
+    },
+    "tm_attackFocus": {
+      "when": "attack",
+      "gate": "any",
+      "effect": "nextMax",
+      "amount": 1
+    },
+    "tm_guardPower": {
+      "when": "guard",
+      "gate": "any",
+      "effect": "nextMax",
+      "amount": 1
+    },
+    "tm_guardShield": {
+      "when": "guard",
+      "gate": "any",
+      "effect": "shield",
+      "amount": 6
+    },
+    "tm_guardPoison": {
+      "when": "guard",
+      "gate": "any",
+      "effect": "poison",
+      "amount": 1
+    },
+    "tm_guardSupply": {
+      "when": "guard",
+      "gate": "any",
+      "effect": "refundHeal",
+      "amount": 1
+    },
+    "tm_healShield": {
+      "when": "heal",
+      "gate": "any",
+      "effect": "shield",
+      "amount": 5
+    },
+    "tm_healBurst": {
+      "when": "heal",
+      "gate": "any",
+      "effect": "heal",
+      "amount": 4
+    },
+    "tm_healToxin": {
+      "when": "heal",
+      "gate": "any",
+      "effect": "poison",
+      "amount": 1
+    },
+    "tm_boostHeal": {
+      "when": "boost",
+      "gate": "any",
+      "effect": "heal",
+      "amount": 5
+    },
+    "tm_boostRefund": {
+      "when": "boost",
+      "gate": "any",
+      "effect": "refundBoost",
+      "amount": 1
+    },
+    "tm_boostFocus": {
+      "when": "boost",
+      "gate": "any",
+      "effect": "nextMax",
+      "amount": 1
+    },
+    "tm_firstRegen": {
+      "when": "roll",
+      "gate": "first",
+      "effect": "heal",
+      "amount": 4
+    },
+    "tm_minWard": {
+      "when": "roll",
+      "gate": "minimum",
+      "effect": "shield",
+      "amount": 5
+    },
+    "tm_repeatFocus": {
+      "when": "roll",
+      "gate": "repeat",
+      "effect": "maxRoll",
+      "amount": 1
+    },
+    "tm_hitReduce": {
+      "when": "hit",
+      "gate": "any",
+      "effect": "reduce",
+      "amount": 3
     }
   },
   "visitActionMs": 2500,
@@ -35678,5 +35918,155 @@
       "loadedAtStartup": false,
       "rgba8EstimateBytes": 2797568
     }
-  ]
+  ],
+  "battleEvents": {
+    "chance": 0.2,
+    "eligibleStages": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      9
+    ],
+    "definitions": {
+      "revive": {
+        "title": "伙伴复活",
+        "group": "revive",
+        "description": "恢复满生命"
+      },
+      "heal": {
+        "title": "恢复满生命",
+        "group": "heal",
+        "description": "恢复满生命"
+      },
+      "giant": {
+        "title": "巨化",
+        "group": "buff",
+        "description": "体型／生命上限／攻击 +50%"
+      },
+      "learn": {
+        "title": "招式学习器",
+        "group": "learn",
+        "description": "本关内有效"
+      },
+      "egg": {
+        "title": "获得精英蛋",
+        "group": "egg",
+        "description": "获得精英蛋"
+      },
+      "teamHeal": {
+        "title": "治愈营火",
+        "group": "heal",
+        "description": "存活队友恢复25%生命"
+      },
+      "leadHeal": {
+        "title": "活力泉水",
+        "group": "heal",
+        "description": "出战伙伴恢复满生命"
+      },
+      "reserveHeal": {
+        "title": "后援照料",
+        "group": "heal",
+        "description": "生命最少的候补恢复满生命"
+      },
+      "reviveHalf": {
+        "title": "救援护符",
+        "group": "revive",
+        "description": "复活并恢复50%生命，获得护盾6"
+      },
+      "potion": {
+        "title": "生命补给",
+        "group": "supply",
+        "description": "生命药水 +1"
+      },
+      "boost": {
+        "title": "力量补给",
+        "group": "supply",
+        "description": "力量药水 +1"
+      },
+      "supplies": {
+        "title": "旅行药箱",
+        "group": "supply",
+        "description": "较少的药水 +1"
+      },
+      "power": {
+        "title": "勇气祝福",
+        "group": "buff",
+        "description": "攻击 +20%"
+      },
+      "vitality": {
+        "title": "生命祝福",
+        "group": "buff",
+        "description": "生命上限 +25%"
+      },
+      "ward": {
+        "title": "守护祝福",
+        "group": "buff",
+        "description": "开场护盾 +6"
+      },
+      "focus": {
+        "title": "幸运祝福",
+        "group": "buff",
+        "description": "开场攻击取最高点数"
+      },
+      "attackLesson": {
+        "title": "进攻特训",
+        "group": "learn",
+        "description": "随机学会进攻招式"
+      },
+      "guardLesson": {
+        "title": "守势特训",
+        "group": "learn",
+        "description": "随机学会防守招式"
+      },
+      "potionLesson": {
+        "title": "药剂特训",
+        "group": "learn",
+        "description": "随机学会药剂招式"
+      },
+      "affinityEgg": {
+        "title": "伙伴寻蛋",
+        "group": "egg",
+        "description": "获得队友同属性精英蛋"
+      }
+    },
+    "temporarySkillCodes": [
+      "tm_healStrike",
+      "tm_guardHeal",
+      "tm_boostShield",
+      "tm_healPower",
+      "tm_finisher",
+      "tm_lastStand",
+      "tm_firstShield",
+      "tm_combo",
+      "tm_vampire",
+      "tm_venomMark",
+      "tm_openingEdge",
+      "tm_lowStrike",
+      "tm_highGuard",
+      "tm_lowHeal",
+      "tm_fullStrike",
+      "tm_resistBreak",
+      "tm_thirdShield",
+      "tm_attackFocus",
+      "tm_guardPower",
+      "tm_guardShield",
+      "tm_guardPoison",
+      "tm_guardSupply",
+      "tm_healShield",
+      "tm_healBurst",
+      "tm_healToxin",
+      "tm_boostHeal",
+      "tm_boostRefund",
+      "tm_boostFocus",
+      "tm_firstRegen",
+      "tm_minWard",
+      "tm_repeatFocus",
+      "tm_hitReduce"
+    ],
+    "temporarySkillLimit": 8
+  }
 }

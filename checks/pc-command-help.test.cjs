@@ -1,0 +1,12 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const cfg=require('../tools/workflow.config.json'),ts=require(cfg.typescript.replace(/tsc\.js$/,'typescript.js')),mod={};
+vm.runInNewContext(ts.transpileModule(fs.readFileSync('pc/game/PCUI.ts','utf8'),{compilerOptions:{module:1,target:4}}).outputText,{exports:mod,require:()=>({})});
+const ui=Object.create(mod.PCUI.prototype),hints=[];let executed=0,feedback=0;
+const control={node:{isValid:true,activeInHierarchy:true},enabled:false,reason:'本回合已经强化',run:()=>executed++};
+ui.controls=new Map([['boost',control]]);ui.canActivate=()=>true;ui.onHint=(...args)=>hints.push(args);ui.onActivate=()=>feedback++;ui.commandPulse=()=>{};
+assert.equal(ui.activate('boost'),false);assert.equal(executed,0);assert.equal(feedback,0);
+assert.equal(hints.length,1,'disabled keyboard/click activation explains why');assert.equal(hints[0][0],control.reason);assert.equal(hints[0][1],control);assert.equal(hints[0][2],true);
+hints.length=0;ui.canActivate=()=>false;assert.equal(ui.activate('boost'),false);assert.equal(hints.length,0,'modal/playback barrier also suppresses hidden-control feedback');
+ui.canActivate=()=>true;control.enabled=true;assert.equal(ui.activate('boost'),true);assert.equal(executed,1);assert.equal(feedback,1);
+control.node.activeInHierarchy=false;assert.equal(ui.activate('boost'),false);assert.equal(executed,1);
+console.log('PASS command help: disabled action reason, no execution, shared barrier, enabled action preserved');

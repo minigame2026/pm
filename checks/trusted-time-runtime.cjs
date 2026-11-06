@@ -21,7 +21,7 @@ function timed(){let s=base();s.eggs=[{id:'clock-egg',rarity:'normal',affinity:'
  // Enter genuine combat outcomes through actions, then exercise the settlement return route.
  for(const win of [true,false]){let s=base();s=M.enterExpedition(s,0,T);if(win)s.step=10;s=M.act(s,'challenge');
  if(win){s.enemyHP=1;s.attack=99;s=M.act(s,'attack');if(s.phase==='reward')s=M.act(s,'take');assert.equal(s.phase,'nest');s=M.act(M.act(s,'eggSearch'),'eggTake');assert.equal(s.phase,'eggClaimed');}
- else{s.hpRatio=.001;s.enemyHP=s.enemyMax=99;s.enemyAttack=99;s.attack=1;s=M.act(s,'attack');assert.equal(s.phase,'lost');}
+ else{for(const uid of M.homeParty(s).filter(Boolean))if(uid!==s.active.uid)s.combatVitals[uid]={hpBonus:0,hpRatio:0};s.hpRatio=.001;s.enemyHP=s.enemyMax=99;s.enemyAttack=99;s.attack=1;s=M.act(s,'attack');assert.equal(s.phase,'lost');}
  assert.ok(M.restore(JSON.stringify(s)));const p=await make(s,{width:win?390:320,height:win?844:568});await p.tap('start-game');if(win){await p.tap('eggContinue');}
  assert.equal((await p.snap()).phase,win?'won':'lost');assert.ok(await p.page.evaluate(()=>__pm.controls()['result-home']));await p.page.screenshot({path:'checks/settlement-'+(win?'win':'loss')+'.png'});
  const before=await p.snap();await p.tap('result-home');const after=await p.snap();assert.equal(await p.page.evaluate(()=>__pm.screen()),'home');assert.equal(after.expedition,false);assert.equal(after.step,1);assert.equal(after.stamina.value,before.stamina.value);assert.equal(after.eggs.length,before.eggs.length);assert.deepEqual(after.clearedMaps,before.clearedMaps);await p.context.close();}

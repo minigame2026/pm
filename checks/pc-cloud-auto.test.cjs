@@ -1,0 +1,24 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const cfg=require('../tools/workflow.config.json'),ts=require(cfg.typescript.replace(/tsc\.js$/,'typescript.js')),cache={};
+function load(name){if(cache[name])return cache[name];const out=cache[name]={},file=(name.startsWith('PC')?'pc/game/':'assets/scripts/')+name+'.ts';vm.runInNewContext(ts.transpileModule(fs.readFileSync(file,'utf8'),{compilerOptions:{module:1,target:4}}).outputText,{exports:out,require:p=>load(p.replace('./','')),Math,Date,JSON,Set,Map});return out;}
+const M=load('PMModel'),S=load('PCSocial'),P=load('PCProfile'),C=load('PCCloud'),id='76561198000000001';
+assert.equal(typeof C.syncCloudProfile,'function','automatic cloud sync must exist');
+const make=()=>{const map=new Map();return {map,getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v)};};
+const a=make(),b=make(),key=S.accountSaveKey(id);let raw=null,offline=false,writes=0;
+const bridge={request(op,args){if(op==='status')return {ok:true,data:{available:true,online:!offline,steamId:id,appId:5500200}};if(op==='cloud.read')return raw===null?{ok:false,error:'cloud_file_missing'}:{ok:true,data:{content:raw}};if(op==='cloud.write'){raw=args.content;writes++;return {ok:true};}throw Error(op);}};
+assert(P.savePCProfile(a,id,M.fresh(4),S.newPCSocial(id),1));
+assert.equal(C.syncCloudProfile(a,id,true,bridge).status,'uploaded');const first=raw;
+assert.equal(C.syncCloudProfile(b,id,true,bridge).status,'restored','new computer loads cloud');assert(P.loadPCProfile(b,id).game);
+assert.equal(C.syncCloudProfile(a,id,true,bridge).status,'current');
+const game=P.loadPCProfile(b,id).game;game.potions=7;assert(P.savePCProfile(b,id,game,S.newPCSocial(id),3));assert.equal(C.syncCloudProfile(b,id,false,bridge).status,'uploaded');
+assert.equal(C.syncCloudProfile(a,id,true,bridge).status,'restored','unchanged local follows other device');assert.equal(P.loadPCProfile(a,id).game.potions,7);
+const mutate=(s,n)=>{const p=P.loadPCProfile(s,id);p.game.potions=n;assert(P.savePCProfile(s,id,p.game,p.social,p.sequence+1));};
+mutate(a,9);mutate(b,8);assert.equal(C.syncCloudProfile(b,id,false,bridge).status,'uploaded');const before=a.getItem(key),remote=raw;
+assert.equal(C.syncCloudProfile(a,id,true,bridge).status,'conflict');assert.equal(a.getItem(key),before);assert.equal(raw,remote);
+offline=true;assert.equal(C.syncCloudProfile(a,id,false,bridge).status,'unavailable');assert.equal(a.getItem(key),before);offline=false;
+assert(C.uploadCloudProfile(a,id,bridge).ok);assert.equal(C.syncCloudProfile(a,id,false,bridge).status,'current','explicit upload resolves conflict');
+raw='broken';const count=writes;assert.equal(C.syncCloudProfile(a,id,true,bridge).status,'unavailable');assert.equal(writes,count);assert.equal(a.getItem(key),before);
+assert(Array.from(a.map.keys()).some(k=>k.includes('before-cloud')),'original local kept on restore');
+const oversized=make();oversized.setItem(key,JSON.stringify({...JSON.parse(first),padding:'x'.repeat(P.PC_CLOUD_MAX_BYTES)}));raw=first;const largeBefore=oversized.getItem(key);
+assert(P.loadPCProfile(oversized,id).game,'oversized local remains a valid playable save');assert.equal(C.syncCloudProfile(oversized,id,true,bridge).status,'unavailable','unexportable local is not a missing save');assert.equal(oversized.getItem(key),largeBefore);
+console.log('PC cloud auto: new machine restore, safe fast-forward, divergent conflict, explicit resolution, offline and corruption passed');

@@ -7,11 +7,16 @@ vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/PMModel.ts
  const attach=async()=>{await page.waitForFunction(()=>globalThis.__pm?.ready,null,{timeout:120000});await page.evaluate(async()=>{globalThis.cc=await System.import('cc');function walk(n){const found=n.components.find(c=>typeof c.loadRegionArt==='function');if(found)return found;for(const child of n.children){const found=walk(child);if(found)return found;}}globalThis.g=walk(cc.director.getScene());const original=g.encounterNameAttack;g.encounterNameAttack=function(parent,name,faces,...rest){if(parent.name==='enemy-attack-values')this.lastPreviewFaces=faces;return original.call(this,parent,name,faces,...rest);};});};
  const tap=async id=>{await page.waitForFunction(()=>!__pm.animating());const p=await page.evaluate(id=>__pm.controls()[id],id),k=page.viewportSize().width/390;assert(p,'missing '+id);await page.touchscreen.tap(p.x*k,p.y*k);await page.waitForTimeout(120);await page.waitForFunction(()=>!__pm.animating());};
  await page.goto(cfg.url+'?gyms-check=1');await attach();
- let base=M.fresh(42,['fox','bud','otter']);base.clearedMaps=[0,1,2,3,4,5,6,7,8];base.expedition=false;
+ let base=M.syncStamina(M.fresh(42,['fox','bud','otter']),Date.now());base.clearedMaps=[0,1,2,3,4,5,6,7,8];base.expedition=false;
  for(const gym of M.GYMS){
   await page.evaluate(s=>{g.state=s;g.screen='home';g.render();g.gymUI();},base);await tap('gym-'+gym.id);
-  const result=await page.evaluate(()=>({state:__pm.snapshot(),faces:g.lastPreviewFaces}));assert.equal(result.state.gymRun,gym.id);assert.equal(result.state.enemyMax,Math.round(M.enemyHealthForStage(1,gym.id)*1.5));
+  const result=await page.evaluate(()=>({state:__pm.snapshot(),faces:g.lastPreviewFaces}));assert.equal(result.state.gymRun,gym.id);assert.equal(result.state.enemyMax,Math.round(Math.round(M.enemyHealthForStage(1,gym.id)*1.2)*1.1));
   assert.deepEqual(result.faces,[...M.enemyAttackFaces(result.state)].map(v=>M.enemyAttackAmount(result.state,v)),'visible preview has boosted damage');
+ }
+ for(const step of [5,10]){
+  let s=M.enterGym(base,0);s.step=step-1;s.phase='reward';s=M.act(s,'take');assert(M.gymEnemyPool(0,step).includes(s.enemy));
+  await page.evaluate(async s=>{g.state=s;g.screen='game';await g.loadRegionArt(s.mapId);g.render();},s);await page.waitForFunction(()=>!g.artCache.pending);
+  const faces=await page.evaluate(()=>g.lastPreviewFaces);assert.deepEqual(faces,Array.from(M.enemyAttackFaces(s),v=>M.enemyAttackAmount(s,v)));await page.screenshot({path:`checks/gym-role-${step}.png`});
  }
  // Every newly reachable friend form has both packaged views and a drawable enemy sprite.
  for(const id of M.FRIEND_PET_IDS){
@@ -26,7 +31,7 @@ vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/PMModel.ts
  for(const width of [390,320]){
   await page.setViewportSize({width,height:width===390?844:568});let s=M.enterGym(base,4);s.enemy='railpede';s.enemyRarity='SSR';
   await page.evaluate(async s=>{g.state=s;g.screen='game';await g.loadRegionArt(s.mapId);g.render();await g.save();},s);await page.waitForFunction(()=>!g.artCache.pending);await tap('challenge');
-  const before=await page.evaluate(()=>__pm.snapshot());assert([...M.enemyAttackFaces(before)].includes(before.enemyAttack));
+  const before=await page.evaluate(()=>__pm.snapshot());assert([...M.enemyAttackFaces(before)].includes(before.enemyAttack));assert(M.restore(JSON.stringify(before)),'browser battle save is valid');
   await page.screenshot({path:`checks/gyms-battle-${width}.png`});await page.reload();await attach();const resumed=await page.evaluate(()=>__pm.snapshot());assert.equal(resumed.gymRun,before.gymRun);assert.equal(resumed.enemyAttack,before.enemyAttack);assert.equal(resumed.enemyHP,before.enemyHP);assert.equal(resumed.enemyMax,before.enemyMax);
  }
  assert.deepEqual(errors,[]);console.log('PASS nine gym entries / boosted visible preview / 54 friend forms with both views / 390 and 320 combat / reload preserves committed dice and HP.');

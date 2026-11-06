@@ -1,0 +1,101 @@
+{
+  "license": "SIL Open Font License 1.1",
+  "upstream": "https://github.com/google/fonts",
+  "modification": "Static weight 400 instances renamed Dicekin. UI punctuation and untranslated source glyphs from Noto Sans SC, Noto Sans, Noto Sans Symbols and Noto Sans Symbols 2 merged where missing.",
+  "fonts": [
+    {
+      "family": "DicekinSans",
+      "file": "DicekinSans.ttf",
+      "license": "notosans-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/notosans/NotoSans%5Bwdth%2Cwght%5D.ttf",
+      "sourceSha256": "bfb7bb691513f12e734dc346c03a03f784912432d7e3fa8e56efcf906fe86b3d",
+      "sha256": "b7fd27de2e9df622e7ffd27cdd57a89f15b618922646e67e8902f884bc631ea8"
+    },
+    {
+      "family": "DicekinSansSC",
+      "file": "DicekinSansSC.ttf",
+      "license": "notosanssc-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/notosanssc/NotoSansSC%5Bwght%5D.ttf",
+      "sourceSha256": "a3041811a78c361b1de50f953c805e0244951c21c5bd412f7232ef0d899af0da",
+      "sha256": "861371abdbaffc640b80d333793fa01f9374894e5edf8c5998d3dac4798cc70d"
+    },
+    {
+      "family": "DicekinSansTC",
+      "file": "DicekinSansTC.ttf",
+      "license": "notosanstc-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/notosanstc/NotoSansTC%5Bwght%5D.ttf",
+      "sourceSha256": "864727d210d54f2537bbe23b3a839436c3992af72de9322af5270897246bd44f",
+      "sha256": "ee92b657f595b2be8d6699b60802f09e0d9872fdbcd846bdb886793950ba4b03"
+    },
+    {
+      "family": "DicekinSansJP",
+      "file": "DicekinSansJP.ttf",
+      "license": "notosansjp-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/notosansjp/NotoSansJP%5Bwght%5D.ttf",
+      "sourceSha256": "c2f3b4d463500a2ddcd3849cded1fceeb9fd6d1c32e6cbecd568453ba50fc68f",
+      "sha256": "0afd60461dc0ce4301d31a07661c2f54f7c62543ee952eb492448997dae01e7e"
+    },
+    {
+      "family": "DicekinSansKR",
+      "file": "DicekinSansKR.ttf",
+      "license": "notosanskr-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/notosanskr/NotoSansKR%5Bwght%5D.ttf",
+      "sourceSha256": "194018e6b2b293a7964f037b25c0249ce1418bc9ab3c971060a03aa57861e252",
+      "sha256": "38b097d99ac4266b0732725c4af968b4340ec41c639bc0f916f2b93243d317c5"
+    },
+    {
+      "family": "DicekinSansThai",
+      "file": "DicekinSansThai.ttf",
+      "license": "notosansthai-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/notosansthai/NotoSansThai%5Bwdth%2Cwght%5D.ttf",
+      "sourceSha256": "5a1c559bb539583c8a1fd99d1c5b9491e5e14478c9cd2bd0970d5c3096cc9ef8",
+      "sha256": "218257f97395cdb0eee087f3157666884bd32d942d99ea8655e02730b1a5f40e"
+    },
+    {
+      "family": "DicekinSansDevanagari",
+      "file": "DicekinSansDevanagari.ttf",
+      "license": "notosansdevanagari-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/notosansdevanagari/NotoSansDevanagari%5Bwdth%2Cwght%5D.ttf",
+      "sourceSha256": "14ec4af41f27482216d1c2229f417ff9b1425e1babb014e57d1d40d03229853e",
+      "sha256": "d5e40efcdcc0c439ecb3fb06a190706bf843b5d721406ba096ec32607174063d"
+    },
+    {
+      "family": "DicekinSansBengali",
+      "file": "DicekinSansBengali.ttf",
+      "license": "notosansbengali-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/notosansbengali/NotoSansBengali%5Bwdth%2Cwght%5D.ttf",
+      "sourceSha256": "dcd42978094e584a849c84a51450eeac40c8826057d566ea6d4b9627a403a05a",
+      "sha256": "1e0d63947afab6f86e920fd1a5ec895d64881bd0fc44e2187159dcfe4dbbaf52"
+    },
+    {
+      "family": "DicekinSansTelugu",
+      "file": "DicekinSansTelugu.ttf",
+      "license": "notosanstelugu-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/notosanstelugu/NotoSansTelugu%5Bwdth%2Cwght%5D.ttf",
+      "sourceSha256": "e618af7bf999df192ed4f388eba2e563f2b5015034e9cbb317b5bd793bd7334d",
+      "sha256": "a4421b1ff7480533690ae262cd42729d433de504ab8b898ea416bd78171d86a0"
+    },
+    {
+      "family": "DicekinSansTamil",
+      "file": "DicekinSansTamil.ttf",
+      "license": "notosanstamil-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/notosanstamil/NotoSansTamil%5Bwdth%2Cwght%5D.ttf",
+      "sourceSha256": "aa3a9b321f4b0bb2c40203ffbde9af89713227866e0e13f76e5b9eeea727cf88",
+      "sha256": "b3f65fb3f779b2ee7bddf06b0ec663a27b4374b0817826448b01edbe7eccc47a"
+    },
+    {
+      "family": "DicekinSansArabic",
+      "file": "DicekinSansArabic.ttf",
+      "license": "notosansarabic-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/notosansarabic/NotoSansArabic%5Bwdth%2Cwght%5D.ttf",
+      "sourceSha256": "63111b5b2e074dd48cc67692e0a2726d86ee94c1c37fe8598257b7b4e87e869e",
+      "sha256": "31d0bda5998033f32e10569ea02f5ee87bc3cf92c9803c3b47459f99b96424fa"
+    }
+  ],
+  "supplementalLicenses": [
+    "notosans-OFL.txt",
+    "notosanssc-OFL.txt",
+    "notosanssymbols-OFL.txt",
+    "notosanssymbols2-OFL.txt"
+  ]
+}

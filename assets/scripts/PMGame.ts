@@ -1,5 +1,8 @@
+import { hasHatchAction, hasOpenPartySlot, battleLearningHint, suggestedTypePartner, hatchPartySlot, welcomeHatchToParty } from './PMPlayerGuidance';
+import { drawButtonSurface, drawPanelSurface, uiMotion } from './PMUIStyle';
+import { BATTLE_EVENTS } from './PMModel';
 import { _decorator, Component, Node, Canvas, Camera, UITransform, Graphics, Color, Label, LabelOutline, Sprite,
-  SpriteFrame, Texture2D, Rect, Size, EditBox, PageView, ScrollView, Layout, Mask, resources, Layers, view, ResolutionPolicy, EventTouch, tween, Tween, Vec3, UIOpacity, sys, game, Game, profiler } from 'cc';
+  SpriteFrame, Texture2D, Rect, Size, EditBox, PageView, ScrollView, Layout, Mask, resources, Layers, view, ResolutionPolicy, EventTouch, tween, Tween, Vec3, UIOpacity, sys, game, Game, director, Director, profiler } from 'cc';
 import { BATTLE_RECTS, PET_FEET } from './BattleArt';
 import { EVOLUTION_ART } from './EvolutionArt';
 import { REGION_ART } from './RegionArt';
@@ -10,8 +13,8 @@ import { battleAmbience } from './BattleAmbience';
 import { drawGyms } from './PMGymsUI';
 import { settleFriendGifts, FRIEND_GIFT_INTERVAL, FRIEND_PET_IDS, gymBonus } from './PMModel';
 
-import { TYPE_NAMES, typeMultiplier, matchupMultiplier, typedDamage, enemyAttackAmount, petCombat, isBreedingPet } from './PMModel';
-import { giantMultiplier, SECRET_RECIPES, petAttackFaces } from './PMModel';
+import { TYPE_NAMES, typeMultiplier, matchupMultiplier, typedDamage, enemyAttackAmount, petCombat, isBreedingPet, removePartySlot } from './PMModel';
+import { giantMultiplier, runAttackMultiplier, runHealthMultiplier, SECRET_RECIPES, petAttackFaces } from './PMModel';
 import { HERO_RECTS } from './HeroArt';
 import { TrustedClock } from './TrustedClock';
 import { PMAudio } from './PMAudio';
@@ -22,6 +25,7 @@ import { PMAppBattle } from './PMAppBattle';
 import { APP_BATTLE_IDS, APP_BATTLE_POSES, APP_BATTLE_ATLASES, appPoseKey, appPoseFeet } from './AppBattleArt';
 import { DurableCheckpoint } from './DurableCheckpoint';
 import { installRewardedAds } from './PMRewardedAds';
+import { PMTapServices, TapArchive } from './PMTapServices';
 import { tr, currentLocale, selectLanguage, languageChoice, LANGUAGES, LANGUAGE_KEY } from './PMLocale';
 import { setTimeProvider, gameNow, BUILD_TEST_MODE } from './PMModel';
 import { syncStamina, staminaRemaining, enterExpedition, retreatExpedition, grantAdStamina, STAMINA_MAX, EXPEDITION_COST } from './PMModel';
@@ -33,13 +37,17 @@ import { State, PetId, Action, Egg, PETS, PET_IDS, NEW_PET_IDS, fresh, act, hp, 
 import { ensureSocial, makeVisitCode, readVisitCode, receiveVisitor, visitAction, visitorPet, friendBonds, bondEligibleEggs, bondBlockReason, startBondIncubation, VISIT_ACTION_MS } from './PMModel';
 const { ccclass } = _decorator;
 const KEY='pm.creature-dice.v1';
-const C={ink:'#183852',muted:'#647f95',paper:'#f7fcff',blue:'#168cdd',orange:'#f99b28',green:'#38b98c',line:'#d7e8f2'};
+const C={ink:'#183852',muted:'#566e80',paper:'#f7fcff',blue:'#237fa6',orange:'#efa63b',green:'#38b98c',line:'#d7e8f2'};
 const color=(v:string,alpha=255)=>{const c=new Color();Color.fromHEX(c,v);c.a=alpha;return c;};
 @ccclass('PMGame')
 export class PMGame extends Component {
+  private tapServices=new PMTapServices();
+  private tapWorking=false;
+  private tapNote='';
   private audio!:PMAudio;
   private state!:State;private root!:Node;private cam!:Camera;private stage!:Node;
   private nativeApp=sys.isNative;
+  private uiRoute='';private uiEnterUntil=0;private uiSerial=0;
   private appPresentation=PMAppBattle.enabled();
   private appBattle:PMAppBattle|null=null;
   private sampleOriginal:State|null=null;
@@ -78,10 +86,16 @@ export class PMGame extends Component {
   private socialTab:'visit'|'share'|'bonds'|'album'|'friends'='visit';private visitCode='';private sharePetUid='';private socialNote='';private socialPage=0;
   private replyOwner='';private mailPhoto:MailMemory|null=null;private shareCardNode:Node|null=null;private mailPlaying=false;
   async start(){
+    this.tapServices.onCompliance=(allowed)=>{
+      if(allowed){game.resume();this.audio?.resume('compliance');if(this.ready&&this.screen==='login'){this.tapNote='实名认证通过';this.tapAccount(true);}}
+      else {void this.save();this.audio?.pause('compliance');game.pause();}
+    };
     let savedLanguage:string|null=null;try{savedLanguage=sys.localStorage.getItem(LANGUAGE_KEY);}catch{}
     selectLanguage(savedLanguage,sys.languageCode||sys.language||'en');
     installRewardedAds();
-    this.audio=new PMAudio(this.node);
+    this.audio=new PMAudio(this.node,()=>{
+      if(this.modal?.children.some(card=>!!card.getChildByName('audio-music')))this.homeSettings();
+    },!!(globalThis as any).tap);
     profiler.hideStats();view.setDesignResolutionSize(390,844,ResolutionPolicy.FIXED_WIDTH);
     this.root=new Node('PM UI');this.node.addChild(this.root);this.root.layer=Layers.Enum.UI_2D;
     this.root.addComponent(UITransform);
@@ -103,7 +117,8 @@ export class PMGame extends Component {
     if(!this.state.stamina)this.state=syncStamina(this.state,0);
     this.trustedClock.restore(this.state.trustedTime?.lastMs||0);
     setTimeProvider(()=>this.trustedClock.now()??NaN);
-    const initialTime=this.synchronizeTime();
+    // The cover needs local art, while timed benefits remain gated by requireTime().
+    void this.synchronizeTime();
     try{
       await loadShinyVisuals();
       await Promise.all(['login-cover-v2',this.loginLogoKey(),'login-button-v4'].map(key=>this.artCache.load(key)));
@@ -114,10 +129,11 @@ export class PMGame extends Component {
             .reduce((keys:string[],p)=>{const key=p.rarity==='normal'?p.id:formKey(p);return keys.concat(key+'-front',key+'-back');},[])]);
         if(this.state.expedition)await this.loadRegionArt(this.state.mapId||0);
       }
-      await initialTime;this.ready=true;this.visitCode=incomingPostcard()||sys.localStorage.getItem('pm.pending-postcard.v1')||'';if(readVisitCode(this.visitCode))sys.localStorage.setItem('pm.pending-postcard.v1',this.visitCode);this.render();this.save();
+      this.ready=true;this.visitCode=incomingPostcard()||sys.localStorage.getItem('pm.pending-postcard.v1')||'';if(readVisitCode(this.visitCode))sys.localStorage.setItem('pm.pending-postcard.v1',this.visitCode);this.render();this.save();
+      director.once(Director.EVENT_AFTER_DRAW,()=>this.tapServices.reportReady());
       game.on(Game.EVENT_HIDE,this.onHide,this);
       game.on(Game.EVENT_SHOW,this.onShow,this);
-      (globalThis as any).__pm={snapshot:()=>JSON.parse(JSON.stringify(this.state)),controls:()=>({...this.controls}),animating:()=>this.busy||this.pressPending||this.artCache.pending>0,artStats:()=>this.artCache.stats(),screen:()=>this.screen,timeReady:()=>this.trustedClock.now()!==null,version:'0.12.0',ready:true};
+      (globalThis as any).__pm={snapshot:()=>JSON.parse(JSON.stringify(this.state)),controls:()=>({...this.controls}),animating:()=>this.busy||this.pressPending||this.uiEntering()||this.artCache.pending>0,artStats:()=>this.artCache.stats(),screen:()=>this.screen,timeReady:()=>this.trustedClock.now()!==null,version:'0.12.0',ready:true};
     }catch(e){this.loading!.string=tr('资源加载失败，请刷新重试');console.error('PM asset loading',e);}
   }
   onDestroy(){this.homeMotion=null;this.appBattle?.dispose();this.artCache.dispose();this.audio?.dispose();this.durableCheckpoint.close();game.off(Game.EVENT_HIDE,this.onHide,this);game.off(Game.EVENT_SHOW,this.onShow,this);}
@@ -142,10 +158,11 @@ export class PMGame extends Component {
     this.button(c,'time-retry','重试',82,-56,145,48,async()=>{this.busy=true;try{if(await this.synchronizeTime())this.render();else this.timeNotice('暂时无法校时，请稍后重试');}finally{this.busy=false;}},'#519b81');
   }
   update(){
+    if(!this.tapServices.playAllowed&&this.screen!=='login')return;
     const mono=performance.now();this.homeMotionUpdate(mono);if(this.ready&&this.clockForeground){
       if(mono>=this.clockRetryAt)void this.synchronizeTime();
       if(mono>=this.clockSaveAt){this.clockSaveAt=mono+15000;this.save();}
-      if(this.clockUiRefresh&&!this.busy&&!this.pressPending){this.clockUiRefresh=false;this.render();}
+      if(this.clockUiRefresh&&!this.busy&&!this.pressPending&&!this.modal?.isValid){this.clockUiRefresh=false;this.render();}
     }
     const second=Math.floor(mono/1000);if(this.ready&&second!==this.hatchSecond)this.artCache.sweep();if(this.ready&&second!==this.hatchSecond&&this.screen==='home'&&this.clockForeground&&(!this.art[homeArtKey(homePeriod())]||homePeriod()!==this.homePeriod))void this.refreshHomeArt();if(this.ready&&second!==this.hatchSecond)this.refreshStaminaHUD();if(second!==this.hatchSecond){this.hatchSecond=second;if(this.breedClock?.isValid&&this.state.breeding){const now=gameNow(),left=Number.isFinite(now)?this.state.breeding.readyAt-now:Infinity;this.breedClock.string=tr(left>0?this.hatchTime(left):'宠物蛋已准备好');if(left<=0&&!this.pressPending){this.breedClock=null;this.breedingUI();}}if(this.screen==='home')this.refreshHomeBadges();for(const c of this.hatchClock){if(!c.label.isValid)continue;const slot=this.state.incubators?.[c.index];if(slot){const left=hatchRemaining(slot);c.label.string=tr(this.hatchTime(left));if(!left&&!c.ready&&!this.pressPending){this.hatchery();break;}}}}
     for(let i=this.availableGlows.length-1;i>=0;i--){const glow=this.availableGlows[i];if(!glow.isValid)this.availableGlows.splice(i,1);else {const encounterAction=this.state.phase==='encounter'&&(glow.parent?.name==='reroll'||glow.parent?.name==='challenge');glow.active=!this.busy&&(!this.pressPending||encounterAction);}}
@@ -174,7 +191,7 @@ export class PMGame extends Component {
     const n=new Node(name);n.layer=Layers.Enum.UI_2D;parent.addChild(n);n.setPosition(x,y);n.addComponent(UITransform).setContentSize(w,h);return n;
   }
   private panel(parent:Node,x:number,y:number,w:number,h:number,fill=C.paper,r=18,alpha=255){
-    const n=this.makeNode(parent,'panel',x,y,w,h),g=n.addComponent(Graphics);g.fillColor=color(fill,alpha);g.roundRect(-w/2,-h/2,w,h,r);g.fill();return n;
+    const n=this.makeNode(parent,'panel',x,y,w,h),g=n.addComponent(Graphics);drawPanelSurface(g,w,h,fill,r,alpha);return n;
   }
   private text(parent:Node,value:string,x:number,y:number,size=16,fill=C.ink,w=350,h=size+12){
     const n=this.makeNode(parent,value,x,y,w,h),l=n.addComponent(Label);l.string=tr(value);l.fontSize=size;
@@ -188,8 +205,8 @@ export class PMGame extends Component {
     l.cacheMode=Label.CacheMode.NONE;l.overflow=Label.Overflow.SHRINK;return l;
   }
   private button(parent:Node,id:string,value:string,x:number,y:number,w:number,h:number,callback:()=>void,fill=C.blue,enabled=true,size=17,inactiveFill='#c9d8e2'){
-    const n=this.panel(parent,x,y,w,h,enabled?fill:inactiveFill,14);n.name=id;
-    this.text(n,value,0,0,size,enabled?this.buttonInk(fill):'#566978',w-12,h-4);
+    const n=this.makeNode(parent,id,x,y,w,h);drawButtonSurface(n.addComponent(Graphics),w,h,enabled?fill:inactiveFill,enabled);
+    const caption=this.text(n,value,0,0,size,enabled?this.buttonInk(fill):'#566978',w-16,h-6);caption.isBold=enabled&&w>=90;
     const world=n.worldPosition,scale=n.worldScale;this.controls[id]={x:world.x,y:view.getVisibleSize().height-world.y,w:w*Math.abs(scale.x),h:h*Math.abs(scale.y)};
     this.buttonTouchArea(n,w,h,enabled);
     if(enabled){
@@ -199,26 +216,43 @@ export class PMGame extends Component {
       g.roundRect(-w/2+3,-h/2+3,w-6,h-6,12);g.stroke();
       const opacity=glow.addComponent(UIOpacity);opacity.opacity=45;
       glow.on(Node.EventType.NODE_DESTROYED,()=>Tween.stopAllByTarget(opacity));
-      tween(opacity).to(1.05,{opacity:180},{easing:'sineInOut'}).to(1.05,{opacity:45},{easing:'sineInOut'}).union().repeatForever().start();
-      const release=()=>{Tween.stopAllByTarget(n);tween(n).to(.12,{scale:new Vec3(1,1,1)},{easing:'backOut'}).start();};
-      n.on(Node.EventType.TOUCH_START,(e:EventTouch)=>{this.audio?.unlock();e.propagationStopped=true;if(this.busy||this.pressPending)return;
-        Tween.stopAllByTarget(n);tween(n).to(.055,{scale:new Vec3(.94,.94,1)}).start();});
+      // Idle controls are quiet; only intentional home/action cues animate.
+      opacity.opacity=28;
+      const motion=this.uiMotion();let resting:Vec3|null=null,pressed=false;
+      const release=()=>{pressed=false;opacity.opacity=28;if(!resting)return;Tween.stopAllByTarget(n);const target=resting.clone();
+        if(motion.release)tween(n).to(motion.release,{scale:target},{easing:'quadOut'}).call(()=>{resting=null;}).start();else{n.setScale(target);resting=null;}};
+      n.on(Node.EventType.TOUCH_START,(e:EventTouch)=>{this.audio?.unlock();e.propagationStopped=true;if(this.busy||this.pressPending||this.uiEntering())return;
+        resting=resting||n.scale.clone();pressed=true;Tween.stopAllByTarget(n);opacity.opacity=100;
+        if(motion.pressIn)tween(n).to(motion.pressIn,{scale:new Vec3(resting.x*motion.pressScale,resting.y*motion.pressScale,resting.z)},{easing:'quadOut'}).start();});
       n.on(Node.EventType.TOUCH_CANCEL,(e:EventTouch)=>{e.propagationStopped=true;release();});
       n.on(Node.EventType.TOUCH_END,(e:EventTouch)=>{e.propagationStopped=true;
-        if(this.busy||this.pressPending||performance.now()-this.lastTap<180){release();return;}
-        this.audio?.unlock();this.audio?.effect('click');
-        this.lastTap=performance.now();this.pressPending=true;Tween.stopAllByTarget(n);n.setScale(.94,.94,1);
-        tween(n).to(.075,{scale:new Vec3(1.035,1.035,1)}).to(.055,{scale:new Vec3(1,1,1)}).start();
-        this.scheduleOnce(()=>{this.pressPending=false;callback();},.14);
+        if(!pressed)return;pressed=false;
+        if(this.busy||this.pressPending||this.uiEntering()||performance.now()-this.lastTap<180){release();return;}
+        this.audio?.unlock();this.audio?.effect('click');this.lastTap=performance.now();this.pressPending=true;
+        Tween.stopAllByTarget(n);opacity.opacity=28;const target=(resting||n.scale).clone();
+        if(motion.release)tween(n).to(motion.release*.55,{scale:new Vec3(target.x*motion.overshoot,target.y*motion.overshoot,target.z)},{easing:'quadOut'}).to(motion.release*.45,{scale:target}).call(()=>{resting=null;}).start();else{n.setScale(target);resting=null;}
+        const serial=this.uiSerial;
+        this.scheduleOnce(()=>{this.pressPending=false;if(serial!==this.uiSerial||!n.isValid||!this.tapServices.playAllowed&&this.screen!=='login')return;callback();},motion.commit);
       });
     }
     return n;
   }
   private buttonInk(fill:string){
-    const c=color(fill),linear=(v:number)=>{v/=255;return v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4);};
-    const luminance=.2126*linear(c.r)+.7152*linear(c.g)+.0722*linear(c.b);
-    // Pale buttons use dark ink; saturated buttons retain white where it is clearer.
-    return (luminance+.05)/.086>1.05/(luminance+.05)?C.ink:'#ffffff';
+    const luminance=(hex:string)=>{const c=color(hex),linear=(v:number)=>{v/=255;return v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4);};return .2126*linear(c.r)+.7152*linear(c.g)+.0722*linear(c.b);};
+    const light=luminance(fill),dark='#0b1e28';return (light+.05)/(luminance(dark)+.05)>1.05/(light+.05)?dark:'#ffffff';
+  }
+  private uiMotion(){return uiMotion(this.nativeApp,!!(globalThis as any).matchMedia?.('(prefers-reduced-motion: reduce)').matches);}
+  private uiEntering(){return performance.now()<this.uiEnterUntil;}
+  private enterUI(n:Node,route:string){
+    if(this.uiRoute===route)return;this.uiRoute=route;
+    const motion=this.uiMotion();if(!motion.enter)return;
+    const serial=this.uiSerial,opacity=n.getComponent(UIOpacity)||n.addComponent(UIOpacity),target=n.position.clone();
+    opacity.opacity=0;this.uiEnterUntil=performance.now()+(motion.enter+.04)*1000;
+    // Defer displacement until controls have recorded their final hit positions.
+    this.scheduleOnce(()=>{if(!n.isValid||serial!==this.uiSerial)return;
+      tween(opacity).to(motion.enter,{opacity:255},{easing:'quadOut'}).start();
+      if(n!==this.root&&motion.travel){n.setPosition(target.x,target.y-motion.travel,target.z);tween(n).to(motion.enter,{position:target},{easing:'cubicOut'}).start();}
+    },0);
   }
   private buttonTouchArea(n:Node,w:number,h:number,enabled:boolean){
     const scale=n.worldScale,pixels=view.getScaleX()/view.getDevicePixelRatio();
@@ -340,7 +374,7 @@ export class PMGame extends Component {
     const [u,v]=this.petFeet(id,side),ui=n.getComponent(UITransform)!;
     ui.setAnchorPoint(u,.5);n.getChildByName('pet-cosmetic')?.setPosition((.5-u)*ui.width,0);n.setPosition(x,y+(v-.5)*ui.height);this.breathe(n,y);
   }
-  private clear(){this.homeMotion=null;this.appBattle?.dispose();this.appBattle=null;this.appActors.clear();this.cancelPartyDrag();this.partyDropNodes=[];this.partyDragHint=null;const stop=(n:Node)=>{Tween.stopAllByTarget(n);const opacity=n.getComponent(UIOpacity);if(opacity)Tween.stopAllByTarget(opacity);for(const child of n.children)stop(child);};for(const n of [...this.root.children]){stop(n);n.destroy();}this.root.removeAllChildren();this.controls={};this.modal=null;this.enemyNode=null;this.playerNode=null;this.diceNode=null;this.meters={};this.availableGlows=[];}
+  private clear(){this.uiSerial++;this.uiEnterUntil=0;const opacity=this.root.getComponent(UIOpacity);if(opacity){Tween.stopAllByTarget(opacity);opacity.opacity=255;}this.homeMotion=null;this.appBattle?.dispose();this.appBattle=null;this.appActors.clear();this.cancelPartyDrag();this.partyDropNodes=[];this.partyDragHint=null;const stop=(n:Node)=>{Tween.stopAllByTarget(n);const opacity=n.getComponent(UIOpacity);if(opacity)Tween.stopAllByTarget(opacity);for(const child of n.children)stop(child);};for(const n of [...this.root.children]){stop(n);n.destroy();}this.root.removeAllChildren();this.controls={};this.modal=null;this.enemyNode=null;this.playerNode=null;this.diceNode=null;this.meters={};this.availableGlows=[];}
   private render(){
     if(this.screen!=='game'||this.state.phase!=='battle')this.shinyEntranceKey='';
     const adventureAudio=this.screen==='game'||this.screen==='utility'&&this.utilityOrigin==='game';
@@ -351,11 +385,11 @@ export class PMGame extends Component {
     if(this.screen==='hero'){this.heroChoiceUI();return;}
     if(this.screen==='starter'){this.starterChoiceUI();return;}
     if(this.screen==='game'&&!hasActivePet(s))this.screen='home';
-    if(this.screen==='home'){this.homeUI();return;}
-    if(this.screen==='adventure'){this.adventureUI();return;}
-    if(this.screen==='partners'){this.partnersUI();return;}
+    if(this.screen==='home'){this.homeUI();this.enterUI(this.root,'home');return;}
+    if(this.screen==='adventure'){this.adventureUI();this.enterUI(this.root,'adventure');return;}
+    if(this.screen==='partners'){this.partnersUI();this.enterUI(this.root,'partners');return;}
     if(s.phase==='nest'||s.phase==='eggClaimed'){this.nestUI();return;}
-    const phase=s.phase;const panelHeight=phase==='battle'?246:phase==='team'?300:phase==='reward'||phase==='event'?350:phase==='encounter'?328:230;
+    const phase=s.phase;this.uiRoute='game:'+phase;const panelHeight=phase==='battle'?246:phase==='team'?300:phase==='reward'||phase==='event'?350:phase==='encounter'?328:230;
     const sceneHeight=H-panelHeight;
     const bg=this.image(this.root,this.regionKey('battle'),0,panelHeight/2,390,sceneHeight);bg.name='background';
     const os=this.artCache.size(this.regionKey('battle')),k=Math.max(390/os.width,sceneHeight/os.height);bg.getComponent(UITransform)!.setContentSize(os.width*k,os.height*k);
@@ -364,6 +398,7 @@ export class PMGame extends Component {
     // Navigation stays at the edge; combat data belongs to the creature in the scene.
     const title=this.text(this.root,mapFor(s).name+' '+s.step+'/'+mapStageCount(s),0,H/2-30,18,'#ffffff',280,36);
     title.isBold=true;const outline=title.node.addComponent(LabelOutline);outline.color=color('#254b4d');outline.width=2;
+    if(phase==='encounter'||phase==='battle')this.journeyMilestones(H/2-64);
     if(phase!=='won'&&phase!=='lost')this.retreatButton(H/2-30);
     const stageBottom=b+panelHeight;const stageTop=H/2-92;const area=stageTop-stageBottom;
     const center=stageBottom+area*.48;const size=Math.max(125,Math.min(245,area*.67));
@@ -422,8 +457,9 @@ export class PMGame extends Component {
       }
     }else if(phase==='event'){
       const e=s.battleEvent!;
-      if(e.kind==='egg'){const egg=s.eggs!.find(v=>v.id===e.eggId)!;this.eggArt(this.stage,egg,0,center,Math.min(170,size));}
-      else{const p=petEntry(s,e.uid!);this.enemyNode=this.petImage(this.stage,p,0,center,size);this.breathe(this.enemyNode);}
+      if(BATTLE_EVENTS[e.kind].group==='egg'){const egg=s.eggs!.find(v=>v.id===e.eggId)!;this.eggArt(this.stage,egg,0,center,Math.min(170,size));}
+      else if(BATTLE_EVENTS[e.kind].group==='supply'){this.image(this.stage,e.supply==='boost'?'power-potion':'heal-potion',0,center,Math.min(155,size),Math.min(155,size));}
+      else{const p=e.uid?petEntry(s,e.uid):s.active;this.enemyNode=this.petImage(this.stage,p,0,center,size);this.breathe(this.enemyNode);}
     }else if(phase==='reward'){
       this.shadow(0,center-size*.42,150);this.enemyNode=this.petImage(this.stage,s.active,0,center,size);this.breathe(this.enemyNode);
     }else{
@@ -442,8 +478,14 @@ export class PMGame extends Component {
     if(phase==='team')this.teamUI(sheet,panelHeight);
     if(phase==='won'||phase==='lost'){
       this.text(sheet,mapFor(s).name+'  ·  '+(phase==='won'?mapStageCount(s):Math.max(0,s.step-1))+' / '+mapStageCount(s),0,65,22,C.ink,350,36).isBold=true;
-      this.text(sheet,s.gymRun!==undefined?(phase==='won'?'获得道馆徽章':'挑战结束'):(phase==='won'?'通关已记录 · 获得的宠物蛋已保留':'本次探险结束 · 已获得的宠物蛋保留'),0,22,14,C.muted,350,32);
-      this.button(sheet,'result-home','返回营地',0,-49,340,58,()=>this.goHome(),'#519b81',true,22);
+      const recoveryHint=phase==='lost'&&s.gymRun===undefined;
+      this.text(sheet,s.gymRun!==undefined?(phase==='won'?'获得道馆徽章':'挑战结束'):(phase==='won'?'通关已记录 · 获得的宠物蛋已保留':'已获得的宠物蛋保留'),0,recoveryHint?34:22,14,C.muted,350,recoveryHint?24:32);
+      if(recoveryHint)this.text(sheet,'试试防御和属性克制',0,7,14,'#335b68',350,24);
+      const hatch=hasHatchAction(s,gameNow()),care=hatch||phase==='lost'||hasOpenPartySlot(s);
+      if(care){
+        this.button(sheet,'result-care',hatch?'孵化屋':'伙伴',-87,-49,166,58,()=>{this.goHome();if(hatch)this.hatchery();else this.collection(0);},'#519b81',true,20);
+        this.button(sheet,'result-home','返回营地',87,-49,166,58,()=>this.goHome(),'#e3ece8',true,18);
+      }else this.button(sheet,'result-home','返回营地',0,-49,340,58,()=>this.goHome(),'#519b81',true,22);
     }
     if(this.saveError)this.text(this.root,'保存失败，请勿关闭页面',0,b+12,14,'#c44141',350,24);
     this.fx=this.makeNode(this.root,'battle-effects',0,0,390,H);
@@ -452,6 +494,11 @@ export class PMGame extends Component {
     if(phase==='reward'||phase==='won'){const n=this.enemyNode!;const pos=n.position.clone();tween(n).by(.18,{position:new Vec3(0,15,0)},{easing:'quadOut'}).to(.2,{position:pos},{easing:'quadIn'}).start();}
   }
   private startFromCover(){
+    if(this.tapServices.available&&!this.tapServices.connected){this.tapAccount(true);return;}
+    this.continueFromCover();
+  }
+  private continueFromCover(){
+    if(!this.tapServices.playAllowed){this.tapAccount(true);return;}
     const step=this.state.journey?.stage;
     // Resume the committed expedition snapshot without entering again, charging stamina or rolling dice.
     this.screen=step==='hero'?'hero':step==='starter'?'starter':this.state.expedition?'game':'home';
@@ -479,7 +526,7 @@ export class PMGame extends Component {
     const glowNode=button.getChildByName('available-glow')!,glow=glowNode.getComponent(Graphics)!;glowNode.setSiblingIndex(button.children.length-1);
     glow.clear();glow.strokeColor=color('#fff7cb');glow.lineWidth=1.2;glow.roundRect(-101.6,-26.4,203.2,52.8,26.4);glow.stroke();
     this.fx=this.makeNode(this.root,'login-effects',0,0,390,H);
-    if(this.appPresentation)this.button(this.root,'app-battle-sample','战斗样板',0,-H*.2-72,174,40,()=>void this.startBattleSample(),'#286d7b',true,17);
+    if(this.appPresentation&&!this.tapServices.requiresCompliance)this.button(this.root,'app-battle-sample','战斗样板',0,-H*.2-72,174,40,()=>void this.startBattleSample(),'#286d7b',true,17);
   }
   private choiceHeader(title:string,step:string){
     const top=this.h/2;this.panel(this.root,0,0,390,this.h,'#eef4f1',0);
@@ -666,7 +713,7 @@ export class PMGame extends Component {
   }
   private playerHUD(p:Node,top:number,preview=false,s=this.state){
     this.petImage(p,s.active,preview?-142:-150,top-13,52);
-    if(preview)this.encounterNameAttack(p,petName(s.active),petAttackFaces(s.active).map(v=>typedDamage(v*giantMultiplier(s,s.active.uid)*gymBonus(s,s.active.id),matchupMultiplier(s.active.id,s.enemy))),top,PETS[s.active.id].type,matchupMultiplier(s.active.id,s.enemy));
+    if(preview)this.encounterNameAttack(p,petName(s.active),petAttackFaces(s.active).map(v=>typedDamage(v*runAttackMultiplier(s,s.active.uid)*gymBonus(s,s.active.id),matchupMultiplier(s.active.id,s.enemy))),top,PETS[s.active.id].type,matchupMultiplier(s.active.id,s.enemy));
     else {this.typeIcon(p,PETS[s.active.id].type,-109,top,20);this.text(p,petName(s.active),-42,top,17,C.ink,112);}
     this.bar(p,30,top-25,272,s.hpRatio,hp(s)+' / '+maxHP(s),'player');
   }
@@ -678,7 +725,7 @@ export class PMGame extends Component {
     const healingFaces=this.panel(p,-13,82,156,26,'#e5f5ed',8);this.text(healingFaces,'+',-61,0,20,'#278665',25,24);
     this.text(healingFaces,s.healFaces.join(' · '),15,0,16,'#278665',120,24);
     const powerStock=this.panel(p,133,82,78,26,'#fcebe7',8);this.image(powerStock,'power-potion',-22,0,28,28);this.text(powerStock,'× '+s.boosts,8,0,17,'#be5148',42,24);
-    const choices=partyChoices(s);
+    const choices=partyChoices(s),suggestion=suggestedTypePartner(s);
     choices.forEach((id,i)=>{
       const selected=s.active.uid===id,owned=!!id&&s.pets!.some(p=>p.uid===id),breeding=owned&&!!s.breeding&&[s.breeding.mother,s.breeding.father].includes(id),tint=selected?'#fff2cf':owned&&!breeding?'#fbfeff':'#e7edf0',x=(i-1)*118;
       const info=owned?petCombat(s,id):null,dead=info?.hp===0;
@@ -691,6 +738,7 @@ export class PMGame extends Component {
       this.panel(card,0,-36,96,25,selected?'#f8d993':owned?'#eaf3f7':'#d4e0e6',8);
       this.text(card,owned?petName(petEntry(s,id)):'空位',0,-36,14,owned?C.ink:C.muted,94,23).isBold=selected;
       if(selected){const mark=this.panel(card,39,40,24,24,'#43a986',12);this.text(mark,'✓',0,0,17,'#ffffff',24,24);}
+      if(id===suggestion){const hint=this.panel(card,39,selected?12:40,24,24,'#357a65',12);hint.name='type-suggestion';this.text(hint,'★',0,0,16,'#fff3ba',22,22);}
       if(owned&&!breeding&&!dead)this.matchupBadge(card,matchupMultiplier(petEntry(s,id).id,s.enemy),-21,40,60);
       if(breeding){const badge=this.panel(card,-6,40,80,19,'#947d90',7);this.text(badge,gameNow()>=s.breeding!.readyAt?'待领蛋':'交配中',0,0,11,'#ffffff',76,19);}
       if(!owned){const lock=this.makeNode(card,'locked',39,39,20,23),g=lock.addComponent(Graphics);g.strokeColor=color(C.muted);g.fillColor=color(C.muted);g.lineWidth=2;g.roundRect(-5,0,10,11,5);g.stroke();g.roundRect(-8,-8,16,13,3);g.fill();}
@@ -711,14 +759,27 @@ export class PMGame extends Component {
     const arrows=this.makeNode(challenge,'forward',76,0,30,30).addComponent(Graphics);arrows.lineWidth=3;arrows.strokeColor=color('#fff6da');
     for(const dx of [0,13]){arrows.moveTo(dx-6,-9);arrows.lineTo(dx+2,0);arrows.lineTo(dx-6,9);arrows.stroke();}
   }
+  private journeyMilestones(y:number){
+    const s=this.state,total=mapStageCount(s),n=this.makeNode(this.root,'journey-milestones',0,y,220,24),g=n.addComponent(Graphics);
+    g.lineWidth=2;g.strokeColor=color('#234c51',170);g.moveTo(-99,0);g.lineTo(99,0);g.stroke();
+    for(let i=1;i<=total;i++){
+      const x=(i-(total+1)/2)*22,done=i<s.step,current=i===s.step;
+      const dot=this.panel(n,x,0,current?18:14,current?18:14,done?'#519d83':current?'#fff2bd':'#e2e9df',9);dot.name='milestone-'+i;
+      if(i===total)this.text(dot,'★',0,0,13,done?'#ffffff':'#976c24',18,20);
+      else if(i===5&&s.gymRun===undefined){const egg=dot.addComponent(Graphics);egg.fillColor=color(done?'#ffffff':'#899b60');egg.ellipse(0,0,3.8,5);egg.fill();}
+      else if(done)this.text(dot,'✓',0,0,10,'#ffffff',14,16);
+      else if(current)this.text(dot,''+i,0,0,11,'#694c26',18,18).isBold=true;
+    }
+  }
   private battleUI(p:Node,height:number,s=this.state,command:(a:Action)=>void=a=>void this.command(a)){
     this.playerHUD(p,104,false,s);
     this.text(p,'第 '+s.turn+' 回合',131,104,12,C.muted,85);
-    this.text(p,skillStatus(s)+(heroHealBonus(s)?' · 首次治疗 +3':''),0,63,11,s.active.rarity==='SSR'?'#b78022':s.active.rarity==='SR'?'#8b61bb':C.muted,342,20);
+    const hint=battleLearningHint(s);
+    const status=this.text(p,hint||skillStatus(s)+(heroHealBonus(s)?' · 首次治疗 +3':''),0,hint?59:63,hint?14:11,hint?'#335b68':s.active.rarity==='SSR'?'#b78022':s.active.rarity==='SR'?'#8b61bb':C.muted,342,hint?20:24);status.node.name=hint?'battle-learning-hint':'battle-skill-status';
     const canHeal=s.potions>0&&!s.usedHeal&&s.hpRatio<1,canBoost=s.boosts>0&&!s.doubled;
     const potion=(id:'heal'|'boost',x:number,key:string,stock:number,base:number,multiplier:number,enabled:boolean,tint:string)=>{
       const disabled=!enabled,used=id==='heal'?s.usedHeal:s.doubled,ink=disabled?'#6a7d8b':'#ffffff';
-      const n=this.button(p,id,'',x,18,166,72,()=>command(id),tint,enabled,17,'#c9d8e2');
+      const n=this.button(p,id,'',x,hint?9:18,166,72,()=>command(id),tint,enabled,17,'#c9d8e2');
       const icon=this.image(n,key,-55,1,53,53);icon.getComponent(Sprite)!.grayscale=disabled;
       const count=this.panel(n,-38,-20,24,22,disabled?'#a9bac5':'#fff6df',10);
       this.text(count,''+stock,0,0,14,disabled?'#5a7180':C.ink,22,20);
@@ -729,10 +790,10 @@ export class PMGame extends Component {
     };
     potion('heal',-89,'heal-potion',s.potions,s.heal,s.healMultiplier,canHeal,'#2b9b66');
     potion('boost',89,'power-potion',s.boosts,s.attack,s.boostMultiplier,canBoost,'#d95557');
-    const guard=this.button(p,'guard','',-89,-66,166,72,()=>s.doubled?this.confirmGuard(s,command):command('guard'),C.blue);
+    const guard=this.button(p,'guard','',-89,hint?-75:-66,166,72,()=>s.doubled?this.confirmGuard(s,command):command('guard'),C.blue);
     this.image(guard,'guard-shield',-45,0,58,58);
     this.text(guard,'99%',31,0,30,'#ffffff',82,44);
-    const attack=this.button(p,'attack','',89,-66,166,72,()=>command('attack'),C.orange);
+    const attack=this.button(p,'attack','',89,hint?-75:-66,166,72,()=>command('attack'),C.orange);
     if(s.goldDie){const halo=this.panel(attack,-44,4,58,58,'#fff3a1',16);halo.name='gold-die-halo';this.text(attack,'★',-71,27,17,'#fffadc',22,22);const op=halo.addComponent(UIOpacity);tween(op).repeatForever(tween().to(.6,{opacity:110}).to(.6,{opacity:255})).start();}
     this.attackDie(attack,-44,5,45);
     if(s.goldDie){const badge=this.panel(attack,28,32,92,20,'#fff5cf',8);this.text(badge,s.goldDie==='strike'?'⚔ ×1.5':s.goldDie==='heal'?'♥ +15%':'◆ +6',0,0,12,'#985e13',88,20);}
@@ -764,6 +825,7 @@ export class PMGame extends Component {
     }
   }
   private async startBattleSample(){
+    if(!this.tapServices.playAllowed)return;
     if(this.busy)return;this.busy=true;
     try{
       await this.loadRegionArt(0);
@@ -823,7 +885,7 @@ export class PMGame extends Component {
         team.forEach((uid,i)=>{
           const stats=petCombat(s,uid),x=(i-(team.length-1)/2)*104;
           const current=r.kind==='hp'?stats.max:r.kind==='attackMin'?Math.min(...petAttackFaces(stats.pet)):Math.max(...stats.pet.faces);
-          const next=r.kind==='hp'?Math.round((petBaseHP(stats.pet)+Math.min(450,stats.bonus+r.values[0]))*giantMultiplier(s,uid)):Math.min(100,current+r.values[0]);
+          const next=r.kind==='hp'?Math.round((petBaseHP(stats.pet)+Math.min(450,stats.bonus+r.values[0]))*runHealthMultiplier(s,uid)*gymBonus(s,stats.pet.id)):Math.min(100,current+r.values[0]);
           this.petImage(card,stats.pet,x,0,39);
           this.text(card,current+' → '+next,x,-34,17,tint,100,26).isBold=true;
         });
@@ -842,26 +904,31 @@ export class PMGame extends Component {
     const edge=caption.node.addComponent(LabelOutline);edge.color=color('#a97424');edge.width=1.4;
   }
   private battleEventUI(p:Node){
-    const s=this.state,e=s.battleEvent!,tint=e.kind==='egg'?'#ca8b2b':e.kind==='learn'?'#7662bd':e.kind==='giant'?'#d66a45':'#329574';
+    const s=this.state,e=s.battleEvent!,event=BATTLE_EVENTS[e.kind],group=event.group;
+    const tint=group==='egg'?'#ca8b2b':group==='learn'?'#7662bd':group==='buff'?'#d66a45':group==='supply'?'#477fa9':'#329574';
     this.text(p,'奇遇',0,142,30,tint,320,44).isBold=true;
-    const titles={revive:'伙伴复活',heal:'恢复满生命',giant:'巨化',learn:'招式学习器',egg:'获得精英蛋'};
-    this.text(p,titles[e.kind],0,99,21,C.ink,330,32).isBold=true;
-    const card=this.panel(p,0,8,338,130,'#ffffff',17);
-    if(e.uid)this.text(card,petName(petEntry(s,e.uid)),0,43,18,tint,310,28).isBold=true;
-    if(e.kind==='revive'||e.kind==='heal'){
-      const c=petCombat(s,e.uid!);this.heartIcon(card,-57,-10,34,tint);this.text(card,c.hp+' / '+c.max,25,-10,28,tint,200,42).isBold=true;
-    }else if(e.kind==='giant'){
-      this.text(card,'体型／生命上限／攻击 +50%',0,2,17,tint,310,42).isBold=true;
-      this.text(card,'接下来2场 · 本关内有效',0,-41,14,C.muted,310,28);
-    }else if(e.kind==='learn'){
-      this.text(card,SKILLS[e.skill!][0],0,5,18,tint,310,30).isBold=true;
-      this.text(card,SKILLS[e.skill!][1],0,-37,14,C.muted,310,46);
-    }else{
+    const title=this.text(p,event.title,0,99,21,C.ink,330,32);title.node.name='event-title';title.isBold=true;
+    const card=this.panel(p,0,0,338,150,'#ffffff',17);card.name='event-detail';
+    if(e.uid)this.text(card,petName(petEntry(s,e.uid)),0,53,18,tint,310,26).isBold=true;
+    if(group==='heal'||group==='revive'){
+      this.heartIcon(card,-57,e.uid?5:22,34,tint);
+      const c=e.uid?petCombat(s,e.uid):null;this.text(card,c?c.hp+' / '+c.max:'+25%',25,e.uid?5:22,28,tint,200,42).isBold=true;
+      this.text(card,event.description,0,-42,13,C.muted,310,44);
+    }else if(group==='buff'){
+      this.text(card,event.description,0,-1,19,tint,310,64).isBold=true;
+    }else if(group==='learn'){
+      this.text(card,SKILLS[e.skill!][0],0,20,18,tint,310,28).isBold=true;
+      const detail=this.text(card,SKILLS[e.skill!][1],0,-32,14,C.muted,310,66);detail.node.name='event-skill-description';
+    }else if(group==='supply'){
+      const heal=e.supply==='potion';this.actionIcon(card,heal?'heal':'boost',-44,21,52,heal?'#329574':'#cc6257');
+      this.text(card,'+1',42,21,30,tint,120,44).isBold=true;
+      this.text(card,heal?'生命药水 +1':'力量药水 +1',0,-35,17,C.muted,310,32);
+    }else if(group==='egg'){
       const egg=s.eggs!.find(v=>v.id===e.eggId)!;this.text(card,this.eggName(egg),0,20,26,this.eggTint(egg),310,42).isBold=true;
       this.text(card,'已放入蛋袋',0,-24,17,C.muted,310,30);
     }
-    if(e.kind==='learn')this.text(p,'本关内有效',0,-77,14,C.muted,310,28);
-    this.button(p,'eventContinue','继续冒险  ›',0,-123,338,56,()=>this.command('eventContinue'),tint,true,22);
+    if(group==='learn'||group==='buff'||e.kind==='reviveHalf')this.text(p,group==='learn'?'本关内有效':'接下来2场 · 本关内有效',0,-90,13,C.muted,330,22);
+    this.button(p,'eventContinue','继续冒险  ›',0,-134,338,56,()=>this.command('eventContinue'),tint,true,22);
   }
   private recruitUI(p:Node,height:number){
     this.text(p,'它愿意成为你的伙伴',0,82,19);this.text(p,'邀请必定成功 · 不消耗道具',0,46,14,C.muted);
@@ -990,6 +1057,7 @@ export class PMGame extends Component {
     }else this.busy=false;
   }
   private async command(a:Action){
+    if(!this.tapServices.playAllowed)return;
     if(this.sampleOriginal&&a==='reroll'){this.sampleEnemy++;this.state.enemy=(['bud','otter','fox'] as PetId[])[this.sampleEnemy%3];this.state.enemyHP=this.state.enemyMax=32;this.render();return;}
     if(this.busy)return;const old=this.state,next=act(old,a);if(next===old)return;
     // Commit the entire action before animation; a killed process resumes after this action, never halfway through it.
@@ -1030,7 +1098,7 @@ export class PMGame extends Component {
     if(this.modal){this.modal.destroy();this.modal=null;}
     const layer=this.panel(this.root,0,0,390,this.h,'#183852',0,170);this.modal=layer;
     layer.on(Node.EventType.TOUCH_END,(e:EventTouch)=>{e.propagationStopped=true;});
-    const card=this.panel(layer,0,0,356,h);this.text(card,title,0,h/2-36,21);
+    const card=this.panel(layer,0,0,356,h,C.paper,24);card.name='dialog-surface';this.text(card,title,0,h/2-36,21).isBold=true;this.enterUI(card,'dialog:'+title);
     return card;
   }
   private fullPage(title:string,subtitle:string,draw:()=>void,back:()=>void=()=>this.exitUtility()){
@@ -1038,7 +1106,7 @@ export class PMGame extends Component {
     this.screen='utility';this.utilityDraw=draw;this.clear();this.layout();this.hatchClock=[];this.breedClock=null;
     this.panel(this.root,0,0,390,this.h,'#edf4f5',0);this.sectionHeader(title,subtitle,back);
     const c=this.makeNode(this.root,'page-content',0,-44,390,this.h-88);
-    this.fx=this.makeNode(this.root,'page-effects',0,0,390,this.h);return c;
+    this.fx=this.makeNode(this.root,'page-effects',0,0,390,this.h);this.enterUI(c,'utility:'+title);return c;
   }
   private exitUtility(){this.screen=this.utilityOrigin;this.utilityDraw=null;this.render();}
   private pageBounds(c:Node){const h=c.getComponent(UITransform)!.height;return {top:h/2,bottom:-h/2,height:h};}
@@ -1211,7 +1279,9 @@ export class PMGame extends Component {
     this.button(foot,'hatch-share','✉',151,73,38,34,()=>{this.sharePetUid=p.uid!;this.mailPhoto=null;this.replyOwner='';this.socialUI('share');},'#e7ddeb',true,22);
     this.text(foot,'HP '+petBaseHP(p)+'    ⚔ '+petAttackFaces(p).join(' / '),0,35,16,C.ink,350,28);
     this.button(foot,'hatch-skills',tr('技能')+' ×'+petSkills(p).length+' ›',0,-5,350,38,()=>this.scrollSkillDetails(petName(p),petSkills(p),()=>this.hatchReveal()),'#e4eef1',true,17);
-    this.button(foot,'hatch-ack','收下伙伴',0,-61,350,48,ack,'#dba441',true,20);
+    const join=hatchPartySlot(this.state)>=0;
+    this.button(foot,'hatch-ack','收下伙伴',join?-89:0,-61,join?172:350,48,ack,join?'#e4eef1':'#dba441',true,join?17:20);
+    if(join)this.button(foot,'hatch-join','加入队伍',89,-61,172,48,()=>{this.state=welcomeHatchToParty(this.state);this.save();this.collection(0);},'#519b81',true,17);
   }
   private qualityDetail(key:string,rarity:EggRarity,page:number){
     const p=petEntry(this.state,key);this.scrollSkillDetails(petName(p)+' '+sexSymbol(p.sex),petSkills(p),()=>{this.partnerPage=page;this.screen='partners';this.render();});
@@ -1574,9 +1644,9 @@ export class PMGame extends Component {
     return n;
   }
   private sectionHeader(title:string,subtitle:string,back:()=>void=()=>this.goHome()){const top=this.h/2;
-    this.panel(this.root,0,top-44,390,88,'#e85d57',0);
+    const head=this.panel(this.root,0,top-44,390,88,'#c95750',0),edge=head.getComponent(Graphics)!;edge.strokeColor=color('#f5d7aa',190);edge.lineWidth=2;edge.moveTo(-195,-43);edge.lineTo(195,-43);edge.stroke();
     this.button(this.root,'nav-home','‹',-163,top-42,44,44,back,'#c94a49',true,30);
-    this.text(this.root,title,0,top-32,23,'#ffffff',270,32).isBold=true;
+    this.text(this.root,title,0,top-(subtitle?32:43),23,'#ffffff',270,32).isBold=true;
     this.text(this.root,subtitle,0,top-61,12,'#ffe9d7',280,23);
   }
   private homeUI(){
@@ -1606,6 +1676,7 @@ export class PMGame extends Component {
     const social=item('home-social','来信',72,'#e7eef2',()=>this.socialUI()),mailIcon=this.menuIcon(social,'mail',0,12,32,'#668ca8');
     const dex=item('home-dex','图鉴',144,'#f4eadd',()=>this.pokedexUI()),dexIcon=this.menuIcon(dex,'dex',0,12,32,'#b88856');
     const badge=(parent:Node,name:string)=>{const dot=this.panel(parent,24,27,20,20,'#d95e4b',10);dot.name=name;this.text(dot,'!',0,0,14,'#ffffff',20,20).isBold=true;return dot;};
+    const partyBadge=badge(partners,'home-party-badge');partyBadge.active=hasOpenPartySlot(s);
     this.homeHatchBadge=badge(nursery,'home-hatch-badge');this.homeBreedBadge=badge(breed,'home-breed-badge');this.refreshHomeBadges();
     this.startHomeMotion(explore,[pawIcon,eggIcon,breedIcon,mailIcon,dexIcon]);
     this.fx=this.makeNode(this.root,'home-effects',0,0,390,H);
@@ -1629,7 +1700,7 @@ export class PMGame extends Component {
     for(let i=0;i<m.badges.length;i++){const badge=m.badges[i];if(!badge.active)continue;const phase=(elapsed+i*650)%4600,bounce=phase<700?Math.abs(Math.sin(phase/700*Math.PI*2))*(1-phase/700):0;badge.setPosition(24,27+3*bounce,0);badge.setScale(1+.09*bounce,1+.09*bounce,1);}
   }
   private refreshHomeBadges(){
-    if(this.homeHatchBadge?.isValid)this.homeHatchBadge.active=!!this.state.pendingHatch||(this.state.incubators||[]).some(slot=>!!slot&&hatchRemaining(slot)===0);
+    if(this.homeHatchBadge?.isValid)this.homeHatchBadge.active=hasHatchAction(this.state,gameNow());
     if(this.homeBreedBadge?.isValid)this.homeBreedBadge.active=!!this.state.breeding&&gameNow()>=this.state.breeding.readyAt;
   }
   private gymUI(){drawGyms(this);}
@@ -1671,11 +1742,62 @@ export class PMGame extends Component {
     catch{this.staminaOffer('广告暂不可用，请稍后再试');}
     finally{this.adPending=false;this.busy=false;this.audio.resume('ad');}
   }
-  private homeSettings(){const c=this.overlay('营地设置',292);
+  private tapAccount(fromCover=false){
+    const c=this.overlay('TapTap',380),close=()=>fromCover?this.render():this.homeSettings();
+    this.button(c,'tap-close','×',143,155,38,38,close,'#e4eef1',!this.tapWorking,27);
+    this.text(c,this.tapServices.connected?'TapTap 已连接':'登录 TapTap',0,103,22,C.ink,300,36);
+    this.text(c,this.tapNote||'本地进度保留，可手动上传或恢复云存档',0,54,14,C.muted,300,58);
+    const run=async(action:()=>Promise<void>)=>{
+      if(this.tapWorking)return;this.tapWorking=true;this.tapNote='连接中…';this.tapAccount(fromCover);
+      try{await action();}catch{this.tapNote='连接失败，请检查网络后重试';}
+      finally{this.tapWorking=false;this.tapAccount(fromCover);}
+    };
+    if(!this.tapServices.connected)this.button(c,'tap-login','TapTap 登录',0,-9,300,48,()=>void run(async()=>{await this.tapServices.login();this.tapNote='已连接 TapTap';}),'#286f94',!this.tapWorking);
+    else{
+      this.button(c,'tap-upload','上传本地进度',-78,-9,145,48,()=>void run(async()=>{
+        if(!await this.save())throw new Error('Local save failed');
+        const archives=await this.tapServices.list();
+        this.tapWorking=false;this.tapConfirm('上传将替换此账号的云端进度',async()=>{
+          if(!await this.save())throw new Error('Local save failed');
+          await this.tapServices.upload(sys.localStorage.getItem(KEY)!,this.latestArchive(archives));this.tapNote='上传成功';
+        },fromCover);
+      }),'#286f94',!this.tapWorking);
+      this.button(c,'tap-download','恢复云端进度',78,-9,145,48,()=>void run(async()=>{
+        const archive=this.latestArchive(await this.tapServices.list());
+        if(!archive){this.tapNote='此账号还没有云存档';return;}
+        const raw=await this.tapServices.download(archive),next=restore(raw);if(!next)throw new Error('Invalid save');
+        this.tapWorking=false;this.tapConfirm('恢复将替换本机进度，本机旧进度会保留备份',async()=>{
+          if(!await this.save())throw new Error('Local save failed');
+          sys.localStorage.setItem(KEY+'.before-cloud',JSON.stringify(this.state));
+          const before=this.state;
+          this.state=prepareJourney(next);this.checkpointSequence=Math.max(this.checkpointSequence,Number((next as any).checkpointSequence)||0);
+          this.trustedClock.restore(this.state.trustedTime?.lastMs||0);
+          if(!await this.save()){this.state=before;await this.save();throw new Error('Local save failed');}
+          this.tapNote='恢复成功';
+        },fromCover);
+      }),'#519b81',!this.tapWorking);
+    }
+    const enterAllowed=!fromCover||this.tapServices.playAllowed;
+    this.button(c,'tap-continue',fromCover?(enterAllowed?'继续游戏':'请先完成实名认证'):'返回',0,-85,300,48,()=>{if(fromCover)this.continueFromCover();else close();},'#519b81',!this.tapWorking&&enterAllowed);
+  }
+  private latestArchive(archives:TapArchive[]){return archives.slice().sort((a,b)=>(b.modifiedTime||0)-(a.modifiedTime||0))[0];}
+  private tapConfirm(message:string,action:()=>Promise<void>,fromCover:boolean){
+    // Defer until the preceding async operation has released its busy state and modal.
+    this.scheduleOnce(()=>{
+      const c=this.overlay('确认云存档',260);this.text(c,message,0,27,16,C.ink,300,80);
+      this.button(c,'tap-confirm-cancel','取消',-79,-65,145,48,()=>this.tapAccount(fromCover),'#e4eef1');
+      this.button(c,'tap-confirm','确认',79,-65,145,48,()=>{
+        if(this.tapWorking)return;this.tapWorking=true;this.tapNote='处理中…';this.tapAccount(fromCover);
+        void (async()=>{try{await action();}catch{this.tapNote='操作失败，云端结果请重新查询';}finally{this.tapWorking=false;this.tapAccount(fromCover);}})();
+      },'#286f94');
+    },0);
+  }
+  private homeSettings(){const c=this.overlay('营地设置',this.tapServices.available?352:292);
     this.button(c,'settings-close','×',143,111,38,38,()=>this.goHome(),'#e4eef1',true,27);
     this.button(c,'audio-music','音乐  '+(this.audio.musicEnabled?'开':'关'),0,50,300,48,()=>{this.audio.toggle('music');this.homeSettings();},this.audio.musicEnabled?'#519b81':'#8b9dab');
     this.button(c,'audio-effects','音效  '+(this.audio.effectsEnabled?'开':'关'),0,-11,300,48,()=>{this.audio.toggle('effects');this.homeSettings();},this.audio.effectsEnabled?'#519b81':'#8b9dab');
     this.button(c,'settings-language','语言  ›',0,-72,300,48,()=>this.languageSettings(),'#286f94');
+    if(this.tapServices.available)this.button(c,'settings-tap','TapTap · 云存档',0,-133,300,48,()=>this.tapAccount(),'#286f94');
   }
   private languageSettings(){
     const back=()=>{this.exitUtility();this.homeSettings();},c=this.fullPage('语言','',()=>this.languageSettings(),back),{top,bottom,height}=this.pageBounds(c);
@@ -1711,8 +1833,7 @@ export class PMGame extends Component {
     const center=(top-218+b+160)/2,height=top-218-(b+160),card=this.panel(this.root,0,center,354,height,'#fffdf5',22);
     const headerH=height<360?88:104;
     this.panel(card,0,height/2-headerH/2,354,headerH,m.tint,22);this.menuIcon(card,'map',-123,height/2-headerH/2,headerH<100?36:44);
-    const title=this.text(card,m.name,28,height/2-29,23,'#ffffff',245,46);title.node.name='map-title';title.enableWrapText=true;title.isBold=true;
-    const stages=this.text(card,m.stages+' 层',28,height/2-headerH+18,15,'#f5efcf',245,24);stages.node.name='map-stage-count';
+    const title=this.text(card,m.name,28,height/2-headerH/2,23,'#ffffff',245,46);title.node.name='map-title';title.enableWrapText=true;title.isBold=true;
     const types=this.text(card,m.types,0,height/2-headerH-17,14,m.tint,330,22);types.node.name='map-types';types.enableWrapText=false;
     // Reserve independent bands for art, names, optional route and footer.
     const gridTop=height/2-headerH-34,gridBottom=-height/2+(height>450?166:46),rowH=(gridTop-gridBottom)/2,artSize=Math.min(72,Math.max(16,rowH-30));
@@ -1808,11 +1929,12 @@ export class PMGame extends Component {
       this.text(c,'→',27,row.y,22,C.muted,27,28);this.typeIcon(c,PETS[row.to].type,65,row.y,28);
       this.matchupBadge(c,matchupMultiplier(row.from,row.to),122,row.y,66,true);
     });
-    this.text(c,'攻击数字已计入克制；两个方向分别计算',0,-40,12,C.muted,330,26);
+    this.text(c,'攻击数字已计入克制；两个方向分别计算',0,-33,12,C.muted,330,22);
+    this.text(c,'★ 按属性推荐；技能需自行判断',0,-54,11,'#357a65',330,20);
     const back=()=>{if(returnTo)returnTo();else{this.screen='game';this.render();}this.encounterTypesUI(s,returnTo);};
-    this.button(c,'types-player','我方关系 ›',-80,-83,144,54,()=>this.typeRelationsUI(s.active.id,s.active.rarity||'normal',back),'#286f94',true,16);
-    this.button(c,'types-enemy','敌方关系 ›',80,-83,144,54,()=>this.typeRelationsUI(s.enemy,s.enemyRarity||'normal',back),'#a94f48',true,16);
-    this.button(c,'types-close','返回',0,-151,310,52,()=>returnTo?returnTo():this.render(),C.blue,true,17);
+    this.button(c,'types-player','我方关系 ›',-80,-95,144,54,()=>this.typeRelationsUI(s.active.id,s.active.rarity||'normal',back),'#286f94',true,16);
+    this.button(c,'types-enemy','敌方关系 ›',80,-95,144,54,()=>this.typeRelationsUI(s.enemy,s.enemyRarity||'normal',back),'#a94f48',true,16);
+    this.button(c,'types-close','返回',0,-161,310,52,()=>returnTo?returnTo():this.render(),C.blue,true,17);
   }
   private typeRelationsUI(id:PetId,rarity:EggRarity,back?:()=>void){
     const type=PETS[id].type,c=this.fullPage('属性关系',type+' · '+petName({id,rarity}),()=>this.typeRelationsUI(id,rarity,back),back||(()=>this.dexDetail(id,rarity))),{top,bottom,height}=this.pageBounds(c);
@@ -1862,7 +1984,12 @@ export class PMGame extends Component {
     this.button(detail,'partner-skill',tr('技能')+' ×'+petSkills(selectedPet).length+' ›',0,-2,350,34,()=>this.qualityDetail(selected,selectedPet.rarity||'normal',this.partnerPage),'#e4eef1',true,16);
     const manageable=owned&&canManageParty(s);
     this.partyDragHint=this.text(detail,!canManageParty(s)?'战斗中':!owned?'通过孵蛋获得此形态':'',0,-84,11,C.muted,356,16);
-    slots.forEach((key,i)=>this.button(detail,'partner-assign-'+i,i===0?'出战':'候补 '+i,(i-1)*120,-48,112,48,()=>this.partnerQuickAssign(selected,i),key===selected?'#dce8e5':i===0?'#d79d42':'#519b81',manageable&&key!==selected,17));
+    slots.forEach((key,i)=>{const remove=i>0&&key===selected;
+      this.button(detail,remove?'partner-remove-'+i:'partner-assign-'+i,remove?'−':i===0?'出战':'候补 '+i,(i-1)*120,-48,112,48,()=>{
+        if(!remove){this.partnerQuickAssign(selected,i);return;}
+        const next=removePartySlot(this.state,i);if(next===this.state)return;this.state=next;this.save();this.render();
+      },remove?'#c96660':key===selected?'#dce8e5':i===0?'#d79d42':'#519b81',manageable&&(remove||key!==selected),remove?30:17);
+    });
     this.fx=this.makeNode(this.root,'party-effects',0,0,390,H);
   }
   private partnerQuickAssign(key:string,index:number){
