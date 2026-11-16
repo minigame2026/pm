@@ -8,6 +8,12 @@
   "server": "tools/serve.cjs",
   "moduleRoutes": [
     {
+      "pattern": "^art-source/regions-13-15/|^checks/regions-13-15-(?:art|locales[.]test|runtime|ui)[.]cjs$|^checks/regions-13-15[.]test[.]cjs$",
+      "scopes": [
+        "regions-13-15"
+      ]
+    },
+    {
       "pattern": "^pc/|^tools/(?:prepare-pc-project|prepare-pc-steam|build-pc|build-pc-windows|serve-pc)[.]cjs$|^checks/pc-",
       "scopes": [
         "pc"
@@ -429,7 +435,15 @@
         "checks/pc-profile-recovery.test.cjs",
         "checks/pc-cooking-health.test.cjs",
         "checks/pc-command-help.test.cjs",
-        "checks/pc-locale.test.cjs"
+        "checks/pc-gym-world-difficulty.test.cjs",
+        "checks/pc-timers.test.cjs",
+        "checks/pc-friend-help.test.cjs",
+        "checks/pc-locale.test.cjs",
+        "checks/regions-13-15.test.cjs",
+        "checks/regions-13-15-locales.test.cjs",
+        "checks/regions-13-15-art.cjs",
+        "checks/expansion-tuning.test.cjs",
+        "checks/pc-dex-rewards.test.cjs"
       ],
       "runtime": [
         "checks/home-layout-runtime.cjs",
@@ -488,7 +502,20 @@
         "checks/pc-battle-scenes.cjs",
         "checks/pc-cooking-runtime.cjs",
         "checks/pc-audit-fixes-runtime.cjs",
-        "checks/pc-locale-runtime.cjs"
+        "checks/pc-gyms-runtime.cjs",
+        "checks/pc-party-order-runtime.cjs",
+        "checks/pc-ui-incremental.cjs",
+        "checks/pc-starter-dex-runtime.cjs",
+        "checks/pc-ui-performance.cjs",
+        "checks/pc-friend-help-runtime.cjs",
+        "checks/pc-locale-runtime.cjs",
+        "checks/regions-13-15-runtime.cjs",
+        "checks/regions-13-15-ui.cjs",
+        "checks/regions-13-15-pc.cjs",
+        "checks/region-scenes-13-15.cjs",
+        "checks/region-scenes-13-15-pc.cjs",
+        "checks/expansion-size-audit.cjs",
+        "checks/pc-dex-rewards-runtime.cjs"
       ]
     },
     "assets": {
@@ -748,7 +775,10 @@
         "checks/pc-cooking-integration.test.cjs",
         "checks/pc-profile-recovery.test.cjs",
         "checks/pc-cooking-health.test.cjs",
-        "checks/pc-command-help.test.cjs"
+        "checks/pc-command-help.test.cjs",
+        "checks/pc-gym-world-difficulty.test.cjs",
+        "checks/pc-timers.test.cjs",
+        "checks/pc-friend-help.test.cjs"
       ],
       "runtime": [
         "checks/pc-runtime.cjs",
@@ -760,7 +790,13 @@
         "checks/pc-readability-runtime.cjs",
         "checks/pc-battle-scenes.cjs",
         "checks/pc-cooking-runtime.cjs",
-        "checks/pc-audit-fixes-runtime.cjs"
+        "checks/pc-audit-fixes-runtime.cjs",
+        "checks/pc-gyms-runtime.cjs",
+        "checks/pc-party-order-runtime.cjs",
+        "checks/pc-ui-incremental.cjs",
+        "checks/pc-starter-dex-runtime.cjs",
+        "checks/pc-ui-performance.cjs",
+        "checks/pc-friend-help-runtime.cjs"
       ],
       "build": false,
       "url": "http://127.0.0.1:8781/"
@@ -771,6 +807,98 @@
       ],
       "runtime": [
         "checks/pc-locale-runtime.cjs"
+      ],
+      "build": false,
+      "url": "http://127.0.0.1:8781/"
+    },
+    "pc-friend-help": {
+      "tests": [
+        "checks/pc-build.cjs",
+        "checks/pc-friend-help.test.cjs",
+        "checks/pc-online.test.cjs",
+        "checks/pc-social.test.cjs",
+        "checks/pc-profile.test.cjs",
+        "checks/pc-timers.test.cjs"
+      ],
+      "runtime": [
+        "checks/pc-friend-help-runtime.cjs"
+      ],
+      "build": false,
+      "url": "http://127.0.0.1:8781/"
+    },
+    "regions-13-15": {
+      "tests": [
+        "checks/regions-13-15.test.cjs",
+        "checks/regions-13-15-locales.test.cjs",
+        "checks/regions-13-15-art.cjs",
+        "checks/legendary.test.cjs",
+        "checks/skill-diversity.test.cjs",
+        "checks/model.test.cjs"
+      ],
+      "runtime": [
+        "checks/regions-13-15-runtime.cjs",
+        "checks/regions-13-15-ui.cjs"
+      ],
+      "build": true
+    },
+    "regions-13-15-pc": {
+      "tests": [
+        "checks/pc-build.cjs"
+      ],
+      "runtime": [
+        "checks/regions-13-15-pc.cjs"
+      ],
+      "build": false,
+      "url": "http://127.0.0.1:8781/"
+    },
+    "region-scenes-13-15": {
+      "tests": [],
+      "runtime": [
+        "checks/region-scenes-13-15.cjs"
+      ],
+      "build": true
+    },
+    "region-scenes-13-15-pc": {
+      "tests": [
+        "checks/pc-build.cjs"
+      ],
+      "runtime": [
+        "checks/region-scenes-13-15-pc.cjs"
+      ],
+      "build": false,
+      "url": "http://127.0.0.1:8781/"
+    },
+    "expansion-tuning": {
+      "tests": [
+        "checks/expansion-tuning.test.cjs",
+        "checks/regions-13-15.test.cjs",
+        "checks/regions-13-15-locales.test.cjs",
+        "checks/skill-diversity.test.cjs",
+        "checks/model.test.cjs",
+        "checks/pc-build.cjs"
+      ],
+      "runtime": [
+        "checks/expansion-size-audit.cjs"
+      ],
+      "build": true
+    },
+    "expansion-tuning-visual": {
+      "tests": [],
+      "runtime": [
+        "checks/expansion-size-audit.cjs"
+      ],
+      "build": false
+    },
+    "pc-dex-rewards": {
+      "tests": [
+        "checks/pc-build.cjs",
+        "checks/pc-dex-rewards.test.cjs",
+        "checks/pc-profile.test.cjs",
+        "checks/pc-cloud.test.cjs",
+        "checks/pc-friend-help.test.cjs"
+      ],
+      "runtime": [
+        "checks/pc-dex-rewards-runtime.cjs"
       ],
       "build": false,
       "url": "http://127.0.0.1:8781/"

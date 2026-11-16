@@ -14,6 +14,9 @@ const THEMES:{kind:Kind;tint:string;accent:string;count:number}[]=[
   {kind:'petal',tint:'#ffd2e3',accent:'#e8fff2',count:10},
   {kind:'spark',tint:'#ffde89',accent:'#e2c6ff',count:9},
   {kind:'star',tint:'#bcefff',accent:'#e4ceff',count:11},
+  {kind:'rain',tint:'#b8eadc',accent:'#f2d3ff',count:10},
+  {kind:'ember',tint:'#ffb557',accent:'#ffda88',count:11},
+  {kind:'spirit',tint:'#d5bdff',accent:'#a9f2ed',count:10},
 ];
 const ink=(hex:string,alpha:number)=>{const c=new Color();Color.fromHEX(c,hex);c.a=alpha;return c;};
 function node(parent:Node,name:string,x:number,y:number){

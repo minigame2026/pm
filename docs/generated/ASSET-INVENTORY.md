@@ -2,7 +2,7 @@
 
 > 自动生成；不要手改。来源：PMModel、PMGame、BattleArt、EvolutionArt、RegionArt、HeroArt；精确 SHA-256 见 [design-data.json](design-data.json)。运行 `node tools/export-design-data.cjs` 更新，`--check` 检查过期。
 
-资源目录共 157 张 PNG，文件合计 160.93 MiB；固定启动清单加载 3 张，文件合计 1.87 MiB。
+资源目录共 178 张 PNG，文件合计 175.78 MiB；固定启动清单加载 3 张，文件合计 1.87 MiB。
 
 启动图片按每像素RGBA8四字节估算单份纹理为 5.06 MiB，未计mipmap、驱动副本、压缩格式、引擎和帧缓冲，不能当作实测峰值。裁切帧仍引用整张纹理。
 
@@ -10,6 +10,7 @@
 
 | 文件 | 像素尺寸 | 文件KiB | 启动加载 | RGBA8估算MiB |
 | --- | --- | --- | --- | --- |
+| [amberant-forms-v1.png](../../assets/resources/art/amberant-forms-v1.png) | 683×1024 | 648.9 | 否 | 2.67 |
 | [ape-battle-v1.png](../../assets/resources/art/ape-battle-v1.png) | 1024×683 | 861.5 | 否 | 2.67 |
 | [ape-evolution-v1.png](../../assets/resources/art/ape-evolution-v1.png) | 1024×1024 | 564.6 | 否 | 4.00 |
 | [app-bud-poses-v1.png](../../assets/resources/art/app-bud-poses-v1.png) | 1774×887 | 1005.6 | 否 | 6.00 |
@@ -24,6 +25,7 @@
 | [battle-start.png](../../assets/resources/art/battle-start.png) | 192×192 | 41.7 | 否 | 0.14 |
 | [beetle-battle-v1.png](../../assets/resources/art/beetle-battle-v1.png) | 1024×683 | 481.9 | 否 | 2.67 |
 | [beetle-evolution-v1.png](../../assets/resources/art/beetle-evolution-v1.png) | 1024×1024 | 513.5 | 否 | 4.00 |
+| [bellhummer-forms-v1.png](../../assets/resources/art/bellhummer-forms-v1.png) | 683×1024 | 620.6 | 否 | 2.67 |
 | [bird-battle-v1.png](../../assets/resources/art/bird-battle-v1.png) | 1024×683 | 446.8 | 否 | 2.67 |
 | [bird-evolution-v1.png](../../assets/resources/art/bird-evolution-v1.png) | 1024×1024 | 1296.2 | 否 | 4.00 |
 | [bison-forms-v1.png](../../assets/resources/art/bison-forms-v1.png) | 683×1024 | 888.2 | 否 | 2.67 |
@@ -34,8 +36,10 @@
 | [bud.png](../../assets/resources/art/bud.png) | 506×512 | 246.9 | 否 | 0.99 |
 | [cairnheart-forms-v1.png](../../assets/resources/art/cairnheart-forms-v1.png) | 683×1024 | 954.5 | 否 | 2.67 |
 | [capy-forms-v1.png](../../assets/resources/art/capy-forms-v1.png) | 683×1024 | 752.7 | 否 | 2.67 |
+| [chronospine-forms-v1.png](../../assets/resources/art/chronospine-forms-v1.png) | 683×1024 | 720.4 | 否 | 2.67 |
 | [cinder-forms-v1.png](../../assets/resources/art/cinder-forms-v1.png) | 683×1024 | 691.9 | 否 | 2.67 |
 | [cobra-forms-v1.png](../../assets/resources/art/cobra-forms-v1.png) | 683×1024 | 1034.0 | 否 | 2.67 |
+| [compassbug-forms-v1.png](../../assets/resources/art/compassbug-forms-v1.png) | 683×1024 | 579.2 | 否 | 2.67 |
 | [cotton-battle-v1.png](../../assets/resources/art/cotton-battle-v1.png) | 1024×683 | 500.5 | 否 | 2.67 |
 | [cotton-evolution-v1.png](../../assets/resources/art/cotton-evolution-v1.png) | 1024×1024 | 1106.6 | 否 | 4.00 |
 | [cragcrab-forms-v1.png](../../assets/resources/art/cragcrab-forms-v1.png) | 683×1024 | 815.4 | 否 | 2.67 |
@@ -48,10 +52,12 @@
 | [dream-forms-v1.png](../../assets/resources/art/dream-forms-v1.png) | 683×1024 | 817.9 | 否 | 2.67 |
 | [drumthunder-forms-v1.png](../../assets/resources/art/drumthunder-forms-v1.png) | 683×1024 | 934.8 | 否 | 2.67 |
 | [dune-forms-v1.png](../../assets/resources/art/dune-forms-v1.png) | 683×1024 | 810.6 | 否 | 2.67 |
+| [duneworm-forms-v1.png](../../assets/resources/art/duneworm-forms-v1.png) | 683×1024 | 615.3 | 否 | 2.67 |
 | [eclipsehydra-forms-v1.png](../../assets/resources/art/eclipsehydra-forms-v1.png) | 683×1024 | 716.6 | 否 | 2.67 |
 | [egg-nest-v1.png](../../assets/resources/art/egg-nest-v1.png) | 768×1152 | 1539.2 | 否 | 3.38 |
 | [embercamel-forms-v1.png](../../assets/resources/art/embercamel-forms-v1.png) | 683×1024 | 759.1 | 否 | 2.67 |
 | [emberhorse-forms-v1.png](../../assets/resources/art/emberhorse-forms-v1.png) | 1024×1536 | 2385.5 | 否 | 6.00 |
+| [fossillily-forms-v1.png](../../assets/resources/art/fossillily-forms-v1.png) | 683×1024 | 799.9 | 否 | 2.67 |
 | [fox-battle-ref.png](../../assets/resources/art/fox-battle-ref.png) | 1024×512 | 392.2 | 否 | 2.00 |
 | [fox-evolution-v1.png](../../assets/resources/art/fox-evolution-v1.png) | 1024×1024 | 1180.1 | 否 | 4.00 |
 | [fox.png](../../assets/resources/art/fox.png) | 512×464 | 264.9 | 否 | 0.91 |
@@ -72,6 +78,7 @@
 | [home-morning-v1.png](../../assets/resources/art/home-morning-v1.png) | 768×1152 | 1684.1 | 否 | 3.38 |
 | [hornbill-forms-v1.png](../../assets/resources/art/hornbill-forms-v1.png) | 683×1024 | 848.9 | 否 | 2.67 |
 | [ironboar-forms-v1.png](../../assets/resources/art/ironboar-forms-v1.png) | 683×1024 | 882.9 | 否 | 2.67 |
+| [kilnostrich-forms-v1.png](../../assets/resources/art/kilnostrich-forms-v1.png) | 683×1024 | 553.0 | 否 | 2.67 |
 | [kirin-forms-v1.png](../../assets/resources/art/kirin-forms-v1.png) | 683×1024 | 1046.1 | 否 | 2.67 |
 | [lantern-forms-v1.png](../../assets/resources/art/lantern-forms-v1.png) | 683×1024 | 863.2 | 否 | 2.67 |
 | [leafsloth-forms-v1.png](../../assets/resources/art/leafsloth-forms-v1.png) | 1024×1536 | 2614.1 | 否 | 6.00 |
@@ -96,14 +103,18 @@
 | [mandragrove-forms-v1.png](../../assets/resources/art/mandragrove-forms-v1.png) | 683×1024 | 1050.1 | 否 | 2.67 |
 | [manta-forms-v1.png](../../assets/resources/art/manta-forms-v1.png) | 683×1024 | 769.2 | 否 | 2.67 |
 | [mantis-forms-v1.png](../../assets/resources/art/mantis-forms-v1.png) | 683×1024 | 776.4 | 否 | 2.67 |
+| [marionette-forms-v1.png](../../assets/resources/art/marionette-forms-v1.png) | 683×1024 | 700.9 | 否 | 2.67 |
 | [maskasura-forms-v1.png](../../assets/resources/art/maskasura-forms-v1.png) | 683×1024 | 775.5 | 否 | 2.67 |
 | [mole-battle-v1.png](../../assets/resources/art/mole-battle-v1.png) | 1024×683 | 398.7 | 否 | 2.67 |
 | [mole-evolution-v1.png](../../assets/resources/art/mole-evolution-v1.png) | 1024×1024 | 526.1 | 否 | 4.00 |
 | [monk-forms-v1.png](../../assets/resources/art/monk-forms-v1.png) | 683×1024 | 687.8 | 否 | 2.67 |
 | [moonbat-forms-v1.png](../../assets/resources/art/moonbat-forms-v1.png) | 683×1024 | 652.5 | 否 | 2.67 |
+| [mycoshroud-forms-v1.png](../../assets/resources/art/mycoshroud-forms-v1.png) | 683×1024 | 707.4 | 否 | 2.67 |
 | [narwhal-forms-v1.png](../../assets/resources/art/narwhal-forms-v1.png) | 683×1024 | 770.2 | 否 | 2.67 |
 | [nectar-forms-v1.png](../../assets/resources/art/nectar-forms-v1.png) | 683×1024 | 643.6 | 否 | 2.67 |
 | [nightmeerkat-forms-v1.png](../../assets/resources/art/nightmeerkat-forms-v1.png) | 1024×1536 | 1805.5 | 否 | 6.00 |
+| [noctopossum-forms-v1.png](../../assets/resources/art/noctopossum-forms-v1.png) | 683×1024 | 597.5 | 否 | 2.67 |
+| [oathhippo-forms-v1.png](../../assets/resources/art/oathhippo-forms-v1.png) | 683×1024 | 611.4 | 否 | 2.67 |
 | [octopus-forms-v1.png](../../assets/resources/art/octopus-forms-v1.png) | 683×1024 | 909.7 | 否 | 2.67 |
 | [oracleater-forms-v1.png](../../assets/resources/art/oracleater-forms-v1.png) | 683×1024 | 487.2 | 否 | 2.67 |
 | [orbeholder-forms-v1.png](../../assets/resources/art/orbeholder-forms-v1.png) | 683×1024 | 737.7 | 否 | 2.67 |
@@ -117,11 +128,15 @@
 | [peachflamingo-forms-v1.png](../../assets/resources/art/peachflamingo-forms-v1.png) | 1024×1536 | 2072.6 | 否 | 6.00 |
 | [postplat-forms-v1.png](../../assets/resources/art/postplat-forms-v1.png) | 1024×1536 | 2242.1 | 否 | 6.00 |
 | [power-potion.png](../../assets/resources/art/power-potion.png) | 192×192 | 41.5 | 否 | 0.14 |
+| [prismameleon-forms-v1.png](../../assets/resources/art/prismameleon-forms-v1.png) | 683×1024 | 705.2 | 否 | 2.67 |
 | [punchshrimp-forms-v1.png](../../assets/resources/art/punchshrimp-forms-v1.png) | 1024×1536 | 2620.1 | 否 | 6.00 |
 | [quillwyvern-forms-v1.png](../../assets/resources/art/quillwyvern-forms-v1.png) | 1024×1536 | 2641.7 | 否 | 6.00 |
 | [raccoon-forms-v1.png](../../assets/resources/art/raccoon-forms-v1.png) | 683×1024 | 752.9 | 否 | 2.67 |
 | [railpede-forms-v1.png](../../assets/resources/art/railpede-forms-v1.png) | 1024×1536 | 2289.4 | 否 | 6.00 |
 | [refresh-enemy.png](../../assets/resources/art/refresh-enemy.png) | 192×192 | 40.5 | 否 | 0.14 |
+| [region-13-battle-v1.png](../../assets/resources/art/region-13-battle-v1.png) | 768×1152 | 1111.4 | 否 | 3.38 |
+| [region-14-battle-v1.png](../../assets/resources/art/region-14-battle-v1.png) | 768×1152 | 1232.7 | 否 | 3.38 |
+| [region-15-battle-v1.png](../../assets/resources/art/region-15-battle-v1.png) | 768×1152 | 997.1 | 否 | 3.38 |
 | [region-2-battle-v1.png](../../assets/resources/art/region-2-battle-v1.png) | 768×1152 | 1327.1 | 否 | 3.38 |
 | [region-2-nest-v1.png](../../assets/resources/art/region-2-nest-v1.png) | 768×1152 | 1666.2 | 否 | 3.38 |
 | [region-3-battle-v1.png](../../assets/resources/art/region-3-battle-v1.png) | 768×1152 | 1376.8 | 否 | 3.38 |
@@ -136,7 +151,9 @@
 | [rhino-battle-v1.png](../../assets/resources/art/rhino-battle-v1.png) | 1024×683 | 776.0 | 否 | 2.67 |
 | [rhino-evolution-v1.png](../../assets/resources/art/rhino-evolution-v1.png) | 1024×1024 | 1358.4 | 否 | 4.00 |
 | [ribbonoar-forms-v1.png](../../assets/resources/art/ribbonoar-forms-v1.png) | 683×1024 | 579.0 | 否 | 2.67 |
+| [rimestar-forms-v1.png](../../assets/resources/art/rimestar-forms-v1.png) | 683×1024 | 665.0 | 否 | 2.67 |
 | [ringolin-forms-v1.png](../../assets/resources/art/ringolin-forms-v1.png) | 683×1024 | 785.4 | 否 | 2.67 |
+| [sailfish-forms-v1.png](../../assets/resources/art/sailfish-forms-v1.png) | 683×1024 | 628.4 | 否 | 2.67 |
 | [sailfrigate-forms-v1.png](../../assets/resources/art/sailfrigate-forms-v1.png) | 1024×1536 | 1947.2 | 否 | 6.00 |
 | [sandlion-forms-v1.png](../../assets/resources/art/sandlion-forms-v1.png) | 1024×1536 | 2428.3 | 否 | 6.00 |
 | [seal-battle-v1.png](../../assets/resources/art/seal-battle-v1.png) | 1024×683 | 339.3 | 否 | 2.67 |
@@ -154,6 +171,8 @@
 | [spirit-forms-v1.png](../../assets/resources/art/spirit-forms-v1.png) | 683×1024 | 831.4 | 否 | 2.67 |
 | [starhorseshoe-forms-v1.png](../../assets/resources/art/starhorseshoe-forms-v1.png) | 683×1024 | 395.2 | 否 | 2.67 |
 | [starwyrm-forms-v1.png](../../assets/resources/art/starwyrm-forms-v1.png) | 683×1024 | 1167.4 | 否 | 2.67 |
+| [sundewcrown-forms-v1.png](../../assets/resources/art/sundewcrown-forms-v1.png) | 683×1024 | 882.1 | 否 | 2.67 |
+| [tideurchin-forms-v1.png](../../assets/resources/art/tideurchin-forms-v1.png) | 683×1024 | 647.8 | 否 | 2.67 |
 | [trainer-medic-v2.png](../../assets/resources/art/trainer-medic-v2.png) | 768×1152 | 549.4 | 否 | 3.38 |
 | [trainer-trio-v1.png](../../assets/resources/art/trainer-trio-v1.png) | 1152×768 | 853.6 | 否 | 3.38 |
 | [triarchdrake-forms-v1.png](../../assets/resources/art/triarchdrake-forms-v1.png) | 683×1024 | 680.1 | 否 | 2.67 |
@@ -165,7 +184,9 @@
 | [velvetslug-forms-v1.png](../../assets/resources/art/velvetslug-forms-v1.png) | 1024×1536 | 2334.7 | 否 | 6.00 |
 | [venom-forms-v1.png](../../assets/resources/art/venom-forms-v1.png) | 683×1024 | 771.5 | 否 | 2.67 |
 | [voltage-forms-v1.png](../../assets/resources/art/voltage-forms-v1.png) | 683×1024 | 739.8 | 否 | 2.67 |
+| [voltshark-forms-v1.png](../../assets/resources/art/voltshark-forms-v1.png) | 683×1024 | 460.3 | 否 | 2.67 |
 | [wolverine-forms-v1.png](../../assets/resources/art/wolverine-forms-v1.png) | 683×1024 | 831.1 | 否 | 2.67 |
 | [wombat-forms-v1.png](../../assets/resources/art/wombat-forms-v1.png) | 683×1024 | 805.8 | 否 | 2.67 |
+| [zenpanda-forms-v1.png](../../assets/resources/art/zenpanda-forms-v1.png) | 683×1024 | 717.5 | 否 | 2.67 |
 
 当前使用的全部形态双视角均经过存在性、矩形边界、归一化脚底值检查。脚底是否在视觉上准确仍需实际看画面。

@@ -4,7 +4,7 @@
 
 ## 内容规模
 
-90 个系列，270 种自然形态，120 关，159 种技能机制。个体遗传后数值以存档为准。
+108 个系列，324 种自然形态，150 关，213 种技能机制。个体遗传后数值以存档为准。
 
 初始流程、三位主角效果与三选一伙伴见 [初始流程](../ONBOARDING.md)。阿岚领取巢穴蛋时有20%概率额外获得一枚蛋，下方寻蛋表不含此额外奖励。
 
@@ -24,6 +24,9 @@
 | 圣枝云庭 | 10 | 祈纹食蚁兽、树咒芽灵、绸冠带鱼、六翎信天雏 | 琉翅蜻 | 叠石幼灵 |
 | 万象神炉 | 10 | 日绒狮、雷鼓灵、毒晶浮母、环甲小兽 | 双拳面灵 | 星甲鲎 |
 | 太初星界 | 10 | 雪屏雏、折纸幽灵、星瞳球、双吻影蛇 | 花角长颈兽 | 三角幼龙 |
+| 虹瀑天阶 | 10 | 誓纹河马、露冠小灵、珠潮胆、云帆鱼 | 琥粒蚁 | 砾冠百合兽 |
+| 烬海王庭 | 10 | 炭绒鸵、磁锤鲨、毒绒菇、砂环虫 | 禅竹团熊 | 铜钮瓢灵 |
+| 无垠梦渊 | 10 | 雪芒星、空木偶、镜尾灵蜥、夜尾负鼠 | 铃蕊蜂鸟 | 星帆幼龙 |
 
 ## 全部形态自然数据
 
@@ -301,6 +304,60 @@
 | triarchdrake-normal | 三角幼龙 | 龙 | R | 太初星界 / BOSS | BOSS | 156 | 41 / 51 / 62 | 幼龙棘息 | [源图](../../assets/resources/art/triarchdrake-forms-v1.png) |
 | triarchdrake-SR | 双首翼龙 | 龙 | SR | 太初星界 / BOSS | BOSS | 162 | 43 / 53 / 64 | 双曜蓄守 | [源图](../../assets/resources/art/triarchdrake-forms-v1.png) |
 | triarchdrake-SSR | 三曜太古龙 | 龙 | SSR | 太初星界 / BOSS | BOSS | 168 | 45 / 55 / 66 | 三首共噬 | [源图](../../assets/resources/art/triarchdrake-forms-v1.png) |
+| oathhippo-normal | 誓纹河马 | 一般 | R | 虹瀑天阶 / 普通 | 普通 | 119 | 28 / 37 / 46 | 誓环守护 | [源图](../../assets/resources/art/oathhippo-forms-v1.png) |
+| oathhippo-SR | 月印守河兽 | 一般 | SR | 虹瀑天阶 / 普通 | 普通 | 125 | 30 / 39 / 48 | 空瓶祷祝 | [源图](../../assets/resources/art/oathhippo-forms-v1.png) |
+| oathhippo-SSR | 万誓河神 | 一般 | SSR | 虹瀑天阶 / 普通 | 普通 | 131 | 32 / 41 / 50 | 守誓承难 | [源图](../../assets/resources/art/oathhippo-forms-v1.png) |
+| sundewcrown-normal | 露冠小灵 | 草 | R | 虹瀑天阶 / 普通 | 普通 | 119 | 28 / 37 / 46 | 单露回生 | [源图](../../assets/resources/art/sundewcrown-forms-v1.png) |
+| sundewcrown-SR | 琼露冠使 | 草 | SR | 虹瀑天阶 / 普通 | 普通 | 125 | 30 / 39 / 48 | 奇露回瓶 | [源图](../../assets/resources/art/sundewcrown-forms-v1.png) |
+| sundewcrown-SSR | 万露花冕神 | 草 | SSR | 虹瀑天阶 / 普通 | 普通 | 131 | 32 / 41 / 50 | 暮露蚀印 | [源图](../../assets/resources/art/sundewcrown-forms-v1.png) |
+| tideurchin-normal | 珠潮胆 | 水 | R | 虹瀑天阶 / 普通 | 普通 | 119 | 28 / 37 / 46 | 偶潮棘盾 | [源图](../../assets/resources/art/tideurchin-forms-v1.png) |
+| tideurchin-SR | 涡棘潮胆 | 水 | SR | 虹瀑天阶 / 普通 | 普通 | 125 | 30 / 39 / 48 | 单潮赠力 | [源图](../../assets/resources/art/tideurchin-forms-v1.png) |
+| tideurchin-SSR | 瀚潮棘冠 | 水 | SSR | 虹瀑天阶 / 普通 | 普通 | 131 | 32 / 41 / 50 | 断潮毒冠 | [源图](../../assets/resources/art/tideurchin-forms-v1.png) |
+| sailfish-normal | 云帆鱼 | 飞行 | R | 虹瀑天阶 / 普通 | 普通 | 119 | 28 / 37 / 46 | 奇帆蓄风 | [源图](../../assets/resources/art/sailfish-forms-v1.png) |
+| sailfish-SR | 巡空四帆鱼 | 飞行 | SR | 虹瀑天阶 / 普通 | 普通 | 125 | 30 / 39 / 48 | 长航校准 | [源图](../../assets/resources/art/sailfish-forms-v1.png) |
+| sailfish-SSR | 天穹御帆神 | 飞行 | SSR | 虹瀑天阶 / 普通 | 普通 | 131 | 32 / 41 / 50 | 无药掠影 | [源图](../../assets/resources/art/sailfish-forms-v1.png) |
+| amberant-normal | 琥粒蚁 | 虫 | R | 虹瀑天阶 / 精英 | 精英 | 123 | 29 / 38 / 48 | 双颚齐击 | [源图](../../assets/resources/art/amberant-forms-v1.png) |
+| amberant-SR | 琥宫蚁后 | 虫 | SR | 虹瀑天阶 / 精英 | 精英 | 129 | 31 / 40 / 50 | 奇数琥甲 | [源图](../../assets/resources/art/amberant-forms-v1.png) |
+| amberant-SSR | 千巢琥皇 | 虫 | SSR | 虹瀑天阶 / 精英 | 精英 | 135 | 33 / 42 / 52 | 接旗补给 | [源图](../../assets/resources/art/amberant-forms-v1.png) |
+| fossillily-normal | 砾冠百合兽 | 岩石 | R | 虹瀑天阶 / BOSS | BOSS | 127 | 30 / 39 / 49 | 偶岩花冠 | [源图](../../assets/resources/art/fossillily-forms-v1.png) |
+| fossillily-SR | 化石冠守 | 岩石 | SR | 虹瀑天阶 / BOSS | BOSS | 133 | 32 / 41 / 51 | 久战化石 | [源图](../../assets/resources/art/fossillily-forms-v1.png) |
+| fossillily-SSR | 古海岩冠神 | 岩石 | SSR | 虹瀑天阶 / BOSS | BOSS | 139 | 34 / 43 / 53 | 古海接生 | [源图](../../assets/resources/art/fossillily-forms-v1.png) |
+| kilnostrich-normal | 炭绒鸵 | 火 | R | 烬海王庭 / 普通 | 普通 | 141 | 35 / 45 / 56 | 奇焰烙印 | [源图](../../assets/resources/art/kilnostrich-forms-v1.png) |
+| kilnostrich-SR | 熔冠疾鸵 | 火 | SR | 烬海王庭 / 普通 | 普通 | 147 | 37 / 47 / 58 | 双炉回暖 | [源图](../../assets/resources/art/kilnostrich-forms-v1.png) |
+| kilnostrich-SSR | 日炉炎鸵神 | 火 | SSR | 烬海王庭 / 普通 | 普通 | 153 | 39 / 49 / 60 | 久燃奔袭 | [源图](../../assets/resources/art/kilnostrich-forms-v1.png) |
+| voltshark-normal | 磁锤鲨 | 电 | R | 烬海王庭 / 普通 | 普通 | 141 | 35 / 45 / 56 | 双极校点 | [源图](../../assets/resources/art/voltshark-forms-v1.png) |
+| voltshark-SR | 双极雷鲨 | 电 | SR | 烬海王庭 / 普通 | 普通 | 147 | 37 / 47 / 58 | 绝药电解 | [源图](../../assets/resources/art/voltshark-forms-v1.png) |
+| voltshark-SSR | 磁暴锤鲨皇 | 电 | SSR | 烬海王庭 / 普通 | 普通 | 153 | 39 / 49 / 60 | 承雷怒击 | [源图](../../assets/resources/art/voltshark-forms-v1.png) |
+| mycoshroud-normal | 毒绒菇 | 毒 | R | 烬海王庭 / 普通 | 普通 | 141 | 35 / 45 / 56 | 双孢蔓毒 | [源图](../../assets/resources/art/mycoshroud-forms-v1.png) |
+| mycoshroud-SR | 紫幕伞灵 | 毒 | SR | 烬海王庭 / 普通 | 普通 | 147 | 37 / 47 / 58 | 无力菌酿 | [源图](../../assets/resources/art/mycoshroud-forms-v1.png) |
+| mycoshroud-SSR | 万孢菌幕神 | 毒 | SSR | 烬海王庭 / 普通 | 普通 | 153 | 39 / 49 / 60 | 久战菌汲 | [源图](../../assets/resources/art/mycoshroud-forms-v1.png) |
+| duneworm-normal | 砂环虫 | 地面 | R | 烬海王庭 / 普通 | 普通 | 141 | 35 / 45 / 56 | 偶环缓震 | [源图](../../assets/resources/art/duneworm-forms-v1.png) |
+| duneworm-SR | 地钻环虫 | 地面 | SR | 烬海王庭 / 普通 | 普通 | 147 | 37 / 47 / 58 | 绝力砂垒 | [源图](../../assets/resources/art/duneworm-forms-v1.png) |
+| duneworm-SSR | 地轨巨环神 | 地面 | SSR | 烬海王庭 / 普通 | 普通 | 153 | 39 / 49 / 60 | 绝药地饮 | [源图](../../assets/resources/art/duneworm-forms-v1.png) |
+| zenpanda-normal | 禅竹团熊 | 格斗 | R | 烬海王庭 / 精英 | 精英 | 145 | 36 / 46 / 57 | 奇步凝神 | [源图](../../assets/resources/art/zenpanda-forms-v1.png) |
+| zenpanda-SR | 竹环拳师 | 格斗 | SR | 烬海王庭 / 精英 | 精英 | 151 | 38 / 48 / 59 | 久战禅息 | [源图](../../assets/resources/art/zenpanda-forms-v1.png) |
+| zenpanda-SSR | 万竹禅武神 | 格斗 | SSR | 烬海王庭 / 精英 | 精英 | 157 | 40 / 50 / 61 | 承志回生 | [源图](../../assets/resources/art/zenpanda-forms-v1.png) |
+| compassbug-normal | 铜钮瓢灵 | 钢 | R | 烬海王庭 / BOSS | BOSS | 150 | 37 / 47 / 58 | 双针蓄守 | [源图](../../assets/resources/art/compassbug-forms-v1.png) |
+| compassbug-SR | 磁盘甲卫 | 钢 | SR | 烬海王庭 / BOSS | BOSS | 156 | 39 / 49 / 60 | 长战磁壁 | [源图](../../assets/resources/art/compassbug-forms-v1.png) |
+| compassbug-SSR | 天枢罗盘神 | 钢 | SSR | 烬海王庭 / BOSS | BOSS | 162 | 41 / 51 / 62 | 绝药钢命 | [源图](../../assets/resources/art/compassbug-forms-v1.png) |
+| rimestar-normal | 雪芒星 | 冰 | R | 无垠梦渊 / 普通 | 普通 | 166 | 44 / 55 / 67 | 奇晶缓冲 | [源图](../../assets/resources/art/rimestar-forms-v1.png) |
+| rimestar-SR | 冰甲星卫 | 冰 | SR | 无垠梦渊 / 普通 | 普通 | 172 | 46 / 57 / 69 | 双星凝障 | [源图](../../assets/resources/art/rimestar-forms-v1.png) |
+| rimestar-SSR | 万霜星冠 | 冰 | SSR | 无垠梦渊 / 普通 | 普通 | 178 | 48 / 59 / 71 | 承霜回光 | [源图](../../assets/resources/art/rimestar-forms-v1.png) |
+| marionette-normal | 空木偶 | 幽灵 | R | 无垠梦渊 / 普通 | 普通 | 166 | 44 / 55 / 67 | 奇线脱身 | [源图](../../assets/resources/art/marionette-forms-v1.png) |
+| marionette-SR | 漆影舞偶 | 幽灵 | SR | 无垠梦渊 / 普通 | 普通 | 172 | 46 / 57 / 69 | 久舞提线 | [源图](../../assets/resources/art/marionette-forms-v1.png) |
+| marionette-SSR | 千线空壳神 | 幽灵 | SSR | 无垠梦渊 / 普通 | 普通 | 178 | 48 / 59 / 71 | 绝药返魂 | [源图](../../assets/resources/art/marionette-forms-v1.png) |
+| prismameleon-normal | 镜尾灵蜥 | 超能力 | R | 无垠梦渊 / 普通 | 普通 | 166 | 44 / 55 / 67 | 奇棱结界 | [源图](../../assets/resources/art/prismameleon-forms-v1.png) |
+| prismameleon-SR | 棱冠幻蜥 | 超能力 | SR | 无垠梦渊 / 普通 | 普通 | 172 | 46 / 57 / 69 | 绝力照真 | [源图](../../assets/resources/art/prismameleon-forms-v1.png) |
+| prismameleon-SSR | 万相镜棱神 | 超能力 | SSR | 无垠梦渊 / 普通 | 普通 | 178 | 48 / 59 / 71 | 长映幻毒 | [源图](../../assets/resources/art/prismameleon-forms-v1.png) |
+| noctopossum-normal | 夜尾负鼠 | 恶 | R | 无垠梦渊 / 普通 | 普通 | 166 | 44 / 55 / 67 | 偶月攫生 | [源图](../../assets/resources/art/noctopossum-forms-v1.png) |
+| noctopossum-SR | 月披负鼠 | 恶 | SR | 无垠梦渊 / 普通 | 普通 | 172 | 46 / 57 / 69 | 绝药夜馈 | [源图](../../assets/resources/art/noctopossum-forms-v1.png) |
+| noctopossum-SSR | 暗月负鼠王 | 恶 | SSR | 无垠梦渊 / 普通 | 普通 | 178 | 48 / 59 / 71 | 久夜蚀痕 | [源图](../../assets/resources/art/noctopossum-forms-v1.png) |
+| bellhummer-normal | 铃蕊蜂鸟 | 妖精 | R | 无垠梦渊 / 精英 | 精英 | 170 | 45 / 56 / 68 | 奇铃晨歌 | [源图](../../assets/resources/art/bellhummer-forms-v1.png) |
+| bellhummer-SR | 颂铃悬翼使 | 妖精 | SR | 无垠梦渊 / 精英 | 精英 | 176 | 47 / 58 / 70 | 承愿赠力 | [源图](../../assets/resources/art/bellhummer-forms-v1.png) |
+| bellhummer-SSR | 天籁铃花神 | 妖精 | SSR | 无垠梦渊 / 精英 | 精英 | 182 | 49 / 60 / 72 | 护愿花幕 | [源图](../../assets/resources/art/bellhummer-forms-v1.png) |
+| chronospine-normal | 星帆幼龙 | 龙 | R | 无垠梦渊 / BOSS | BOSS | 175 | 46 / 57 / 69 | 双帆龙痕 | [源图](../../assets/resources/art/chronospine-forms-v1.png) |
+| chronospine-SR | 宙脊棘龙 | 龙 | SR | 无垠梦渊 / BOSS | BOSS | 181 | 48 / 59 / 71 | 绝力宙返 | [源图](../../assets/resources/art/chronospine-forms-v1.png) |
+| chronospine-SSR | 太宙穹帆龙 | 龙 | SSR | 无垠梦渊 / BOSS | BOSS | 187 | 50 / 61 / 73 | 承古噬生 | [源图](../../assets/resources/art/chronospine-forms-v1.png) |
 
 ## 技能机制
 
@@ -465,6 +522,60 @@
 | tm_minWard | 低点结界 | 掷骰时 · 攻击点数为最低：获得护盾 +5。每场一次。 |
 | tm_repeatFocus | 重复转运 | 掷骰时 · 点数与上回合相同：本次攻击取最高点数。每场一次。 |
 | tm_hitReduce | 柔韧护体 | 受到反击时：本次伤害减少 3。每场一次。 |
+| trait_mythic_oathhippo_0 | 誓环守护 | 攻击时 · 攻击点数为偶数：获得护盾 +12。每场一次。 |
+| trait_mythic_oathhippo_1 | 空瓶祷祝 | 防御时 · 生命药水剩余不超过1瓶：恢复最大生命 25%。每场一次。 |
+| trait_mythic_oathhippo_2 | 守誓承难 | 受到反击时 · 有队友阵亡：本次伤害减少 24。每场一次。 |
+| trait_mythic_sundewcrown_0 | 单露回生 | 掷骰时 · 攻击点数为奇数：恢复最大生命 12%。每场一次。 |
+| trait_mythic_sundewcrown_1 | 奇露回瓶 | 使用生命药水时 · 攻击点数为奇数：生命药水 +1。每场一次。 |
+| trait_mythic_sundewcrown_2 | 暮露蚀印 | 防御时 · 本场第2回合起：施毒3次，每次伤害 7。每场一次。 |
+| trait_mythic_tideurchin_0 | 偶潮棘盾 | 受到反击时 · 攻击点数为偶数：获得护盾 +12。每场一次。 |
+| trait_mythic_tideurchin_1 | 单潮赠力 | 防御时 · 攻击点数为奇数：力量药水 +1。每场一次。 |
+| trait_mythic_tideurchin_2 | 断潮毒冠 | 受到反击时 · 有队友阵亡：施毒3次，每次伤害 8。每场一次。 |
+| trait_mythic_sailfish_0 | 奇帆蓄风 | 攻击时 · 攻击点数为奇数：下回合攻击取最高点数。每场一次。 |
+| trait_mythic_sailfish_1 | 长航校准 | 掷骰时 · 本场第2回合起：本次攻击取最高点数。每场一次。 |
+| trait_mythic_sailfish_2 | 无药掠影 | 受到反击时 · 力量药水剩余不超过1瓶：免疫本次反击。每场一次。 |
+| trait_mythic_amberant_0 | 双颚齐击 | 攻击时 · 攻击点数为偶数：额外伤害 +10。每场一次。 |
+| trait_mythic_amberant_1 | 奇数琥甲 | 使用力量药水时 · 攻击点数为奇数：获得护盾 +20。每场一次。 |
+| trait_mythic_amberant_2 | 接旗补给 | 攻击时 · 有队友阵亡：力量药水 +1。每场一次。 |
+| trait_mythic_fossillily_0 | 偶岩花冠 | 掷骰时 · 攻击点数为偶数：获得护盾 +15。每场一次。 |
+| trait_mythic_fossillily_1 | 久战化石 | 受到反击时 · 本场第2回合起：本次伤害减少 18。每场一次。 |
+| trait_mythic_fossillily_2 | 古海接生 | 防御时 · 有队友阵亡：恢复最大生命 40%。每场一次。 |
+| trait_mythic_kilnostrich_0 | 奇焰烙印 | 攻击时 · 攻击点数为奇数：施毒3次，每次伤害 5。每场一次。 |
+| trait_mythic_kilnostrich_1 | 双炉回暖 | 使用力量药水时 · 攻击点数为偶数：恢复最大生命 20%。每场一次。 |
+| trait_mythic_kilnostrich_2 | 久燃奔袭 | 攻击时 · 本场第2回合起：额外伤害 +18。每场一次。 |
+| trait_mythic_voltshark_0 | 双极校点 | 掷骰时 · 攻击点数为偶数：本次攻击取最高点数。每场一次。 |
+| trait_mythic_voltshark_1 | 绝药电解 | 使用力量药水时 · 生命药水剩余不超过1瓶：生命药水 +1。每场一次。 |
+| trait_mythic_voltshark_2 | 承雷怒击 | 攻击时 · 有队友阵亡：额外伤害 +24。每场一次。 |
+| trait_mythic_mycoshroud_0 | 双孢蔓毒 | 防御时 · 攻击点数为偶数：施毒3次，每次伤害 5。每场一次。 |
+| trait_mythic_mycoshroud_1 | 无力菌酿 | 使用生命药水时 · 力量药水剩余不超过1瓶：力量药水 +1。每场一次。 |
+| trait_mythic_mycoshroud_2 | 久战菌汲 | 攻击时 · 本场第2回合起：汲取25%伤害并施毒3次，每次3点。每场一次。 |
+| trait_mythic_duneworm_0 | 偶环缓震 | 受到反击时 · 攻击点数为偶数：本次伤害减少 10。每场一次。 |
+| trait_mythic_duneworm_1 | 绝力砂垒 | 防御时 · 力量药水剩余不超过1瓶：获得护盾 +24。每场一次。 |
+| trait_mythic_duneworm_2 | 绝药地饮 | 攻击时 · 生命药水剩余不超过1瓶：恢复实际伤害的 80%。每场一次。 |
+| trait_mythic_zenpanda_0 | 奇步凝神 | 防御时 · 攻击点数为奇数：下回合攻击取最高点数。每场一次。 |
+| trait_mythic_zenpanda_1 | 久战禅息 | 受到反击时 · 本场第2回合起：恢复最大生命 30%。每场一次。 |
+| trait_mythic_zenpanda_2 | 承志回生 | 攻击时 · 有队友阵亡：恢复最大生命 45%。每场一次。 |
+| trait_mythic_compassbug_0 | 双针蓄守 | 掷骰时 · 攻击点数为偶数：获得护盾 +5，下回合最高点数。每场一次。 |
+| trait_mythic_compassbug_1 | 长战磁壁 | 使用力量药水时 · 本场第2回合起：获得护盾 +28。每场一次。 |
+| trait_mythic_compassbug_2 | 绝药钢命 | 受到反击时 · 生命药水剩余不超过1瓶：本次伤害减少 24。每场一次。 |
+| trait_mythic_rimestar_0 | 奇晶缓冲 | 受到反击时 · 攻击点数为奇数：本次伤害减少 10。每场一次。 |
+| trait_mythic_rimestar_1 | 双星凝障 | 使用生命药水时 · 攻击点数为偶数：获得护盾 +20。每场一次。 |
+| trait_mythic_rimestar_2 | 承霜回光 | 掷骰时 · 有队友阵亡：恢复最大生命 30%。每场一次。 |
+| trait_mythic_marionette_0 | 奇线脱身 | 受到反击时 · 攻击点数为奇数：免疫本次反击。每场一次。 |
+| trait_mythic_marionette_1 | 久舞提线 | 防御时 · 本场第2回合起：下回合攻击取最高点数。每场一次。 |
+| trait_mythic_marionette_2 | 绝药返魂 | 受到反击时 · 生命药水剩余不超过1瓶：恢复最大生命 40%。每场一次。 |
+| trait_mythic_prismameleon_0 | 奇棱结界 | 掷骰时 · 攻击点数为奇数：获得护盾 +12。每场一次。 |
+| trait_mythic_prismameleon_1 | 绝力照真 | 攻击时 · 力量药水剩余不超过1瓶：下回合攻击取最高点数。每场一次。 |
+| trait_mythic_prismameleon_2 | 长映幻毒 | 使用力量药水时 · 本场第2回合起：施毒3次，每次伤害 7。每场一次。 |
+| trait_mythic_noctopossum_0 | 偶月攫生 | 攻击时 · 攻击点数为偶数：恢复实际伤害的 35%。每场一次。 |
+| trait_mythic_noctopossum_1 | 绝药夜馈 | 防御时 · 生命药水剩余不超过1瓶：生命药水 +1。每场一次。 |
+| trait_mythic_noctopossum_2 | 久夜蚀痕 | 攻击时 · 本场第2回合起：施毒3次，每次伤害 8。每场一次。 |
+| trait_mythic_bellhummer_0 | 奇铃晨歌 | 掷骰时 · 攻击点数为奇数：恢复生命 +12。每场一次。 |
+| trait_mythic_bellhummer_1 | 承愿赠力 | 使用生命药水时 · 有队友阵亡：力量药水 +1。每场一次。 |
+| trait_mythic_bellhummer_2 | 护愿花幕 | 防御时 · 有队友阵亡：获得护盾 +32。每场一次。 |
+| trait_mythic_chronospine_0 | 双帆龙痕 | 攻击时 · 攻击点数为偶数：施毒3次，每次伤害 6。每场一次。 |
+| trait_mythic_chronospine_1 | 绝力宙返 | 使用力量药水时 · 力量药水剩余不超过1瓶：力量药水 +1。每场一次。 |
+| trait_mythic_chronospine_2 | 承古噬生 | 攻击时 · 有队友阵亡：恢复实际伤害的 100%。每场一次。 |
 
 各技能每场至多触发一次；持续效果仍按规则继续。多技能执行顺序和取整见 [数值规则](../BALANCE.md)。
 
@@ -594,6 +705,36 @@ HP为本关敌人上限。攻击一栏列出普通池中每只的实际点数组
 | 太初星界 | 8 | 普通 | SR | 174 | 霜扇孔雀: 64/75/86；千折纸使: 64/75/86；悬环星仪: 64/75/86；噬月双首蛇: 64/75/86 | 26 |
 | 太初星界 | 9 | 普通 | SR | 189 | 霜扇孔雀: 64/75/86；千折纸使: 64/75/86；悬环星仪: 64/75/86；噬月双首蛇: 64/75/86 | 26 |
 | 太初星界 | 10 | BOSS | SSR | 242 | 三曜太古龙: 66/76/87 | 不发普通掉落 |
+| 虹瀑天阶 | 1 | 普通 | SR | 113 | 月印守河兽: 68/80/93；琼露冠使: 68/80/93；涡棘潮胆: 68/80/93；巡空四帆鱼: 68/80/93 | 24 |
+| 虹瀑天阶 | 2 | 普通 | SR | 129 | 月印守河兽: 68/80/93；琼露冠使: 68/80/93；涡棘潮胆: 68/80/93；巡空四帆鱼: 68/80/93 | 24 |
+| 虹瀑天阶 | 3 | 普通 | SR | 131 | 月印守河兽: 68/80/93；琼露冠使: 68/80/93；涡棘潮胆: 68/80/93；巡空四帆鱼: 68/80/93 | 24 |
+| 虹瀑天阶 | 4 | 普通 | SR | 147 | 月印守河兽: 70/81/94；琼露冠使: 70/81/94；涡棘潮胆: 70/81/94；巡空四帆鱼: 70/81/94 | 26 |
+| 虹瀑天阶 | 5 | 精英 | SR | 172 | 琥宫蚁后: 70/81/94 | 26 |
+| 虹瀑天阶 | 6 | 普通 | SR | 167 | 月印守河兽: 70/81/94；琼露冠使: 70/81/94；涡棘潮胆: 70/81/94；巡空四帆鱼: 70/81/94 | 26 |
+| 虹瀑天阶 | 7 | 普通 | SR | 184 | 月印守河兽: 71/82/95；琼露冠使: 71/82/95；涡棘潮胆: 71/82/95；巡空四帆鱼: 71/82/95 | 28 |
+| 虹瀑天阶 | 8 | 普通 | SR | 187 | 月印守河兽: 71/82/95；琼露冠使: 71/82/95；涡棘潮胆: 71/82/95；巡空四帆鱼: 71/82/95 | 28 |
+| 虹瀑天阶 | 9 | 普通 | SR | 204 | 月印守河兽: 71/82/95；琼露冠使: 71/82/95；涡棘潮胆: 71/82/95；巡空四帆鱼: 71/82/95 | 28 |
+| 虹瀑天阶 | 10 | BOSS | SSR | 259 | 古海岩冠神: 72/83/96 | 不发普通掉落 |
+| 烬海王庭 | 1 | 普通 | SR | 122 | 熔冠疾鸵: 75/87/100；双极雷鲨: 75/87/100；紫幕伞灵: 75/87/100；地钻环虫: 75/87/100 | 26 |
+| 烬海王庭 | 2 | 普通 | SR | 139 | 熔冠疾鸵: 75/87/100；双极雷鲨: 75/87/100；紫幕伞灵: 75/87/100；地钻环虫: 75/87/100 | 26 |
+| 烬海王庭 | 3 | 普通 | SR | 141 | 熔冠疾鸵: 75/87/100；双极雷鲨: 75/87/100；紫幕伞灵: 75/87/100；地钻环虫: 75/87/100 | 26 |
+| 烬海王庭 | 4 | 普通 | SR | 158 | 熔冠疾鸵: 76/88/101；双极雷鲨: 76/88/101；紫幕伞灵: 76/88/101；地钻环虫: 76/88/101 | 28 |
+| 烬海王庭 | 5 | 精英 | SR | 184 | 竹环拳师: 76/88/101 | 28 |
+| 烬海王庭 | 6 | 普通 | SR | 174 | 熔冠疾鸵: 76/88/101；双极雷鲨: 76/88/101；紫幕伞灵: 76/88/101；地钻环虫: 76/88/101 | 28 |
+| 烬海王庭 | 7 | 普通 | SR | 191 | 熔冠疾鸵: 77/89/102；双极雷鲨: 77/89/102；紫幕伞灵: 77/89/102；地钻环虫: 77/89/102 | 30 |
+| 烬海王庭 | 8 | 普通 | SR | 194 | 熔冠疾鸵: 77/89/102；双极雷鲨: 77/89/102；紫幕伞灵: 77/89/102；地钻环虫: 77/89/102 | 30 |
+| 烬海王庭 | 9 | 普通 | SR | 211 | 熔冠疾鸵: 77/89/102；双极雷鲨: 77/89/102；紫幕伞灵: 77/89/102；地钻环虫: 77/89/102 | 30 |
+| 烬海王庭 | 10 | BOSS | SSR | 268 | 天枢罗盘神: 78/90/103 | 不发普通掉落 |
+| 无垠梦渊 | 1 | 普通 | SR | 151 | 冰甲星卫: 81/94/107；漆影舞偶: 81/94/107；棱冠幻蜥: 81/94/107；月披负鼠: 81/94/107 | 28 |
+| 无垠梦渊 | 2 | 普通 | SR | 171 | 冰甲星卫: 81/94/107；漆影舞偶: 81/94/107；棱冠幻蜥: 81/94/107；月披负鼠: 81/94/107 | 28 |
+| 无垠梦渊 | 3 | 普通 | SR | 174 | 冰甲星卫: 81/94/107；漆影舞偶: 81/94/107；棱冠幻蜥: 81/94/107；月披负鼠: 81/94/107 | 28 |
+| 无垠梦渊 | 4 | 普通 | SR | 194 | 冰甲星卫: 82/95/108；漆影舞偶: 82/95/108；棱冠幻蜥: 82/95/108；月披负鼠: 82/95/108 | 30 |
+| 无垠梦渊 | 5 | 精英 | SR | 225 | 颂铃悬翼使: 82/95/108 | 30 |
+| 无垠梦渊 | 6 | 普通 | SR | 231 | 冰甲星卫: 82/95/108；漆影舞偶: 82/95/108；棱冠幻蜥: 82/95/108；月披负鼠: 82/95/108；漆影舞偶: 82/95/108；月披负鼠: 82/95/108 | 30 |
+| 无垠梦渊 | 7 | 普通 | SR | 254 | 冰甲星卫: 84/96/110；漆影舞偶: 84/96/110；棱冠幻蜥: 84/96/110；月披负鼠: 84/96/110；漆影舞偶: 84/96/110；月披负鼠: 84/96/110 | 32 |
+| 无垠梦渊 | 8 | 普通 | SR | 257 | 冰甲星卫: 84/96/110；漆影舞偶: 84/96/110；棱冠幻蜥: 84/96/110；月披负鼠: 84/96/110；漆影舞偶: 84/96/110；月披负鼠: 84/96/110 | 32 |
+| 无垠梦渊 | 9 | 普通 | SR | 280 | 冰甲星卫: 84/96/110；漆影舞偶: 84/96/110；棱冠幻蜥: 84/96/110；月披负鼠: 84/96/110；漆影舞偶: 84/96/110；月披负鼠: 84/96/110 | 32 |
+| 无垠梦渊 | 10 | BOSS | SSR | 354 | 太宙穹帆龙: 85/97/111；千线空壳神: 82/95/108；暗月负鼠王: 82/95/108 | 不发普通掉落 |
 
 ## 寻蛋概率
 
@@ -625,6 +766,12 @@ HP为本关敌人上限。攻击一栏列出普通池中每只的实际点数组
 | 万象神炉 | 10 | 3 | 60% | 30% | 10% | 27.1% |
 | 太初星界 | 5 | 2 | 80% | 15% | 5% | 9.75% |
 | 太初星界 | 10 | 3 | 60% | 30% | 10% | 27.1% |
+| 虹瀑天阶 | 5 | 2 | 80% | 15% | 5% | 9.75% |
+| 虹瀑天阶 | 10 | 3 | 60% | 30% | 10% | 27.1% |
+| 烬海王庭 | 5 | 2 | 80% | 15% | 5% | 9.75% |
+| 烬海王庭 | 10 | 3 | 60% | 30% | 10% | 27.1% |
+| 无垠梦渊 | 5 | 2 | 80% | 15% | 5% | 9.75% |
+| 无垠梦渊 | 10 | 3 | 60% | 30% | 10% | 27.1% |
 
 ## 普通孵化品质概率
 

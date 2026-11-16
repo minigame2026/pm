@@ -4567,5 +4567,308 @@
     "files": [
       "PMPCGame.ts"
     ]
+  },
+  {
+    "id": "pc0539",
+    "source": "永久加成",
+    "english": "Permanent bonus",
+    "files": [
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0540",
+    "source": "请先登录 Steam 并保持在线",
+    "english": "Sign in to Steam and stay online",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0541",
+    "source": "好友暂时无法连接",
+    "english": "Friend is unavailable",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0542",
+    "source": "今日已邀请",
+    "english": "Invited today",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0543",
+    "source": "邀请未发送，请重试",
+    "english": "Invite not sent. Try again.",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0544",
+    "source": "保存失败，邀请未发送",
+    "english": "Save failed. Invite not sent.",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0545",
+    "source": "加速邀请已发送",
+    "english": "Speed-up invite sent",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0546",
+    "source": "保存失败，请重试",
+    "english": "Save failed. Try again.",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0547",
+    "source": "收到好友加速请求",
+    "english": "Friend help request received",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0548",
+    "source": "好友帮助成功，现已可以领取",
+    "english": "Your friend helped. Ready to claim!",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0549",
+    "source": "已帮助好友",
+    "english": "Friend helped",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0550",
+    "source": "帮助好友加速",
+    "english": "Help Friend",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0551",
+    "source": "邀请好友加速",
+    "english": "Invite Friend to Help",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0552",
+    "source": "每位好友每日可邀请一次，孵化与交配共用。",
+    "english": "Invite each friend once a day, shared by hatching and breeding.",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0553",
+    "source": "等待好友帮助",
+    "english": "Waiting for friend",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0554",
+    "source": "加速需要双方在线运行游戏",
+    "english": "Both players must be in-game and online",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0555",
+    "source": "取消邀请",
+    "english": "Cancel Invite",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0556",
+    "source": "暂无可邀请的 Steam 好友",
+    "english": "No Steam friends available to invite",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0557",
+    "source": "帮助后立即完成等待",
+    "english": "Helping finishes the wait instantly",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0558",
+    "source": "次数刷新 · ",
+    "english": "Resets in · ",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0559",
+    "source": "帮助请求已失效",
+    "english": "This help request has expired",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0560",
+    "source": "正在连接好友…",
+    "english": "Connecting to friend…",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0561",
+    "source": "好友加速请求",
+    "english": "Friend Help Requests",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0562",
+    "source": "正在游戏",
+    "english": "In game",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0563",
+    "source": "在线",
+    "english": "Online",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0564",
+    "source": "离线",
+    "english": "Offline",
+    "files": [
+      "PCFriendHelp.ts",
+      "PCFriendHelpUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0565",
+    "source": "收集奖励",
+    "english": "Collection Rewards",
+    "files": [
+      "PCDexRewardsUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0566",
+    "source": "图鉴收集奖励",
+    "english": "Journal Rewards",
+    "files": [
+      "PCDexRewardsUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0567",
+    "source": "普通与闪光合计，每种形态只计一次。",
+    "english": "Normal and shiny forms count separately, once each.",
+    "files": [
+      "PCDexRewardsUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0568",
+    "source": "未达成",
+    "english": "Locked",
+    "files": [
+      "PCDexRewardsUI.ts",
+      "PMPCGame.ts"
+    ]
+  },
+  {
+    "id": "pc0569",
+    "source": "已领取",
+    "english": "Claimed",
+    "files": [
+      "PCDexRewardsUI.ts",
+      "PMPCGame.ts"
+    ]
   }
 ]

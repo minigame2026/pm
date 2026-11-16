@@ -1,0 +1,19 @@
+{
+  "provider": "OpenAI official API",
+  "endpoint": "https://api.openai.com/v1/images/edits",
+  "model": "gpt-image-2.6-flare",
+  "quality": "high",
+  "size": "1024x1536",
+  "background": "transparent",
+  "successfulImages": 18,
+  "successfulRequests": 18,
+  "reworkRequests": 0,
+  "userBudgetUSD": 20,
+  "billingNote": "The bundled official image CLI does not save response usage. Exact billed cost and remaining credit must be read from the account dashboard; do not infer exact spend from request count.",
+  "sourceBytes": 38730941,
+  "runtimeBytes": 12145587,
+  "styleReference": "art-source/runtime-masters-v1/triarchdrake-forms-v1.png",
+  "runtimeMaxEdge": 1024,
+  "views": 108,
+  "shiny": "Existing shared-texture color material; no extra atlas"
+}

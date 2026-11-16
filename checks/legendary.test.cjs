@@ -9,14 +9,14 @@ const hash=x=>crypto.createHash('sha256').update(JSON.stringify(x)).digest('hex'
 const oldIds='fox bud turtle cotton otter spark seal ape slug mole bird owl beetle ghost dragon lynx rhino deer capy lotus manta crane mantis cragcrab cinder voltage venom dune monk ironboar frost spirit dream shade aurora starwyrm nectar orchid axolotl lantern cobra hornbill embercamel frill wombat trilobite wolverine bison narwhal raccoon octopus moonbat silkmoth kirin postplat emberhorse leafsloth bubpup arceel snowpeng punchshrimp velvetslug sandlion sailfrigate orbitphant twigbug gemnautilus shroudsprite quillwyvern nightmeerkat railpede peachflamingo'.split(' ');
 const oldSkills='opening armor healing steady repeat charged focus barrier overflow refund emergency venom heavy slow evade leech tm_healStrike tm_guardHeal tm_boostShield tm_healPower tm_finisher tm_lastStand tm_firstShield tm_combo res_bloom res_venom res_drive'.split(' ').concat(Array.from({length:18},(_,i)=>[0,1,2].map(t=>'trait_'+i+'_'+t)).flat());
 let checks=0;const test=(label,fn)=>{fn();checks++;console.log('PASS '+label);};
-test('90 species preserve all 72 existing species and permanent skill indexes',()=>{
- assert.equal(M.PET_IDS.length,90);same(M.PET_IDS.slice(0,72),oldIds);same(M.PET_IDS.slice(72),roster.pets.map(p=>p.id));
+test('108 species preserve the original 72 species and maps10–12 appended species and skill indexes',()=>{
+ assert.equal(M.PET_IDS.length,108);assert.equal(M.PET_IDS.length*M.RARITIES.length,324);same(M.PET_IDS.slice(0,72),oldIds);same(M.PET_IDS.slice(72,90),roster.pets.map(p=>p.id));
  assert.equal(hash(Object.fromEntries(oldIds.map(id=>[id,M.PETS[id]]))),'8314e49de80786549e5b44aee07b8171e8cb8d3e6eacd3d1c16df10315e6ba20');
  same(Object.keys(M.SKILLS).slice(0,oldSkills.length),oldSkills);
  assert.equal(hash(Object.fromEntries(Object.entries(M.SKILL_SPECS).filter(([id])=>oldSkills.includes(id)))),'88993add65306cb6294fad79a34c0446c15196b430f4c163ae9945c68f3bc07c');
 });
 test('maps 10–12 have 18 types, 54 forms and progressive original-formula opponents',()=>{
- assert.equal(M.MAPS.length,12);assert.equal(roster.pets.length,18);assert.equal(new Set(roster.pets.map(p=>p.type)).size,18);
+ assert.equal(M.MAPS.length,15);assert.equal(roster.pets.length,18);assert.equal(new Set(roster.pets.map(p=>p.type)).size,18);
  const names=new Set();for(const p of roster.pets){assert.equal(M.PETS[p.id].type,p.type);same(M.FORM_NAMES[p.id],p.forms.map(f=>f.name));for(const r of M.RARITIES){names.add(M.petName({id:p.id,rarity:r}));assert(M.naturalPetHP(p.id,r)<=200);assert(Math.max(...M.naturalPetFaces(p.id,r))<=100);assert(M.SHINY_PETS.includes(p.id));}}
  assert.equal(names.size,54);
  for(const map of roster.maps){assert.equal(M.MAPS[map.id].stages,10);assert.equal(M.MAPS[map.id].name,map.name);same(M.MAPS[map.id].pets,map.pets);same(M.encounterPool(1,map.id),map.pets.slice(0,4));same(M.encounterPool(5,map.id),map.pets.slice(4,5));same(M.encounterPool(10,map.id),map.pets.slice(5));
@@ -24,18 +24,18 @@ test('maps 10–12 have 18 types, 54 forms and progressive original-formula oppo
   const s=M.fresh(1);assert.equal(M.mapUnlocked(s,map.id),false);s.clearedMaps=Array.from({length:map.id},(_,i)=>i);assert(M.mapUnlocked(s,map.id));const entered=M.startMap(s,map.id,7);assert.equal(entered.mapId,map.id);assert(map.pets.includes(entered.enemy));save(entered);
  }
 });
-test('all twelve maps share elite 80/15/5 and boss 60/30/10 rates',()=>{
- for(let id=0;id<12;id++)for(const [i,step] of [5,10].entries()){const actual=M.eggRates({mapId:id,step}),expected=i?[60,30,10]:[80,15,5];same([actual.normal,actual.SR,actual.SSR],expected);if(id>=9)same(roster.maps[id-9].eggRates[i?'boss':'elite'],expected);assert.equal(Object.values(actual).reduce((a,b)=>a+b,0),100);}
+test('all fifteen maps share elite 80/15/5 and boss 60/30/10 rates',()=>{
+ for(let id=0;id<M.MAPS.length;id++)for(const [i,step] of [5,10].entries()){const actual=M.eggRates({mapId:id,step}),expected=i?[60,30,10]:[80,15,5];same([actual.normal,actual.SR,actual.SSR],expected);if(id>=9&&id<=11)same(roster.maps[id-9].eggRates[i?'boss':'elite'],expected);assert.equal(Object.values(actual).reduce((a,b)=>a+b,0),100);}
  same(M.HATCH_RATES,{normal:[90,9,1],SR:[0,95,5],SSR:[0,0,100]});
 });
 test('each new ten-floor expedition completes, offers map eggs and unlocks the next map',()=>{
  for(const map of roster.maps){let s=M.fresh(27);s.clearedMaps=Array.from({length:map.id},(_,i)=>i);s=M.startMap(s,map.id,27);s.expedition=true;let turns=0,nests=0;
   while(s.phase!=='won'&&turns++<80){if(s.phase==='encounter')s=M.act(s,'challenge');else if(s.phase==='battle'){s.enemyHP=1;s=M.act(s,'attack');}else if(s.phase==='reward')s=M.act(s,'take');else if(s.phase==='event')s=M.act(s,'eventContinue');else if(s.phase==='nest'){s=M.act(s,'eggSearch');assert(s.eggHunt.candidates.every(e=>map.pets.includes(e.affinity)&&e.mapId===map.id));s=M.act(s,'eggTake');nests++;}else if(s.phase==='eggClaimed')s=M.act(s,'eggContinue');else assert.fail(s.phase);}
-  assert.equal(s.phase,'won');assert.equal(s.step,10);assert.equal(nests,2);assert(s.clearedMaps.includes(map.id));if(map.id<11)assert(M.mapUnlocked(s,map.id+1));save(s);
+  assert.equal(s.phase,'won');assert.equal(s.step,10);assert.equal(nests,2);assert(s.clearedMaps.includes(map.id));if(map.id<M.MAPS.length-1)assert(M.mapUnlocked(s,map.id+1));save(s);
  }
 });
 test('54 appended skills use distinct playable trigger/effect combinations',()=>{
- const codes=roster.pets.flatMap(p=>M.RARITIES.map(r=>M.petSkills({id:p.id,rarity:r})[0]));assert.equal(new Set(codes).size,54);assert.equal(M.NATURAL_SKILL_CODES.length,108);
+ const codes=roster.pets.flatMap(p=>M.RARITIES.map(r=>M.petSkills({id:p.id,rarity:r})[0]));assert.equal(new Set(codes).size,54);assert.equal(M.NATURAL_SKILL_CODES.length,162);
  const combinations=new Set();for(const code of codes){assert(code.startsWith('trait_legendary_'));const v=M.SKILL_SPECS[code];assert(v);assert(M.SKILLS[code][0]);assert(M.SKILLS[code][1].includes('每场一次'));combinations.add([v.when,v.gate,v.effect].join('/'));if(['damage','drain','venomDrain'].includes(v.effect))assert.equal(v.when,'attack');if(['reduce','evade','survive'].includes(v.effect))assert.equal(v.when,'hit');if(v.effect==='maxRoll')assert.equal(v.when,'roll');assert(!(v.when==='heal'&&v.gate==='full'),'full-health healing is not a playable trigger');}
  assert.equal(combinations.size,54,'all new skills differ by mechanics, not just name or amount');
  for(const code of codes){const v=M.SKILL_SPECS[code];assert(!(v.gate==='full'&&['heal','healPct','drain'].includes(v.effect)),'full-health healing must not waste a skill');}

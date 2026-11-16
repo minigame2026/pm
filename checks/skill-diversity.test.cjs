@@ -2,11 +2,13 @@ const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('nod
 const source=fs.readFileSync('assets/scripts/PMModel.ts','utf8')+'\nexport const testRoll=roll;export const testReadySkills=readySkillSpecs;';
 vm.runInNewContext(ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2017}}).outputText,{exports:M,Math,Date,JSON,Set});
 const copy=x=>JSON.parse(JSON.stringify(x));
-assert.equal(M.NATURAL_SKILL_CODES.length,108);assert.equal(M.TEMP_SKILLS.length,32);
+assert.equal(M.NATURAL_SKILL_CODES.length,162);assert.equal(M.TEMP_SKILLS.length,32);
+// This regression owns the original108 effects; regions13–15 actions have a separate expansion check.
+const legacyNaturalSkills=M.NATURAL_SKILL_CODES.slice(0,108);
 assert.deepEqual(copy(M.NATURAL_SKILL_CODES.slice(0,54)),Array.from({length:18},(_,i)=>[0,1,2].map(t=>'trait_'+i+'_'+t)).flat(),'old 54 natural skill indexes remain stable');
-assert.equal(new Set(M.NATURAL_SKILL_CODES.map(c=>JSON.stringify(M.SKILL_SPECS[c]))).size,108,'natural skills have distinct triggers/effects');
+assert.equal(new Set(legacyNaturalSkills.map(c=>JSON.stringify(M.SKILL_SPECS[c]))).size,108,'original108 natural skills keep distinct triggers/effects');
 assert.equal(new Set(M.TEMP_SKILLS.map(c=>JSON.stringify(M.SKILL_SPECS[c]))).size,32,'temporary skills have distinct triggers/effects');
-for(const code of [...M.NATURAL_SKILL_CODES,...M.TEMP_SKILLS]){
+for(const code of [...legacyNaturalSkills,...M.TEMP_SKILLS]){
  const v=M.SKILL_SPECS[code];let s=M.fresh(41,['fox','turtle','bud']);s.active.skills=[code];s.pets[0].skills=[code];s.runRoster={};s.team=[s.active.uid,'',''];s.reserve=null;s=M.act(s,'challenge');
  s.enemyHP=s.enemyMax=1000;s.enemyAttack=8;s.hpRatio=.6;s.skill.usedCodes=[];s.skill.used=false;s.skill.shield=0;s.skill.poison=0;s.skill.nextMax=false;s.skill.attacks=v.gate==='third'?2:0;s.attack=3;s.turn=2;
  if(v.gate==='low')s.hpRatio=.3;if(v.gate==='full')s.hpRatio=1;if(v.gate==='enemyHalf')s.enemyHP=400;if(v.gate==='minimum')s.attack=Math.min(...s.active.faces);if(v.gate==='maximum')s.attack=Math.max(...s.active.faces);if(v.gate==='boosted')s.doubled=true;if(v.gate==='lethal'){s.enemy='cotton';s.enemyAttack=M.hp(s)+1;}if(v.gate==='resisted')s.enemy='otter';

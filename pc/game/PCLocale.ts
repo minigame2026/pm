@@ -35,8 +35,11 @@ const escape=(v:string)=>v.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const termOverrides:Record<string,Record<string,string>>={ta:{'超能力':'மனசக்தி','飞行':'பறப்பு'}};
 const pcPattern=new RegExp(Array.from(new Set([...Object.keys(TRANSLATIONS),...Object.keys(PC_EN),...Object.keys(PC_TRANSLATIONS)])).sort((a,b)=>b.length-a.length).map(escape).join('|'),'g');
 export function selectPCLanguage(value:string|null,systemCode:string){return selectLanguage(value||'zh-CN',systemCode);}
+const renderedText=new Map<string,string>();let renderedLocale='';
 export function pcTr(value:string){
   if(currentLocale()==='zh-CN'||!value)return value;
+  if(renderedLocale!==currentLocale()){renderedText.clear();renderedLocale=currentLocale();}
+  const cached=renderedText.get(value);if(cached!==undefined)return cached;
   const locale=currentLocale(),lookup=(key:string)=>termOverrides[locale]?.[key]??PC_TRANSLATIONS[key]?.[locale]??(locale==='en'&&PC_EN[key]?PC_EN[key]:tr(key));
   // Protect whole numbered phrases before the single longest-match pass. Translated
   // Japanese/Traditional Chinese is never sent through the source matcher again.
@@ -44,7 +47,8 @@ export function pcTr(value:string){
   const protect=(text:string)=>{phrases.push(text);return '\ue000'+(phrases.length-1)+'\ue001';};
   const source=value.replace(/第\s*(\d+)\s*([场阶])/g,(_match,n,kind)=>protect(lookup(kind==='场'?'第 {n} 场':'第 {n} 阶').replace('{n}',n)))
     .replace(/第\s*(\d+)\s*回合|回合\s*(\d+)|(\d+)\s*回合/g,(_match,ordinal,before,after)=>protect(after?after+' '+lookup(' 回合\n').trim():lookup('回合 ')+(ordinal||before)));
-  return source.replace(pcPattern,lookup).replace(/\ue000(\d+)\ue001/g,(_match,n)=>phrases[Number(n)]);
+  const result=source.replace(pcPattern,lookup).replace(/\ue000(\d+)\ue001/g,(_match,n)=>phrases[Number(n)]);
+  if(renderedText.size>=2048)renderedText.delete(renderedText.keys().next().value!);renderedText.set(value,result);return result;
 }
 let bundledFonts=false;
 /** Windows registers these shipped font families before the script runtime starts. */

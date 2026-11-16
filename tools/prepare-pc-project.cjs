@@ -16,6 +16,7 @@ function prepare({qaFastTimers=false}={}){
     const target=name==='PMPCGame.ts'?'PMGame.ts':name;
     fs.copyFileSync(path.join(ROOT,'pc/game',name),path.join(DEST,'assets/scripts',target));
   }
+  write(path.join(DEST,'assets/scripts/PCTextWarmupData.ts'),'// Generated from PC UI call sites; never copied to mobile.\nexport const PC_TEXT_WARMUP='+JSON.stringify(require('./pc-text-warmup.cjs').entries(ROOT))+';\n');
   const pcModel=path.join(DEST,'assets/scripts/PMModel.ts');
   write(pcModel,require('./pc-model-overrides.cjs').applyPCModelOverrides(fs.readFileSync(pcModel,'utf8').replace(/\r\n/g,'\n')));
   for(const [file,from,to] of [['DurableCheckpoint.ts','pm-checkpoints-v1','pm-pc-checkpoints-v1'],['PMAudio.ts','pm.audio.v1','pm.pc.audio.v1'],['PMLocale.ts','pm.language.v1','pm.pc.language.v1']]){
@@ -27,7 +28,7 @@ function prepare({qaFastTimers=false}={}){
   fs.cpSync(path.join(ROOT,'pc/assets'),path.join(DEST,'assets/resources/pc'),{recursive:true});
   // Register landscape art in the generated PC copy only, using the actual PNG header dimensions.
   // Resources remain under pc/battle-scenes; do not duplicate the same bitmaps into art/.
-  const sceneNames=[...Array.from({length:12},(_,i)=>'map-'+String(i+1).padStart(2,'0')+'-v1'),'raid-molten-v1'];
+  const sceneNames=[...Array.from({length:15},(_,i)=>'map-'+String(i+1).padStart(2,'0')+'-v1'),'raid-molten-v1'];
   const sceneSizes={},scenePaths={},scenes=[];
   for(const name of sceneNames){const file=path.join(ROOT,'pc/assets/battle-scenes',name+'.png'),image=fs.readFileSync(file),key='pc-'+name;
     if(image.subarray(0,8).toString('hex')!=='89504e470d0a1a0a')throw Error('Expected PNG battle scene: '+file);

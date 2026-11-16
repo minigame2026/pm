@@ -1,0 +1,92 @@
+{
+  "created": "2026-11-16",
+  "successfulRequests": 3,
+  "reworkRequests": 0,
+  "billingNote": "Exact cost not returned by the bundled CLI; see official account billing.",
+  "images": [
+    {
+      "map": 13,
+      "model": "gpt-image-2",
+      "quality": "high",
+      "provider": "OpenAI official API",
+      "endpoint": "https://api.openai.com/v1/images/edits",
+      "master": "output\\imagegen\\regions-13-15\\map-13-v1.png",
+      "masterSize": [
+        2048,
+        1152
+      ],
+      "reference": "pc/assets/battle-scenes/map-10-v1.png",
+      "prompt": "art-source/regions-13-15/scenes/prompts/map-13.txt",
+      "pc": "pc\\assets\\battle-scenes\\map-13-v1.png",
+      "mobile": "assets\\resources\\art\\region-13-battle-v1.png",
+      "mobileCrop": [
+        640,
+        0,
+        1408,
+        1152
+      ],
+      "mobileSize": [
+        768,
+        1152
+      ],
+      "sha256": "acab14131ab225b42f4dcd16270ddd044eeca30a518a6e9bd5bf973345f24b0d",
+      "mobileSha256": "6ced02421a79aa11d6de7785e3c369d7a0522f8dfa3d4384d8591e5aea80b60b"
+    },
+    {
+      "map": 14,
+      "model": "gpt-image-2",
+      "quality": "high",
+      "provider": "OpenAI official API",
+      "endpoint": "https://api.openai.com/v1/images/edits",
+      "master": "output\\imagegen\\regions-13-15\\map-14-v1.png",
+      "masterSize": [
+        2048,
+        1152
+      ],
+      "reference": "pc/assets/battle-scenes/map-02-v1.png",
+      "prompt": "art-source/regions-13-15/scenes/prompts/map-14.txt",
+      "pc": "pc\\assets\\battle-scenes\\map-14-v1.png",
+      "mobile": "assets\\resources\\art\\region-14-battle-v1.png",
+      "mobileCrop": [
+        640,
+        0,
+        1408,
+        1152
+      ],
+      "mobileSize": [
+        768,
+        1152
+      ],
+      "sha256": "86eb14438339f715614729e06dbcd433b6b23fed3985065b5787b92807a10949",
+      "mobileSha256": "2a697724317edac8954606419022edfe83468c4aa6a51e79f70c2893f50d56c8"
+    },
+    {
+      "map": 15,
+      "model": "gpt-image-2",
+      "quality": "high",
+      "provider": "OpenAI official API",
+      "endpoint": "https://api.openai.com/v1/images/edits",
+      "master": "output\\imagegen\\regions-13-15\\map-15-v1.png",
+      "masterSize": [
+        2048,
+        1152
+      ],
+      "reference": "pc/assets/battle-scenes/map-12-v1.png",
+      "prompt": "art-source/regions-13-15/scenes/prompts/map-15.txt",
+      "pc": "pc\\assets\\battle-scenes\\map-15-v1.png",
+      "mobile": "assets\\resources\\art\\region-15-battle-v1.png",
+      "mobileCrop": [
+        640,
+        0,
+        1408,
+        1152
+      ],
+      "mobileSize": [
+        768,
+        1152
+      ],
+      "sha256": "0cfbcc30996b44a035cf5b57765c3bfba0854c2df7e468decf7142bb839ef66a",
+      "mobileSha256": "ee72afa0fd1de0206bcc9bd0cb485aa04c4ba7770bad47bbef9af10e08b10b03"
+    }
+  ]
+}

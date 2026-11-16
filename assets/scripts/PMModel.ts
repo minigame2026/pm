@@ -4,7 +4,7 @@ let timeProvider:()=>number=()=>Date.now();
 export function setTimeProvider(provider:()=>number){timeProvider=provider;}
 export const gameNow=()=>timeProvider();
 export type PetRank = 'normal' | 'elite' | 'boss';
-export type PetId = 'fox' | 'bud' | 'turtle' | 'cotton' | 'otter' | 'spark' | 'seal' | 'ape' | 'slug' | 'mole' | 'bird' | 'owl' | 'beetle' | 'ghost' | 'dragon' | 'lynx' | 'rhino' | 'deer' | 'capy' | 'lotus' | 'manta' | 'crane' | 'mantis' | 'cragcrab' | 'cinder' | 'voltage' | 'venom' | 'dune' | 'monk' | 'ironboar' | 'frost' | 'spirit' | 'dream' | 'shade' | 'aurora' | 'starwyrm' | 'nectar' | 'orchid' | 'axolotl' | 'lantern' | 'cobra' | 'hornbill' | 'embercamel' | 'frill' | 'wombat' | 'trilobite' | 'wolverine' | 'bison' | 'narwhal' | 'raccoon' | 'octopus' | 'moonbat' | 'silkmoth' | 'kirin' | 'postplat' | 'emberhorse' | 'leafsloth' | 'bubpup' | 'arceel' | 'snowpeng' | 'punchshrimp' | 'velvetslug' | 'sandlion' | 'sailfrigate' | 'orbitphant' | 'twigbug' | 'gemnautilus' | 'shroudsprite' | 'quillwyvern' | 'nightmeerkat' | 'railpede' | 'peachflamingo' | 'oracleater' | 'mandragrove' | 'ribbonoar' | 'sixwing' | 'glassdarner' | 'cairnheart' | 'solion' | 'drumthunder' | 'crystalmedusa' | 'ringolin' | 'maskasura' | 'starhorseshoe' | 'frostfan' | 'origamighost' | 'orbeholder' | 'eclipsehydra' | 'bloomgiraffe' | 'triarchdrake';
+export type PetId = 'fox' | 'bud' | 'turtle' | 'cotton' | 'otter' | 'spark' | 'seal' | 'ape' | 'slug' | 'mole' | 'bird' | 'owl' | 'beetle' | 'ghost' | 'dragon' | 'lynx' | 'rhino' | 'deer' | 'capy' | 'lotus' | 'manta' | 'crane' | 'mantis' | 'cragcrab' | 'cinder' | 'voltage' | 'venom' | 'dune' | 'monk' | 'ironboar' | 'frost' | 'spirit' | 'dream' | 'shade' | 'aurora' | 'starwyrm' | 'nectar' | 'orchid' | 'axolotl' | 'lantern' | 'cobra' | 'hornbill' | 'embercamel' | 'frill' | 'wombat' | 'trilobite' | 'wolverine' | 'bison' | 'narwhal' | 'raccoon' | 'octopus' | 'moonbat' | 'silkmoth' | 'kirin' | 'postplat' | 'emberhorse' | 'leafsloth' | 'bubpup' | 'arceel' | 'snowpeng' | 'punchshrimp' | 'velvetslug' | 'sandlion' | 'sailfrigate' | 'orbitphant' | 'twigbug' | 'gemnautilus' | 'shroudsprite' | 'quillwyvern' | 'nightmeerkat' | 'railpede' | 'peachflamingo' | 'oracleater' | 'mandragrove' | 'ribbonoar' | 'sixwing' | 'glassdarner' | 'cairnheart' | 'solion' | 'drumthunder' | 'crystalmedusa' | 'ringolin' | 'maskasura' | 'starhorseshoe' | 'frostfan' | 'origamighost' | 'orbeholder' | 'eclipsehydra' | 'bloomgiraffe' | 'triarchdrake' | 'oathhippo' | 'sundewcrown' | 'tideurchin' | 'sailfish' | 'amberant' | 'fossillily' | 'kilnostrich' | 'voltshark' | 'mycoshroud' | 'duneworm' | 'zenpanda' | 'compassbug' | 'rimestar' | 'marionette' | 'prismameleon' | 'noctopossum' | 'bellhummer' | 'chronospine';
 export const PETS: Record<PetId,{name:string;trait:string;type:string;rank:PetRank;hp:number;faces:number[];enemyFaces:number[];color:string}> = {
   "fox": {
     "name": "闪尾狐",
@@ -403,7 +403,25 @@ export const PETS: Record<PetId,{name:string;trait:string;type:string;rank:PetRa
   "orbeholder":{"name":"星瞳球","trait":"超能力 · 普通","type":"超能力","rank":"normal","hp":148,"faces":[39,49,60],"enemyFaces":[37,47,58],"color":"#b099ce"},
   "eclipsehydra":{"name":"双吻影蛇","trait":"恶 · 普通","type":"恶","rank":"normal","hp":148,"faces":[39,49,60],"enemyFaces":[37,47,58],"color":"#8a789e"},
   "bloomgiraffe":{"name":"花角长颈兽","trait":"妖精 · 精英","type":"妖精","rank":"elite","hp":152,"faces":[40,50,61],"enemyFaces":[38,48,59],"color":"#d8a5c2"},
-  "triarchdrake":{"name":"三角幼龙","trait":"龙 · 首领","type":"龙","rank":"boss","hp":156,"faces":[41,51,62],"enemyFaces":[39,49,60],"color":"#839ebb"}
+  "triarchdrake":{"name":"三角幼龙","trait":"龙 · 首领","type":"龙","rank":"boss","hp":156,"faces":[41,51,62],"enemyFaces":[39,49,60],"color":"#839ebb"},
+"oathhippo":{"name":"誓纹河马","trait":"一般 · 普通","type":"一般","rank":"normal","hp":119,"faces":[28,37,46],"enemyFaces":[39,50,62],"color":"#b7a2ce"},
+"sundewcrown":{"name":"露冠小灵","trait":"草 · 普通","type":"草","rank":"normal","hp":119,"faces":[28,37,46],"enemyFaces":[39,50,62],"color":"#81b992"},
+"tideurchin":{"name":"珠潮胆","trait":"水 · 普通","type":"水","rank":"normal","hp":119,"faces":[28,37,46],"enemyFaces":[39,50,62],"color":"#73bacd"},
+"sailfish":{"name":"云帆鱼","trait":"飞行 · 普通","type":"飞行","rank":"normal","hp":119,"faces":[28,37,46],"enemyFaces":[39,50,62],"color":"#9ac8dc"},
+"amberant":{"name":"琥粒蚁","trait":"虫 · 精英","type":"虫","rank":"elite","hp":123,"faces":[29,38,48],"enemyFaces":[40,51,63],"color":"#dfb76b"},
+"fossillily":{"name":"砾冠百合兽","trait":"岩石 · 首领","type":"岩石","rank":"boss","hp":127,"faces":[30,39,49],"enemyFaces":[41,52,64],"color":"#b7a487"},
+"kilnostrich":{"name":"炭绒鸵","trait":"火 · 普通","type":"火","rank":"normal","hp":141,"faces":[35,45,56],"enemyFaces":[41,52,64],"color":"#e99b6c"},
+"voltshark":{"name":"磁锤鲨","trait":"电 · 普通","type":"电","rank":"normal","hp":141,"faces":[35,45,56],"enemyFaces":[41,52,64],"color":"#80b4d1"},
+"mycoshroud":{"name":"毒绒菇","trait":"毒 · 普通","type":"毒","rank":"normal","hp":141,"faces":[35,45,56],"enemyFaces":[41,52,64],"color":"#b896ce"},
+"duneworm":{"name":"砂环虫","trait":"地面 · 普通","type":"地面","rank":"normal","hp":141,"faces":[35,45,56],"enemyFaces":[41,52,64],"color":"#d1b081"},
+"zenpanda":{"name":"禅竹团熊","trait":"格斗 · 精英","type":"格斗","rank":"elite","hp":145,"faces":[36,46,57],"enemyFaces":[42,53,65],"color":"#b4baa1"},
+"compassbug":{"name":"铜钮瓢灵","trait":"钢 · 首领","type":"钢","rank":"boss","hp":150,"faces":[37,47,58],"enemyFaces":[43,54,66],"color":"#8baeb5"},
+"rimestar":{"name":"雪芒星","trait":"冰 · 普通","type":"冰","rank":"normal","hp":166,"faces":[44,55,67],"enemyFaces":[43,54,66],"color":"#a5d8e6"},
+"marionette":{"name":"空木偶","trait":"幽灵 · 普通","type":"幽灵","rank":"normal","hp":166,"faces":[44,55,67],"enemyFaces":[43,54,66],"color":"#b5a3c4"},
+"prismameleon":{"name":"镜尾灵蜥","trait":"超能力 · 普通","type":"超能力","rank":"normal","hp":166,"faces":[44,55,67],"enemyFaces":[43,54,66],"color":"#b7a7dc"},
+"noctopossum":{"name":"夜尾负鼠","trait":"恶 · 普通","type":"恶","rank":"normal","hp":166,"faces":[44,55,67],"enemyFaces":[43,54,66],"color":"#9b91b3"},
+"bellhummer":{"name":"铃蕊蜂鸟","trait":"妖精 · 精英","type":"妖精","rank":"elite","hp":170,"faces":[45,56,68],"enemyFaces":[44,55,67],"color":"#e3abc8"},
+"chronospine":{"name":"星帆幼龙","trait":"龙 · 首领","type":"龙","rank":"boss","hp":175,"faces":[46,57,69],"enemyFaces":[45,56,68],"color":"#8bbac2"}
 };
 export type Phase = 'encounter' | 'battle' | 'reward' | 'recruit' | 'team' | 'won' | 'lost' | 'nest' | 'eggClaimed' | 'event';
 export type EggRarity = 'normal' | 'SR' | 'SSR';
@@ -434,7 +452,7 @@ export interface Journey {version:1;stage:'hero'|'starter'|'done';hero:HeroId|nu
 export interface Reward { kind: 'hp' | 'attack' | 'heal' | 'potion' | 'boost' | 'attackMin' | 'attackMax'; values: number[]; title: string }
 export interface State {
   arena?: import('./PMArena').ArenaSave;
-  gymRun?:number; gymBadges?:number[]; gymDifficultyVersion?:1|2|3|4|5; adventureDifficultyVersion?:1;
+  gymRun?:number; gymBadges?:number[]; gymDifficultyVersion?:1|2|3|4|5; adventureDifficultyVersion?:1|2;
   surprises?:{seed:number;misses:Partial<Record<SurpriseKind,number>>;recipes:string[]};
   goldDie?:'strike'|'heal'|'shield';
   enemyVariant?:{kind:'giant'|'mirror'|'ward';revealed:boolean;shield:number;rewardEggId?:string};
@@ -472,7 +490,8 @@ export const FRIEND_PET_IDS:PetId[]=["postplat", "emberhorse", "leafsloth", "bub
 export const PET_IDS=Object.keys(PETS) as PetId[];
 export const LATEST_PET_IDS:PetId[]=["nectar","orchid","axolotl","lantern","cobra","hornbill","embercamel","frill","wombat","trilobite","wolverine","bison","narwhal","raccoon","octopus","moonbat","silkmoth","kirin"];
 export const LEGENDARY_PET_IDS:PetId[]=["oracleater","mandragrove","ribbonoar","sixwing","glassdarner","cairnheart","solion","drumthunder","crystalmedusa","ringolin","maskasura","starhorseshoe","frostfan","origamighost","orbeholder","eclipsehydra","bloomgiraffe","triarchdrake"];
-export const NEW_PET_IDS:PetId[]=["capy","lotus","manta","crane","mantis","cragcrab","cinder","voltage","venom","dune","monk","ironboar","frost","spirit","dream","shade","aurora","starwyrm",...LATEST_PET_IDS,...FRIEND_PET_IDS,...LEGENDARY_PET_IDS];
+export const MYTHIC_PET_IDS:PetId[]=["oathhippo","sundewcrown","tideurchin","sailfish","amberant","fossillily","kilnostrich","voltshark","mycoshroud","duneworm","zenpanda","compassbug","rimestar","marionette","prismameleon","noctopossum","bellhummer","chronospine"];
+export const NEW_PET_IDS:PetId[]=["capy","lotus","manta","crane","mantis","cragcrab","cinder","voltage","venom","dune","monk","ironboar","frost","spirit","dream","shade","aurora","starwyrm",...LATEST_PET_IDS,...FRIEND_PET_IDS,...LEGENDARY_PET_IDS,...MYTHIC_PET_IDS];
 const ids=PET_IDS;
 export interface MapConfig { id:number; name:string; stages:number; tint:string; pets:PetId[]; types:string; eggs:string; note:string }
 export const MAPS:MapConfig[]=[
@@ -487,7 +506,10 @@ export const MAPS:MapConfig[]=[
   {"id":8,"name":"冥辉天穹","stages":10,"tint":"#8d7fb9","pets":["narwhal","raccoon","octopus","moonbat","silkmoth","kirin"],"types":"冰 · 幽灵 · 超能力 · 恶 · 妖精 · 龙","eggs":"精英 SSR 蛋 5% · BOSS SSR 蛋 10%","note":"6 个新系列 · 18 种形态 · 天穹终境"},
   {"id":9,"name":"圣枝云庭","stages":10,"tint":"#5fa994","pets":["oracleater","mandragrove","ribbonoar","sixwing","glassdarner","cairnheart"],"types":"一般 · 草 · 水 · 飞行 · 虫 · 岩石","eggs":"精英 SSR 蛋 5% · BOSS SSR 蛋 10%","note":"6 个新系列 · 18 种形态 · 神兽领域"},
   {"id":10,"name":"万象神炉","stages":10,"tint":"#bb8267","pets":["solion","drumthunder","crystalmedusa","ringolin","maskasura","starhorseshoe"],"types":"火 · 电 · 毒 · 地面 · 格斗 · 钢","eggs":"精英 SSR 蛋 5% · BOSS SSR 蛋 10%","note":"6 个新系列 · 18 种形态 · 神兽领域"},
-  {"id":11,"name":"太初星界","stages":10,"tint":"#8885bc","pets":["frostfan","origamighost","orbeholder","eclipsehydra","bloomgiraffe","triarchdrake"],"types":"冰 · 幽灵 · 超能力 · 恶 · 妖精 · 龙","eggs":"精英 SSR 蛋 5% · BOSS SSR 蛋 10%","note":"6 个新系列 · 18 种形态 · 神兽领域"}
+  {"id":11,"name":"太初星界","stages":10,"tint":"#8885bc","pets":["frostfan","origamighost","orbeholder","eclipsehydra","bloomgiraffe","triarchdrake"],"types":"冰 · 幽灵 · 超能力 · 恶 · 妖精 · 龙","eggs":"精英 SSR 蛋 5% · BOSS SSR 蛋 10%","note":"6 个新系列 · 18 种形态 · 神兽领域"},
+{"id":12,"name":"虹瀑天阶","stages":10,"tint":"#5eaaa0","pets":["oathhippo","sundewcrown","tideurchin","sailfish","amberant","fossillily"],"types":"一般 · 草 · 水 · 飞行 · 虫 · 岩石","eggs":"精英 SSR 蛋 5% · BOSS SSR 蛋 10%","note":"6 个新系列 · 18 种形态 · 神兽领域"},
+{"id":13,"name":"烬海王庭","stages":10,"tint":"#bb855a","pets":["kilnostrich","voltshark","mycoshroud","duneworm","zenpanda","compassbug"],"types":"火 · 电 · 毒 · 地面 · 格斗 · 钢","eggs":"精英 SSR 蛋 5% · BOSS SSR 蛋 10%","note":"6 个新系列 · 18 种形态 · 神兽领域"},
+{"id":14,"name":"无垠梦渊","stages":10,"tint":"#817bb5","pets":["rimestar","marionette","prismameleon","noctopossum","bellhummer","chronospine"],"types":"冰 · 幽灵 · 超能力 · 恶 · 妖精 · 龙","eggs":"精英 SSR 蛋 5% · BOSS SSR 蛋 10%","note":"6 个新系列 · 18 种形态 · 神兽领域"}
 ];
 // Changed only by the dedicated test-package wrapper; normal builds retain production balance.
 export const BUILD_TEST_MODE=false;
@@ -526,13 +548,16 @@ export const ADVENTURE_DIFFICULTY = [
   {hp:.90,attack:.68},{hp:.95,attack:.70},{hp:1,attack:.76},
   {hp:1,attack:.78},{hp:1,attack:.84},{hp:1,attack:.88},
   {hp:1,attack:.94},{hp:1,attack:1},{hp:1,attack:1.04},
+  {hp:1,attack:1.07},{hp:1,attack:1.10},{hp:1,attack:1.13},
 ];
 export const legacyEnemyHealthForStage=(step:number,mapId=0)=>{
   const base=step<=10?[7,9,11,14,24,20,23,26,29,48][step-1]:Math.round((rankForStage(step)==='normal'?29/9:4.8)*step);
   return Math.round((base+mapId*(8+Math.floor(step*.6)))*(encounterRarity(step,mapId)==='SSR'?1.2:encounterRarity(step,mapId)==='SR'?1.1:1));
 };
-export const enemyHealthForStage=(step:number,mapId=0)=>Math.max(1,Math.round(legacyEnemyHealthForStage(step,mapId)*ADVENTURE_DIFFICULTY[mapId].hp));
-export const encounterPool=(step:number,mapId=0)=>{const pool=MAPS[mapId].pets,rank=rankForStage(step);return rank==='boss'?pool.slice(5):rank==='elite'?pool.slice(4,5):pool.slice(0,4);};
+// New encounters only: ease the entry and attrition wall, then spread final-map type pressure.
+export const MYTHIC_ENCOUNTER_TUNING=[{hp:1,attack:.86,lateHP:1,lateAttack:1},{hp:1,attack:.87,lateHP:.97,lateAttack:.90},{hp:1.15,attack:.98,lateHP:1.05,lateAttack:.98}];
+export const enemyHealthForStage=(step:number,mapId=0)=>{const t=MYTHIC_ENCOUNTER_TUNING[mapId-12];return Math.max(1,Math.round(legacyEnemyHealthForStage(step,mapId)*ADVENTURE_DIFFICULTY[mapId].hp*(t?t.hp*(step>=6?t.lateHP:1):1)));};
+export const encounterPool=(step:number,mapId=0)=>{const pool=MAPS[mapId].pets,rank=rankForStage(step);if(rank==='boss')return mapId===14?[pool[5],pool[1],pool[3]]:pool.slice(5);if(rank==='elite')return pool.slice(4,5);if(mapId===14&&step>=6)return [pool[0],pool[1],pool[2],pool[3],pool[1],pool[3]];return pool.slice(0,4);};
 export function eggRates(s:Pick<State,'mapId'|'step'>){
   return rankForStage(s.step)==='boss'?{normal:60,SR:30,SSR:10}:{normal:80,SR:15,SSR:5};
 }
@@ -604,7 +629,8 @@ export const enemyAttackFaces = (s: State): number[] => {
     return [.8,1,1.2].map(v=>Math.max(1,Math.round(target*v*1.5)));
   }
   const rank=rankForStage(s.step),tier=(rank==='normal'?(s.step<=10?(s.step<=3?0:s.step<=6?1:2):Math.floor((s.step-1)/3)):s.step<=10?0:Math.floor((s.step-(rank==='elite'?5:10))/5)*2)+(s.mapId||0)*2+(s.enemyRarity==='SSR'?2:s.enemyRarity==='SR'?1:0);
-  const curve=s.gymRun===undefined&&s.adventureDifficultyVersion===1?ADVENTURE_DIFFICULTY[s.mapId||0].attack:1;
+  const tuning=s.gymRun===undefined&&s.adventureDifficultyVersion===2?MYTHIC_ENCOUNTER_TUNING[(s.mapId||0)-12]:undefined;
+  const curve=s.gymRun===undefined&&s.adventureDifficultyVersion?ADVENTURE_DIFFICULTY[s.mapId||0].attack*(tuning?tuning.attack*(s.step>=6?tuning.lateAttack:1):1):1;
   return PETS[s.enemy].enemyFaces.map(v=>Math.max(1,Math.round((v+tier)*enemyDifficultyMultiplier(s)*curve)));
 };
 export function fresh(seed = Date.now(), owned: PetId[] = ['fox', 'turtle'], wins = 0): State {
@@ -665,7 +691,7 @@ function encounter(s: State, reroll: boolean, surprises=true) {
     const rank=rankForStage(s.step),roll=rand(s);
     s.enemyRarity=rank==='boss'?'SSR':rank==='elite'?(roll<.8?'SR':'SSR'):roll<.7?'normal':roll<.95?'SR':'SSR';
     delete s.adventureDifficultyVersion;
-  }else {delete s.gymDifficultyVersion;s.adventureDifficultyVersion=1;}
+  }else {delete s.gymDifficultyVersion;s.adventureDifficultyVersion=(s.mapId||0)>=12?2:1;}
   const health=enemyHealthForStage(s.step,s.mapId||0);
   s.enemyMax=s.gymRun!==undefined?Math.round(Math.round(health*1.2)*GYM_DIFFICULTY_UPLIFT):health;s.enemyHP=s.enemyMax;
   s.reward=reward(s); s.recruit=null;
@@ -828,7 +854,7 @@ export function restore(raw: string | null): State | null {
     if(s.gymBadges!==undefined&&(!Array.isArray(s.gymBadges)||s.gymBadges.some((id,i,a)=>!Number.isInteger(id)||id<0||id>8||a.indexOf(id)!==i)))return null;
     if(s.gymRun!==undefined&&(!Number.isInteger(s.gymRun)||s.gymRun<0||s.gymRun>8||s.mapId!==s.gymRun||!s.expedition||['nest','eggClaimed','event'].includes(s.phase)||s.phase!=='won'&&s.gymBadges?.includes(s.gymRun)))return null;
     if(s.gymDifficultyVersion!==undefined&&(![1,2,3,4,5].includes(s.gymDifficultyVersion)||s.gymRun===undefined))return null;
-    if(s.adventureDifficultyVersion!==undefined&&(s.adventureDifficultyVersion!==1||s.gymRun!==undefined))return null;
+    if(s.adventureDifficultyVersion!==undefined&&(![1,2].includes(s.adventureDifficultyVersion)||s.gymRun!==undefined))return null;
     const legacyMaps=s.mapVersion===undefined;
     if(s.stageVersion!==undefined&&s.stageVersion!==2)return null;
     if(legacyMaps){s.mapId=s.step>10?1:0;s.clearedMaps=s.wins>0?[0,1]:s.step>10?[0]:[];if(s.phase==='won'&&!s.clearedMaps.includes(s.mapId))s.clearedMaps.push(s.mapId);s.mapVersion=1;s.enemyRarity='normal';}
@@ -1147,7 +1173,7 @@ const OLD_PET_SKILLS:Partial<Record<PetId,[SkillCode,SkillCode,SkillCode]>>={
   dragon:['opening','heavy','charged'],lynx:['opening','steady','leech'],rhino:['armor','barrier','evade'],deer:['healing','refund','emergency']
 };
 type SkillMoment='attack'|'heal'|'boost'|'guard'|'hit'|'roll';
-type SkillGate='any'|'third'|'low'|'full'|'enemyHalf'|'minimum'|'maximum'|'repeat'|'first'|'boosted'|'guarded'|'lethal'|'resisted';
+type SkillGate='any'|'third'|'low'|'full'|'enemyHalf'|'minimum'|'maximum'|'repeat'|'first'|'boosted'|'guarded'|'lethal'|'resisted'|'even'|'odd'|'late'|'allyDown'|'noHeal'|'noBoost';
 type SkillEffect='damage'|'heal'|'healPct'|'drain'|'shield'|'reduce'|'poison'|'nextMax'|'maxRoll'|'refundHeal'|'refundBoost'|'evade'|'survive'|'healShield'|'venomDrain'|'powerGuard';
 export interface SkillSpec {when:SkillMoment;gate:SkillGate;effect:SkillEffect;amount:number}
 const spec=(when:SkillMoment,gate:SkillGate,effect:SkillEffect,amount=1):SkillSpec=>({when,gate,effect,amount});
@@ -1180,7 +1206,7 @@ export const SKILL_SPECS:Record<SkillCode,SkillSpec>={
 };
 const effectNames:Record<SkillEffect,string>={healShield:'花盾',venomDrain:'蚀魂',powerGuard:'蓄壁',damage:'强击',heal:'回春',healPct:'复苏',drain:'汲取',shield:'屏障',reduce:'坚守',poison:'印记',nextMax:'蓄能',maxRoll:'改运',refundHeal:'药剂回响',refundBoost:'力量回响',evade:'闪避',survive:'不屈'};
 const momentText:Record<SkillMoment,string>={attack:'攻击时',heal:'使用生命药水时',boost:'使用力量药水时',guard:'防御时',hit:'受到反击时',roll:'掷骰时'};
-const gateText:Record<SkillGate,string>={any:'',third:'第三次攻击时',low:'生命不超过50%',full:'满血时',enemyHalf:'敌人生命不超过50%',minimum:'攻击点数为最低',maximum:'攻击点数为最高',repeat:'点数与上回合相同',first:'本场首次掷骰',boosted:'力量药水生效时',guarded:'本次选择防御',lethal:'将受到致命伤害',resisted:'本次攻击被抵抗'};
+const gateText:Record<SkillGate,string>={any:'',third:'第三次攻击时',low:'生命不超过50%',full:'满血时',enemyHalf:'敌人生命不超过50%',minimum:'攻击点数为最低',maximum:'攻击点数为最高',repeat:'点数与上回合相同',first:'本场首次掷骰',boosted:'力量药水生效时',guarded:'本次选择防御',lethal:'将受到致命伤害',resisted:'本次攻击被抵抗',even:'攻击点数为偶数',odd:'攻击点数为奇数',late:'本场第2回合起',allyDown:'有队友阵亡',noHeal:'生命药水剩余不超过1瓶',noBoost:'力量药水剩余不超过1瓶'};
 function specDescription(v:SkillSpec):string {
  const n=v.amount,effects:Record<SkillEffect,string>={healShield:'恢复生命及护盾各 +4',venomDrain:'汲取25%伤害并施毒3次，每次3点',powerGuard:'获得护盾 +5，下回合最高点数',damage:'额外伤害 +'+n,heal:'恢复生命 +'+n,healPct:'恢复最大生命 '+n+'%',drain:'恢复实际伤害的 '+n+'%',shield:'获得护盾 +'+n,reduce:'本次伤害减少 '+n,poison:'施毒3次，每次伤害 '+n,nextMax:'下回合攻击取最高点数',maxRoll:'本次攻击取最高点数',refundHeal:'生命药水 +1',refundBoost:'力量药水 +1',evade:'免疫本次反击',survive:'本次保留1点生命'};
  return momentText[v.when]+(gateText[v.gate]?' · '+gateText[v.gate]:'')+'：'+effects[v.effect]+'。每场一次。';
@@ -1243,11 +1269,33 @@ const EXTRA_TEMP_SKILLS:Record<string,[string,SkillSpec]>={
  tm_hitReduce:['柔韧护体',spec('hit','any','reduce',3)]
 };
 for(const [code,[name,v]] of Object.entries(EXTRA_TEMP_SKILLS)){SKILL_SPECS[code]=v;SKILLS[code]=[name,specDescription(v)];}
+// Append after every existing skill: old share-code indexes remain unchanged.
+const MYTHIC_SKILL_DATA:Record<string,[string,SkillSpec][]>= {
+oathhippo:[["誓环守护",spec("attack","even","shield",12)],["空瓶祷祝",spec("guard","noHeal","healPct",25)],["守誓承难",spec("hit","allyDown","reduce",24)]],
+sundewcrown:[["单露回生",spec("roll","odd","healPct",12)],["奇露回瓶",spec("heal","odd","refundHeal",1)],["暮露蚀印",spec("guard","late","poison",7)]],
+tideurchin:[["偶潮棘盾",spec("hit","even","shield",12)],["单潮赠力",spec("guard","odd","refundBoost",1)],["断潮毒冠",spec("hit","allyDown","poison",8)]],
+sailfish:[["奇帆蓄风",spec("attack","odd","nextMax",1)],["长航校准",spec("roll","late","maxRoll",1)],["无药掠影",spec("hit","noBoost","evade",1)]],
+amberant:[["双颚齐击",spec("attack","even","damage",10)],["奇数琥甲",spec("boost","odd","shield",20)],["接旗补给",spec("attack","allyDown","refundBoost",1)]],
+fossillily:[["偶岩花冠",spec("roll","even","shield",15)],["久战化石",spec("hit","late","reduce",18)],["古海接生",spec("guard","allyDown","healPct",40)]],
+kilnostrich:[["奇焰烙印",spec("attack","odd","poison",5)],["双炉回暖",spec("boost","even","healPct",20)],["久燃奔袭",spec("attack","late","damage",18)]],
+voltshark:[["双极校点",spec("roll","even","maxRoll",1)],["绝药电解",spec("boost","noHeal","refundHeal",1)],["承雷怒击",spec("attack","allyDown","damage",24)]],
+mycoshroud:[["双孢蔓毒",spec("guard","even","poison",5)],["无力菌酿",spec("heal","noBoost","refundBoost",1)],["久战菌汲",spec("attack","late","venomDrain",3)]],
+duneworm:[["偶环缓震",spec("hit","even","reduce",10)],["绝力砂垒",spec("guard","noBoost","shield",24)],["绝药地饮",spec("attack","noHeal","drain",80)]],
+zenpanda:[["奇步凝神",spec("guard","odd","nextMax",1)],["久战禅息",spec("hit","late","healPct",30)],["承志回生",spec("attack","allyDown","healPct",45)]],
+compassbug:[["双针蓄守",spec("roll","even","powerGuard",5)],["长战磁壁",spec("boost","late","shield",28)],["绝药钢命",spec("hit","noHeal","reduce",24)]],
+rimestar:[["奇晶缓冲",spec("hit","odd","reduce",10)],["双星凝障",spec("heal","even","shield",20)],["承霜回光",spec("roll","allyDown","healPct",30)]],
+marionette:[["奇线脱身",spec("hit","odd","evade",1)],["久舞提线",spec("guard","late","nextMax",1)],["绝药返魂",spec("hit","noHeal","healPct",40)]],
+prismameleon:[["奇棱结界",spec("roll","odd","shield",12)],["绝力照真",spec("attack","noBoost","nextMax",1)],["长映幻毒",spec("boost","late","poison",7)]],
+noctopossum:[["偶月攫生",spec("attack","even","drain",35)],["绝药夜馈",spec("guard","noHeal","refundHeal",1)],["久夜蚀痕",spec("attack","late","poison",8)]],
+bellhummer:[["奇铃晨歌",spec("roll","odd","heal",12)],["承愿赠力",spec("heal","allyDown","refundBoost",1)],["护愿花幕",spec("guard","allyDown","shield",32)]],
+chronospine:[["双帆龙痕",spec("attack","even","poison",6)],["绝力宙返",spec("boost","noBoost","refundBoost",1)],["承古噬生",spec("attack","allyDown","drain",100)]]
+};
+for(const id of MYTHIC_PET_IDS){PET_SKILLS[id]=MYTHIC_SKILL_DATA[id].map(([name,v],tier)=>{const code='trait_mythic_'+id+'_'+tier;SKILL_SPECS[code]=v;SKILLS[code]=[name,specDescription(v)];return code;}) as [SkillCode,SkillCode,SkillCode];}
 export const NATURAL_SKILL_CODES=Object.keys(SKILL_SPECS).filter(c=>c.startsWith('trait_'));
 function readySkillSpecs(s:State,when:SkillMoment,damage=0,guarded=false):SkillCode[]{
  if(!s.skill)return [];
  return combatSkills(s).filter(c=>{const v=SKILL_SPECS[c];if(!v||v.when!==when||!skillReady(s,c))return false;
-  const gates:Record<SkillGate,boolean>={any:true,third:s.skill!.attacks===2,low:s.hpRatio<=.5,full:s.hpRatio===1,enemyHalf:s.enemyHP<=s.enemyMax*.5,minimum:s.attack===Math.min(...petAttackFaces(s.active)),maximum:s.attack===Math.max(...petAttackFaces(s.active)),repeat:s.turn>1&&s.attack===s.skill!.previousRoll,first:s.turn===1,boosted:s.doubled,guarded,lethal:damage>=hp(s)&&hp(s)>0,resisted:matchupMultiplier(s.active.id,s.enemy)<1};
+  const gates:Record<SkillGate,boolean>={any:true,third:s.skill!.attacks===2,low:s.hpRatio<=.5,full:s.hpRatio===1,enemyHalf:s.enemyHP<=s.enemyMax*.5,minimum:s.attack===Math.min(...petAttackFaces(s.active)),maximum:s.attack===Math.max(...petAttackFaces(s.active)),repeat:s.turn>1&&s.attack===s.skill!.previousRoll,first:s.turn===1,boosted:s.doubled,guarded,lethal:damage>=hp(s)&&hp(s)>0,resisted:matchupMultiplier(s.active.id,s.enemy)<1,even:s.attack%2===0,odd:s.attack%2!==0,late:s.turn>=2,allyDown:homeParty(s).some(uid=>!!uid&&uid!==s.active.uid&&petCombat(s,uid).hp===0),noHeal:s.potions<=1,noBoost:s.boosts<=1};
   return gates[v.gate];
  });
 }
@@ -1486,7 +1534,25 @@ export const FORM_NAMES:Record<PetId,[string,string,string]>={
   orbeholder:["星瞳球","悬环星仪","天测独眼神"],
   eclipsehydra:["双吻影蛇","噬月双首蛇","蚀天双首神蛇"],
   bloomgiraffe:["花角长颈兽","圣庭花冠兽","天苑长颈神"],
-  triarchdrake:["三角幼龙","双首翼龙","三曜太古龙"]
+  triarchdrake:["三角幼龙","双首翼龙","三曜太古龙"],
+oathhippo:["誓纹河马","月印守河兽","万誓河神"],
+sundewcrown:["露冠小灵","琼露冠使","万露花冕神"],
+tideurchin:["珠潮胆","涡棘潮胆","瀚潮棘冠"],
+sailfish:["云帆鱼","巡空四帆鱼","天穹御帆神"],
+amberant:["琥粒蚁","琥宫蚁后","千巢琥皇"],
+fossillily:["砾冠百合兽","化石冠守","古海岩冠神"],
+kilnostrich:["炭绒鸵","熔冠疾鸵","日炉炎鸵神"],
+voltshark:["磁锤鲨","双极雷鲨","磁暴锤鲨皇"],
+mycoshroud:["毒绒菇","紫幕伞灵","万孢菌幕神"],
+duneworm:["砂环虫","地钻环虫","地轨巨环神"],
+zenpanda:["禅竹团熊","竹环拳师","万竹禅武神"],
+compassbug:["铜钮瓢灵","磁盘甲卫","天枢罗盘神"],
+rimestar:["雪芒星","冰甲星卫","万霜星冠"],
+marionette:["空木偶","漆影舞偶","千线空壳神"],
+prismameleon:["镜尾灵蜥","棱冠幻蜥","万相镜棱神"],
+noctopossum:["夜尾负鼠","月披负鼠","暗月负鼠王"],
+bellhummer:["铃蕊蜂鸟","颂铃悬翼使","天籁铃花神"],
+chronospine:["星帆幼龙","宙脊棘龙","太宙穹帆龙"]
 };
 export const petName=(p:Pick<Pet,'id'|'rarity'>)=>FORM_NAMES[p.id][RARITIES.indexOf(p.rarity||'normal')];
 export const formKey=(p:Pick<Pet,'id'|'rarity'>)=>p.id+'-'+(p.rarity||'normal');
@@ -1624,7 +1690,7 @@ export function readVisitCode(input:string):FriendCard|null {
   if(parts[0]==='PMV2')try{if(parts.length!==3||parts[1].length>1800||parts[2]!==visitChecksum(parts.slice(0,2).join('.')))return null;const a=JSON.parse(unpackPostcard(parts[1]));if(!Array.isArray(a)||a.length!==11||![0,1].includes(a[4])||![0,1].includes(a[8])||!Number.isInteger(a[2])||!Number.isInteger(a[3])||!Array.isArray(a[6])||a[6].some(v=>!Number.isInteger(v)))return null;const c:FriendCard={version:2,id:'card-'+parts[2],owner:a[0],petUid:a[1],species:ids[a[2]],rarity:RARITIES[a[3]],sex:a[4]===0?'female':'male',nickname:a[5],wishes:a[6].map(i=>ids[i]),skills:a[7],shiny:!!a[8],ornament:a[9],replyTo:a[10]};return validFriendCard(c)?c:null;}catch{return null;}
   if(parts.length!==7)return null;
   const [version,owner,species,rarity,sex,petUid,check]=parts;
-  if(version!=='PMV1'||!socialIdentity(owner)||!socialIdentity(petUid,1,160)||!/^\d{1,2}$/.test(species)||!ids[Number(species)]||String(Number(species))!==species||!/[012]/.test(rarity)||rarity.length!==1||!['F','M'].includes(sex))return null;
+  if(version!=='PMV1'||!socialIdentity(owner)||!socialIdentity(petUid,1,160)||!/^\d{1,3}$/.test(species)||!ids[Number(species)]||String(Number(species))!==species||!/[012]/.test(rarity)||rarity.length!==1||!['F','M'].includes(sex))return null;
   const body=parts.slice(0,6).join('.');if(check!==visitChecksum(body))return null;
   return {version:1,owner,petUid,species:ids[Number(species)],rarity:RARITIES[Number(rarity)],sex:sex==='F'?'female':'male',id:'card-'+check};
 }

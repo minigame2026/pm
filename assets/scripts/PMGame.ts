@@ -1,6 +1,8 @@
 import { hasHatchAction, hasOpenPartySlot, battleLearningHint, suggestedTypePartner, hatchPartySlot, welcomeHatchToParty } from './PMPlayerGuidance';
 import { drawButtonSurface, drawPanelSurface, uiMotion } from './PMUIStyle';
 import { BATTLE_EVENTS } from './PMModel';
+import { MYTHIC_PET_IDS } from './PMModel';
+import { fitBattlePair } from './PMBattleLayout';
 import { _decorator, Component, Node, Canvas, Camera, UITransform, Graphics, Color, Label, LabelOutline, Sprite,
   SpriteFrame, Texture2D, Rect, Size, EditBox, PageView, ScrollView, Layout, Mask, resources, Layers, view, ResolutionPolicy, EventTouch, tween, Tween, Vec3, UIOpacity, sys, game, Game, director, Director, profiler } from 'cc';
 import { BATTLE_RECTS, PET_FEET } from './BattleArt';
@@ -406,14 +408,19 @@ export class PMGame extends Component {
       // Low camera composition from the approved reference: two distinct diagonal battle pads.
       const playerGround=H/2-sceneHeight*.92,enemyGround=H/2-sceneHeight*.62;
       const variant=s.enemyVariant?.revealed?s.enemyVariant.kind:undefined;
-      const baseSize=Math.min(230,sceneHeight*.38),playerSize=baseSize*1.2*Math.min(1.15,this.petScale(s.active.id)),enemySize=baseSize*.65*(this.appPresentation&&(s.mapId||0)===0?1:.8)*this.petScale(s.enemy)*(variant==='giant'?1.3:1);
-      const enemyX=this.groundX(enemyPet(s),'front',enemySize*1.1,82),playerX=this.groundX(s.active,'back',playerSize*.9*giantMultiplier(s,s.active.uid),-92);
+      const baseSize=Math.min(230,sceneHeight*.38);let playerSize=baseSize*1.2*Math.min(1.15,this.petScale(s.active.id)),enemySize=baseSize*.65*(this.appPresentation&&(s.mapId||0)===0?1:.8)*this.petScale(s.enemy)*(variant==='giant'?1.3:1);
+      let enemyX=this.groundX(enemyPet(s),'front',enemySize*1.1,82),playerX=this.groundX(s.active,'back',playerSize*.9*giantMultiplier(s,s.active.uid),-92);
+      if(MYTHIC_PET_IDS.includes(s.active.id)||MYTHIC_PET_IDS.includes(s.enemy)){
+        const portrait=(p:Pet,side:'front'|'back',size:number)=>{const key=p.rarity&&p.rarity!=='normal'?formKey(p)+'-'+side:p.id+'-'+side,frame=this.artCache.size(key),feet=this.petFeet(p,side);return {width:frame.width,height:frame.height,feetX:feet[0],feetY:feet[1],size};};
+        const fit=fitBattlePair(portrait(s.active,'back',playerSize*.9*giantMultiplier(s,s.active.uid)),portrait(enemyPet(s),'front',enemySize*1.1),playerGround,enemyGround,H/2-95);
+        playerSize=fit.player.size/(.9*giantMultiplier(s,s.active.uid));enemySize=fit.enemy.size/1.1;playerX=fit.player.x;enemyX=fit.enemy.x;
+      }
       this.battlePad(enemyX,enemyGround,enemySize*1.25*1.2*1.15);
       this.shadow(enemyX,enemyGround,enemySize*.55,.82);this.enemyNode=this.petImage(this.stage,enemyPet(s),enemyX,enemyGround,enemySize*1.1,'enemy');
       this.groundPet(this.enemyNode,enemyPet(s),'front',enemyX,enemyGround);
       if(variant==='ward'&&s.enemyVariant!.shield>0){const aura=this.makeNode(this.stage,'enemy-ward',enemyX,enemyGround+enemySize*.42,enemySize,enemySize),g=aura.addComponent(Graphics);g.fillColor=color('#84d5ff',24);g.ellipse(0,0,enemySize*.52,enemySize*.59);g.fill();g.strokeColor=color('#b5ecff',205);g.lineWidth=2;g.ellipse(0,0,enemySize*.52,enemySize*.59);g.stroke();}
       const status=this.panel(this.enemyNode,0,this.enemyNode.getComponent(UITransform)!.height/2+32,176,54,C.paper,10,246);status.name='enemy-hud';
-      if(this.appPresentation){const statusY=Math.min(H/2-100,enemyGround+this.enemyNode.getComponent(UITransform)!.height*.75+26);status.setParent(this.root);status.setPosition(Math.min(103,enemyX),statusY);}
+      if(this.appPresentation||MYTHIC_PET_IDS.includes(s.active.id)||MYTHIC_PET_IDS.includes(s.enemy)){const mythic=MYTHIC_PET_IDS.includes(s.active.id)||MYTHIC_PET_IDS.includes(s.enemy),statusY=Math.min(H/2-100,enemyGround+this.enemyNode.getComponent(UITransform)!.height*(mythic?this.petFeet(enemyPet(s),'front')[1]:.75)+(mythic?32:26));status.setParent(this.root);status.setPosition(Math.max(-99,Math.min(99,enemyX)),statusY);}
       const pointer=status.getComponent(Graphics)!;pointer.moveTo(-6,-26);pointer.lineTo(0,-34);pointer.lineTo(6,-26);pointer.close();pointer.fill();
       this.typeIcon(status,PETS[s.enemy].type,-73,14,17);this.text(status,enemyName(s),-20,14,12,C.ink,82,20);
       this.bar(status,-31,-10,104,s.enemyHP/s.enemyMax,s.enemyHP+' / '+s.enemyMax,'enemy');
@@ -1169,10 +1176,11 @@ export class PMGame extends Component {
     });
   }
   private regionTabs(parent:Node,y:number,options:{id:number;label:string;tint:string}[],selected:number,page:number,onPage:(n:number,redraw?:boolean)=>void,onSelect:(id:number)=>void,prefix:string){
-    const strip=this.makeNode(parent,prefix+'-tabs',0,y-30,354,112);
+    const columns=options.length>12?5:6,rows=Math.ceil(options.length/columns),step=columns===5?71:60;
+    const strip=this.makeNode(parent,prefix+'-tabs',0,y-(rows-1)*30,354,rows*60-8);
     options.forEach((option,i)=>{
-      const row=Math.floor(i/6),count=Math.min(6,options.length-row*6);
-      this.button(strip,prefix+'-'+(option.id<0?'all':option.id),option.label,(i%6-(count-1)/2)*60,30-row*60,54,52,()=>onSelect(option.id),selected===option.id?option.tint:'#dbe9ef',true,18);
+      const row=Math.floor(i/columns),count=Math.min(columns,options.length-row*columns);
+      this.button(strip,prefix+'-'+(option.id<0?'all':option.id),option.label,(i%columns-(count-1)/2)*step,(rows-1)*30-row*60,columns===5?64:54,52,()=>onSelect(option.id),selected===option.id?option.tint:'#dbe9ef',true,18);
     });
   }
   private listItem(n:Node,index:number,size:number){
@@ -1587,11 +1595,12 @@ export class PMGame extends Component {
     this.button(c,'retreat-confirm','撤退',82,-91,145,54,()=>this.goHome(),'#bd594e',true,18);
   }
   private fillArt(key:string){const n=this.image(this.root,key,0,0,390,this.h),os=this.artCache.size(key),k=Math.max(390/os.width,this.h/os.height);n.getComponent(UITransform)!.setContentSize(os.width*k,os.height*k);return n;}
-  private sceneRegion(mapId:number){return mapId>=9&&mapId<=11?mapId-6:mapId>=6?mapId-3:mapId;}
-  private regionKey(kind:'battle'|'nest'){const map=this.sceneRegion(this.state.mapId||0);return map?'region-'+(map+1)+'-'+kind+'-v1':kind==='battle'?(this.appPresentation?'app-coast-v1':'battle-arena'):'egg-nest-v1';}
+  private sceneRegion(mapId:number){if(mapId>=12)return [3,1,5][mapId-12]??0;return mapId>=9&&mapId<=11?mapId-6:mapId>=6?mapId-3:mapId;}
+  private battleRegionKey(mapId:number){if(mapId>=12&&mapId<15)return 'region-'+(mapId+1)+'-battle-v1';const map=this.sceneRegion(mapId);return map?'region-'+(map+1)+'-battle-v1':this.appPresentation?'app-coast-v1':'battle-arena';}
+  private regionKey(kind:'battle'|'nest'){if(kind==='battle')return this.battleRegionKey(this.state.mapId||0);const map=this.sceneRegion(this.state.mapId||0);return map?'region-'+(map+1)+'-nest-v1':'egg-nest-v1';}
   private regionFrame(kind:'battle'|'nest'){return this.art[this.regionKey(kind)];}
   private async loadRegionArt(mapId:number){
-    const map=this.sceneRegion(mapId);await this.artCache.load(map?'region-'+(map+1)+'-battle-v1':this.appPresentation?'app-coast-v1':'battle-arena');
+    const map=this.sceneRegion(mapId);await this.artCache.load(this.battleRegionKey(mapId));
     if(this.appPresentation&&mapId===0){const keys:string[]=[];for(const id of APP_BATTLE_IDS)for(const side of ['back','front'] as const)for(const pose of APP_BATTLE_POSES)keys.push(appPoseKey(id,side,pose));await this.artCache.warm(keys);}
     if(map)await this.artCache.load('region-pad-'+map);
     if(this.nativeApp)await this.artCache.warm([
@@ -1830,13 +1839,14 @@ export class PMGame extends Component {
     this.panel(this.root,0,0,390,H,'#edf3e8',0);this.sectionHeader('探险地图','');
     const m=MAPS[this.mapIndex]||MAPS[0],current=s.gymRun===undefined&&m.id===mapFor(s).id,unlocked=mapUnlocked(s,m.id),active=hasActivePet(s),cleared=!!s.clearedMaps?.includes(m.id);
     this.regionTabs(this.root,top-120,MAPS.map(m=>({id:m.id,label:String(m.id+1).padStart(2,'0'),tint:m.tint})),this.mapIndex,this.mapTabPage,(p,redraw)=>{this.mapTabPage=p;if(redraw)this.render();},id=>{this.mapIndex=id;this.render();},'map');
-    const center=(top-218+b+160)/2,height=top-218-(b+160),card=this.panel(this.root,0,center,354,height,'#fffdf5',22);
-    const headerH=height<360?88:104;
+    const extraTabs=MAPS.length>12?60:0,cardBottom=b+(extraTabs?142:160),cardTop=top-218-extraTabs;
+    const center=(cardTop+cardBottom)/2,height=cardTop-cardBottom,card=this.panel(this.root,0,center,354,height,'#fffdf5',22);
+    const headerH=height<300?64:height<360?88:104;
     this.panel(card,0,height/2-headerH/2,354,headerH,m.tint,22);this.menuIcon(card,'map',-123,height/2-headerH/2,headerH<100?36:44);
     const title=this.text(card,m.name,28,height/2-headerH/2,23,'#ffffff',245,46);title.node.name='map-title';title.enableWrapText=true;title.isBold=true;
     const types=this.text(card,m.types,0,height/2-headerH-17,14,m.tint,330,22);types.node.name='map-types';types.enableWrapText=false;
     // Reserve independent bands for art, names, optional route and footer.
-    const gridTop=height/2-headerH-34,gridBottom=-height/2+(height>450?166:46),rowH=(gridTop-gridBottom)/2,artSize=Math.min(72,Math.max(16,rowH-30));
+    const gridTop=height/2-headerH-34,gridBottom=-height/2+(height>450?166:height<300?30:46),rowH=(gridTop-gridBottom)/2,artSize=Math.min(72,Math.max(12,rowH-30));
     m.pets.forEach((id,i)=>{const x=(i%3-1)*104,rowTop=gridTop-Math.floor(i/3)*rowH,rowBottom=rowTop-rowH;
       const art=this.petImage(card,id,x,rowTop-5-artSize/2,artSize);art.name='map-pet-'+i;
       const name=this.text(card,PETS[id].name,x,rowBottom+13,11,C.muted,102,20);name.node.name='map-pet-name-'+i;name.enableWrapText=false;
@@ -1846,9 +1856,9 @@ export class PMGame extends Component {
       const path=this.makeNode(card,'route',0,routeY,290,50),g=path.addComponent(Graphics);g.strokeColor=color('#d6e2d3');g.lineWidth=4;g.moveTo(-136,0);g.lineTo(136,0);g.stroke();
       [1,Math.round(m.stages*.25),Math.round(m.stages*.5),Math.round(m.stages*.75),m.stages].forEach((step,i)=>{const x=(i-2)*68,done=cleared||current&&step<s.step,p=this.panel(path,x,0,30,30,done?m.tint:i===4?'#f2ce77':'#e6eddf',15);this.text(p,i===4?'★':''+step,0,0,14,done?'#ffffff':'#6c866f',28,27);});
     }
-    const note=this.text(card,m.note,0,-height/2+20,12,C.muted,330,24);note.node.name='map-note';note.enableWrapText=false;
-    const eggs=this.panel(this.root,0,b+115,354,70,'#dfeee0',16);this.eggArt(eggs,{id:'region',rarity:'SR',affinity:m.pets[0],stage:5},-137,0,44);
-    this.text(eggs,'精英 / BOSS 巢穴寻蛋',24,15,16,'#41785c',270,27);this.text(eggs,m.eggs,24,-15,12,'#64846e',270,24);
+    const note=this.text(card,m.note,0,-height/2+(height<300?14:20),12,C.muted,330,height<300?22:24);note.node.name='map-note';note.enableWrapText=false;
+    const eggs=this.panel(this.root,0,b+(extraTabs?103:115),354,extraTabs?58:70,'#dfeee0',16);this.eggArt(eggs,{id:'region',rarity:'SR',affinity:m.pets[0],stage:5},-137,0,44);
+    this.text(eggs,'精英 / BOSS 巢穴寻蛋',24,extraTabs?12:15,16,'#41785c',270,27);this.text(eggs,m.eggs,24,extraTabs?-13:-15,12,'#64846e',270,24);
     const resume=current&&s.expedition&&!['lost','won'].includes(s.phase);
     const label=!active?'请先孵化新伙伴':!unlocked?'通关 '+MAPS[m.id-1].name+' 解锁':resume?'继续探险':s.stamina!.value<EXPEDITION_COST?'体力不足':'出发！';
     const go=this.button(this.root,'adventure-go',label,-28,b+39,298,60,()=>this.enterMap(m.id),'#df6156',active&&unlocked,active&&unlocked?23:18);
@@ -1877,13 +1887,14 @@ export class PMGame extends Component {
     for(const name of ['图鉴',summary]){const n=this.root.getChildByName(name);if(n){n.setPosition(-12,n.position.y);n.getComponent(UITransform)!.width=190;}}
     this.button(this.root,'dex-map-all','全部',146,this.h/2-42,78,44,()=>chooseMap(-1),this.dexMap<0&&!this.dexFriendsOnly?'#b43d3a':'#f5e8dc',true,16);
     this.regionTabs(c,top-32,MAPS.map(m=>({id:m.id,label:String(m.id+1).padStart(2,'0'),tint:m.tint})),this.dexMap,this.dexTabPage,(p,redraw)=>{this.dexTabPage=p;if(redraw)this.pokedexUI();},chooseMap,'dex-map');
-    this.button(c,'dex-type',(this.dexType||'全部属性')+' ▾',-91,top-156,172,58,()=>this.dexTypePicker(),this.dexType?'#527e9a':C.paper,true,17);
-    this.button(c,'dex-owned','已拥有',91,top-156,172,58,()=>{this.dexOwnedOnly=!this.dexOwnedOnly;this.dexPage=0;this.pokedexUI();},this.dexOwnedOnly?'#519b81':C.paper,true,17);
-    this.button(c,'dex-friends','好友专属',-91,top-222,172,58,()=>{this.dexFriendsOnly=!this.dexFriendsOnly;if(this.dexFriendsOnly)this.dexMap=-1;this.dexPage=0;this.pokedexUI();},this.dexFriendsOnly?'#927498':C.paper,true,17);
-    this.button(c,'dex-shiny','闪光',91,top-222,172,58,()=>{this.dexShinyOnly=!this.dexShinyOnly;this.dexPage=0;this.pokedexUI();},this.dexShinyOnly?'#b27d27':C.paper,true,17);
+    const extraTabs=MAPS.length>12?60:0;
+    this.button(c,'dex-type',(this.dexType||'全部属性')+' ▾',-91,top-156-extraTabs,172,58,()=>this.dexTypePicker(),this.dexType?'#527e9a':C.paper,true,17);
+    this.button(c,'dex-owned','已拥有',91,top-156-extraTabs,172,58,()=>{this.dexOwnedOnly=!this.dexOwnedOnly;this.dexPage=0;this.pokedexUI();},this.dexOwnedOnly?'#519b81':C.paper,true,17);
+    this.button(c,'dex-friends','好友专属',-91,top-222-extraTabs,172,58,()=>{this.dexFriendsOnly=!this.dexFriendsOnly;if(this.dexFriendsOnly)this.dexMap=-1;this.dexPage=0;this.pokedexUI();},this.dexFriendsOnly?'#927498':C.paper,true,17);
+    this.button(c,'dex-shiny','闪光',91,top-222-extraTabs,172,58,()=>{this.dexShinyOnly=!this.dexShinyOnly;this.dexPage=0;this.pokedexUI();},this.dexShinyOnly?'#b27d27':C.paper,true,17);
     const forms=[false,true].reduce((all:{id:PetId;rarity:EggRarity;shiny:boolean}[],shiny)=>all.concat(PET_IDS.reduce((rows:{id:PetId;rarity:EggRarity;shiny:boolean}[],id)=>rows.concat(RARITIES.map(rarity=>({id,rarity,shiny}))),[])),[]).filter(({id,rarity,shiny})=>(this.dexMap<0||MAPS[this.dexMap].pets.includes(id))&&(!this.dexType||PETS[id].type===this.dexType)&&(!this.dexOwnedOnly||this.dexOwned(id,rarity,shiny))&&(!this.dexFriendsOnly||FRIEND_PET_IDS.includes(id))&&(!this.dexShinyOnly||shiny));
     const perPage=6,pages=Math.max(1,Math.ceil(forms.length/perPage));this.dexPage=Math.min(this.dexPage,pages-1);
-    const rowH=Math.min(222,(height-342)/2),start=top-264-rowH/2;
+    const rowH=Math.min(222,(height-342-extraTabs)/2),start=top-264-extraTabs-rowH/2;
     this.listPages(c,forms,perPage,this.dexPage,({id,rarity,shiny},itemIndex)=>{const i=itemIndex%perPage,owned=this.dexOwned(id,rarity,shiny),pet={...petEntry(this.state,id+':'+rarity),shiny};
       const p=this.button(c,'dex-pet-'+id+'-'+rarity+(shiny?'-shiny':''),'',(i%3-1)*120,start-Math.floor(i/3)*(rowH+8),112,rowH,()=>this.dexDetail(id,rarity,shiny),shiny?'#fff6df':'#ffffff');
       this.listItem(p,itemIndex,perPage);const index=PET_IDS.indexOf(id)*3+RARITIES.indexOf(rarity)+1;

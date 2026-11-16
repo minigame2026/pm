@@ -1,4 +1,4 @@
-import {Node,Graphics} from 'cc';
+import {Node,Graphics,Label} from 'cc';
 import {PCUI,PC,hex} from './PCUI';
 import {PCCookingState,FoodQuality,Recipe,RECIPES,INGREDIENTS,FOOD_QUALITY_NAMES,cookingKey,recipeCost,cookingReason,bonusDescription,mealSummary} from './PCCooking';
 
@@ -12,6 +12,7 @@ export interface CookingUIHost {
 /** Native camp page: six dishes, one selected recipe, one meal in effect. */
 export class PCCookingUI {
   private root:Node;private selected=RECIPES[0].id;private quality:FoodQuality=1;private alive=true;
+  private meal!:Label;private counts=new Map<string,Label>();private stock:{id:string;name:Label;count:Label}[]=[];private stockTitle!:Label;
   constructor(private h:CookingUIHost){this.root=h.ui.node(h.parent,'pc-cooking',0,0,1600,900);this.refresh();}
   dispose(){this.alive=false;}
   private get ui(){return this.h.ui;}
@@ -19,19 +20,27 @@ export class PCCookingUI {
     const p=this.root,s=this.h.state(),selected=RECIPES.find(r=>r.id===this.selected)!,q=this.quality,busy=this.h.disabledReason?.()||'';
     this.ui.text(p,'营地厨房',610,94,42,PC.ink,600,64,'left').isBold=true;
     this.ui.text(p,'料理效果不叠加，新料理替换旧效果',610,147,18,PC.muted,600,34,'left');
-    this.ui.hud(p,1257,120,512,58,232);this.ui.text(p,mealSummary(s),1257,120,19,'#fff2ce',480,44);
+    this.ui.hud(p,1257,120,512,58,232);this.meal=this.ui.text(p,mealSummary(s),1257,120,19,'#fff2ce',480,44);this.counts.clear();this.stock=[];
     this.ui.line(p,920,187,1264);
-    ([1,2,3] as FoodQuality[]).forEach((quality,i)=>{this.ui.button(p,'food-quality-'+quality,FOOD_QUALITY_NAMES[quality],410+i*190,227,175,45,()=>{this.quality=quality;this.refresh();},quality===q?PC.green:PC.paper);});
+    ([1,2,3] as FoodQuality[]).forEach((quality,i)=>{this.ui.button(p,'food-quality-'+quality,FOOD_QUALITY_NAMES[quality],410+i*190,227,175,45,()=>{if(this.quality===quality)return;this.quality=quality;this.refreshDetails();},quality===q?PC.green:PC.paper);});
     this.ui.text(p,'食材品质越好，料理效果越强',1214,227,17,PC.muted,476,32);
     const types=this.h.partyTypes?.()||[];
     RECIPES.forEach((recipe,i)=>{const x=470+(i%2)*328,y=325+Math.floor(i/2)*130,chosen=recipe.id===selected.id;
-      const n=this.ui.button(p,'food-recipe-'+recipe.id,'',x,y,304,114,()=>{this.selected=recipe.id;this.refresh();},chosen?'#f2dfbb':PC.paper);
+      const n=this.ui.button(p,'food-recipe-'+recipe.id,'',x,y,304,114,()=>{if(this.selected===recipe.id)return;this.selected=recipe.id;this.refreshDetails();},chosen?'#f2dfbb':PC.paper);
       this.dish(n,recipe,-101,2,65);
       this.ui.text(n,recipe.name,35,-23,20,PC.ink,204,50,'left').isBold=true;
       this.ui.text(n,recipe.types.join(' / '),35,19,15,PC.muted,204,26,'left');
       const owned=s.meals[cookingKey(recipe.id,q)]||0;
-      this.ui.text(n,owned?'已做好 ×'+owned:types.some(t=>recipe.types.includes(t))?'适合当前队伍':'',35,45,13,owned?PC.green:PC.muted,204,22,'left');
+      this.counts.set(recipe.id,this.ui.text(n,owned?'已做好 ×'+owned:types.some(t=>recipe.types.includes(t))?'适合当前队伍':'',35,45,13,owned?PC.green:PC.muted,204,22,'left'));
     });
+    this.ui.line(p,920,759,1264);
+    INGREDIENTS.forEach((ingredient,i)=>{const x=391+i*204,badge=this.ui.badge(p,'',x,802,192,ingredient.color,PC.ink),name=badge.getComponentInChildren(Label)!,count=this.ui.text(p,'',x,837,19,PC.ink,130,28);count.isBold=true;this.stock.push({id:ingredient.id,name,count});});
+    this.stockTitle=this.ui.text(p,'',920,881,14,PC.muted,1230,26);this.refreshDetails();
+  }
+  private refreshDetails(){if(!this.alive||!this.root.isValid)return;this.ui.onHint('');const old=this.root.getChildByName('cooking-details');if(old)this.ui.dispose(old);const p=this.ui.node(this.root,'cooking-details',0,0,1600,900),s=this.h.state(),selected=RECIPES.find(r=>r.id===this.selected)!,q=this.quality,busy=this.h.disabledReason?.()||'',types=this.h.partyTypes?.()||[];
+    this.meal.string=mealSummary(s);for(const quality of [1,2,3] as FoodQuality[])this.ui.set('food-quality-'+quality,FOOD_QUALITY_NAMES[quality],true,'',quality===q?PC.green:PC.paper);
+    for(const recipe of RECIPES){this.ui.set('food-recipe-'+recipe.id,'',true,'',recipe.id===selected.id?'#f2dfbb':PC.paper);const count=s.meals[cookingKey(recipe.id,q)]||0,label=this.counts.get(recipe.id)!;label.string=count?'已做好 ×'+count:types.some(t=>recipe.types.includes(t))?'适合当前队伍':'';label.color=hex(count?PC.green:PC.muted);}
+    for(const item of this.stock){item.name.string=FOOD_QUALITY_NAMES[q]+' · '+INGREDIENTS.find(i=>i.id===item.id)!.name;item.count.string=String(s.ingredients[cookingKey(item.id,q)]||0);}this.stockTitle.string=FOOD_QUALITY_NAMES[q]+'食材 · 探险胜利有机会获得';
     const card=this.ui.panel(p,1254,468,496,406,PC.paper,255,20);
     this.dish(card,selected,0,-105,128);
     this.ui.text(card,selected.name,0,-15,29,PC.ink,450,45).isBold=true;
@@ -42,12 +51,9 @@ export class PCCookingUI {
       this.ui.badge(card,FOOD_QUALITY_NAMES[q]+' · '+ingredient.name,x,147,208,ingredient.color,PC.ink);this.ui.text(card,owned+' / '+item.count,x,180,16,owned>=item.count?PC.green:PC.red,150,27);
     });
     const reason=busy||cookingReason(s,selected.id,q),made=s.meals[cookingKey(selected.id,q)]||0;
-    this.ui.button(p,'food-cook','烹饪一份',1125,711,228,56,()=>{if(this.h.cook(selected.id,q))this.refresh();},PC.paper,!reason,reason);
-    this.ui.button(p,'food-eat',made?'享用  ×'+made:'先烹饪再享用',1381,711,228,56,()=>{if(this.h.eat(selected.id,q))this.refresh();},PC.green,!busy&&made>0,busy||(s.active?'享用后替换当前料理效果':'持续 10 场已结算战斗'));
+    this.ui.button(p,'food-cook','烹饪一份',1125,711,228,56,()=>{if(this.h.cook(selected.id,q))this.refreshDetails();},PC.paper,!reason,reason);
+    this.ui.button(p,'food-eat',made?'享用  ×'+made:'先烹饪再享用',1381,711,228,56,()=>{if(this.h.eat(selected.id,q))this.refreshDetails();},PC.green,!busy&&made>0,busy||(s.active?'享用后替换当前料理效果':'持续 10 场已结算战斗'));
     this.ui.text(p,reason||selected.description,634,686,16,reason?PC.muted:PC.green,620,58,'left');
-    this.ui.line(p,920,759,1264);
-    INGREDIENTS.forEach((ingredient,i)=>{const x=391+i*204;this.ui.badge(p,FOOD_QUALITY_NAMES[q]+' · '+ingredient.name,x,802,192,ingredient.color,PC.ink);this.ui.text(p,String(s.ingredients[cookingKey(ingredient.id,q)]||0),x,837,19,PC.ink,130,28).isBold=true;});
-    this.ui.text(p,FOOD_QUALITY_NAMES[q]+'食材 · 探险胜利有机会获得',920,881,14,PC.muted,1230,26);
   }
   private dish(parent:Node,recipe:Recipe,x:number,y:number,size:number){const n=this.ui.node(parent,'dish-'+recipe.id,x,y,size,size),g=n.addComponent(Graphics),r=size*.42;
     g.fillColor=hex('#183c3b',18);g.ellipse(0,-size*.11,r*1.14,r*.45);g.fill();

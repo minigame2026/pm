@@ -1,6 +1,6 @@
 import { Node, UITransform, Graphics, Color, Label, Sprite, Vec3, tween, Tween, UIOpacity, Layers, EventTouch, Mask, sys } from 'cc';
 import { PMArt } from './PMArt';
-import {pcTr,pcFont} from './PCLocale';
+import {pcTr,pcFont,currentLocale} from './PCLocale';
 
 export const PC = { ink:'#193e47', muted:'#526d6a', paper:'#fffaf0', green:'#287d70', navy:'#193e47', gold:'#edc574', line:'#d9e1d8', red:'#c96750' };
 export const hex = (value:string, alpha=255) => { const c=new Color(); Color.fromHEX(c,value); c.a=alpha; return c; };
@@ -12,12 +12,21 @@ export class PCUI {
   private minimal = false;
   private entrances = new Map<Node,()=>void>();
   private textSources = new WeakMap<Label,string>();
+  private textLocales = new WeakMap<Label,string>();
   get reduced(){return this.minimal;}
   set reduced(value:boolean){this.minimal=value;if(value){for(const finish of Array.from(this.entrances.values()))finish();for(const c of this.controls.values())this.feedback(c);}}
   onActivate = () => {};
   onHint = (_text:string, _control?:Control, _pressed=false) => {};
   canActivate = (_control:Control) => true;
   constructor(public root:Node, public art:PMArt) {}
+  async warmText(groups:{size:number;texts:string[]}[],scale:number){
+    if(!sys.isNative||sys.os!==sys.OS.WINDOWS)return;
+    // Prime the Windows font rasterizer during the existing loading screen, in small batches.
+    // Keep normal full-string shaping at runtime; no character-by-character rendering of Arabic/Indic text.
+    const canvas=document.createElement('canvas'),context=canvas.getContext('2d');if(!context)return;const family=pcFont();
+    // Cocos keeps text rasterization at least 1x; Win32 consumes the integer font height.
+    for(const group of groups){const chars=[...new Set(group.texts.map(pcTr).join(''))].join('');for(const weight of ['', 'bold ']){context.font=weight+Math.floor(group.size*Math.max(1,scale))+'px '+family;for(let i=0;i<chars.length;i+=24){if(!this.root.isValid)return;context.measureText(chars.slice(i,i+24));await new Promise<void>(resolve=>setTimeout(resolve,0));}}}
+  }
   node(parent:Node,name:string,x:number,y:number,w=1,h=1) {
     const n=new Node(name); n.layer=Layers.Enum.UI_2D; parent.addChild(n); n.setPosition(x,-y);
     n.addComponent(UITransform).setContentSize(w,h); return n;
@@ -37,11 +46,14 @@ export class PCUI {
   text(parent:Node,value:string,x:number,y:number,size=20,fill=PC.ink,w=300,h=size+12,align:'left'|'center'|'right'='center') {
     const n=this.node(parent,'text',x,y,w,h),l=n.addComponent(Label),property=Object.getOwnPropertyDescriptor(Label.prototype,'string')!;
     // Localize only PC-owned labels, including later counters and combat updates.
-    Object.defineProperty(l,'string',{configurable:true,get:()=>property.get!.call(l),set:(v:string)=>{const source=String(v??'');this.textSources.set(l,source);property.set!.call(l,pcTr(source));}});
-    l.string=value;l.fontSize=size;l.lineHeight=Math.ceil(size*1.38);
+    Object.defineProperty(l,'string',{configurable:true,get:()=>property.get!.call(l),set:(v:string)=>{const source=String(v??''),locale=currentLocale();if(this.textSources.get(l)===source&&this.textLocales.get(l)===locale)return;this.textSources.set(l,source);this.textLocales.set(l,locale);const translated=pcTr(source);
+      // SHRINK + wrapping binary-searches many font sizes, even when a short line already fits.
+      // Keep the engine's full wrapping/shaping for paragraphs; skip it only with ample single-line space.
+      const lines=translated.split('\n'),longest=Math.max(...lines.map(line=>Array.from(line).reduce((width,ch)=>width+(ch===' '?.4:/[.,:;·/]/.test(ch)?.65:1),0))),fits=longest*l.fontSize*1.15<=w;l.enableWrapText=h>size*1.8&&!fits;l.overflow=fits&&h>=l.lineHeight*lines.length?Label.Overflow.CLAMP:Label.Overflow.SHRINK;property.set!.call(l,translated);}});
+    l.fontSize=size;l.lineHeight=Math.ceil(size*1.38);
     l.fontFamily=pcFont();l.color=hex(fill);l.cacheMode=Label.CacheMode.NONE;
     l.horizontalAlign=align==='left'?Label.HorizontalAlign.LEFT:align==='right'?Label.HorizontalAlign.RIGHT:Label.HorizontalAlign.CENTER;
-    l.verticalAlign=Label.VerticalAlign.CENTER;l.overflow=Label.Overflow.SHRINK;l.enableWrapText=h>size*1.8;return l;
+    l.verticalAlign=Label.VerticalAlign.CENTER;l.overflow=Label.Overflow.SHRINK;l.string=value;return l;
   }
   refreshTextResolution(){
     // Fixed-layout nodes do not resize with the window. Rebuild glyph textures at the new output scale.

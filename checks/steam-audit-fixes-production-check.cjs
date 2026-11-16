@@ -11,17 +11,17 @@ vm.runInNewContext(bundle,sandbox,{filename:bundlePath});
 function load(name){if(name==='cc')return {cclegacy:{_RF:{push(){},pop(){}}}};name=name.startsWith('./')?'chunks:///_virtual/'+name.slice(2):name;if(cache[name])return cache[name];const m=modules[name];assert(m,'compiled module missing: '+name);const out=cache[name]={},body=m.fn((key,value)=>{if(typeof key==='string')out[key]=value;else Object.assign(out,key);return value;},{meta:{}});body.setters.forEach((setter,i)=>setter&&setter(load(m.deps[i])));body.execute();return out;}
 const M=load('chunks:///_virtual/PMModel.ts'),C=load('chunks:///_virtual/PCCooking.ts'),S=load('chunks:///_virtual/PCSocial.ts'),P=load('chunks:///_virtual/PCProfile.ts'),Steam=load('chunks:///_virtual/PCSteam.ts');
 function timers(model){
- assert.equal(model.BUILD_TEST_MODE,false);assert.equal(model.EXPEDITION_COST,0);assert.equal(model.HATCH_DURATION,1800000);assert.equal(model.BREED_DURATION,1800000);
- assert.deepEqual(JSON.parse(JSON.stringify(model.HATCH_DURATIONS)),{normal:600000,SR:1200000,SSR:1800000});
+ assert.equal(model.BUILD_TEST_MODE,false);assert.equal(model.EXPEDITION_COST,0);assert.equal(model.HATCH_DURATION,900000);assert.equal(model.BREED_DURATION,600000);
+ assert.deepEqual(JSON.parse(JSON.stringify(model.HATCH_DURATIONS)),{normal:300000,SR:600000,SSR:900000});
  const at=1800000000000,rows=[];model.setTimeProvider(()=>at);
- for(const hero of model.HERO_IDS)for(const [rarity,minutes]of [['normal',10],['SR',20],['SSR',30]]){
+ for(const hero of model.HERO_IDS)for(const [rarity,minutes]of [['normal',5],['SR',10],['SSR',15]]){
   let state=model.chooseStarter(model.chooseHero(model.newJourney(217),hero),'bud');state.eggs=[{id:'production-timer-'+hero+'-'+rarity,rarity,affinity:'bud',stage:5,mapId:0}];
   state=model.startIncubation(state,state.eggs[0].id,0,at);const elapsed=state.incubators[0].readyAt-state.incubators[0].startedAt,want=minutes*60000*(hero==='keeper'?.8:1);
   assert.equal(elapsed,want,hero+' '+rarity+' actual incubation');assert.equal(model.claimHatch(state,0,at+want-1),state,'cannot claim before production completion');
   assert(model.claimHatch(state,0,at+want).pendingHatch,'claim at production completion');rows.push({hero,rarity,durationMs:elapsed});
  }
  let breeding;for(let seed=1;seed<=50&&!breeding;seed++){const state=model.fresh(seed,['fox','bud','otter','beetle','turtle']);const mother=state.pets.find(p=>p.sex==='female'&&p.uid!==state.active.uid),father=state.pets.find(p=>p.sex==='male'&&p.uid!==state.active.uid);if(mother&&father)breeding=model.startBreeding(state,mother.uid,father.uid,at).breeding;}
- assert(breeding,'legal breeding fixture');assert.equal(breeding.readyAt-breeding.startedAt,1800000);
+ assert(breeding,'legal breeding fixture');assert.equal(breeding.readyAt-breeding.startedAt,600000);
  return {buildTestMode:model.BUILD_TEST_MODE,pcExpeditionCost:model.EXPEDITION_COST,hatch:rows,breedDurationMs:breeding.readyAt-breeding.startedAt};
 }
 const compiledTimers=timers(M);

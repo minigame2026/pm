@@ -24,6 +24,8 @@
 #define NOMINMAX
 #endif
 #include <windows.h>
+#include <bcrypt.h>
+#pragma comment(lib, "bcrypt.lib")
 #include "steam/steam_api.h"
 #include "steam/isteamnetworkingmessages.h"
 #include "steam/isteamnetworkingutils.h"
@@ -93,6 +95,7 @@ class SteamBridge {
 public:
   SteamBridge()
     : overlayCallback(this, &SteamBridge::onOverlay), inviteCallback(this, &SteamBridge::onInvite),
+      helpInviteCallback(this, &SteamBridge::onHelpInvite), launchCallback(this, &SteamBridge::onLaunch),
       lobbyChatCallback(this, &SteamBridge::onLobbyChat), lobbyDataCallback(this, &SteamBridge::onLobbyData),
       sessionCallback(this, &SteamBridge::onSession), sessionFailedCallback(this, &SteamBridge::onSessionFailed),
       disconnectedCallback(this, &SteamBridge::onDisconnected), connectedCallback(this, &SteamBridge::onConnected),
@@ -109,6 +112,8 @@ public:
   std::unordered_map<UGCHandle_t, uint64_t> scoreFiles;
   CCallback<SteamBridge, GameOverlayActivated_t> overlayCallback;
   CCallback<SteamBridge, GameLobbyJoinRequested_t> inviteCallback;
+  CCallback<SteamBridge, GameRichPresenceJoinRequested_t> helpInviteCallback;
+  CCallback<SteamBridge, NewUrlLaunchParameters_t> launchCallback;
   CCallback<SteamBridge, LobbyChatUpdate_t> lobbyChatCallback;
   CCallback<SteamBridge, LobbyDataUpdate_t> lobbyDataCallback;
   CCallback<SteamBridge, SteamNetworkingMessagesSessionRequest_t> sessionCallback;
@@ -151,7 +156,22 @@ public:
     for (int i = 0; i < count; ++i) if (SteamMatchmaking()->GetLobbyMemberByIndex(lobby, i) == peer) return true;
     return false;
   }
-  void closePeer(CSteamID peer) { SteamNetworkingIdentity id; id.SetSteamID(peer); SteamNetworkingMessages()->CloseSessionWithUser(id); }
+  void closePeer(CSteamID peer) { SteamNetworkingIdentity id; id.SetSteamID(peer); SteamNetworkingMessages()->CloseChannelWithUser(id, 0); }
+  bool friendPeer(CSteamID peer) const { return peer.IsValid() && peer != SteamUser()->GetSteamID() && SteamFriends()->GetFriendRelationship(peer) == k_EFriendRelationshipFriend; }
+  static bool helpToken(const std::string &token) { return token.size() == 32 && token.find_first_not_of("0123456789abcdef") == std::string::npos; }
+  void helpLaunch(const std::string &command, CSteamID invitedBy = CSteamID()) {
+    std::istringstream words(command); std::string word;
+    while (words >> word) if (word == "+dicekin_help" && words >> word) {
+      const auto colon = word.find(':'); if (colon != 17 || word.size() != 50) return;
+      const auto owner = word.substr(0,colon), token = word.substr(colon+1);
+      if (owner.find_first_not_of("0123456789") != std::string::npos || !helpToken(token)) return;
+      CSteamID peer; try { peer = CSteamID(std::stoull(owner)); } catch (...) { return; }
+      if (!friendPeer(peer) || (invitedBy.IsValid() && invitedBy != peer)) return;
+      auto d = object(); put(d,"friendId",owner,d.GetAllocator()); put(d,"token",token,d.GetAllocator()); emit(std::move(d),"helpInvite"); return;
+    }
+  }
+  void onHelpInvite(GameRichPresenceJoinRequested_t *e) { helpLaunch(e->m_rgchConnect, e->m_steamIDFriend); }
+  void onLaunch(NewUrlLaunchParameters_t *) { char command[4096]{}; SteamApps()->GetLaunchCommandLine(command,sizeof(command)); helpLaunch(command); }
   void leave() {
     for (const auto peer : peers) closePeer(peer);
     peers.clear();
@@ -203,9 +223,11 @@ public:
   void onSession(SteamNetworkingMessagesSessionRequest_t *e) {
     const auto peer = e->m_identityRemote.GetSteamID();
     if (member(peer)) { SteamNetworkingMessages()->AcceptSessionWithUser(e->m_identityRemote); if (std::find(peers.begin(), peers.end(), peer) == peers.end()) peers.push_back(peer); }
+    else if (friendPeer(peer)) SteamNetworkingMessages()->AcceptSessionWithUser(e->m_identityRemote);
     else SteamNetworkingMessages()->CloseSessionWithUser(e->m_identityRemote);
   }
   void onSessionFailed(SteamNetworkingMessagesSessionFailed_t *e) {
+    if (!member(e->m_info.m_identityRemote.GetSteamID())) return;
     auto d = object(); put(d, "steamId", idString(e->m_info.m_identityRemote.GetSteamID()), d.GetAllocator());
     put(d, "error", e->m_info.m_szEndDebug, d.GetAllocator()); emit(std::move(d), "connection");
   }
@@ -231,6 +253,16 @@ public:
       } else ++it;
     }
     for (auto &call : ready) call.finish(false);
+    SteamNetworkingMessage_t *helpMessages[16]{};
+    const int helpCount = SteamNetworkingMessages()->ReceiveMessagesOnChannel(7, helpMessages, 16);
+    for (int i=0; i<helpCount; ++i) {
+      auto *message=helpMessages[i]; const auto peer=message->m_identityPeer.GetSteamID();
+      if (friendPeer(peer) && message->m_cbSize>0 && message->m_cbSize<=2048 && jsonDepthAllowed(static_cast<const char*>(message->m_pData),message->m_cbSize)) {
+        Json packet; packet.Parse(static_cast<const char*>(message->m_pData),message->m_cbSize);
+        if (!packet.HasParseError() && packet.IsObject()) { auto d=object(); put(d,"steamId",idString(peer),d.GetAllocator()); d.AddMember("payload",Value(packet,d.GetAllocator()),d.GetAllocator()); emit(std::move(d),"helpMessage"); }
+      }
+      message->Release();
+    }
     SteamNetworkingMessage_t *messages[32]{};
     const int count = SteamNetworkingMessages()->ReceiveMessagesOnChannel(0, messages, 32);
     for (int i = 0; i < count; ++i) {
@@ -337,6 +369,29 @@ public:
     }
     if (op == "time") { const auto seconds = SteamUtils()->GetServerRealTime(); if (!seconds) return error("steam_time_unavailable"); auto d = object(); d.AddMember("unixSeconds", seconds, d.GetAllocator()); return withData(std::move(d)); }
     if (op == "friends") return friends();
+    if (op == "help.token") {
+      unsigned char bytes[16]{}; if (BCryptGenRandom(nullptr,bytes,sizeof(bytes),BCRYPT_USE_SYSTEM_PREFERRED_RNG)<0) return error("random_unavailable");
+      std::string token; const char *hex="0123456789abcdef"; for(auto byte:bytes){token+=hex[byte>>4];token+=hex[byte&15];}
+      auto d=object(); put(d,"token",token,d.GetAllocator()); return withData(std::move(d));
+    }
+    if (op == "help.invite" || op == "help.send" || op == "friend.avatar") {
+      const CSteamID peer(idAt(*args,"steamId")); if (!friendPeer(peer)) return error("steam_friend_required");
+      if (op == "friend.avatar") {
+        const int image=SteamFriends()->GetSmallFriendAvatar(peer); uint32 width=0,height=0;
+        if (image<=0 || !SteamUtils()->GetImageSize(image,&width,&height) || width>64 || height>64 || !width || !height) return error("avatar_unavailable");
+        std::vector<uint8> rgba(width*height*4); if (!SteamUtils()->GetImageRGBA(image,rgba.data(),static_cast<int>(rgba.size()))) return error("avatar_unavailable");
+        auto d=object(); auto &a=d.GetAllocator(); d.AddMember("width",width,a); d.AddMember("height",height,a); Value pixels(rapidjson::kArrayType); for(auto v:rgba)pixels.PushBack(v,a); d.AddMember("rgba",pixels,a); return withData(std::move(d));
+      }
+      if (op == "help.invite") {
+        const auto token=stringAt(*args,"token"); if (!helpToken(token)) return error("invalid_help_token");
+        const auto connect="+dicekin_help "+idString(SteamUser()->GetSteamID())+":"+token;
+        return SteamFriends()->InviteUserToGame(peer,connect.c_str())?ok():error("invite_failed");
+      }
+      if (!args->HasMember("payload") || !(*args)["payload"].IsObject()) return error("payload_required");
+      const auto body=encode((*args)["payload"]); if (body.size()>2048) return error("message_too_large");
+      SteamNetworkingIdentity identity; identity.SetSteamID(peer);
+      return SteamNetworkingMessages()->SendMessageToUser(identity,body.data(),static_cast<uint32>(body.size()),k_nSteamNetworkingSend_Reliable|k_nSteamNetworkingSend_AutoRestartBrokenSession,7)==k_EResultOK?ok():error("help_send_failed");
+    }
     if (op == "overlay.store" || op == "overlay.invite") {
       if (!SteamUtils()->IsOverlayEnabled()) return error("steam_overlay_unavailable");
       if (op == "overlay.store") SteamFriends()->ActivateGameOverlayToStore(APP_ID, k_EOverlayToStoreFlag_None);
@@ -475,6 +530,8 @@ void initializeSteam() {
   if (!SteamAPI_Init()) { failure = "steam_init_failed"; return; }
   if (SteamUtils()->GetAppID() != APP_ID || !SteamUser()->GetSteamID().IsValid()) { SteamAPI_Shutdown(); failure = "steam_app_mismatch"; return; }
   initialized = true; bridge = std::make_unique<SteamBridge>(); failure.clear();
+  bridge->onLaunch(nullptr);
+  const std::wstring rawCommand=GetCommandLineW(); bridge->helpLaunch(std::string(rawCommand.begin(),rawCommand.end()));
   // An invitation can launch a closed game; queue it for UI confirmation after save-safe startup.
   std::wistringstream command(GetCommandLineW()); std::wstring word;
   while (command >> word) if (word == L"+connect_lobby" && command >> word && word.size() <= 20 && word.find_first_not_of(L"0123456789") == std::wstring::npos) {

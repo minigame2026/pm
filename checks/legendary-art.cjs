@@ -1,6 +1,8 @@
-/* Validate only the region 10–12 atlases; read original alpha without changing pixels. */
+/* Validate one expansion's atlases; read original alpha without changing pixels. */
 const fs=require('fs'),path=require('path'),os=require('os'),assert=require('node:assert/strict'),crypto=require('crypto'),{execFileSync}=require('child_process');
-const root=path.resolve(__dirname,'..'),bundle=path.join(root,'art-source/regions-10-12');
+const root=path.resolve(__dirname,'..'),bundleName=process.argv[2]||'regions-10-12';
+assert(['regions-10-12','regions-13-15'].includes(bundleName),'known expansion art bundle');
+const bundle=path.join(root,'art-source',bundleName);
 const roster=JSON.parse(fs.readFileSync(path.join(bundle,'roster.json'),'utf8'));
 const generation=JSON.parse(fs.readFileSync(path.join(bundle,'generation.json'),'utf8'));
 const data=(file)=>JSON.parse(fs.readFileSync(path.join(root,file),'utf8').split(/\s=\s|>=/).slice(1).join(' = ').trim().replace(/;$/,''));

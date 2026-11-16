@@ -47,12 +47,12 @@ test('Both item multipliers independently use 50/40/10 on each turn',()=>{
  assert.ok(different>4000);console.log('Multiplier samples',counts);
  const legacy=act(fresh(42),'challenge');legacy.boostMultiplier=1;legacy.doubled=true;const restored=restore(JSON.stringify(legacy));assert.ok(restored);assert.equal(restored.boostMultiplier,1);assert.ok([2,3,4].includes(act(restored,'guard').boostMultiplier));
 });
-test('18 unique attributes and each map has four normal, one elite and one boss encounter species',()=>{
- const {PETS,PET_IDS,MAPS,encounterPool}=moduleObj.exports;assert.equal(PET_IDS.length,90);assert.equal(MAPS.length,12);assert.equal(new Set(PET_IDS.map(id=>PETS[id].type)).size,18);
+test('18 unique attributes and map roles, including the final map complementary boss trio',()=>{
+ const {PETS,PET_IDS,MAPS,encounterPool}=moduleObj.exports;assert.equal(PET_IDS.length,108);assert.equal(MAPS.length,15);assert.equal(new Set(PET_IDS.map(id=>PETS[id].type)).size,18);
  same(PET_IDS.slice(0,18),'fox bud turtle cotton otter spark seal ape slug mole bird owl beetle ghost dragon lynx rhino deer'.split(' '));
  same(PET_IDS.slice(36,54),'nectar orchid axolotl lantern cobra hornbill embercamel frill wombat trilobite wolverine bison narwhal raccoon octopus moonbat silkmoth kirin'.split(' '));
- same(PET_IDS.slice(54,72),moduleObj.exports.FRIEND_PET_IDS);same(PET_IDS.slice(72),moduleObj.exports.LEGENDARY_PET_IDS);
- for(const map of MAPS){assert.equal(encounterPool(1,map.id).length,4);assert.equal(encounterPool(5,map.id).length,1);assert.equal(encounterPool(10,map.id).length,1);}
+ same(PET_IDS.slice(54,72),moduleObj.exports.FRIEND_PET_IDS);same(PET_IDS.slice(72,90),moduleObj.exports.LEGENDARY_PET_IDS);same(PET_IDS.slice(90),moduleObj.exports.MYTHIC_PET_IDS);
+ for(const map of MAPS){assert.equal(encounterPool(1,map.id).length,4);assert.equal(encounterPool(5,map.id).length,1);assert.equal(encounterPool(10,map.id).length,map.id===14?3:1);}
  const seen=new Set();for(let seed=1;seed<=100;seed++){let s=fresh(Math.imul(seed,2654435761));assert.ok(encounterPool(1,0).includes(s.enemy));seen.add(s.enemy);for(let step=1;step<=10;step++){let fixture=fresh(seed);fixture.step=step;delete fixture.contentVersion;const r=restore(JSON.stringify(fixture)),pool=encounterPool(step,0);assert.ok(pool.includes(r.enemy));assert.equal(r.contentVersion,2);const save=JSON.stringify(r);same(restore(save),r);if(step<10){const rerolled=act(r,'reroll');if(pool.length>1)assert.notEqual(rerolled?.enemy,r.enemy);assert.ok(pool.includes(rerolled.enemy));}}}assert.equal(seen.size,4);
 });
 test('Boss victory opens nest without adding a boss to collection; stage 9 still grants reward',()=>{for(const step of [9,10]){let s=act(fresh(22),'challenge');s.step=step;s.enemy=step===10?'dragon':'mole';s.enemyHP=1;const n=act(s,'attack');assert.equal(n.phase,step===10?'nest':'reward');if(step===10){assert.ok(!n.owned.includes('dragon'));assert.ok(restore(JSON.stringify(n)));const restarted=moduleObj.exports.restartRun(n,88);assert.ok(!restarted.owned.includes('dragon'));}}});

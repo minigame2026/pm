@@ -1,5 +1,7 @@
 import * as M from './PMModel';
 import {ACHIEVEMENT_IDS} from './PCAchievementIds';
+import {FriendHelpLedger,validFriendHelp} from './PCFriendHelpState';
+import {PCDexState,validDexState} from './PCDex';
 
 /** PC metadata is saved atomically beside M.State; it never authenticates a Steam peer. */
 export interface SteamBond {
@@ -26,6 +28,8 @@ export interface RaidOrigin extends RaidEggDefinition {
 export interface PCSocialState {
   version: 1;
   achievements?: string[];
+  friendHelp?: FriendHelpLedger;
+  dexCollection?: PCDexState;
   ownerSteamId: string;
   friends: SteamBond[];
   claimedRaidRuns: string[];
@@ -103,6 +107,7 @@ function validBond(b: SteamBond, owner: string): boolean {
 export function restorePCSocial(raw: unknown, ownerSteamId: string): PCSocialState | null {
   try {
     const s = (typeof raw === 'string' ? JSON.parse(raw) : copy(raw)) as PCSocialState;
+    if(!validFriendHelp(s?.friendHelp,ownerSteamId)||!validDexState(s?.dexCollection))return null;
     if(s?.achievements!==undefined&&(!Array.isArray(s.achievements)||s.achievements.length>ACHIEVEMENT_IDS.length||!unique(s.achievements)||s.achievements.some(id=>!(ACHIEVEMENT_IDS as readonly string[]).includes(id))))return null;
     if (!s || !accountSaveKey(ownerSteamId) || s.version !== 1 || s.ownerSteamId !== ownerSteamId || !Array.isArray(s.friends) || !s.friends.every(b=>validBond(b,ownerSteamId)) || !unique(s.friends.map(b=>b.steamId))) return null;
     if (ownerSteamId === 'local' && (s.friends.length || s.claimedRaidRuns?.length || s.raidOrigins?.length)) return null;

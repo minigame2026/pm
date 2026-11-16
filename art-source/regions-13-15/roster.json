@@ -1,0 +1,1457 @@
+{
+  "version": 1,
+  "notes": "18 mythic species appended after 90 existing species. Three independent normal/SR/SSR forms each; 54 unique new trigger/effect combinations. Existing IDs and skill indexes unchanged.",
+  "maps": [
+    {
+      "id": 12,
+      "name": "虹瀑天阶",
+      "en": "Prismatic Cascade",
+      "stages": 10,
+      "tint": "#5eaaa0",
+      "pets": [
+        "oathhippo",
+        "sundewcrown",
+        "tideurchin",
+        "sailfish",
+        "amberant",
+        "fossillily"
+      ],
+      "eggRates": {
+        "elite": [
+          80,
+          15,
+          5
+        ],
+        "boss": [
+          60,
+          30,
+          10
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "name": "烬海王庭",
+      "en": "Cinder Sea Court",
+      "stages": 10,
+      "tint": "#bb855a",
+      "pets": [
+        "kilnostrich",
+        "voltshark",
+        "mycoshroud",
+        "duneworm",
+        "zenpanda",
+        "compassbug"
+      ],
+      "eggRates": {
+        "elite": [
+          80,
+          15,
+          5
+        ],
+        "boss": [
+          60,
+          30,
+          10
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "name": "无垠梦渊",
+      "en": "Boundless Dreamdeep",
+      "stages": 10,
+      "tint": "#817bb5",
+      "pets": [
+        "rimestar",
+        "marionette",
+        "prismameleon",
+        "noctopossum",
+        "bellhummer",
+        "chronospine"
+      ],
+      "eggRates": {
+        "elite": [
+          80,
+          15,
+          5
+        ],
+        "boss": [
+          60,
+          30,
+          10
+        ]
+      }
+    }
+  ],
+  "pets": [
+    {
+      "id": "oathhippo",
+      "type": "一般",
+      "mapId": 12,
+      "rank": "normal",
+      "color": "#b7a2ce",
+      "archetype": "誓印河马神兽：桶形河马身、宽方吻、短小圆耳，身体有象牙白誓约印纹，背部一枚低矮月石；无角、无长鼻、无狮鬃。R圆润小河马，SR壮硕披肩河马，SSR宽阔如岛的誓约守护巨河马。",
+      "designEn": "Sacred hippopotamus: barrel torso, broad square muzzle, tiny round ears, ivory oath markings and one low moonstone on its back. No horn, trunk or mane. R round cuddly calf; SR stout mantle-bearing hippo; SSR massive low island-like guardian hippo with layered ivory oath plates.",
+      "hp": 119,
+      "faces": [
+        28,
+        37,
+        46
+      ],
+      "enemyFaces": [
+        39,
+        50,
+        62
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "誓纹河马",
+          "en": "Oathcalf"
+        },
+        {
+          "rarity": "SR",
+          "name": "月印守河兽",
+          "en": "Oathwarden"
+        },
+        {
+          "rarity": "SSR",
+          "name": "万誓河神",
+          "en": "Oathhippo"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_mythic_oathhippo_0",
+          "name": "誓环守护",
+          "en": "Oath Ring",
+          "when": "attack",
+          "gate": "even",
+          "effect": "shield",
+          "amount": 12,
+          "description": "攻击时 · 攻击点数为偶数：获得护盾 +12。每场一次。",
+          "descriptionEn": "On attack · with an even attack roll: gain 12 shield. Once per battle."
+        },
+        {
+          "code": "trait_mythic_oathhippo_1",
+          "name": "空瓶祷祝",
+          "en": "Empty Flask Prayer",
+          "when": "guard",
+          "gate": "noHeal",
+          "effect": "healPct",
+          "amount": 25,
+          "description": "防御时 · 生命药水剩余不超过1瓶：恢复最大生命 25%。每场一次。",
+          "descriptionEn": "On guard · with at most 1 healing potion left: restore 25% of maximum HP. Once per battle."
+        },
+        {
+          "code": "trait_mythic_oathhippo_2",
+          "name": "守誓承难",
+          "en": "Oathkeeper Resolve",
+          "when": "hit",
+          "gate": "allyDown",
+          "effect": "reduce",
+          "amount": 24,
+          "description": "受到反击时 · 有队友阵亡：本次伤害减少 24。每场一次。",
+          "descriptionEn": "On taking a counterattack · with a fallen teammate: reduce this hit by 24. Once per battle."
+        }
+      ],
+      "balanceReference": {
+        "id": "oracleater",
+        "targetIncrease": 0.08000000000000007
+      }
+    },
+    {
+      "id": "sundewcrown",
+      "type": "草",
+      "mapId": 12,
+      "rank": "normal",
+      "color": "#81b992",
+      "archetype": "茅膏菜冠灵：植物不是树人，低矮球茎脸与放射状捕虫叶，叶缘透明露珠如王冠，多条短根足，无人形躯干。R露珠小花盘，SR双层叶冠，SSR巨大放射状露冠和花柱，但轮廓仍紧凑。",
+      "designEn": "Living sundew rosette, not a tree or humanoid. A bulb-face on short root feet, radial curled carnivorous leaves with clear dewdrop jewels. R small dew rosette; SR double leaf crown; SSR majestic radial dew diadem and central flowering spire, compact readable silhouette.",
+      "hp": 119,
+      "faces": [
+        28,
+        37,
+        46
+      ],
+      "enemyFaces": [
+        39,
+        50,
+        62
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "露冠小灵",
+          "en": "Dewbud"
+        },
+        {
+          "rarity": "SR",
+          "name": "琼露冠使",
+          "en": "Dewcrown"
+        },
+        {
+          "rarity": "SSR",
+          "name": "万露花冕神",
+          "en": "Sundewregent"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_mythic_sundewcrown_0",
+          "name": "单露回生",
+          "en": "Odd Dew Renewal",
+          "when": "roll",
+          "gate": "odd",
+          "effect": "healPct",
+          "amount": 12,
+          "description": "掷骰时 · 攻击点数为奇数：恢复最大生命 12%。每场一次。",
+          "descriptionEn": "On rolling · with an odd attack roll: restore 12% of maximum HP. Once per battle."
+        },
+        {
+          "code": "trait_mythic_sundewcrown_1",
+          "name": "奇露回瓶",
+          "en": "Dew Flask Echo",
+          "when": "heal",
+          "gate": "odd",
+          "effect": "refundHeal",
+          "amount": 1,
+          "description": "使用生命药水时 · 攻击点数为奇数：生命药水 +1。每场一次。",
+          "descriptionEn": "On using a healing potion · with an odd attack roll: gain 1 healing potion. Once per battle."
+        },
+        {
+          "code": "trait_mythic_sundewcrown_2",
+          "name": "暮露蚀印",
+          "en": "Late Dew Mark",
+          "when": "guard",
+          "gate": "late",
+          "effect": "poison",
+          "amount": 7,
+          "description": "防御时 · 本场第2回合起：施毒3次，每次伤害 7。每场一次。",
+          "descriptionEn": "On guard · from turn 2 onward: poison for 3 ticks of 7 damage. Once per battle."
+        }
+      ],
+      "balanceReference": {
+        "id": "mandragrove",
+        "targetIncrease": 0.08000000000000007
+      }
+    },
+    {
+      "id": "tideurchin",
+      "type": "水",
+      "mapId": 12,
+      "rank": "normal",
+      "color": "#73bacd",
+      "archetype": "潮汐海胆：无四足，浑圆有脸的海胆核心，少量宽水晶棘而不是细针，漂浮短管足和水滴珠。R珍珠海胆，SR棘轮海胆，SSR环潮棘冠海胆，不画章鱼水母或鳐鱼。",
+      "designEn": "Tidal sea urchin with a friendly round central face, a few thick faceted aqua spines and short tube feet, no quadruped limbs. R pearl urchin; SR broad radial spine wheel; SSR imposing crowned urchin with short tide ribbons. Not jellyfish, octopus or ray.",
+      "hp": 119,
+      "faces": [
+        28,
+        37,
+        46
+      ],
+      "enemyFaces": [
+        39,
+        50,
+        62
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "珠潮胆",
+          "en": "Pearlurch"
+        },
+        {
+          "rarity": "SR",
+          "name": "涡棘潮胆",
+          "en": "Tideurch"
+        },
+        {
+          "rarity": "SSR",
+          "name": "瀚潮棘冠",
+          "en": "Tidecrown"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_mythic_tideurchin_0",
+          "name": "偶潮棘盾",
+          "en": "Even Tide Shield",
+          "when": "hit",
+          "gate": "even",
+          "effect": "shield",
+          "amount": 12,
+          "description": "受到反击时 · 攻击点数为偶数：获得护盾 +12。每场一次。",
+          "descriptionEn": "On taking a counterattack · with an even attack roll: gain 12 shield. Once per battle."
+        },
+        {
+          "code": "trait_mythic_tideurchin_1",
+          "name": "单潮赠力",
+          "en": "Odd Tide Offering",
+          "when": "guard",
+          "gate": "odd",
+          "effect": "refundBoost",
+          "amount": 1,
+          "description": "防御时 · 攻击点数为奇数：力量药水 +1。每场一次。",
+          "descriptionEn": "On guard · with an odd attack roll: gain 1 power potion. Once per battle."
+        },
+        {
+          "code": "trait_mythic_tideurchin_2",
+          "name": "断潮毒冠",
+          "en": "Broken Tide Crown",
+          "when": "hit",
+          "gate": "allyDown",
+          "effect": "poison",
+          "amount": 8,
+          "description": "受到反击时 · 有队友阵亡：施毒3次，每次伤害 8。每场一次。",
+          "descriptionEn": "On taking a counterattack · with a fallen teammate: poison for 3 ticks of 8 damage. Once per battle."
+        }
+      ],
+      "balanceReference": {
+        "id": "ribbonoar",
+        "targetIncrease": 0.08000000000000007
+      }
+    },
+    {
+      "id": "sailfish",
+      "type": "飞行",
+      "mapId": 12,
+      "rank": "normal",
+      "color": "#9ac8dc",
+      "archetype": "云帆飞鱼：短而结实的鱼身，两侧两对大鳍像风帆，叉尾、明确鱼头；不是长带鱼、鳐鱼或鸟。R双帆幼鱼，SR四帆飞鱼，SSR扇形层叠云帆巨飞鱼，始终只有一个头。",
+      "designEn": "Sky sailing flying fish: compact stout fish torso, a recognizable fish head and forked tail, two pairs of broad sail-like fins. Not ribbonfish, ray or bird. R two-sail juvenile; SR four-sail glider; SSR layered cloud-sail sovereign with one head and a broad compact fin silhouette.",
+      "hp": 119,
+      "faces": [
+        28,
+        37,
+        46
+      ],
+      "enemyFaces": [
+        39,
+        50,
+        62
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "云帆鱼",
+          "en": "Cloudfin"
+        },
+        {
+          "rarity": "SR",
+          "name": "巡空四帆鱼",
+          "en": "Skygalleon"
+        },
+        {
+          "rarity": "SSR",
+          "name": "天穹御帆神",
+          "en": "Sailsovereign"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_mythic_sailfish_0",
+          "name": "奇帆蓄风",
+          "en": "Odd Sail Wind",
+          "when": "attack",
+          "gate": "odd",
+          "effect": "nextMax",
+          "amount": 1,
+          "description": "攻击时 · 攻击点数为奇数：下回合攻击取最高点数。每场一次。",
+          "descriptionEn": "On attack · with an odd attack roll: roll maximum attack next turn. Once per battle."
+        },
+        {
+          "code": "trait_mythic_sailfish_1",
+          "name": "长航校准",
+          "en": "Long Voyage Course",
+          "when": "roll",
+          "gate": "late",
+          "effect": "maxRoll",
+          "amount": 1,
+          "description": "掷骰时 · 本场第2回合起：本次攻击取最高点数。每场一次。",
+          "descriptionEn": "On rolling · from turn 2 onward: change this attack roll to its maximum. Once per battle."
+        },
+        {
+          "code": "trait_mythic_sailfish_2",
+          "name": "无药掠影",
+          "en": "Last Wind Evasion",
+          "when": "hit",
+          "gate": "noBoost",
+          "effect": "evade",
+          "amount": 1,
+          "description": "受到反击时 · 力量药水剩余不超过1瓶：免疫本次反击。每场一次。",
+          "descriptionEn": "On taking a counterattack · with at most 1 power potion left: evade this hit. Once per battle."
+        }
+      ],
+      "balanceReference": {
+        "id": "sixwing",
+        "targetIncrease": 0.08000000000000007
+      }
+    },
+    {
+      "id": "amberant",
+      "type": "虫",
+      "mapId": 12,
+      "rank": "elite",
+      "color": "#dfb76b",
+      "archetype": "琥珀蚁后：六条分节细腿、小胸大腹、弯肘触角、结实上下颚，腹部琥珀色透明甲壳；不是甲虫或蜂。R无翅工蚁幼后，SR腹甲蚁后，SSR琥珀宫冠大蚁后与两对短翅。",
+      "designEn": "Amber ant queen with six jointed legs, elbow antennae, a narrow thorax and large amber abdomen, clearly an ant not a beetle or bee. R wingless young queen; SR armored queen; SSR regal massive amber abdomen, palace crown and two pairs of short translucent wings.",
+      "hp": 123,
+      "faces": [
+        29,
+        38,
+        48
+      ],
+      "enemyFaces": [
+        40,
+        51,
+        63
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "琥粒蚁",
+          "en": "Amberling"
+        },
+        {
+          "rarity": "SR",
+          "name": "琥宫蚁后",
+          "en": "Amberqueen"
+        },
+        {
+          "rarity": "SSR",
+          "name": "千巢琥皇",
+          "en": "Amberempress"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_mythic_amberant_0",
+          "name": "双颚齐击",
+          "en": "Twin Mandible Strike",
+          "when": "attack",
+          "gate": "even",
+          "effect": "damage",
+          "amount": 10,
+          "description": "攻击时 · 攻击点数为偶数：额外伤害 +10。每场一次。",
+          "descriptionEn": "On attack · with an even attack roll: deal 10 extra damage. Once per battle."
+        },
+        {
+          "code": "trait_mythic_amberant_1",
+          "name": "奇数琥甲",
+          "en": "Odd Amber Armor",
+          "when": "boost",
+          "gate": "odd",
+          "effect": "shield",
+          "amount": 20,
+          "description": "使用力量药水时 · 攻击点数为奇数：获得护盾 +20。每场一次。",
+          "descriptionEn": "On using a power potion · with an odd attack roll: gain 20 shield. Once per battle."
+        },
+        {
+          "code": "trait_mythic_amberant_2",
+          "name": "接旗补给",
+          "en": "Fallen Banner Supply",
+          "when": "attack",
+          "gate": "allyDown",
+          "effect": "refundBoost",
+          "amount": 1,
+          "description": "攻击时 · 有队友阵亡：力量药水 +1。每场一次。",
+          "descriptionEn": "On attack · with a fallen teammate: gain 1 power potion. Once per battle."
+        }
+      ],
+      "balanceReference": {
+        "id": "glassdarner",
+        "targetIncrease": 0.08000000000000007
+      }
+    },
+    {
+      "id": "fossillily",
+      "type": "岩石",
+      "mapId": 12,
+      "rank": "boss",
+      "color": "#b7a487",
+      "archetype": "化石海百合：一根短粗分节石茎、底部五爪岩根、顶端五臂花冠环绕一个小脸，史前棘皮动物而非树或石碑人。R卷臂幼百合，SR岩冠海百合，SSR巨型层叠化石冠、五条弧臂完全分开。",
+      "designEn": "Ancient fossil crinoid beast: short thick segmented stone stalk, five anchor-root feet, five curling crown arms around a central small face. Prehistoric marine animal, not a tree or stone humanoid. R curled crinoid; SR rock-crowned guardian; SSR towering layered fossil crown with five clearly separated curved arms.",
+      "hp": 127,
+      "faces": [
+        30,
+        39,
+        49
+      ],
+      "enemyFaces": [
+        41,
+        52,
+        64
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "砾冠百合兽",
+          "en": "Crinobud"
+        },
+        {
+          "rarity": "SR",
+          "name": "化石冠守",
+          "en": "Crinoguard"
+        },
+        {
+          "rarity": "SSR",
+          "name": "古海岩冠神",
+          "en": "Fossilarch"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_mythic_fossillily_0",
+          "name": "偶岩花冠",
+          "en": "Even Stone Crown",
+          "when": "roll",
+          "gate": "even",
+          "effect": "shield",
+          "amount": 15,
+          "description": "掷骰时 · 攻击点数为偶数：获得护盾 +15。每场一次。",
+          "descriptionEn": "On rolling · with an even attack roll: gain 15 shield. Once per battle."
+        },
+        {
+          "code": "trait_mythic_fossillily_1",
+          "name": "久战化石",
+          "en": "Enduring Fossil",
+          "when": "hit",
+          "gate": "late",
+          "effect": "reduce",
+          "amount": 18,
+          "description": "受到反击时 · 本场第2回合起：本次伤害减少 18。每场一次。",
+          "descriptionEn": "On taking a counterattack · from turn 2 onward: reduce this hit by 18. Once per battle."
+        },
+        {
+          "code": "trait_mythic_fossillily_2",
+          "name": "古海接生",
+          "en": "Ancient Sea Renewal",
+          "when": "guard",
+          "gate": "allyDown",
+          "effect": "healPct",
+          "amount": 40,
+          "description": "防御时 · 有队友阵亡：恢复最大生命 40%。每场一次。",
+          "descriptionEn": "On guard · with a fallen teammate: restore 40% of maximum HP. Once per battle."
+        }
+      ],
+      "balanceReference": {
+        "id": "cairnheart",
+        "targetIncrease": 0.08000000000000007
+      }
+    },
+    {
+      "id": "kilnostrich",
+      "type": "火",
+      "mapId": 13,
+      "rank": "normal",
+      "color": "#e99b6c",
+      "archetype": "熔炉鸵鸟：双足长腿、短宽翅、鼓起的风箱胸、扁喙和炉冠，绝不画凤凰。R炭绒雏鸵，SR熔羽疾走鸟，SSR高大铜炉胸甲的日焰鸵鸟神，尾羽像短火舌。",
+      "designEn": "Kiln ostrich, a flightless two-legged ratite with long legs, tiny wide wings, bellows chest, blunt beak and furnace crest. Never a phoenix. R charcoal fluffy chick; SR molten-feather runner; SSR imposing tall copper-furnace-breasted ostrich with short flame tail feathers.",
+      "hp": 141,
+      "faces": [
+        35,
+        45,
+        56
+      ],
+      "enemyFaces": [
+        41,
+        52,
+        64
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "炭绒鸵",
+          "en": "Cinderchick"
+        },
+        {
+          "rarity": "SR",
+          "name": "熔冠疾鸵",
+          "en": "Kilnstrider"
+        },
+        {
+          "rarity": "SSR",
+          "name": "日炉炎鸵神",
+          "en": "Kilnsovereign"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_mythic_kilnostrich_0",
+          "name": "奇焰烙印",
+          "en": "Odd Flame Brand",
+          "when": "attack",
+          "gate": "odd",
+          "effect": "poison",
+          "amount": 5,
+          "description": "攻击时 · 攻击点数为奇数：施毒3次，每次伤害 5。每场一次。",
+          "descriptionEn": "On attack · with an odd attack roll: poison for 3 ticks of 5 damage. Once per battle."
+        },
+        {
+          "code": "trait_mythic_kilnostrich_1",
+          "name": "双炉回暖",
+          "en": "Twin Furnace Warmth",
+          "when": "boost",
+          "gate": "even",
+          "effect": "healPct",
+          "amount": 20,
+          "description": "使用力量药水时 · 攻击点数为偶数：恢复最大生命 20%。每场一次。",
+          "descriptionEn": "On using a power potion · with an even attack roll: restore 20% of maximum HP. Once per battle."
+        },
+        {
+          "code": "trait_mythic_kilnostrich_2",
+          "name": "久燃奔袭",
+          "en": "Longburn Charge",
+          "when": "attack",
+          "gate": "late",
+          "effect": "damage",
+          "amount": 18,
+          "description": "攻击时 · 本场第2回合起：额外伤害 +18。每场一次。",
+          "descriptionEn": "On attack · from turn 2 onward: deal 18 extra damage. Once per battle."
+        }
+      ],
+      "balanceReference": {
+        "id": "solion",
+        "targetIncrease": 0.10000000000000009
+      }
+    },
+    {
+      "id": "voltshark",
+      "type": "电",
+      "mapId": 13,
+      "rank": "normal",
+      "color": "#80b4d1",
+      "archetype": "雷锤鲨：扁平T字锤头、粗壮流线鲨鱼身、背鳍尾鳍，锤头两端像磁极，绝不画鳗鱼或鳐鱼。R小锤鲨，SR双极雷鲨，SSR巨大磁暴锤头鲨，少量金色电路纹。",
+      "designEn": "Electric hammerhead shark, distinct flat T-shaped head, stout streamlined shark body, dorsal fin and crescent tail. Head tips are magnetic poles. No eel or ray. R juvenile hammerhead; SR twin-pole thunder shark; SSR enormous magnetic-storm hammerhead with restrained golden circuit markings.",
+      "hp": 141,
+      "faces": [
+        35,
+        45,
+        56
+      ],
+      "enemyFaces": [
+        41,
+        52,
+        64
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "磁锤鲨",
+          "en": "Voltfin"
+        },
+        {
+          "rarity": "SR",
+          "name": "双极雷鲨",
+          "en": "Voltmaul"
+        },
+        {
+          "rarity": "SSR",
+          "name": "磁暴锤鲨皇",
+          "en": "Voltshark"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_mythic_voltshark_0",
+          "name": "双极校点",
+          "en": "Twin Pole Alignment",
+          "when": "roll",
+          "gate": "even",
+          "effect": "maxRoll",
+          "amount": 1,
+          "description": "掷骰时 · 攻击点数为偶数：本次攻击取最高点数。每场一次。",
+          "descriptionEn": "On rolling · with an even attack roll: change this attack roll to its maximum. Once per battle."
+        },
+        {
+          "code": "trait_mythic_voltshark_1",
+          "name": "绝药电解",
+          "en": "Empty Flask Electrolysis",
+          "when": "boost",
+          "gate": "noHeal",
+          "effect": "refundHeal",
+          "amount": 1,
+          "description": "使用力量药水时 · 生命药水剩余不超过1瓶：生命药水 +1。每场一次。",
+          "descriptionEn": "On using a power potion · with at most 1 healing potion left: gain 1 healing potion. Once per battle."
+        },
+        {
+          "code": "trait_mythic_voltshark_2",
+          "name": "承雷怒击",
+          "en": "Inherited Thunder",
+          "when": "attack",
+          "gate": "allyDown",
+          "effect": "damage",
+          "amount": 24,
+          "description": "攻击时 · 有队友阵亡：额外伤害 +24。每场一次。",
+          "descriptionEn": "On attack · with a fallen teammate: deal 24 extra damage. Once per battle."
+        }
+      ],
+      "balanceReference": {
+        "id": "drumthunder",
+        "targetIncrease": 0.10000000000000009
+      }
+    },
+    {
+      "id": "mycoshroud",
+      "type": "毒",
+      "mapId": 13,
+      "rank": "normal",
+      "color": "#b896ce",
+      "archetype": "菌幕神灵：蘑菇实体宠物，圆伞盖、短小双足、伞下圆脸，菌褶像层层礼裙；不是水母或幽灵布。R毒绒小菇，SR双层菌伞，SSR宽大不规则三层菌幕冠与荧光孢子珠。",
+      "designEn": "Solid-bodied mushroom pet with rounded cap, two short feet, small face under cap, pleated gills like layered skirts. Not jellyfish or fabric ghost. R fuzzy little mushroom; SR double cap; SSR huge asymmetric three-tier fungal crown with a few glowing spore pearls.",
+      "hp": 141,
+      "faces": [
+        35,
+        45,
+        56
+      ],
+      "enemyFaces": [
+        41,
+        52,
+        64
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "毒绒菇",
+          "en": "Mycoling"
+        },
+        {
+          "rarity": "SR",
+          "name": "紫幕伞灵",
+          "en": "Mycoveil"
+        },
+        {
+          "rarity": "SSR",
+          "name": "万孢菌幕神",
+          "en": "Mycoshroud"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_mythic_mycoshroud_0",
+          "name": "双孢蔓毒",
+          "en": "Twin Spore Bloom",
+          "when": "guard",
+          "gate": "even",
+          "effect": "poison",
+          "amount": 5,
+          "description": "防御时 · 攻击点数为偶数：施毒3次，每次伤害 5。每场一次。",
+          "descriptionEn": "On guard · with an even attack roll: poison for 3 ticks of 5 damage. Once per battle."
+        },
+        {
+          "code": "trait_mythic_mycoshroud_1",
+          "name": "无力菌酿",
+          "en": "Last Power Brew",
+          "when": "heal",
+          "gate": "noBoost",
+          "effect": "refundBoost",
+          "amount": 1,
+          "description": "使用生命药水时 · 力量药水剩余不超过1瓶：力量药水 +1。每场一次。",
+          "descriptionEn": "On using a healing potion · with at most 1 power potion left: gain 1 power potion. Once per battle."
+        },
+        {
+          "code": "trait_mythic_mycoshroud_2",
+          "name": "久战菌汲",
+          "en": "Enduring Mycosiphon",
+          "when": "attack",
+          "gate": "late",
+          "effect": "venomDrain",
+          "amount": 3,
+          "description": "攻击时 · 本场第2回合起：汲取25%伤害并施毒3次，每次3点。每场一次。",
+          "descriptionEn": "On attack · from turn 2 onward: drain 25% of damage and poison for 3 ticks of 3 damage. Once per battle."
+        }
+      ],
+      "balanceReference": {
+        "id": "crystalmedusa",
+        "targetIncrease": 0.10000000000000009
+      }
+    },
+    {
+      "id": "duneworm",
+      "type": "地面",
+      "mapId": 13,
+      "rank": "normal",
+      "color": "#d1b081",
+      "archetype": "地轨沙虫：无腿无翼，短粗分节沙虫直立弯曲，圆钝口、头侧两片铲形甲、身上大幅同心沙纹；R短沙虫，SR螺钻环虫，SSR巨型地脉环虫与四片晶砂钻冠。禁止蛇头或长蛇身。",
+      "designEn": "Earth-track sandworm, legless and wingless, short thick segmented upright curved body, blunt circular mouth, two shovel cheek plates, large concentric sand markings. R stubby worm; SR ringed auger worm; SSR monumental tectonic worm with four broad crystal-sand drill crown plates. No snake head or thin serpentine body.",
+      "hp": 141,
+      "faces": [
+        35,
+        45,
+        56
+      ],
+      "enemyFaces": [
+        41,
+        52,
+        64
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "砂环虫",
+          "en": "Duneling"
+        },
+        {
+          "rarity": "SR",
+          "name": "地钻环虫",
+          "en": "Duneauger"
+        },
+        {
+          "rarity": "SSR",
+          "name": "地轨巨环神",
+          "en": "Dunearch"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_mythic_duneworm_0",
+          "name": "偶环缓震",
+          "en": "Even Ring Cushion",
+          "when": "hit",
+          "gate": "even",
+          "effect": "reduce",
+          "amount": 10,
+          "description": "受到反击时 · 攻击点数为偶数：本次伤害减少 10。每场一次。",
+          "descriptionEn": "On taking a counterattack · with an even attack roll: reduce this hit by 10. Once per battle."
+        },
+        {
+          "code": "trait_mythic_duneworm_1",
+          "name": "绝力砂垒",
+          "en": "Last Power Sandwall",
+          "when": "guard",
+          "gate": "noBoost",
+          "effect": "shield",
+          "amount": 24,
+          "description": "防御时 · 力量药水剩余不超过1瓶：获得护盾 +24。每场一次。",
+          "descriptionEn": "On guard · with at most 1 power potion left: gain 24 shield. Once per battle."
+        },
+        {
+          "code": "trait_mythic_duneworm_2",
+          "name": "绝药地饮",
+          "en": "Empty Flask Earthdrink",
+          "when": "attack",
+          "gate": "noHeal",
+          "effect": "drain",
+          "amount": 80,
+          "description": "攻击时 · 生命药水剩余不超过1瓶：恢复实际伤害的 80%。每场一次。",
+          "descriptionEn": "On attack · with at most 1 healing potion left: restore 80% of damage dealt as HP. Once per battle."
+        }
+      ],
+      "balanceReference": {
+        "id": "ringolin",
+        "targetIncrease": 0.10000000000000009
+      }
+    },
+    {
+      "id": "zenpanda",
+      "type": "格斗",
+      "mapId": 13,
+      "rank": "elite",
+      "color": "#b4baa1",
+      "archetype": "禅竹熊猫：明确黑白熊猫脸，双足站立，只有双臂，厚实掌垫，竹节护腕与圆形念珠；不是猿猴、袋鼠或多臂面具。R圆滚熊猫学徒，SR竹甲拳师，SSR宽肩竹环禅武神，保持动物脸。",
+      "designEn": "Zen bamboo panda: recognizable black-white panda face, upright biped with exactly two arms, thick padded paws, bamboo wrist rings and round prayer beads. Not ape, kangaroo or multiarmed mask. R round apprentice; SR bamboo-armored boxer; SSR broad-shouldered bamboo-halo martial guardian, still an animal.",
+      "hp": 145,
+      "faces": [
+        36,
+        46,
+        57
+      ],
+      "enemyFaces": [
+        42,
+        53,
+        65
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "禅竹团熊",
+          "en": "Zenpup"
+        },
+        {
+          "rarity": "SR",
+          "name": "竹环拳师",
+          "en": "Zenpanda"
+        },
+        {
+          "rarity": "SSR",
+          "name": "万竹禅武神",
+          "en": "Zenregent"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_mythic_zenpanda_0",
+          "name": "奇步凝神",
+          "en": "Odd Step Focus",
+          "when": "guard",
+          "gate": "odd",
+          "effect": "nextMax",
+          "amount": 1,
+          "description": "防御时 · 攻击点数为奇数：下回合攻击取最高点数。每场一次。",
+          "descriptionEn": "On guard · with an odd attack roll: roll maximum attack next turn. Once per battle."
+        },
+        {
+          "code": "trait_mythic_zenpanda_1",
+          "name": "久战禅息",
+          "en": "Enduring Zen Breath",
+          "when": "hit",
+          "gate": "late",
+          "effect": "healPct",
+          "amount": 30,
+          "description": "受到反击时 · 本场第2回合起：恢复最大生命 30%。每场一次。",
+          "descriptionEn": "On taking a counterattack · from turn 2 onward: restore 30% of maximum HP. Once per battle."
+        },
+        {
+          "code": "trait_mythic_zenpanda_2",
+          "name": "承志回生",
+          "en": "Inherited Resolve",
+          "when": "attack",
+          "gate": "allyDown",
+          "effect": "healPct",
+          "amount": 45,
+          "description": "攻击时 · 有队友阵亡：恢复最大生命 45%。每场一次。",
+          "descriptionEn": "On attack · with a fallen teammate: restore 45% of maximum HP. Once per battle."
+        }
+      ],
+      "balanceReference": {
+        "id": "maskasura",
+        "targetIncrease": 0.10000000000000009
+      }
+    },
+    {
+      "id": "compassbug",
+      "type": "钢",
+      "mapId": 13,
+      "rank": "boss",
+      "color": "#8baeb5",
+      "archetype": "罗盘瓢虫：六条短机械足、扁圆半球金属鞘翅像罗盘表盘、短触角和小圆脸，没有角；R铜钮瓢虫，SR双层磁盘甲虫，SSR巨型分瓣罗盘壳、悬空短磁针冠，不能画鲎或长百足。",
+      "designEn": "Compass ladybird automaton: six short mechanical legs, flattened round domed metal wing covers like a compass dial, tiny face and short antennae, no horns. R copper button bug; SR double magnet-disk armor; SSR huge segmented compass shell with a short floating needle crown. No horseshoe crab or centipede.",
+      "hp": 150,
+      "faces": [
+        37,
+        47,
+        58
+      ],
+      "enemyFaces": [
+        43,
+        54,
+        66
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "铜钮瓢灵",
+          "en": "Brassbutton"
+        },
+        {
+          "rarity": "SR",
+          "name": "磁盘甲卫",
+          "en": "Magnetdial"
+        },
+        {
+          "rarity": "SSR",
+          "name": "天枢罗盘神",
+          "en": "Compassarch"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_mythic_compassbug_0",
+          "name": "双针蓄守",
+          "en": "Twin Needle Guard",
+          "when": "roll",
+          "gate": "even",
+          "effect": "powerGuard",
+          "amount": 5,
+          "description": "掷骰时 · 攻击点数为偶数：获得护盾 +5，下回合最高点数。每场一次。",
+          "descriptionEn": "On rolling · with an even attack roll: gain 5 shield and roll maximum attack next turn. Once per battle."
+        },
+        {
+          "code": "trait_mythic_compassbug_1",
+          "name": "长战磁壁",
+          "en": "Enduring Magnet Wall",
+          "when": "boost",
+          "gate": "late",
+          "effect": "shield",
+          "amount": 28,
+          "description": "使用力量药水时 · 本场第2回合起：获得护盾 +28。每场一次。",
+          "descriptionEn": "On using a power potion · from turn 2 onward: gain 28 shield. Once per battle."
+        },
+        {
+          "code": "trait_mythic_compassbug_2",
+          "name": "绝药钢命",
+          "en": "Empty Flask Ironwill",
+          "when": "hit",
+          "gate": "noHeal",
+          "effect": "reduce",
+          "amount": 24,
+          "description": "受到反击时 · 生命药水剩余不超过1瓶：本次伤害减少 24。每场一次。",
+          "descriptionEn": "On taking a counterattack · with at most 1 healing potion left: reduce this hit by 24. Once per battle."
+        }
+      ],
+      "balanceReference": {
+        "id": "starhorseshoe",
+        "targetIncrease": 0.10000000000000009
+      }
+    },
+    {
+      "id": "rimestar",
+      "type": "冰",
+      "mapId": 14,
+      "rank": "normal",
+      "color": "#a5d8e6",
+      "archetype": "霜星海星：五条粗圆臂放射状展开，中心小脸，腹面管足，冰棱装甲像雪花，完全没有四足躯干。R圆臂雪星，SR双层冰甲星，SSR厚重透明霜晶五芒冠，不是纯符号。",
+      "designEn": "Frost starfish creature with five thick rounded radial arms, a central cute face and underside tube feet, snowflake-like ice armor. No quadruped torso. R round snow star; SR layered ice-armored star; SSR imposing translucent frost crystal five-point crown, clearly living animal not an icon.",
+      "hp": 166,
+      "faces": [
+        44,
+        55,
+        67
+      ],
+      "enemyFaces": [
+        43,
+        54,
+        66
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "雪芒星",
+          "en": "Rimeling"
+        },
+        {
+          "rarity": "SR",
+          "name": "冰甲星卫",
+          "en": "Rimestar"
+        },
+        {
+          "rarity": "SSR",
+          "name": "万霜星冠",
+          "en": "Rimecrown"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_mythic_rimestar_0",
+          "name": "奇晶缓冲",
+          "en": "Odd Crystal Cushion",
+          "when": "hit",
+          "gate": "odd",
+          "effect": "reduce",
+          "amount": 10,
+          "description": "受到反击时 · 攻击点数为奇数：本次伤害减少 10。每场一次。",
+          "descriptionEn": "On taking a counterattack · with an odd attack roll: reduce this hit by 10. Once per battle."
+        },
+        {
+          "code": "trait_mythic_rimestar_1",
+          "name": "双星凝障",
+          "en": "Twin Star Ward",
+          "when": "heal",
+          "gate": "even",
+          "effect": "shield",
+          "amount": 20,
+          "description": "使用生命药水时 · 攻击点数为偶数：获得护盾 +20。每场一次。",
+          "descriptionEn": "On using a healing potion · with an even attack roll: gain 20 shield. Once per battle."
+        },
+        {
+          "code": "trait_mythic_rimestar_2",
+          "name": "承霜回光",
+          "en": "Inherited Frostlight",
+          "when": "roll",
+          "gate": "allyDown",
+          "effect": "healPct",
+          "amount": 30,
+          "description": "掷骰时 · 有队友阵亡：恢复最大生命 30%。每场一次。",
+          "descriptionEn": "On rolling · with a fallen teammate: restore 30% of maximum HP. Once per battle."
+        }
+      ],
+      "balanceReference": {
+        "id": "frostfan",
+        "targetIncrease": 0.1200000000000001
+      }
+    },
+    {
+      "id": "marionette",
+      "type": "幽灵",
+      "mapId": 14,
+      "rank": "normal",
+      "color": "#b5a3c4",
+      "archetype": "空壳提线木偶灵：小动物木雕面孔、两条关节手臂两条短腿、空心木胸与头顶短提线框，丝线连在自身框上不出画。R小木偶，SR漆木舞偶，SSR华丽关节木偶神与展开的小扇形提线架，不画纸灵或布幽灵。",
+      "designEn": "Hollow marionette spirit with a small animal-carved wooden face, two jointed arms and two short legs, hollow wooden chest and a compact overhead string frame; all strings connect to its own frame within sprite bounds. R tiny puppet; SR lacquer dancer; SSR ornate articulated puppet deity with fan-shaped compact control frame. Not paper or fabric ghost.",
+      "hp": 166,
+      "faces": [
+        44,
+        55,
+        67
+      ],
+      "enemyFaces": [
+        43,
+        54,
+        66
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "空木偶",
+          "en": "Hollowkin"
+        },
+        {
+          "rarity": "SR",
+          "name": "漆影舞偶",
+          "en": "Lacquerdoll"
+        },
+        {
+          "rarity": "SSR",
+          "name": "千线空壳神",
+          "en": "Marionarch"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_mythic_marionette_0",
+          "name": "奇线脱身",
+          "en": "Odd Thread Escape",
+          "when": "hit",
+          "gate": "odd",
+          "effect": "evade",
+          "amount": 1,
+          "description": "受到反击时 · 攻击点数为奇数：免疫本次反击。每场一次。",
+          "descriptionEn": "On taking a counterattack · with an odd attack roll: evade this hit. Once per battle."
+        },
+        {
+          "code": "trait_mythic_marionette_1",
+          "name": "久舞提线",
+          "en": "Enduring Puppet Dance",
+          "when": "guard",
+          "gate": "late",
+          "effect": "nextMax",
+          "amount": 1,
+          "description": "防御时 · 本场第2回合起：下回合攻击取最高点数。每场一次。",
+          "descriptionEn": "On guard · from turn 2 onward: roll maximum attack next turn. Once per battle."
+        },
+        {
+          "code": "trait_mythic_marionette_2",
+          "name": "绝药返魂",
+          "en": "Empty Flask Soulreturn",
+          "when": "hit",
+          "gate": "noHeal",
+          "effect": "healPct",
+          "amount": 40,
+          "description": "受到反击时 · 生命药水剩余不超过1瓶：恢复最大生命 40%。每场一次。",
+          "descriptionEn": "On taking a counterattack · with at most 1 healing potion left: restore 40% of maximum HP. Once per battle."
+        }
+      ],
+      "balanceReference": {
+        "id": "origamighost",
+        "targetIncrease": 0.1200000000000001
+      }
+    },
+    {
+      "id": "prismameleon",
+      "type": "超能力",
+      "mapId": 14,
+      "rank": "normal",
+      "color": "#b7a7dc",
+      "archetype": "镜棱变色龙：弓形高背、独立鼓眼、卷成圆螺旋的尾、三趾夹足、头冠晶棱；不是壁虎或伞蜥。R卷尾幼变色龙，SR镜棱背冠，SSR巨型立体镜冠和双眼独立朝向，身体色块清晰不透明。",
+      "designEn": "Prism chameleon with a high arched back, independent turret eyes, tightly coiled spiral tail, gripping three-toed feet and crystalline casque. Not gecko or frilled lizard. R curled juvenile; SR mirrored back crest; SSR elaborate three-dimensional prism crown and independently aimed eyes, opaque readable color blocks.",
+      "hp": 166,
+      "faces": [
+        44,
+        55,
+        67
+      ],
+      "enemyFaces": [
+        43,
+        54,
+        66
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "镜尾灵蜥",
+          "en": "Prismcurl"
+        },
+        {
+          "rarity": "SR",
+          "name": "棱冠幻蜥",
+          "en": "Prismseer"
+        },
+        {
+          "rarity": "SSR",
+          "name": "万相镜棱神",
+          "en": "Prismameleon"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_mythic_prismameleon_0",
+          "name": "奇棱结界",
+          "en": "Odd Prism Ward",
+          "when": "roll",
+          "gate": "odd",
+          "effect": "shield",
+          "amount": 12,
+          "description": "掷骰时 · 攻击点数为奇数：获得护盾 +12。每场一次。",
+          "descriptionEn": "On rolling · with an odd attack roll: gain 12 shield. Once per battle."
+        },
+        {
+          "code": "trait_mythic_prismameleon_1",
+          "name": "绝力照真",
+          "en": "Last Power Revelation",
+          "when": "attack",
+          "gate": "noBoost",
+          "effect": "nextMax",
+          "amount": 1,
+          "description": "攻击时 · 力量药水剩余不超过1瓶：下回合攻击取最高点数。每场一次。",
+          "descriptionEn": "On attack · with at most 1 power potion left: roll maximum attack next turn. Once per battle."
+        },
+        {
+          "code": "trait_mythic_prismameleon_2",
+          "name": "长映幻毒",
+          "en": "Lingering Prism Venom",
+          "when": "boost",
+          "gate": "late",
+          "effect": "poison",
+          "amount": 7,
+          "description": "使用力量药水时 · 本场第2回合起：施毒3次，每次伤害 7。每场一次。",
+          "descriptionEn": "On using a power potion · from turn 2 onward: poison for 3 ticks of 7 damage. Once per battle."
+        }
+      ],
+      "balanceReference": {
+        "id": "orbeholder",
+        "targetIncrease": 0.1200000000000001
+      }
+    },
+    {
+      "id": "noctopossum",
+      "type": "恶",
+      "mapId": 14,
+      "rank": "normal",
+      "color": "#9b91b3",
+      "archetype": "夜冠负鼠：尖白脸、圆黑耳、灰黑披毛、裸露卷尾、五指前爪，可低伏或双足抬胸；不是狐狸猞猁。R小负鼠，SR披夜冠负鼠，SSR黑绒斗篷与白面月纹的大负鼠神，尾巴形成环月轮廓。",
+      "designEn": "Nocturnal opossum with pointed white face, round black ears, dark gray mantle fur, naked curled prehensile tail and five-finger forepaws; can crouch or rear slightly. Not fox or lynx. R little possum; SR night-crowned possum; SSR broad black-fur cloak, white lunar face and ring-shaped curled tail.",
+      "hp": 166,
+      "faces": [
+        44,
+        55,
+        67
+      ],
+      "enemyFaces": [
+        43,
+        54,
+        66
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "夜尾负鼠",
+          "en": "Noctoling"
+        },
+        {
+          "rarity": "SR",
+          "name": "月披负鼠",
+          "en": "Noctomantle"
+        },
+        {
+          "rarity": "SSR",
+          "name": "暗月负鼠王",
+          "en": "Noctopossum"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_mythic_noctopossum_0",
+          "name": "偶月攫生",
+          "en": "Even Moon Siphon",
+          "when": "attack",
+          "gate": "even",
+          "effect": "drain",
+          "amount": 35,
+          "description": "攻击时 · 攻击点数为偶数：恢复实际伤害的 35%。每场一次。",
+          "descriptionEn": "On attack · with an even attack roll: restore 35% of damage dealt as HP. Once per battle."
+        },
+        {
+          "code": "trait_mythic_noctopossum_1",
+          "name": "绝药夜馈",
+          "en": "Empty Flask Nightgift",
+          "when": "guard",
+          "gate": "noHeal",
+          "effect": "refundHeal",
+          "amount": 1,
+          "description": "防御时 · 生命药水剩余不超过1瓶：生命药水 +1。每场一次。",
+          "descriptionEn": "On guard · with at most 1 healing potion left: gain 1 healing potion. Once per battle."
+        },
+        {
+          "code": "trait_mythic_noctopossum_2",
+          "name": "久夜蚀痕",
+          "en": "Enduring Night Scar",
+          "when": "attack",
+          "gate": "late",
+          "effect": "poison",
+          "amount": 8,
+          "description": "攻击时 · 本场第2回合起：施毒3次，每次伤害 8。每场一次。",
+          "descriptionEn": "On attack · from turn 2 onward: poison for 3 ticks of 8 damage. Once per battle."
+        }
+      ],
+      "balanceReference": {
+        "id": "eclipsehydra",
+        "targetIncrease": 0.1200000000000001
+      }
+    },
+    {
+      "id": "bellhummer",
+      "type": "妖精",
+      "mapId": 14,
+      "rank": "elite",
+      "color": "#e3abc8",
+      "archetype": "颂铃蜂鸟：微小短胖鸟身、细长直喙、两片高速悬停翼、短扇尾，胸前铃状花萼；不是鹤、孔雀或六翼鸟。R铃蕊幼蜂鸟，SR花铃悬翼使，SSR围绕自身的三瓣铃花冠和双翼，保持短小身材而用冠扩大轮廓。",
+      "designEn": "Canticle hummingbird with a tiny plump body, long straight needle beak, exactly two hovering wings, short fan tail and a bell-shaped blossom chest. Not crane, peacock or six-winged bird. R bell-bud chick; SR flower-bell hoverer; SSR magnificent three-petal bell crown around the small body, only two wings.",
+      "hp": 170,
+      "faces": [
+        45,
+        56,
+        68
+      ],
+      "enemyFaces": [
+        44,
+        55,
+        67
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "铃蕊蜂鸟",
+          "en": "Bellbud"
+        },
+        {
+          "rarity": "SR",
+          "name": "颂铃悬翼使",
+          "en": "Bellcantor"
+        },
+        {
+          "rarity": "SSR",
+          "name": "天籁铃花神",
+          "en": "Bellseraph"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_mythic_bellhummer_0",
+          "name": "奇铃晨歌",
+          "en": "Odd Bell Dawn",
+          "when": "roll",
+          "gate": "odd",
+          "effect": "heal",
+          "amount": 12,
+          "description": "掷骰时 · 攻击点数为奇数：恢复生命 +12。每场一次。",
+          "descriptionEn": "On rolling · with an odd attack roll: restore 12 HP. Once per battle."
+        },
+        {
+          "code": "trait_mythic_bellhummer_1",
+          "name": "承愿赠力",
+          "en": "Inherited Wish Offering",
+          "when": "heal",
+          "gate": "allyDown",
+          "effect": "refundBoost",
+          "amount": 1,
+          "description": "使用生命药水时 · 有队友阵亡：力量药水 +1。每场一次。",
+          "descriptionEn": "On using a healing potion · with a fallen teammate: gain 1 power potion. Once per battle."
+        },
+        {
+          "code": "trait_mythic_bellhummer_2",
+          "name": "护愿花幕",
+          "en": "Wishkeeper Veil",
+          "when": "guard",
+          "gate": "allyDown",
+          "effect": "shield",
+          "amount": 32,
+          "description": "防御时 · 有队友阵亡：获得护盾 +32。每场一次。",
+          "descriptionEn": "On guard · with a fallen teammate: gain 32 shield. Once per battle."
+        }
+      ],
+      "balanceReference": {
+        "id": "bloomgiraffe",
+        "targetIncrease": 0.1200000000000001
+      }
+    },
+    {
+      "id": "chronospine",
+      "type": "龙",
+      "mapId": 14,
+      "rank": "boss",
+      "color": "#8bbac2",
+      "archetype": "宙帆棘龙：恐龙棘龙式双足站立、长鳄吻、两只短前爪、巨型半圆背帆与粗尾，单头无翅。R幼棘龙，SR星纹大背帆，SSR背帆如星图穹顶的巨棘龙，禁止长蛇龙、麒麟、多首或翼龙。",
+      "designEn": "Chronicle spinosaurus dragon: upright dinosaur on two hind legs, long crocodilian muzzle, two small front claws, huge semicircular dorsal sail and thick tail. One head, no wings. R juvenile spinosaur; SR star-marked sailback; SSR colossal spinosaur whose dome sail bears a clear celestial map. No serpent dragon, qilin, multiple heads or wyvern.",
+      "hp": 175,
+      "faces": [
+        46,
+        57,
+        69
+      ],
+      "enemyFaces": [
+        45,
+        56,
+        68
+      ],
+      "forms": [
+        {
+          "rarity": "normal",
+          "name": "星帆幼龙",
+          "en": "Chronoling"
+        },
+        {
+          "rarity": "SR",
+          "name": "宙脊棘龙",
+          "en": "Chronosail"
+        },
+        {
+          "rarity": "SSR",
+          "name": "太宙穹帆龙",
+          "en": "Chronospine"
+        }
+      ],
+      "skills": [
+        {
+          "code": "trait_mythic_chronospine_0",
+          "name": "双帆龙痕",
+          "en": "Twin Sail Dragonmark",
+          "when": "attack",
+          "gate": "even",
+          "effect": "poison",
+          "amount": 6,
+          "description": "攻击时 · 攻击点数为偶数：施毒3次，每次伤害 6。每场一次。",
+          "descriptionEn": "On attack · with an even attack roll: poison for 3 ticks of 6 damage. Once per battle."
+        },
+        {
+          "code": "trait_mythic_chronospine_1",
+          "name": "绝力宙返",
+          "en": "Last Power Timefold",
+          "when": "boost",
+          "gate": "noBoost",
+          "effect": "refundBoost",
+          "amount": 1,
+          "description": "使用力量药水时 · 力量药水剩余不超过1瓶：力量药水 +1。每场一次。",
+          "descriptionEn": "On using a power potion · with at most 1 power potion left: gain 1 power potion. Once per battle."
+        },
+        {
+          "code": "trait_mythic_chronospine_2",
+          "name": "承古噬生",
+          "en": "Inherited Ancient Feast",
+          "when": "attack",
+          "gate": "allyDown",
+          "effect": "drain",
+          "amount": 100,
+          "description": "攻击时 · 有队友阵亡：恢复实际伤害的 100%。每场一次。",
+          "descriptionEn": "On attack · with a fallen teammate: restore 100% of damage dealt as HP. Once per battle."
+        }
+      ],
+      "balanceReference": {
+        "id": "triarchdrake",
+        "targetIncrease": 0.1200000000000001
+      }
+    }
+  ]
+}

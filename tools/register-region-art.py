@@ -46,9 +46,9 @@ def atlas_rectangles(groups,width,height):
     return rectangles
 
 bundle=sys.argv[1] if len(sys.argv)>1 else 'regions-4-6'
-assert bundle in ['regions-4-6','regions-7-9','regions-10-12','friends-v1']
+assert bundle in ['regions-4-6','regions-7-9','regions-10-12','regions-13-15','friends-v1']
 manifest=json.loads((root/f'art-source/{bundle}/generation.json').read_text(encoding='utf-8'))
-if bundle=='regions-10-12':
+if bundle in ['regions-10-12','regions-13-15']:
     roster=json.loads((root/f'art-source/{bundle}/roster.json').read_text(encoding='utf-8'))
     expected={pet['id'] for pet in roster['pets']}
     assert len(manifest)==len(expected) and {item['id'] for item in manifest}==expected,'New region atlas set is incomplete or duplicated'
@@ -60,7 +60,7 @@ for item in manifest:
     img=Image.open(dest);assert img.mode=='RGBA',(pet_id,'missing alpha')
     a=np.asarray(img)[:,:,3];parts=components(a>100)
     main=sorted(parts[:6],key=lambda p:(p[1][1]+p[1][3])/2)
-    if bundle=='regions-10-12':
+    if bundle in ['regions-10-12','regions-13-15']:
         groups=atlas_groups(parts)
         main=[(sum(part[0] for part in group),box) for group,box in zip(groups,atlas_rectangles(groups,img.width,img.height))]
     assert len(main)==6 and main[-1][0]>1500,(pet_id,'expected six substantial sprites',parts[:8])
@@ -71,7 +71,7 @@ for item in manifest:
         assert pair[0][1][0]<img.width/2 and pair[1][1][0]>=img.width*.40,(pet_id,rarity,'invalid columns')
         for side,(_,box) in zip(['back','front'],pair):
             x,y,r,b=box
-            if bundle!='regions-10-12':x=max(0,x-2);y=max(0,y-2);r=min(img.width,r+2);b=min(img.height,b+2)
+            if bundle not in ['regions-10-12','regions-13-15']:x=max(0,x-2);y=max(0,y-2);r=min(img.width,r+2);b=min(img.height,b+2)
             w=r-x;h=b-y;foot=a[y+int(h*.90):b,x:r]>100;fy,fx=np.where(foot)
             u=float((fx.min()+fx.max())/2/w) if len(fx) else .5
             out[pet_id][rarity][side]={'rect':[x,y,w,h],'feet':[round(u,4),.97]}

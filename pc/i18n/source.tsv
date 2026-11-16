@@ -515,3 +515,56 @@ pc0513	 位伙伴 · 		PMPCGame.ts
 pc0514	第 {n} 场	Encounter {n}	PC wording correction
 pc0515	语言设置立即生效	Language changes apply immediately	PC wording correction
 pc0516	第 {n} 阶	Tier {n}	PCOnlineUI.ts numbered tier label
+pc0517	云端与本机进度不同，请在设置中选择保留的云档案。	Cloud and local progress differ. Choose which save to keep in Settings.	PMPCGame.ts
+pc0518	进度自动同步到 Steam；也可手动备份或恢复。	Progress syncs to Steam automatically. Manual backup and restore are also available.	PMPCGame.ts
+pc0519	旧骰子	Old Die	PMPCGame.ts
+pc0520	新骰子	New Die	PMPCGame.ts
+pc0521	料理效果不叠加，新料理替换旧效果	Meal effects do not stack. A new meal replaces the old effect.	PCCookingUI.ts
+pc0522	恢复旅行档案	Recover Your Journey	PMPCGame.ts
+pc0523	本机档案暂时无法读取。原文件会保留，请选择恢复方式。	This device’s save cannot be read. The originals will be kept. Choose a recovery option.	PMPCGame.ts
+pc0524	重试读取	Try Reading Again	PMPCGame.ts
+pc0525	开始独立新旅程	Start a Separate Journey	PMPCGame.ts
+pc0526	原存档会先保存在本机；新旅程不会覆盖已有云档。	The original save will be backed up here first. The new journey will not overwrite an existing cloud save.	PMPCGame.ts
+pc0527	保留原档并开始	Keep Original and Start	PMPCGame.ts
+pc0528	已找到可用存档，请重试读取。	A usable save was found. Try reading again.	PCProfile.ts
+pc0529	筛选属性	Filter by Type	PMPCGame.ts
+pc0530	筛选技能	Filter by Skill	PMPCGame.ts
+pc0531	没有符合条件的伙伴	No companions match	PMPCGame.ts
+pc0532	攻击起伏大，低点时防御	Variable attacks: guard on low rolls	PMPCGame.ts
+pc0533	擅长恢复，受伤后及时治疗	Strong recovery: heal after taking damage	PMPCGame.ts
+pc0534	更耐打，适合初次冒险	Tougher: a good first companion	PMPCGame.ts
+pc0535	战斗技巧	Battle Tips	PMPCGame.ts
+pc0536	先看双方骰子，选择攻击或防御。	Check both dice, then choose Attack or Guard.	PMPCGame.ts
+pc0537	防御会结束本回合，大幅降低受到的伤害。	Guard ends your turn and greatly reduces incoming damage.	PMPCGame.ts
+pc0538	治疗和强化后仍可行动，每种药水每回合可用一次。	You can still act after healing or boosting. Each potion can be used once per turn.	PMPCGame.ts
+pc0539	永久加成	Permanent bonus	PMPCGame.ts
+pc0540	请先登录 Steam 并保持在线	Sign in to Steam and stay online	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0541	好友暂时无法连接	Friend is unavailable	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0542	今日已邀请	Invited today	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0543	邀请未发送，请重试	Invite not sent. Try again.	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0544	保存失败，邀请未发送	Save failed. Invite not sent.	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0545	加速邀请已发送	Speed-up invite sent	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0546	保存失败，请重试	Save failed. Try again.	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0547	收到好友加速请求	Friend help request received	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0548	好友帮助成功，现已可以领取	Your friend helped. Ready to claim!	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0549	已帮助好友	Friend helped	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0550	帮助好友加速	Help Friend	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0551	邀请好友加速	Invite Friend to Help	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0552	每位好友每日可邀请一次，孵化与交配共用。	Invite each friend once a day, shared by hatching and breeding.	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0553	等待好友帮助	Waiting for friend	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0554	加速需要双方在线运行游戏	Both players must be in-game and online	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0555	取消邀请	Cancel Invite	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0556	暂无可邀请的 Steam 好友	No Steam friends available to invite	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0557	帮助后立即完成等待	Helping finishes the wait instantly	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0558	次数刷新 · 	Resets in · 	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0559	帮助请求已失效	This help request has expired	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0560	正在连接好友…	Connecting to friend…	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0561	好友加速请求	Friend Help Requests	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0562	正在游戏	In game	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0563	在线	Online	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0564	离线	Offline	PCFriendHelp.ts,PCFriendHelpUI.ts,PMPCGame.ts
+pc0565	收集奖励	Collection Rewards	PCDexRewardsUI.ts,PMPCGame.ts
+pc0566	图鉴收集奖励	Journal Rewards	PCDexRewardsUI.ts,PMPCGame.ts
+pc0567	普通与闪光合计，每种形态只计一次。	Normal and shiny forms count separately, once each.	PCDexRewardsUI.ts,PMPCGame.ts
+pc0568	未达成	Locked	PCDexRewardsUI.ts,PMPCGame.ts
+pc0569	已领取	Claimed	PCDexRewardsUI.ts,PMPCGame.ts

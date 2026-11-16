@@ -6,7 +6,7 @@ export interface PCOnlineLobby { lobbyId: string; ownerId: string; members: { st
 export interface PCOnlineOptions {
   bridge?: typeof steam; getProfile: () => PCOnlineProfile; onChange: () => void; onNotice: (text: string) => void;
   onBond: (peer: { steamId: string; name: string; pet: any }) => boolean; onComplete: (state: R.RaidState) => void;
-  canJoin: () => boolean; now?: () => number;
+  canJoin: () => boolean; now?: () => number; onHelpEvent?: (event:SteamEvent) => void;
 }
 type Phase = 'idle' | 'planning' | 'confirming' | 'paused' | 'complete';
 type Barrier = { stage: 'start' | 'round' | 'resume'; round: number; hash: string; acks: Set<string> };
@@ -128,7 +128,7 @@ export class PCOnline {
   tick(): void {
     this.queued.push(...this.bridge.poll()); if (this.queued.length > 1024) this.queued.splice(0, this.queued.length - 1024);
     for (const event of this.queued.splice(0, 128)) {
-      try { this.event(event); } catch { this.notice('收到的Steam资料无效，已忽略。'); }
+      try { if(event.type==='helpInvite'||event.type==='helpMessage')this.options.onHelpEvent?.(event);else this.event(event); } catch { this.notice('收到的Steam资料无效，已忽略。'); }
     }
     const time = this.now();
     for (const [id, request] of this.requests) if (time >= request.deadline) { this.requests.delete(id); request.reject(new Error('steam_timeout')); }
