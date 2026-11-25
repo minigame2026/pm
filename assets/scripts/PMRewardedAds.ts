@@ -1,4 +1,4 @@
-import { native } from 'cc';
+import { native, sys } from 'cc';
 import { TAP_MINI_AD_UNITS } from './TapAdConfig';
 
 export const AD_PLACEMENTS = ['stamina_10', 'hatch_reduce_30m', 'breed_reduce_30m', 'encounter_reroll'] as const;
@@ -7,7 +7,7 @@ type Host = Record<string, any>;
 
 /** Only platform completion callbacks authorize rewards; gameplay owns the actual grant. */
 export function installRewardedAds(host: Host = globalThis as any,
-  android = false,
+  android = sys.isNative && sys.os === sys.OS.ANDROID,
   invoke = (id: string, placement: string) => native.reflection.callStaticMethod(
     'com/cocos/game/PMTapAds', 'show', '(Ljava/lang/String;Ljava/lang/String;)V', id, placement),
   units: Record<string, string> = TAP_MINI_AD_UNITS) {

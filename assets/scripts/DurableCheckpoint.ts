@@ -5,7 +5,7 @@ export class DurableCheckpoint {
     if(typeof indexedDB==='undefined')return null;
     try{
       this.db=await new Promise<IDBDatabase>((resolve,reject)=>{
-        const request=indexedDB.open('pm-checkpoints-v1',1);
+        const request=indexedDB.open('pm-pc-checkpoints-v1',1);
         request.onupgradeneeded=()=>request.result.createObjectStore('saves');
         request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error);
         request.onblocked=()=>reject(new Error('Checkpoint database blocked'));

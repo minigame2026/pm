@@ -5,8 +5,7 @@ export const DEX_SPECIES=M.PET_IDS.filter(id=>!M.FRIEND_PET_IDS.includes(id));
 export const DEX_TOTAL=DEX_SPECIES.length*M.RARITIES.length*2;
 export const DEX_REWARDS=Array.from({length:15},(_,i)=>({id:i+1,mapId:i,required:Math.ceil(DEX_TOTAL*(i+1)/15)}));
 export const dexKey=(pet:Pick<M.Pet,'id'|'rarity'|'shiny'>)=>M.formKey(pet)+(pet.shiny?':shiny':'');
-const validKeys=new Set<string>();
-for(const id of DEX_SPECIES)for(const rarity of M.RARITIES){const key=M.formKey({id,rarity});validKeys.add(key);validKeys.add(key+':shiny');}
+const validKeys=new Set(DEX_SPECIES.flatMap(id=>M.RARITIES.flatMap(rarity=>[M.formKey({id,rarity}),M.formKey({id,rarity})+':shiny'])));
 
 export function validDexState(value:unknown):boolean {
   if(value===undefined)return true;

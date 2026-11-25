@@ -12,7 +12,7 @@
       "developerTeam": "U5FT6JFLWS",
       "targetVersion": "13.0",
       "skipUpdateXcodeProject": false,
-      "orientation": { "portrait": true, "upsideDown": false, "landscapeLeft": false, "landscapeRight": false },
+      "orientation": { "portrait": false, "upsideDown": false, "landscapeLeft": true, "landscapeRight": true },
       "renderBackEnd": { "metal": true }
     },
     "native": { "encrypted": false, "compressZip": false, "makeAfterBuild": false }

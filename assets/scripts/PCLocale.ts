@@ -1,0 +1,66 @@
+import {tr,selectLanguage,currentLocale,languageChoice,LANGUAGES,Locale} from './PMLocale';
+import {TRANSLATIONS} from './PMTranslations';
+import {PC_TRANSLATIONS} from './PCTranslations';
+export {currentLocale,languageChoice,LANGUAGES};
+export const PC_LANGUAGE_KEY='pm.pc.language.v1';
+// English terminology overrides retained for existing shared-source UI labels.
+export const PC_EN:Record<string,string>={
+ '正在整理旅行背包…':'Packing your travel bag…','存档无法读取，请保留原文件并恢复备份':'Cannot read this save. Keep the original and restore a backup.','资源未能加载，请重新启动':'Resources could not load. Please restart.',
+ '等待联网校时':'Waiting for online time sync','孵化与交配需要联网校时。战斗和烹饪仍可使用。':'Hatching and breeding need online time sync. Battles and cooking are still available.','暂时无法校时':'Time sync unavailable','请检查网络后再试。':'Check your connection and try again.','保存失败 · 请勿退出':'Save failed · Please do not quit',
+ '驯兽师':'Tamer','等待 Steam 联网校时':'Waiting for Steam time sync','暂时无法领取，请检查连接与存档':'Unable to claim. Check your connection and save.','保存失败，奖励尚未领取，请重试':'Save failed. Your reward has not been claimed. Try again.','获得龙鳞碎片':'Dragon scale shards obtained','获得 ':'Obtained ',' 枚宠物蛋':' pet eggs',
+ '请完成当前战斗后再用餐':'Finish this battle before eating','请结束当前副本后再用餐':'Finish this raid before eating','当前存档不可写入':'This save is read-only','暂时无法完成料理':'Unable to cook right now','保存失败，材料与食物未消耗':'Save failed. Ingredients and food were not consumed.','料理已放入餐盒':'Meal added to your lunchbox','副本食材尚未保存，请重试领取':'Raid ingredients were not saved. Please claim again.',
+ 'Steam账号已改变，请重新启动游戏以载入对应存档':'Steam account changed. Restart to load the matching save.',
+ '1–4 指令    Enter 攻击 / 继续    Esc 设置':'1–4 Commands    Enter Attack / Continue    Esc Settings','Enter 确认    ← → 翻页    Esc 返回':'Enter Confirm    ← → Pages    Esc Back',
+ '骰子精灵 · 驯兽之旅':'Dicekin · Monster Tamer','骰子精灵':'Dicekin','营地':'Camp','世界地图':'World Map','孵化与培育':'Hatch & Breed','营地烹饪':'Camp Kitchen','精灵图鉴':'Monster Journal','道馆挑战':'Gym Challenges','旅伴':'Companions','多人副本':'Co-op Raids','赛季天梯':'Season Ladder','设置':'Settings',
+ '通关上一地区后解锁':'Clear the previous region to unlock','请先结束当前冒险':'Finish your current adventure first','继续旅程   →':'Continue Journey   →','选择目的地，开始新的冒险':'Choose a destination for your next adventure','你的旅程，由此开始':'Your journey begins here','选一位伙伴，一起出发':'Choose a monster and set out together','选择旅行者':'Choose Your Traveler','每一位伙伴，都有自己的拿手本领':'Every companion has a special talent',
+ 'Steam 云档案':'Steam Cloud Save','导入本机原有进度':'Import Local Progress','已选择':'Selected','确认旅行者   →':'Confirm Traveler   →','一起出发   →':'Begin Together   →','导入本机进度':'Import Local Progress','将原有PC进度复制到当前Steam账号；原存档保留。':'Copy local PC progress to this Steam account. The original save is kept.','没有可导入的进度':'No progress to import',
+ '世界探险':'World Adventure','十二片风景，等你与伙伴一同抵达':'Twelve regions await you and your companions','已探索':'Explored','可出发':'Available','待解锁':'Locked','10 场遭遇 · 精英与首领可寻蛋':'10 encounters · Elites and bosses may lead to eggs',
+ '每一次相遇，都值得收藏':'Every encounter is worth remembering','查看伙伴，安排你的冒险队伍':'Meet your companions and arrange your adventuring party','★ 闪光形态':'★ Shiny Form','普通形态':'Normal Form','当前队伍':'Current Party','领队':'Leader','待安排':'Unassigned',' 种形态':' forms',' 位伙伴':' companions','孵化第一枚蛋，认识新的伙伴':'Hatch your first egg to meet a new companion','生命':'HP',' 等 ':' and ',' 种':' types','详情':'Details','已收集':'Collected','尚未收集':'Not collected','战斗或交配期间无法调整队伍':'You cannot change the party during battle or breeding','安排队伍':'Arrange Party','当前领队':'Current Leader','下阵':'Remove','设为领队':'Make Leader','下一页':'Next Page',
+ '已完成 · 点击领取':'Complete · Claim','交配培育':'Breeding','让新的伙伴，加入你的旅程':'Welcome new companions to your journey','孵化位 0':'Hatchery Slot 0','领取伙伴':'Claim Companion','孵化完成后可领取':'Claim when hatching is complete','等待一枚蛋':'Waiting for an egg','先从右侧蛋袋中选择':'Select from the egg bag on the right','先选一枚蛋':'Choose an egg first','在右侧蛋袋中选择，再放入空孵化位。':'Choose an egg on the right, then place it in an empty slot.','请先在蛋袋选中一枚蛋':'Select an egg from your bag first','我的蛋袋':'My Egg Bag','蛋袋还是空的':'Your egg bag is empty','探险中击败精英与首领，\n就有机会带回宠物蛋。':'Defeat elites and bosses during adventures\nfor a chance to bring home monster eggs.','新伙伴诞生！':'A New Companion!','欢迎加入':'Welcome','培育进行中':'Breeding in progress','交配完成后可领取':'Claim when breeding is complete','领取后父母会离开队伍，留下遗传宠物蛋':'Claiming retires both parents and grants an inherited egg','领取后父母会离开队伍，遗传宠物蛋进入蛋袋。此操作不可撤销。':'Both parents leave your party when you claim their inherited egg. This cannot be undone.','确认领取':'Confirm Claim','母亲':'Mother','父亲':'Father','没有符合条件的伙伴\n领队不能参与交配':'No eligible companions\nThe party leader cannot breed','完成并领取后，父母会离开队伍，留下遗传宠物蛋。':'After claiming, both parents leave the party and grant an inherited egg.','完成并领取后将消耗这两位父母。确认开始？':'Claiming will consume both selected parents. Begin breeding?','确认开始':'Confirm',
+ '以伙伴的力量，赢得属于你的徽章':'Earn your badges with your companions','属性的十场挑战，获胜后永久强化对应属性伙伴。':' types across ten encounters. Win to permanently strengthen matching monsters.','已取得徽章':'Badge Earned','通关对应地区后解锁':'Clear the matching region to unlock','徽章已获得':'Badge already earned','尚未开放':'Not available',
+ '旅行来信':'Travel Letters','邀请朋友的伙伴，分享彼此的旅程':'Invite a friend’s companion and share your journey','寄出邀请':'Send Invitation','我的拜访码':'My Visit Code','选择伙伴后生成拜访码':'Choose a companion to create a visit code','复制拜访码':'Copy Visit Code','已复制拜访码':'Visit code copied','当前环境无法访问剪贴板':'Clipboard access is unavailable','把拜访码分享给朋友，邀请他们来做客。':'Share your visit code and invite a friend.','接收来信':'Receive Letter','粘贴朋友的拜访码':'Paste your friend’s visit code','拜访码无法识别，请检查是否完整':'Unrecognized visit code. Check that it is complete.','朋友':'Friend','的伙伴正在拜访':'’s companion is visiting','互动进度 ':'Interaction progress ','和伙伴互动':'Interact','稍等片刻，再来互动':'Wait a moment before interacting again','收到来信后，朋友的伙伴会来到营地。':'Receive a letter to welcome a friend’s companion to camp.',
+ ' 场 / ':' / ',' 场':' encounter','野外遭遇':'Wild Encounter','战斗胜利':'Victory','当前点数：':'Current Roll: ','旅途奇遇':'Travel Encounter','意外的相遇':'An Unexpected Encounter','继续旅程  →':'Continue Journey  →','探索完成':'Adventure Complete','旅程暂歇':'Journey Paused','新的风景，已经抵达':'A New Region Awaits','先回营地休息吧':'Rest at camp before setting out again','带着收获回营地':'Return to camp with your rewards','回营地':'Return to Camp','更换对手 · ':'Reroll Foe · ','每次探险的可用更换次数有限':'Opponent rerolls are limited per adventure','开始战斗':'Start Battle','防御':'Guard','治疗':'Heal','强化':'Power Up','属性受限 ×':'Resisted ×','属性效果正常':'Neutral Matchup','总伤害 …':'Damage …','总伤害 ':'Damage ','当前骰子点数 ':'Current roll ','防御 · 预计承受 ':'Guard · Expected damage ','已使用':'Used','已满':'Full','本回合已经使用治疗':'Healing already used this turn','没有生命药水':'No healing potions','生命已满':'HP is full','治疗恢复 ':'Restore ',' 点生命，不消耗攻击行动':' HP without spending your attack','本回合已经强化':'Power-up already used this turn','没有力量药水':'No power potions','，使用后仍可行动':'; you can still act afterward','等待骰子停稳':'Waiting for the dice to settle','获得食材：':'Ingredients found: ','料理效果已结束，回营地补充美食':'Your meal has expired. Visit camp for another.','造成伤害':'Damage Dealt','受到伤害':'Damage Taken','恢复生命':'HP Restored','攻击强化':'Attack Boosted',
+ '新的生命，即将与你同行':'A New Companion Awaits','草丛里，传来了新的声音':'A Sound in the Grass','宠物蛋已收入蛋袋':'Monster egg added to your bag','寻找一枚蛋，带回营地孵化新伙伴':'Find an egg and hatch a new companion at camp','寻找宠物蛋  ':'Search for Eggs  ','带走选中的蛋':'Take Selected Egg','暂别这段旅程？':'Leave This Adventure?','撤退会结束本次冒险，已收集的宠物蛋和食材保留。':'Retreat ends this adventure. Collected eggs and ingredients are kept.',
+ '游戏设置':'Game Settings','减少动态  ·  开':'Reduced Motion · On','减少动态  ·  关':'Reduced Motion · Off','战斗速度  ·  快速':'Battle Speed · Fast','战斗速度  ·  标准':'Battle Speed · Normal',
+ '手动备份或恢复，操作前保留原档案。':'Back up or restore manually. Your original save is kept.','请先登录 Steam，再重新启动游戏。':'Sign in to Steam, then restart the game.','备份到 Steam':'Back Up to Steam','将当前账号进度写入 Steam 云；原云档会先保存在本机。':'Upload this account’s progress to Steam Cloud. The previous cloud save will be backed up locally.','确认备份':'Confirm Backup','本机保存失败，暂不能备份':'Local save failed. Backup is unavailable.','已备份到 Steam':'Backed up to Steam','云备份暂不可用':'Cloud backup unavailable','查看并恢复云档':'View and Restore Cloud Save','暂时无法读取云档':'Unable to read the cloud save','恢复云档案':'Restore Cloud Save','云端：':'Cloud: ',' 个地区\n本机与云端原档都会保留；恢复后使用云端进度。':' regions\nBoth originals are kept. Restoring switches to cloud progress.','确认恢复':'Confirm Restore','恢复失败，原进度保留':'Restore failed. Your original progress is kept.','已恢复云档，原本机进度已备份':'Cloud save restored. Local progress was backed up.','请先结束冒险并离开联机队伍':'Finish your adventure and leave your online party first','云服务不可用时，本机存档仍可正常游玩。':'Local saves remain playable when cloud services are unavailable.',
+ '界面语言':'Interface Language','选择语言':'Choose Language','返回设置':'Back to Settings','回合 ':'Turn ','出发探险':'Explore','继续冒险':'Continue Adventure',
+ '家常':'Homestyle','鲜美':'Fine','珍馐':'Gourmet','谷穗':'Grain','鲜肉':'Fresh Meat','溪鱼':'Stream Fish','嫩叶':'Tender Leaves','香菇':'Mushroom','香辛果':'Spiceberry',
+ '炭火鲜肉串':'Chargrilled Skewers','岩谷菌香焖饭':'Stonepot Mushroom Rice','海风鲜鱼浓汤':'Sea Breeze Chowder','青叶暖菌煲':'Leaf & Mushroom Stew','云菇酥香饼':'Cloudcap Pastry','月椒秘香鱼':'Moonpepper Fish',
+ '热腾腾的肉串，让进攻更有力量。':'Sizzling skewers that strengthen your attacks.','慢火焖出的扎实滋味，帮助伙伴站稳。':'A hearty slow-cooked meal that bolsters defense.','清甜浓汤，让生命药水恢复更多。':'Sweet, rich chowder that improves healing potions.','嫩叶与香菇炖出满满活力。':'Tender leaves and mushrooms simmered for vitality.','酥松小饼，兼顾进攻与恢复。':'Flaky pastries that improve attacks and healing.','微辣的秘制香气，让攻守都更从容。':'A secret spicy recipe for stronger attacks and defense.',
+ '配方无效':'Invalid recipe','食材不足：':'Missing ingredients: ','成品食物已满':'Lunchbox is full','食物无效':'Invalid meal','先烹饪一份食物':'Cook a meal first','尚未用餐':'No meal active','最大生命':'Max HP',' · 剩余 ':' · Remaining ','攻击 +':'Attack +','超能':'Psychic',
+ '营地厨房':'Camp Kitchen','让旅途的收获，变成下一程的好滋味':'Turn your adventure’s bounty into a delicious boost','食材品质越好，料理效果越强':'Better ingredients make stronger meals','已做好 ×':'Prepared ×','适合当前队伍':'Matches Your Party','持续 10 场战斗':'Lasts 10 battles','烹饪一份':'Cook One','享用  ×':'Eat  ×','先烹饪再享用':'Cook a meal first','享用后替换当前料理效果':'Eating replaces your current meal effect','持续 10 场已结算战斗':'Lasts for 10 completed battles','食材 · 探险胜利有机会获得':'Ingredients · Chance to drop after winning battles'
+};
+const escape=(v:string)=>v.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+// PC terminology corrections; keep the independently shipped mobile glossary unchanged.
+const termOverrides:Record<string,Record<string,string>>={ta:{'超能力':'மனசக்தி','飞行':'பறப்பு'}};
+const pcPattern=new RegExp(Array.from(new Set([...Object.keys(TRANSLATIONS),...Object.keys(PC_EN),...Object.keys(PC_TRANSLATIONS)])).sort((a,b)=>b.length-a.length).map(escape).join('|'),'g');
+export function selectPCLanguage(value:string|null,systemCode:string){return selectLanguage(value||'zh-CN',systemCode);}
+const renderedText=new Map<string,string>();let renderedLocale='';
+export function pcTr(value:string){
+  if(currentLocale()==='zh-CN'||!value)return value;
+  if(renderedLocale!==currentLocale()){renderedText.clear();renderedLocale=currentLocale();}
+  const cached=renderedText.get(value);if(cached!==undefined)return cached;
+  const locale=currentLocale(),lookup=(key:string)=>termOverrides[locale]?.[key]??PC_TRANSLATIONS[key]?.[locale]??(locale==='en'&&PC_EN[key]?PC_EN[key]:tr(key));
+  // Protect whole numbered phrases before the single longest-match pass. Translated
+  // Japanese/Traditional Chinese is never sent through the source matcher again.
+  const phrases:string[]=[];
+  const protect=(text:string)=>{phrases.push(text);return '\ue000'+(phrases.length-1)+'\ue001';};
+  const source=value.replace(/第\s*(\d+)\s*([场阶])/g,(_match,n,kind)=>protect(lookup(kind==='场'?'第 {n} 场':'第 {n} 阶').replace('{n}',n)))
+    .replace(/第\s*(\d+)\s*回合|回合\s*(\d+)|(\d+)\s*回合/g,(_match,ordinal,before,after)=>protect(after?after+' '+lookup(' 回合\n').trim():lookup('回合 ')+(ordinal||before)));
+  const result=source.replace(pcPattern,lookup).replace(/\ue000(\d+)\ue001/g,(_match,n)=>phrases[Number(n)]);
+  if(renderedText.size>=2048)renderedText.delete(renderedText.keys().next().value!);renderedText.set(value,result);return result;
+}
+let bundledFonts=false,mobileFonts=false;
+/** Windows registers these shipped font families before the script runtime starts. */
+export function useBundledPCFonts(enabled:boolean){bundledFonts=enabled;}
+export function useMobileFonts(enabled:boolean){mobileFonts=enabled;}
+export function pcFont(locale:Locale=currentLocale()){
+  if(bundledFonts){
+    const families:Partial<Record<Locale,string>>={'zh-CN':'SC','zh-TW':'TC',ja:'JP',ko:'KR',th:'Thai',hi:'Devanagari',mr:'Devanagari',bn:'Bengali',te:'Telugu',ta:'Tamil',ar:'Arabic',ur:'Arabic'};
+    return 'DicekinSans'+(families[locale]||'');
+  }
+  if(mobileFonts)return 'sans-serif';
+  if(locale==='zh-CN')return 'sans-serif';
+  if(locale==='zh-TW')return 'Microsoft JhengHei';if(locale==='ja')return 'Yu Gothic';if(locale==='ko')return 'Malgun Gothic';if(locale==='th')return 'Leelawadee UI';
+  if(['hi','bn','mr','te','ta'].includes(locale))return 'Nirmala UI';if(['ar','ur'].includes(locale))return 'Segoe UI';return 'Arial';
+}

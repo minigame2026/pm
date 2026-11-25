@@ -2,7 +2,7 @@ name: iOS cloud build
 on:
   workflow_dispatch:
   push:
-    branches: [codex/mobile-ios-20261125]
+    branches: [codex/mobile-pc-26696982]
     paths:
       - assets/**
       - settings/**

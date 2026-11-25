@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "part": "b",
+  "createdAt": "2026-10-25",
+  "generator": "built-in image_gen.imagegen",
+  "generationMode": "new-image-one-call-per-asset",
+  "upscaled": false,
+  "note": "Requested 2560x1440 in the prompt; the built-in generator delivered 1672x940 or 1672x941. Actual source pixels are recorded without resampling. Static background art only; runtime animation and integration are handled separately.",
+  "assets": [
+    {
+      "map": 7,
+      "name": "琉璃雨林",
+      "path": "pc/assets/battle-scenes/map-07-v1.png",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a170ee-0cc5-7bb3-93f3-1f483df2fefc\\exec-5a1a22ba-81e4-43d4-ba83-a1df0d0ff88f.png",
+      "requestedPixels": [
+        2560,
+        1440
+      ],
+      "sourcePixels": [
+        1672,
+        940
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: production 2D turn-based creature battle background for a PC game. Strong colorful Pokemon-like hand-painted anime illustration, cinematic animated-feature background, clean intentional brushwork, sophisticated appealing color and light, no photorealism. Landscape 16:9 wide image, request 2560x1440. Low three-quarter arena camera: horizon at upper 38%, spacious continuous flat gently diagonal battleground across the lower 60%; clear quiet midtones at player feet 30% x 72% and enemy feet 70% x 59%. No big center objects or pillars. Distinct visual focal motif in upper half and off-center; detailed environment edges limited to outer 10%. Bottom 18% quiet ground continuation for UI and top 15% relatively quiet. No painted spawn discs. No people, pets, creatures, text, logo, UI, watermarks. Scene: 琉璃雨林 / Glasswater Rainforest. Emerald tropical rainforest after rain. Broad pale warm earth and gently exposed roots form an open playable clearing; small wet patches reflect sky without covering the clear grounded arena. Giant waxy leaves frame the outer edges. A small waterfall and glassy turquoise blue pool sit in the distant upper-right background, rich forest layered beyond, shafts of warm sun through humid canopy. Readable clean spacious ground occupies most of the frame, no tree or large root crossing either actor position.",
+      "visualCheck": "已逐图查看：雨林瀑布在后景，主要站位为连续浅土空地，边缘植被不遮挡两侧站位。"
+    },
+    {
+      "map": 8,
+      "name": "赤曜沙海",
+      "path": "pc/assets/battle-scenes/map-08-v1.png",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a170ee-0cc5-7bb3-93f3-1f483df2fefc\\exec-7d9f2414-e75d-44cc-b4ba-84020caf01d9.png",
+      "requestedPixels": [
+        2560,
+        1440
+      ],
+      "sourcePixels": [
+        1672,
+        940
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: production 2D turn-based creature battle background for a PC game. Strong colorful Pokemon-like hand-painted anime illustration, cinematic animated-feature background, clean intentional brushwork, sophisticated appealing color and light, no photorealism. Landscape 16:9 wide image, request 2560x1440. Low three-quarter arena camera: horizon at upper 38%, spacious continuous flat gently diagonal battleground across the lower 60%; clear quiet midtones at player feet 30% x 72% and enemy feet 70% x 59%. No big center objects or pillars. Distinct visual focal motif in upper half and off-center; detailed environment edges limited to outer 10%. Bottom 18% quiet ground continuation for UI and top 15% relatively quiet. No painted spawn discs. No people, pets, creatures, text, logo, UI, watermarks. Scene: 赤曜沙海 / Red-Sun Dunes. Vast golden desert battle clearing, broad gently sloping smooth pale-gold sand and minimal wind ripples. Distant red sandstone arch and half-buried ancient ruins occupy far side edges and upper horizon, amber late-afternoon sun, apricot sky, beautiful rose-gold rock accents. Low dunes recede toward horizon. This is a desert, not a volcano: no lava, no black volcanic rock. Preserve wide walkable sand at both actor positions and unobstructed center.",
+      "visualCheck": "已逐图查看：沙漠、红砂岩弧门与远处埋沙遗迹明显，中心和前景为开阔沙地。"
+    },
+    {
+      "map": 9,
+      "name": "冥辉天穹",
+      "path": "pc/assets/battle-scenes/map-09-v1.png",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a170ee-0cc5-7bb3-93f3-1f483df2fefc\\exec-affadff8-d83b-4d33-8da2-366be6675563.png",
+      "requestedPixels": [
+        2560,
+        1440
+      ],
+      "sourcePixels": [
+        1672,
+        941
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: production 2D turn-based creature battle background for a PC game. Strong colorful Pokemon-like hand-painted anime illustration, cinematic animated-feature background, clean intentional brushwork, sophisticated appealing color and light, no photorealism. Landscape 16:9 wide image, request 2560x1440. Low three-quarter arena camera: horizon at upper 38%, spacious continuous flat gently diagonal battleground across the lower 60%; clear quiet midtones at player feet 30% x 72% and enemy feet 70% x 59%. No big center objects or pillars. Distinct visual focal motif in upper half and off-center; detailed environment edges limited to outer 10%. Bottom 18% quiet ground continuation for UI and top 15% relatively quiet. No painted spawn discs. No people, pets, creatures, text, logo, UI, watermarks. Scene: 冥辉天穹 / Twilight Skyreach. A broad continuous flat floating-rock battle plateau high above a sea of clouds at violet-blue twilight. The entire foreground and midground is one stable spacious plateau with softly textured blue-gray stone, clearly visible rather than black. In the far upper-right sky a mysterious glowing moon ring appears through thin clouds, while small luminous violet crystals and suspended rock islets are only along far edges. Magical serene ethereal sky, restrained cyan and violet rim lights. The platform must be wide with no hole, no bridge gap, no crater, no central crystal or central obstruction, no architecture.",
+      "visualCheck": "已逐图查看：紫蓝浮岩平台连续且足够宽，月环和晶体在远景及两侧，地面不是纯黑。"
+    },
+    {
+      "map": 10,
+      "name": "圣枝云庭",
+      "path": "pc/assets/battle-scenes/map-10-v1.png",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a170ee-0cc5-7bb3-93f3-1f483df2fefc\\exec-982aa57b-5e74-417c-a7fe-d7fe20b8b425.png",
+      "requestedPixels": [
+        2560,
+        1440
+      ],
+      "sourcePixels": [
+        1672,
+        941
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: production 2D turn-based creature battle background for a PC game. Strong colorful Pokemon-like hand-painted anime illustration, cinematic animated-feature background, clean intentional brushwork, sophisticated appealing color and light, no photorealism. Landscape 16:9 wide image, request 2560x1440. Low three-quarter arena camera: horizon at upper 38%, spacious continuous flat gently diagonal battleground across the lower 60%; clear quiet midtones at player feet 30% x 72% and enemy feet 70% x 59%. No big center objects or pillars. Distinct visual focal motif in upper half and off-center; detailed environment edges limited to outer 10%. Bottom 18% quiet ground continuation for UI and top 15% relatively quiet. No painted spawn discs. No people, pets, creatures, text, logo, UI, watermarks. Scene: 圣枝云庭 / Sacred Bough Cloud Garden. A lush sacred tree's monumental living boughs support a garden high above glowing white clouds. Wide continuous playable courtyard of warm ivory pale stone and neat soft grass, flat and open at actor positions. Distant vast golden-green tree canopy is the focal motif upper-left, with graceful cloud bridges and branches receding at the outer edges; warm holy sunlight, luminous jade green and white-gold palette. This is a cloud garden, not a seaside island, no ocean or beach. Beautiful hand-painted animated-feature environment, airy with stable clear ground, no trunk in the center of the arena.",
+      "visualCheck": "已逐图查看：圣树冠与云桥位于后景，白石草地庭院连续开阔，与海岛地貌区分。"
+    },
+    {
+      "map": 11,
+      "name": "万象神炉",
+      "path": "pc/assets/battle-scenes/map-11-v1.png",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a170ee-0cc5-7bb3-93f3-1f483df2fefc\\exec-53edc9d0-b83f-47a7-9235-ed5a51f1f562.png",
+      "requestedPixels": [
+        2560,
+        1440
+      ],
+      "sourcePixels": [
+        1672,
+        941
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: production 2D turn-based creature battle background for a PC game. Strong colorful Pokemon-like hand-painted anime illustration, cinematic animated-feature background, clean intentional brushwork, sophisticated appealing color and light, no photorealism. Landscape 16:9 wide image, request 2560x1440. Low three-quarter arena camera: horizon at upper 38%, spacious continuous flat gently diagonal battleground across the lower 60%; clear quiet midtones at player feet 30% x 72% and enemy feet 70% x 59%. No big center objects or pillars. Distinct visual focal motif in upper half and off-center; detailed environment edges limited to outer 10%. Bottom 18% quiet ground continuation for UI and top 15% relatively quiet. No painted spawn discs. No people, pets, creatures, text, logo, UI, watermarks. Scene: 万象神炉 / Forge of Worlds. INTERIOR of an enormous ancient sacred forge hall. In the distant upper-left background a monumental bronze-gold celestial armillary furnace glows with contained orange-gold fire; overhead vaulted stone and copper structure fades into atmospheric depth. Cool blue thermal light from narrow side vents balances the warm furnace glow. Foreground and midground are a broad flat uninterrupted copper-gray stone slab battle floor, matte and readable with elegant sparse inlaid seams; empty actor spaces. Colorful fantasy animation painting, not grimdark. Entirely indoor temple workshop; NOT an open volcano, NOT lava cave, NOT volcanic dungeon. No foreground machines, no central pillar, no pit, no characters.",
+      "visualCheck": "已逐图查看：室内铜金天体神炉与蓝橘光明确，地面平整，造型区别露天火山和熔洞。"
+    },
+    {
+      "map": 12,
+      "name": "太初星界",
+      "path": "pc/assets/battle-scenes/map-12-v1.png",
+      "source": "C:\\Users\\k\\.codex\\generated_images\\01a170ee-0cc5-7bb3-93f3-1f483df2fefc\\exec-87142c00-e9ec-4443-b87c-8230921a9658.png",
+      "requestedPixels": [
+        2560,
+        1440
+      ],
+      "sourcePixels": [
+        1672,
+        941
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: production 2D turn-based creature battle background for a PC game. Strong colorful Pokemon-like hand-painted anime illustration, cinematic animated-feature background, clean intentional brushwork, sophisticated appealing color and light, no photorealism. Landscape 16:9 wide image, request 2560x1440. Low three-quarter arena camera: horizon at upper 38%, spacious continuous flat gently diagonal battleground across the lower 60%; clear quiet midtones at player feet 30% x 72% and enemy feet 70% x 59%. No big center objects or pillars. Distinct visual focal motif in upper half and off-center; detailed environment edges limited to outer 10%. Bottom 18% quiet ground continuation for UI and top 15% relatively quiet. No painted spawn discs. No people, pets, creatures, text, logo, UI, watermarks. Scene: 太初星界 / Firstlight Cosmos. A bright dreamlike realm at the birth of the universe. A broad continuous flat arena of pearl and pale-lilac translucent crystalline stone, with gentle plane facets and subtle glowing seams, fills the entire lower 60%. Clear stable grounded perspective, not floating disconnected fragments. In the upper-left distance brilliant pastel nebula clouds swirl around an enormous graceful planetary ring; stars, opalescent peach-cyan-violet light, luminous galactic horizons. Small jewel crystal formations only at extreme side edges. Joyful awe, bright magical cosmic creation, no black abyss. No ruins, no architecture, no dark twilight rocky plateau, no water, no center ornament or spawn disc. Maintain legible quiet midtone pet standing areas despite the sparkling far sky.",
+      "visualCheck": "已逐图查看：明亮浅紫晶石台连续，星云行星环在上方远景，没有废墟或暮色浮岩。"
+    }
+  ]
+}

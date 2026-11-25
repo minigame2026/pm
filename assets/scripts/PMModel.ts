@@ -1,5 +1,3 @@
-import type {PCDexState} from './PCDex';
-import {restoreCooking} from './PCCooking';
 import {PCCookingState,foodAttack,foodDefense,foodHeal,foodHealth} from './PCCooking';
 /** Engine-independent rules. Every action returns a committed, serializable state. */
 let timeProvider:()=>number=()=>Date.now();
@@ -455,7 +453,6 @@ export interface Journey {version:1;stage:'hero'|'starter'|'done';hero:HeroId|nu
 export interface Reward { kind: 'hp' | 'attack' | 'heal' | 'potion' | 'boost' | 'attackMin' | 'attackMax'; values: number[]; title: string }
 export interface State {
   pcCooking?:PCCookingState;
-  dexCollection?:PCDexState;
   arena?: import('./PMArena').ArenaSave;
   gymRun?:number; gymBadges?:number[]; gymDifficultyVersion?:1|2|3|4|5|6; adventureDifficultyVersion?:1|2;
   surprises?:{seed:number;misses:Partial<Record<SurpriseKind,number>>;recipes:string[]};
@@ -854,7 +851,6 @@ export function act(before: State, a: Action): State {
 export function restore(raw: string | null): State | null {
   try {
     const s=JSON.parse(raw || 'null') as State;
-    if(s?.pcCooking!==undefined&&!restoreCooking(s.pcCooking))return null;
     const finite=(n: unknown)=>typeof n==='number'&&Number.isFinite(n);
     const faces=(a: any)=>Array.isArray(a)&&a.length>=1&&a.length<=5&&a.every((n:any)=>finite(n)&&n>=1&&n<=100);
     const validPet=(p: any)=>p&&ids.includes(p.id)&&faces(p.faces)&&(p.rarity===undefined||RARITIES.includes(p.rarity));
@@ -1032,7 +1028,7 @@ export function restartRun(before:State,seed=Date.now()):State {
   if(!hasActivePet(before))return before;
   const s=fresh(seed,before.owned,before.wins);
   s.owned=before.owned.slice();
-  for(const key of ['eggs','incubators','warmth','hatchSeed','hatchedEggIds','qualities','preferredRarities','pendingHatch','pets','team','individualVersion','breeding','breedingSerial','mapId','mapVersion','clearedMaps','social','journey','stamina','expedition','trustedTime','pendingStaminaAd','pendingHatchAd','pendingBreedingAd','surprises','arena','gymBadges','pcCooking','dexCollection'])if(before[key]!==undefined)s[key]=JSON.parse(JSON.stringify(before[key]));
+  for(const key of ['eggs','incubators','warmth','hatchSeed','hatchedEggIds','qualities','preferredRarities','pendingHatch','pets','team','individualVersion','breeding','breedingSerial','mapId','mapVersion','clearedMaps','social','journey','stamina','expedition','trustedTime','pendingStaminaAd','pendingHatchAd','pendingBreedingAd','surprises','arena','gymBadges','pcCooking'])if(before[key]!==undefined)s[key]=JSON.parse(JSON.stringify(before[key]));
   s.active=clonePet(s.pets!.find(p=>p.uid===before.active.uid)!);s.reserve=before.reserve?clonePet(s.pets!.find(p=>p.uid===before.reserve!.uid)!):null;
   if(before.gymRun!==undefined)s.mapId=latestUnlockedMap(s);s.team=homeParty(before);s.runRoster={};s.combatVitals={};s.hpRatio=1;s.hpBonus=0;rememberParty(s);encounter(s,false,false);return s;
 }

@@ -1,0 +1,8 @@
+{
+  "camp-panorama-v1.png": {
+    "tool": "built-in imagegen",
+    "nativePixels": [1672, 941],
+    "use": "PC camp and coast background; no baked UI",
+    "prompt": "Original creature collecting dice RPG, widescreen 16:9. Japanese anime adventure illustration with the bright appealing clean painted aesthetic of Pokemon theatrical films. Warm coastal field research camp on a grassy terrace, turquoise bay, layered mountains and monumental cumulus clouds. Late afternoon warm sunlight and cool reflected fill. Small canvas shelter and egg conservatory at far right. Open level foreground for separate creature sprites, eye-level camera. No people, creatures, text, logos, UI or cards. Crisp painted details, no excessive blur or washed-out bloom."
+  }
+}

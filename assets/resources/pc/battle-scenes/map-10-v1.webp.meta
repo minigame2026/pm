@@ -1,0 +1,42 @@
+{
+  "ver": "1.0.27",
+  "importer": "image",
+  "imported": true,
+  "uuid": "18e56886-2b99-411d-99dd-fb46c58a9e4b",
+  "files": [
+    ".json",
+    ".webp"
+  ],
+  "subMetas": {
+    "6c48a": {
+      "importer": "texture",
+      "uuid": "18e56886-2b99-411d-99dd-fb46c58a9e4b@6c48a",
+      "displayName": "map-10-v1",
+      "id": "6c48a",
+      "name": "texture",
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "18e56886-2b99-411d-99dd-fb46c58a9e4b",
+        "visible": false
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "type": "texture",
+    "hasAlpha": false,
+    "fixAlphaTransparencyArtifacts": false,
+    "redirect": "18e56886-2b99-411d-99dd-fb46c58a9e4b@6c48a"
+  }
+}

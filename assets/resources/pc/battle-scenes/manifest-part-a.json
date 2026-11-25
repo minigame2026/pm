@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "tool": "built-in image_gen",
+  "assets": [
+    {
+      "mapId": 1,
+      "title": "草叶海岸",
+      "target": "pc/assets/battle-scenes/map-01-v1.png",
+      "sourcePath": "C:\\Users\\k\\.codex\\generated_images\\01a170e9-33d5-7151-8203-5b482f0eff44\\exec-6063ccce-9867-4fec-85fa-4995b8bf3d0c.png",
+      "prompt": "Use case: stylized-concept. Asset type: production 2D turn-based creature battle background for Dicekin. Strong colorful Pokemon-like hand-painted anime illustration, cinematic animated feature background, clean intentional brushwork, beautifully shaped plants and rocks, no photorealism, no characters, no pets, no text/logo/UI. Landscape 16:9 wide 2560x1440 requested. Fixed eye level low three-quarter arena camera: horizon around upper38%, spacious flat gently diagonal battle ground across lower60%; player feet at30%x72% and enemy feet70%x59%. Those areas must be unobstructed, quiet midtones behind silhouettes. Middle no large foreground objects, no central pillar. Hero environment focal motif upper half off-center, moderate contrast; decoration outer10% edges. Bottom18% smooth continuation forUI, top15% quieter sky. No painted spawn circles/platform badges; continuous believable terrain. Crisp detailed original scene, not collage/grid. Scene: Spring turquoise coastal bay, distant white sea erosion arch on upper right horizon, broad grassy sandy gently sloping arena, warm morning green and blue. Inviting bright adventure atmosphere, tiny sparkling sea far behind arena.",
+      "requestedPixels": [
+        2560,
+        1440
+      ],
+      "actualPixels": [
+        1672,
+        941
+      ],
+      "inspection": {
+        "subject": true,
+        "noCharactersOrUI": true,
+        "clearBattleGround": true,
+        "notes": "Distinct landform and clear actor foot zones; edge vegetation or rock framing only."
+      }
+    },
+    {
+      "mapId": 2,
+      "title": "熔岩山径",
+      "target": "pc/assets/battle-scenes/map-02-v1.png",
+      "sourcePath": "C:\\Users\\k\\.codex\\generated_images\\01a170e9-33d5-7151-8203-5b482f0eff44\\exec-fc05fc31-6942-4f95-8519-c7cb7d22998c.png",
+      "prompt": "Use case: stylized-concept. Asset type: production 2D turn-based creature battle background for Dicekin. Strong colorful Pokemon-like hand-painted anime illustration, cinematic animated feature background, clean intentional brushwork, beautifully shaped plants and rocks, no photorealism, no characters, no pets, no text/logo/UI. Landscape 16:9 wide 2560x1440 requested. Fixed eye level low three-quarter arena camera: horizon around upper38%, spacious flat gently diagonal battle ground across lower60%; player feet at30%x72% and enemy feet70%x59%. Those areas must be unobstructed, quiet midtones behind silhouettes. Middle no large foreground objects, no central pillar. Hero environment focal motif upper half off-center, moderate contrast; decoration outer10% edges. Bottom18% smooth continuation forUI, top15% quieter sky. No painted spawn circles/platform badges; continuous believable terrain. Crisp detailed original scene, not collage/grid. Scene: Open-air obsidian volcanic mountain pass, far lava cascade and smoking volcano upper left, wide safe flat basalt battlefield, warm amber accents with cool cyan volcanic stone, under open blue-grey sky. Not a cave, no lava through the playable ground, rugged dramatic volcanic environment.",
+      "requestedPixels": [
+        2560,
+        1440
+      ],
+      "actualPixels": [
+        1672,
+        941
+      ],
+      "inspection": {
+        "subject": true,
+        "noCharactersOrUI": true,
+        "clearBattleGround": true,
+        "notes": "Distinct landform and clear actor foot zones; edge vegetation or rock framing only."
+      }
+    },
+    {
+      "mapId": 3,
+      "title": "霜月雪原",
+      "target": "pc/assets/battle-scenes/map-03-v1.png",
+      "sourcePath": "C:\\Users\\k\\.codex\\generated_images\\01a170e9-33d5-7151-8203-5b482f0eff44\\exec-db0193e7-f219-4a0f-a2f6-283a6c61d122.png",
+      "prompt": "Use case: stylized-concept. Asset type: production 2D turn-based creature battle background for Dicekin. Strong colorful Pokemon-like hand-painted anime illustration, cinematic animated feature background, clean intentional brushwork, beautifully shaped plants and rocks, no photorealism, no characters, no pets, no text/logo/UI. Landscape 16:9 wide 2560x1440 requested. Fixed eye level low three-quarter arena camera: horizon around upper38%, spacious flat gently diagonal battle ground across lower60%; player feet at30%x72% and enemy feet70%x59%. Those areas must be unobstructed, quiet midtones behind silhouettes. Middle no large foreground objects, no central pillar. Hero environment focal motif upper half off-center, moderate contrast; decoration outer10% edges. Bottom18% smooth continuation forUI, top15% quieter sky. No painted spawn circles/platform badges; continuous believable terrain. Crisp detailed original scene, not collage/grid. Scene: Blue and white snowy clearing under moonlight, distant sculpted ice mountains, fir trees at extreme side edges, soft aurora far above. Smooth spacious packed snow battlefield, crisp refreshing icy blue and lavender, luminous cinematic night with readable midtones.",
+      "requestedPixels": [
+        2560,
+        1440
+      ],
+      "actualPixels": [
+        1672,
+        941
+      ],
+      "inspection": {
+        "subject": true,
+        "noCharactersOrUI": true,
+        "clearBattleGround": true,
+        "notes": "Distinct landform and clear actor foot zones; edge vegetation or rock framing only."
+      }
+    },
+    {
+      "mapId": 4,
+      "title": "翠风群岛",
+      "target": "pc/assets/battle-scenes/map-04-v1.png",
+      "sourcePath": "C:\\Users\\k\\.codex\\generated_images\\01a170e9-33d5-7151-8203-5b482f0eff44\\exec-270e40aa-7e57-4f13-9eb6-dc167aedaffd.png",
+      "prompt": "Use case: stylized-concept. Asset type: production 2D turn-based creature battle background for Dicekin. Strong colorful Pokemon-like hand-painted anime illustration, cinematic animated feature background, clean intentional brushwork, beautifully shaped plants and rocks, no photorealism, no characters, no pets, no text/logo/UI. Landscape 16:9 wide 2560x1440 requested. Fixed eye level low three-quarter arena camera: horizon around upper38%, spacious flat gently diagonal battle ground across lower60%; player feet at30%x72% and enemy feet70%x59%. Those areas must be unobstructed, quiet midtones behind silhouettes. Middle no large foreground objects, no central pillar. Hero environment focal motif upper half off-center, moderate contrast; decoration outer10% edges. Bottom18% smooth continuation forUI, top15% quieter sky. No painted spawn circles/platform badges; continuous believable terrain. Crisp detailed original scene, not collage/grid. Scene: Sea highland meadow above a turquoise ocean, multiple distinct emerald islands and white waterfalls in the distance, under high white clouds, rounded green tree canopies only as outer edge framing. Broad flat mossy grassland arena on a coastal plateau, blue and jade colors, fresh breeze and morning sunlight. It must look like a high island meadow, not a sandy beach; no sand, no sea arch.",
+      "requestedPixels": [
+        2560,
+        1440
+      ],
+      "actualPixels": [
+        1672,
+        941
+      ],
+      "inspection": {
+        "subject": true,
+        "noCharactersOrUI": true,
+        "clearBattleGround": true,
+        "notes": "Distinct landform and clear actor foot zones; edge vegetation or rock framing only."
+      }
+    },
+    {
+      "mapId": 5,
+      "title": "赤雷荒原",
+      "target": "pc/assets/battle-scenes/map-05-v1.png",
+      "sourcePath": "C:\\Users\\k\\.codex\\generated_images\\01a170e9-33d5-7151-8203-5b482f0eff44\\exec-a4bc4a2e-6c4c-449c-b3da-dfc03cd4450b.png",
+      "prompt": "Use case: stylized-concept. Asset type: production 2D turn-based creature battle background for Dicekin. Strong colorful Pokemon-like hand-painted anime illustration, cinematic animated feature background, clean intentional brushwork, beautifully shaped plants and rocks, no photorealism, no characters, no pets, no text/logo/UI. Landscape 16:9 wide 2560x1440 requested. Fixed eye level low three-quarter arena camera: horizon around upper38%, spacious flat gently diagonal battle ground across lower60%; player feet at30%x72% and enemy feet70%x59%. Those areas must be unobstructed, quiet midtones behind silhouettes. Middle no large foreground objects, no central pillar. Hero environment focal motif upper half off-center, moderate contrast; decoration outer10% edges. Bottom18% smooth continuation forUI, top15% quieter sky. No painted spawn circles/platform badges; continuous believable terrain. Crisp detailed original scene, not collage/grid. Scene: Ochre red wind-eroded mesas and arid grassland, distant purple thunderstorm sky with tiny lightning forks, isolated lightning crystal clusters at far edges. Broad flat reddish earth battlefield, dry wind, cinematic saffron light and plum storm shadows. Absolutely no volcano, no lava; desert badlands geology and safe continuous arena.",
+      "requestedPixels": [
+        2560,
+        1440
+      ],
+      "actualPixels": [
+        1672,
+        941
+      ],
+      "inspection": {
+        "subject": true,
+        "noCharactersOrUI": true,
+        "clearBattleGround": true,
+        "notes": "Distinct landform and clear actor foot zones; edge vegetation or rock framing only."
+      }
+    },
+    {
+      "mapId": 6,
+      "title": "星渊圣域",
+      "target": "pc/assets/battle-scenes/map-06-v1.png",
+      "sourcePath": "C:\\Users\\k\\.codex\\generated_images\\01a170e9-33d5-7151-8203-5b482f0eff44\\exec-e106acb5-33c8-4f05-9408-e09a2bcd4fde.png",
+      "prompt": "Use case: stylized-concept. Asset type: production 2D turn-based creature battle background for Dicekin. Strong colorful Pokemon-like hand-painted anime illustration, cinematic animated feature background, clean intentional brushwork, beautifully shaped plants and rocks, no photorealism, no characters, no pets, no text/logo/UI. Landscape 16:9 wide 2560x1440 requested. Fixed eye level low three-quarter arena camera: horizon around upper38%, spacious flat gently diagonal battle ground across lower60%; player feet at30%x72% and enemy feet70%x59%. Those areas must be unobstructed, quiet midtones behind silhouettes. Middle no large foreground objects, no central pillar. Hero environment focal motif upper half off-center, moderate contrast; decoration outer10% edges. Bottom18% smooth continuation forUI, top15% quieter sky. No painted spawn circles/platform badges; continuous believable terrain. Crisp detailed original scene, not collage/grid. Scene: Ancient teal and purple temple ruins under starlight, continuous moon-engraved stone slab battlefield, a distant deep valley and broad celestial river of stars. Elegant carved pillars and ruined arches only at far outer edges, ruined sanctuary off-center in upperhalf, subtle blue gold light, quiet magical cinematic night. Not snow, not floating islands, no center pillar, no runic text or symbols resembling writing.",
+      "requestedPixels": [
+        2560,
+        1440
+      ],
+      "actualPixels": [
+        1672,
+        941
+      ],
+      "inspection": {
+        "subject": true,
+        "noCharactersOrUI": true,
+        "clearBattleGround": true,
+        "notes": "Moon-themed etched arcs are part of continuous stone pavement; no separate spawn platform."
+      }
+    }
+  ]
+}

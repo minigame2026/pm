@@ -9,6 +9,8 @@ import { APP_BATTLE_IDS, APP_BATTLE_POSES, APP_BATTLE_ATLASES, appPoseKey, appPo
 import { PMAppBattle } from './PMAppBattle';
 import { LOCALIZED_LOGOS } from './LocalizedLogoArt';
 
+const PC_ART_PATHS:Record<string,string>={"pc-map-01-v1":"pc/battle-scenes/map-01-v1","pc-map-02-v1":"pc/battle-scenes/map-02-v1","pc-map-03-v1":"pc/battle-scenes/map-03-v1","pc-map-04-v1":"pc/battle-scenes/map-04-v1","pc-map-05-v1":"pc/battle-scenes/map-05-v1","pc-map-06-v1":"pc/battle-scenes/map-06-v1","pc-map-07-v1":"pc/battle-scenes/map-07-v1","pc-map-08-v1":"pc/battle-scenes/map-08-v1","pc-map-09-v1":"pc/battle-scenes/map-09-v1","pc-map-10-v1":"pc/battle-scenes/map-10-v1","pc-map-11-v1":"pc/battle-scenes/map-11-v1","pc-map-12-v1":"pc/battle-scenes/map-12-v1","pc-map-13-v1":"pc/battle-scenes/map-13-v1","pc-map-14-v1":"pc/battle-scenes/map-14-v1","pc-map-15-v1":"pc/battle-scenes/map-15-v1","pc-raid-molten-v1":"pc/battle-scenes/raid-molten-v1"};
+
 type Spec={source:string,rect:number[]};
 type Entry={source:string,texture:Texture2D|null,frames:Set<string>,users:Set<Node>,last:number,promise:Promise<void>|null};
 /** Page-bound art with shared atlas loads and bounded idle residency. */
@@ -52,7 +54,7 @@ export class PMArt {
   private texture(source:string):Promise<Texture2D>{
     return new Promise((resolve,reject)=>{
       const run=()=>{this.activeLoads++;this.loadCount++;
-        resources.load('art/'+source+'/texture',Texture2D,(error,value)=>{
+        resources.load((PC_ART_PATHS[source]||'art/'+source)+'/texture',Texture2D,(error,value)=>{
           this.activeLoads--;if(error)reject(error);else resolve(value);
           const next=this.loadQueue.shift();if(next)next();
         });
@@ -114,7 +116,7 @@ export class PMArt {
     for(const e of Array.from(this.entries.values()).sort((a,b)=>a.last-b.last)){
       for(const n of e.users)if(!n.isValid)this.unbind(n);
       if(!e.texture||e.promise||e.users.size)continue;
-      if(bytes<=(this.nativeApp?96:32)*1024*1024&&now-e.last<(this.nativeApp?120000:4000))continue;
+      if(bytes<=256*1024*1024&&now-e.last<60000)continue;
       bytes-=e.texture.width*e.texture.height*4;this.release(e);
     }
   }

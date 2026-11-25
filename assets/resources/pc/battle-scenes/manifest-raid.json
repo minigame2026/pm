@@ -1,0 +1,16 @@
+{
+  "engine": "built-in image_gen",
+  "name": "熔冠龙巢",
+  "file": "raid-molten-v1.png",
+  "source": "C:/Users/k/.codex/generated_images/01a16c20-538d-7f43-8ae1-792f8808ed22/exec-84843633-16d7-45dc-a457-843a5dcb4d1b.png",
+  "actualPixels": [
+    1672,
+    941
+  ],
+  "requestedPixels": [
+    2560,
+    1440
+  ],
+  "prompt": "One original premium hand-painted anime 2D turn-based monster battle background. Scene: Molten Crown Dragon Den for Dicekin, enormous volcanic cave with distant crown shaped black obsidian ribs and amber crystals, glowing lava only along far background edges. Colorful Pokemon-like animation-film illustration, clean confident silhouettes, crisp brushwork, soft cinematic blue-gray shadows and warm amber reflected light. NOT photorealistic. Widescreen16:9, request2560x1440. Low three-quarter battle camera. Horizon upper38percent. Broad flat safe continuous basalt ground across lower60percent, four small allied creatures will stand across left15-52percent at y70percent and one giant boss at right72percent y62percent. Leave these spots clear, quiet midtones behind all character silhouettes. Nothing blocks center or ground. A cave arch occupies upper distant background only, no foreground pillar. Bottom18percent quiet ground for game controls, upper15percent lowclutter for healthbars. No painted spawn circles, no people, no pets, no actual dragon, no bones, no UI, no lettering, no logo, no panels or collage. Distinguished from an outdoor volcano mountain path and from a constructed forge interior. A beautiful, spacious, believable fantasy creature arena.",
+  "review": "Wide continuous basalt floor, clear allied and boss positions, crown cave background distinct from outdoor lava path and forge. No characters or UI."
+}

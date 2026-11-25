@@ -3,7 +3,7 @@ import { AudioClip, AudioSource, Node, resources, sys } from 'cc';
 type Music = 'camp-app'|'camp-short'|'battle-normal'|'battle-elite'|'battle-boss'|'egg-quest';
 type MusicChoice = 'camp'|'battle-normal'|'battle-elite'|'battle-boss'|'egg-quest';
 type Sound = 'click'|'attack'|'hurt'|'heal'|'boost'|'hatch';
-const PREFS = 'pm.audio.v1';
+const PREFS = 'pm.pc.audio.v1';
 
 /** Audio lives outside the rebuilt UI tree. No game-save changes. */
 export class PMAudio {

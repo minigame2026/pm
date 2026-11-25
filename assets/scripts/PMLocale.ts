@@ -2,7 +2,7 @@ import { TRANSLATIONS } from './PMTranslations';
 
 export type Locale='zh-CN'|'en'|'ja'|'ko'|'zh-TW'|'th'|'pt-BR'|'es-419'|'id'|'vi'|'de'|'fr'|'hi'|'ar'|'ru'|'ur'|'bn'|'tr'|'fil'|'mr'|'te'|'ta';
 export type LanguageChoice=Locale|'system';
-export const LANGUAGE_KEY='pm.language.v1';
+export const LANGUAGE_KEY='pm.pc.language.v1';
 export const LANGUAGES:{id:LanguageChoice;name:string}[]=[
   {id:'system',name:'跟随系统'},{id:'zh-CN',name:'简体中文'},{id:'en',name:'English'},
   {id:'ja',name:'日本語'},{id:'ko',name:'한국어'},{id:'zh-TW',name:'繁體中文'},{id:'th',name:'ไทย'},
