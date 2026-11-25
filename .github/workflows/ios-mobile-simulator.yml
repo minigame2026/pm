@@ -19,15 +19,23 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+      - uses: actions/cache/restore@v4
+        id: simulator-cache
+        with:
+          path: build/ios/proj/Release-iphonesimulator/DicePet-mobile.app
+          key: dicekin-simulator-26.3-${{ hashFiles('assets/**', 'settings/**', 'native/engine/common/**', 'config/buildConfig_ios.json', 'tools/ios-ci/PMMobileSimulatorQA.ts', 'tools/ios-cloud-build.cjs') }}
       - uses: actions/setup-node@v4
+        if: steps.simulator-cache.outputs.cache-hit != 'true'
         with:
           node-version: '22'
       - uses: actions/cache/restore@v4
         id: creator-cache
+        if: steps.simulator-cache.outputs.cache-hit != 'true'
         with:
           path: ~/cocos-installer
           key: cocos-creator-3.8.7-mac-080718
       - name: Install Creator 3.8.7
+        if: steps.simulator-cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p "$HOME/cocos-installer" "$RUNNER_TEMP/cocos"
           ZIP="$HOME/cocos-installer/creator.zip"
@@ -42,11 +50,12 @@ jobs:
           xcodebuild -version
           xcrun simctl list runtimes
       - uses: actions/cache/save@v4
-        if: steps.creator-cache.outputs.cache-hit != 'true'
+        if: steps.simulator-cache.outputs.cache-hit != 'true' && steps.creator-cache.outputs.cache-hit != 'true'
         with:
           path: ~/cocos-installer
           key: cocos-creator-3.8.7-mac-080718
       - name: Export isolated iOS Simulator project
+        if: steps.simulator-cache.outputs.cache-hit != 'true'
         run: |
           node tools/ios-ci/prepare-simulator.cjs
           mkdir -p build/ios-logs
@@ -59,6 +68,7 @@ jobs:
           node tools/ios-cloud-build.cjs signing
           node tools/ios-cloud-build.cjs prepare
       - name: Build x86_64 Simulator app
+        if: steps.simulator-cache.outputs.cache-hit != 'true'
         run: |
           project=$(find build/ios/proj -maxdepth 1 -name '*.xcodeproj' -print -quit)
           test -n "$project"
@@ -73,11 +83,16 @@ jobs:
           set -e
           tail -80 build/ios-logs/simulator-xcode.log
           test "$result" -eq 0
+      - uses: actions/cache/save@v4
+        if: steps.simulator-cache.outputs.cache-hit != 'true'
+        with:
+          path: build/ios/proj/Release-iphonesimulator/DicePet-mobile.app
+          key: ${{ steps.simulator-cache.outputs.cache-primary-key }}
       - name: Test compact, Dynamic Island and large iPhones
         timeout-minutes: 16
         run: |
-          app=$(find "$RUNNER_TEMP/pm-simulator-build/Build/Products/Release-iphonesimulator" -maxdepth 1 -name '*.app' -print -quit)
-          test -n "$app"
+          app="$GITHUB_WORKSPACE/build/ios/proj/Release-iphonesimulator/DicePet-mobile.app"
+          test -d "$app"
           python3 -u tools/ios-ci/run-simulator.py "$app" build/ios-simulator-evidence
       - name: Save Simulator evidence
         if: always()

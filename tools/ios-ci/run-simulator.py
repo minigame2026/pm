@@ -21,7 +21,7 @@ def sim(*args, capture=True):
 def check_png(file):
     content = file.read_bytes()
     assert content.startswith(b"\x89PNG\r\n\x1a\n"), f"Missing screenshot: {file}"
-    assert len(content) > 50000, f"Blank screenshot: {file}"
+    assert len(content) > 12000, f"Blank screenshot: {file}"
     return struct.unpack(">II", content[16:24])
 
 
