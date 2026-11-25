@@ -13,7 +13,7 @@ import { HomePeriod, homePeriod, homeArtKey } from './HomeScenery';
 import { loadShinyVisuals, tintShiny, shinyEntrance } from './ShinyVisuals';
 import { battleAmbience } from './BattleAmbience';
 import { drawGyms } from './PMGymsUI';
-import { settleFriendGifts, FRIEND_GIFT_INTERVAL, FRIEND_PET_IDS, gymBonus } from './PMModel';
+import { FRIEND_PET_IDS, gymBonus } from './PMModel';
 
 import { TYPE_NAMES, typeMultiplier, matchupMultiplier, typedDamage, enemyAttackAmount, petCombat, isBreedingPet, removePartySlot } from './PMModel';
 import { giantMultiplier, runAttackMultiplier, runHealthMultiplier, SECRET_RECIPES, petAttackFaces } from './PMModel';
@@ -21,13 +21,10 @@ import { HERO_RECTS } from './HeroArt';
 import { TrustedClock } from './TrustedClock';
 import { PMAudio } from './PMAudio';
 import { PMArt } from './PMArt';
-import { qrCells, capturePostcard, prepareCard, sendCard, copyVisitCode, pasteVisitCode, importCardImage, incomingPostcard } from './PMSharing';
-import { FriendCard, MailMemory, makePostcardCode, setSocialProfile, completeVisit, replyPet } from './PMModel';
 import { PMAppBattle } from './PMAppBattle';
 import { APP_BATTLE_IDS, APP_BATTLE_POSES, APP_BATTLE_ATLASES, appPoseKey, appPoseFeet } from './AppBattleArt';
 import { DurableCheckpoint } from './DurableCheckpoint';
 import { installRewardedAds } from './PMRewardedAds';
-import { PMTapServices, TapArchive } from './PMTapServices';
 import { tr, currentLocale, selectLanguage, languageChoice, LANGUAGES, LANGUAGE_KEY } from './PMLocale';
 import { setTimeProvider, gameNow, BUILD_TEST_MODE } from './PMModel';
 import { syncStamina, staminaRemaining, enterExpedition, retreatExpedition, grantAdStamina, STAMINA_MAX, EXPEDITION_COST } from './PMModel';
@@ -36,16 +33,12 @@ import { Pet, Sex, pet, petEntry, petName, petBaseHP, formKey, sexSymbol, petSki
 import { partyChoices, rankForStage, homeParty, assignPartySlot, MAPS, mapFor, mapStageCount, mapUnlocked, latestUnlockedMap, startMap, enemyPet, eggRates, hasActivePet } from './PMModel';
 import { RARITIES, EggRarity, rarityName, qualityHP, preferredRarity, unlockedRarities, setPetRarity, skillFor, skillStatus, availableEggs, hatchRemaining, startIncubation, grantHatchAd, grantBreedingAd, claimHatch, acknowledgeHatch } from './PMModel';
 import { State, PetId, Action, Egg, PETS, PET_IDS, NEW_PET_IDS, fresh, act, hp, maxHP, enemyName, enemyAttackFaces, restore, equipReserve, selectActive, healAmount, attackAmount, guardDamage, rewardOptions, canManageParty, restartRun } from './PMModel';
-import { ensureSocial, makeVisitCode, readVisitCode, receiveVisitor, visitAction, visitorPet, friendBonds, bondEligibleEggs, bondBlockReason, startBondIncubation, VISIT_ACTION_MS } from './PMModel';
 const { ccclass } = _decorator;
 const KEY='pm.creature-dice.v1';
 const C={ink:'#183852',muted:'#566e80',paper:'#f7fcff',blue:'#237fa6',orange:'#efa63b',green:'#38b98c',line:'#d7e8f2'};
 const color=(v:string,alpha=255)=>{const c=new Color();Color.fromHEX(c,v);c.a=alpha;return c;};
 @ccclass('PMGame')
 export class PMGame extends Component {
-  private tapServices=new PMTapServices();
-  private tapWorking=false;
-  private tapNote='';
   private audio!:PMAudio;
   private state!:State;private root!:Node;private cam!:Camera;private stage!:Node;
   private nativeApp=sys.isNative;
@@ -76,7 +69,7 @@ export class PMGame extends Component {
   private selectedEgg='';
   private partnerPage=0;private partnerSelected:string|null=null;private partnerOwnedOnly=true;private mapIndex=0;
   private mapTabPage=0;private dexTabPage=0;
-  private dexPage=0;private dexMap=-1;private dexType='';private dexOwnedOnly=false;private dexFriendsOnly=false;private dexShinyOnly=false;
+  private dexPage=0;private dexMap=-1;private dexType='';private dexOwnedOnly=false;private dexShinyOnly=false;
   private pageSwipeActive=false;
   private homeHatchBadge:Node|null=null;private homeBreedBadge:Node|null=null;
   private homeMotion:{since:number;next:number;pulse:UIOpacity;icons:{node:Node;x:number;y:number;z:number}[];index:number;badges:Node[]}|null=null;
@@ -85,13 +78,7 @@ export class PMGame extends Component {
   private partyDropNodes:Node[]=[];private partyDragHint:Label|null=null;
   private partyDrag:{id:string;touch:number;source:Node;start:Vec3;origin:Vec3;moved:boolean;axis?:'horizontal'|'vertical';ghost:Node|null;guides:Node[];target:number}|null=null;
   private breedMother='';private breedFather='';private breedClock:Label|null=null;
-  private socialTab:'visit'|'share'|'bonds'|'album'|'friends'='visit';private visitCode='';private sharePetUid='';private socialNote='';private socialPage=0;
-  private replyOwner='';private mailPhoto:MailMemory|null=null;private shareCardNode:Node|null=null;private mailPlaying=false;
   async start(){
-    this.tapServices.onCompliance=(allowed)=>{
-      if(allowed){game.resume();this.audio?.resume('compliance');if(this.ready&&this.screen==='login'){this.tapNote='实名认证通过';this.tapAccount(true);}}
-      else {void this.save();this.audio?.pause('compliance');game.pause();}
-    };
     let savedLanguage:string|null=null;try{savedLanguage=sys.localStorage.getItem(LANGUAGE_KEY);}catch{}
     selectLanguage(savedLanguage,sys.languageCode||sys.language||'en');
     installRewardedAds();
@@ -122,29 +109,40 @@ export class PMGame extends Component {
     // The cover needs local art, while timed benefits remain gated by requireTime().
     void this.synchronizeTime();
     try{
-      await loadShinyVisuals();
-      await Promise.all(['login-cover-v2',this.loginLogoKey(),'login-button-v4'].map(key=>this.artCache.load(key)));
-      if(this.nativeApp){
-        await this.artCache.warm([homeArtKey(homePeriod()),'attack-die-a','heal-potion','power-potion','guard-shield',
-          ...HERO_IDS.map(id=>'hero-'+id),...HERO_IDS.map(id=>'avatar-'+id),
-          ...STARTERS,...(this.state.pets||[]).filter(p=>homeParty(this.state).includes(p.uid!))
-            .reduce((keys:string[],p)=>{const key=p.rarity==='normal'?p.id:formKey(p);return keys.concat(key+'-front',key+'-back');},[])]);
-        if(this.state.expedition)await this.loadRegionArt(this.state.mapId||0);
-      }
-      this.ready=true;this.visitCode=incomingPostcard()||sys.localStorage.getItem('pm.pending-postcard.v1')||'';if(readVisitCode(this.visitCode))sys.localStorage.setItem('pm.pending-postcard.v1',this.visitCode);this.render();this.save();
-      director.once(Director.EVENT_AFTER_DRAW,()=>this.tapServices.reportReady());
+      await Promise.all([loadShinyVisuals(),...['login-cover-v2',this.loginLogoKey(),'login-button-v4'].map(key=>this.artCache.load(key))]);
+      this.ready=true;this.render();this.save();
+      director.once(Director.EVENT_AFTER_DRAW,()=>{
+        if(this.nativeApp&&this.node.isValid)void this.warmAfterCover().catch(error=>console.warn('PM warmup',error));
+      });
       game.on(Game.EVENT_HIDE,this.onHide,this);
       game.on(Game.EVENT_SHOW,this.onShow,this);
       (globalThis as any).__pm={snapshot:()=>JSON.parse(JSON.stringify(this.state)),controls:()=>({...this.controls}),animating:()=>this.busy||this.pressPending||this.uiEntering()||this.artCache.pending>0,artStats:()=>this.artCache.stats(),screen:()=>this.screen,timeReady:()=>this.trustedClock.now()!==null,version:'0.12.0',ready:true};
     }catch(e){this.loading!.string=tr('资源加载失败，请刷新重试');console.error('PM asset loading',e);}
   }
+  private async warmAfterCover(){
+    if(this.state.expedition){
+      // Keep the resumed screen's assets ahead of unrelated character and menu art.
+      const mapId=this.state.mapId||0;
+      await this.artCache.warm([this.battleRegionKey(mapId),this.regionKey('nest')]);
+      return;
+    }
+    const stage=this.state.journey?.stage;
+    if(stage==='hero'||stage==='starter'){
+      await this.artCache.warm([...HERO_IDS.map(id=>'hero-'+id),...STARTERS]);
+      return;
+    }
+    const party=homeParty(this.state);
+    await this.artCache.warm([homeArtKey(homePeriod()),...(this.state.pets||[])
+      .filter(p=>party.includes(p.uid!))
+      .map(p=>(p.rarity==='normal'?p.id:formKey(p))+'-front')]);
+  }
   onDestroy(){this.homeMotion=null;this.appBattle?.dispose();this.artCache.dispose();this.audio?.dispose();this.durableCheckpoint.close();game.off(Game.EVENT_HIDE,this.onHide,this);game.off(Game.EVENT_SHOW,this.onShow,this);}
   private onHide(){this.audio?.pause('background');this.cancelPartyDrag();if(this.ready)this.save();this.clockForeground=false;this.trustedClock.suspend();}
-  private onShow(){this.audio?.resume('background');this.clockForeground=true;this.trustedClock.resume();void this.synchronizeTime();const code=incomingPostcard();if(readVisitCode(code)){this.visitCode=code;sys.localStorage.setItem('pm.pending-postcard.v1',code);if(this.screen==='home'){this.socialUI('visit');}}}
+  private onShow(){this.audio?.resume('background');this.clockForeground=true;this.trustedClock.resume();void this.synchronizeTime();}
   private async synchronizeTime(){
     const wasReady=this.trustedClock.now()!==null;this.clockRetryAt=performance.now()+30000;
     const ok=await this.trustedClock.sync();
-    if(ok){this.clockRetryAt=performance.now()+300000;this.state=settleFriendGifts(syncStamina(this.state));this.settlePendingAd();this.save();if(!wasReady)this.clockUiRefresh=true;}
+    if(ok){this.clockRetryAt=performance.now()+300000;this.state=syncStamina(this.state);this.settlePendingAd();this.save();if(!wasReady)this.clockUiRefresh=true;}
     return ok;
   }
   private settlePendingAd(){
@@ -160,7 +158,6 @@ export class PMGame extends Component {
     this.button(c,'time-retry','重试',82,-56,145,48,async()=>{this.busy=true;try{if(await this.synchronizeTime())this.render();else this.timeNotice('暂时无法校时，请稍后重试');}finally{this.busy=false;}},'#519b81');
   }
   update(){
-    if(!this.tapServices.playAllowed&&this.screen!=='login')return;
     const mono=performance.now();this.homeMotionUpdate(mono);if(this.ready&&this.clockForeground){
       if(mono>=this.clockRetryAt)void this.synchronizeTime();
       if(mono>=this.clockSaveAt){this.clockSaveAt=mono+15000;this.save();}
@@ -168,12 +165,32 @@ export class PMGame extends Component {
     }
     const second=Math.floor(mono/1000);if(this.ready&&second!==this.hatchSecond)this.artCache.sweep();if(this.ready&&second!==this.hatchSecond&&this.screen==='home'&&this.clockForeground&&(!this.art[homeArtKey(homePeriod())]||homePeriod()!==this.homePeriod))void this.refreshHomeArt();if(this.ready&&second!==this.hatchSecond)this.refreshStaminaHUD();if(second!==this.hatchSecond){this.hatchSecond=second;if(this.breedClock?.isValid&&this.state.breeding){const now=gameNow(),left=Number.isFinite(now)?this.state.breeding.readyAt-now:Infinity;this.breedClock.string=tr(left>0?this.hatchTime(left):'宠物蛋已准备好');if(left<=0&&!this.pressPending){this.breedClock=null;this.breedingUI();}}if(this.screen==='home')this.refreshHomeBadges();for(const c of this.hatchClock){if(!c.label.isValid)continue;const slot=this.state.incubators?.[c.index];if(slot){const left=hatchRemaining(slot);c.label.string=tr(this.hatchTime(left));if(!left&&!c.ready&&!this.pressPending){this.hatchery();break;}}}}
     for(let i=this.availableGlows.length-1;i>=0;i--){const glow=this.availableGlows[i];if(!glow.isValid)this.availableGlows.splice(i,1);else {const encounterAction=this.state.phase==='encounter'&&(glow.parent?.name==='reroll'||glow.parent?.name==='challenge');glow.active=!this.busy&&(!this.pressPending||encounterAction);}}
-    const s=view.getVisibleSize();const key=s.width+':'+s.height;if(key!==this.lastSize){this.layout();if(this.ready&&!this.busy&&!this.pressPending)this.render();}}
-  private layout(){const s=view.getVisibleSize();this.h=this.screen==='partners'?Math.max(700,s.height):s.height;this.lastSize=s.width+':'+s.height;
-    // Keep the partner page's header, two card rows and detail sheet in separate bands.
-    // Short/wide browser windows fit the portrait composition instead of flattening it.
-    const fit=s.height/this.h;this.root.setScale(fit,fit,1);
-    this.root.setPosition(s.width/2,s.height/2);this.root.getComponent(UITransform)!.setContentSize(s.width/fit,this.h);
+    if(mono>=this.nextLayoutCheck&&!this.busy&&!this.pressPending){
+      this.nextLayoutCheck=mono+250;
+      const usable=this.usableArea();
+      if(this.layoutKey(usable)!==this.lastSize){this.layout(usable);if(this.ready)this.render();}
+    }}
+  private nextLayoutCheck=0;
+  private usableArea(){
+    const s=view.getVisibleSize(), safe=sys.getSafeAreaRect(false);
+    const left=Math.max(0,safe.x), bottom=Math.max(0,safe.y);
+    const right=Math.min(s.width,safe.x+safe.width), top=Math.min(s.height,safe.y+safe.height);
+    return right>left&&top>bottom
+      ? {x:left,y:bottom,width:right-left,height:top-bottom}
+      : {x:0,y:0,width:s.width,height:s.height};
+  }
+  private layoutKey(area:{x:number;y:number;width:number;height:number}){
+    const size=view.getVisibleSize();
+    return [size.width,size.height,area.x,area.y,area.width,area.height].join(':');
+  }
+  private layout(area=this.usableArea()){
+    const s=view.getVisibleSize();
+    const widthScale=Math.min(1,area.width/390), usableHeight=area.height/widthScale;
+    this.h=this.screen==='partners'?Math.max(700,usableHeight):usableHeight;
+    this.lastSize=this.layoutKey(area);
+    const fit=area.height/this.h;this.root.setScale(fit,fit,1);
+    this.root.setPosition(area.x+area.width/2,area.y+area.height/2);
+    this.root.getComponent(UITransform)!.setContentSize(area.width/fit,this.h);
     this.cam.node.setPosition(s.width/2,s.height/2,1000);this.cam.orthoHeight=s.height/2;}
   private async save(){
     if(this.sampleOriginal)return true;
@@ -234,7 +251,7 @@ export class PMGame extends Component {
         Tween.stopAllByTarget(n);opacity.opacity=28;const target=(resting||n.scale).clone();
         if(motion.release)tween(n).to(motion.release*.55,{scale:new Vec3(target.x*motion.overshoot,target.y*motion.overshoot,target.z)},{easing:'quadOut'}).to(motion.release*.45,{scale:target}).call(()=>{resting=null;}).start();else{n.setScale(target);resting=null;}
         const serial=this.uiSerial;
-        this.scheduleOnce(()=>{this.pressPending=false;if(serial!==this.uiSerial||!n.isValid||!this.tapServices.playAllowed&&this.screen!=='login')return;callback();},motion.commit);
+        this.scheduleOnce(()=>{this.pressPending=false;if(serial!==this.uiSerial||!n.isValid)return;callback();},motion.commit);
       });
     }
     return n;
@@ -501,18 +518,15 @@ export class PMGame extends Component {
     if(phase==='reward'||phase==='won'){const n=this.enemyNode!;const pos=n.position.clone();tween(n).by(.18,{position:new Vec3(0,15,0)},{easing:'quadOut'}).to(.2,{position:pos},{easing:'quadIn'}).start();}
   }
   private startFromCover(){
-    if(this.tapServices.available&&!this.tapServices.connected){this.tapAccount(true);return;}
     this.continueFromCover();
   }
   private continueFromCover(){
-    if(!this.tapServices.playAllowed){this.tapAccount(true);return;}
     const step=this.state.journey?.stage;
     // Resume the committed expedition snapshot without entering again, charging stamina or rolling dice.
     this.screen=step==='hero'?'hero':step==='starter'?'starter':this.state.expedition?'game':'home';
     this.render();
     if(this.screen==='home'&&this.state.pendingHatch)this.hatchReveal();
 
-    else if(this.screen==='home'&&readVisitCode(this.visitCode)&&sys.localStorage.getItem('pm.pending-postcard.v1'))this.socialUI('visit');
   }
   private loginLogoKey(){
     const locale=currentLocale();
@@ -533,7 +547,7 @@ export class PMGame extends Component {
     const glowNode=button.getChildByName('available-glow')!,glow=glowNode.getComponent(Graphics)!;glowNode.setSiblingIndex(button.children.length-1);
     glow.clear();glow.strokeColor=color('#fff7cb');glow.lineWidth=1.2;glow.roundRect(-101.6,-26.4,203.2,52.8,26.4);glow.stroke();
     this.fx=this.makeNode(this.root,'login-effects',0,0,390,H);
-    if(this.appPresentation&&!this.tapServices.requiresCompliance)this.button(this.root,'app-battle-sample','战斗样板',0,-H*.2-72,174,40,()=>void this.startBattleSample(),'#286d7b',true,17);
+    if(this.appPresentation)this.button(this.root,'app-battle-sample','战斗样板',0,-H*.2-72,174,40,()=>void this.startBattleSample(),'#286d7b',true,17);
   }
   private choiceHeader(title:string,step:string){
     const top=this.h/2;this.panel(this.root,0,0,390,this.h,'#eef4f1',0);
@@ -574,11 +588,11 @@ export class PMGame extends Component {
     this.text(foot,PETS[selected].name+' · '+entry.tag,0,71,23,entry.color,350,34).isBold=true;
     this.text(foot,'HP '+PETS[selected].hp+'    ⚄ '+PETS[selected].faces.join(' / '),0,39,17,C.ink,340,28);
     this.text(foot,entry.note,0,3,13,C.muted,350,48);
-    this.button(foot,'starter-confirm','和 '+PETS[selected].name+' 出发  ›',0,-49,350,54,()=>{const next=chooseStarter(this.state,this.selectedStarter);if(next===this.state)return;this.state=next;this.save();this.screen='home';this.render();if(readVisitCode(this.visitCode))this.socialUI('visit');},entry.color,true,20);
+    this.button(foot,'starter-confirm','和 '+PETS[selected].name+' 出发  ›',0,-49,350,54,()=>{const next=chooseStarter(this.state,this.selectedStarter);if(next===this.state)return;this.state=next;this.save();this.screen='home';this.render();},entry.color,true,20);
     this.fx=this.makeNode(this.root,'starter-choice-effects',0,0,390,H);
   }
   private eggTint(egg:Egg){return egg.friend?'#c4719b':egg.rarity==='SSR'?'#d79428':egg.rarity==='SR'?'#9062cf':'#5b9a80';}
-  private eggName(egg:Egg){return egg.friend&&!egg.genes?'好友专属蛋':rarityName(egg.rarity)+' · '+PETS[egg.affinity].type;}
+  private eggName(egg:Egg){return egg.friend&&!egg.genes?'宠物蛋':rarityName(egg.rarity)+' · '+PETS[egg.affinity].type;}
   private eggArt(parent:Node,egg:Egg,x:number,y:number,size:number){
     const n=this.makeNode(parent,'egg-'+egg.id,x,y,size,size),g=n.addComponent(Graphics),k=size/100;
     const shape=()=>{g.moveTo(0,48*k);g.bezierCurveTo(-18*k,48*k,-39*k,10*k,-36*k,-15*k);g.bezierCurveTo(-34*k,-53*k,34*k,-53*k,36*k,-15*k);g.bezierCurveTo(39*k,10*k,18*k,48*k,0,48*k);g.close();};
@@ -662,7 +676,7 @@ export class PMGame extends Component {
     this.pagePager(c,bottom+191,page,pages,(p,redraw)=>{page=p;if(redraw)this.eggShelf(slot,p);},slot===null?'eggs':'picker');
     const foot=this.panel(c,0,bottom+82,390,164,'#fffdf5',22),busy=selected&&this.state.incubators?.some(s=>s?.eggId===selected.id),free=slot===null?[0,1].find(i=>!this.state.incubators?.[i]):slot;
     this.text(foot,selected?this.eggName(selected):'探险 · 交配获得',0,54,20,selected?this.eggTint(selected):C.muted,350,31).isBold=true;
-    this.text(foot,selected?(selected.friend?'好友专属':selected.bond?'♡ 已结缘':selected.genes?'♥ 父母遗传':mapFor(selected).name)+' · '+hatchDuration(this.state,selected.rarity)/60000+' 分钟':'',0,20,13,C.muted,340,27);
+    this.text(foot,selected?(selected.friend||selected.bond?'宠物蛋':selected.genes?'♥ 父母遗传':mapFor(selected).name)+' · '+hatchDuration(this.state,selected.rarity)/60000+' 分钟':'',0,20,13,C.muted,340,27);
     this.button(foot,selected?'incubate-'+selected.id:'hatchery',busy?'查看孵化':free===undefined?'孵化位已满':selected?'开始孵化':'去孵化屋',0,-34,350,48,()=>{if(!selected||busy){this.hatchery();return;}if(free!==undefined){if(!this.requireTime())return;this.state=startIncubation(this.state,selected.id,free);this.save();this.hatchery();}},'#519b81',!selected||!!busy||free!==undefined,19);
     this.controls[slot===null?'closeEggBag':'picker-back']=this.controls['nav-home'];
   }
@@ -832,7 +846,6 @@ export class PMGame extends Component {
     }
   }
   private async startBattleSample(){
-    if(!this.tapServices.playAllowed)return;
     if(this.busy)return;this.busy=true;
     try{
       await this.loadRegionArt(0);
@@ -1064,7 +1077,6 @@ export class PMGame extends Component {
     }else this.busy=false;
   }
   private async command(a:Action){
-    if(!this.tapServices.playAllowed)return;
     if(this.sampleOriginal&&a==='reroll'){this.sampleEnemy++;this.state.enemy=(['bud','otter','fox'] as PetId[])[this.sampleEnemy%3];this.state.enemyHP=this.state.enemyMax=32;this.render();return;}
     if(this.busy)return;const old=this.state,next=act(old,a);if(next===old)return;
     // Commit the entire action before animation; a killed process resumes after this action, never halfway through it.
@@ -1284,7 +1296,6 @@ export class PMGame extends Component {
     if(r.bonusEggId){const egg=this.state.eggs!.find(e=>e.id===r.bonusEggId);if(egg){const bonus=this.panel(c,110,top-cardH+28,108,84,'#fff5cc',16);bonus.name='nested-egg';this.eggArt(bonus,egg,-23,5,52);this.text(bonus,'+1',28,7,25,'#aa772a',45,32);this.text(bonus,'蛋中蛋',0,-27,12,'#aa772a',100,20);const opacity=bonus.addComponent(UIOpacity);opacity.opacity=0;tween(opacity).delay(.65).to(.3,{opacity:255}).start();}}
     const foot=this.panel(c,0,bottom+100,390,200,'#fffdf5',22);
     this.text(foot,(p.shiny?'★ ':'')+petName(p)+' '+sexSymbol(p.sex),-24,73,24,tint,294,36).isBold=true;
-    this.button(foot,'hatch-share','✉',151,73,38,34,()=>{this.sharePetUid=p.uid!;this.mailPhoto=null;this.replyOwner='';this.socialUI('share');},'#e7ddeb',true,22);
     this.text(foot,'HP '+petBaseHP(p)+'    ⚔ '+petAttackFaces(p).join(' / '),0,35,16,C.ink,350,28);
     this.button(foot,'hatch-skills',tr('技能')+' ×'+petSkills(p).length+' ›',0,-5,350,38,()=>this.scrollSkillDetails(petName(p),petSkills(p),()=>this.hatchReveal()),'#e4eef1',true,17);
     const join=hatchPartySlot(this.state)>=0;
@@ -1398,192 +1409,6 @@ export class PMGame extends Component {
     if(!pets.length)this.text(c,'暂无可交配的'+(sex==='female'?'雌性':'雄性')+'伙伴',0,36,20,C.muted,330,60);
     this.pagePager(c,bottom+42,page,pages,(p,redraw)=>{page=p;if(redraw)this.breedingPicker(sex,p);},'breed-picker');this.controls['breed-picker-back']=this.controls['nav-home'];
   }
-  private socialInput(parent:Node,id:string,value:string,y:number,placeholder:string,onChange:(value:string)=>void){
-    // EditBox creates its own Sprite; Graphics must live on a separate child render node.
-    const n=this.makeNode(parent,id,0,y,316,48);n.active=false;
-    this.panel(n,0,0,316,48,'#e8f3fa',12);
-    const label=this.text(n,'',0,0,14,C.ink,296,38),hint=this.text(n,placeholder,0,0,14,C.muted,296,38);
-    label.node.getComponent(UITransform)!.setAnchorPoint(0,1);hint.node.getComponent(UITransform)!.setAnchorPoint(0,1);
-    label.horizontalAlign=hint.horizontalAlign=Label.HorizontalAlign.LEFT;
-    const edit=n.addComponent(EditBox);edit.textLabel=label;edit.placeholderLabel=hint;edit.inputMode=EditBox.InputMode.SINGLE_LINE;
-    edit.inputFlag=EditBox.InputFlag.DEFAULT;edit.returnType=EditBox.KeyboardReturnType.DONE;edit.maxLength=320;edit.string=value;edit.placeholder=tr(placeholder);
-    n.on('text-changed',(box:EditBox)=>onChange(box.string));
-    n.active=true;
-    const world=n.worldPosition;this.controls[id]={x:world.x,y:this.h-world.y,w:316,h:48};return edit;
-  }
-  private socialUI(tab:'visit'|'share'|'bonds'|'album'|'friends'=this.socialTab){
-    if(!this.state.social){this.state=ensureSocial(this.state,Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10));this.save();}
-    const timed=settleFriendGifts(this.state);if(timed!==this.state){this.state=timed;this.save();}
-    this.socialTab=tab;this.breedClock=null;this.mailPlaying=false;this.shareCardNode=null;this.mailPhoto=null;
-    const secondary=tab==='bonds'||tab==='album';
-    const c=this.fullPage(secondary?(tab==='bonds'?'结缘伙伴':'合影'):'通信小屋','',()=>this.socialUI(tab),secondary?()=>this.socialUI('friends'):()=>this.exitUtility()),{top}=this.pageBounds(c);
-    this.helpButton(c,'扫码领取好友蛋，寄回明信片让朋友也领取。每位好友双方各限领一次。\n虚拟好友每24小时有30%概率送蛋，联网校时后补算。\n好友蛋：70% R / 25% SR / 5% SSR。');
-    const tabs:[typeof tab,string][]=[['visit','收信'],['share','寄信'],['friends','好友']];
-    if(!secondary)tabs.forEach(([key,label],i)=>this.button(c,'social-tab-'+key,label,(i-1)*120,top-34,112,44,()=>{this.socialNote='';this.socialPage=0;this.socialUI(key);},key===tab?'#527e9a':'#dbe9ef',true,17));
-    if(tab==='visit')this.visitorUI(c);else if(tab==='share')this.shareUI(c);else if(tab==='friends')this.virtualFriendsUI(c);else if(tab==='album')this.mailAlbum(c);else this.bondsUI(c);
-    this.controls['social-close']=this.controls['nav-home'];
-  }
-  private acceptMail(code:string){
-    if(code.trim().startsWith('PMD1.')){sys.localStorage.removeItem('pm.pending-postcard.v1');this.pageHelp('请使用好友来信码');return;}
-    const card=readVisitCode(code);this.visitCode=code;
-    if(!card)this.socialNote='来访码不完整';
-    else if(card.owner===this.state.social!.owner)this.socialNote='请使用好友的来访码';
-    else if(card.replyTo&&card.replyTo!==this.state.social!.owner)this.socialNote='这封回信属于另一位朋友';
-    else{if(!this.requireTime())return;const before=this.state,next=receiveVisitor(before,code);this.state=next;this.save();this.socialNote=(next.eggs?.length||0)>(before.eggs?.length||0)?'好友专属蛋 +1':'新朋友来啦！';sys.localStorage.removeItem('pm.pending-postcard.v1');}
-    this.socialUI('visit');
-  }
-  private visitorUI(c:Node){
-    const {top,bottom,height}=this.pageBounds(c),visit=this.state.social?.visitor,guest=visitorPet(this.state);
-    const pending=sys.localStorage.getItem('pm.pending-postcard.v1');
-    if(!visit||!guest||(pending&&readVisitCode(pending)?.id!==visit.card.id)){
-      const input=this.socialInput(c,'visit-code',this.visitCode,top-110,'粘贴好友来访码',v=>this.visitCode=v);input.maxLength=4096;
-      this.button(c,'visit-paste','粘贴',-91,top-169,168,42,async()=>{try{this.visitCode=await pasteVisitCode();this.socialUI('visit');}catch{this.socialNote='长按输入框粘贴';this.socialUI('visit');}},'#dbe9ef',true,17);
-      this.button(c,'visit-receive','打开来信',91,top-169,168,42,()=>this.acceptMail(input.string),'#769cba',true,17);
-      this.text(c,'✉',0,top-265,64,'#b57b9b',100,90);this.text(c,this.socialNote||'等待新朋友',0,top-326,18,C.muted,344,45);
-      this.button(c,'visit-image','导入明信片图片',0,bottom+91,350,48,async()=>{try{const code=await importCardImage();if(code)this.acceptMail(code);else{this.socialNote='未识别到明信片';this.socialUI('visit');}}catch{this.socialNote='请使用来访码';this.socialUI('visit');}},'#b57b9b',true,18);
-      this.button(c,'visit-my-card','制作我的明信片',0,bottom+35,350,40,()=>this.socialUI('share'),'#dbe9ef',true,16);return;
-    }
-    const local=this.state.pets?.find(p=>p.uid===this.state.active.uid)||this.state.pets?.[0],done=visit.progress>=3;
-    const cardH=height-306,card=this.panel(c,0,top-76-cardH/2,354,cardH,'#fff9eb',20),artSize=Math.min(145,cardH-120);
-    this.text(card,visit.card.nickname||'好友伙伴',0,cardH/2-26,19,'#8f719b',320,30).isBold=true;
-    const own=local?this.petImage(card,local,-82,3,artSize):null,visitor=this.petImage(card,guest,82,3,artSize);if(own)this.breathe(own);this.breathe(visitor);
-    this.text(card,local?petName(local):'',-82,-cardH/2+57,14,C.ink,150,25);this.text(card,petName(guest),82,-cardH/2+57,14,C.ink,150,25);
-    const missing=!this.state.pets?.some(p=>p.id===guest.id),canReply=this.state.pets?.some(p=>visit.card.wishes?.includes(p.id));
-    this.text(card,done?'♡ 已结缘':missing?'你还没有这个伙伴':'好友伙伴',0,-cardH/2+27,15,'#b57895',326,25);
-    this.text(c,this.socialNote||(canReply?'你有对方想要的伙伴':''),0,bottom+204,13,'#7e6a8c',344,25);
-    if(done){
-      this.button(c,'visit-bond','结缘孵化 ›',-91,bottom+103,168,48,()=>this.bondEggPicker(guest.id),'#e7ddeb',true,18);
-      this.button(c,'visit-reply','寄回明信片',0,bottom+40,350,52,()=>this.replyMail(visit.card),'#527e9a',true,19);
-      this.button(c,'visit-photo','查看合影',91,bottom+103,168,48,()=>{const record=this.state.social?.album?.find(r=>r.card.owner===visit.card.owner&&r.card.species===guest.id);if(record)this.photoUI(record);else{this.state=completeVisit(this.state);this.save();this.socialUI('visit');}},'#e7ddeb',true,16);
-    }else{this.button(c,'visit-play','一起掷骰',0,bottom+40,350,52,()=>this.playVisitor(c,own,visitor),'#527e9a',!!local,19);this.button(c,'visit-reply','寄回明信片',0,bottom+103,350,48,()=>this.replyMail(visit.card),'#dbe9ef',true,18);}
-    this.button(c,'visit-new','打开另一封来信',0,bottom+162,350,40,()=>this.mailInput(),'#dbe9ef',true,15);
-  }
-  private mailInput(){
-    const c=this.overlay('打开来信',300),input=this.socialInput(c,'visit-code','',49,'粘贴好友来访码',v=>this.visitCode=v);input.maxLength=4096;
-    this.button(c,'visit-paste','粘贴',-81,-8,150,40,async()=>{try{input.string=await pasteVisitCode();}catch{}},'#dbe9ef',true,16);
-    this.button(c,'visit-image','导入图片',81,-8,150,40,async()=>{try{const code=await importCardImage();if(code)this.acceptMail(code);}catch{this.socialNote='请使用来访码';this.socialUI('visit');}},'#dbe9ef',true,16);
-    this.button(c,'visit-receive','打开来信',0,-70,314,46,()=>this.acceptMail(input.string),'#769cba',true,19);
-  }
-  private playVisitor(c:Node,own:Node|null,guest:Node){
-    if(this.mailPlaying||!this.requireTime())return;const old=this.state,next=completeVisit(old);if(next===old)return;this.state=next;this.save();this.mailPlaying=true;
-    const record=next.social!.album![0],{bottom}=this.pageBounds(c),finish=()=>{if(!this.mailPlaying||!c.isValid)return;this.mailPlaying=false;this.photoUI(record);};
-    ['visit-play','visit-reply','visit-new'].forEach(id=>{delete this.controls[id];const action=c.children.find(n=>n.name===id);if(action)action.active=false;});
-    [own,guest].filter(Boolean).forEach((n:Node,i)=>{Tween.stopAllByTarget(n);const p=n.position.clone();tween(n).repeat(4,tween().by(.3,{position:new Vec3(i?-10:10,16,0)},{easing:'quadOut'}).to(.3,{position:p},{easing:'quadIn'})).start();});
-    const die=this.panel(c,0,bottom+129,140,60,'#fff2cb',16);this.text(die,record.dice.join('  ·  '),0,0,32,'#ad7630',132,48).isBold=true;tween(die).by(.2,{eulerAngles:new Vec3(0,0,10)}).by(.2,{eulerAngles:new Vec3(0,0,-20)}).by(.2,{eulerAngles:new Vec3(0,0,10)}).start();
-    this.button(c,'visit-skip','查看合影',0,bottom+40,350,48,finish,'#e7ddeb',true,16);
-    this.scheduleOnce(finish,old.social?.album?.length?2:8);
-  }
-  private replyMail(card:FriendCard){this.replyOwner=card.owner;this.mailPhoto=null;this.sharePetUid=replyPet(this.state,card)?.uid||'';this.socialNote='';this.socialUI('share');}
-  private virtualFriendsUI(c:Node){
-    const {top,bottom,height}=this.pageBounds(c),friends=this.state.social?.friends||[],pages=Math.max(1,Math.ceil(friends.length/4)),page=Math.min(this.socialPage,pages-1),rowH=Math.min(116,(height-236)/4-8);
-    if(!friends.length)this.text(c,'扫码或导入来信，结识新朋友',0,0,19,C.muted,330,64);
-    this.listPages(c,friends,4,page,(f,index)=>{
-      const row=this.button(c,'virtual-friend-'+f.card.owner,'',0,top-78-rowH/2-index%4*(rowH+8),350,rowH,()=>this.replyMail(f.card),'#ffffff');this.listItem(row,index,4);
-      this.petImage(row,{id:f.card.species,rarity:f.card.rarity,faces:[],shiny:f.card.shiny},-127,0,Math.min(78,rowH-12));
-      this.text(row,f.card.nickname||'好友伙伴',12,rowH*.25,17,C.ink,210,26).isBold=true;
-      this.text(row,petName({id:f.card.species,rarity:f.card.rarity}),12,0,13,C.muted,210,24);
-      const now=gameNow(),left=Number.isFinite(now)?Math.max(0,f.settledAt+FRIEND_GIFT_INTERVAL-now):Infinity;
-      this.eggArt(row,{id:'friend-gift-'+index,rarity:'normal',affinity:f.card.species,stage:5},-63,-rowH*.27,18);
-      this.text(row,'×'+f.gifts,-32,-rowH*.27,13,'#986281',42,24);
-      const seconds=Math.ceil(left/1000),time=Number.isFinite(left)?[Math.floor(seconds/3600),Math.floor(seconds/60)%60,seconds%60].map(v=>String(v).padStart(2,'0')).join(':'):'--:--:--';
-      this.text(row,time,65,-rowH*.27,13,'#627d89',136,24);this.menuIcon(row,'mail',148,7,21,'#668ca8');
-    });
-    this.pagePager(c,bottom+109,page,pages,(p,redraw)=>{this.socialPage=p;if(redraw)this.socialUI('friends');},'virtual-friends');
-    this.button(c,'social-tab-bonds','结缘伙伴',-91,bottom+40,168,48,()=>{this.socialPage=0;this.socialUI('bonds');},'#e8dfe9',true,17);
-    this.button(c,'social-tab-album','合影',91,bottom+40,168,48,()=>{this.socialPage=0;this.socialUI('album');},'#dbe9ef',true,17);
-  }
-  private postcard(parent:Node,p:Pet,code:string,height:number,y:number,photo:MailMemory|null=null){
-    const n=this.panel(parent,0,y,330,440,'#fff9e9',22);n.name='postcard';n.setScale(height/440,height/440,1);
-    const frame=n.getComponent(Graphics)!;frame.strokeColor=color('#d5b282');frame.lineWidth=2;frame.roundRect(-155,-210,310,420,18);frame.stroke();
-    this.image(n,this.loginLogoKey(),0,180,239,66);
-    this.typeIcon(n,PETS[p.id].type,-132,133,28);this.text(n,this.state.social?.nickname||heroFor(this.state).name,0,134,15,'#947749',224,24);
-    const stamp=this.panel(n,130,133,34,34,p.shiny?'#f7d876':'#e9d7e9',8);this.text(stamp,photo?['♥','★','✿'][photo.stamp]:p.shiny?'★':'✉',0,0,22,'#9b7190',32,30);
-    if(photo){this.petImage(n,{...photo.local,faces:[]},-75,30,155);this.petImage(n,p,76,30,155);this.text(n,photo.card.nickname||'好友伙伴',0,-65,16,'#9670a2',270,25);this.text(n,photo.dice.join('  +  ')+'  ♡',0,-94,16,'#b18b53',260,25);}
-    else{this.petImage(n,p,0,40,190);this.text(n,(p.shiny?'★ ':'')+petName(p)+' '+sexSymbol(p.sex)+' · '+rarityName(p.rarity),0,-70,20,'#9d7438',300,30).isBold=true;const skills=petSkills(p),special=skills.find(c=>c.startsWith('res_'))||skills[0];this.text(n,(special?SKILLS[special][0]:'')+'  ·  '+skills.length+' 技能',0,-94,11,C.muted,296,18);}
-    const wishes=this.state.social?.wishes||[];this.text(n,'我的心愿',-67,-136,13,'#aa7e85',155,24);
-    wishes.forEach((id,i)=>this.petImage(n,{id,rarity:'normal',faces:[]},-120+i*49,-167,40));
-    if(!wishes.length)this.text(n,'一起收集伙伴',-67,-166,12,C.muted,155,25);
-    this.text(n,'通信小屋 → 导入图片',-67,-197,10,C.muted,162,22);
-    const cells=qrCells(code),size=112,unit=size/(cells.length+8),qrnode=this.makeNode(n,'postcard-qr',100,-159,size,size),g=qrnode.addComponent(Graphics);g.fillColor=color('#ffffff');g.rect(-size/2,-size/2,size,size);g.fill();g.fillColor=color('#172c38');cells.forEach((row,y)=>row.forEach((dark,x)=>{if(dark)g.rect(-size/2+(x+4)*unit,size/2-(y+5)*unit,unit+.02,unit+.02);}));g.fill();return n;
-  }
-  private shareUI(c:Node){
-    const {top,bottom,height}=this.pageBounds(c),pets=this.state.pets||[],chosen=pets.find(p=>p.uid===this.sharePetUid)||pets.find(p=>p.uid===this.state.active.uid)||pets[0];
-    if(!chosen){this.text(c,'暂无伙伴',0,20,21,C.muted,330,40);return;}this.sharePetUid=chosen.uid!;const code=makePostcardCode(this.state,chosen.uid!,this.replyOwner)||'',cardH=Math.min(440,height-284);
-    this.shareCardNode=this.postcard(c,chosen,code,cardH,top-76-cardH/2);
-    this.button(c,'share-choose','更换伙伴',-91,bottom+167,168,44,()=>{this.mailPhoto=null;this.sharePicker();},'#dbe9ef',true,16);
-    this.button(c,'share-wishes','昵称 / 心愿',91,bottom+167,168,44,()=>this.wishPicker(),'#dbe9ef',true,16);
-    this.button(c,'share-save','保存图片',-91,bottom+105,168,44,()=>this.exportMail(code,true),'#dbe9ef',true,16);
-    this.button(c,'share-copy','复制来访码',91,bottom+105,168,44,async()=>{const ok=await copyVisitCode(code);this.shareNotice(ok?'已复制，发给好友吧':'长按来访码，全选复制',code);},'#dbe9ef',true,16);
-    this.button(c,'share-send','分享明信片',0,bottom+40,350,52,()=>this.exportMail(code,false),'#527e9a',true,20);
-  }
-  private shareNotice(message:string,code=''){const c=this.overlay('明信片',code?280:210);this.text(c,message,0,code?53:22,17,C.ink,310,54);if(code){const input=this.socialInput(c,'share-code',code,-6,'来访码',()=>{});input.maxLength=4096;}this.button(c,'share-notice-close','返回',0,code?-90:-55,300,42,()=>{if(this.mailPhoto)this.photoUI(this.mailPhoto);else this.socialUI('share');},'#769cba',true,18);}
-  private async exportMail(code:string,saveOnly:boolean){
-    const card=this.shareCardNode;if(!card?.isValid||this.busy)return;this.busy=true;
-    try{await this.artCache.warmTree(card);const image=await prepareCard(await capturePostcard(card)),result=await sendCard(image,tr('骰子宠物精灵')+'\n'+code,saveOnly);if(result!=='cancelled')this.shareNotice(result==='saved'?'明信片已保存':'已打开分享面板');}
-    catch{this.shareNotice('分享暂不可用，可复制来访码',code);}finally{this.busy=false;}
-  }
-  private wishPicker(page=0){
-    const c=this.fullPage('我的心愿',(this.state.social?.wishes||[]).length+' / 3',()=>this.wishPicker(page),()=>this.socialUI('share')),{top,bottom,height}=this.pageBounds(c),pages=Math.ceil(PET_IDS.length/6),rowH=Math.min(140,(height-234)/2),nick=this.socialInput(c,'social-nickname',this.state.social?.nickname||'',top-46,'昵称',v=>{this.state=setSocialProfile(this.state,v,this.state.social?.wishes||[]);this.save();});nick.maxLength=12;
-    this.listPages(c,PET_IDS,6,page,(id,index)=>{const i=index%6,wishes=this.state.social?.wishes||[],selected=wishes.includes(id),y=top-100-rowH/2-Math.floor(i/3)*(rowH+10),row=this.button(c,'wish-'+id,'',(i%3-1)*120,y,112,rowH,()=>{const next=selected?wishes.filter(v=>v!==id):wishes.length<3?[...wishes,id]:wishes;this.state=setSocialProfile(this.state,nick.string,next);this.save();this.wishPicker(page);},selected?'#fff0c8':'#ffffff');this.listItem(row,index,6);this.petImage(row,{id,rarity:'normal',faces:[]},0,8,Math.min(85,rowH-42));this.text(row,PETS[id].name,0,-rowH/2+20,13,C.ink,104,24);if(selected)this.text(row,'✓',38,rowH/2-19,18,'#b47c27',24,25);});
-    this.pagePager(c,bottom+81,page,pages,(p,redraw)=>{page=p;if(redraw)this.wishPicker(p);},'wishes');this.button(c,'wish-done','完成',0,bottom+31,350,42,()=>{this.state=setSocialProfile(this.state,nick.string,this.state.social?.wishes||[]);this.save();this.socialUI('share');},'#b57b9b',true,19);
-  }
-  private mailAlbum(c:Node){
-    const {top,bottom,height}=this.pageBounds(c),album=this.state.social?.album||[],pages=Math.max(1,Math.ceil(album.length/4)),page=Math.min(this.socialPage,pages-1),rowH=Math.min(126,(height-175)/4-9);
-    this.listPages(c,album,4,page,(r,index)=>{const i=index%4,row=this.button(c,'mail-memory-'+index,'',0,top-77-rowH/2-i*(rowH+10),354,rowH,()=>this.photoUI(r),'#ffffff');this.listItem(row,index,4);this.petImage(row,{id:r.card.species,rarity:r.card.rarity,faces:[],shiny:r.card.shiny,ornament:r.card.ornament||undefined},-123,0,Math.min(76,rowH-14));this.text(row,r.card.nickname||'好友伙伴',-1,17,18,C.ink,164,27);this.text(row,petName({id:r.card.species,rarity:r.card.rarity}),-1,-12,13,C.muted,164,24);this.text(row,['♥','★','✿'][r.stamp],131,0,26,'#c69a4b',42,42);});
-    if(!album.length)this.text(c,'来访合影会保存在这里',0,10,20,C.muted,330,60);
-    this.pagePager(c,bottom+39,page,pages,(p,redraw)=>{this.socialPage=p;if(redraw)this.socialUI('album');},'mail-album');
-  }
-  private photoUI(record:MailMemory){
-    this.mailPhoto=record;const c=this.fullPage('来访合影','♡',()=>this.photoUI(record),()=>{this.mailPhoto=null;this.socialUI('album');}),{top,bottom,height}=this.pageBounds(c),p:Pet={id:record.card.species,rarity:record.card.rarity,faces:[],skills:record.card.skills,shiny:record.card.shiny,ornament:record.card.ornament||undefined},own=replyPet(this.state,record.card),code=own?makePostcardCode(this.state,own.uid!,record.card.owner)||'':'';
-    const cardH=Math.min(440,height-160);this.shareCardNode=this.postcard(c,p,code,cardH,top-20-cardH/2,record);
-    this.button(c,'photo-reply','寄回明信片',-91,bottom+82,168,46,()=>this.replyMail(record.card),'#649f97',!!own,17);
-    this.button(c,'photo-bond','结缘孵化',91,bottom+82,168,46,()=>this.bondEggPicker(record.card.species),'#b57b9b',true,18);
-    this.button(c,'photo-share','分享合影',0,bottom+29,350,38,()=>this.exportMail(code,false),'#dbe9ef',!!code,17);
-  }
-
-  private sharePicker(page=0){
-    const pets=this.state.pets||[],pages=Math.max(1,Math.ceil(pets.length/4));page=Math.max(0,Math.min(page,pages-1));
-    const c=this.fullPage('选择伙伴',pets.length+' 只',()=>this.sharePicker(page),()=>this.socialUI('share')),{top,bottom,height}=this.pageBounds(c),rowH=Math.min(120,(height-130)/4);
-    this.listPages(c,pets,4,page,(p,itemIndex)=>{const i=itemIndex%4;const y=top-24-rowH/2-i*(rowH+12),row=this.button(c,'share-pick-'+p.uid,'',0,y,354,rowH,()=>{this.sharePetUid=p.uid!;this.socialNote='';this.socialUI('share');},'#ffffff');this.listItem(row,itemIndex,4);this.petImage(row,p,-116,0,Math.min(84,rowH-16));this.text(row,petName(p)+' '+sexSymbol(p.sex),29,16,18,C.ink,208,30);this.text(row,rarityName(p.rarity)+' · '+PETS[p.id].type,29,-18,14,C.muted,208,26);});
-    this.pagePager(c,bottom+42,page,pages,(p,redraw)=>{page=p;if(redraw)this.sharePicker(p);},'share');this.controls['share-picker-back']=this.controls['nav-home'];
-  }
-  private bondsUI(c:Node){
-    const {top,bottom,height}=this.pageBounds(c),bonds=friendBonds(this.state),pages=Math.max(1,Math.ceil(bonds.length/6));this.socialPage=Math.max(0,Math.min(this.socialPage,pages-1));
-    const cardH=Math.min(170,(height-222)/2);
-    this.listPages(c,bonds,6,this.socialPage,(bond,itemIndex)=>{const i=itemIndex%6;const row=this.button(c,'bond-select-'+bond.species,'',(i%3-1)*120,top-80-cardH/2-Math.floor(i/3)*(cardH+12),112,cardH,()=>this.bondEggPicker(bond.species),'#ffffff'),p:Pet={id:bond.species,rarity:'normal',faces:[...PETS[bond.species].faces]};
-      this.listItem(row,itemIndex,6);this.petImage(row,p,0,12,Math.min(96,cardH-48));this.text(row,PETS[bond.species].name,0,-cardH/2+23,13,C.ink,106,27).isBold=true;
-    });
-    if(!bonds.length)this.text(c,'一起掷骰即可结缘',0,27,20,C.muted,350,60);
-    this.pagePager(c,bottom+88,this.socialPage,pages,(p,redraw)=>{this.socialPage=p;if(redraw)this.socialUI('bonds');},'bonds');
-    this.text(c,'选择伙伴系列，再选自己的蛋',0,bottom+34,14,C.muted,350,28);
-  }
-  private bondEggPicker(target:PetId,page=0){
-    const eggs=availableEggs(this.state),eligible=new Set(bondEligibleEggs(this.state,target).map(e=>e.id)),pages=Math.max(1,Math.ceil(eggs.length/4));page=Math.max(0,Math.min(page,pages-1));
-    const c=this.fullPage('选择结缘蛋',PETS[target].name+'系列',()=>this.bondEggPicker(target,page),()=>this.socialUI('bonds')),free=[0,1].find(i=>!this.state.incubators?.[i]),{top,bottom,height}=this.pageBounds(c),rowH=Math.min(120,(height-176)/4);
-    this.listPages(c,eggs,4,page,(egg,itemIndex)=>{const i=itemIndex%4;const y=top-24-rowH/2-i*(rowH+12),reason=bondBlockReason(this.state,egg,target),enabled=eligible.has(egg.id)&&free!==undefined,row=this.panel(c,0,y,354,rowH,enabled?'#ffffff':'#e3e9eb',14);
-      this.listItem(row,itemIndex,4);this.eggArt(row,egg,-130,0,Math.min(72,rowH-20));this.text(row,this.eggName(egg),-24,16,16,this.eggTint(egg),136,27);this.text(row,reason?(egg.bond?'已结缘':'地区未解锁'):free===undefined?'孵化位已满':egg.genes?'保留遗传':rarityName(egg.rarity)+' · '+hatchDuration(this.state,egg.rarity)/60000+'分',-24,-17,12,C.muted,136,28);
-      this.button(row,'bond-egg-'+egg.id,'选择',112,0,72,42,()=>this.bondConfirm(target,egg.id,page),'#b57b9b',enabled,16);
-    });
-    if(!eggs.length)this.text(c,'暂无可用的蛋',0,41,21,C.muted,350,60);
-    this.pagePager(c,bottom+109,page,pages,(p,redraw)=>{page=p;if(redraw)this.bondEggPicker(target,p);},'bond-eggs');
-    this.button(c,'bond-eggs-hatch',free===undefined?'孵化位已满 · 去查看':'孵化屋 ›',0,bottom+44,350,46,()=>this.hatchery(),'#dbe9ef',true,17);this.controls['bond-eggs-back']=this.controls['nav-home'];
-  }
-  private bondConfirm(target:PetId,eggId:string,page:number){
-    const egg=availableEggs(this.state).find(e=>e.id===eggId);if(!egg){this.bondEggPicker(target,page);return;}
-    const slot=[0,1].find(i=>!this.state.incubators?.[i]),reason=bondBlockReason(this.state,egg,target),c=this.fullPage('结缘孵化','品质不变',()=>this.bondConfirm(target,eggId,page),()=>this.bondEggPicker(target,page)),p:Pet={id:target,rarity:egg.rarity,faces:[...PETS[target].faces]},{top,bottom,height}=this.pageBounds(c),cardH=height-244;
-    const card=this.panel(c,0,top-24-cardH/2,354,cardH,'#ffffff',22);
-    this.eggArt(card,egg,-95,12,108);this.text(card,'→',0,12,30,'#9aaaac',55,50);this.petImage(card,p,95,12,128);
-    this.text(card,rarityName(egg.rarity)+' · '+PETS[target].name,0,-cardH/2+39,22,'#a36c8e',330,36).isBold=true;
-    const foot=this.panel(c,0,bottom+100,390,200,'#fffdf5',22);
-    this.text(foot,'宠物蛋 ×1  ·  孵化位 ×1',0,65,17,C.ink,350,30);
-    this.text(foot,hatchDuration(this.state,egg.rarity)/60000+(egg.genes?' 分钟 · 保留遗传':' 分钟 · 离线继续'),0,28,15,C.muted,350,30);
-    if(reason||slot===undefined)this.text(foot,reason||'孵化位已满',0,-6,13,'#b45f62',350,28);
-    this.button(foot,'bond-confirm','开始孵化',0,-55,350,50,()=>{
-      const current=[0,1].find(i=>!this.state.incubators?.[i]);if(current===undefined){this.bondEggPicker(target,page);return;}
-      if(!this.requireTime())return;const next=startBondIncubation(this.state,eggId,target,current);if(next===this.state){this.bondEggPicker(target,page);return;}this.state=next;this.save();this.hatchery();
-    },'#b57b9b',!reason&&slot!==undefined,18);
-    this.controls['bond-cancel']=this.controls['nav-home'];
-  }
   private goHome(){if(this.sampleOriginal){this.state=this.sampleOriginal;this.sampleOriginal=null;this.screen='login';this.render();return;}this.state=retreatExpedition(this.state);this.screen='home';this.save();this.render();}
   private retreatButton(y:number){const n=this.button(this.root,'retreat','',162,y,44,44,()=>this.confirmRetreat(),C.paper);this.menuIcon(n,'retreat',0,0,29,'#286579');}
   private confirmRetreat(){
@@ -1636,12 +1461,11 @@ export class PMGame extends Component {
       }
     }
   }
-  private menuIcon(parent:Node,kind:'map'|'dex'|'paw'|'gear'|'lock'|'home'|'retreat'|'energy'|'video'|'reward-video'|'mail'|'breed',x:number,y:number,size:number,ink='#ffffff'){
+  private menuIcon(parent:Node,kind:'map'|'dex'|'paw'|'gear'|'lock'|'home'|'retreat'|'energy'|'video'|'reward-video'|'breed',x:number,y:number,size:number,ink='#ffffff'){
     const n=this.makeNode(parent,kind,x,y,size,size),g=n.addComponent(Graphics);n.setScale(size/48,size/48,1);g.lineWidth=3;g.strokeColor=color(ink);g.fillColor=color(ink);
     if(kind==='map'){g.moveTo(-20,-16);g.lineTo(-20,17);g.lineTo(-7,12);g.lineTo(7,18);g.lineTo(20,13);g.lineTo(20,-19);g.lineTo(7,-14);g.lineTo(-7,-20);g.close();g.stroke();for(const dx of [-7,7]){g.moveTo(dx,-12);g.lineTo(dx,9);g.stroke();}g.fillColor=color('#ffe297');g.circle(8,4,6);g.fill();}
     if(kind==='dex'){g.roundRect(-19,-22,38,44,8);g.fill();g.fillColor=color('#f4fbff');g.roundRect(-14,-7,28,24,4);g.fill();g.fillColor=color('#df655b');g.circle(0,5,8);g.fill();g.strokeColor=color('#304d5a');g.moveTo(-8,5);g.lineTo(8,5);g.stroke();g.fillColor=color('#ffffff');g.circle(0,5,3);g.fill();g.fillColor=color('#304d5a');g.circle(-8,-15,2);g.circle(6,-15,2);g.fill();}
     if(kind==='paw'){g.moveTo(-16,-13);g.bezierCurveTo(-19,-5,-10,3,-5,5);g.bezierCurveTo(-2,8,2,8,5,5);g.bezierCurveTo(10,3,19,-5,16,-13);g.bezierCurveTo(12,-21,5,-15,0,-16);g.bezierCurveTo(-5,-15,-12,-21,-16,-13);g.close();g.fill();for(const [px,py,rx,ry] of [[-18,8,5,7],[-7,19,6,8],[7,19,6,8],[18,8,5,7]]){g.ellipse(px,py,rx,ry);g.fill();}}
-    if(kind==='mail'){g.roundRect(-22,-16,44,32,5);g.stroke();g.moveTo(-20,13);g.lineTo(0,-2);g.lineTo(20,13);g.stroke();g.moveTo(-20,-13);g.lineTo(-7,-3);g.moveTo(20,-13);g.lineTo(7,-3);g.stroke();}
     if(kind==='breed'){g.moveTo(0,-19);g.bezierCurveTo(-35,2,-17,29,0,14);g.bezierCurveTo(17,29,35,2,0,-19);g.close();g.fill();g.fillColor=color('#fff7ee');g.ellipse(0,-1,7,9);g.fill();g.fillColor=color(ink);g.circle(0,1,2.4);g.fill();}
     if(kind==='gear'){g.circle(0,0,13);g.stroke();g.circle(0,0,5);g.stroke();for(let i=0;i<8;i++){const a=i*Math.PI/4;g.moveTo(Math.cos(a)*14,Math.sin(a)*14);g.lineTo(Math.cos(a)*20,Math.sin(a)*20);g.stroke();}}
     if(kind==='lock'){g.roundRect(-12,-17,24,21,5);g.fill();g.arc(0,4,9,0,Math.PI,false);g.stroke();g.fillColor=color('#ffffff');g.circle(0,-5,2);g.fill();}
@@ -1676,18 +1500,17 @@ export class PMGame extends Component {
     this.menuIcon(explore,'map',-73,0,32,'#fff5db');const exploreTitle=this.text(explore,'探险',-1,0,22,'#ffffff',106,36);exploreTitle.isBold=true;exploreTitle.enableWrapText=false;
     this.menuIcon(explore,'energy',67,9,15,'#ffe29b');this.text(explore,'−'+EXPEDITION_COST,67,-12,13,'#fff3d9',38,22).isBold=true;
     const item=(id:string,title:string,x:number,fill:string,callback:()=>void)=>{
-      const n=calm(this.button(this.root,id,'',x,b+62,64,72,callback,fill));
-      const label=this.text(n,title,0,-22,14,'#3d5961',64,23);label.isBold=true;label.enableWrapText=false;return n;
+      const n=calm(this.button(this.root,id,'',x,b+62,84,72,callback,fill));
+      const label=this.text(n,title,0,-22,14,'#3d5961',80,23);label.isBold=true;label.enableWrapText=false;return n;
     };
-    const partners=item('home-partners','伙伴',-144,'#e7efeb',()=>this.collection(0)),pawIcon=this.menuIcon(partners,'paw',0,12,32,'#548c79');
-    const nursery=item('home-hatch','孵化',-72,'#edf0df',()=>this.hatchery()),eggIcon=this.eggArt(nursery,{id:'home',rarity:'normal',affinity:'bud',stage:5},0,12,35);
-    const breed=item('home-breed','交配',0,'#f7e8e5',()=>this.breedingUI()),breedIcon=this.menuIcon(breed,'breed',0,12,34,'#ba7890');
-    const social=item('home-social','来信',72,'#e7eef2',()=>this.socialUI()),mailIcon=this.menuIcon(social,'mail',0,12,32,'#668ca8');
-    const dex=item('home-dex','图鉴',144,'#f4eadd',()=>this.pokedexUI()),dexIcon=this.menuIcon(dex,'dex',0,12,32,'#b88856');
+    const partners=item('home-partners','伙伴',-135,'#e7efeb',()=>this.collection(0)),pawIcon=this.menuIcon(partners,'paw',0,12,32,'#548c79');
+    const nursery=item('home-hatch','孵化',-45,'#edf0df',()=>this.hatchery()),eggIcon=this.eggArt(nursery,{id:'home',rarity:'normal',affinity:'bud',stage:5},0,12,35);
+    const breed=item('home-breed','交配',45,'#f7e8e5',()=>this.breedingUI()),breedIcon=this.menuIcon(breed,'breed',0,12,34,'#ba7890');
+    const dex=item('home-dex','图鉴',135,'#f4eadd',()=>this.pokedexUI()),dexIcon=this.menuIcon(dex,'dex',0,12,32,'#b88856');
     const badge=(parent:Node,name:string)=>{const dot=this.panel(parent,24,27,20,20,'#d95e4b',10);dot.name=name;this.text(dot,'!',0,0,14,'#ffffff',20,20).isBold=true;return dot;};
     const partyBadge=badge(partners,'home-party-badge');partyBadge.active=hasOpenPartySlot(s);
     this.homeHatchBadge=badge(nursery,'home-hatch-badge');this.homeBreedBadge=badge(breed,'home-breed-badge');this.refreshHomeBadges();
-    this.startHomeMotion(explore,[pawIcon,eggIcon,breedIcon,mailIcon,dexIcon]);
+    this.startHomeMotion(explore,[pawIcon,eggIcon,breedIcon,dexIcon]);
     this.fx=this.makeNode(this.root,'home-effects',0,0,390,H);
   }
   private startHomeMotion(explore:Node,icons:Node[]){
@@ -1727,7 +1550,7 @@ export class PMGame extends Component {
     this.refreshStaminaHUD();
   }
   private refreshStaminaHUD(){
-    const next=settleFriendGifts(syncStamina(this.state));if(next!==this.state){this.state=next;this.save();}
+    const next=syncStamina(this.state);if(next!==this.state){this.state=next;this.save();}
     if(this.staminaLabel?.isValid)this.staminaLabel.string=this.state.stamina!.value+' / '+STAMINA_MAX;
     if(this.staminaCountdown?.isValid){const left=staminaRemaining(this.state),seconds=Math.ceil(left/1000);this.staminaCountdown.string=Number.isFinite(left)?Math.floor(seconds/60).toString().padStart(2,'0')+':'+(seconds%60).toString().padStart(2,'0'):'--:--';}
     if(this.staminaFill?.isValid){const g=this.staminaFill;g.clear();g.fillColor=color('#69cba0');const w=88*this.state.stamina!.value/STAMINA_MAX;if(w>0){g.roundRect(-44,-11,w,22,Math.min(11,w/2));g.fill();}}
@@ -1751,62 +1574,11 @@ export class PMGame extends Component {
     catch{this.staminaOffer('广告暂不可用，请稍后再试');}
     finally{this.adPending=false;this.busy=false;this.audio.resume('ad');}
   }
-  private tapAccount(fromCover=false){
-    const c=this.overlay('TapTap',380),close=()=>fromCover?this.render():this.homeSettings();
-    this.button(c,'tap-close','×',143,155,38,38,close,'#e4eef1',!this.tapWorking,27);
-    this.text(c,this.tapServices.connected?'TapTap 已连接':'登录 TapTap',0,103,22,C.ink,300,36);
-    this.text(c,this.tapNote||'本地进度保留，可手动上传或恢复云存档',0,54,14,C.muted,300,58);
-    const run=async(action:()=>Promise<void>)=>{
-      if(this.tapWorking)return;this.tapWorking=true;this.tapNote='连接中…';this.tapAccount(fromCover);
-      try{await action();}catch{this.tapNote='连接失败，请检查网络后重试';}
-      finally{this.tapWorking=false;this.tapAccount(fromCover);}
-    };
-    if(!this.tapServices.connected)this.button(c,'tap-login','TapTap 登录',0,-9,300,48,()=>void run(async()=>{await this.tapServices.login();this.tapNote='已连接 TapTap';}),'#286f94',!this.tapWorking);
-    else{
-      this.button(c,'tap-upload','上传本地进度',-78,-9,145,48,()=>void run(async()=>{
-        if(!await this.save())throw new Error('Local save failed');
-        const archives=await this.tapServices.list();
-        this.tapWorking=false;this.tapConfirm('上传将替换此账号的云端进度',async()=>{
-          if(!await this.save())throw new Error('Local save failed');
-          await this.tapServices.upload(sys.localStorage.getItem(KEY)!,this.latestArchive(archives));this.tapNote='上传成功';
-        },fromCover);
-      }),'#286f94',!this.tapWorking);
-      this.button(c,'tap-download','恢复云端进度',78,-9,145,48,()=>void run(async()=>{
-        const archive=this.latestArchive(await this.tapServices.list());
-        if(!archive){this.tapNote='此账号还没有云存档';return;}
-        const raw=await this.tapServices.download(archive),next=restore(raw);if(!next)throw new Error('Invalid save');
-        this.tapWorking=false;this.tapConfirm('恢复将替换本机进度，本机旧进度会保留备份',async()=>{
-          if(!await this.save())throw new Error('Local save failed');
-          sys.localStorage.setItem(KEY+'.before-cloud',JSON.stringify(this.state));
-          const before=this.state;
-          this.state=prepareJourney(next);this.checkpointSequence=Math.max(this.checkpointSequence,Number((next as any).checkpointSequence)||0);
-          this.trustedClock.restore(this.state.trustedTime?.lastMs||0);
-          if(!await this.save()){this.state=before;await this.save();throw new Error('Local save failed');}
-          this.tapNote='恢复成功';
-        },fromCover);
-      }),'#519b81',!this.tapWorking);
-    }
-    const enterAllowed=!fromCover||this.tapServices.playAllowed;
-    this.button(c,'tap-continue',fromCover?(enterAllowed?'继续游戏':'请先完成实名认证'):'返回',0,-85,300,48,()=>{if(fromCover)this.continueFromCover();else close();},'#519b81',!this.tapWorking&&enterAllowed);
-  }
-  private latestArchive(archives:TapArchive[]){return archives.slice().sort((a,b)=>(b.modifiedTime||0)-(a.modifiedTime||0))[0];}
-  private tapConfirm(message:string,action:()=>Promise<void>,fromCover:boolean){
-    // Defer until the preceding async operation has released its busy state and modal.
-    this.scheduleOnce(()=>{
-      const c=this.overlay('确认云存档',260);this.text(c,message,0,27,16,C.ink,300,80);
-      this.button(c,'tap-confirm-cancel','取消',-79,-65,145,48,()=>this.tapAccount(fromCover),'#e4eef1');
-      this.button(c,'tap-confirm','确认',79,-65,145,48,()=>{
-        if(this.tapWorking)return;this.tapWorking=true;this.tapNote='处理中…';this.tapAccount(fromCover);
-        void (async()=>{try{await action();}catch{this.tapNote='操作失败，云端结果请重新查询';}finally{this.tapWorking=false;this.tapAccount(fromCover);}})();
-      },'#286f94');
-    },0);
-  }
-  private homeSettings(){const c=this.overlay('营地设置',this.tapServices.available?352:292);
+  private homeSettings(){const c=this.overlay('营地设置',292);
     this.button(c,'settings-close','×',143,111,38,38,()=>this.goHome(),'#e4eef1',true,27);
     this.button(c,'audio-music','音乐  '+(this.audio.musicEnabled?'开':'关'),0,50,300,48,()=>{this.audio.toggle('music');this.homeSettings();},this.audio.musicEnabled?'#519b81':'#8b9dab');
     this.button(c,'audio-effects','音效  '+(this.audio.effectsEnabled?'开':'关'),0,-11,300,48,()=>{this.audio.toggle('effects');this.homeSettings();},this.audio.effectsEnabled?'#519b81':'#8b9dab');
     this.button(c,'settings-language','语言  ›',0,-72,300,48,()=>this.languageSettings(),'#286f94');
-    if(this.tapServices.available)this.button(c,'settings-tap','TapTap · 云存档',0,-133,300,48,()=>this.tapAccount(),'#286f94');
   }
   private languageSettings(){
     const back=()=>{this.exitUtility();this.homeSettings();},c=this.fullPage('语言','',()=>this.languageSettings(),back),{top,bottom,height}=this.pageBounds(c);
@@ -1882,19 +1654,19 @@ export class PMGame extends Component {
   private dexOwned(id:PetId,rarity?:EggRarity,shiny=false){return this.state.pets!.some(p=>p.id===id&&(!rarity||(p.rarity||'normal')===rarity)&&!!p.shiny===shiny);}
   private pokedexUI(){
     const owned=new Set(this.state.pets!.map(p=>formKey(p)+(p.shiny?':shiny':''))).size;
-    const summary='已拥有 '+owned+' / '+PET_IDS.length*6+' 形态',c=this.fullPage('图鉴',summary,()=>this.pokedexUI()),{top,bottom,height}=this.pageBounds(c);
-    const chooseMap=(id:number)=>{this.dexMap=id;this.dexFriendsOnly=false;this.dexPage=0;this.pokedexUI();};
+    const catalog=PET_IDS.filter(id=>!FRIEND_PET_IDS.includes(id)||this.state.pets!.some(p=>p.id===id));
+    const summary='已拥有 '+owned+' / '+catalog.length*6+' 形态',c=this.fullPage('图鉴',summary,()=>this.pokedexUI()),{top,bottom,height}=this.pageBounds(c);
+    const chooseMap=(id:number)=>{this.dexMap=id;this.dexPage=0;this.pokedexUI();};
     for(const name of ['图鉴',summary]){const n=this.root.getChildByName(name);if(n){n.setPosition(-12,n.position.y);n.getComponent(UITransform)!.width=190;}}
-    this.button(this.root,'dex-map-all','全部',146,this.h/2-42,78,44,()=>chooseMap(-1),this.dexMap<0&&!this.dexFriendsOnly?'#b43d3a':'#f5e8dc',true,16);
+    this.button(this.root,'dex-map-all','全部',146,this.h/2-42,78,44,()=>chooseMap(-1),this.dexMap<0?'#b43d3a':'#f5e8dc',true,16);
     this.regionTabs(c,top-32,MAPS.map(m=>({id:m.id,label:String(m.id+1).padStart(2,'0'),tint:m.tint})),this.dexMap,this.dexTabPage,(p,redraw)=>{this.dexTabPage=p;if(redraw)this.pokedexUI();},chooseMap,'dex-map');
     const extraTabs=MAPS.length>12?60:0;
-    this.button(c,'dex-type',(this.dexType||'全部属性')+' ▾',-91,top-156-extraTabs,172,58,()=>this.dexTypePicker(),this.dexType?'#527e9a':C.paper,true,17);
-    this.button(c,'dex-owned','已拥有',91,top-156-extraTabs,172,58,()=>{this.dexOwnedOnly=!this.dexOwnedOnly;this.dexPage=0;this.pokedexUI();},this.dexOwnedOnly?'#519b81':C.paper,true,17);
-    this.button(c,'dex-friends','好友专属',-91,top-222-extraTabs,172,58,()=>{this.dexFriendsOnly=!this.dexFriendsOnly;if(this.dexFriendsOnly)this.dexMap=-1;this.dexPage=0;this.pokedexUI();},this.dexFriendsOnly?'#927498':C.paper,true,17);
-    this.button(c,'dex-shiny','闪光',91,top-222-extraTabs,172,58,()=>{this.dexShinyOnly=!this.dexShinyOnly;this.dexPage=0;this.pokedexUI();},this.dexShinyOnly?'#b27d27':C.paper,true,17);
-    const forms=[false,true].reduce((all:{id:PetId;rarity:EggRarity;shiny:boolean}[],shiny)=>all.concat(PET_IDS.reduce((rows:{id:PetId;rarity:EggRarity;shiny:boolean}[],id)=>rows.concat(RARITIES.map(rarity=>({id,rarity,shiny}))),[])),[]).filter(({id,rarity,shiny})=>(this.dexMap<0||MAPS[this.dexMap].pets.includes(id))&&(!this.dexType||PETS[id].type===this.dexType)&&(!this.dexOwnedOnly||this.dexOwned(id,rarity,shiny))&&(!this.dexFriendsOnly||FRIEND_PET_IDS.includes(id))&&(!this.dexShinyOnly||shiny));
+    this.button(c,'dex-type',(this.dexType||'全部属性')+' ▾',-120,top-156-extraTabs,112,58,()=>this.dexTypePicker(),this.dexType?'#527e9a':C.paper,true,17);
+    this.button(c,'dex-owned','已拥有',0,top-156-extraTabs,112,58,()=>{this.dexOwnedOnly=!this.dexOwnedOnly;this.dexPage=0;this.pokedexUI();},this.dexOwnedOnly?'#519b81':C.paper,true,17);
+    this.button(c,'dex-shiny','闪光',120,top-156-extraTabs,112,58,()=>{this.dexShinyOnly=!this.dexShinyOnly;this.dexPage=0;this.pokedexUI();},this.dexShinyOnly?'#b27d27':C.paper,true,17);
+    const forms=[false,true].reduce((all:{id:PetId;rarity:EggRarity;shiny:boolean}[],shiny)=>all.concat(catalog.reduce((rows:{id:PetId;rarity:EggRarity;shiny:boolean}[],id)=>rows.concat(RARITIES.map(rarity=>({id,rarity,shiny}))),[])),[]).filter(({id,rarity,shiny})=>(this.dexMap<0||MAPS[this.dexMap].pets.includes(id))&&(!this.dexType||PETS[id].type===this.dexType)&&(!this.dexOwnedOnly||this.dexOwned(id,rarity,shiny))&&(!this.dexShinyOnly||shiny));
     const perPage=6,pages=Math.max(1,Math.ceil(forms.length/perPage));this.dexPage=Math.min(this.dexPage,pages-1);
-    const rowH=Math.min(222,(height-342-extraTabs)/2),start=top-264-extraTabs-rowH/2;
+    const rowH=Math.min(222,(height-276-extraTabs)/2),start=top-198-extraTabs-rowH/2;
     this.listPages(c,forms,perPage,this.dexPage,({id,rarity,shiny},itemIndex)=>{const i=itemIndex%perPage,owned=this.dexOwned(id,rarity,shiny),pet={...petEntry(this.state,id+':'+rarity),shiny};
       const p=this.button(c,'dex-pet-'+id+'-'+rarity+(shiny?'-shiny':''),'',(i%3-1)*120,start-Math.floor(i/3)*(rowH+8),112,rowH,()=>this.dexDetail(id,rarity,shiny),shiny?'#fff6df':'#ffffff');
       this.listItem(p,itemIndex,perPage);const index=PET_IDS.indexOf(id)*3+RARITIES.indexOf(rarity)+1;
@@ -1927,8 +1699,8 @@ export class PMGame extends Component {
     const skill=skillFor(p),card=this.panel(c,0,rowY-70,354,80,'#ffffff',14);
     this.text(card,skill.name,0,23,16,tint,330,27).isBold=true;
     this.text(card,petSkills(p).map(code=>SKILLS[code][1]).join(' · '),0,-12,13,C.muted,326,43);
-    const location=this.panel(c,0,rowY-143,354,50,'#e0eee7',14);this.menuIcon(location,map?'map':'mail',-145,0,26,map?.tint||'#769cba');
-    this.text(location,map?map.name+' · 孵蛋获得':'好友专属蛋',17,0,15,'#427d68',290,32);
+    const location=this.panel(c,0,rowY-143,354,50,'#e0eee7',14);this.menuIcon(location,'map',-145,0,26,map?.tint||'#769cba');
+    this.text(location,map?map.name+' · 孵蛋获得':'宠物蛋',17,0,15,'#427d68',290,32);
     this.button(c,'dex-types','属性关系',0,bottom+78,140,30,()=>this.typeRelationsUI(id,rarity,()=>this.dexDetail(id,rarity,shiny)),'#e8f3fa',true,13);
     this.button(c,'dex-detail-back','返回图鉴',0,bottom+32,354,44,()=>this.pokedexUI(),'#427b9e',true,17);
   }

@@ -2,7 +2,7 @@ name: iOS cloud build
 on:
   workflow_dispatch:
   push:
-    branches: [codex/ios-cloud-build]
+    branches: [codex/mobile-ios-20261125]
     paths:
       - assets/**
       - settings/**
@@ -82,7 +82,8 @@ jobs:
         with:
           name: Dice-Pet-Spirits-iOS-${{ github.run_number }}
           path: |
-            build/ios-export/
+            build/ios-export/AppStore/*.ipa
+            build/ios-export/build-result.json
             build/ios-logs/
           if-no-files-found: warn
           retention-days: 14
