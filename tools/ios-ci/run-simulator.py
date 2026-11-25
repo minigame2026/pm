@@ -1,6 +1,7 @@
 """Boot the requested iOS devices and capture actual native Cocos frames."""
 import json
 from pathlib import Path
+import re
 import struct
 import subprocess
 import sys
@@ -24,12 +25,12 @@ def check_png(file):
     return struct.unpack(">II", content[16:24])
 
 
-def retry_on_startup(*args):
-    for attempt in range(6):
+def retry_on_startup(*args, timeout=65, attempts=6):
+    for attempt in range(attempts):
         try:
-            return sim(*args, capture=False, timeout=65)
+            return sim(*args, capture=False, timeout=timeout)
         except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as error:
-            if attempt == 5:
+            if attempt == attempts-1:
                 raise
             print(type(error).__name__, args[0], "while Simulator initializes; retry", attempt+1, flush=True)
             time.sleep(8)
@@ -46,12 +47,12 @@ def run_case(device_type, key, runtime):
             sim("boot", udid, capture=False, timeout=75)
         # SpringBoard and direct app commands can be ready while bootstatus still
         # waits for optional system-app migration on hosted Intel runners.
-        retry_on_startup("install", udid, app)
+        retry_on_startup("install", udid, app, timeout=220, attempts=3)
         data = Path(sim("get_app_container", udid, bundle, "data").strip())
         retry_on_startup("launch", udid, bundle)
         done = set()
         dimensions = {}
-        deadline = time.monotonic() + 210
+        deadline = time.monotonic() + 510
         report = case / "result.json"
         while time.monotonic() < deadline:
             files = list(data.rglob("pm-simulator-state.json"))
@@ -100,6 +101,18 @@ runtime_version = "18.6"
 ios = [row for row in runtimes if row["isAvailable"] and ".iOS-" in row["identifier"] and row["version"] == runtime_version]
 assert ios, "Required iOS Simulator runtime unavailable: " + runtime_version
 runtime = ios[0]["identifier"]
+
+# Reuse the compiled simulator-only probe. Capturing a large Simulator screen
+# on a hosted Intel runner can take longer than the probe's normal UI timeout.
+bundles = [file for file in app.rglob("index.js")
+           if file.as_posix().endswith("/assets/main/index.js")]
+assert len(bundles) == 1, "Expected a single Simulator game bundle"
+bundle_script = bundles[0].read_text()
+marker = r'(["\']Screenshot timeout: ["\']\s*\+\s*[\w$]+)\)'
+patched, count = re.subn(marker, r'\1,150000)', bundle_script)
+assert count == 1, "Unexpected compiled Simulator screenshot marker"
+bundles[0].write_text(patched)
+
 devices = [
     ("com.apple.CoreSimulator.SimDeviceType.iPhone-SE-3rd-generation", "small-se"),
     ("com.apple.CoreSimulator.SimDeviceType.iPhone-16", "island-16"),
