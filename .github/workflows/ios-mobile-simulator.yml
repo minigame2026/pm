@@ -1,0 +1,85 @@
+name: iOS mobile simulator
+on:
+  push:
+    branches: [codex/mobile-ios-20261125]
+    paths: [tools/ios-ci/**, assets/**, config/buildConfig_ios.json, .github/workflows/ios-mobile-simulator.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  simulator:
+    runs-on: macos-15-intel
+    timeout-minutes: 50
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
+      CMAKE_POLICY_VERSION_MINIMUM: '3.5'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/cache@v4
+        with:
+          path: ~/cocos-installer
+          key: cocos-creator-3.8.7-mac-080718
+      - name: Install Creator 3.8.7
+        run: |
+          mkdir -p "$HOME/cocos-installer" "$RUNNER_TEMP/cocos"
+          ZIP="$HOME/cocos-installer/creator.zip"
+          if [ ! -f "$ZIP" ]; then
+            curl --fail --location --retry 3 --connect-timeout 30 --max-time 1200 --output "$ZIP" https://download.cocos.com/CocosCreator/v3.8.7/CocosCreator-v3.8.7-mac-080718.zip
+          fi
+          ditto -xk "$ZIP" "$RUNNER_TEMP/cocos"
+          APP=$(find "$RUNNER_TEMP/cocos" -maxdepth 4 -name CocosCreator.app -type d -print -quit)
+          test -n "$APP"
+          xattr -dr com.apple.quarantine "$APP" || true
+          echo "CREATOR_APP=$APP" >> "$GITHUB_ENV"
+          xcodebuild -version
+          xcrun simctl list runtimes
+      - name: Export isolated iOS Simulator project
+        run: |
+          node tools/ios-ci/prepare-simulator.cjs
+          mkdir -p build/ios-logs
+          set +e
+          "$CREATOR_APP/Contents/MacOS/CocosCreator" --project "$GITHUB_WORKSPACE" --build "configPath=$GITHUB_WORKSPACE/config/buildConfig_ios.json" > build/ios-logs/creator.log 2>&1
+          result=$?
+          set -e
+          tail -80 build/ios-logs/creator.log
+          test "$result" -eq 36
+          node tools/ios-cloud-build.cjs signing
+          node tools/ios-cloud-build.cjs prepare
+      - name: Build x86_64 Simulator app
+        run: |
+          project=$(find build/ios/proj -maxdepth 1 -name '*.xcodeproj' -print -quit)
+          test -n "$project"
+          set +e
+          xcodebuild -project "$project" -scheme DicePet-mobile -configuration Release \
+            -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath "$RUNNER_TEMP/pm-simulator-build" -jobs 3 \
+            PRODUCT_BUNDLE_IDENTIFIER=com.dice.pet.rpg CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO \
+            ARCHS=x86_64 ONLY_ACTIVE_ARCH=NO TARGETED_DEVICE_FAMILY=1 \
+            IPHONEOS_DEPLOYMENT_TARGET=13.0 build > build/ios-logs/simulator-xcode.log 2>&1
+          result=$?
+          set -e
+          tail -80 build/ios-logs/simulator-xcode.log
+          test "$result" -eq 0
+      - name: Test compact, Dynamic Island and large iPhones
+        timeout-minutes: 16
+        run: |
+          app=$(find "$RUNNER_TEMP/pm-simulator-build/Build/Products/Release-iphonesimulator" -maxdepth 1 -name '*.app' -print -quit)
+          test -n "$app"
+          python3 -u tools/ios-ci/run-simulator.py "$app" build/ios-simulator-evidence
+      - name: Save Simulator evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Dice-Pet-Spirits-iOS-Simulator-${{ github.run_number }}
+          path: |
+            build/ios-simulator-evidence/
+            build/ios-logs/
+          if-no-files-found: error
+          retention-days: 14
