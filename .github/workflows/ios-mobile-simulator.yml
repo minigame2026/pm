@@ -4,6 +4,12 @@ on:
     branches: [codex/mobile-pc-26696982]
     paths: [tools/ios-ci/**, assets/**, config/buildConfig_ios.json, .github/workflows/ios-mobile-simulator.yml]
   workflow_dispatch:
+    inputs:
+      profile:
+        description: Simulator profile to rerun
+        type: choice
+        options: [all, small-se, island-16, large-16-pro-max]
+        default: all
 
 permissions:
   contents: read
@@ -15,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        profile: [small-se, island-16, large-16-pro-max]
+        profile: ${{ fromJSON(inputs.profile != '' && inputs.profile != 'all' && format('["{0}"]', inputs.profile) || '["small-se","island-16","large-16-pro-max"]') }}
     env:
       DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
       CMAKE_POLICY_VERSION_MINIMUM: '3.5'
