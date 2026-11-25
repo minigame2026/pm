@@ -1,4 +1,12 @@
 export const PC_CAMPAIGN_TRANSLATIONS:Record<string,Record<string,string>>={
+  "料理": { "en": "Cook" },
+  "烹饪": { "en": "Cook" },
+  "享用": { "en": "Eat" },
+  "攻击": { "en": "Attack" },
+  "受到伤害": { "en": "Damage taken" },
+  "治疗": { "en": "Healing" },
+  "最大生命": { "en": "Max HP" },
+  "剩余 {count} 场": { "en": "{count} battles left" },
   "营地烹饪": {
     "en": "Camp Kitchen",
     "ja": "キャンプ料理",

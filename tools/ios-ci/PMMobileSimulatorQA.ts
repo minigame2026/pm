@@ -1,4 +1,6 @@
-import { director, Director, native, Node, sys, view } from 'cc';
+import { director, Director, Label, native, Node, sys, view } from 'cc';
+import { newCooking } from './PCCooking';
+import { selectLanguage } from './PMLocale';
 
 // This module is injected only into the simulator build.
 export async function runMobileSimulatorQA(game: any) {
@@ -9,6 +11,7 @@ export async function runMobileSimulatorQA(game: any) {
   const state = () => (globalThis as any).__pm;
   const steps: string[] = [];
   const screens: any[] = [];
+  const cookingLabels: string[] = [];
   const check = (condition: unknown, reason: string) => {
     if (!condition) throw new Error(reason);
   };
@@ -26,6 +29,16 @@ export async function runMobileSimulatorQA(game: any) {
   };
   const nodeFor = (node: Node, name: string): Node | undefined =>
     node.name === name ? node : node.children.map(child => nodeFor(child, name)).find(Boolean);
+  const expectLabel = (expected: string, root: Node = game.root) => {
+    const labels = root.getComponentsInChildren(Label).map(label => label.string);
+    check(labels.includes(expected), 'Missing English label: ' + expected + ' (' + labels.join(' | ') + ')');
+    cookingLabels.push(expected);
+  };
+  const expectButton = (id: string, expected: string) => {
+    const node = nodeFor(game.root, id);
+    if (!node) throw new Error('Missing cooking button: ' + id);
+    expectLabel(expected, node);
+  };
   const touch = async (id: string) => {
     await settle();
     const control = state().controls()[id];
@@ -61,6 +74,7 @@ export async function runMobileSimulatorQA(game: any) {
       files.getStringFromFile(root+'pm-simulator-ack.txt').trim() === stage, 'Screenshot timeout: '+stage);
   };
   try {
+    selectLanguage('en', 'en');
     // The fixture only replaces the clock source in the simulator test application.
     await game.trustedClock.sync();
     const clock = game.trustedClock;
@@ -73,11 +87,37 @@ export async function runMobileSimulatorQA(game: any) {
     await touch('hero-confirm');
     await touch('starter-confirm');
     check(!state().controls()['home-social'], 'Social action still visible at camp');
+    expectButton('home-cooking', 'Cook');
     await snapshot('camp', /^home-(partners|hatch|breed|cooking|dex|explore|gym)$/);
+    game.state.pcCooking = {...newCooking(), ingredients: {'meat:1': 2, 'spice:1': 1}};
     for (const page of ['partners','hatch','breed','cooking']) {
       await touch('home-'+page);
       if (page === 'partners') await snapshot('partners', /^nav-home$/);
-      if (page === 'cooking') await snapshot('cooking', /^food-(recipe-\d+|quality-\d+|cook|eat)$/);
+      if (page === 'cooking') {
+        expectButton('food-cook', 'Cook');
+        expectButton('food-eat', 'Cook a meal first');
+        const bonuses = ['Attack +12%', 'Damage taken −12%', 'Healing +20%', 'Max HP +12%',
+          'Attack +8% · Healing +8%', 'Attack +8% · Damage taken −8%'];
+        for (const [index, bonus] of bonuses.entries()) {
+          await touch('food-recipe-' + index);
+          expectLabel(bonus);
+        }
+        await touch('food-recipe-0');
+        await touch('food-quality-3');
+        expectLabel('Attack +24%');
+        await touch('food-quality-1');
+        await touch('food-cook');
+        await waitFor(() => state().snapshot().pcCooking.meals['ember-skewer:1'] === 1, 'Cooking did not save');
+        await settle();
+        expectButton('food-eat', 'Eat ×1');
+        await touch('food-eat');
+        await waitFor(() => state().snapshot().pcCooking.active?.remaining === 10, 'Meal did not activate');
+        await settle();
+        expectLabel('Chargrilled Skewers · 10 battles left');
+        check(!game.root.getComponentsInChildren(Label).some((label: Label) => /[\u3400-\u9fff]/.test(label.string)),
+          'Chinese text still visible in the English kitchen');
+        await snapshot('cooking', /^food-(recipe-\d+|quality-\d+|cook|eat)$/);
+      }
       await touch('nav-home');
     }
     await touch('home-dex');
@@ -99,7 +139,7 @@ export async function runMobileSimulatorQA(game: any) {
     await touch('attack');
     check(state().snapshot().revision > before.revision, 'Attack did not advance the battle');
     await game.save();
-    files.writeStringToFile(JSON.stringify({ stage:'complete', steps, screens, ok:true }), root+'pm-simulator-state.json');
+    files.writeStringToFile(JSON.stringify({ stage:'complete', steps, screens, cookingLabels, ok:true }), root+'pm-simulator-state.json');
   } catch (error) {
     files.writeStringToFile(JSON.stringify({ stage:'failed', steps, screens, error:String(error) }), root+'pm-simulator-state.json');
   }

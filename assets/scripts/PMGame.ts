@@ -1530,7 +1530,7 @@ export class PMGame extends Component {
     const avatar=this.panel(this.root,-159,top-39,40,40,'#dceee7',20);avatar.name='home-avatar';
     const crop=this.makeNode(avatar,'home-avatar-crop',0,0,38,38);crop.addComponent(Mask).type=Mask.Type.GRAPHICS_ELLIPSE;
     this.image(crop,'avatar-'+(this.state.journey?.hero||'ranger'),0,0,38,38);
-    this.text(this.root,this.state.pcCooking?.active?mealSummary(this.state.pcCooking):heroFor(this.state).name,-62,top-39,13,C.ink,153,32);
+    this.text(this.root,this.state.pcCooking?.active?mealSummary(this.state.pcCooking,campaignText):heroFor(this.state).name,-62,top-39,13,C.ink,153,32);
   }
   private homeSettings(){const c=this.overlay('营地设置',292);
     this.button(c,'settings-close','×',143,111,38,38,()=>this.goHome(),'#e4eef1',true,27);
@@ -1623,7 +1623,7 @@ export class PMGame extends Component {
   private cookingUI(){
     const state=this.state.pcCooking||newCooking(),recipe=RECIPES[this.recipeIndex],quality=this.recipeQuality;
     const replace=()=>this.cookingUI();
-    const c=this.fullPage('营地烹饪',mealSummary(state),replace),{top,bottom,height}=this.pageBounds(c);
+    const c=this.fullPage('营地烹饪',mealSummary(state,campaignText),replace),{top,bottom,height}=this.pageBounds(c);
     for(const q of [1,2,3] as FoodQuality[]){
       this.button(c,'food-quality-'+q,FOOD_QUALITY_NAMES[q],(q-2)*116,top-28,108,44,
         ()=>{this.recipeQuality=q;replace();},q===quality?'#c78a4c':'#f3e4d1',true,15);
@@ -1633,7 +1633,7 @@ export class PMGame extends Component {
     const cardHeight=height-294,card=this.panel(c,0,top-177-cardHeight/2,350,cardHeight,'#fffdf5',18);
     this.text(card,recipe.name,0,cardHeight/2-24,20,C.ink,322,31).isBold=true;
     this.text(card,recipe.types.map(type=>tr(type)).join(' · '),0,cardHeight/2-54,14,C.muted,322,24);
-    this.text(card,bonusDescription(recipe,quality).split(' · ').map(value=>tr(value)).join(' · '),0,cardHeight/2-83,16,C.green,322,28);
+    this.text(card,bonusDescription(recipe,quality,campaignText),0,cardHeight/2-83,16,C.green,322,28);
     recipeCost(recipe,quality).forEach(({id,count},i)=>{
       const name=INGREDIENTS.find(item=>item.id===id)!.name;
       const have=state.ingredients[cookingKey(id,quality)]||0;

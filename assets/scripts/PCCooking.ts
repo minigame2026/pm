@@ -67,8 +67,21 @@ export const foodAttack=(s:PCCookingState|undefined,type:string,base:number)=>in
 export const foodDefense=(s:PCCookingState|undefined,type:string,base:number)=>base>0&&foodBonuses(s,type).defense>0?Math.max(1,Math.min(base-1,Math.round(base*(1-foodBonuses(s,type).defense/100)))):base;
 export const foodHeal=(s:PCCookingState|undefined,type:string,base:number)=>increase(base,foodBonuses(s,type).heal);
 export const foodHealth=(s:PCCookingState|undefined,type:string,base:number)=>increase(base,foodBonuses(s,type).health);
-export function mealSummary(state:PCCookingState|undefined){const meal=state?.active,recipe=RECIPES.find(r=>r.id===meal?.recipeId);return meal&&recipe?recipe.name+' · 剩余 '+meal.remaining+' 场':'尚未用餐';}
-export function bonusDescription(recipe:Recipe,quality:FoodQuality){const b=foodBonuses({...newCooking(),active:{recipeId:recipe.id,quality,remaining:10}},recipe.types[0]);return [b.attack?'攻击 +'+b.attack+'%':'',b.defense?'受到伤害 −'+b.defense+'%':'',b.heal?'治疗 +'+b.heal+'%':'',b.health?'最大生命 +'+b.health+'%':''].filter(Boolean).join(' · ');}
+export function mealSummary(state:PCCookingState|undefined,translate:(value:string)=>string){
+  const meal=state?.active,recipe=RECIPES.find(r=>r.id===meal?.recipeId);
+  if(!meal||!recipe)return translate('尚未用餐');
+  const remaining=translate('剩余 {count} 场').replace('{count}',String(meal.remaining));
+  return translate(recipe.name)+' · '+remaining;
+}
+export function bonusDescription(recipe:Recipe,quality:FoodQuality,translate:(value:string)=>string){
+  const bonuses=foodBonuses({...newCooking(),active:{recipeId:recipe.id,quality,remaining:10}},recipe.types[0]);
+  return [
+    bonuses.attack?translate('攻击')+' +'+bonuses.attack+'%':'',
+    bonuses.defense?translate('受到伤害')+' −'+bonuses.defense+'%':'',
+    bonuses.heal?translate('治疗')+' +'+bonuses.heal+'%':'',
+    bonuses.health?translate('最大生命')+' +'+bonuses.health+'%':'',
+  ].filter(Boolean).join(' · ');
+}
 function randomUnit(text:string){let h=2166136261;for(let i=0;i<text.length;i++)h=Math.imul(h^text.charCodeAt(i),16777619);h^=h>>>16;h=Math.imul(h,0x7feb352d);h^=h>>>15;h=Math.imul(h,0x846ca68b);h^=h>>>16;return (h>>>0)/4294967296;}
 const MAP_INGREDIENTS:IngredientId[][]=[['herb','fish','grain'],['meat','spice','mushroom'],['fish','mushroom','grain'],['herb','fish','grain'],['spice','meat','grain'],['mushroom','herb','fish'],['herb','mushroom','fish'],['grain','spice','meat'],['mushroom','fish','grain'],['herb','grain','fish'],['meat','spice','mushroom'],['mushroom','fish','herb']];
 /** One completed encounter is one serving charge. Loot rolls do not consume mainline RNG. */
