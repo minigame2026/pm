@@ -31,7 +31,7 @@ import { tr, currentLocale, selectLanguage, languageChoice, LANGUAGES, LANGUAGE_
 import { setTimeProvider, gameNow, BUILD_TEST_MODE } from './PMModel';
 import { enterExpedition, retreatExpedition } from './PMModel';
 import { HeroId, HEROES, HERO_IDS, STARTERS, newJourney, prepareJourney, chooseHero, chooseStarter, heroFor, heroHealBonus, hatchDuration } from './PMModel';
-import { Pet, Sex, pet, petEntry, petName, petBaseHP, formKey, sexSymbol, petSkills, SKILLS, startBreeding, claimBreeding, grantRerollAd } from './PMModel';
+import { Pet, Sex, pet, petEntry, petName, petBaseHP, formKey, sexSymbol, petSkills, SKILLS, startBreeding, claimBreeding, BREED_DURATION } from './PMModel';
 import { partyChoices, rankForStage, homeParty, assignPartySlot, MAPS, mapFor, mapStageCount, mapUnlocked, latestUnlockedMap, startMap, enemyPet, eggRates, hasActivePet } from './PMModel';
 import { RARITIES, EggRarity, rarityName, qualityHP, preferredRarity, unlockedRarities, setPetRarity, skillFor, skillStatus, availableEggs, hatchRemaining, startIncubation, grantHatchAd, grantBreedingAd, claimHatch, acknowledgeHatch } from './PMModel';
 import { State, PetId, Action, Egg, PETS, PET_IDS, NEW_PET_IDS, fresh, act, hp, maxHP, enemyName, enemyAttackFaces, restore, equipReserve, selectActive, healAmount, attackAmount, guardDamage, rewardOptions, canManageParty, restartRun } from './PMModel';
@@ -76,7 +76,6 @@ export class PMGame extends Component {
   private pageSwipeActive=false;
   private homeHatchBadge:Node|null=null;private homeBreedBadge:Node|null=null;
   private homeMotion:{since:number;next:number;pulse:UIOpacity;icons:{node:Node;x:number;y:number;z:number}[];index:number;badges:Node[]}|null=null;
-  private adPending=false;
   private trustedClock=new TrustedClock();private clockRetryAt=0;private clockSaveAt=0;private clockForeground=true;private clockUiRefresh=false;
   private partyDropNodes:Node[]=[];private partyDragHint:Label|null=null;
   private partyDrag:{id:string;touch:number;source:Node;start:Vec3;origin:Vec3;moved:boolean;axis?:'horizontal'|'vertical';ghost:Node|null;guides:Node[];target:number}|null=null;
@@ -152,7 +151,12 @@ export class PMGame extends Component {
     if(this.trustedClock.now()===null)return;
     delete this.state.pendingStaminaAd;
     if(this.state.pendingHatchAd){const {index,eggId}=this.state.pendingHatchAd;this.state=grantHatchAd(this.state,index,eggId,true);delete this.state.pendingHatchAd;}
-    if(this.state.pendingBreedingAd){const {breedingId}=this.state.pendingBreedingAd;this.state=grantBreedingAd(this.state,breedingId,true);delete this.state.pendingBreedingAd;}
+    if(this.state.pendingBreedingAd){
+      const {breedingId}=this.state.pendingBreedingAd;
+      const next=grantBreedingAd(this.state,breedingId,true);
+      if(next!==this.state&&next.breeding)Object.assign(next.breeding,{pcHelpCompletedAt:next.breeding.readyAt});
+      this.state=next;delete this.state.pendingBreedingAd;
+    }
   }
   private requireTime(){if(this.trustedClock.now()!==null)return true;this.timeNotice();return false;}
   private timeNotice(message='连接网络后继续计时'){
@@ -771,12 +775,12 @@ export class PMGame extends Component {
   }
   private encounterUI(p:Node,height:number){const s=this.state;
     this.encounterPartyUI(this.makeNode(p,'encounter-party',0,0,390,height));
-    const refreshable=rankForStage(s.step)!=='boss';
+    const refreshable=rankForStage(s.step)!=='boss'&&s.swaps>0;
     this.panel(p,-128,-107,92,64,refreshable?'#6795ae':'#a8bdca',16);
-    const reroll=this.button(p,'reroll','',-128,-102,92,64,()=>s.swaps>0?this.command('reroll'):void this.watchRerollAd(),'#dff3fc',refreshable);
+    const reroll=this.button(p,'reroll','',-128,-102,92,64,()=>this.command('reroll'),'#dff3fc',refreshable);
     this.image(reroll,'refresh-enemy',-8,2,50,50).getComponent(Sprite)!.grayscale=!refreshable;
     const count=this.panel(reroll,28,-18,28,25,refreshable?'#246987':'#93aab8',10);
-    if(refreshable&&s.swaps===0)this.menuIcon(count,'video',0,0,20,'#ffffff');else this.text(count,''+s.swaps,0,0,16,'#ffffff',23,23);
+    this.text(count,''+s.swaps,0,0,16,'#ffffff',23,23);
     this.panel(p,51,-107,246,64,'#bc6f26',16);
     const challenge=this.button(p,'challenge','',51,-102,246,64,()=>this.command('challenge'),'#f2ad45');
     const shine=challenge.getComponent(Graphics)!;shine.fillColor=color('#ffe3a0',125);shine.roundRect(-117,3,234,23,10);shine.fill();
@@ -1242,10 +1246,9 @@ export class PMGame extends Component {
       if(egg&&slot){const ready=hatchRemaining(slot)===0;const art=this.eggArt(p,egg,0,48,Math.min(190,cardH-202));this.breathe(art);
         this.text(p,this.eggName(egg),0,-cardH/2+126,16,this.eggTint(egg),158,26).isBold=true;
         const label=this.text(p,this.hatchTime(hatchRemaining(slot)),0,-cardH/2+89,23,ready?'#2b9b66':C.ink,160,32);this.hatchClock.push({label,index,ready});
-        const button=this.button(p,'hatch-slot-'+index,ready?'破壳！':'',0,-cardH/2+39,150,46,()=>{
-          if(!ready){void this.watchHatchAd(index);return;}if(!this.requireTime())return;const next=claimHatch(this.state,index);if(next!==this.state&&next.pendingHatch)this.audio.effect('hatch');this.state=next;this.save();this.hatchery();
-        },ready?'#dba441':'#519b81',!this.adPending,17);
-        if(!ready){this.menuIcon(button,'reward-video',-49,0,29);this.text(button,'立即完成',20,0,16,'#ffffff',98,28).isBold=true;}
+        this.button(p,'hatch-slot-'+index,ready?'破壳！':'孵化中…',0,-cardH/2+39,150,46,()=>{
+          if(!this.requireTime())return;const next=claimHatch(this.state,index);if(next!==this.state&&next.pendingHatch)this.audio.effect('hatch');this.state=next;this.save();this.hatchery();
+        },'#dba441',ready,17);
       }else{
         this.text(p,'+',0,16,76,'#7da99a',140,100);
         this.text(p,'放入宠物蛋',0,-48,16,C.muted,154,30);
@@ -1253,45 +1256,6 @@ export class PMGame extends Component {
     }
     const foot=this.panel(c,0,bottom+65,390,130,'#fffdf5',22);this.text(foot,'待孵化  '+availableEggs(s).length,0,31,16,C.muted,350,28);
     this.button(foot,'hatch-bag','蛋袋  ›',0,-19,350,48,()=>this.eggBag(),'#519b81',true,20);this.controls['hatch-close']=this.controls['nav-home'];
-  }
-  private hatchAdNotice(message:string){const c=this.overlay('孵化加速',218);this.text(c,message,0,26,15,C.muted,318,60);this.button(c,'hatch-ad-close','返回',0,-58,300,46,()=>this.hatchery(),'#519b81');}
-  private rerollAdNotice(message:string){const c=this.overlay('刷新对手',218);this.text(c,message,0,26,15,C.muted,318,60);this.button(c,'reroll-ad-close','返回',0,-58,300,46,()=>this.render(),'#427b9e');}
-  private async watchRerollAd(){
-    if(this.adPending||this.busy||this.state.phase!=='encounter'||this.state.swaps>0||rankForStage(this.state.step)==='boss')return;
-    const bridge=(globalThis as any).pmRewardedAd as {show:(request:{placement:string})=>Promise<{completed:boolean}>}|undefined;
-    if(!bridge||typeof bridge.show!=='function'){this.rerollAdNotice('激励广告待接入，暂不能刷新');return;}
-    const token=[this.state.mapId,this.state.step,this.state.seed,this.state.revision].join(':');
-    this.adPending=true;this.busy=true;this.audio.pause('ad');
-    try{const result=await bridge.show({placement:'encounter_reroll'});
-      if(token!==[this.state.mapId,this.state.step,this.state.seed,this.state.revision].join(':')||this.state.phase!=='encounter')return;
-      if(result?.completed===true){this.state=grantRerollAd(this.state,true);this.save();this.render();}
-      else this.rerollAdNotice('完整观看视频后可刷新');
-    }catch{this.rerollAdNotice('广告暂不可用，请稍后再试');}
-    finally{this.adPending=false;this.busy=false;this.audio.resume('ad');}
-  }
-  private async watchHatchAd(index:number){
-    if(this.adPending||!this.requireTime())return;this.settlePendingAd();const slot=this.state.incubators?.[index];if(!slot||hatchRemaining(slot)===0){this.hatchery();return;}
-    const bridge=(globalThis as any).pmRewardedAd as {show:(request:{placement:string})=>Promise<{completed:boolean}>}|undefined;
-    if(!bridge||typeof bridge.show!=='function'){this.hatchAdNotice('激励广告待接入，暂不能加速');return;}
-    const eggId=slot.eggId;this.adPending=true;this.busy=true;this.audio.pause('ad');
-    try{const result=await bridge.show({placement:'hatch_reduce_30m'});
-      if(result?.completed===true){this.state.pendingHatchAd={index,eggId};this.save();if(this.trustedClock.now()===null)await this.synchronizeTime();this.settlePendingAd();this.save();}
-      this.hatchery();if(this.state.pendingHatchAd)this.timeNotice('加速奖励已保留，联网后到账');else if(result?.completed!==true)this.hatchAdNotice('完整观看视频后可加速');
-    }catch{this.hatchAdNotice('广告暂不可用，请稍后再试');}
-    finally{this.adPending=false;this.busy=false;this.audio.resume('ad');if(!this.modal)this.hatchery();}
-  }
-  private breedingAdNotice(message:string){const c=this.overlay('交配屋',218);this.text(c,message,0,26,15,C.muted,318,60);this.button(c,'breed-ad-close','返回',0,-58,300,46,()=>this.breedingUI(),'#519b81');}
-  private async watchBreedingAd(){
-    if(this.adPending||!this.requireTime())return;this.settlePendingAd();const b=this.state.breeding;
-    if(!b||b.readyAt<=gameNow()){this.breedingUI();return;}
-    const bridge=(globalThis as any).pmRewardedAd as {show:(request:{placement:string})=>Promise<{completed:boolean}>}|undefined;
-    if(!bridge||typeof bridge.show!=='function'){this.breedingAdNotice('激励广告待接入，暂不能加速');return;}
-    const breedingId=b.id;this.adPending=true;this.busy=true;this.audio.pause('ad');
-    try{const result=await bridge.show({placement:'breed_reduce_30m'});
-      if(result?.completed===true){this.state.pendingBreedingAd={breedingId};this.save();if(this.trustedClock.now()===null)await this.synchronizeTime();this.settlePendingAd();this.save();}
-      this.breedingUI();if(this.state.pendingBreedingAd)this.timeNotice('加速奖励已保留，联网后到账');else if(result?.completed!==true)this.breedingAdNotice('完整观看视频后可加速');
-    }catch{this.breedingAdNotice('广告暂不可用，请稍后再试');}
-    finally{this.adPending=false;this.busy=false;this.audio.resume('ad');if(!this.modal)this.breedingUI();}
   }
   private eggPicker(slot:number,page=0){
     this.eggShelf(slot,page);
@@ -1379,13 +1343,27 @@ export class PMGame extends Component {
     const parents=[mother,father].map(key=>s.pets!.find(p=>p.uid===key)),pool=parents.every(Boolean)?Array.from(new Set(parents.reduce((codes,p)=>codes.concat(petSkills(p!)),[] as ReturnType<typeof petSkills>))):[];
     if(pool.length)this.button(foot,'breed-skill-pool','遗传技能池',62,43,224,34,()=>this.scrollSkillDetails(tr('技能')+' ×'+pool.length,pool,()=>this.breedingUI(),true),'#eadfee',true,16);
     if(b){const now=gameNow(),left=Number.isFinite(now)?Math.max(0,b.readyAt-now):Infinity,locked=s.phase==='battle'||!!s.pendingHatch,clock=this.text(foot,left?this.hatchTime(left):'可以领蛋',pool.length?-122:0,43,23,'#a66f91',pool.length?92:350,36);this.breedClock=left?clock:null;
-      if(left){const ad=this.button(foot,'breed-ad','',0,-9,350,48,()=>{void this.watchBreedingAd();},'#519b81',!this.adPending,19);this.menuIcon(ad,'reward-video',-68,0,27);this.text(ad,'立即完成',22,0,19,'#ffffff',140,30).isBold=true;}
-      else this.button(foot,'breed-claim',s.phase==='battle'?'战斗中':s.pendingHatch?'先领取新伙伴':left?'交配中…':'领取宠物蛋',0,-9,350,48,()=>{if(!this.requireTime())return;const next=claimBreeding(this.state);if(next!==this.state){const egg=next.eggs!.find(e=>e.id===b.id)!;this.state=next;this.breedMother='';this.breedFather='';this.partnerSelected=null;this.screen='home';this.save();this.render();this.breedingEggResult(egg);}},'#b57b9b',!left&&!locked,19);
-    }else{this.text(foot,BUILD_TEST_MODE?'00:03':'30:00',pool.length?-122:0,43,23,'#a66f91',pool.length?92:350,36);
+      this.button(foot,'breed-claim',s.phase==='battle'?'战斗中':s.pendingHatch?'先领取新伙伴':left?'交配中…':'领取宠物蛋',0,-9,350,48,
+        ()=>this.confirmBreedingClaim(b.id),'#b57b9b',!left&&!locked,19);
+    }else{this.text(foot,this.hatchTime(BREED_DURATION),pool.length?-122:0,43,23,'#a66f91',pool.length?92:350,36);
       this.button(foot,'breed-start','开始交配',0,-9,350,48,()=>{if(!this.requireTime())return;const next=startBreeding(this.state,this.breedMother,this.breedFather);if(next!==this.state){this.state=next;this.save();this.breedingUI();}},'#b57b9b',!!mother&&!!father,20);
     }
     this.button(foot,'breed-recipes','秘密配方',-91,-67,168,38,()=>this.recipeBook(),'#eadfee',true,16);
     this.button(foot,'breed-hatch','孵化屋 ›',91,-67,168,38,()=>this.hatchery(),'#dbe9ef',true,16);this.controls['breed-back']=this.controls['nav-home'];
+  }
+  private confirmBreedingClaim(id:string){
+    if(!this.requireTime())return;
+    const c=this.overlay('确认领取',250);
+    this.text(c,'领取蛋后，父母消失',0,26,16,C.muted,315,56);
+    this.button(c,'breed-claim-cancel','返回',-82,-56,145,48,()=>this.breedingUI(),'#e4eef1');
+    this.button(c,'breed-claim-confirm','确认领取',82,-56,145,48,async()=>{
+      if(this.state.breeding?.id!==id||!this.requireTime())return;
+      const next=claimBreeding(this.state),egg=next.eggs?.find(item=>item.id===id);
+      if(next===this.state||!egg)return;
+      if(!await this.commitCampaign(next)){this.breedingUI();this.pageHelp('保存失败');return;}
+      this.breedMother='';this.breedFather='';this.partnerSelected=null;this.screen='home';this.render();
+      this.breedingEggResult(egg);
+    },'#b57b9b');
   }
   private recipeBook(page=0){
     const known=this.state.surprises?.recipes||[],c=this.fullPage('秘密配方',known.length+' / '+SECRET_RECIPES.length,()=>this.recipeBook(page),()=>this.breedingUI()),{top,bottom,height}=this.pageBounds(c),h=Math.min(154,(height-96)/3-12);

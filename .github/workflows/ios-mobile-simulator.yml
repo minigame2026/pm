@@ -22,7 +22,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - uses: actions/cache@v4
+      - uses: actions/cache/restore@v4
+        id: creator-cache
         with:
           path: ~/cocos-installer
           key: cocos-creator-3.8.7-mac-080718
@@ -40,6 +41,11 @@ jobs:
           echo "CREATOR_APP=$APP" >> "$GITHUB_ENV"
           xcodebuild -version
           xcrun simctl list runtimes
+      - uses: actions/cache/save@v4
+        if: steps.creator-cache.outputs.cache-hit != 'true'
+        with:
+          path: ~/cocos-installer
+          key: cocos-creator-3.8.7-mac-080718
       - name: Export isolated iOS Simulator project
         run: |
           node tools/ios-ci/prepare-simulator.cjs

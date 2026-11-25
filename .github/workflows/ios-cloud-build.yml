@@ -43,8 +43,8 @@ jobs:
           IOS_DISTRIBUTION_PASSWORD: ${{ secrets.IOS_DISTRIBUTION_PASSWORD }}
           IOS_APP_STORE_PROFILE: ${{ secrets.IOS_APP_STORE_PROFILE }}
         run: node tools/ios-cloud-build.cjs signing
-      - name: Cache Creator installer
-        uses: actions/cache@v4
+      - uses: actions/cache/restore@v4
+        id: creator-cache
         with:
           path: ~/cocos-installer
           key: cocos-creator-3.8.7-mac-080718
@@ -61,6 +61,11 @@ jobs:
           test -n "$APP"
           xattr -dr com.apple.quarantine "$APP" || true
           echo "CREATOR_APP=$APP" >> "$GITHUB_ENV"
+      - uses: actions/cache/save@v4
+        if: steps.creator-cache.outputs.cache-hit != 'true'
+        with:
+          path: ~/cocos-installer
+          key: cocos-creator-3.8.7-mac-080718
       - name: Export iOS project
         timeout-minutes: 20
         shell: bash
