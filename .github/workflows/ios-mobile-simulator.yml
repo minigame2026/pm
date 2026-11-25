@@ -1,7 +1,7 @@
 name: iOS mobile simulator
 on:
   push:
-    branches: [codex/mobile-ios-20261125]
+    branches: [codex/mobile-pc-26696982]
     paths: [tools/ios-ci/**, assets/**, config/buildConfig_ios.json, .github/workflows/ios-mobile-simulator.yml]
   workflow_dispatch:
 
@@ -34,7 +34,7 @@ jobs:
         id: simulator-cache
         with:
           path: build/ios/proj/Release-iphonesimulator/DicePet-mobile.app
-          key: dicekin-simulator-26.3-${{ hashFiles('assets/**', 'settings/**', 'native/engine/common/**', 'config/buildConfig_ios.json', 'tools/ios-ci/PMMobileSimulatorQA.ts', 'tools/ios-cloud-build.cjs') }}
+          key: dicekin-pc-mobile-simulator-26.3-${{ hashFiles('assets/**', 'settings/**', 'native/engine/common/**', 'config/buildConfig_ios.json', 'tools/ios-ci/PMMobileSimulatorQA.ts', 'tools/ios-cloud-build.cjs') }}
       - uses: actions/setup-node@v4
         if: steps.simulator-cache.outputs.cache-hit != 'true'
         with:
