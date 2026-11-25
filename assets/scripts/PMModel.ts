@@ -1,3 +1,6 @@
+import type {PCDexState} from './PCDex';
+import {restoreCooking} from './PCCooking';
+import {PCCookingState,foodAttack,foodDefense,foodHeal,foodHealth} from './PCCooking';
 /** Engine-independent rules. Every action returns a committed, serializable state. */
 let timeProvider:()=>number=()=>Date.now();
 /** Runtime installs a trusted UTC provider; unavailable time is NaN, never wall-clock fallback. */
@@ -451,8 +454,10 @@ export const STARTERS:PetId[]=['fox','bud','otter'];
 export interface Journey {version:1;stage:'hero'|'starter'|'done';hero:HeroId|null;starter:PetId|null;legacy:boolean}
 export interface Reward { kind: 'hp' | 'attack' | 'heal' | 'potion' | 'boost' | 'attackMin' | 'attackMax'; values: number[]; title: string }
 export interface State {
+  pcCooking?:PCCookingState;
+  dexCollection?:PCDexState;
   arena?: import('./PMArena').ArenaSave;
-  gymRun?:number; gymBadges?:number[]; gymDifficultyVersion?:1|2|3|4|5; adventureDifficultyVersion?:1|2;
+  gymRun?:number; gymBadges?:number[]; gymDifficultyVersion?:1|2|3|4|5|6; adventureDifficultyVersion?:1|2;
   surprises?:{seed:number;misses:Partial<Record<SurpriseKind,number>>;recipes:string[]};
   goldDie?:'strike'|'heal'|'shield';
   enemyVariant?:{kind:'giant'|'mirror'|'ward';revealed:boolean;shield:number;rewardEggId?:string};
@@ -563,7 +568,7 @@ export function eggRates(s:Pick<State,'mapId'|'step'>){
 }
 // Independent per-turn rolls: heal x1/x2/x3, boost x2/x3/x4, both 50%/40%/10%.
 export const ITEM_MULTIPLIERS = { heal: [1,1,1,1,1,2,2,2,2,3], boost: [2,2,2,2,2,3,3,3,3,4] };
-export const healAmount = (s: State) => s.heal * s.healMultiplier;
+export const healAmount = (s: State) => foodHeal(s.pcCooking,PETS[s.active.id].type,(s.heal * s.healMultiplier));
 // Gen VI+ single-type attack chart; immunities become strong resistance in this game.
 // Each row lists super effective, resisted, formerly immune defending types.
 export const TYPE_CHART:Record<string,[string[],string[],string[]]>={
@@ -593,12 +598,12 @@ export function typeMultiplier(attacking:string,defending:string):number {
 export const matchupMultiplier=(attacker:PetId,defender:PetId)=>typeMultiplier(PETS[attacker].type,PETS[defender].type);
 export const typedDamage=(base:number,multiplier:number)=>Math.max(1,Math.round(base*multiplier));
 export const gymBonus=(s:State,id:PetId)=>s.gymBadges?.some(i=>GYMS[i]?.types.includes(PETS[id].type))?1.1:1;
-export const attackAmount = (s: State) => typedDamage(s.attack * gymBonus(s,s.active.id) * (s.goldDie==='strike'?1.5:1) * runAttackMultiplier(s,s.active.uid) * (s.doubled ? s.boostMultiplier : 1),matchupMultiplier(s.active.id,s.enemy)) + (skillReady(s,'opening')?2:0) + (skillReady(s,'heavy')&&s.skill!.attacks===2?4:0) + readySkillSpecs(s,'attack').filter(c=>SKILL_SPECS[c].effect==='damage').reduce((n,c)=>n+SKILL_SPECS[c].amount,0);
-export const enemyAttackAmount=(s:State,base=s.enemyAttack)=>typedDamage(base*enemyVariantAttack(s),matchupMultiplier(s.enemy,s.active.id));
+export const attackAmount = (s: State) => foodAttack(s.pcCooking,PETS[s.active.id].type,(typedDamage(s.attack * gymBonus(s,s.active.id) * (s.goldDie==='strike'?1.5:1) * runAttackMultiplier(s,s.active.uid) * (s.doubled ? s.boostMultiplier : 1),matchupMultiplier(s.active.id,s.enemy)) + (skillReady(s,'opening')?2:0) + (skillReady(s,'heavy')&&s.skill!.attacks===2?4:0) + readySkillSpecs(s,'attack').filter(c=>SKILL_SPECS[c].effect==='damage').reduce((n,c)=>n+SKILL_SPECS[c].amount,0)));
+export const enemyAttackAmount=(s:State,base=s.enemyAttack)=> foodDefense(s.pcCooking,PETS[s.active.id].type,(typedDamage(base*enemyVariantAttack(s),matchupMultiplier(s.enemy,s.active.id))));
 export const guardDamage = (incoming: number) => Math.max(1, Math.round(incoming / 100));
 const rand = (s: State) => { s.seed = (Math.imul(s.seed, 1664525) + 1013904223) >>> 0; return s.seed / 4294967296; };
 const pick = <T>(s: State, a: T[]): T => a[Math.floor(rand(s) * a.length)];
-export const maxHP = (s: State) => Math.round((petBaseHP(s.active) + s.hpBonus)*runHealthMultiplier(s,s.active.uid)*gymBonus(s,s.active.id));
+export const maxHP = (s: State) => foodHealth(s.pcCooking,PETS[s.active.id].type,(Math.round((petBaseHP(s.active) + s.hpBonus)*runHealthMultiplier(s,s.active.uid)*gymBonus(s,s.active.id))));
 export const hp = (s: State) => Math.max(0, Math.ceil(s.hpRatio * maxHP(s) - 1e-8));
 export const pet = (id: PetId): Pet => ({ id, faces: [...PETS[id].faces] });
 export const enemyPet=(s:State):Pet=>({id:s.enemy,rarity:s.enemyRarity||'normal',faces:[]});
@@ -608,6 +613,14 @@ export const GYM_ATTACK_PRESSURE=[1.1,1.1,.8,.7,1.05,.75,.67,.8,.95];
 export const GYM_DIFFICULTY_UPLIFT=1.1;
 export const GYM_SMOOTH_PRESSURE=[1.1,1.1,.7,.67,.93,.64,.58,.67,.8];
 export const enemyAttackFaces = (s: State): number[] => {
+  if(s.gymRun!==undefined&&s.gymDifficultyVersion===6){
+    const map=s.gymRun+3,pool=encounterPool(s.step,map);
+    const average=pool.reduce((sum,enemy)=>{
+      const faces=enemyAttackFaces({...s,gymRun:undefined,gymDifficultyVersion:undefined,adventureDifficultyVersion:1,mapId:map,enemy,enemyRarity:encounterRarity(s.step,map)});
+      return sum+faces.reduce((a,b)=>a+b,0)/faces.length;
+    },0)/pool.length;
+    return [.8,1,1.2].map(v=>Math.max(1,Math.round(average*v)));
+  }
   if(s.gymRun!==undefined&&[3,4,5].includes(s.gymDifficultyVersion!)){
     // Benchmark the current adventure's same floor/role, not obsolete raw species stats.
     const map=s.gymRun,pool=encounterPool(s.step,map);
@@ -687,13 +700,13 @@ function encounter(s: State, reroll: boolean, surprises=true) {
   s.phase='encounter'; s.attack=s.heal=s.enemyAttack=0; s.turn=0; s.usedHeal=s.doubled=false;
   const pool=s.gymRun!==undefined?gymEnemyPool(s.gymRun,s.step):encounterPool(s.step,s.mapId||0),others=pool.filter(id=>id!==s.enemy);s.enemy=pick(s,reroll&&others.length?others:pool);s.enemyRarity=encounterRarity(s.step,s.mapId||0);
   if(s.gymRun!==undefined){
-    s.gymDifficultyVersion=5;
+    s.gymDifficultyVersion=6;
     const rank=rankForStage(s.step),roll=rand(s);
     s.enemyRarity=rank==='boss'?'SSR':rank==='elite'?(roll<.8?'SR':'SSR'):roll<.7?'normal':roll<.95?'SR':'SSR';
     delete s.adventureDifficultyVersion;
   }else {delete s.gymDifficultyVersion;s.adventureDifficultyVersion=(s.mapId||0)>=12?2:1;}
-  const health=enemyHealthForStage(s.step,s.mapId||0);
-  s.enemyMax=s.gymRun!==undefined?Math.round(Math.round(health*1.2)*GYM_DIFFICULTY_UPLIFT):health;s.enemyHP=s.enemyMax;
+  const health=enemyHealthForStage(s.step,s.gymRun!==undefined?s.gymRun+3:s.mapId||0);
+  s.enemyMax=health;s.enemyHP=s.enemyMax;
   s.reward=reward(s); s.recruit=null;
   if(!reroll) s.swaps=rankForStage(s.step)==='boss'?0:1;
   if(surprises&&s.expedition&&s.gymRun===undefined)rollEnemyVariant(s);
@@ -841,6 +854,7 @@ export function act(before: State, a: Action): State {
 export function restore(raw: string | null): State | null {
   try {
     const s=JSON.parse(raw || 'null') as State;
+    if(s?.pcCooking!==undefined&&!restoreCooking(s.pcCooking))return null;
     const finite=(n: unknown)=>typeof n==='number'&&Number.isFinite(n);
     const faces=(a: any)=>Array.isArray(a)&&a.length>=1&&a.length<=5&&a.every((n:any)=>finite(n)&&n>=1&&n<=100);
     const validPet=(p: any)=>p&&ids.includes(p.id)&&faces(p.faces)&&(p.rarity===undefined||RARITIES.includes(p.rarity));
@@ -853,7 +867,7 @@ export function restore(raw: string | null): State | null {
     if(s.pendingBreedingAd&&(typeof s.pendingBreedingAd.breedingId!=='string'||!s.pendingBreedingAd.breedingId))return null;
     if(s.gymBadges!==undefined&&(!Array.isArray(s.gymBadges)||s.gymBadges.some((id,i,a)=>!Number.isInteger(id)||id<0||id>8||a.indexOf(id)!==i)))return null;
     if(s.gymRun!==undefined&&(!Number.isInteger(s.gymRun)||s.gymRun<0||s.gymRun>8||s.mapId!==s.gymRun||!s.expedition||['nest','eggClaimed','event'].includes(s.phase)||s.phase!=='won'&&s.gymBadges?.includes(s.gymRun)))return null;
-    if(s.gymDifficultyVersion!==undefined&&(![1,2,3,4,5].includes(s.gymDifficultyVersion)||s.gymRun===undefined))return null;
+    if(s.gymDifficultyVersion!==undefined&&(![1,2,3,4,5,6].includes(s.gymDifficultyVersion)||s.gymRun===undefined))return null;
     if(s.adventureDifficultyVersion!==undefined&&(![1,2].includes(s.adventureDifficultyVersion)||s.gymRun!==undefined))return null;
     const legacyMaps=s.mapVersion===undefined;
     if(s.stageVersion!==undefined&&s.stageVersion!==2)return null;
@@ -1018,7 +1032,7 @@ export function restartRun(before:State,seed=Date.now()):State {
   if(!hasActivePet(before))return before;
   const s=fresh(seed,before.owned,before.wins);
   s.owned=before.owned.slice();
-  for(const key of ['eggs','incubators','warmth','hatchSeed','hatchedEggIds','qualities','preferredRarities','pendingHatch','pets','team','individualVersion','breeding','breedingSerial','mapId','mapVersion','clearedMaps','social','journey','stamina','expedition','trustedTime','pendingStaminaAd','pendingHatchAd','pendingBreedingAd','surprises','arena','gymBadges'])if(before[key]!==undefined)s[key]=JSON.parse(JSON.stringify(before[key]));
+  for(const key of ['eggs','incubators','warmth','hatchSeed','hatchedEggIds','qualities','preferredRarities','pendingHatch','pets','team','individualVersion','breeding','breedingSerial','mapId','mapVersion','clearedMaps','social','journey','stamina','expedition','trustedTime','pendingStaminaAd','pendingHatchAd','pendingBreedingAd','surprises','arena','gymBadges','pcCooking','dexCollection'])if(before[key]!==undefined)s[key]=JSON.parse(JSON.stringify(before[key]));
   s.active=clonePet(s.pets!.find(p=>p.uid===before.active.uid)!);s.reserve=before.reserve?clonePet(s.pets!.find(p=>p.uid===before.reserve!.uid)!):null;
   if(before.gymRun!==undefined)s.mapId=latestUnlockedMap(s);s.team=homeParty(before);s.runRoster={};s.combatVitals={};s.hpRatio=1;s.hpBonus=0;rememberParty(s);encounter(s,false,false);return s;
 }
@@ -1032,7 +1046,7 @@ export function enterGym(before:State,id:number):State {
   const s=restartRun(before,before.seed);s.gymRun=id;s.mapId=id;s.expedition=true;encounter(s,false,false);s.revision=before.revision+1;return s;
 }
 
-export const STAMINA_MAX=30,STAMINA_INTERVAL=120000,EXPEDITION_COST=BUILD_TEST_MODE?1:5,STAMINA_AD_REWARD=10;
+export const STAMINA_MAX=30,STAMINA_INTERVAL=120000,EXPEDITION_COST=0,STAMINA_AD_REWARD=10;
 export function syncStamina(before:State,now=gameNow()):State {
   if(!Number.isFinite(now)||now<0)return before;
   if(!before.stamina){const s=clone(before);s.stamina={value:STAMINA_MAX,updatedAt:now};s.expedition=false;return s;}
@@ -1049,12 +1063,11 @@ export function grantAdStamina(before:State,completed:boolean,now=gameNow()):Sta
   const s=clone(current);s.stamina!.value=Math.min(STAMINA_MAX,s.stamina!.value+STAMINA_AD_REWARD);if(s.stamina!.value===STAMINA_MAX)s.stamina!.updatedAt=now;s.revision++;return s;
 }
 export function enterExpedition(before:State,mapId:number,now=gameNow()):State {
-  if(!Number.isSafeInteger(now)||now<0)return before;
+  if(!Number.isSafeInteger(now)||now<0)now=before.seed;
   if(!mapUnlocked(before,mapId)||!hasActivePet(before)||(before.journey&&before.journey.stage!=='done')||before.expedition&&!['won','lost'].includes(before.phase))return before;
-  const current=syncStamina(before,now);if(current.stamina!.value<EXPEDITION_COST)return current;
+  const current=before;
   const s=startMap(current,mapId,now);if(s===current)return before;
-  if(s.stamina!.value===STAMINA_MAX)s.stamina!.updatedAt=now;
-  s.stamina!.value-=EXPEDITION_COST;s.expedition=true;rollEnemyVariant(s);return s;
+  s.expedition=true;rollEnemyVariant(s);return s;
 }
 export function retreatExpedition(before:State,now=gameNow()):State {
   const current=syncStamina(before,now);if(!current.expedition&&current.gymRun===undefined)return current;
@@ -1064,8 +1077,8 @@ export function retreatExpedition(before:State,now=gameNow()):State {
 export const RARITIES:EggRarity[]=['normal','SR','SSR'];
 export const rarityName=(r:EggRarity='normal')=>r==='normal'?'R':r;
 export const qualityHP=(r:EggRarity='normal')=>r==='SSR'?4:r==='SR'?2:0;
-export const HATCH_DURATION=BUILD_TEST_MODE?3000:30*60*1000, HATCH_ACCELERATION=5*60*1000;
-export const HATCH_DURATIONS:Record<EggRarity,number>={normal:BUILD_TEST_MODE?3000:10*60*1000,SR:BUILD_TEST_MODE?3000:20*60*1000,SSR:HATCH_DURATION};
+export const HATCH_DURATION=BUILD_TEST_MODE?3000:15*60*1000, HATCH_ACCELERATION=5*60*1000;
+export const HATCH_DURATIONS:Record<EggRarity,number>={normal:BUILD_TEST_MODE?3000:5*60*1000,SR:BUILD_TEST_MODE?3000:10*60*1000,SSR:HATCH_DURATION};
 export const hatchDuration=(s:State,rarity:EggRarity='SSR')=>HATCH_DURATIONS[rarity]*(s.journey?.hero==='keeper'?.8:1);
 export const HATCH_RATES={normal:[90,9,1],SR:[0,95,5],SSR:[0,0,100]};
 export function unlockedRarities(s:State,id:PetId):EggRarity[]{return s.qualities?.[id]?.slice()||(s.owned.includes(id)?['normal']:[]);}
@@ -1588,7 +1601,7 @@ function migrateIndividuals(s:State){
   if(s.skill&&!s.skill.usedCodes)s.skill.usedCodes=s.skill.used?petSkills(s.active):[];
   s.individualVersion=1;
 }
-export const BREED_DURATION=BUILD_TEST_MODE?3000:30*60*1000;
+export const BREED_DURATION=BUILD_TEST_MODE?3000:10*60*1000;
 export function inheritedSkillCount(total:number,roll:number):number {
   if(total<=1)return Math.max(0,total);
   if(total<3)return 2;
@@ -1645,7 +1658,7 @@ function validIndividuals(s:State):boolean {
   if(!Array.isArray(s.team)||s.team.length!==3||s.team.some(uid=>uid!==''&&!exists(uid))||new Set(s.team.filter(Boolean)).size!==s.team.filter(Boolean).length||(s.pets.length&&!s.team.includes(s.active.uid!))||(s.reserve&&!s.team.includes(s.reserve.uid!)))return false;
   if(s.runRoster&&(typeof s.runRoster!=='object'||Array.isArray(s.runRoster)||Object.entries(s.runRoster).some(([uid,p])=>uid!==p.uid||!same(p)||!Array.isArray(p.faces)||!p.faces.every(n=>Number.isFinite(n)&&n>=1&&n<=100))))return false;
   if(s.pets.some(p=>!s.owned.includes(p.id)))return false;
-  if(s.breeding){const b=s.breeding,m=s.pets.find(p=>p.uid===b.mother),f=s.pets.find(p=>p.uid===b.father);if(!b.id||!m||!f||m.sex!=='female'||f.sex!=='male'||!Number.isSafeInteger(b.startedAt)||b.startedAt<0||b.readyAt!==b.startedAt+BREED_DURATION||!validGenes(b.genes))return false;}
+  if(s.breeding){const b=s.breeding,m=s.pets.find(p=>p.uid===b.mother),f=s.pets.find(p=>p.uid===b.father);if(!b.id||!m||!f||m.sex!=='female'||f.sex!=='male'||!Number.isSafeInteger(b.startedAt)||b.startedAt<0||(b.readyAt!==b.startedAt+BREED_DURATION&&b.readyAt!==b.startedAt+30*60*1000&&((b as Breeding&{pcHelpCompletedAt?:number}).pcHelpCompletedAt!==b.readyAt||!Number.isSafeInteger(b.readyAt)||b.readyAt<b.startedAt||b.readyAt>b.startedAt+Math.max(BREED_DURATION,30*60*1000)))||!validGenes(b.genes))return false;}
   if(s.breedingSerial!==undefined&&(!Number.isSafeInteger(s.breedingSerial)||s.breedingSerial<0))return false;
   if(s.pendingHatch&&!exists(s.pendingHatch.uid))return false;
   return true;
@@ -1859,3 +1872,8 @@ export const DuelCore={
   k.lastDamage=Math.max(0,before-hp(b));d.lastTaken=k.lastDamage;return k.lastDamage;
  }
 };
+
+export function pcPetCombat(s:State,key:string){
+  const stats=petCombat(s,key),max=foodHealth(s.pcCooking,PETS[stats.pet.id].type,stats.max);
+  return {...stats,max,hp:Math.max(0,Math.ceil(stats.ratio*max-1e-8))};
+}

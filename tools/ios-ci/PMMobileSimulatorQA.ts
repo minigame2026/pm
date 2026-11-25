@@ -73,16 +73,21 @@ export async function runMobileSimulatorQA(game: any) {
     await touch('hero-confirm');
     await touch('starter-confirm');
     check(!state().controls()['home-social'], 'Social action still visible at camp');
-    await snapshot('camp', /^home-(partners|hatch|breed|dex|explore|gym)$/);
-    for (const page of ['partners','hatch','breed']) {
+    await snapshot('camp', /^home-(partners|hatch|breed|cooking|dex|explore|gym)$/);
+    for (const page of ['partners','hatch','breed','cooking']) {
       await touch('home-'+page);
       if (page === 'partners') await snapshot('partners', /^nav-home$/);
+      if (page === 'cooking') await snapshot('cooking', /^food-(recipe-\d+|quality-\d+|cook|eat)$/);
       await touch('nav-home');
     }
     await touch('home-dex');
     check(!state().controls()['dex-friends'], 'Friend filter still visible');
     check(safeControls(/^dex-map-\d+$/).length === 15, 'Expected 15 Petdex map cards');
     await snapshot('dex', /^dex-(type|owned|shiny|map-all|map-\d+)$/);
+    await touch('dex-rewards');
+    check(safeControls(/^dex-reward-\d+$/).length === 15, 'Expected 15 Petdex rewards');
+    await snapshot('rewards', /^dex-reward-\d+$/);
+    await touch('nav-home');
     await touch('nav-home');
     await touch('home-explore');
     check(safeControls(/^map-\d+$/).length === 15, 'Expected 15 map cards');

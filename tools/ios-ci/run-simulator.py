@@ -55,7 +55,7 @@ def run_case(device_type, key, runtime):
                 if stage == "failed":
                     raise AssertionError(status)
                 if stage == "complete":
-                    assert status["ok"] and len(done) == 6, (status, done)
+                    assert status["ok"] and len(done) == 8, (status, done)
                     status["screenshots"] = dimensions
                     status["device"] = device_type
                     status["runtime"] = runtime

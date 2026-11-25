@@ -54,7 +54,7 @@ jobs:
           mkdir -p "$HOME/cocos-installer" "$RUNNER_TEMP/cocos"
           ZIP="$HOME/cocos-installer/creator.zip"
           if [ ! -f "$ZIP" ]; then
-            curl --fail --location --retry 3 --connect-timeout 30 --max-time 1200 --output "$ZIP" https://download.cocos.com/CocosCreator/v3.8.7/CocosCreator-v3.8.7-mac-080718.zip
+            curl --fail --location --retry 2 --connect-timeout 30 --max-time 480 --speed-time 45 --speed-limit 2048 --output "$ZIP" https://download.cocos.com/CocosCreator/v3.8.7/CocosCreator-v3.8.7-mac-080718.zip
           fi
           ditto -xk "$ZIP" "$RUNNER_TEMP/cocos"
           APP=$(find "$RUNNER_TEMP/cocos" -maxdepth 4 -name CocosCreator.app -type d -print -quit)

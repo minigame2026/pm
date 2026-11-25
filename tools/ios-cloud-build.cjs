@@ -44,7 +44,7 @@ function prepare() {
   const plist = path.join(native, 'Info.plist');
   assert.ok(fs.existsSync(plist), 'Creator did not export iOS native project');
   const info = plistJSON(plist);
-  info.CFBundleDisplayName = 'Dice Pet Spirits';
+  info.CFBundleDisplayName = 'Dicekin';
   info.CFBundleShortVersionString = '1.0';
   info.CFBundleVersion = String(process.env.GITHUB_RUN_NUMBER || '1');
   info.ITSAppUsesNonExemptEncryption = false;
@@ -162,13 +162,13 @@ function archive() {
   const body = model.fn((key,value) => { if (typeof key === 'string') exports[key] = value; else Object.assign(exports,key); return value; }, {meta:{}});
   body.setters.forEach(setter => setter({cclegacy:{_RF:{push(){},pop(){}}}}));
   body.execute();
-  const balance = { testMode: exports.BUILD_TEST_MODE, stamina: exports.EXPEDITION_COST, hatchMs: exports.HATCH_DURATION, breedingMs: exports.BREED_DURATION };
-  assert.deepEqual(balance, {testMode:false,stamina:5,hatchMs:1800000,breedingMs:1800000});
-  const report = { signed: state.signed, bundleID: info.CFBundleIdentifier, version: info.CFBundleShortVersionString, build: info.CFBundleVersion, sdk: info.DTSDKName, balance, readyForAppStore: false };
+  const balance = { testMode: exports.BUILD_TEST_MODE, stamina: exports.EXPEDITION_COST, hatchMs: Object.values(exports.HATCH_DURATIONS), breedingMs: exports.BREED_DURATION };
+  assert.deepEqual(balance, {testMode:false,stamina:0,hatchMs:[300000,600000,900000],breedingMs:600000});
+  const report = { steamBaseline: '26696982', signed: state.signed, bundleID: info.CFBundleIdentifier, version: info.CFBundleShortVersionString, build: info.CFBundleVersion, sdk: info.DTSDKName, balance, readyForAppStore: false };
   if (state.signed) {
     run('codesign', ['--verify', '--deep', '--strict', app]);
     const options = path.join(temp, 'ExportOptions.plist');
-    writePlist(options, { method: 'app-store-connect', signingStyle: 'manual', teamID: 'U5FT6JFLWS', signingCertificate: state.identity, provisioningProfiles: { 'com.dice.pet.rpg': state.name }, uploadSymbols: true, manageAppVersionAndBuildNumber: false });
+    writePlist(options, { method: 'app-store-connect', destination: 'export', signingStyle: 'manual', teamID: 'U5FT6JFLWS', signingCertificate: state.identity, provisioningProfiles: { 'com.dice.pet.rpg': state.name }, uploadSymbols: true, manageAppVersionAndBuildNumber: false });
     run('xcodebuild', ['-exportArchive', '-archivePath', archive, '-exportOptionsPlist', options, '-exportPath', path.join(output,'AppStore')]);
     assert.ok(fs.readdirSync(path.join(output,'AppStore')).some(x => x.endsWith('.ipa')));
     report.readyForAppStore = true;

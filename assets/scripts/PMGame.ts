@@ -1,10 +1,13 @@
+import { PC_CAMPAIGN_TRANSLATIONS } from './PCCampaignTranslations';
+import { DEX_REWARDS, DEX_TOTAL, DEX_SPECIES, dexKey, recordDex, validDexState, claimDexReward } from './PCDex';
+import { INGREDIENTS, RECIPES, FOOD_QUALITY_NAMES, FoodQuality, CookingResult, newCooking, cookingKey, cookingReason, recipeCost, cookMeal, eatMeal, mealSummary, bonusDescription, settleCookingBattle } from './PCCooking';
 import { hasHatchAction, hasOpenPartySlot, battleLearningHint, suggestedTypePartner, hatchPartySlot, welcomeHatchToParty } from './PMPlayerGuidance';
 import { drawButtonSurface, drawPanelSurface, uiMotion } from './PMUIStyle';
 import { BATTLE_EVENTS } from './PMModel';
 import { MYTHIC_PET_IDS } from './PMModel';
 import { fitBattlePair } from './PMBattleLayout';
 import { _decorator, Component, Node, Canvas, Camera, UITransform, Graphics, Color, Label, LabelOutline, Sprite,
-  SpriteFrame, Texture2D, Rect, Size, EditBox, PageView, ScrollView, Layout, Mask, resources, Layers, view, ResolutionPolicy, EventTouch, tween, Tween, Vec3, UIOpacity, sys, game, Game, director, Director, profiler } from 'cc';
+  SpriteFrame, Texture2D, Rect, Size, PageView, ScrollView, Layout, Mask, resources, Layers, view, ResolutionPolicy, EventTouch, tween, Tween, Vec3, UIOpacity, sys, game, Game, director, Director, profiler } from 'cc';
 import { BATTLE_RECTS, PET_FEET } from './BattleArt';
 import { EVOLUTION_ART } from './EvolutionArt';
 import { REGION_ART } from './RegionArt';
@@ -24,10 +27,9 @@ import { PMArt } from './PMArt';
 import { PMAppBattle } from './PMAppBattle';
 import { APP_BATTLE_IDS, APP_BATTLE_POSES, APP_BATTLE_ATLASES, appPoseKey, appPoseFeet } from './AppBattleArt';
 import { DurableCheckpoint } from './DurableCheckpoint';
-import { installRewardedAds } from './PMRewardedAds';
 import { tr, currentLocale, selectLanguage, languageChoice, LANGUAGES, LANGUAGE_KEY } from './PMLocale';
 import { setTimeProvider, gameNow, BUILD_TEST_MODE } from './PMModel';
-import { syncStamina, staminaRemaining, enterExpedition, retreatExpedition, grantAdStamina, STAMINA_MAX, EXPEDITION_COST } from './PMModel';
+import { enterExpedition, retreatExpedition } from './PMModel';
 import { HeroId, HEROES, HERO_IDS, STARTERS, newJourney, prepareJourney, chooseHero, chooseStarter, heroFor, heroHealBonus, hatchDuration } from './PMModel';
 import { Pet, Sex, pet, petEntry, petName, petBaseHP, formKey, sexSymbol, petSkills, SKILLS, startBreeding, claimBreeding, grantRerollAd } from './PMModel';
 import { partyChoices, rankForStage, homeParty, assignPartySlot, MAPS, mapFor, mapStageCount, mapUnlocked, latestUnlockedMap, startMap, enemyPet, eggRates, hasActivePet } from './PMModel';
@@ -36,6 +38,7 @@ import { State, PetId, Action, Egg, PETS, PET_IDS, NEW_PET_IDS, fresh, act, hp, 
 const { ccclass } = _decorator;
 const KEY='pm.creature-dice.v1';
 const C={ink:'#183852',muted:'#566e80',paper:'#f7fcff',blue:'#237fa6',orange:'#efa63b',green:'#38b98c',line:'#d7e8f2'};
+const campaignText=(value:string)=>currentLocale()==='zh-CN'?value:PC_CAMPAIGN_TRANSLATIONS[value]?.[currentLocale()]||tr(value);
 const color=(v:string,alpha=255)=>{const c=new Color();Color.fromHEX(c,v);c.a=alpha;return c;};
 @ccclass('PMGame')
 export class PMGame extends Component {
@@ -73,7 +76,7 @@ export class PMGame extends Component {
   private pageSwipeActive=false;
   private homeHatchBadge:Node|null=null;private homeBreedBadge:Node|null=null;
   private homeMotion:{since:number;next:number;pulse:UIOpacity;icons:{node:Node;x:number;y:number;z:number}[];index:number;badges:Node[]}|null=null;
-  private staminaLabel:Label|null=null;private staminaCountdown:Label|null=null;private staminaFill:Graphics|null=null;private adPending=false;
+  private adPending=false;
   private trustedClock=new TrustedClock();private clockRetryAt=0;private clockSaveAt=0;private clockForeground=true;private clockUiRefresh=false;
   private partyDropNodes:Node[]=[];private partyDragHint:Label|null=null;
   private partyDrag:{id:string;touch:number;source:Node;start:Vec3;origin:Vec3;moved:boolean;axis?:'horizontal'|'vertical';ghost:Node|null;guides:Node[];target:number}|null=null;
@@ -81,7 +84,6 @@ export class PMGame extends Component {
   async start(){
     let savedLanguage:string|null=null;try{savedLanguage=sys.localStorage.getItem(LANGUAGE_KEY);}catch{}
     selectLanguage(savedLanguage,sys.languageCode||sys.language||'en');
-    installRewardedAds();
     this.audio=new PMAudio(this.node,()=>{
       if(this.modal?.children.some(card=>!!card.getChildByName('audio-music')))this.homeSettings();
     },!!(globalThis as any).tap);
@@ -103,7 +105,8 @@ export class PMGame extends Component {
     }
     this.state=stored?prepareJourney(stored):newJourney();
     delete this.state.arena;
-    if(!this.state.stamina)this.state=syncStamina(this.state,0);
+    if(!validDexState(this.state.dexCollection))delete this.state.dexCollection;
+    this.state.dexCollection=recordDex(this.state.dexCollection,this.state);
     this.trustedClock.restore(this.state.trustedTime?.lastMs||0);
     setTimeProvider(()=>this.trustedClock.now()??NaN);
     // The cover needs local art, while timed benefits remain gated by requireTime().
@@ -142,12 +145,12 @@ export class PMGame extends Component {
   private async synchronizeTime(){
     const wasReady=this.trustedClock.now()!==null;this.clockRetryAt=performance.now()+30000;
     const ok=await this.trustedClock.sync();
-    if(ok){this.clockRetryAt=performance.now()+300000;this.state=syncStamina(this.state);this.settlePendingAd();this.save();if(!wasReady)this.clockUiRefresh=true;}
+    if(ok){this.clockRetryAt=performance.now()+300000;this.settlePendingAd();this.save();if(!wasReady)this.clockUiRefresh=true;}
     return ok;
   }
   private settlePendingAd(){
     if(this.trustedClock.now()===null)return;
-    if(this.state.pendingStaminaAd){this.state=grantAdStamina(this.state,true);delete this.state.pendingStaminaAd;}
+    delete this.state.pendingStaminaAd;
     if(this.state.pendingHatchAd){const {index,eggId}=this.state.pendingHatchAd;this.state=grantHatchAd(this.state,index,eggId,true);delete this.state.pendingHatchAd;}
     if(this.state.pendingBreedingAd){const {breedingId}=this.state.pendingBreedingAd;this.state=grantBreedingAd(this.state,breedingId,true);delete this.state.pendingBreedingAd;}
   }
@@ -163,7 +166,7 @@ export class PMGame extends Component {
       if(mono>=this.clockSaveAt){this.clockSaveAt=mono+15000;this.save();}
       if(this.clockUiRefresh&&!this.busy&&!this.pressPending&&!this.modal?.isValid){this.clockUiRefresh=false;this.render();}
     }
-    const second=Math.floor(mono/1000);if(this.ready&&second!==this.hatchSecond)this.artCache.sweep();if(this.ready&&second!==this.hatchSecond&&this.screen==='home'&&this.clockForeground&&(!this.art[homeArtKey(homePeriod())]||homePeriod()!==this.homePeriod))void this.refreshHomeArt();if(this.ready&&second!==this.hatchSecond)this.refreshStaminaHUD();if(second!==this.hatchSecond){this.hatchSecond=second;if(this.breedClock?.isValid&&this.state.breeding){const now=gameNow(),left=Number.isFinite(now)?this.state.breeding.readyAt-now:Infinity;this.breedClock.string=tr(left>0?this.hatchTime(left):'宠物蛋已准备好');if(left<=0&&!this.pressPending){this.breedClock=null;this.breedingUI();}}if(this.screen==='home')this.refreshHomeBadges();for(const c of this.hatchClock){if(!c.label.isValid)continue;const slot=this.state.incubators?.[c.index];if(slot){const left=hatchRemaining(slot);c.label.string=tr(this.hatchTime(left));if(!left&&!c.ready&&!this.pressPending){this.hatchery();break;}}}}
+    const second=Math.floor(mono/1000);if(this.ready&&second!==this.hatchSecond)this.artCache.sweep();if(this.ready&&second!==this.hatchSecond&&this.screen==='home'&&this.clockForeground&&(!this.art[homeArtKey(homePeriod())]||homePeriod()!==this.homePeriod))void this.refreshHomeArt();if(second!==this.hatchSecond){this.hatchSecond=second;if(this.breedClock?.isValid&&this.state.breeding){const now=gameNow(),left=Number.isFinite(now)?this.state.breeding.readyAt-now:Infinity;this.breedClock.string=tr(left>0?this.hatchTime(left):'宠物蛋已准备好');if(left<=0&&!this.pressPending){this.breedClock=null;this.breedingUI();}}if(this.screen==='home')this.refreshHomeBadges();for(const c of this.hatchClock){if(!c.label.isValid)continue;const slot=this.state.incubators?.[c.index];if(slot){const left=hatchRemaining(slot);c.label.string=tr(this.hatchTime(left));if(!left&&!c.ready&&!this.pressPending){this.hatchery();break;}}}}
     for(let i=this.availableGlows.length-1;i>=0;i--){const glow=this.availableGlows[i];if(!glow.isValid)this.availableGlows.splice(i,1);else {const encounterAction=this.state.phase==='encounter'&&(glow.parent?.name==='reroll'||glow.parent?.name==='challenge');glow.active=!this.busy&&(!this.pressPending||encounterAction);}}
     if(mono>=this.nextLayoutCheck&&!this.busy&&!this.pressPending){
       this.nextLayoutCheck=mono+250;
@@ -194,6 +197,7 @@ export class PMGame extends Component {
     this.cam.node.setPosition(s.width/2,s.height/2,1000);this.cam.orthoHeight=s.height/2;}
   private async save(){
     if(this.sampleOriginal)return true;
+    this.state.dexCollection=recordDex(this.state.dexCollection,this.state);
     const checkpoint=this.trustedClock.checkpoint();if(checkpoint>0)this.state.trustedTime={version:1,lastMs:checkpoint};
     const sequence=++this.checkpointSequence,raw=JSON.stringify({...this.state,checkpointSequence:sequence});let localSaved=false;
     try{
@@ -213,7 +217,7 @@ export class PMGame extends Component {
     const n=this.makeNode(parent,'panel',x,y,w,h),g=n.addComponent(Graphics);drawPanelSurface(g,w,h,fill,r,alpha);return n;
   }
   private text(parent:Node,value:string,x:number,y:number,size=16,fill=C.ink,w=350,h=size+12){
-    const n=this.makeNode(parent,value,x,y,w,h),l=n.addComponent(Label);l.string=tr(value);l.fontSize=size;
+    const n=this.makeNode(parent,value,x,y,w,h),l=n.addComponent(Label);l.string=campaignText(value);l.fontSize=size;
     // Keep connected scripts in whole-line textures and leave room for vowel marks.
     const complex=/[\u0600-\u06ff\u0900-\u0d7f]/.test(l.string);
     l.lineHeight=complex?Math.ceil(size*1.45):size+(currentLocale()==='th'?11:7);l.fontFamily='sans-serif';
@@ -1078,7 +1082,13 @@ export class PMGame extends Component {
   }
   private async command(a:Action){
     if(this.sampleOriginal&&a==='reroll'){this.sampleEnemy++;this.state.enemy=(['bud','otter','fox'] as PetId[])[this.sampleEnemy%3];this.state.enemyHP=this.state.enemyMax=32;this.render();return;}
-    if(this.busy)return;const old=this.state,next=act(old,a);if(next===old)return;
+    if(this.busy)return;
+    const old=this.state;
+    let next=act(old,a);if(next===old)return;
+    if(!this.sampleOriginal&&old.phase==='battle'&&next.phase!=='battle'){
+      const result=settleCookingBattle(old.pcCooking||newCooking(),{id:'main:'+old.revision+':'+old.mapId+':'+old.step+':'+old.seed,completed:true,won:next.enemyHP<=0,mapId:old.mapId||0,rank:rankForStage(old.step)});
+      if(result.changed)next={...next,pcCooking:result.state};
+    }
     // Commit the entire action before animation; a killed process resumes after this action, never halfway through it.
     this.busy=true;this.state=next;await this.save();
     if(this.modal){this.modal.removeFromParent();this.modal.destroy();this.modal=null;}
@@ -1223,7 +1233,7 @@ export class PMGame extends Component {
   private hatchery(){
     if(this.state.pendingHatch){this.hatchReveal();return;}
     const c=this.fullPage('孵化屋','离线成长',()=>this.hatchery()),s=this.state,{top,bottom,height}=this.pageBounds(c);
-    this.helpButton(c,'新放入的蛋孵化 '+(BUILD_TEST_MODE?hatchDuration(s)/1000+' 秒':RARITIES.map(r=>rarityName(r)+' '+hatchDuration(s,r)/60000).join(' / ')+' 分钟')+'，离线继续。\n完整观看视频，立即完成孵化。\nSR 蛋至少孵出 SR；SSR 蛋必出 SSR。');
+    this.helpButton(c,'新放入的蛋孵化 '+(BUILD_TEST_MODE?hatchDuration(s)/1000+' 秒':RARITIES.map(r=>rarityName(r)+' '+hatchDuration(s,r)/60000).join(' / ')+' 分钟')+'，离线继续。\nSR 蛋至少孵出 SR；SSR 蛋必出 SSR。');
     const cardH=height-174,cardY=top-24-cardH/2;
     for(let index=0;index<2;index++){
       const x=index===0?-91:91,slot=s.incubators?.[index],egg=slot?s.eggs!.find(e=>e.id===slot.eggId):null;
@@ -1485,7 +1495,7 @@ export class PMGame extends Component {
   private homeUI(){
     const s=this.state,H=this.h,b=-H/2,top=H/2,active=hasActivePet(s);this.homePeriod=homePeriod();
     this.homeBackground=this.fillArt(homeArtKey(this.homePeriod));this.homeAtmosphere();void this.refreshHomeArt();
-    this.homeStaminaUI(top);
+    this.homeProfileUI(top);
     const setting=this.button(this.root,'home-settings','',161,top-39,44,44,()=>this.homeSettings(),'#fffdf1');this.menuIcon(setting,'gear',0,0,25,'#41717d');
     const petY=(top-100+b+220)/2,petSize=Math.max(112,Math.min(208,H-320));
     if(active){const shadow=this.makeNode(this.root,'camp-shadow',0,petY-petSize*.4,160,25),g=shadow.addComponent(Graphics);g.fillColor=color('#346951',55);g.ellipse(0,0,petSize*.38,12);g.fill();
@@ -1498,19 +1508,20 @@ export class PMGame extends Component {
     this.image(gym,'guard-shield',-41,0,36,36);const gymTitle=this.text(gym,'道馆',20,0,21,'#705334',91,34);gymTitle.isBold=true;gymTitle.enableWrapText=false;
     const explore=calm(this.button(this.root,'home-explore','',-76,b+144,202,60,()=>{this.mapIndex=latestUnlockedMap(this.state);this.mapTabPage=Math.floor(this.mapIndex/6);this.screen='adventure';this.render();},'#de6854'));
     this.menuIcon(explore,'map',-73,0,32,'#fff5db');const exploreTitle=this.text(explore,'探险',-1,0,22,'#ffffff',106,36);exploreTitle.isBold=true;exploreTitle.enableWrapText=false;
-    this.menuIcon(explore,'energy',67,9,15,'#ffe29b');this.text(explore,'−'+EXPEDITION_COST,67,-12,13,'#fff3d9',38,22).isBold=true;
     const item=(id:string,title:string,x:number,fill:string,callback:()=>void)=>{
-      const n=calm(this.button(this.root,id,'',x,b+62,84,72,callback,fill));
-      const label=this.text(n,title,0,-22,14,'#3d5961',80,23);label.isBold=true;label.enableWrapText=false;return n;
+      const n=calm(this.button(this.root,id,'',x,b+62,64,72,callback,fill));
+      const label=this.text(n,title,0,-22,14,'#3d5961',62,23);label.isBold=true;label.enableWrapText=false;return n;
     };
-    const partners=item('home-partners','伙伴',-135,'#e7efeb',()=>this.collection(0)),pawIcon=this.menuIcon(partners,'paw',0,12,32,'#548c79');
-    const nursery=item('home-hatch','孵化',-45,'#edf0df',()=>this.hatchery()),eggIcon=this.eggArt(nursery,{id:'home',rarity:'normal',affinity:'bud',stage:5},0,12,35);
-    const breed=item('home-breed','交配',45,'#f7e8e5',()=>this.breedingUI()),breedIcon=this.menuIcon(breed,'breed',0,12,34,'#ba7890');
-    const dex=item('home-dex','图鉴',135,'#f4eadd',()=>this.pokedexUI()),dexIcon=this.menuIcon(dex,'dex',0,12,32,'#b88856');
+    const partners=item('home-partners','伙伴',-144,'#e7efeb',()=>this.collection(0)),pawIcon=this.menuIcon(partners,'paw',0,12,32,'#548c79');
+    const nursery=item('home-hatch','孵化',-72,'#edf0df',()=>this.hatchery()),eggIcon=this.eggArt(nursery,{id:'home',rarity:'normal',affinity:'bud',stage:5},0,12,35);
+    const breed=item('home-breed','交配',0,'#f7e8e5',()=>this.breedingUI()),breedIcon=this.menuIcon(breed,'breed',0,12,34,'#ba7890');
+    const kitchen=item('home-cooking','料理',72,'#f8ebd8',()=>this.cookingUI());
+    const cookIcon=this.text(kitchen,'♨',0,12,30,'#ab774e',48,34).node;
+    const dex=item('home-dex','图鉴',144,'#f4eadd',()=>this.pokedexUI()),dexIcon=this.menuIcon(dex,'dex',0,12,32,'#b88856');
     const badge=(parent:Node,name:string)=>{const dot=this.panel(parent,24,27,20,20,'#d95e4b',10);dot.name=name;this.text(dot,'!',0,0,14,'#ffffff',20,20).isBold=true;return dot;};
     const partyBadge=badge(partners,'home-party-badge');partyBadge.active=hasOpenPartySlot(s);
     this.homeHatchBadge=badge(nursery,'home-hatch-badge');this.homeBreedBadge=badge(breed,'home-breed-badge');this.refreshHomeBadges();
-    this.startHomeMotion(explore,[pawIcon,eggIcon,breedIcon,dexIcon]);
+    this.startHomeMotion(explore,[pawIcon,eggIcon,breedIcon,cookIcon,dexIcon]);
     this.fx=this.makeNode(this.root,'home-effects',0,0,390,H);
   }
   private startHomeMotion(explore:Node,icons:Node[]){
@@ -1536,43 +1547,12 @@ export class PMGame extends Component {
     if(this.homeBreedBadge?.isValid)this.homeBreedBadge.active=!!this.state.breeding&&gameNow()>=this.state.breeding.readyAt;
   }
   private gymUI(){drawGyms(this);}
-  private homeStaminaUI(top:number){
-    this.panel(this.root,-73,top-39,220,48,'#fffdf1',19,246);
+  private homeProfileUI(top:number){
+    this.panel(this.root,-80,top-39,206,48,'#fffdf1',19,246);
     const avatar=this.panel(this.root,-159,top-39,40,40,'#dceee7',20);avatar.name='home-avatar';
     const crop=this.makeNode(avatar,'home-avatar-crop',0,0,38,38);crop.addComponent(Mask).type=Mask.Type.GRAPHICS_ELLIPSE;
     this.image(crop,'avatar-'+(this.state.journey?.hero||'ranger'),0,0,38,38);
-    this.menuIcon(this.root,'energy',-125,top-33,18,'#e7af38');
-    const track=this.panel(this.root,-69,top-33,88,22,'#dce8db',11);
-    this.staminaFill=this.makeNode(track,'stamina-fill',0,0,88,22).addComponent(Graphics);
-    this.staminaLabel=this.text(track,'',0,0,14,'#194f50',84,22);this.staminaLabel.isBold=true;
-    this.staminaCountdown=this.text(this.root,'',-69,top-54,11,'#507b68',88,18);this.staminaCountdown.node.name='stamina-countdown';
-    const ad=this.button(this.root,'stamina-ad','',9,top-39,40,44,()=>this.watchStaminaAd(),'#e6f3dc');this.menuIcon(ad,'reward-video',0,6,24,'#507b55');this.text(ad,'+10',0,-12,11,'#507b55',38,17).isBold=true;
-    this.refreshStaminaHUD();
-  }
-  private refreshStaminaHUD(){
-    const next=syncStamina(this.state);if(next!==this.state){this.state=next;this.save();}
-    if(this.staminaLabel?.isValid)this.staminaLabel.string=this.state.stamina!.value+' / '+STAMINA_MAX;
-    if(this.staminaCountdown?.isValid){const left=staminaRemaining(this.state),seconds=Math.ceil(left/1000);this.staminaCountdown.string=Number.isFinite(left)?Math.floor(seconds/60).toString().padStart(2,'0')+':'+(seconds%60).toString().padStart(2,'0'):'--:--';}
-    if(this.staminaFill?.isValid){const g=this.staminaFill;g.clear();g.fillColor=color('#69cba0');const w=88*this.state.stamina!.value/STAMINA_MAX;if(w>0){g.roundRect(-44,-11,w,22,Math.min(11,w/2));g.fill();}}
-  }
-  private staminaOffer(message='每2分钟恢复1点体力'){
-    const c=this.overlay('体力',240);this.menuIcon(c,'energy',-42,44,31,'#dfad35');this.text(c,this.state.stamina!.value+' / 30',25,44,24,C.ink,130,38);
-    this.text(c,message,0,-1,14,C.muted,324,40);
-    this.button(c,'stamina-close','返回',-82,-66,145,48,()=>this.render(),'#e8f3fa');
-    const ad=this.button(c,'stamina-watch','+10',82,-66,145,48,()=>this.watchStaminaAd(),'#519b81',this.state.stamina!.value<STAMINA_MAX,21);this.menuIcon(ad,'video',-44,0,25);
-  }
-  private async watchStaminaAd(){
-    if(this.adPending||!this.requireTime())return;
-    this.settlePendingAd();this.refreshStaminaHUD();if(this.state.stamina!.value>=STAMINA_MAX){this.staminaOffer('体力已满');return;}
-    // Host integration point: only a completed rewarded-video result grants energy.
-    const bridge=(globalThis as any).pmRewardedAd as {show:(request:{placement:string})=>Promise<{completed:boolean}>}|undefined;
-    if(!bridge||typeof bridge.show!=='function'){this.staminaOffer('激励广告待接入，暂不能领取');return;}
-    this.adPending=true;this.busy=true;this.audio.pause('ad');
-    try{const result=await bridge.show({placement:'stamina_10'});
-      if(result?.completed===true){this.state.pendingStaminaAd=true;this.save();if(this.trustedClock.now()===null)await this.synchronizeTime();this.settlePendingAd();}
-      this.save();this.render();if(this.state.pendingStaminaAd)this.timeNotice('体力奖励已保留，联网后到账');else if(result?.completed!==true)this.staminaOffer('观看完成后可获得体力');}
-    catch{this.staminaOffer('广告暂不可用，请稍后再试');}
-    finally{this.adPending=false;this.busy=false;this.audio.resume('ad');}
+    this.text(this.root,this.state.pcCooking?.active?mealSummary(this.state.pcCooking):heroFor(this.state).name,-62,top-39,13,C.ink,153,32);
   }
   private homeSettings(){const c=this.overlay('营地设置',292);
     this.button(c,'settings-close','×',143,111,38,38,()=>this.goHome(),'#e4eef1',true,27);
@@ -1632,33 +1612,100 @@ export class PMGame extends Component {
     const eggs=this.panel(this.root,0,b+(extraTabs?103:115),354,extraTabs?58:70,'#dfeee0',16);this.eggArt(eggs,{id:'region',rarity:'SR',affinity:m.pets[0],stage:5},-137,0,44);
     this.text(eggs,'精英 / BOSS 巢穴寻蛋',24,extraTabs?12:15,16,'#41785c',270,27);this.text(eggs,m.eggs,24,extraTabs?-13:-15,12,'#64846e',270,24);
     const resume=current&&s.expedition&&!['lost','won'].includes(s.phase);
-    const label=!active?'请先孵化新伙伴':!unlocked?'通关 '+MAPS[m.id-1].name+' 解锁':resume?'继续探险':s.stamina!.value<EXPEDITION_COST?'体力不足':'出发！';
-    const go=this.button(this.root,'adventure-go',label,-28,b+39,298,60,()=>this.enterMap(m.id),'#df6156',active&&unlocked,active&&unlocked?23:18);
-    const cost=this.panel(this.root,151,b+39,52,60,'#fff3d5',14);this.menuIcon(cost,'energy',0,12,24,'#d9a539');this.text(cost,resume?'0':'−5',0,-15,17,'#886424',48,24);
+    const label=!active?'请先孵化新伙伴':!unlocked?'通关 '+MAPS[m.id-1].name+' 解锁':resume?'继续探险':'出发！';
+    this.button(this.root,'adventure-go',label,0,b+39,354,60,()=>this.enterMap(m.id),'#df6156',active&&unlocked,active&&unlocked?23:18);
     this.fx=this.makeNode(this.root,'map-effects',0,0,390,H);
   }
   private enterMap(mapId:number){
-    this.refreshStaminaHUD();const s=this.state;if(!hasActivePet(s)||!mapUnlocked(s,mapId))return;
+    const s=this.state;if(!hasActivePet(s)||!mapUnlocked(s,mapId))return;
     const ended=['lost','won'].includes(s.phase);
     if(s.gymRun===undefined&&s.expedition&&mapId===mapFor(s).id&&!ended){this.screen='game';this.render();return;}
-    if(!this.requireTime())return;
-    if(s.stamina!.value<EXPEDITION_COST){this.staminaOffer();return;}
-    const begin=async()=>{if(this.busy||!this.requireTime())return;this.busy=true;
-      try{await this.loadRegionArt(mapId);if(!this.requireTime())return;const base=retreatExpedition(this.state),next=enterExpedition(base,mapId);if(!next.expedition)return;this.state=next;this.screen='game';this.save();this.render();}
+    const begin=async()=>{if(this.busy)return;this.busy=true;
+      try{await this.loadRegionArt(mapId);const base=retreatExpedition(this.state),next=enterExpedition(base,mapId);if(!next.expedition)return;this.state=next;this.screen='game';this.save();this.render();}
       catch{const c=this.overlay('地图加载失败',218);this.text(c,'请重试进入地图',0,20,16,C.muted,300,40);this.button(c,'map-load-close','返回',0,-55,300,44,()=>this.render(),C.blue);}
       finally{this.busy=false;}};
-    if(s.expedition&&!ended){const c=this.overlay('重新出发？',250);this.text(c,'结束当前地图进度，新探险消耗5体力',0,35,14,C.muted,320);
+    if(s.expedition&&!ended){const c=this.overlay('重新出发？',250);this.text(c,'当前挑战进度将重置',0,35,14,C.muted,320);
       this.button(c,'map-cancel','返回',-82,-49,145,52,()=>this.render(),'#e8f3fa');this.button(c,'map-confirm','出发',82,-49,145,52,begin,C.orange);
     }else begin();
   }
-  private dexOwned(id:PetId,rarity?:EggRarity,shiny=false){return this.state.pets!.some(p=>p.id===id&&(!rarity||(p.rarity||'normal')===rarity)&&!!p.shiny===shiny);}
+  private async commitCampaign(next:State){
+    if(this.busy)return false;
+    this.busy=true;
+    const previous=this.state;
+    this.state=next;
+    try{
+      if(await this.save())return true;
+      this.state=previous;
+      await this.save();
+      return false;
+    }finally{this.busy=false;}
+  }
+  private recipeIndex=0;
+  private recipeQuality:FoodQuality=1;
+  private cookingUI(){
+    const state=this.state.pcCooking||newCooking(),recipe=RECIPES[this.recipeIndex],quality=this.recipeQuality;
+    const replace=()=>this.cookingUI();
+    const c=this.fullPage('营地烹饪',mealSummary(state),replace),{top,bottom,height}=this.pageBounds(c);
+    for(const q of [1,2,3] as FoodQuality[]){
+      this.button(c,'food-quality-'+q,FOOD_QUALITY_NAMES[q],(q-2)*116,top-28,108,44,
+        ()=>{this.recipeQuality=q;replace();},q===quality?'#c78a4c':'#f3e4d1',true,15);
+    }
+    RECIPES.forEach((item,i)=>this.button(c,'food-recipe-'+i,item.name,(i%3-1)*116,top-85-Math.floor(i/3)*55,108,48,
+      ()=>{this.recipeIndex=i;replace();},i===this.recipeIndex?item.color:'#fffdf4',true,14));
+    const cardHeight=height-294,card=this.panel(c,0,top-177-cardHeight/2,350,cardHeight,'#fffdf5',18);
+    this.text(card,recipe.name,0,cardHeight/2-24,20,C.ink,322,31).isBold=true;
+    this.text(card,recipe.types.map(type=>tr(type)).join(' · '),0,cardHeight/2-54,14,C.muted,322,24);
+    this.text(card,bonusDescription(recipe,quality).split(' · ').map(value=>tr(value)).join(' · '),0,cardHeight/2-83,16,C.green,322,28);
+    recipeCost(recipe,quality).forEach(({id,count},i)=>{
+      const name=INGREDIENTS.find(item=>item.id===id)!.name;
+      const have=state.ingredients[cookingKey(id,quality)]||0;
+      this.text(card,campaignText(name)+'   '+have+' / '+count,0,cardHeight/2-119-i*28,15,have>=count?C.ink:'#a04c42',322,25);
+    });
+    const key=cookingKey(recipe.id,quality),made=state.meals[key]||0,blocked=this.state.phase==='battle';
+    const apply=async(result:CookingResult)=>{
+      if(blocked||!result.changed)return;
+      const saved=await this.commitCampaign({...this.state,pcCooking:result.state,revision:this.state.revision+1});
+      replace();
+      if(!saved)this.pageHelp(campaignText('保存失败，材料与食物未消耗'));
+    };
+    this.text(c,state.active?'料理效果不叠加，新料理替换旧效果':'持续 10 场已结算战斗',0,bottom+100,14,C.muted,346,30);
+    if(blocked)this.text(c,'请完成当前战斗后再用餐',0,bottom+73,14,'#a04c42',346,24);
+    this.button(c,'food-cook','烹饪',-90,bottom+35,168,48,
+      ()=>void apply(cookMeal(state,recipe.id,quality)),'#c78a4c',!blocked&&!cookingReason(state,recipe.id,quality),17);
+    this.button(c,'food-eat',made?campaignText('享用')+' ×'+made:'先烹饪再享用',90,bottom+35,168,48,
+      ()=>void apply(eatMeal(state,recipe.id,quality)),C.green,!blocked&&made>0,17);
+  }
+  private dexRewardsUI(){
+    const book=this.dexBook();
+    const c=this.fullPage('收集奖励',book.collected.length+' / '+DEX_TOTAL,()=>this.dexRewardsUI(),()=>this.pokedexUI());
+    const {top,height}=this.pageBounds(c),row=Math.min(104,(height-26)/5);
+    for(const reward of DEX_REWARDS){
+      const id=reward.id,claimed=book.claimed.includes(id),ready=!claimed&&book.collected.length>=reward.required;
+      const n=this.button(c,'dex-reward-'+id,'',((id-1)%3-1)*116,top-12-row/2-Math.floor((id-1)/3)*row,108,row-8,
+        async()=>{
+          const result=claimDexReward(this.state,this.dexBook(),id);
+          if(!result.changed)return;
+          const saved=await this.commitCampaign({...result.game,dexCollection:result.book});
+          this.dexRewardsUI();
+          if(!saved)this.pageHelp(campaignText('保存失败，奖励尚未领取，请重试'));
+        },ready?'#f5d88c':claimed?'#e3eee0':'#edf0ef',ready);
+      this.text(n,String(id).padStart(2,'0')+'  ·  SSR',0,14,16,C.ink,98,26).isBold=true;
+      this.text(n,claimed?'已领取':ready?'领取奖励':''+reward.required,0,-14,14,C.muted,98,24);
+    }
+  }
+  private dexBook(){return recordDex(this.state.dexCollection,this.state);}
+  private dexOwned(id:PetId,rarity:EggRarity='normal',shiny=false){
+    return !!this.state.dexCollection?.collected.includes(dexKey({id,rarity,shiny}))||
+      this.state.pets!.some(p=>p.id===id&&(p.rarity||'normal')===rarity&&!!p.shiny===shiny);
+  }
   private pokedexUI(){
-    const owned=new Set(this.state.pets!.map(p=>formKey(p)+(p.shiny?':shiny':''))).size;
-    const catalog=PET_IDS.filter(id=>!FRIEND_PET_IDS.includes(id)||this.state.pets!.some(p=>p.id===id));
-    const summary='已拥有 '+owned+' / '+catalog.length*6+' 形态',c=this.fullPage('图鉴',summary,()=>this.pokedexUI()),{top,bottom,height}=this.pageBounds(c);
+    const owned=this.dexBook().collected.length;
+    const catalog=[...DEX_SPECIES,...FRIEND_PET_IDS.filter(id=>this.state.pets!.some(p=>p.id===id))];
+    const summary=owned+' / '+DEX_TOTAL,c=this.fullPage('图鉴',summary,()=>this.pokedexUI()),{top,bottom,height}=this.pageBounds(c);
     const chooseMap=(id:number)=>{this.dexMap=id;this.dexPage=0;this.pokedexUI();};
-    for(const name of ['图鉴',summary]){const n=this.root.getChildByName(name);if(n){n.setPosition(-12,n.position.y);n.getComponent(UITransform)!.width=190;}}
-    this.button(this.root,'dex-map-all','全部',146,this.h/2-42,78,44,()=>chooseMap(-1),this.dexMap<0?'#b43d3a':'#f5e8dc',true,16);
+    for(const name of ['图鉴',summary]){const n=this.root.getChildByName(name);if(n){n.setPosition(0,n.position.y);n.getComponent(UITransform)!.width=158;}}
+    this.button(this.root,'dex-map-all','全部',92,this.h/2-42,62,44,()=>chooseMap(-1),this.dexMap<0?'#b43d3a':'#f5e8dc',true,15);
+    this.button(this.root,'dex-rewards','SSR',157,this.h/2-42,61,44,()=>this.dexRewardsUI(),'#f4df9e',true,15);
     this.regionTabs(c,top-32,MAPS.map(m=>({id:m.id,label:String(m.id+1).padStart(2,'0'),tint:m.tint})),this.dexMap,this.dexTabPage,(p,redraw)=>{this.dexTabPage=p;if(redraw)this.pokedexUI();},chooseMap,'dex-map');
     const extraTabs=MAPS.length>12?60:0;
     this.button(c,'dex-type',(this.dexType||'全部属性')+' ▾',-120,top-156-extraTabs,112,58,()=>this.dexTypePicker(),this.dexType?'#527e9a':C.paper,true,17);
@@ -1672,8 +1719,9 @@ export class PMGame extends Component {
       this.listItem(p,itemIndex,perPage);const index=PET_IDS.indexOf(id)*3+RARITIES.indexOf(rarity)+1;
       this.text(p,'No.'+String(index).padStart(3,'0')+(shiny?' ★':''),-18,rowH/2-14,11,C.muted,72,20);
       const tint=rarity==='SSR'?'#b78022':rarity==='SR'?'#8b61bb':'#46976e';this.text(p,rarityName(rarity),36,rowH/2-14,11,tint,32,20);
-      const size=Math.min(108,rowH-54),art=this.petImage(p,pet,0,0,size);if(!owned&&!shiny)art.getComponent(Sprite)!.grayscale=true;
-      this.text(p,petName(pet),0,-rowH/2+20,14,C.ink,106,26).isBold=true;
+      if(owned)this.petImage(p,pet,0,0,Math.min(108,rowH-54));
+      else this.text(p,'?',0,0,30,C.muted,90,46).isBold=true;
+      this.text(p,owned?petName(pet):'尚未收集',0,-rowH/2+20,14,C.ink,106,26).isBold=true;
     });
     if(!forms.length)this.text(c,'暂无符合条件的伙伴',0,0,18,C.muted,330,44);
     this.pagePager(c,bottom+25,this.dexPage,pages,(page,redraw)=>{this.dexPage=page;if(redraw)this.pokedexUI();},'dex');
@@ -1684,7 +1732,13 @@ export class PMGame extends Component {
     this.button(c,'dex-type-close','返回',0,-174,310,40,()=>this.pokedexUI(),'#427b9e',true,16);
   }
   private dexDetail(id:PetId,rarity:EggRarity,shiny=false){
-    const p={...petEntry(this.state,id+':'+rarity),shiny},index=PET_IDS.indexOf(id)*3+RARITIES.indexOf(rarity)+1,map=MAPS.find(m=>m.pets.includes(id));
+    const index=PET_IDS.indexOf(id)*3+RARITIES.indexOf(rarity)+1;
+    if(!this.dexOwned(id,rarity,shiny)){
+      const c=this.fullPage('No.'+String(index).padStart(3,'0'),'尚未收集',()=>this.dexDetail(id,rarity,shiny),()=>this.pokedexUI());
+      this.text(c,'?',0,0,72,C.muted,180,120);
+      return;
+    }
+    const p={...petEntry(this.state,id+':'+rarity),shiny},map=MAPS.find(m=>m.pets.includes(id));
     const tint=rarity==='SSR'?'#b78022':rarity==='SR'?'#8b61bb':'#46976e';
     const c=this.fullPage('No.'+String(index).padStart(3,'0')+'  '+petName(p),PETS[id].type+' · '+(this.dexOwned(id,rarity,shiny)?'已拥有':'未拥有'),()=>this.dexDetail(id,rarity,shiny),()=>this.pokedexUI()),{top,bottom,height}=this.pageBounds(c);
     const badge=this.panel(c,0,top-31,112,36,tint,14);this.text(badge,(shiny?'★ ':'')+rarityName(rarity),0,0,18,'#ffffff',105,30).isBold=true;
