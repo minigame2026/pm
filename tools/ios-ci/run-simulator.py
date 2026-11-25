@@ -1,7 +1,6 @@
 """Boot the requested iOS devices and capture actual native Cocos frames."""
 import json
 from pathlib import Path
-import re
 import struct
 import subprocess
 import sys
@@ -25,6 +24,17 @@ def check_png(file):
     return struct.unpack(">II", content[16:24])
 
 
+def retry_on_startup(*args):
+    for attempt in range(6):
+        try:
+            return sim(*args, capture=False, timeout=65)
+        except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as error:
+            if attempt == 5:
+                raise
+            print(type(error).__name__, args[0], "while Simulator initializes; retry", attempt+1, flush=True)
+            time.sleep(8)
+
+
 def run_case(device_type, key, runtime):
     configured = json.loads(sim("list", "devices", "available", "-j"))["devices"].get(runtime, [])
     device = next((entry for entry in configured if entry.get("deviceTypeIdentifier") == device_type), None)
@@ -32,10 +42,13 @@ def run_case(device_type, key, runtime):
     case = evidence / key
     case.mkdir(exist_ok=True)
     try:
-        sim("bootstatus", udid, "-b", capture=False, timeout=430)
-        sim("install", udid, app, capture=False, timeout=150)
+        if not device or device.get("state") != "Booted":
+            sim("boot", udid, capture=False, timeout=75)
+        # SpringBoard and direct app commands can be ready while bootstatus still
+        # waits for optional system-app migration on hosted Intel runners.
+        retry_on_startup("install", udid, app)
         data = Path(sim("get_app_container", udid, bundle, "data").strip())
-        sim("launch", udid, bundle, capture=False)
+        retry_on_startup("launch", udid, bundle)
         done = set()
         dimensions = {}
         deadline = time.monotonic() + 210
@@ -83,9 +96,9 @@ def run_case(device_type, key, runtime):
 
 
 runtimes = json.loads(sim("list", "runtimes", "-j"))["runtimes"]
-sdk = subprocess.check_output(["xcrun","--sdk","iphonesimulator","--show-sdk-version"],text=True).strip()
-ios = [row for row in runtimes if row["isAvailable"] and ".iOS-" in row["identifier"] and row["version"] == sdk]
-assert ios, "No installed iOS runtime for the selected Xcode SDK " + sdk
+runtime_version = "18.6"
+ios = [row for row in runtimes if row["isAvailable"] and ".iOS-" in row["identifier"] and row["version"] == runtime_version]
+assert ios, "Required iOS Simulator runtime unavailable: " + runtime_version
 runtime = ios[0]["identifier"]
 devices = [
     ("com.apple.CoreSimulator.SimDeviceType.iPhone-SE-3rd-generation", "small-se"),

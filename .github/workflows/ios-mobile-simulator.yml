@@ -23,6 +23,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+          sparse-checkout: |
+            assets
+            settings
+            native/engine/common
+            config
+            tools/ios-ci
+            tools/ios-cloud-build.cjs
       - uses: actions/cache/restore@v4
         id: simulator-cache
         with:
