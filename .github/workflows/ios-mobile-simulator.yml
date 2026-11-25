@@ -12,6 +12,10 @@ jobs:
   simulator:
     runs-on: macos-15-intel
     timeout-minutes: 50
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [small-se, island-16, large-16-pro-max]
     env:
       DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
       CMAKE_POLICY_VERSION_MINIMUM: '3.5'
@@ -89,16 +93,16 @@ jobs:
           path: build/ios/proj/Release-iphonesimulator/DicePet-mobile.app
           key: ${{ steps.simulator-cache.outputs.cache-primary-key }}
       - name: Test compact, Dynamic Island and large iPhones
-        timeout-minutes: 16
+        timeout-minutes: 18
         run: |
           app="$GITHUB_WORKSPACE/build/ios/proj/Release-iphonesimulator/DicePet-mobile.app"
           test -d "$app"
-          python3 -u tools/ios-ci/run-simulator.py "$app" build/ios-simulator-evidence
+          python3 -u tools/ios-ci/run-simulator.py "$app" build/ios-simulator-evidence "${{ matrix.profile }}"
       - name: Save Simulator evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Dice-Pet-Spirits-iOS-Simulator-${{ github.run_number }}
+          name: Dicekin-iOS-Simulator-${{ matrix.profile }}-${{ github.run_number }}
           path: |
             build/ios-simulator-evidence/
             build/ios-logs/

@@ -13,9 +13,9 @@ evidence.mkdir(parents=True, exist_ok=True)
 bundle = "com.dice.pet.rpg"
 
 
-def sim(*args, capture=True):
+def sim(*args, capture=True, timeout=120):
     return subprocess.run(["xcrun", "simctl", *map(str, args)], check=True, text=True,
-                          stdout=subprocess.PIPE if capture else None, timeout=160).stdout
+                          stdout=subprocess.PIPE if capture else None, timeout=timeout).stdout
 
 
 def check_png(file):
@@ -26,21 +26,19 @@ def check_png(file):
 
 
 def run_case(device_type, key, runtime):
-    udid = sim("create", "PM-" + key, device_type, runtime).strip()
+    configured = json.loads(sim("list", "devices", "available", "-j"))["devices"].get(runtime, [])
+    device = next((entry for entry in configured if entry.get("deviceTypeIdentifier") == device_type), None)
+    udid = device["udid"] if device else sim("create", "PM-" + key, device_type, runtime).strip()
     case = evidence / key
     case.mkdir(exist_ok=True)
     try:
-        sim("boot", udid)
-        sim("bootstatus", udid, "-b", capture=False)
-        sim("status_bar", udid, "override", "--time", "9:41", "--dataNetwork", "wifi", "--wifiMode", "active",
-            "--wifiBars", "3", "--cellularMode", "active", "--cellularBars", "4", "--batteryState", "unplugged",
-            "--batteryLevel", "100")
-        sim("install", udid, app, capture=False)
+        sim("bootstatus", udid, "-b", capture=False, timeout=430)
+        sim("install", udid, app, capture=False, timeout=150)
         data = Path(sim("get_app_container", udid, bundle, "data").strip())
         sim("launch", udid, bundle, capture=False)
         done = set()
         dimensions = {}
-        deadline = time.monotonic() + 170
+        deadline = time.monotonic() + 210
         report = case / "result.json"
         while time.monotonic() < deadline:
             files = list(data.rglob("pm-simulator-state.json"))
@@ -72,29 +70,32 @@ def run_case(device_type, key, runtime):
         raise TimeoutError("No complete report for "+key)
     finally:
         try:
-            sim("io", udid, "screenshot", case / "last-frame.png", capture=False)
+            sim("io", udid, "screenshot", case / "last-frame.png", capture=False, timeout=40)
             log = sim("spawn", udid, "log", "show", "--last", "4m", "--style", "compact",
-                      "--predicate", 'process CONTAINS "DicePet"')
+                      "--predicate", 'process CONTAINS "DicePet"', timeout=40)
             (case / "runtime.log").write_text(log)
         except Exception as error:
             print(error, flush=True)
         try:
-            sim("shutdown", udid, capture=False)
+            sim("shutdown", udid, capture=False, timeout=30)
         except Exception as error:
             print(error, flush=True)
 
 
 runtimes = json.loads(sim("list", "runtimes", "-j"))["runtimes"]
-ios = [row for row in runtimes if row["isAvailable"] and ".iOS-" in row["identifier"]]
-assert ios, "No iOS Simulator runtimes"
-runtime = max(ios, key=lambda row: [int(n) for n in re.findall(r"\d+", row["version"])])["identifier"]
+sdk = subprocess.check_output(["xcrun","--sdk","iphonesimulator","--show-sdk-version"],text=True).strip()
+ios = [row for row in runtimes if row["isAvailable"] and ".iOS-" in row["identifier"] and row["version"] == sdk]
+assert ios, "No installed iOS runtime for the selected Xcode SDK " + sdk
+runtime = ios[0]["identifier"]
 devices = [
     ("com.apple.CoreSimulator.SimDeviceType.iPhone-SE-3rd-generation", "small-se"),
     ("com.apple.CoreSimulator.SimDeviceType.iPhone-16", "island-16"),
     ("com.apple.CoreSimulator.SimDeviceType.iPhone-16-Pro-Max", "large-16-pro-max"),
 ]
 errors = []
-for device, key in devices:
+cases = [(device,key) for device,key in devices if len(sys.argv) < 4 or key == sys.argv[3]]
+assert cases, "Unknown Simulator profile"
+for device, key in cases:
     try:
         run_case(device, key, runtime)
     except Exception as error:
